@@ -1,0 +1,244 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[italian]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+% \usepackage{showframe}
+% \usepackage{layout}
+
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees}
+\usepackage{fancyhdr}
+\usetikzlibrary{positioning}
+\usepackage[inkscapeformat=png]{svg}
+
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{moresize}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{nicematrix}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{style}
+\usepackage{float}
+\usepackage{setspace}
+
+\setmainfont{Poppins}[
+    Path=./Poppins/,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+\title{Titolo}
+\author{SWEetCode}
+
+\begin{document}
+% \layout
+
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        % TRIANGOLI
+        \draw[fill=secondarycolor, secondarycolor] (current page.north west) -- (current page.south west) -- (8.8, -28);
+        \draw[fill=primarycolor, primarycolor] (-3, 5) -- (4, -13.6) -- (11, 5);
+
+        % LOGO
+        \node [xshift=-5cm, yshift=25cm] (logo) at (current page.south east) {\includesvg[width=6.5cm]{logo.svg}};
+
+        % SWEETCODE - DATE
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=20.5cm, text=black] (sweetcode) at (current page.south east) {\fontsize{32pt}{36pt}\selectfont SWEetCode};
+        \draw[line width=4pt, lightcol] ([xshift=-3cm, yshift=-0.37cm]sweetcode.south west) -- ([yshift=-0.37cm]sweetcode.south east);
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=18.7cm, text=black] (date) at (current page.south east){\fontsize{24pt}{24pt} \selectfont Verbale Esterno};% O ESTERNO
+
+        % NOME FILE
+        \node [anchor=north east, text width=15cm, align=right, xshift=-1.2cm, yshift=17cm, text=black] (titolo) at (current page.south east){\fontsize{48pt}{48pt}\textbf{2023-10-25}};
+
+        % BOX DATI PARTECIPANTI
+        \node[anchor=north east, xshift=-1.2cm, yshift=14.5cm, minimum width=8cm] (box) at (current page.south east){};
+
+        % RESPONSABILE
+        \node[anchor=north west, align=left] (dati2) at (box.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Responsabile}};
+        \draw[line width=4pt, lightcol] (dati2.south west) -- ([xshift=8cm]dati2.south west);
+        \node[anchor=north west, align=left] (dati21) at (dati2.south west)
+        {\fontsize{13pt}{13pt}\selectfont Feltrin E.};
+
+        % VERIFICATORE
+        \node[anchor=north west, yshift=-1cm, align=left] (dati3) at (dati21.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Verificatore}};
+        \draw[line width=4pt, lightcol] (dati3.south west) -- ([xshift=8cm]dati3.south west);
+        \node[anchor=north west, align=left] (dati31) at (dati3.south west)
+        {\fontsize{13pt}{13pt}\selectfont Michelon R.};
+
+        % SEGRETARIO DI RIUNIONE
+        \node[anchor=north west, yshift=-1cm, align=left] (dati4) at (dati31.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Segretario di Riunione}};
+        \draw[line width=4pt, lightcol] (dati4.south west) -- ([xshift=8cm]dati4.south west);
+        \node[anchor=north west, align=left] (dati41) at (dati4.south west)
+        {\fontsize{13pt}{13pt}\selectfont Bresolin G.};
+
+        % PARTECIPANTI
+        %\node[anchor=north west, yshift=-1cm, align=left] (dati5) at (dati41.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Partecipanti}};
+        %\draw[line width=4pt, lightcol] (dati5.south west) -- ([xshift=8cm]dati5.south west);
+        %\node[anchor=north west, align=left] (dati51) at (dati5.south west)
+        %{\fontsize{13pt}{13pt}\selectfont Campese M.};
+        %\node[anchor=north west, yshift=-0.7cm, align=left] (dati52) at (dati5.south west)
+        %{\fontsize{13pt}{13pt}\selectfont Ciriolo I.};
+        %\node[anchor=north west, yshift=-1.4cm, align=left] (dati53) at (dati5.south west)
+        %{\fontsize{13pt}{13pt}\selectfont Dugo A.};
+        %\node[anchor=north west, yshift=-2.1cm, align=left] (dati54) at (dati5.south west)
+        %{\fontsize{13pt}{13pt}\selectfont Michelon R.};
+        
+        % UNIPD - SWE
+        \node [xshift=4.4cm, yshift=2.3cm, draw, secondarycolor, text=white] (uni) at (current page.south west) {\fontsize{20pt}{20pt} \selectfont Università di Padova};
+        \node [xshift=0.65cm, yshift=0.7cm, draw, secondarycolor, text=white, below=of uni] (corso) {\fontsize{20pt}{20pt}\selectfont Ingegneria del Software};
+
+        % FIRMA AZIENDA
+        \draw[line width=4pt, lightcol] ([xshift=-1.2cm, yshift=5.2cm]current page.south east) -- ([xshift=-8cm, yshift=5.2cm]current page.south east);
+        \node [xshift=-4.8cm, yshift=6.3cm] (logo) at (current page.south east) {\includegraphics[width=6cm]{firme/azzurrodigitale.png}};
+        \node[anchor=north west, xshift=12.9cm, yshift=4.95cm, align=left] at (current page.south west)
+        {\fontsize{13pt}{13pt}\selectfont L'azienda: AzzurroDigitale};
+        
+        % FIRMA
+        \draw[line width=4pt, lightcol] ([xshift=-1.2cm, yshift=1.8cm]current page.south east) -- ([xshift=-8cm, yshift=1.8cm]current page.south east);
+        \node [xshift=-4.8cm, yshift=2.45cm] (logo) at (current page.south east) {\includegraphics[width=6cm]{firme/emanuele.png}};
+        \node[anchor=north west, xshift=12.9cm, yshift=1.45cm, align=left] at (current page.south west)
+        {\fontsize{13pt}{13pt}\selectfont Il responsabile: Feltrin E.};
+        
+    \end{tikzpicture}
+\end{titlepage}
+
+% INIZIO PAGINE
+\include{verbelements}
+\setlength{\parindent}{0mm}
+
+\setlist[itemize]{label=\color{primarycolor}\textbullet}
+
+%============================================================================%
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+\heading{Intestazione}
+
+\textbf{Data} \\
+2023-10-25\\
+
+\textbf{Ora Inizio} \\
+14:00\\
+
+\textbf{Ora Fine} \\
+14:30\\
+
+\textbf{Luogo} \\
+Google Meet
+
+\vspace{12.6em}
+
+\heading{Partecipanti}
+
+\textbf{Interni} \\
+Bresolin G.\\
+Ciriolo I.\\
+Campese M.\\
+Dugo A.\\
+Feltrin E.\\
+Orlandi G.\\
+
+\textbf{Esterni} \\
+Caliendo G.\\
+Davanzo C.
+
+ 
+\switchcolumn
+
+%---------------------------------------------------------------------------------------
+
+
+\heading{Revisione delle Azioni}
+\begin{enumerate}
+Non vi sono state revisioni delle azioni.
+\end{enumerate}
+
+\vspace{27.2em}
+
+\heading{Ordine del Giorno}
+\begin{enumerate}
+    \item Decisione ruoli riunione; 
+    \item Approfondimento con \textit{AzzurroDigitale} sul capitolato "Knowledge Managment AI" e sul way of working da utilizzare.
+\end{enumerate}
+
+\newpage
+
+\switchcolumn
+\newpage
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+\newpage
+~\newpage
+~ \\\\\\~
+
+\heading{Decisioni}\\
+\textbf{Decisioni da\\intraprendere\\successivamente alla\\discussione}
+\switchcolumn
+\begin{enumerate}
+    \item \textbf{Come sarà organizzato il dialogo tra l’azienda e il gruppo? Con quale frequenza avverrà il contatto e con che strumento?} \\Il progetto sarà suddiviso in due blocchi: il POC prevederà una durata di 6 settimane mentre il tempo restante sarà dedicato alla realizzazione del MVP.
+    Il contatto tra il team e AzzurroDigitale verrà gestito tramite un canale \textit{Slack} dotato di un calendario, prevedendo incontri su Google Meet con frequenza bisettimanale, dalla durata di circa 1/2 ore;
+    \item \textbf{Nella presentazione del capitolato viene dichiarato che il repository git per le attività di sviluppo del progetto ci verrà fornito da AzzurroDigitale: quali sono i pro e i contro nel caso in cui il repository venga creato dal gruppo o dall'azienda?} \\L'azienda si è espressa aperta ad una eventuale apertura del repository da parte del team, manifestando comunque una preferenza nel svolgere tale compito in quanto risulterebbe più semplice per loro la fornitura di \textit{GitHub Actions} e \textit{immagini Docker};
+    \item\textbf{Quale ambiente di sviluppo consigliate?}\\ L'ambiente di sviluppo consigliato è \textit{Visual Studio Code}, affiancato all'utilizzo di \textit{Docker}.
+    \item \textbf{Quale ambiente consigliate per il tracciamento dei task e delle segnalazioni?} \\L'azienda si è espressa favorevole all'utilizzo del serivizio \textit{GitHub Issue Tracking System}, sottolineando come ciò possa essere facilmente collegato ad altre attività interne al progetto;
+    \item\textbf{Nella presentazione del capitolato viene menzionato l'utilizzo di un modello agile, sarebbe possibile avere qualche ulteriore informazione?} \\AzzurroDigitale aderisce al manifesto Agile, adoperando il framework \textit{Scrum}: l'obiettivo dell'azienda sarebbe di mantenere una tale organizzazione anche nella realizzazione di questo progetto, fornendo particolare attenzione alle fasi di retrospective e review. L'azienda si è inoltre espressa favorevole a fornire una eventuale formazione per il team inerente a tale argomento;
+    \item\textbf{Uno degli strumenti menzionati per la realizzazione del progetto è \textit{ChromaDB}: è necessario utilizzare questo data base vettoriale?} \\L'azienda si è espressa aperta ad un eventuale utilizzo di un altro embedding data base, sottolineando però come sia un loro interesse approfondire tramite questo progetto questo strumento;
+    \item\textbf{Altre tecnologie da voi menzionate (quali \textit{NodeJS} e \textit{Angular}) sono da considerare come consigliate o sono invece obbligatorie per la realizzazione del progetto?}\\L'azienda ha espresso apertura all'utilizzo di qualsiasi tecnologia, sottolineando però come strumenti già da loro utilizzati internamente siano più comodi in quanto in caso di necessità il team potrà contare su un loro supporto;
+    \item\textbf{La piattaforma web da realizzare dovrà gestire una o più aziende, gestendo di conseguenza un sistema di autenticazione tramite credenziali?} \\No, il progetto non prevede un sistema di credenziali, bensì due semplici interfacce accessibili senza la necessità di un account: una per il caricamento dei documenti, l'altra per permettere il dialogo con il chatbot;
+    \item\textbf{Il dataset per la fase di learning dell'algoritmo ci verrà fornito dall'azienda?} \\L'azienda si è resa disponibili alla fornitura di un eventuale dataset con cui addestrare il modello di AI, sottolineando come ciò non sia il reale obiettivo principale del progetto, rispetto invece a valutare una reale fattiblità di quanto proposto nel capitolato;
+    \item\textbf{Che tipo di documenti l'utente potrà essere in grado di fornire al modello?} \\L'utente dovrà essere in grado di poter caricare documenti testuali, che presentino magari anche tabelle o immagini che possono essere restituiti a loro volta nelle domande fornite dal chatbot;
+    \item\textbf{In che lingua dovrà parlare il chatbot?} \\Per la lingua del chatbot sarà sufficente l'italiano;
+    \item\textbf{La comunicazione con il chatbot dovrà essere solo testuale o potrà permettere l'invio anche di richieste sottoforma di audio vocale?} \\Come requisito obbligatorio il chatbot deve prevedere una comunicazione testuale. Secondo AzzurroDigitale l'implementazione di audio vocali potrebbe essere un interessante requisito opzionale;
+    \item\textbf{Uno dei fini di questo progetto è rendere la comunicazione con una macchina più naturale e di abilitare l'accesso a processi aziendali anche a persone con bassa scolarità. Pensate che tutto ciò possa essere una conseguenza naturale del chatbot o avete in mente qualche particolare funzionalità per raggiungere tali propositi?} \\L'azienda ritiene che le intenzioni precedentemente menzionate verranno raggiunte come risultato diretto del progetto, senza prevedere particolari funzionalità;
+    \item\textbf{Il sistema deve essere in grado di memorizzare le chat passate o tiene in memoria solamente la comunicazione che sta avvenendo in quel momento?} \\L'azienda ritiene sufficiente preservare il dialogo che sta avvenendo con il chatbot durante la sessione presente di utilizzo, in quanto l'archiviazione di tutte le chat passate costituisce un onere sia dal punto implementativo che di risorse.
+\end{enumerate}
+
+\vspace{1.6cm}
+
+\begin{enumerate}
+    \item 
+    Valutazione accurata del progetto "Knowledge Management AI" ed analisi dei punti a favore e contro alla luce delle nuove informazioni fornite dall'azienda proponente, con conseguente scelta del capitolato di preferenza del team.
+\end{enumerate}
+
+\end{paracol}
+
+\vspace{3cm}
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{X|c|c|c}
+\textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+Stesura verbale esterno 2023-10-25 & Bresolin G. & Michelon R. & $2023-10-27$ \\
+\end{tabularx}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+Il seguente verbale è stato validato da AzzurroDigitale in data 2023-10-30, confermando il contenuto presentato.
+
+\textbf{Prossima Riunione}
+
+Non è stata fissata una prossima data per una nuova riunione tra SWEetCode e AzzurroDigitale. 
+
+\end{document}

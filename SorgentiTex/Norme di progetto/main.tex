@@ -78,10 +78,12 @@ Le conseguenze di tale operazione a seguito dell'approvazione della pull request
 \end{itemize}
 
 \subsubsection{Pull requests} %TODO: Cambiare chi accetta pull request da Responsabili a Verificatori
+\label{sec:pull_request}
 A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Responsabili}.\\
 Una volta proposta la pull request il responsabile attuale del progetto, membro del \textit{Team Responsabili}, dovrà effettuare un ulteriore verifica sulle modifiche proposte e, a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata sollevata in caso di esito positivo.
 
 \subsubsection{Version control}
+\label{sec:version}
 Il sistema di \textit{Version control} adottato dal team prevede una versione nel seguente formato: vX.Y.Z(build).
 \begin{itemize}
     \item v: sta per versione, rimane immutato lungo tutte le versioni;
@@ -95,9 +97,22 @@ Ogni volta che viene incrementato il valore X, i valori Y, Z e (build) ripartono
 Ogni volta che viene incrementato il valore Y, il valore Z e (build) ripartono dal valore ”0”.\\
 Ogni volta che viene incrementato il valore Z, il valore (build) riparte dal valore "0".
 
+\subsubsection{Automazione release}
+L'automazione del versionamento consente di rilasciare nuove release in modo automatico, seguendo le regole di
+cambio versione indicate in (Norme di progetto, \S \nameref{sec:version}). Attraverso l'uso delle github actions, l'accettazione di una pull request, eseguita seguendo le norme indicate nel
+paragrafo (Norme di progetto, \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
+Il tipo di cambio versione viene indicato dal prefisso del titolo della Pull Request.
+
+Questa automazione si integra in modo efficace con quella citata nel paragrafo (Norme di progetto, \S \nameref{sec:automazione_docs}).
+Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione della pr e la sua accettazione.
+
+La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
+verifica, che garantiscono la pulizia del repo remota e la correttezza del suo contenuto.
+
 \subsection{Documentazione}
-Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l’obiettivo di permettere una consultazione semplice e rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla manutenzione.
+Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l'obiettivo di permettere una consultazione semplice e rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla manutenzione.
     \subsubsection{Ciclo di vita}
+    \label{sec:ciclo_vita}
     Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
         \begin{enumerate}
             \item Assegnazione: $\\$
@@ -115,6 +130,22 @@ Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con
             La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui la fase di verifica abbia avuto un riscontro positivo.
             In questa fase il responsabile attuale di progetto fornisce un'ulteriore conferma alla documentazione prodotta accettando la \textit{pull request} precedentemente aperta all'interno del repository \href{https://github.com/sweetcode-team/Documentation}{\textcolor{black}{\textit{Documentation}}}; del team su \textit{GitHub}.
         \end{enumerate}
+
+    \subsubsection{Automazione versionamento documenti}
+    \label{sec:automazione_docs}
+    L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repo remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
+    Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del task soddisfatto, e dopo una fase di elaborazione
+    in cui aggiorna il registro delle versioni e crea il pdf usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
+
+    Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
+    sito web della repository su GitHub e creare la Pull Request.
+    Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica) e
+    secondo le modalità citate nel paragrafo (Norme di progetto, \S \nameref{sec:ciclo_vita}).
+    
+    L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
+    versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
+    volutamente le loro azioni alla sola modifica del contenuto della documentazione.
+
     \subsubsection{Template}
     Il team ha deciso di produrre un template grafico ricorrente all'interno della documentazione.\\
     Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
@@ -123,6 +154,7 @@ Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con
             \item header: intestazione contenente il nostro logo, il nome del documento ed il nostro nome;
             \item footer: piè di pagina contenente i link alla nostra email e al nostro account \href{https://sweetcode-team.github.io/}{\textcolor{black}{\textit{GitHub}}}; ed infine la numerazione di pagina.
         \end{itemize}
+    
     \subsubsection{Struttura di documento}
     Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
     \begin{itemize}
@@ -132,7 +164,24 @@ Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con
         \item Contenuto: il contenuto vero e proprio del documento.
     \end{itemize}
 
-
+    \paragraph{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come \textit{ifthen} e \textit{forloop}.
+    Considerando i valori dei parametri, durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico, assumendo l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi. L'adozione di questa pratica permette al team di mantenere coerenti struttura, formato del contenuto e presentazione, aumentando il throughput e consentendo ai componenti del gruppo di concentrarsi più sul contenuto che sulla sua visualizzazione.
+    
+    Di seguito vengono elencati i parametri utilizzati a seconda del tipo di documento:
+    \begin{itemize}
+        \item Titolo;
+        \item Data;
+        \item Orario inizio / fine;
+        \item Luogo;
+        \item Tipo di verbale (esterno o interno);
+        \item Nome di responsabile, verificatore, segretario ed eventuale azienda;
+        \item Firma di responsabile ed eventuale azienda;
+        \item Lista dei partecipanti (interni e esterni);
+        \item Lista revisione delle azioni;
+        \item Lista ordine del giorno;
+        \item Lista discussione (interna o esterna);
+        \item Lista decisioni.
+    \end{itemize}
     
     %\textbf{Verbali}$\\$
     \paragraph{Verbali}Fanno eccezione a questa struttura i verbali, sia esterni che interni, che oltre a presentare nella prima pagina di copertina i ruoli inerenti alla sua produzione al posto dell'elenco dei membri del team e una sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate dell'azienda), offre una struttura particolare.\\
@@ -179,7 +228,11 @@ Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con
         \paragraph{Nome del documento}I nomi dei documenti prevedono la lettera iniziale maiuscola seguiti dal resto dei caratteri in case minuscolo e dalla versione del documento stesso.
 
         I verbali, sia interni che esterni, fanno eccezione e presentano un titolo composta dalla data in cui sono stati svolti nel seguente formato: AAAA-MM-GG.
+
+        \paragraph{Riferimenti interni}Menzioni e riferimenti a sezioni interne vengono riportate seguendo la notazione (Nome documento, \S Nome sezione). Questi riferimenti saranno opportunamente collegati tramite link al paragrafo indicato.
         
+        \paragraph{Riferimenti esterni}Menzioni e riferimenti a sezioni di documenti esterni vengono riportate seguento la notazione (Nome documento, \S Numero sezione)
+
         % \textbf{Nome del gruppo} $\\$
         \paragraph{Nome del gruppo}Il nome del gruppo presenta il seguente formato: "SWEetCode".
         
@@ -250,9 +303,17 @@ Sito utilizzato per la produzione delle slide per i Diari di Bordo. É stato cre
 \href{https://discord.com}{https://discord.com}\\\\
 Piattaforma utilizzata per lo svolgimento di riunioni formali ed informali del team, attraverso la creazione di un server apposito con un canale dedicato ai messaggi di testo e diverse sale dedicate alle conversazioni vocali.
 
+\subsection{Jira (di \textit{Atlassian})}
+\href{https://www.atlassian.com/it/software/jira}{https://www.atlassian.com/it/software/jira}\\\\
+Software utilizzato per l'organizzazione del lavoro tra i membri del team.
+
+\subsection{Lucidchart}
+\href{https://www.lucidchart.com/pages/it/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_it_allcountries_mixed_search_brand_exact_&km_CPC_CampaignId=9594860760&km_CPC_AdGroupID=99270039979&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=424699413281&km_CPC_TargetID=kwd-33511936169&km_CPC_Country=1008611&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gad_source=1&gclid=CjwKCAiAu9yqBhBmEiwAHTx5p4TQe0-7u0ZhVN-N_fc86zgphNfT-Tl5YNwSklJXC8E3NH5yE9t0HRoCnmAQAvD_BwE}{https://www.lucidchart.com}\\\\
+Applicazione utilizzata per la creazione dei diagrammi dei Casi d'Uso presenti nell'Analisi dei Requisiti.
+
 \subsection{Notion}
 \href{https://www.notion.so/product}{https://www.notion.so/product}\\\\
-Spazio di lavoro utilizzato per l’organizzazione delle prime task divise per membro del gruppo e per tenere traccia delle attività e dei progressi portati avanti da ogni componente. Usato anche per l’assegnazione chiara dei ruoli, come calendario condiviso del gruppo e per il salvataggio link utili in modo da favorire l’accesso in maniera veloce a tutti i documenti ed i siti necessari.
+Spazio di lavoro utilizzato per l'organizzazione delle prime task divise per membro del gruppo e per tenere traccia delle attività e dei progressi portati avanti da ogni componente. Usato anche per l'assegnazione chiara dei ruoli, come calendario condiviso del gruppo e per il salvataggio link utili in modo da favorire l'accesso in maniera veloce a tutti i documenti ed i siti necessari.
 
 \subsection{Overleaf}
 \href{https://www.overleaf.com}{https://www.overleaf.com}\\\\

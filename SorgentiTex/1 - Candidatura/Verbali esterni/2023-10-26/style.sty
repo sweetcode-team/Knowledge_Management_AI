@@ -1,0 +1,64 @@
+\usepackage{titlesec} 
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+
+\definecolor{primarycolor}{RGB}{248, 182, 143}
+\definecolor{secondarycolor}{RGB}{57, 57, 58}
+\definecolor{colorlogo}{RGB}{23, 22, 20}
+\definecolor{lightcol}{RGB}{245,245,245}
+
+%-------------------------Header & Footer------------------------
+
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\footskip = 65pt
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{
+\begin{tikzpicture}[remember picture,overlay]
+\node[yshift=-1.7cm] at (current page.north west)
+    {
+    \begin{tikzpicture}[remember picture, overlay]
+    \draw[fill=primarycolor, primarycolor] (0,0) rectangle (\paperwidth,1.7cm);
+    \end{tikzpicture}
+    }
+    \node[yshift=-0.85cm, xshift=3.7cm] (logo) at (current page.north west) {\includesvg[width=1.2cm]{logo.svg}};
+\end{tikzpicture}
+}
+\fancyhead[C]{
+\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-0.1cm, yshift=-0.85cm] at (current page.north) {\textbf{2023-10-26}};
+\end{tikzpicture}
+}
+\fancyhead[R]{
+\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-4.1cm, yshift=-0.85cm] at (current page.north east) {SWEetCode};
+\end{tikzpicture}
+}
+
+
+\fancyfoot[L]{
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.south west)
+    {
+    \begin{tikzpicture}[remember picture, overlay]
+    \draw[fill=secondarycolor, secondarycolor] (0,0) rectangle (\paperwidth,1.6cm);
+    \end{tikzpicture}
+    }
+\end{tikzpicture}
+\href{mailto:sweetcode.team@gmail.com}{\textcolor{white}{sweetcode.team@gmail.com}}
+}
+\fancyfoot[C]{
+\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-8.5cm, yshift=0.85cm] at (current page.south east) {\color{white}\icon{\faGithub} \href{https://sweetcode-team.github.io/}{\textcolor{white}{sweetcode}}};
+\end{tikzpicture}
+
+}
+\fancyfoot[R]{
+\textcolor{white}{\thepage \hspace{1pt} di \pageref*{LastPage}}
+}

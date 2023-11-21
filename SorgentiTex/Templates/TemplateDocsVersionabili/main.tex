@@ -1,0 +1,54 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\titolo}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% REGISTRO DELLE VERSIONI
+\include{registroversioni}
+\newpage
+
+% INDICE
+\tableofcontents
+\newpage
+
+% INIZIO PAGINE
+\section{Prova Sezione}
+\subsection{Prova Sottosezione}
+
+You can't just fit it all in. Also, actions aren't all worth the same. Like in the Pareto principle (80/20), some actions have tremendously better effects than others which are practically useless in the pursuit of your goals. 
+
+\subsubsection{Prova Sottosottosezione}
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{c|X|c|c|c}
+\textbf{n°} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+5 & Contatto aziende & Ciriolo I. & Team & $2023-10-19$ \\
+\hline
+6 & Setup workspace informale & Dugo A. & Team & $2023-10-17$ \\
+\hline
+7 & Creazione template contenuti verbali & Bresolin G. & Team & $2023-10-20$ \\
+\hline
+8 & Stesura verbale interno 2023-10-17 & Bresolin G. & Feltrin E. & $2023-10-20$ \\
+\hline
+10 & Creazione logo & Michelon R. & Team & $2023-10-20$ \\
+\end{tabularx}}
+
+\section{Seconda Sezione}
+\paragraph{Prova paragrafo} Prova testo sotto paragrafo, altro testo per andare a capo e vedere come funziona:
+\begin{itemize}
+  \item List entries start with the \verb|\item| command.
+  \item Individual entries are indicated with a black dot, a so-called bullet.
+  \item The text in the entries may be of any length.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,272 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[italian]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+% \usepackage{showframe}
+% \usepackage{layout}
+
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees}
+\usepackage{fancyhdr}
+\usetikzlibrary{positioning}
+\usepackage[inkscapeformat=png]{svg}
+
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{moresize}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{nicematrix}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{style}
+\usepackage{float}
+\usepackage{setspace}
+
+\setmainfont{Poppins}[
+    Path=./Poppins/,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+\title{Titolo}
+\author{SWEetCode}
+
+\begin{document}
+% \layout
+
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        % TRIANGOLI
+        \draw[fill=secondarycolor, secondarycolor] (current page.north west) -- (current page.south west) -- (8.8, -28);
+        \draw[fill=primarycolor, primarycolor] (-3, 5) -- (4, -13.6) -- (11, 5);
+
+        % LOGO
+        \node [xshift=-5cm, yshift=25cm] (logo) at (current page.south east) {\includesvg[width=6.5cm]{logo.svg}};
+
+        % SWEETCODE - DATE
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=20.5cm, text=black] (sweetcode) at (current page.south east) {\fontsize{32pt}{36pt}\selectfont SWEetCode};
+        \draw[line width=4pt, lightcol] ([xshift=-3cm, yshift=-0.37cm]sweetcode.south west) -- ([yshift=-0.37cm]sweetcode.south east);
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=18.7cm, text=black] (date) at (current page.south east){\fontsize{24pt}{24pt} \selectfont Verbale Interno};% O ESTERNO
+
+        % NOME FILE
+        \node [anchor=north east, text width=15cm, align=right, xshift=-1.2cm, yshift=17cm, text=black] (titolo) at (current page.south east){\fontsize{48pt}{48pt}\textbf{2023-10-20}};
+
+        % BOX DATI PARTECIPANTI
+        \node[anchor=north east, xshift=-1.2cm, yshift=12.5cm, minimum width=8cm] (box) at (current page.south east){};
+
+       
+        % RESPONSABILE
+        \node[anchor=north west,  align=left] (dati2) at (box.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Responsabile}};
+        \draw[line width=4pt, lightcol] (dati2.south west) -- ([xshift=8cm]dati2.south west);
+        \node[anchor=north west, align=left] (dati21) at (dati2.south west)
+        {\fontsize{13pt}{13pt}\selectfont Feltrin E.};
+
+        % VERIFICATORE
+        \node[anchor=north west, yshift=-1cm, align=left] (dati3) at (dati21.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Verificatore}};
+        \draw[line width=4pt, lightcol] (dati3.south west) -- ([xshift=8cm]dati3.south west);
+        \node[anchor=north west, align=left] (dati31) at (dati3.south west)
+        {\fontsize{13pt}{13pt}\selectfont Orlandi G.};
+
+        % SEGRETARIO DI RIUNIONE
+        \node[anchor=north west, yshift=-1cm, align=left] (dati4) at (dati31.north west) {\fontsize{15pt}{15pt}\selectfont \textbf{Segretario di Riunione}};
+        \draw[line width=4pt, lightcol] (dati4.south west) -- ([xshift=8cm]dati4.south west);
+        \node[anchor=north west, align=left] (dati41) at (dati4.south west)
+        {\fontsize{13pt}{13pt}\selectfont Campese M.};
+
+        % PARTECIPANTI
+      %  \node[anchor=north west, yshift=-1cm, align=left] (dati5) at (dati41.north west) %{\fontsize{15pt}{15pt}\selectfont \textbf{Partecipanti}};
+      %  \draw[line width=4pt, lightcol] (dati5.south west) -- ([xshift=8cm]dati5.south west);
+      %  \node[anchor=north west, align=left] (dati51) at (dati5.south west)
+      %  {\fontsize{13pt}{13pt}\selectfont Bresolin G.};
+      %  \node[anchor=north west, yshift=-0.7cm, align=left] (dati52) at (dati5.south west)
+      %  {\fontsize{13pt}{13pt}\selectfont Ciriolo I.};
+      %  \node[anchor=north west, yshift=-1.4cm, align=left] (dati53) at (dati5.south west)
+      %  {\fontsize{13pt}{13pt}\selectfont Dugo A.};
+      %  \node[anchor=north west, yshift=-2.1cm, align=left] (dati54) at (dati5.south west)
+      %  {\fontsize{13pt}{13pt}\selectfont Michelon R.};
+        
+        % UNIPD - SWE
+        \node [xshift=4.4cm, yshift=2.3cm, draw, secondarycolor, text=white] (uni) at (current page.south west) {\fontsize{20pt}{20pt} \selectfont Università di Padova};
+        \node [xshift=0.65cm, yshift=0.7cm, draw, secondarycolor, text=white, below=of uni] (corso) {\fontsize{20pt}{20pt}\selectfont Ingegneria del Software};
+
+        % FIRMA
+        \draw[line width=4pt, lightcol] ([xshift=-1.2cm, yshift=1.8cm]current page.south east) -- ([xshift=-8cm, yshift=1.8cm]current page.south east);
+        \node [xshift=-4.8cm, yshift=2.45cm] (logo) at (current page.south east) {\includegraphics[width=6cm]{firme/emanuele.png}};
+        \node[anchor=north west, xshift=12.9cm, yshift=1.45cm, align=left] at (current page.south west)
+        {\fontsize{13pt}{13pt}\selectfont Il Responsabile: Feltrin E. };
+        
+    \end{tikzpicture}
+\end{titlepage}
+
+% INIZIO PAGINE
+
+\setlength{\parindent}{0mm}
+
+\setlist[itemize]{label=\color{primarycolor}\textbullet}
+
+\include{verbelements}
+
+%============================================================================%
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+\heading{Intestazione}
+
+\textbf{Data} \\
+2023-10-20\\
+
+\textbf{Ora Inizio} \\
+12:00\\
+
+\textbf{Ora Fine} \\
+13:10\\
+
+\textbf{Luogo} \\
+Piattaforma Discord
+
+\vspace{12.5em}
+
+\heading{Partecipanti}
+
+\textbf{Interni} \\
+Bresolin G.\\
+Campese M.\\
+Ciriolo I.\\
+Dugo A.\\
+Feltrin E.\\
+Michelon R.\\
+Orlandi G.\\
+
+
+
+
+\switchcolumn
+
+%---------------------------------------------------------------------------------------
+
+
+\heading{Revisione delle Azioni}
+\begin{enumerate}
+\item Verifica e approvazione unanime del logo;
+\item Verifica e approvazione del template testuale di contenuto per i verbali interni ed esterni.
+  
+\end{enumerate}
+
+\vspace{23em}
+
+\heading{Ordine del Giorno}\\
+
+\begin{enumerate}
+    \item Organizzazione riunione in corso;
+    \item Considerazioni su strumenti e metodologie di lavoro;
+    \item Discussione incontri con i proponenti;
+     \item Assegnazione task da portare a termine entro la successiva riunione;
+    \item Punti di discussione per la successiva riunione.
+    
+\end{enumerate}
+
+\newpage
+
+\switchcolumn
+\newpage
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{15,2cm}
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante la\\discussione}
+
+\switchcolumn
+\begin{enumerate}
+    \item Assegnazione ruoli riunione:
+    \begin{itemize}
+        \item Responsabile: Feltrin E.;
+        \item Verificatore: Orlandi G.;
+        \item Segretario di Riunione: Campese M.
+        
+    \end{itemize}
+    
+   
+    
+    \item Discussione e presa in esame degli strumenti di lavoro:
+    \begin{itemize}
+    \item Considerazioni sull’utilizzo di \LaTeX\ per i documenti più complessi;
+     \item Dibattito sulla necessità di avere un \textit{Way of Working} preliminare documentato da poter attuare dal successivo incontro.
+    \end{itemize}
+    \item Riflessioni sulla necessità di avere delle domande ben formate e revisionate per gli incontri preliminari con i proponenti dei capitolati C-1 (Azzurro Digitale), C-2 (Ergon) e C-9 (Zucchetti);
+     \item 
+     Assegnazione di task riguardanti \textit{Way of Working}, incontri con i proponenti, resoconto dei capitolati, Lettera di Presentazione e preparazione in previsione del prossimo Diario di Bordo;\\
+\item Punti di discussione da affrontare nella prossima riunione:
+\begin{itemize}
+    \item Decisioni sui ruoli di progetto;
+    \item Responsabile Diario di Bordo del giorno 2023-10-30;
+    \item Frequenza della rotazione dei ruoli;
+    \item Studio del preventivo costo finale calcolato secondo regolamento.
+    
+\end{itemize}
+     
+    
+\end{enumerate}
+
+\vspace{7.5em}
+
+\begin{enumerate}
+    \item  Responsabile e referente in carico per incontro con i proponenti Zucchetti, Ergon e Azzurro Digitale: Feltrin E.;
+    \item Prova Zoom in preparazione a Meeting ore 15.30 del 2023-10-23.
+   
+\end{enumerate}
+
+\end{paracol}
+
+\newpage
+
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{X|c|c|c}
+\textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+Creazione template design per i documenti & \quantities{ Bresolin G. \\ Campese M. \\ Ciriolo I.} & Team & $2023-10-20$ \\
+\hline
+Revisione e formalizzazione domande per C-1, C-2 e C-9 & \quantities{ Bresolin G. \\ Feltrin E. \\ Michelon R.}& Team & $2023-10-23$ \\
+\hline
+Stesura verbale interno 2023-10-20 & Campese M. & Orlandi G. & $2023-10-25$ \\
+\hline
+Stilare resoconto capitolati &  \quantities{ Dugo A. \\ Michelon R. \\ Orlandi G.}& \quantities{ Bresolin G. \\ Campese M. \\ Ciriolo I.} & $2023-10-27$ \\
+\hline Stesura Lettera di presentazione & \quantities{ Feltrin E.\\ Ciriolo I.} & Campese M.& $2023-10-27$\\
+\hline Preparazione presentazione Diario di Bordo $2023-10-30$ & \quantities{ Feltrin E.\\ Ciriolo I.} & Campese M.& $2023-10-28$\\
+\hline
+Impostazione e stesura  preliminare Norme di progetto &  \quantities{ Bresolin G. \\ Campese M. \\ Ciriolo I.} & \quantities{ Dugo A. \\ Michelon R. \\ Orlandi G.} & $2023-10-29$ \\
+
+\end{tabularx}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+2023-10-27 ore 10.00, Piattaforma Discord.
+
+\end{document}

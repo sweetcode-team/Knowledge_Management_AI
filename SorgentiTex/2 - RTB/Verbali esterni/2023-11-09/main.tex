@@ -1,0 +1,116 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\usepackage{verbatim}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{5.0em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{23.5em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+~\newpage
+~ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\~
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+Successivamente alla discussione, i rappresentanti dell'azienda hanno chiarito alcuni aspetti necessari all'avviamento del progetto. Viene avviato un canale \textit{Slack} per le comunicazioni con l'azienda, che mette inoltre a disposizione un \textit{repository} \textit{GitHub}. In aggiunta viene messo a disposizione un calendario \textit{Google} condiviso per la programmazione delle riunioni.
+
+L'azienda spiega che il primo blocco di lavoro sarà di 6 settimane, entro le quali sarà richiesto un PoC (con scadenza entro il 2023-12-06), nel quale deve essere presente una solida analisi dei requisiti. Il secondo blocco di lavoro (MVP) sarà invece di circa 14 settimane, con task e scadenze ancora da definire.
+
+Viene infine specificato che verrà richiesto di elaborare un'analisi dei costi di costruzione e di mantenimento del progetto.
+
+\vspace{12.5em}
+
+\decisioni
+
+\end{paracol}
+
+\newpage
+
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{c|X|c|c|c}
+\textbf{ID Issue} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+\#35 &
+Stesura verbale riunione &
+Ciriolo I. &
+Campese M. &
+$2023-11-13$ \\
+\hline
+- &
+Stesura prima bozza di Analisi dei requisiti &
+Ciriolo I. &
+Campese M. &
+$2023-11-15$ \\
+\hline
+- &
+Discussione riguardo l'organizzazione pubblica/privata del \textit{repository} &
+Team &
+Team &
+$2023-11-15$ \\
+\hline
+- &
+Iscrizione al canale \textit{Slack} ed al \textit{repository} forniti dall'azienda &
+Feltrin E. &
+Campese M. &
+$2023-11-15$ \\
+\hline
+- &
+Invio all'azienda di account e-mail personali dei membri del team &
+Feltrin E. &
+Campese M. &
+$2023-11-15$ \\
+\end{tabularx}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione con AzzurroDigitale è pianificata il 2023-11-15 alle 15:00 per la discussione dell'Analisi dei requisiti.
+
+\end{document}

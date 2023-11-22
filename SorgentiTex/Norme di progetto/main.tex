@@ -79,8 +79,9 @@ Le conseguenze di tale operazione a seguito dell'approvazione della pull request
 
 \subsubsection{Pull requests} %TODO: Cambiare chi accetta pull request da Responsabili a Verificatori
 \label{sec:pull_request}
-A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Responsabili}.\\
-Una volta proposta la pull request il responsabile attuale del progetto, membro del \textit{Team Responsabili}, dovrà effettuare un ulteriore verifica sulle modifiche proposte e, a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata sollevata in caso di esito positivo.
+A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
+Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e, a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata sollevata in caso di esito positivo.
+Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Protection Rules} offerte da \textit{GitHub}.
 
 \subsubsection{Version control}
 \label{sec:version}
@@ -111,25 +112,28 @@ verifica, che garantiscono la pulizia del repo remota e la correttezza del suo c
 
 \subsection{Documentazione}
 Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l'obiettivo di permettere una consultazione semplice e rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla manutenzione.
-    \subsubsection{Ciclo di vita}
-    \label{sec:ciclo_vita}
-    Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
-        \begin{enumerate}
-            \item Assegnazione: $\\$
-            Ogni documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.\\
-            Una volta presa la decisione per i precedenti ruoli viene aperta su \textit{GitHub} una issue a loro associata relativa alla  realizzazione del documento, la quale viene immediatamente inserita all'interno della Board del progetto. Ogni issue viene inoltre etichettata da una label relativa al tipo di documento da produrre;
-            \item Stesura: $\\$
-            La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale interno o esterno) o dai responsabili di stesura.
-            La produzione della documentazione in formato \textit{Latex} viene gestita tramite la piattaforma \textit{Overleaf}, la quale rende disponibile gli strumenti adatti ad una eventuale stesura sincronizzata e collaborativa tra i membri del team;
-            \item Verifica e validazione: $\\$
-            La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle "Norme di progetto". 
-            Se il documento è di tipo esterno, una volta eseguita la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, per essere sottoposto ad una sua ulteriore verifica e validazione.
-            In caso di esito positivo viene eseguito un commit nel repository \href{https://github.com/sweetcode-team/Documentation}{\textcolor{black}{\textit{Documentation}}}; su \textit{GitHub} che porta alla creazione di una \textit{pull request} (il commit a lui associato dovrà chiudere la issue aperta relativa al documento in oggetto attraverso l'automazione \textit{Close \#id\_issue} ).
-            In caso di esito negativo si ritorna invece alla fase precedente in modo da produrre una documentazione che tiene conto delle precisazioni presentate dal revisore e/o dall'eventuale parte esterna;
-            \item Pubblicazione: $\\$
-            La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui la fase di verifica abbia avuto un riscontro positivo.
-            In questa fase il responsabile attuale di progetto fornisce un'ulteriore conferma alla documentazione prodotta accettando la \textit{pull request} precedentemente aperta all'interno del repository \href{https://github.com/sweetcode-team/Documentation}{\textcolor{black}{\textit{Documentation}}}; del team su \textit{GitHub}.
-        \end{enumerate}
+\subsubsection{Ciclo di vita}
+\label{sec:ciclo_vita}
+Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
+\begin{enumerate}
+    \item Assegnazione: \\
+    Ogni documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.
+    Una volta presa la decisione per i precedenti ruoli viene aperta su \textit{GitHub} una issue a loro associata relativa alla  realizzazione del documento, la quale viene immediatamente inserita all'interno della Board del progetto. Ogni issue viene inoltre etichettata da una label relativa al tipo di documento da produrre;
+    \item Stesura: \\
+    La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale interno o esterno) o dai responsabili di stesura.
+    La produzione della documentazione in formato \textit{Latex} viene gestita tramite la piattaforma \textit{Overleaf}, la quale rende disponibile gli strumenti adatti
+    ad una eventuale stesura sincronizzata e collaborativa tra i membri del team. Una volta che la stesura viene ritenuta stabile, tramite l'automazione descritta in (Norme di progetto, automazione documenti),
+    viene poste le basi per una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} su \textit{GitHub};
+    \item Verifica e validazione: \\
+    La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle (Norme di progetto). 
+    Se il documento è di tipo esterno, una volta eseguita la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, per essere sottoposto ad una sua ulteriore verifica e validazione.
+    In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla fase precedente, in modo da produrre una documentazione che tiene conto delle precisazioni presentate dal revisore e/o dall'eventuale parte esterna;
+    \item Pubblicazione: \\
+    La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui la fase di verifica abbia avuto un riscontro positivo: una volta risolta la
+    \textit{pull request} il documento troverà infatti collocazione all'interno del repository
+    \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} del team su \textit{GitHub}.
+    In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
+\end{enumerate}
 
     \subsubsection{Automazione versionamento documenti}
     \label{sec:automazione_docs}

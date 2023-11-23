@@ -1,0 +1,599 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\titolo}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% REGISTRO DELLE VERSIONI
+\include{registroversioni}
+\newpage
+
+% INDICE
+\tableofcontents
+\newpage
+
+% INTRODUZIONE
+\section{Introduzione}
+\subsection{Scopo del documento}
+Il documento ha lo scopo di definire i casi d'uso della \textit{web application} che verrà sviluppata nel corso del progetto. Vengono inoltre presentati i requisiti funzionali, di qualità e di vincolo. %e le funzionalità aggiuntive che saranno implementate non essendo ritenute essenziali/necessarie.
+\\
+%\subsection{Scopo del prodotto}
+\subsection{Glossario}
+%\paragraph{}Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione relativa al progetto viene presentato un Glossario. I termini ambigui o specifici presenti nello stesso, verranno identificati con un pedice |g|. (DA VALUTARE COME RICONOSCERE IL TERMINE )
+
+\subsection{Riferimenti}
+   \subsubsection{Riferimenti normativi}
+   \begin{itemize}
+    \item \textit{Regolamento del progetto didattico}: \\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/\textasciitilde tullio/IS-1/2023/Dispense/PD2.pdf};
+    \item \textit{\S Norme di progetto}.
+    \end{itemize}
+    
+    \subsubsection{Riferimenti informativi}
+    
+    \begin{itemize}
+   % \item \textit{Glossario v0.0.1} (da creare parallelamente); 
+    \item \textit{Presentazione capitolato C1}:\\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}{https://www.math.unipd.it/\textasciitilde tullio/IS-1/2023/Progetto/C1.pdf};
+    \item \textit{Verbali esterni ed interni};
+    \item \textit{Analisi e descrizione delle funzionalità: Use Case e relativi diagrammi (UML):}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2022/Diagrammi\%20Use\%20Case.pdf ;}
+    \item \textit{Analisi e descrizione delle funzionalità: Diagrammi delle Attività (UML):}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20di%20Attivit%C3%A0.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2022/Diagrammi\%20di\%20Attivit\%C3\%A0.pdf;}
+    
+
+    \item \textit{Progettazione e Programmazione: Diagrammi delle Classi:}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2023/Diagrammi\%20delle\%20Classi.pdf.}
+    \end{itemize}
+
+% DESCRIZIONE
+\newpage
+\section{Descrizione}
+\subsection{Obiettivi del prodotto}
+Il proponente richiede la creazione di un sito web dotato di un chatbot realizzato tramite interrogazioni ad un modello di intelligenza artificiale, che sia d'aiuto a tutto il personale dell'azienda.
+In particolare il sistema deve facilitare l'accesso dei dipendenti alle informazioni, regolamentazioni e alle indicazioni aziendali.\\
+Il prodotto deve fornire nuove modalità di formazione e assistenza sul lavoro, superando i limiti di un classico \textit{repository} documentale, in maniera tale da rendere le informazioni più fruibili, concentrandosi più sui contenuti; il sistema deve riuscire a comunicare con i lavoratori in modo semplice, in maniera tale che qualsiasi persona, anche la meno esperta, riesca a ricavare le informazioni che cerca.
+%Infine, deve riuscire a migliorare il comportamento dei lavoratori, facendo in modo che rispettino le regole.
+\subsection{Funzioni del prodotto}
+Il software deve essere in grado di ricevere in input documenti, in particolare \textit{PDF}, oppure documenti Word, con i quali possa rispondere a qualsiasi domanda sugli stessi sottoposta dall'utente. 
+\subsection{Caratteristiche del prodotto}
+Il sistema deve poter aver accesso a tutti i file caricati, non può rispondere simultaneamente a più utenti ma ne può gestirne uno alla volta e deve poter riconoscere la lingua italiana e quella inglese. I documenti caricati devono poter rimanere accessibili così come lo storico delle richieste effettuate dall'utente.
+\subsection{Utenti}
+Gli utenti possono interagire con il sistema attraverso un'interfaccia dove è presente un \textit{chatbot} ma possono anche visualizzare i file che il sistema gestisce. L'utente può chiedere informazioni riguardo ai documenti specifici attraverso la risposta data dal \textit{chatbot}. Se l'utente chiede al sistema informazioni non pertinenti, il sistema deve notificarlo attraverso una risposta cortese.
+% CASI D'USO
+\newpage
+\section{Casi d'uso}
+
+\subsection{Obiettivi}
+La seguente sezione ha l'obiettivo di presentare i diversi Casi d'Uso relativi all'applicazione \textit{Knowledge Management AI}. 
+\subsection{Notazione} 
+I Casi d'Uso sono indicati con la notazione seguente: \\ UC[X].[Y] \ \  in cui:
+\begin{itemize}
+\item UC sta per \textit{Use Case};
+\item .[X] indica il numero del Caso d'Uso, presentati secondo successione gerarchica;
+\item .[Y] indica il possibile numero del sotto-Caso d'uso, che aggiunge informazioni al Caso d'Uso [X]. Anche i sotto-Casi d'Uso sono presentati secondo successione gerarchica.
+\end{itemize}
+
+\subsection{Attori}
+L'applicazione \textit{Knowledge Management AI} richiede un singolo attore che rappresenta l'utente (ovvero il dipendente aziendale) che interagisce con il ChatBot. \\ Si specifica che l'azienda proponente non richiede l'autenticazione degli utenti nell'applicazione.%, poiché rappresenterebbe un rallentamento alla divulgazione rapida e semplice di documenti all'interno della rete aziendale; Per questo motivo l'autenticazione non viene presentata tra i requisiti.
+\subsection{Didascalie}
+Per ogni Caso d'Uso è presentata una breve didascalia che ne indica:
+\begin{itemize}
+    \item Descrizione;
+    \item Scenario (ovvero il modo in cui l'attore giunge al Caso d'Uso tramite passi indicati da elenco numerato);
+    \item Estensioni;
+    \item Precondizioni (ovvero ciò che accade prima che il Caso d'Uso si presenti);
+    \item Postcondizioni (ovvero ciò che accade dopo che il Caso d'Uso si è presentato).
+\end{itemize}
+N.B: non viene specificato l'attore principale di ogni Caso d'Uso poiché è stato precedentemente specificato che si tratta sempre di un singolo utente che si interfaccia con l'applicazione.
+\subsection{Lista dei casi d'uso}
+\begin{itemize}
+
+    \item UC1 - Visualizzazione interfaccia Chatbot;
+    \begin{itemize}
+        \item \textbf{Descrizione:} l'utente desidera interagire con il chatbot;
+        \item \textbf{Scenario: } 
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente interagisce con l'interfaccia chatbot.\\
+    \end{itemize}
+    
+    \item UC2 - Visualizzazione documenti;
+    \begin{itemize}
+        \item \textbf{Descrizione:} l'utente visualizza la lista di documenti presenti nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza una lista di documenti.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente visualizza i documenti che si trovano nell'applicazione.\\
+    \end{itemize}
+    
+    \item UC3 - Selezione documento singolo;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente seleziona un documento presente nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente sfoglia la lista di documenti;
+        \item l'utente seleziona uno dei documenti.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione e sceglie un documento;
+        \item \textbf{Postcondizioni:} l'utente ha selezionato il documento desiderato dalla lista.\\
+    \end{itemize}
+    
+    \item UC4 - Selezione insieme di documenti;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente seleziona più di un documento;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente entra nell'applicazione;
+        \item l'utente sfoglia la lista dei documenti;
+        \item l'utente sceglie una serie di documenti da selezionare.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione e sceglie una serie di documenti dalla lista;
+        \item \textbf{Postcondizioni:} l'utente ha selezionato i documenti desiderati dalla lista.\\
+    \end{itemize}
+    
+    \item UC5 - Caricamento singolo documento;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente carica un documento nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona un file da caricare;
+        \item l'utente carica un documento.
+        \end{enumerate}
+        \item \textbf{Estensioni: }UC5.1;
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente vede il completamento del caricamento del singolo file.
+    \end{itemize}
+    \item UC5.1 - Caricamento di più documenti;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente carica più documenti nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona più file da caricare;
+        \item l'utente carica più documenti.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente vede il completamento del caricamento massivo.\\
+    \end{itemize}
+    
+    \item UC6 - Visualizzazione completamento caricamento;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente vede che il caricamento del suo file (o dei suoi file) è andato a buon fine;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona uno o più file da caricare;
+        \item l'utente carica uno o più documenti;
+        \item il caricamento va a buon fine.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente carica uno o più file (UC5, UC5.1);
+        \item \textbf{Postcondizioni:} l'utente verifica che il caricamento sia andato a buon fine.\\
+    \end{itemize}
+    
+    \item UC7 - Visualizzazione di errore nel caricamento;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file);
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona uno o più file da caricare;
+        \item l'utente carica uno o più documenti;
+        \item il caricamento non va a buon fine.
+        \end{enumerate}
+        \item \textbf{Estensioni: }UC7.1, \ UC7.2, \ UC7.3;
+        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1);
+        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento.
+    \end{itemize}
+    
+    \item UC7.1 - Visualizzazione di errore: documento già presente;   
+    \begin{itemize}
+    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poiché il documento caricato è già stato inserito nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item scenario di caricamento documento/i UC5 o UC5.1
+        \item l'utente carica nuovamente un documento caricato in precedenza;
+        \item il caricamento non va a buon fine.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1) e caricamento di un documento già caricato;
+        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il documento è già presente nell'applicazione.
+    \end{itemize}
+
+    \item UC7.2 - Visualizzazione di errore: documento vuoto;
+    \begin{itemize}
+    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poichè il documento caricato è privo di contenuto;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona uno o più file da caricare;
+        \item l'utente carica uno o più documenti vuoti;
+        \item il caricamento non va a buon fine.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1) e caricamento di almeno un documento vuoto;
+        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il documento inserito è vuoto.
+    \end{itemize}
+
+    \item UC7.3 - Visualizzazione di errore: formato del documento non consentito;
+    \begin{itemize}
+    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poichè il formato del documento caricato non è riconoscibile dall'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item scenario di caricamento documento/i UC5 o UC5.1;
+        \item il caricamento non va a buon fine.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni :}caricamento di uno o più documenti (UC5, UC5.1);
+        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il formato del documento non è compatibile con l'applicazione.\\
+    \end{itemize}
+       
+    \item UC8 - Cancellazione singolo documento;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente elimina un documento presente all'interno dell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente seleziona un documento (UC3);
+        \item l'utente elimina un documento.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni :}nell'applicazione è presente almeno un documento;
+        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente senza il documento cancellato.\\
+    \end{itemize}
+
+    \item UC9 - Cancellazione insieme di documenti;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente elimina più di un documento presente all'interno dell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente seleziona più documenti (UC4);
+        \item l'utente elimina i documenti.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni :}nell'applicazione è presente almeno un documento;
+        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente senza i documenti cancellati.\\ 
+    \end{itemize}
+  
+    \item UC10 - Visualizzazione di domande pre-impostate;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza delle domande predefinite con le quali può interagire con l'interfaccia chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+            
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza le domande predefinite;
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente seleziona una domanda.\\
+    \end{itemize}
+
+    \item UC11 - Selezione domanda pre-impostata;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente seleziona una domanda predefinita con la quale può interagire con l'interfaccia chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza le domande predefinite;
+        \item l'utente seleziona una delle domande proposte.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni:} l'utente visualizza la risposta alla domanda selezionata.\\
+    \end{itemize}
+    
+    \item UC12 - Inserimento domanda o testo;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente inserisce una domanda per il chatbot;
+        \item l'utente invia la domanda.
+        \end{enumerate}
+        \item \textbf{Estensioni: }UC13, UC14;
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni: }l'utente invia il quesito e visualizza la risposta alla domanda posta (o un messaggio alternativo).\\
+    \end{itemize}
+
+    \item UC13 - Digitazione domanda o testo;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot digitando la domanda sulla tastiera;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente digita una domanda per il chatbot;
+        \item l'utente invia la domanda.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
+    \end{itemize}
+        
+        \item UC14 - Inserimento vocale domanda o testo;
+        \begin{itemize}
+        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot tramite microfono;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona l'opzione di inserimento vocale (UC21);
+        \item l'utente pone vocalmente la domanda;
+        \item l'utente invia la domanda.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente seleziona l'opzione di inserimento vocale (UC21);
+        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
+    \end{itemize}
+    
+    \item UC15 - Invio domanda o testo;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente dopo aver inserito una domanda o un testo, lo invia al chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente pone un quesito al chatbot (UC12);
+        \item l'utente invia la domanda.
+        \end{enumerate}
+        \item \textbf{Estensioni: }UC16;
+        \item \textbf{Precondizioni:} l'utente inserisce un quesito per il chatbot (UC12);
+        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
+    \end{itemize}
+    
+    \item UC16 - Visualizzazione risposta cortese;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza una risposta cortese dopo aver posto un quesito ambiguo all'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente pone un quesito ambiguo al chatbot;
+        \item l'utente invia la domanda.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente invia un quesito (UC13);
+        \item \textbf{Postcondizioni: }l'utente pone un ulteriore quesito al chatbot.\\
+    \end{itemize}
+    
+    \item UC17 - Visualizzazione risposta;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza una risposta alla domanda che ha posto (o che ha selezionato);
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente inserisce un quesito;
+        \item l'utente invia il quesito;
+        \item l'utente riceve la risposta a tale quesito.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente invia un quesito (UC13);
+        \item \textbf{Postcondizioni: }l'utente prosegue l'interazione con il chatbot.\\
+    \end{itemize}
+    
+    \item UC18 - Visualizzazione storico chat;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza lo storico delle chat nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]        
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza lo storico delle chat;
+        \end{enumerate}
+        \item \textbf{Estensioni: } UC18.1, UC18.1.1, UC18.1.2;
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni: }l'utente può leggere chat salvate in precedenza.
+    \end{itemize}
+    
+    \item UC18.1 - Visualizzazione singola chat;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza una chat dallo storico delle chat nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza lo storico delle chat;
+        \item l'utente seleziona una chat.
+        \end{enumerate}
+        \item \textbf{Estensioni: }UC18.1.1, UC18.1.2;
+        \item \textbf{Precondizioni:} l'utente visualizza lo storico delle conversazioni;
+        \item \textbf{Postcondizioni: }l'utente legge una conversazione salvata nello storico.
+    \end{itemize}
+    
+    \item UC18.1.1 - Visualizzazione titolo chat;
+    \begin{itemize}
+         \item \textbf{Descrizione: }l'utente visualizza il titolo di una conversazione dallo storico delle chat nell'applicazione;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza lo storico delle chat;
+        \item l'utente seleziona una chat;
+        \item l'utente ne visualizza il titolo.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente visualizza una chat dallo storico delle conversazioni;
+        \item \textbf{Postcondizioni: }l'utente legge il titolo della conversazione salvata nello storico.
+    \end{itemize}
+    
+    \item UC18.1.2 - Visualizzazione orario chat;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente visualizza l'orario nel quale una conversazione dallo storico delle chat è avvenuta;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente visualizza lo storico delle chat;
+        \item l'utente seleziona una chat;
+        \item l'utente ne visualizza l'orario.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente visualizza una chat dallo storico delle conversazioni;
+        \item \textbf{Postcondizioni: }l'utente può leggere l'orario della conversazione salvata nello storico.\\
+    \end{itemize}
+
+    \item UC19 - Salvataggio conversazione;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente salva una serie di scambi di domande e risposte avvenute con il chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente inserisce ed invia una serie di quesiti al chatbot (UC13), ricevendo una serie di risposte (UC15);
+        \item l'utente salva lo scambio di domande e riposte.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente invia dei quesiti (UC13);
+        \item \textbf{Postcondizioni: }l'utente potrà accedere alla conversazione in qualsiasi momento.\\
+    \end{itemize}
+
+     \item UC20 - Eliminazione conversazione;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente elimina una serie di scambi di domande e risposte avvenute con il chatbot;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente inserisce ed invia una serie di quesiti al chatbot (UC13), ricevendo una serie di risposte (UC15);
+        \item l'utente elimina lo scambio di domande e riposte.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente invia dei quesiti (UC 13);
+        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente.\\
+    \end{itemize}
+
+    \item UC21 - Selezione inserimento vocale;
+    \begin{itemize}
+        \item \textbf{Descrizione: }l'utente seleziona l'opzione di inserimento vocale di quesiti;
+        \item \textbf{Scenario: }
+        \begin{enumerate}[label={\arabic*.}, align=left]
+        \item l'utente apre l'applicazione;
+        \item l'utente seleziona l'opzione di inserimento vocale.
+        \end{enumerate}
+        \item \textbf{Estensioni: };
+        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
+        \item \textbf{Postcondizioni: }l'utente inserisce vocalmente un quesito.\\
+    \end{itemize}
+
+    
+\end{itemize}
+
+%\renewcommand{\arraystretch}{1.5}
+%\begin{tabularx}{\textwidth}{|c|X|c|c|c|}\hline
+%\textbf{Caso d'uso} & \textbf{Attori} & \textbf{Precondizioni} & %\textbf{Postcondizioni} & \textbf{Scenario principale} \\
+%\end{tabularx}
+
+
+% REQUISITI
+\newpage
+\section{Requisiti}
+Ogni requisito preso in analisi sarà trattato con la sigla:\\
+R[Tipo].[Importanza].[Ordine];\\
+nella quale:\\
+\begin{itemize}
+\item R indica la parola "requisito";
+\item Tipo può essere:
+    \begin{itemize}
+	\item F (Funzionale);
+	\item Q (Qualità);
+	\item V (Vincolo).
+    \end{itemize}
+\item Importanza può essere:
+    \begin{itemize}
+        \item O (Obbligatorio);
+	\item D (Desiderabile);
+	\item OP (Opzionale).
+    \end{itemize}
+\item Ordine: indica l’ordine in cui il requisito è stato preso in esame. Per i requisiti con stessa importanza e tipologia indica l’ordine cronologico di precedenza che esso ha avuto rispetto agli altri, ovvero il suo ordine inserimento nell'Analisi dei requisiti.
+\end{itemize}
+N.B: per requisiti che dovessero generare requisiti figli, si andrà ad aggiungere .[N.figlio] alla notazione successivamente all’ordine, di modo da avere i figli ordinati per importanza.
+
+\subsection{Requisiti funzionali}
+Di seguito la specifica per i requisiti funzionali, i quali descrivono le funzionalità del sistema, le azioni
+che il sistema può compiere e le informazioni che il sistema può fornire.
+Si intende che la numerologia di ciascuno rispecchi ove previsto gli UC presenti, mentre le sigle sotto
+riportate indicano:
+\begin{itemize}
+    \item ROF - Requisito Obbligatorio Funzionale;
+    \item RDF - Requisito Desiderabile Funzionale;
+    \item ROPF - Requisito Opzionale Funzionale.
+\end{itemize}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|c|X|c|c}\hline
+\textbf{Codice} & \textbf{Descrizione}  & \textbf{Fonti} \\
+\hline ROF1\ & Il lavoratore deve poter interagire con il chatbot tramite un'interfaccia semplice. &  UC1 \\
+\hline ROF2\ & L'utente deve poter caricare uno o più documenti & UC5, UC5.1, UC6 \\
+\hline ROF3\ & L'utente deve poter eliminare uno o più documenti & UC8, UC9 \\
+\hline ROF4\ & Il sistema deve visualizzare un messaggio di errore esplicativo &  UC7, UC7.1, UC7.2, UC7.3 \\
+\hline ROF5\ & Il sistema deve poter memorizzare lo storico delle chat & UC18, UC19 \\
+\hline ROPF6\ & L’utente deve poter visualizzare le lingue secondarie presenti e i dettagli della singola lingua &  UC14\\
+\hline ROF7\ & Il sistema può interagire con l'utente tramite comando vocale & UC14, UC21 \\
+\hline ROF8 \ & L'utente deve poter visualizzare domande preimpostate & UC11  \\
+\hline ROF9 \ & L'utente deve poter scrivere domande & UC12, UC13  \\
+%\hline RDF9 \ & Il sistema deve poter memorizzare la conversazione avuta con il lavoratore & UC16 \\
+\hline
+\end{tabularx}
+
+\subsection{Requisiti di qualità}
+Di seguito la specifica per i requisiti di qualità, i quali descrivono come un sistema deve essere, o
+come il sistema deve esibirsi, per soddisfare le esigenze dell'utente.
+Le sigle sotto riportate possono essere così classificate:
+\begin{itemize}
+    \item ROQ - Requisito Obbligatorio di Qualità;
+    \item RDQ - Requisito Desiderabile di Qualità;
+    \item ROPQ - Requisito Opzionale di Qualità.
+\end{itemize}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|c|X|c|c}\hline
+\textbf{Codice} & \textbf{Descrizione}  & \textbf{Fonti} \\
+\hline
+ROQ1 & Il sistema deve garantire il servizio per almeno un utente & - \\
+\hline
+% \hline ROQ 1\ & Manuale utente disponibile all’utilizzo &  Norme di Progetto \\
+% \hline ROPQ 2\ & Documentazione e manuale sviluppatore disponibile alla consultazione & Norme di Progetto \\
+% \hline ROQ 3\ & Il codice sorgente deve essere presente su GitHub  &  Capitolato \\
+% \hline ROPQ 4\ & Documentazione dettagliata delle tecnologie usate & Capitolato \\
+% \hline
+\end{tabularx}
+
+\subsection{Requisiti di vincolo}
+Di seguito la specifica per i requisiti di vincolo, i quali descrivono i limiti e le restrizioni normative/legislative che un sistema
+deve rispettare per soddisfare le esigenze dell'utente.
+Le sigle sotto riportate possono essere così classificate:
+\begin{itemize}
+    \item ROV - Requisito Obbligatorio di Vincolo;
+    \item RDV - Requisito Desiderabile di Vincolo;
+    \item ROPV - Requisito Opzionale di Vincolo. 
+\end{itemize}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|c|X|c|c}\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+\hline
+ROV1 & Il sistema deve garantire la privacy delle informazioni sensibili condivise dall'utente per l'addestramento del modello. & - \\
+% \hline ROV 1 \ & Utilizzo di tecnologie con intelligenza artificiale & Capitolato  \\
+% \hline ROV 2 \ & Algoritmi avanzati di ricerca e comprensione del linguaggio naturale &  Capitolato \\
+% \hline ROV 3 \ & Utilizzo di componenti come \textit{OpenAI} , come motore per le funzionalità di \textit{NPL}(comprensione del testo) & Capitolato \\
+% \hline ROPV 4 \ & Utilizzo di \textit{LangChain} (progetto opensource che permette di integrare modelli di AI) & Capitolato \\
+
+\hline
+
+\end{tabularx}
+
+
+
+
+\end{document}

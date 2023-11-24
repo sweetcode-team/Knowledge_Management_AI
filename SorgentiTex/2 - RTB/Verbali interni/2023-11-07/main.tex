@@ -1,0 +1,99 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{11.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{15.9em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{16.6cm}
+
+\newpage
+% ~\newpage
+% ~ \\\\\\~
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+
+\newpage
+\decisioni
+
+\end{paracol}
+
+\newpage
+
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{c|X|c|c|c}
+\textbf{ID Issue} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline 
+\#27 & Aggiornamento \textit{issue} id e voce "motivazioni" nei documenti  & Bresolin G. & Campese M. & $2023-11-08$ \\
+\hline
+\#28 & Fix file di Candidatura & Campese M. & Feltrin E. & $2023-11-08$ \\
+\hline
+\#30 & Stesura verbale interno $2023-11-07$ & Orlandi G. & Campese M. & $2023-11-09$ \\
+\hline 
+- & Contattare AzzurroDigitale per mail & Feltrin E. & Ciriolo I. & $2023-11-09$ \\
+\hline
+\#32 & Aggiornamento template documenti con parametrizzazione  &  Michelon R. & Campese M. & $2023-11-09$ \\
+\hline
+- & Preparazione per il meeting con AzzurroDigitale  & \quantities{Ciriolo I.\\Feltrin E.} & Team & $2023-11-09$ \\
+\hline
+\#31 & Presentazione Diario di bordo 2023-11-13 & Feltrin E. & Campese M. & $2023-11-12$ \\
+\hline
+- & Aggiornamento Norme di progetto & Bresolin G. & Campese M. & $2023-11-13$ \\
+\end{tabularx}}
+
+
+\newpage
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+Non è stata fissata una data per una nuova riunione.
+
+\end{document}

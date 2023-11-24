@@ -1,0 +1,85 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-15}
+\def\oraInizio{15:00}
+\def\oraFine{16:00}
+\def\luogo{Piattaforma Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Feltrin E.} % Cognome N.
+\def\nomeVer{Campese M.} % Cognome N.
+\def\nomeSegr{Orlandi G.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{emanuele.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+\textit{AzzurroDigitale:},
+Caliendo G.,
+Davanzo C.}
+
+
+
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Riunione con l'azienda AzzurroDigitale;},
+{Breve introduzione e raccolta requisiti generali di progetto per una stesura iniziale dell'Analisi dei requisiti;},
+{Possibilità di porre alcune domande generiche sul progetto ai referenti Caliendo G. e Davanzo C., con seguente approfondimento dei vari temi toccati.\\}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{In generale, quali sono i requisiti funzionali fondamentali che deve avere il sistema?
+}
+{Certamente la ricezione in input dei documenti e la gestione degli stessi in modo efficiente;
+},
+\domris
+{Quali funzionalità principali dovremmo rendere disponibili per il caricamento dei documenti?
+}
+{Sicuramente il sistema dovrà essere capace di ricevere in input ed elaborare documenti \textit{PDF}; rientrerebbe tra i requisiti desiderabili anche il caricamento di documenti \textit{Word} e, nel caso il prodotto prendesse piede, il caricamento massivo di documenti;
+},
+\domris
+{I documenti caricati dovranno rimanere accessibili?
+}
+{L'azienda ci ha risposto che i documenti caricati devono rimanere accessibili, anche con un semplice catalogo paginato;
+},
+\domris
+{Come deve procedere il sistema se l’utente vuole rimuovere un documento dal materiale con cui il modello è stato addestrato?  Il modello dovrà essere riaddestrato?
+}
+{L'azienda conferma che se un manuale dato al sistema subisce modifiche o viene eliminato, a fronte di una evoluzione del macchinario a cui si riferisce, il sistema dovrà evolvere ed essere riaddestrato;
+},
+\domris
+{Vi sono altre specifiche riferite all'interazione tra l'utente e il \textit{chatbot}?
+}
+{L'utente dovrà poter chattare con molta semplicità e ricevere risposte pertinenti basate sui documenti caricati a sistema, tuttavia, all'utente non sarà permesso fare domande non attinenti al proprio lavoro (ad esempio: "Quali sono le previsioni meteo per domani?"). Un requisito che interessa particolarmente alla azienda è la possibilità di comunicare a voce con il sistema e di ricevere output vocali. Non è necessario poter aprire più chat contemporaneamente ma è desiderabile avere uno storico delle cose chieste.}.
+}
+
+
+
+
+
+\def\listaDecisioni {x}

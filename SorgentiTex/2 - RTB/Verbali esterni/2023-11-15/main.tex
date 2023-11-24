@@ -1,0 +1,112 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\usepackage{verbatim}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{5.0em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{21em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+~\newpage
+%~ \\\\\\\\\\\\\\\~
+
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+Alcuni argomenti che emergono per importanza tra quelli affrontati con l'azienda, risultano essere quelli della sicurezza e della privacy dei dati.
+Alcuni obiettivi da raggiungere in vista del prossimo incontro sono: definizione Use case generali e di quelli per il PoC, valutazione e selezione delle tecnologie utili per realizzare le funzionalità core del capitolato.
+
+\vspace{12.5em}
+
+\decisioni
+
+\end{paracol}
+
+%\newpage
+\vspace{7em}
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{c|X|c|c|c}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+SWE-56 &
+Stesura verbale 2023-11-15 &
+Orlandi G. &
+Campese M. &
+$2023-11-15$ \\
+
+
+\hline
+SWE-50 & 
+Bozza diagrammi Casi d'uso & 
+Ciriolo I. & 
+Bresolin G. & 
+$2023-11-17$ \\
+\hline
+SWE-43 &
+Identificazione struttura e prima stesura Piano di qualifica &
+\quantities{Feltrin E. \\Orlandi G.} &
+Campese M. &
+$2023-11-21$ \\
+\hline
+SWE-40 &
+Report tecnlogie per AzzurroDigitale &
+\quantities{Bresolin G. \\Dugo A.} &
+Campese M. &
+$2023-11-22$ \\
+
+\end{tabularx}}
+
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione con AzzurroDigitale è pianificata il 2023-11-22 alle 15:00, per un approfondimento riguardo l'Analisi dei requisiti.
+
+\end{document}

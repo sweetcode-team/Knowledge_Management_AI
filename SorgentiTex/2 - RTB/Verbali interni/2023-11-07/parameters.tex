@@ -1,0 +1,114 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-07}
+\def\oraInizio{17.00}
+\def\oraFine{19.00}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Feltrin E.} % Cognome N.
+\def\nomeVer{Campese M.} % Cognome N.
+\def\nomeSegr{Orlandi G.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{emanuele.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+\def\listaRevisioneAzioni{
+{Esame del \textit{way of working} adottato finora alla luce delle osservazioni fatte dal professore alla candidatura;},
+{Revisione dei documenti consegnati alla Candidatura che necessitano di modifiche correttive;},
+{Controllo delle Azioni nei verbali con seguente aggiunta della colonna con identificativo per relazionarle alle \textit{issue} di \textit{GitHub}. }
+}
+
+\def\listaOrdineGiorno{
+{Assegnazione ruoli riunione;},
+{Riesame dei ruoli e della loro assegnazione;},
+{Rettifiche al \textit{Way of Working} del gruppo;},
+%{Ruoli da definire per il proseguo del progetto nei prossimi 11 giorni;},
+{Considerazioni sulle automazioni da introdurre;},
+%{Decisioni riguardanti organizzazione del \textit{repository} \textit{GitHub};},
+{Vaglio dei dubbi da chiarire in futuro.}
+}
+
+\def\listaDiscussioneInterna {
+{Assegnazione ruoli riunione:
+    \begin{itemize}
+        \item Responsabile: Feltrin E.;
+        \item Segretario di riunione: Orlandi G;
+        \item Responsabile della revisione: Campese M.
+    \end{itemize}},
+{Dibattito su quali risorse risultano fondamentali nelle prime fasi del progetto e quanto i ruoli di Amministratore e di Analista siano cruciali nell'impostazione del lavoro nelle prime settimane del progetto assegnato;},
+{Valutazione di eventuali modifiche alle Norme di progetto per migliorare il nostro \textit{Way of Working}: \begin{itemize}
+        \item Aggiungere un collegamento all'id delle \textit{issue} nella tabella delle azioni presente nei verbali;
+        \item Modificare l'ordine del registro delle versioni a partire dalla versione più recente.
+        \item Parametrizzare i template dei documenti;
+    \end{itemize}},
+{In seguito alle valutazioni delle Candidature del 2023-11-06, si percepisce il bisogno di:
+    \begin{itemize}
+    \item Introdurre automazione nel progetto, in particolare, viene evidenziato che il versionamento non deve essere eseguito manualmente;
+    \item Aggiornare l'approccio al versionamento della documentazione;
+    \item Aggiungere la versione al nome di ciascun documento versionato;
+    \item Tutti i documenti che non sono verbali devono presentare un registro delle versioni.
+    \end{itemize}},
+{Dubbi da risolvere:
+\begin{itemize}
+    \item Argomenti da trattare con l'azienda;
+    \item Come organizzarsi se l'azienda fornisce un altro \textit{repository} da integrare;
+    \item Decidere se iniziare una prima bozza dell'analisi dei requisiti o se cominciare a studiare le tecnologie proposte dall'azienda;
+    \item Quantificare il numero di \textit{milestone} necessarie per l'organizzazione delle \textit{issue}.
+\end{itemize}
+}
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Domanda 1
+}
+{Riposta 1;
+},
+\domris
+{Domanda 2
+}
+{Risposta 2;
+},
+\domris
+{Domanda 3
+}
+{Risposta 3.
+}
+}
+
+\def\listaDecisioni {
+{Il team ha deciso di adottare, almeno inizialmente, sprint dalla lunghezza di due settimane;},
+{Il team ha deciso di aprire tre milestone: "RTB-Amministrazione workspace","RTB-Documentazione" e "RTB-Analisi dei requisiti";},
+{La \textit{pull request} viene sollevata da colui che produce il contenuto da integrare nel repository e viene risolta dal verificatore;},
+{Parametrizzazione dei template dei documenti;},
+{Le versioni presenteranno il formato vX.Y.Z(build) e non potrà esistere la versione v0.0.0(0);},
+{Introdurre la versione di progetto per cui i documenti risultano essere validi all'interno del \href{https://sweetcode-team.github.io/}{\textcolor{black}{{\textit{GitHub.io}}}} del team;},
+{Introduzione di automazioni per la gestione del versionamento;},
+{Creazione template issue;},
+{Ogni componente deve familiarizzare con le tecnologie del progetto;},
+{Eliminare il \textit{repository} privato da \textit{GitHub}.}
+}

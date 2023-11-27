@@ -1,0 +1,93 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-17}
+\def\oraInizio{09:00}
+\def\oraFine{10:00}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Feltrin E.} % Cognome N.
+\def\nomeVer{Campese M.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{emanuele.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Feedback sull'assegnazione ruoli (avvenuta in precedenza) da parte di tutti i membri del team;},
+{Controllo dei documenti in produzione con particolare attenzione verso l'impostazione del Piano di qualifica, Piano di progetto ed Analisi dei requisiti;},
+{Verifica dei verbali prodotti durante la settimana.}
+}
+
+\def\listaOrdineGiorno {
+{Assegnazione ruoli riunione;},
+{Aggiornamento sul lavoro svolto da parte del team di amministratori (Bresolin G., Dugo A., Michelon R.) ed analisti (Ciriolo I., Orlandi G.);},
+{Assegnazione task per la settimana successiva;},
+{Breve spiegazione tenuta da Dugo A. relativa all'utilizzo del software \textit{Jira};},
+{Presa in esame dell'idea proposta dall'azienda AzzurroDigitale di utilizzare di un \textit{repository} messo a disposizione da loro.}
+}
+
+\def\listaDiscussioneInterna {
+{Assegnazione ruoli riunione:
+    \begin{itemize}
+        \item Responsabile: Feltrin E.;
+        \item Segretario di riunione: Ciriolo I.;
+        \item Responsabile della revisione: Campese M.
+    \end{itemize}},
+{Durante l'aggiornamento, il team di amministratori presenta alcuni cambiamenti effettuati nella gestione e versionamento della documentazione; segue la presentazione delle bozze dei diagrammi dei Casi d'uso da parte di Ciriolo I.;},
+{A seguito di una breve discussione sono state assegnate le azioni da intraprendere che si trovano nell'apposita sezione a pagina seguente;},
+{Successivamente alla spiegazione sull'utilizzo di \textit{Jira} si è pensato di utilizzarlo per l'organizzazione del lavoro del team. Questo software permetterebbe di specificare le dipendenze nei \textit{diagrammi di Gantt} e imporrebbe di chiudere tutti i task di una \textit{milestone} prima che questa possa essere considerata raggiunta;},
+{Si è discussa la possibilità di utilizzare il \textit{repository} offerto dall'azienda proponente, notando però che non verrebbero stanziate particolari agevolazioni per il team, che dispone già di un \textit{repository} avviato.}
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Domanda 1
+}
+{Riposta 1;
+},
+\domris
+{Domanda 2
+}
+{Risposta 2;
+},
+\domris
+{Domanda 3
+}
+{Risposta 3.
+}
+}
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Si è deciso definitivamente di non utilizzare il \textit{repository} messo a disposizione dall'azienda proponente;},
+{A seguito di una consultazione tra gli amministratori, il team utilizzerà il software \textit{Jira} a partire da questa riunione in avanti come \textit{ITS} ufficiale del gruppo, il quale sostituirà quello precedentemente utilizzato su \textit{GitHub}. Lo spazio di lavoro sarà organizzato dagli amministratori Dugo A. e Bresolin G.;},
+{Soppressione \textit{issue} per la creazione di template per le \textit{issue} stesse in seguito al passaggio su \textit{Jira};},
+{I diagrammi dei Casi d'uso saranno prodotti da Ciriolo I. e revisionati da Bresolin G.;},
+{Il nome del repository utilizzato dal team sarà \textit{Knowledge Managment AI}, nome del capitolato dell'azienda proponente;},
+{Durante il weekend avrà luogo un workshop presentato dal team di amministratori sulla configurazione dell'ambiente di lavoro e sul funzionamento degli \textit{script} in \textit{Python}.}
+}

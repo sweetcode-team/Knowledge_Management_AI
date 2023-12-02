@@ -45,6 +45,91 @@
 % PROCESSI PRIMARI
 \newpage
 \section{Processi primari}
+\subsection{Fornitura}
+\subsubsection{Piano di qualifica}
+\subsubsection{Piano di progetto}
+\subsection{Sviluppo}
+Il processo di sviluppo si pone lo scopo di descrivere tutte le azioni che portano un prodotto dalla fase di ideazione a quella di realizzazione. Per tale motivo include le seguenti azioni:
+\begin{itemize}
+    \item Determinazione di ogni genere di requisito del prodotto, con eventuali vincoli;
+    \item Progettazione del prodotto seguendo i vincoli ed i requisiti analizzati;
+    \item Testing del prodotto secondo le direttive del committente;
+    \item Realizzazione del prodotto.
+\end{itemize}
+\subsubsection{Analisi dei requisiti}
+Il documento 'Analisi dei requisiti' è stilato secondo le seguenti fasi:
+\begin{itemize}
+    \item Studio accurato del Capitolato e delle esigenze del committente;
+    \item Ideazione dei Casi d'uso principali ed individuazione dei requisiti obbligatori per il proponente;
+    \item Discussione con il proponente per eventuali chiarimenti;
+    \item Divisione dei requisiti nelle tre categorie individuate con conseguente ampliamento dei Casi d'uso;
+\end{itemize}
+Il risultato di tale processo è un documento che contiene
+tutti i requisiti richiesti dal proponente con relativi Casi d'uso dal punto di vista dell'utente finale.
+\\\\
+\textbf{Casi d'uso: Notazione}\\
+I Casi d'Uso sono indicati con la notazione seguente: \\ UC[X].[Y] \ \  in cui:
+\begin{itemize}
+\item UC sta per \textit{Use Case};
+\item .[X] indica il numero del Caso d'Uso, presentati secondo successione gerarchica;
+\item .[Y] indica il possibile numero del sotto-Caso d'uso, che aggiunge informazioni al Caso d'Uso [X]. Anche i sotto-Casi d'Uso sono presentati secondo successione gerarchica.\\
+\end{itemize}
+
+\textbf{Requisiti: Notazione}\\
+Ogni requisito preso in analisi è trattato con la sigla:\\
+R[Tipo].[Importanza].[Ordine];\\
+nella quale:\\
+\begin{itemize}
+\item R indica la parola "requisito";
+\item Tipo può essere:
+    \begin{itemize}
+	\item F (Funzionale);
+	\item Q (Qualità);
+	\item V (Vincolo).
+    \end{itemize}
+\item Importanza può essere:
+    \begin{itemize}
+        \item O (Obbligatorio);
+	\item D (Desiderabile);
+	\item OP (Opzionale).
+    \end{itemize}
+\item Ordine: indica l’ordine in cui il requisito è stato preso in esame. Per i requisiti con stessa importanza e tipologia indica l’ordine cronologico di precedenza che esso ha avuto rispetto agli altri, ovvero il suo ordine inserimento nell'Analisi dei requisiti.
+\end{itemize}
+N.B: per requisiti che dovessero generare requisiti figli, si andrà ad aggiungere .[N.figlio] alla notazione successivamente all’ordine, di modo da avere i figli ordinati per importanza.\\\\
+\textbf{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo)}
+\begin{itemize}
+\item I requisiti funzionali descrivono le funzionalità del sistema, le azioni
+che il sistema può compiere e le informazioni che il sistema può fornire.
+Si intende che la numerologia di ciascuno rispecchi ove previsto gli UC presenti, mentre le sigle sotto
+riportate indicano:
+\begin{itemize}
+    \item ROF - Requisito Obbligatorio Funzionale;
+    \item RDF - Requisito Desiderabile Funzionale;
+    \item ROPF - Requisito Opzionale Funzionale.
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item I requisiti di qualità descrivono come un sistema deve essere, o
+come il sistema deve esibirsi, per soddisfare le esigenze dell'utente.
+Le sigle sotto riportate possono essere così classificate:
+\begin{itemize}
+    \item ROQ - Requisito Obbligatorio di Qualità;
+    \item RDQ - Requisito Desiderabile di Qualità;
+    \item ROPQ - Requisito Opzionale di Qualità.
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema
+deve rispettare per soddisfare le esigenze dell'utente.
+Le sigle sotto riportate possono essere così classificate:
+\begin{itemize}
+    \item ROV - Requisito Obbligatorio di Vincolo;
+    \item RDV - Requisito Desiderabile di Vincolo;
+    \item ROPV - Requisito Opzionale di Vincolo. 
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Progettazione}
 
 % PROCESSI DI SUPPORTO
 \newpage

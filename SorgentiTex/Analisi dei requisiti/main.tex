@@ -66,7 +66,7 @@ Il prodotto deve fornire nuove modalità di formazione e assistenza sul lavoro, 
 \subsection{Funzioni del prodotto}
 Il software deve essere in grado di ricevere in input documenti, in particolare \textit{PDF}, oppure documenti Word, con i quali possa rispondere a qualsiasi domanda sugli stessi sottoposta dall'utente. 
 \subsection{Caratteristiche del prodotto}
-Il sistema deve poter aver accesso a tutti i file caricati, non può rispondere simultaneamente a più utenti ma ne può gestirne uno alla volta e deve poter riconoscere la lingua italiana e quella inglese. I documenti caricati devono poter rimanere accessibili così come lo storico delle richieste effettuate dall'utente.
+Il sistema deve poter aver accesso a tutti i file caricati, non può rispondere simultaneamente a più utenti ma ne può gestirne uno alla volta e deve poter riconoscere la lingua italiana e quella inglese. I documenti caricati devono poter rimanere accessibili così come lo storico delle chat effettuate dall'utente.
 \subsection{Utenti}
 Gli utenti possono interagire con il sistema attraverso un'interfaccia dove è presente un \textit{chatbot} ma possono anche visualizzare i file che il sistema gestisce. L'utente può chiedere informazioni riguardo ai documenti specifici attraverso la risposta data dal \textit{chatbot}. Se l'utente chiede al sistema informazioni non pertinenti, il sistema deve notificarlo attraverso una risposta cortese.
 % CASI D'USO
@@ -79,417 +79,1161 @@ La seguente sezione ha l'obiettivo di presentare i diversi Casi d'Uso relativi a
 I Casi d'Uso sono indicati con la notazione seguente: \\ UC[X].[Y] \ \  in cui:
 \begin{itemize}
 \item UC sta per \textit{Use Case};
-\item .[X] indica il numero del Caso d'Uso, presentati secondo successione gerarchica;
-\item .[Y] indica il possibile numero del sotto-Caso d'uso, che aggiunge informazioni al Caso d'Uso [X]. Anche i sotto-Casi d'Uso sono presentati secondo successione gerarchica.
+\item \lbrack X] indica il numero del Caso d'Uso, presentati secondo successione gerarchica;
+\item .[Y] indica il possibile numero del sotto-Caso d'uso, che aggiunge informazioni al Caso d'Uso [X];
+\item .[Z] indica il numero del sotto-Caso d'uso di un sotto-Caso d'uso, aggiungengo ulteriori informazioni al Caso d'Uso [X].[Y].
 \end{itemize}
 
 \subsection{Attori}
-L'applicazione \textit{Knowledge Management AI} richiede un singolo attore che rappresenta l'utente (ovvero il dipendente aziendale) che interagisce con il ChatBot. \\ Si specifica che l'azienda proponente non richiede l'autenticazione degli utenti nell'applicazione.%, poiché rappresenterebbe un rallentamento alla divulgazione rapida e semplice di documenti all'interno della rete aziendale; Per questo motivo l'autenticazione non viene presentata tra i requisiti.
+L'applicazione \textit{Knowledge Management AI} richiede un singolo attore principale che rappresenta l'utente (ovvero il dipendente aziendale) che interagisce con il ChatBot. \\ Si specifica che l'azienda proponente non richiede l'autenticazione degli utenti nell'applicazione.%, poiché rappresenterebbe un rallentamento alla divulgazione rapida e semplice di documenti all'interno della rete aziendale; Per questo motivo l'autenticazione non viene presentata tra i requisiti.
 \subsection{Didascalie}
 Per ogni Caso d'Uso è presentata una breve didascalia che ne indica:
 \begin{itemize}
-    \item Descrizione;
-    \item Scenario (ovvero il modo in cui l'attore giunge al Caso d'Uso tramite passi indicati da elenco numerato);
-    \item Estensioni;
-    \item Precondizioni (ovvero ciò che accade prima che il Caso d'Uso si presenti);
-    \item Postcondizioni (ovvero ciò che accade dopo che il Caso d'Uso si è presentato).
-\end{itemize}
-N.B: non viene specificato l'attore principale di ogni Caso d'Uso poiché è stato precedentemente specificato che si tratta sempre di un singolo utente che si interfaccia con l'applicazione.
+    \item Identificatore;
+    \item Attore principale;
+    \item Attore secondario (attore eseterno al sistema che, se presente, aiuta l'attore principale al raggiungimento del suo scopo);
+    \item Precondizioni (ovvero condizioni in cui si deve trovare il sistema affinchè il Caso d'uso possa essere acceduta);
+    \item Postcondizioni (ovvero condizioni del sistema dopo che il Caso d'Uso si è presentato).
+    \item Scenario principale (ovvero il modo in cui l'attore giunge al Caso d'Uso tramite passi indicati da elenco numerato);
+    \item Scenario alternativo (scenario che si verifica se si diverge dal scenario principale);
+    \item Trigger (evento scatenante del Caso d'uso);  
+    \end{itemize}
+\newpage
 \subsection{Lista dei casi d'uso}
-\begin{itemize}
 
-    \item UC1 - Visualizzazione interfaccia Chatbot;
-    \begin{itemize}
-        \item \textbf{Descrizione:} l'utente desidera interagire con il chatbot;
-        \item \textbf{Scenario: } 
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente interagisce con l'interfaccia chatbot.\\
-    \end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC1.png}
+        \caption{Diagramma del Caso d'Uso UC1}
+    \end{figure}
     
-    \item UC2 - Visualizzazione documenti;
+    \subsubsection{UC1 - Avvio applicazione web}
     \begin{itemize}
-        \item \textbf{Descrizione:} l'utente visualizza la lista di documenti presenti nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza una lista di documenti.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente visualizza i documenti che si trovano nell'applicazione.\\
-    \end{itemize}
-    
-    \item UC3 - Selezione documento singolo;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente seleziona un documento presente nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente sfoglia la lista di documenti;
-        \item l'utente seleziona uno dei documenti.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione e sceglie un documento;
-        \item \textbf{Postcondizioni:} l'utente ha selezionato il documento desiderato dalla lista.\\
-    \end{itemize}
-    
-    \item UC4 - Selezione insieme di documenti;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente seleziona più di un documento;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente entra nell'applicazione;
-        \item l'utente sfoglia la lista dei documenti;
-        \item l'utente sceglie una serie di documenti da selezionare.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione e sceglie una serie di documenti dalla lista;
-        \item \textbf{Postcondizioni:} l'utente ha selezionato i documenti desiderati dalla lista.\\
-    \end{itemize}
-    
-    \item UC5 - Caricamento singolo documento;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente carica un documento nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona un file da caricare;
-        \item l'utente carica un documento.
-        \end{enumerate}
-        \item \textbf{Estensioni: }UC5.1;
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente vede il completamento del caricamento del singolo file.
-    \end{itemize}
-    \item UC5.1 - Caricamento di più documenti;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente carica più documenti nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona più file da caricare;
-        \item l'utente carica più documenti.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente vede il completamento del caricamento massivo.\\
-    \end{itemize}
-    
-    \item UC6 - Visualizzazione completamento caricamento;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente vede che il caricamento del suo file (o dei suoi file) è andato a buon fine;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona uno o più file da caricare;
-        \item l'utente carica uno o più documenti;
-        \item il caricamento va a buon fine.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente carica uno o più file (UC5, UC5.1);
-        \item \textbf{Postcondizioni:} l'utente verifica che il caricamento sia andato a buon fine.\\
-    \end{itemize}
-    
-    \item UC7 - Visualizzazione di errore nel caricamento;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file);
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona uno o più file da caricare;
-        \item l'utente carica uno o più documenti;
-        \item il caricamento non va a buon fine.
-        \end{enumerate}
-        \item \textbf{Estensioni: }UC7.1, \ UC7.2, \ UC7.3;
-        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1);
-        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento.
-    \end{itemize}
-    
-    \item UC7.1 - Visualizzazione di errore: documento già presente;   
-    \begin{itemize}
-    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poiché il documento caricato è già stato inserito nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item scenario di caricamento documento/i UC5 o UC5.1
-        \item l'utente carica nuovamente un documento caricato in precedenza;
-        \item il caricamento non va a buon fine.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1) e caricamento di un documento già caricato;
-        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il documento è già presente nell'applicazione.
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Attore secondario}: browser web;
+        \item \textbf{Precondizioni}: il sistema deve essere online e l'applicazione web deve essere accessibile tramite l'URL specifico;
+        \item \textbf{Postcondizioni}: l'interfaccia principale è accessibile all'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia il browser web sul proprio dispositivo;
+                \item l'utente digita l'URL dell'applicazione web nella barra degli indirizzi del browser;
+                \item il browser web carica la pagina iniziale dell'applicazione;
+                \item l'utente visuliza l'interfaccia principale dell'applicazione.; 
+            \end{enumerate}
+        \item \textbf{Scenario alternativo}: se l'URL fornito dall'utente è errato o si verificano problemi di connettività, il browser web visualizza un messaggio di errore;
+        \item \textbf{Trigger}: l'utente desidera avviare l'applicazione web.
     \end{itemize}
 
-    \item UC7.2 - Visualizzazione di errore: documento vuoto;
-    \begin{itemize}
-    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poichè il documento caricato è privo di contenuto;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona uno o più file da caricare;
-        \item l'utente carica uno o più documenti vuoti;
-        \item il caricamento non va a buon fine.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} caricamento di uno o più documenti (UC5, UC5.1) e caricamento di almeno un documento vuoto;
-        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il documento inserito è vuoto.
-    \end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{UC-images/UC2-UC3-UC4-UC5-UC6-UC7.png}
+        \caption{Diagramma dei Caso d'Uso UC2, UC3, UC4, UC5, UC6 e UC7}
+    \end{figure}
 
-    \item UC7.3 - Visualizzazione di errore: formato del documento non consentito;
+    \subsubsection{UC2 - Visulizzazione lista modelli LLM}
     \begin{itemize}
-    \item \textbf{Descrizione: }l'utente vede che è avvenuto un errore nel caricamento del file (o dei file) poichè il formato del documento caricato non è riconoscibile dall'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item scenario di caricamento documento/i UC5 o UC5.1;
-        \item il caricamento non va a buon fine.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni :}caricamento di uno o più documenti (UC5, UC5.1);
-        \item \textbf{Postcondizioni:} l'utente vede l'avviso di errore nel caricamento in cui viene scritto che il formato del documento non è compatibile con l'applicazione.\\
-    \end{itemize}
-       
-    \item UC8 - Cancellazione singolo documento;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente elimina un documento presente all'interno dell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente seleziona un documento (UC3);
-        \item l'utente elimina un documento.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni :}nell'applicazione è presente almeno un documento;
-        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente senza il documento cancellato.\\
-    \end{itemize}
-
-    \item UC9 - Cancellazione insieme di documenti;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente elimina più di un documento presente all'interno dell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente seleziona più documenti (UC4);
-        \item l'utente elimina i documenti.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni :}nell'applicazione è presente almeno un documento;
-        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente senza i documenti cancellati.\\ 
-    \end{itemize}
-  
-    \item UC10 - Visualizzazione di domande pre-impostate;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza delle domande predefinite con le quali può interagire con l'interfaccia chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-            
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza le domande predefinite;
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente seleziona una domanda.\\
-    \end{itemize}
-
-    \item UC11 - Selezione domanda pre-impostata;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente seleziona una domanda predefinita con la quale può interagire con l'interfaccia chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza le domande predefinite;
-        \item l'utente seleziona una delle domande proposte.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni:} l'utente visualizza la risposta alla domanda selezionata.\\
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei modelli LLM;
+            \item l'utente è in grado di interagire con i modelli LLM visualizzati;
+            \item l'utente è a conoscenza dei modelli LLM resi disponiili dall'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di modelli LLM presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare i modelli LLM resi disponibili dall'applicazione web.
     \end{itemize}
     
-    \item UC12 - Inserimento domanda o testo;
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth, height=0.5\textheight, keepaspectratio]{UC-images/UC2.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC2.1}
+    \end{figure}
+
+    \subsubsection{UC2.1 - Visulizzazione singolo modelli LLM in lista}
     \begin{itemize}
-        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente inserisce una domanda per il chatbot;
-        \item l'utente invia la domanda.
-        \end{enumerate}
-        \item \textbf{Estensioni: }UC13, UC14;
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni: }l'utente invia il quesito e visualizza la risposta alla domanda posta (o un messaggio alternativo).\\
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei modelli LLM;
+            \item l'utente è in grado di interagire con i modelli LLM visualizzati;
+            \item l'utente è a conoscenza di uno dei modelli LLM resi a disposizione dall'applicazione web.;
+        \end{itemize} 
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di modelli LLM presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare un modello LLM tra quelli resi disponibili nella lista dall'applicazione web.
     \end{itemize}
 
-    \item UC13 - Digitazione domanda o testo;
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC2.1.1-UC2.1.2-UC2.1.3.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC2.1.1, UC2.1.2 e UC2.1.3}
+    \end{figure}
+        
+    \subsubsection{UC2.1.1 - Visulizzazione nome modello LLM in lista}
     \begin{itemize}
-        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot digitando la domanda sulla tastiera;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente digita una domanda per il chatbot;
-        \item l'utente invia la domanda.
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei modelli LLM;
+            \item l'utente è in grado di interagire con i modelli LLM visualizzati;
+            \item l'utente è a conoscenza del nome di uno dei modelli LLM resi a disposizione dall'applicazione web.;
+        \end{itemize}  
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di modelli LLM presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome di un modello LLM tra quelli resi disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC2.1.2 - Visulizzazione nome organizzazione che offre il modello LLM in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei modelli LLM;
+            \item l'utente è in grado di interagire con i modelli LLM visualizzati;
+            \item l'utente è a conoscenza del nome dell'organizzazione di uno dei modelli LLM resi a disposizione dall'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di modelli LLM presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome dell'organizzazione che offre un modello LLM tra quelli resi disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC2.1.3 - Visualizzazione informazioni modello LLM in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere le informazioni dei modelli LLM presenti nell'applicazione web;
+            \item l'utente è in grado di interagire con i modelli LLM visualizzati;
+            \item l'utente è a conoscenza delle informazioni riguardanti i modelli LLM.; 
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco dei modelli LLM presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera ottenere informazioni in merito ad un modello LLM reso disponibile nell'applicazione web.
+    \end{itemize}
+    
+    \subsubsection{UC3 - Configurazione modello LLM del chatbot}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: il chatbot con cui avverranno le chat aperte dall'utente si basa sul modello LLM selezionato;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco dei modelli LLM presenti nell'applicazione web;
+                \item l'utente seleziona un modello LLM tra quelli presenti nella lista;
+                \item l'utente configura il modello LLM utilizzato dal chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera configurare un modello LLM utilizzato dal chatbot presente nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC4 - Visualizzazione lista vector DB}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei vector DB;
+            \item l'utente è in grado di interagire con i vector DB visualizzati;
+            \item l'utente è a conoscenza dei vector DB resi disponiili dall'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco dei vector DB presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare i vector DB resi disponibili dall'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth, height=0.5\textheight, keepaspectratio]{UC-images/UC4.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC4.1}
+    \end{figure}
+
+    \subsubsection{UC4.1 - Visulizzazione singolo vector DB in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei vector DB;
+            \item l'utente è in grado di interagire con i vector DB visualizzati;
+            \item l'utente è a conoscenza di uno dei vector DB resi a disposizione dall'applicazione web.;
+        \end{itemize} 
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di vector DB presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare un vector DB tra quelli resi disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC4.1.1-UC4.1.2-UC4.1.3.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC4.1.1, UC4.1.2 e UC4.1.3}
+    \end{figure}
+        
+    \subsubsection{UC4.1.1 - Visulizzazione nome vector DB in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei vector DB;
+            \item l'utente è in grado di interagire con i vector DB visualizzati;
+            \item l'utente è a conoscenza del nome di uno dei vector DB resi a disposizione dall'applicazione web.;
+        \end{itemize}  
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di vector DB presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome di un vector DB tra quelli resi disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC4.1.2 - Visulizzazione nome organizzazione che offre il vector DB in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei vector DB;
+            \item l'utente è in grado di interagire con i vector DB visualizzati;
+            \item l'utente è a conoscenza del nome dell'organizzazione di uno dei vector DB resi a disposizione dall'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco di vector DB presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome dell'organizzazione che offre un vector DB tra quelli resi disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC4.1.3 - Visualizzazione informazioni vector DB in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere le informazioni dei vector DB presenti nell'applicazione web;
+            \item l'utente è a conoscenza delle informazioni riguardanti i vector DB.; 
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco dei vector DB presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera ottenere informazioni in merito ad un vector DB reso disponibile nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC5 - Configurazione vector DB}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: l'applicazione web utilizza il vector DB selezionato dall'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco dei vector DB presenti nell'applicazione web;
+                \item l'utente seleziona un vector DB tra quelli presenti nella lista;
+                \item l'utente configura il vector DB utilizzato dall'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera configurare il vector DB utilizzato dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC6 - Visualizzazione lista modalità archiviazione documenti}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle modalità di archiviazione dei documenti;
+            \item l'utente è in grado di interagire con le modalità di archiviazione dei documenti visualizzati;
+            \item l'utente è a conoscenza delle modalità di archiviazione dei documenti resi disponiili dall'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco delle modalità di archiviazione dei documenti presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare le modalità di archiviazione dei documenti resi disponibili dall'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth, height=0.5\textheight, keepaspectratio]{UC-images/UC6.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC6.1}
+    \end{figure}
+
+    \subsubsection{UC6.1 - Visulizzazione singola modalità archiviazione documenti in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle modalità di archiviazione dei documenti;
+            \item l'utente è in grado di interagire con le modalità di archiviazione dei documenti visualizzati;
+            \item l'utente è a conoscenza di una deile modalità di archiviazione dei documenti resi a disposizione dall'applicazione web.;
+        \end{itemize} 
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco delle modalità di archiviazione dei documenti presente nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare una modalità di archiviazione dei documenti tra quelle rese disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC6.1.1-UC6.1.2.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC6.1.1 e UC6.1.2}
+    \end{figure}
+        
+    \subsubsection{UC6.1.1 - Visulizzazione nome modalità archiviazione documenti in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle modalità di archiviazione dei documenti;
+            \item l'utente è in grado di interagire con le modalità di archiviazione dei documenti visualizzati;
+            \item l'utente è a conoscenza del nome di una delle modalità di archiviazione dei documenti resi a disposizione dall'applicazione web.;
+        \end{itemize}  
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco delle modalità di archiviazione dei documenti presente nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome di una modalità di archiviazione dei documenti tra quelle rese disponibili nella lista dall'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC6.1.2 - Visualizzazione informazioni modalità archiviazione documenti in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere le informazioni delle modalità di archiviazione dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza delle informazioni riguardanti le modalità di archiviazione dei documenti.; 
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco delle modalità di archiviazione dei documenti presente nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera ottenere informazioni in merito ad una modalità di archiviazione dei documenti resa disponibile nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC7 - Configurazione modalità archiviazione documenti}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: l'applicazione web utilizza la modalità di archiviazione dei documenti selezionata dall'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona le impostazioni dell'applicazione web;
+                \item l'utente seleziona l'elenco delle modalità di archiviazione dei documenti presente nell'applicazione web;
+                \item l'utente seleziona una modalità di archiviazione dei documenti tra quelle presenti nella lista;
+                \item l'utente configura la modalità di archiviazione dei documenti utilizzata nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera configurare la modalità di archiviazione dei documenti utilizzata dall'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{UC-images/UC8-UC9-UC10-UC11-UC12-UC13-UC14-UC15.png}
+        \caption{Diagramma dei Caso d'Uso UC8, UC9, UC10, UC11, UC12, UC13, UC14 e UC15}
+    \end{figure}
+
+    \subsubsection{UC8 - Visualizzazione lista documenti}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza dei file presenti nell'applicazione web.;
+        \end{itemize} 
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente avvia l'applicazione web;
+            \item l'utente visualizza la lista dei documenti presenti nell'applicazione web.;
         \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
+        \item \textbf{Trigger}: l'utente desidera visualizzare i documenti caricati nell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC8.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC8.1}
+    \end{figure}
+    
+    \subsubsection{UC8.1 - Visualizzazione singolo documento in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza di un file presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente avvia l'applicazione web;
+            \item l'utente visualizza la lista dei documenti presenti nell'applicazione web.;
+        \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare un singolo documento caricato nell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC8.1.1-UC8.1.2-UC8.1.3.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC8.1.1, UC8.1.2 e UC8.1.3}
+    \end{figure}
+    
+    \subsubsection{UC8.1.1 - Visualizzazione nome documento in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza del nome di un file presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente avvia l'applicazione web;
+            \item l'utente visualizza la lista dei documenti presenti nell'applicazione web.;
+        \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il nome di un singolo documento caricato nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC8.1.2 - Visualizzazione dimensioni documento in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza delle dimensioni di un file presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente avvia l'applicazione web;
+            \item l'utente visualizza la lista dei documenti presenti nell'applicazione web.;
+        \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare le dimensioni di un singolo documento caricato nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC8.1.3 - Visualizzazione rappresentazione grafica della presenza di un documento in lista nel dataset del modello AI}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista dei documenti presenti nell'applicazione web;
+            \item l'utente è a conoscenza della preseza o meno di un file caricato nell'applicazione web all'interno del dataset di un modello LLM.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente avvia l'applicazione web;
+            \item l'utente visualizza la lista dei documenti presenti nell'applicazione web.;
+        \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare la presenza o meno di un singolo documento caricato nell'applicazione web all'interno del dataset di un modello LLM.
     \end{itemize}
         
-        \item UC14 - Inserimento vocale domanda o testo;
+    \subsubsection{UC9 - Caricamento documento} 
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: il documento desiderato dall'utente è ora presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona il documento che desidera caricare tramite un'interfaccia di selezione file;
+                \item il documento viene caricato nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Scenario alternativo}:
+            \begin{itemize}
+                \item l'utente carica un file non supportato;
+                \item l'utente carica un file già presente nell'applicazione web;
+                \item l'utente carica un file vuoto.;
+            \end{itemize}
+        \item \textbf{Trigger}: l'utente desidera caricare un documento nell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth, height=0.6\textheight, keepaspectratio]{UC-images/UC9.1-UC9.2.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC9.1 e UC9.2}
+    \end{figure}
+    
+    \subsubsection{UC9.1 - Caricamento .pdf}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: il documento.pdf desiderato dall'utente è ora presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona il documento.pdf che desidera caricare tramite un'interfaccia di selezione file;
+                \item il documento.pdf viene caricato nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera caricare un documento.pdf nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC9.2 - Caricamento .docx}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: il documento.docx desiderato dall'utente è ora presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona il documento.docx che desidera caricare tramite un'interfaccia di selezione file;
+                \item il documento.docx viene caricato nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera caricare un documento.docx nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC10 - Caricamento documenti} 
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: i file selezionati dall'utente sono ora caricati nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona un documento che desidera caricare tramite un'interfaccia di selezione file;
+                \item l'utente seleziona l'opzione di caricamento di ulteriori file e seleziona i restanti file che vuole caricare;
+                \item i documenti vengono caricati nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Scenario secondario}:
+            \begin{itemize}
+                \item l'utente carica uno o più file non supportato/i;
+                \item l'utente carica uno o più file già presente/i nell'applicazione web;
+                \item l'utente carica uno o più file vuoto/i.;
+            \end{itemize}
+        \item \textbf{Trigger}: l'utente desidera caricare più documenti nell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC11 - Apertura documento} 
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
         \begin{itemize}
-        \item \textbf{Descrizione: }l'utente pone un quesito al chatbot tramite microfono;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona l'opzione di inserimento vocale (UC21);
-        \item l'utente pone vocalmente la domanda;
-        \item l'utente invia la domanda.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente seleziona l'opzione di inserimento vocale (UC21);
-        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
-    \end{itemize}
-    
-    \item UC15 - Invio domanda o testo;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente dopo aver inserito una domanda o un testo, lo invia al chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente pone un quesito al chatbot (UC12);
-        \item l'utente invia la domanda.
-        \end{enumerate}
-        \item \textbf{Estensioni: }UC16;
-        \item \textbf{Precondizioni:} l'utente inserisce un quesito per il chatbot (UC12);
-        \item \textbf{Postcondizioni: }l'utente visualizza la risposta alla domanda posta.\\
-    \end{itemize}
-    
-    \item UC16 - Visualizzazione risposta cortese;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza una risposta cortese dopo aver posto un quesito ambiguo all'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente pone un quesito ambiguo al chatbot;
-        \item l'utente invia la domanda.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente invia un quesito (UC13);
-        \item \textbf{Postcondizioni: }l'utente pone un ulteriore quesito al chatbot.\\
-    \end{itemize}
-    
-    \item UC17 - Visualizzazione risposta;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza una risposta alla domanda che ha posto (o che ha selezionato);
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente inserisce un quesito;
-        \item l'utente invia il quesito;
-        \item l'utente riceve la risposta a tale quesito.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente invia un quesito (UC13);
-        \item \textbf{Postcondizioni: }l'utente prosegue l'interazione con il chatbot.\\
-    \end{itemize}
-    
-    \item UC18 - Visualizzazione storico chat;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza lo storico delle chat nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]        
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza lo storico delle chat;
-        \end{enumerate}
-        \item \textbf{Estensioni: } UC18.1, UC18.1.1, UC18.1.2;
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni: }l'utente può leggere chat salvate in precedenza.
-    \end{itemize}
-    
-    \item UC18.1 - Visualizzazione singola chat;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza una chat dallo storico delle chat nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza lo storico delle chat;
-        \item l'utente seleziona una chat.
-        \end{enumerate}
-        \item \textbf{Estensioni: }UC18.1.1, UC18.1.2;
-        \item \textbf{Precondizioni:} l'utente visualizza lo storico delle conversazioni;
-        \item \textbf{Postcondizioni: }l'utente legge una conversazione salvata nello storico.
-    \end{itemize}
-    
-    \item UC18.1.1 - Visualizzazione titolo chat;
-    \begin{itemize}
-         \item \textbf{Descrizione: }l'utente visualizza il titolo di una conversazione dallo storico delle chat nell'applicazione;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza lo storico delle chat;
-        \item l'utente seleziona una chat;
-        \item l'utente ne visualizza il titolo.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente visualizza una chat dallo storico delle conversazioni;
-        \item \textbf{Postcondizioni: }l'utente legge il titolo della conversazione salvata nello storico.
-    \end{itemize}
-    
-    \item UC18.1.2 - Visualizzazione orario chat;
-    \begin{itemize}
-        \item \textbf{Descrizione: }l'utente visualizza l'orario nel quale una conversazione dallo storico delle chat è avvenuta;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente visualizza lo storico delle chat;
-        \item l'utente seleziona una chat;
-        \item l'utente ne visualizza l'orario.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente visualizza una chat dallo storico delle conversazioni;
-        \item \textbf{Postcondizioni: }l'utente può leggere l'orario della conversazione salvata nello storico.\\
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha caricato il documento che desidera aprire (\S UC9);
+        \end{itemize}
+        \item \textbf{Postcondizioni}: l'interfaccia utente è stata aggiornata per rifelttere il contenuto del file selezionato dall'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista dei documenti presenti nell'applicazione web (\S UC8);
+                \item l'utente apre un documento.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera aprire un documento presente nell'applicazione web.
     \end{itemize}
 
-    \item UC19 - Salvataggio conversazione;
+    \subsubsection{UC12 - Eliminazione documento}
     \begin{itemize}
-        \item \textbf{Descrizione: }l'utente salva una serie di scambi di domande e risposte avvenute con il chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente inserisce ed invia una serie di quesiti al chatbot (UC13), ricevendo una serie di risposte (UC15);
-        \item l'utente salva lo scambio di domande e riposte.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente invia dei quesiti (UC13);
-        \item \textbf{Postcondizioni: }l'utente potrà accedere alla conversazione in qualsiasi momento.\\
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha selezionato un documento.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il documento selezionato non è più presente all'interno dell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista di documenti nell'applicazione web(\S UC8);
+                \item l'utente seleziona un documento;
+                \item l'utente attiva la funzionalità di eliminazione;
+                \item il documento selezionato viene eliminato dall'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera eliminare un documento dall'applicazione web.
     \end{itemize}
 
-     \item UC20 - Eliminazione conversazione;
+    \subsubsection{UC13 - Eliminazione documenti}
     \begin{itemize}
-        \item \textbf{Descrizione: }l'utente elimina una serie di scambi di domande e risposte avvenute con il chatbot;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente inserisce ed invia una serie di quesiti al chatbot (UC13), ricevendo una serie di risposte (UC15);
-        \item l'utente elimina lo scambio di domande e riposte.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente invia dei quesiti (UC 13);
-        \item \textbf{Postcondizioni: }il modello di IA viene addestrato nuovamente.\\
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha selezionato più di un documento.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: i documenti selezionati non sono più presenti all'interno dell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista di documenti nell'applicazione web (\S UC8);
+                \item l'utente seleziona più documenti;
+                \item l'utente attiva la funzionalità di eliminazione;
+                \item i documenti selezionati vengono eliminati dall'applicazione web.; 
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera eliminare un insieme di documenti dall'applicazione web.
     \end{itemize}
 
-    \item UC21 - Selezione inserimento vocale;
+    \subsubsection{UC14 - Addestramento modello LLM}
     \begin{itemize}
-        \item \textbf{Descrizione: }l'utente seleziona l'opzione di inserimento vocale di quesiti;
-        \item \textbf{Scenario: }
-        \begin{enumerate}[label={\arabic*.}, align=left]
-        \item l'utente apre l'applicazione;
-        \item l'utente seleziona l'opzione di inserimento vocale.
-        \end{enumerate}
-        \item \textbf{Estensioni: };
-        \item \textbf{Precondizioni:} l'utente apre l'applicazione;
-        \item \textbf{Postcondizioni: }l'utente inserisce vocalmente un quesito.\\
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item la lista dei documenti nell'applicazione web presenta almeno una differenza rispetto al dataset di addestramento precedente del modello LLM utilizzato.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello LLM è addestrato sui documenti presenti nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista di documenti nell'applicazione web (\S UC8);
+                \item l'utente attiva la funzionalità di addestramento del modello LLM.; 
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera addestrarre il modello LLM utilizzando il dataset composto dai documenti presenti nell'applicazione web.
     \end{itemize}
 
+    \subsubsection{UC15 - Visualizzazione errore}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è si trova in uno stato di errore;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per visualizzare l'avviso di errore;
+            \item l'applicazione web torna ad uno stato consistente.;
+        \end{itemize} 
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item si verifica un errore nell'applicazione web;
+                \item l'utente visualizza una schermata d'errore;
+                \item l'applicazione web viene riportata ad uno stato consistente.;
+            \end{enumerate}
+        \item \textbf{Trigger}: si è verificato un errore nell'applicazione web.
+    \end{itemize}
     
-\end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC15-UC16-UC17-UC18-UC19-UC20-UC21.1.png}
+        \caption{Diagramma dei Casi d'Uso UC15, UC16, UC17, UC18, UC19, UC20 e UC21.1}
+    \end{figure}
+    
+    \subsubsection{UC16 - Visualizzazione lista chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle chat presenti nel file system;
+            \item l'utente è a conoscenza delle chat presenti nell'applicazione web.;
+        \end{itemize}
+            \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare le chat presenti all'interno dell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC16.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC16.1}
+    \end{figure}
+    
+    \subsubsection{UC16.1 - Visualizzazione singola chat in lista}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle chat presenti nel file system;
+            \item l'utente è a conoscenza di una particoalre chat presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare una chat presente all'interno della lista delle chat dell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC16.1.1-UC16.1.2.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC16.1.1 e UC16.1.2}
+    \end{figure}
+    
+    \subsubsection{UC16.1.1 - Visualizzazione titolo chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle chat presenti nel file system;
+            \item l'utente è a conoscenza del titolo di una particoalre chat presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il titolo di una chat presente all'interno della lista delle chat dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC16.1.2 - Visualizzazione orario ultimo messaggio della chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item l'interfaccia utente è stata aggiornata per riflettere la lista delle chat presenti nel file system;
+            \item l'utente è a conoscenza dell'orario dell'ultimo messaggio di una particoalre chat presente nell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare l'orario dell'ultimo messaggio di una chat presente all'interno della lista delle chat dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC17 - Creazione nuova chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: è stata creata una nuova chat nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente attiva la funzionalità di creazione di una nuova chat.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera creare una nuova chat all'interno dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC18 - Eliminazione chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: è stata eliminata chat nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza le chat presenti nell'applicazione web (\S UC16);
+                \item l'utente elimina una chat.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera eliminare una chat all'interno dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC19 - Rinomina chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: è stata rinominata una chat nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza le chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona la funzionalità di rinomina della chat;
+                \item l'utente fornisce un nuovo titolo alla chat;
+                \item l'utente salva il titolo inserito, confermando l'operazione di rinomina.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera rinominare una chat all'interno dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC20 - Ricerca messaggio}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha creato almeno una chat.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato il messaggio ricercato presente all'interno di una delle chat presenti nell'applicazione web.;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente seleziona la funzionalità di ricerca di un messaggio tra le chat presenti nell'applicazione web;
+                \item l'utente inserirsce il contenuto testuale che desidera ricercare nelle chat dell'applicazione web;
+                \item l'utente attiva la ricerca del contenuto testuale;
+                \item l'utente visualizza il messaggio ricercato (\S UC21.1).;
+            \end{enumerate}
+        \item \textbf{Scenario alternativo}: 
+        \begin{enumerate}
+            \item l'utente ricerca un messaggio non presente in alcuna chat nell'applicazione web;
+        \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera ricercare il contenuto in un messaggio all'interno dell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC21-UC26-UC27-UC28.png}
+        \caption{Diagramma dei Casi d'Uso UC21, UC26, UC27 e UC28}
+    \end{figure}
+    
+    \subsubsection{UC21 - Visualizzazione chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: viene visualizzata una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare una chat tra quelle presenti all'interno dell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC21.1-UC22-UC23-UC24-UC25.png}
+        \caption{Diagramma dei Casi d'Uso UC21.1, UC22, UC23, UC24 e UC25}
+    \end{figure}
+    
+    \subsubsection{UC21.1 - Visualizzazione messaggio}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato un messaggio di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare un messaggio di una chat tra quelle presenti all'interno dell'applicazione web.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC21.1.1-UC21.1.2.png}
+        \caption{Diagramma dei sotto-Casi d'Uso UC21.1.1 e UC21.1.2}
+    \end{figure}
+
+    \subsubsection{UC21.1.1 - Visualizzazione contenuto testuale messaggio}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato il contenuto testuale di un messaggio di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare il contenuto testuale di un messaggio di una chat tra quelle presenti all'interno dell'applicazione web.
+    \end{itemize}
+
+    \subsubsection{UC21.1.2 - Visualizzazione orario invio messaggio}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato l'orario di invio di un messaggio di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare l'orario di invio di un messaggio di una chat tra quelle presenti all'interno dell'applicazione web.
+    \end{itemize}
+    
+    \subsubsection{UC22 - Visualizzazione messaggio utente}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato un messaggio scritto dall'utente di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta;
+                \item l'utente scrive una domanda testuale da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29) o seleziona una domanda suggerita (\S UC27);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera formulare una domanda al chatbot.
+    \end{itemize}
+
+    \subsubsection{UC23 - Visualizzazione messaggio chatbot}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+            \item il chatbot ha fornito almeno una risposta alle richieste dell'utente.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato un messaggio del chatbot di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza la chat selezionata;
+                \item l'utente scrive una domanda testuale da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29) o seleziona una domanda suggerita (\S UC27);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata;
+                \item il chatbot fornisce una risposta alla domanda formulata dall'utente;
+                \item l'utente visualizza il messaggio del chatbot.;
+            \end{enumerate}
+        \item \textbf{Scenario alternativo}: l'utente formula una domanda non pertinente alla documentazione sulla quale è addestrato il modello LLM utilizzato dal chatbot dell'applicazione web; 
+        \item \textbf{Trigger}: l'utente ha formulato una domanda al chatbot.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC23.1.png}
+        \caption{Diagramma del sotto-Caso d'Uso UC23.1}
+    \end{figure}
+
+    \subsubsection{UC23.1 - Riferimento documento della risposta}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio con il chatbot;
+            \item il chatbot ha fornito almeno una risposta alle richieste dell'utente.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il messaggio di risposta ad un messaggio utente di una chat presente nell'applicazione web presenta il riferimento al documento da cui ha estrapolato le informazioni riportate;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza il contenuto della chat aperta;
+                \item l'utente scrive una domanda testuale da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29) o seleziona una domanda suggerita (\S UC27);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata;
+                \item il chatbot fornisce una risposta alla domanda formulata dall'utente;
+                \item l'utente visualizza il messaggio del chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente ha formulato una domanda pertinente al dataset su cui il modello LLM è stato addestrato.
+    \end{itemize}
+
+    \subsubsection{UC24 - Visualizzazione messaggio chatbot con modello LLM non locale}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Attore secondario}: modello LLM;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio col chatbot;
+            \item l'utente ha selezionato un modello LLM non locale nelle impostazioni dell'applicazione web.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato un messaggio di risposta ad un messaggio utente di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza la chat selezionata;
+                \item l'utente scrive una domanda testuale da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29) o seleziona una domanda suggerita (\S UC27);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata;
+                \item il chatbot fornisce una risposta alla domanda formulata dall'utente;
+                \item l'utente visualizza il messaggio del chatbot.;
+            \end{enumerate}
+        \item \textbf{Scenario alternativo}: l'utente formula una domanda non pertinente alla documentazione sulla quale è addestrato il modello LLM utilizzato dal chatbot dell'applicazione web; 
+        \item \textbf{Trigger}: l'utente ha formulato una domanda al chatbot.
+        \end{itemize}
+
+    \subsubsection{UC25 - Visualizzazione risposta cortese}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item l'utente ha scambiato almeno un messaggio col chatbot;
+            \item l'utente ha formulato una domanda non pertinente al dataset su cui il modello LLM è stato addestrato.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: viene visualizzato un messaggio di risposta cortese ad un messaggio utente di una chat presente nell'applicazione web;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza la chat selezionata;
+                \item l'utente scrive una domanda testuale non pertinente da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata;
+                \item il chatbot fornisce una risposta cortese alla domanda non pertinente formulata dall'utente;
+                \item l'utente visualizza il messaggio del chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente ha formulato una domanda non pertinente al dataset su cui il modello LLM è stato addestrato.
+    \end{itemize}
+
+    \subsubsection{UC26 - Visualizzazione input area}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: l'utente visualizza l'area di input presente nell'applicazione web per la comunicazione con il chatbot;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza l'area di input presente nell'applicazione per la comunicazine con il chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera visualizzare l'area di input presente nell'applicazione web per la comunicazione con il chatbot.
+    \end{itemize}
+
+    \subsubsection{UC27 - Visualizzazione domanda suggerita}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: nell'area di testo dell'input area è ora presente la domanda testuale suggerita all'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente apre una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza la domanda suggerita nella chat.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera formualare una domanda al chatbot.
+    \end{itemize}
+
+    \subsubsection{UC28 - Text-To-Speech messaggio chatbot}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l'applicazine web è operativa e funzionante;
+            \item il chatbot ha elaborato un messaggio di risposta ad un messaggio dell'utente;
+            \item l'utente ha selezionato la funzionalità Text-To-Speech.;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il messaggio desiderato è stato letto dal sistema all'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente scrive una domanda testuale da inviare al chabot nell'area di input e formula una domanda testuale al chatbot (\S UC29) o seleziona una domanda suggerita (\S UC27);
+                \item l'utente visualizza il messaggio contenente la richiesta da lui formulata;
+                \item il chatbot fornisce una risposta alla richiesta dell'utente;
+                \item l'utente visualizza il messaggio del chatbot;
+                \item l'utente seleziona la funzionalità Text-To-Speech.;
+                \item l'utente ascolta la lettura del messaggio del chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente attiva la funzionalità Text-To-Speech su un messaggio del chatbot.
+    \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth, height=0.75\textheight, keepaspectratio]{UC-images/UC29-UC30.png}
+        \caption{Diagramma dei Casi d'Uso UC29 e UC30}
+    \end{figure}
+
+    \subsubsection{UC29 - Formulazione domanda testuale}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: l'utente ha formualto una domanda testuale al chatbot;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC16);
+                \item l'utente seleziona una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza l'area di input presente nell'applicazione per la comunicazine con il chatbot;
+                \item l'utente scrive una domanda testuale nell'area di input;
+                \item l'utente invia la domanda testuale al chatbot.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera formualare una domanda al chatbot.
+    \end{itemize}
+
+    \subsubsection{UC30 - Formulazione domanda vocale}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'applicazine web è operativa e funzionante;
+        \item \textbf{Postcondizioni}: nell'area di testo dell'input area è ora presente la domanda testuale formulata dall'utente;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente avvia l'applicazione web;
+                \item l'utente visualizza la lista delle chat presenti nell'applicazione web (\S UC14);
+                \item l'utente apre una chat tra quelle presenti nella lista delle chat nell'applicazione web;
+                \item l'utente visualizza l'area di input presente nell'applicazione per la comunicazine con il chatbot;
+                \item l'utente attiva la funzionalità vocale;
+                \item l'utente formula oralmente la domanda da sottoporre al chatbot;
+                \item la domanda vocale viene tradotta in domanda testuale.;
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente desidera formualare una domanda vocale al chatbot.
+    \end{itemize}
 
 %\renewcommand{\arraystretch}{1.5}
 %\begin{tabularx}{\textwidth}{|c|X|c|c|c|}\hline
@@ -499,6 +1243,7 @@ N.B: non viene specificato l'attore principale di ogni Caso d'Uso poiché è sta
 
 % REQUISITI
 \newpage
+
 \section{Requisiti}
 Ogni requisito preso in analisi sarà trattato con la sigla:\\
 R[Tipo].[Importanza].[Ordine];\\
@@ -524,8 +1269,7 @@ N.B: per requisiti che dovessero generare requisiti figli, si andrà ad aggiunge
 \subsection{Requisiti funzionali}
 Di seguito la specifica per i requisiti funzionali, i quali descrivono le funzionalità del sistema, le azioni
 che il sistema può compiere e le informazioni che il sistema può fornire.
-Si intende che la numerologia di ciascuno rispecchi ove previsto gli UC presenti, mentre le sigle sotto
-riportate indicano:
+Le sigle sotto riportate indicano:
 \begin{itemize}
     \item ROF - Requisito Obbligatorio Funzionale;
     \item RDF - Requisito Desiderabile Funzionale;
@@ -533,20 +1277,61 @@ riportate indicano:
 \end{itemize}
 
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{|c|X|c|c}\hline
+\begin{xltabular}{\textwidth}{|c|X|c|c}\hline
 \textbf{Codice} & \textbf{Descrizione}  & \textbf{Fonti} \\
-\hline ROF1\ & Il lavoratore deve poter interagire con il chatbot tramite un'interfaccia semplice. &  UC1 \\
-\hline ROF2\ & L'utente deve poter caricare uno o più documenti & UC5, UC5.1, UC6 \\
-\hline ROF3\ & L'utente deve poter eliminare uno o più documenti & UC8, UC9 \\
-\hline ROF4\ & Il sistema deve visualizzare un messaggio di errore esplicativo &  UC7, UC7.1, UC7.2, UC7.3 \\
-\hline ROF5\ & Il sistema deve poter memorizzare lo storico delle chat & UC18, UC19 \\
-\hline ROPF6\ & L’utente deve poter visualizzare le lingue secondarie presenti e i dettagli della singola lingua &  UC14\\
-\hline ROF7\ & Il sistema può interagire con l'utente tramite comando vocale & UC14, UC21 \\
-\hline ROF8 \ & L'utente deve poter visualizzare domande preimpostate & UC11  \\
-\hline ROF9 \ & L'utente deve poter scrivere domande & UC12, UC13  \\
-%\hline RDF9 \ & Il sistema deve poter memorizzare la conversazione avuta con il lavoratore & UC16 \\
+\hline ROF1\ & L'utente deve poter accedere all'applicazione web. &  UC1 \\
+\hline ROF2\ & L'utente deve poter visualizzare i modelli LLM resi disponibili nell'applicazione per il chatbot. & UC2 \\
+\hline ROF2.1\ & L'utente deve poter visualizzare il nome dei modelli LLM resi a disposizione nell'applicazione web. & UC2.1.1 \\
+\hline ROF2.2\ & L'utente deve poter visualizzare l'organizzazione che offre un modello LLM reso a disposizione nell'applicazione web. & UC2.1.2 \\
+\hline ROF2.3\ & L'utente deve poter visualizzare le caratteristiche dei modelli LLM resi a disposizione nell'applicazione web. & UC2.1.3 \\
+\hline ROF3\ & L'utente deve poter configurare il modello LLM utilizzato dal chatbot. & UC3 \\
+\hline ROF4\ & L'utente deve poter visualizzare i vector DB resi disponibili nell'applicazione web. & UC4 \\
+\hline ROF4.1\ & L'utente deve poter visualizzare il nome dei vector DB resi a disposizione nell'applicazione web. & UC4.1.1 \\
+\hline ROF4.2\ & L'utente deve poter visualizzare l'organizzazione che offre un vector DB reso a disposizione nell'applicazione web. & UC4.1.2 \\
+\hline ROF4.3\ & L'utente deve poter visualizzare le caratteristiche dei vector DB resi a disposizione nell'applicazione web. & UC4.1.3 \\
+\hline ROF5\ & L'utente deve poter configurare il vector DB utilizzato dall'applicazione web. & UC3 \\
+\hline ROF6\ & L'utente deve poter visualizzare le modalità di archiviazione dei documenti rese disponibili nell'applicazione web. & UC6 \\
+\hline ROF6.1\ & L'utente deve poter visualizzare il nome della modalità di archiviazione dei documenti resa a disposizione nell'applicazione web. & UC6.1.1 \\
+\hline ROF6.2\ & L'utente deve poter visualizzare le caratteristiche della modalità di archiviazione dei documenti resa a disposizione nell'applicazione web. & UC6.1.2 \\
+\hline ROF7\ & L'utente deve poter configurare la modalità di archiviazione utilizzata dall'applicazione web. & UC3 \\
+\hline ROF8\ & L'utente deve poter visualizzare i documenti presenti nell'applicazione web. & UC8 \\
+\hline ROF8.1\ & L'utente deve poter visualizzare i nomi dei documenti presenti nell'applicazione web. & UC8.1.1 \\
+\hline RDF8.2\ & L'utente deve poter visualizzare le dimensioni dei documenti presenti nell'applicazione web. & UC8.1.2 \\
+\hline RDF8.3\ & L'utente deve poter visualizzare se i documenti presenti nell'applicazione web appartengono al dataset di addestramento del modello LLM. & UC8.1.3 \\
+\hline ROF9\ & L'utente deve poter caricare un documento di tipo .pdf. & UC9, UC9.1\\
+\hline RDF9.1\ & L'utente deve poter caricare più documenti di tipo .pdf. & UC9, UC9.1, UC10 \\
+\hline RDF10\ & L'utente deve poter caricare un documento di tipo .docx. & UC9, UC9.2 \\
+\hline RDF10.1\ & L'utente deve poter caricare uno o più documenti di tipo .docx. & UC9, UC9.2, UC10 \\
+\hline ROPF11\ & L'utente deve visualizzare un errore nel caso in cui carichi un documento vuoto. & UC9, UC10, UC15 \\
+\hline ROF12\ & L'utente deve visualizzare un errore nel caso in cui carichi un documento non supportato. & UC9, UC10, UC15 \\
+\hline RDF13\ & L'utente deve visualizzare un errore nel caso in cui carichi un documento già presente nel filesystem. & UC9, UC10, UC15 \\
+\hline ROF14\ & L'utente deve poter aprire un documento presente nell'applicazione web. & UC8, UC11 \\
+\hline ROF15\ & L'utente deve poter eliminare un documento presenti nell'applicazione web. & UC12\\
+\hline ROF16.1\ & L'utente deve poter eliminare più documenti presenti nell'applicazione web. & UC13\\
+\hline ROF17\ & L'utente deve poter avviare l'addestrameto del modello LLM. & UC14 \\
+\hline ROF18\ & Il modello LLM deve essere addestrato con i documenti presenti nell'applicazione web. & UC14 \\
+\hline ROF19\ & L'utente deve poter visualizzare tutte le chat aperte nell'applicazione. & UC16 \\
+\hline ROF19.1\ & L'utente deve poter visualizzare il titolo di tutte le chat aperte nell'applicazione. & UC16.1.1 \\
+\hline RDF19.2\ & L'utente deve poter visualizzare l'orario dell'ultimo messaggio di tutte le chat aperte nell'applicazione. & UC16.1.2 \\
+\hline ROF20\ & L'utente deve poter creare una nuova chat. & UC17 \\
+\hline ROF21\ & L'utente deve poter eliminare una chat. & UC18 \\
+\hline RDF22\ & L'utente deve poter rinominare una chat. & UC19 \\
+\hline ROPF23\ & L'utente deve poter ricercare un messaggio. & UC20 \\
+\hline ROF24\ & L'utente deve poter visualizzare il contenuto di una chat. & UC21 \\
+\hline ROF24.1\ & L'utente deve poter visualizzare un messaggio presente in una chat. & UC21.1 \\
+\hline ROF24.1.1\ & L'utente deve poter visualizzare il contenuto testuale di un messaggio presente in una chat. & UC21.1.1 \\
+\hline ROF24.1.2\ & L'utente deve poter visualizzare l'orario di invio di un messaggio presente in una chat. & UC21.1.2 \\
+\hline ROF25\ & L'utente deve poter visualizzare un messaggio da lui inviato. & UC21, UC22, UC29 \\
+\hline ROF26\ & Il chatbot deve rispondere al messaggio inviato da un utente. & UC21, UC23 \\
+\hline RDF26.1\ & La risposta fornita dal chatbot deve presentare un riferimento al documento da cui ha estrapolato le informazioni esposte. & UC21, UC23, UC23.1 \\
+\hline ROF27\ & L'utente deve poter visualizzare l'area di input. & UC26 \\
+\hline RDF28\ & L'utente deve poter visualizzare una domanda suggerita da porre al chatbot. & UC34 \\
+\hline RDF29\ & L'utente deve poter selezionare una domanda suggerita per porla al chatbot. & UC34, UC29 \\
+\hline ROPF30\ & L'utente deve poter ascoltare tramite audio la risposta fornita dal chatbot (Text-To-Speech). & UC20, UC23, UC28 \\ 
+\hline ROF31\ & L'utente deve poter formulare una domanda testuale al chatbot. & UC29 \\
+\hline ROF32\ & L'utente deve poter formulare oralmente una domanda al chatbot. & UC30 \\
 \hline
-\end{tabularx}
+\end{xltabular}
 
 \subsection{Requisiti di qualità}
 Di seguito la specifica per i requisiti di qualità, i quali descrivono come un sistema deve essere, o
@@ -560,14 +1345,14 @@ Le sigle sotto riportate possono essere così classificate:
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\textwidth}{|c|X|c|c}\hline
 \textbf{Codice} & \textbf{Descrizione}  & \textbf{Fonti} \\
+\hline ROQ1 & Il sistema deve garantire il servizio per almeno un utente. & Verbale Esterno 2023-11-15 \\
+\hline ROQ2 & Le chat devono essere salvate in automatico. & Verbale Esterno 2023-11-24 \\
+\hline ROQ3 & L'applicazione web deve garantire la presenza di almeno un modello AI locale. & Verbale Esterno 2023-11-22 \\
+\hline RDQ4 & L'applicazione in caso di caduta dalle connessione va in fallback su un modello AI locale. & Verbale Esterno 2023-11-22 \\
+\hline ROQ5 & Il chatbot, in caso l'utente formuli una richiesta non pertinente al dataset di addestramento, deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & UC20, UC22, UC24 \\ 
+\hline RDQ6 & Il chatbot deve presentare la funzionalità \textit{Cache}: se l'utente formula più volte la stessa domanda il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale Esterno 2023-11-29 \\
+\hline RDQ7 & L'eliminazione di un documento deve effettuare l'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale Esterno 2023-11-24 \\
 \hline
-ROQ1 & Il sistema deve garantire il servizio per almeno un utente & - \\
-\hline
-% \hline ROQ 1\ & Manuale utente disponibile all’utilizzo &  Norme di Progetto \\
-% \hline ROPQ 2\ & Documentazione e manuale sviluppatore disponibile alla consultazione & Norme di Progetto \\
-% \hline ROQ 3\ & Il codice sorgente deve essere presente su GitHub  &  Capitolato \\
-% \hline ROPQ 4\ & Documentazione dettagliata delle tecnologie usate & Capitolato \\
-% \hline
 \end{tabularx}
 
 \subsection{Requisiti di vincolo}
@@ -583,12 +1368,7 @@ Le sigle sotto riportate possono essere così classificate:
 \begin{tabularx}{\textwidth}{|c|X|c|c}\hline
 \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
 \hline
-ROV1 & Il sistema deve garantire la privacy delle informazioni sensibili condivise dall'utente per l'addestramento del modello. & - \\
-% \hline ROV 1 \ & Utilizzo di tecnologie con intelligenza artificiale & Capitolato  \\
-% \hline ROV 2 \ & Algoritmi avanzati di ricerca e comprensione del linguaggio naturale &  Capitolato \\
-% \hline ROV 3 \ & Utilizzo di componenti come \textit{OpenAI} , come motore per le funzionalità di \textit{NPL}(comprensione del testo) & Capitolato \\
-% \hline ROPV 4 \ & Utilizzo di \textit{LangChain} (progetto opensource che permette di integrare modelli di AI) & Capitolato \\
-
+ROV1 & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente per l'addestramento del modello. & - \\
 \hline
 
 \end{tabularx}

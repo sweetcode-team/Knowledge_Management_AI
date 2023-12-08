@@ -45,9 +45,6 @@
 % PROCESSI PRIMARI
 \newpage
 \section{Processi primari}
-\subsection{Fornitura}
-\subsubsection{Piano di qualifica}
-\subsubsection{Piano di progetto}
 \subsection{Sviluppo}
 Il processo di sviluppo si pone lo scopo di descrivere tutte le azioni che portano un prodotto dalla fase di ideazione a quella di realizzazione. Per tale motivo include le seguenti azioni:
 \begin{itemize}
@@ -129,8 +126,6 @@ Le sigle sotto riportate possono essere così classificate:
 \end{itemize}
 \end{itemize}
 
-\subsubsection{Progettazione}
-
 % PROCESSI DI SUPPORTO
 \newpage
 \section{Processi di supporto}
@@ -140,27 +135,67 @@ Nella seguente sezione vengono presentati i processi di supporto allo sviluppo d
 In questa sezione vengono presentate tutte le attività che coinvolgono la gestione delle configurazioni del software realizzate da SWEetCode.
 
 \subsubsection{Issue tracking system (ITS)} % TODO: Scrivere che se le issue sono relative ad un'azione presente in un verbale, nella tabella azioni è riportato l'id della issue
-SWEetCode utilizza l'\textit{Issue Tracking System} fornito da \textit{GitHub}.\\
-In questo sistema di tracciamento ogni issue viene dotata di:
+SWEetCode utilizza l'\textit{Issue Tracking System Jira} fornito da \textit{Atlassian}.
+\paragraph{Ticket}
+In questo sistema di tracciamento si permette la creazione di \textit{ticket} che possono essere di tre tipi:
 \begin{itemize}
-    \item Titolo: un titolo breve ma esplicativo dell'attività associata alla issue;
-    \item Id numerico univoco: tale id viene generato in automatico dall'ITS;
-    \item Assegnatari: i membri del team che a cui è affidata la responsabilità di risolvere la issue;
-    \item Descrizione: una breve descrizione inerente alla issue associata;
-    \item Data: la data di crezione della issue;
-    \item Stato: gli stati possibili di una issue sono \textit{Todo}, \textit{In Progress} ed infine \textit{Done};
-    \item Labels: etichette che permettono di organizzare e categorizzare le issue presenti nel sistema, rendendo più semplice e immediato il tipo di task a loro associato;
-    \item Data: data di creazione della issue;
-    \item Milestone: ogni issue può essere associata ad una determinata milestone del repository.
+    \item \textit{task}: tale tipo di ticket viene utilizzato dal team per assegnate compiti atomici ai vari membri del gruppo;
+    \item \textit{bug}: tale tipo di ticket viene utilizzato dal team per assegnare un compito di fix di un bug all'interno del progetto ad un membro del gruppo; 
+    \item \textit{story}: tale tipo di ticket viene utilizzato per rappresentare un requisito.
 \end{itemize}
-Ogni issue creata dal gruppo viene inserita all'interno di una \textit{Board} che permette di tracciare in modo rapido lo stato interno di ogni issue.
+Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalità utilizzate dal team):
+\begin{itemize}
+    \item Titolo: un titolo breve ma esplicativo del compito associato al \textit{ticket};
+    \item Id numerico univoco: tale id viene generato in automatico dall'ITS nella forma \textit{SWE-ID};
+    \item \textit{epic}: ogni \textit{ticket} può essere infatti associato ad una \textit{epic};
+    \item Collegamento: \textit{Jira} mette a disposizione una funzionalità di collegamento per stabilire le dipendenze tra i vari \textit{ticket};
+    \item Assegnatario: il membro del team che a cui è stata affidata la responsabilità di svolgere il \textit{ticket};
+    \item Descrizione: una breve descrizione inerente al \textit{ticket} associata;
+    \item Data: la data di crezione del \textit{ticket};
+    \item Reporter: il membro del team che ha creato il \textit{ticket};
+    \item Sviluppo: voce contenente il link ai commit, alle pull request e alle build che sono stati effettuati nel repo su \textit{GitHub} in correlazione al \textit{ticket} in questione;
+    \item Stato: gli stati possibili di un \textit{ticket} sono \textit{Da fare}, \textit{In Progress}, \textit{Pronto per commit} (introdotto dagli amministratori di SWEetCode nel flusso di lavoro) ed infine \textit{Completato};
+    \item \textit{Sprint}: ogni \textit{ticket} può essere associato ad uno \textit{sprint};
+    \item \textit{Versione} di collerazione: ogni \textit{ticket} può essere associata ad una determinata \textit{versione}.
+\end{itemize}
 
-\paragraph{Automatizzazione chiusura issue}Una automatizzazione utilizzata dal team consiste nella chiusura automatica delle issue: ogni volta che un membro del team effettua un commit nel repository finalizzato alla chiusura di una issue, il contenuto di tale commit dovrà prevedere all'interno del suo contenuto l'istruzione "\textit{Close \#id\_issue}".
-Le conseguenze di tale operazione a seguito dell'approvazione della pull request da parte del responsabile di progetto e successiva operazione di merge nel main branch sono:
-\begin{itemize}
-    \item modifica dello stato della issue al valore \textit{Done};
-    \item spostamento della issue all'interno della \textit{Board} sotto la sua voce "\textit{Done}".
-\end{itemize}
+\paragraph{Epic}
+Un insieme di \textit{ticket} può essere raggruppato all'interno di una \textit{epic}: una \textit{epic} costituisce un'unità 
+logica e strategica di lavoro più ampia, rappresentando un obiettivo o un risultato di alto livello. Questo strumento di lavoro offre
+al team una panoramica di completamento generale di un particolare insieme di azioni correlate tra loro, attraverso una 
+scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta i medesimi field di un \textit{ticket} precedentemente descritti.
+
+\paragraph{Versioni}
+Per rappresentare le milestone su \textit{Jira} vengono utilizzate le \textit{Versioni}, alle quali possono essere associate \textit{epic}
+e i relativi \textit{ticket}, riportando come nelle \textit{epic} una scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Una volta che tutti i \textit{ticket} associati alla \textit{versione} sono stati completati, tale \textit{versione} può essere rilasciata.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta una breve descrizione, una data di inizio ed una di fine.
+
+\paragraph{Backlog e Sprint}
+\textit{Jira} offre all'interno dell'ITS differenti funzionalità di supporto al metodo agile, seguendo il framework Scrum, in particolare
+quando i \textit{ticket} vengono creati sono inseriti di default all'interno del \textit{Backlog} per essere in seguito
+assegnati ai vari \textit{Sprint}. 
+Ciascun \textit{Sprint} è caratterizzato da una data di inzio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
+
+\paragraph{Timeline}
+\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un diagramma di Gantt all'interno del quale poter inserire i \textit{ticket}
+creati associati ad una \textit{epic}.\\
+Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
+all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
+le dipendenze presenti tra essi.\\
+Ogni \textit{versione} viene rappresentata all'interno della timeline da una linea verticale posta in corrispondenza della data di scadenza
+della versione stessa.\\
+Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi.\\
+Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
+permettendo di effettuare una istantanea.
+
+\paragraph{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni custumizzabili dall'utente.
+Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'ITS: ogni volta che un membro del team 
+effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto, \S 3.2.2 Automazione versionamento documenti)
+presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
+A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
+allo stato \textit{Completato}.
 
 \subsubsection{Pull requests} %TODO: Cambiare chi accetta pull request da Responsabili a Verificatori
 \label{sec:pull_request}
@@ -223,7 +258,7 @@ Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
     \subsubsection{Automazione versionamento documenti}
     \label{sec:automazione_docs}
     L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repo remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
-    Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del task soddisfatto, e dopo una fase di elaborazione
+    Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
     in cui aggiorna il registro delle versioni e crea il pdf usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
 
     Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
@@ -282,7 +317,7 @@ Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
         \item Ordine del giorno: elenco cronologico e approssimativo delle tematiche trattate all'interno della riunione;
         \item Discussione: sezione contente l'elenco cronologico delle tematiche affrontate, trattate con una descrizione accurata delle informazioni emerse;
         \item Decisioni: decisioni prossime e/o future da intraprendere o intraprese a seguito della riunione affrontata;
-        \item Azioni da intraprendere: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. Ogni voce è accompagnata dal numero della issue associata (se presente) nell'ITS su \textit{GitHub}, un incaricato, da un revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta completata;
+        \item Azioni da intraprendere: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. Ogni voce è accompagnata dal numero del \textit{ticket} associato (se presente) nell'ITS su \textit{Jira}, un incaricato, da un revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta completata;
         \item Altro: sezione contente informazioni aggiuntive quali riferimenti esterni e la data della prossima riunione (nel caso in cui essa sia stata stabilita).
     \end{itemize}    
     % \textbf{Posta elettronica}$\\$
@@ -397,9 +432,13 @@ Sito utilizzato per la produzione delle slide per i Diari di Bordo. É stato cre
 \href{https://discord.com}{https://discord.com}\\\\
 Piattaforma utilizzata per lo svolgimento di riunioni formali ed informali del team, attraverso la creazione di un server apposito con un canale dedicato ai messaggi di testo e diverse sale dedicate alle conversazioni vocali.
 
+\subsection{GitHub}
+\href{https://github.com/}{https://github.com/}
+Piattaforma di hosting e collaborazione per lo sviluppo di software che offre strumenti per il controllo di versione, consentendo agli sviluppatori di lavorare insieme, monitorare le modifiche al codice, gestire problemi e pubblicare il proprio lavoro in modo collaborativo.
+
 \subsection{Jira (di \textit{Atlassian})}
 \href{https://www.atlassian.com/it/software/jira}{https://www.atlassian.com/it/software/jira}\\\\
-Software utilizzato per l'organizzazione del lavoro tra i membri del team.
+Software utilizzato per l'ITS e gli strumenti di organizzazione del lavoro tra i membri del team.
 
 \subsection{Lucidchart}
 \href{https://www.lucidchart.com/pages/it/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_it_allcountries_mixed_search_brand_exact_&km_CPC_CampaignId=9594860760&km_CPC_AdGroupID=99270039979&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=424699413281&km_CPC_TargetID=kwd-33511936169&km_CPC_Country=1008611&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gad_source=1&gclid=CjwKCAiAu9yqBhBmEiwAHTx5p4TQe0-7u0ZhVN-N_fc86zgphNfT-Tl5YNwSklJXC8E3NH5yE9t0HRoCnmAQAvD_BwE}{https://www.lucidchart.com}\\\\

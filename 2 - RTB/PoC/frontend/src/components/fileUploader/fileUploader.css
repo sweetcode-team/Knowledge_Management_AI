@@ -1,0 +1,298 @@
+.main__fileuploader {
+  width: 25%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  padding-left: 15px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dropzone__card {
+  width: 100%;
+  border-radius: 10px;
+  transform: scale(0);
+  animation-name: showIn;
+  animation-duration: 0.2s; /* or: Xms */
+  animation-iteration-count: 1;
+  animation-direction: normal; /* or: normal */
+  animation-timing-function: cubic-bezier(
+    0.17,
+    0.67,
+    0.12,
+    1.53
+  ); /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+  animation-fill-mode: both; /* or: backwards, both, none */
+  animation-delay: 0.3s; /* or: Xms */
+  margin-bottom: 15px;
+}
+
+.dropZone {
+  width: 100%;
+  padding: 25px 10px 25px 10px;
+  background: #e6e5ea;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropZone:hover {
+  background-color: #4664ff;
+  color: #fff;
+}
+
+.dropZone p {
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropZone h3 {
+  text-decoration: none;
+}
+
+.filelist__body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filelist__card {
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: scale(0);
+  animation-name: showIn;
+  animation-duration: 0.2s; /* or: Xms */
+  animation-iteration-count: 1;
+  animation-direction: normal; /* or: normal */
+  animation-timing-function: cubic-bezier(
+    0.17,
+    0.67,
+    0.12,
+    1.53
+  ); /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+  animation-fill-mode: both; /* or: backwards, both, none */
+  animation-delay: 0.3s; /* or: Xms */
+  margin-bottom: 15px;
+}
+
+.filelist__card .card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 15px 20px;
+}
+
+.filelist__card .card__header h4 {
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.filelist__card .card__header i {
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.card__content {
+  overflow: auto;
+  overflow-x: hidden;
+  width: 100%;
+  color: #6d6a6a;
+  font-size: 14px;
+  display: none;
+}
+
+.filelist__item {
+  display: flex;
+  padding: 15px 10px;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.filelist__item:nth-child(odd) {
+  background-color: #e6e5ea;
+}
+
+.filelist__item:nth-child(even) {
+  background-color: #f1eff5;
+}
+
+.fileInfo {
+  overflow-x: hidden;
+  white-space: nowrap;
+  max-width: 90%;
+}
+
+.fileInfo a {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  max-width: 600px;
+  text-decoration: none;
+}
+
+.fileInfo a:hover {
+  text-decoration: underline;
+}
+
+.fileInfo span {
+  margin: 0;
+  padding: 0;
+  color: #828285;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+}
+
+.fileDeleteBtn {
+  min-width: 20px;
+  background-color: #ecefff;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ff3131;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+
+.fileDeleteBtn:hover {
+  transform: scale(1.2);
+}
+
+.filelist__card.open .card__content {
+  display: block;
+}
+
+.filelist__card.open .card__header i:before {
+  content: "\f106";
+}
+
+.files_buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.submit_files {
+  width: 49%;
+}
+
+.submit_files_button {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_files_button:hover:not([disabled]) {
+  background-color: #4664ff;
+  color: #fff;
+}
+
+.submit_files_button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
+
+.submit_files_button span {
+  line-height: 36px;
+  flex: 2;
+}
+
+.delete_all_files {
+  width: 49%;
+}
+
+.delete_all_files_button {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete_all_files_button:hover:not([disabled]) {
+  background-color: #ff3131;
+  color: #fff;
+}
+
+.delete_all_files_button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
+
+.delete_all_files_button span {
+  line-height: 36px;
+  flex: 2;
+}
+
+.resultsBox {
+  position: fixed;
+  background-color: green;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.resultsBox.visible {
+  opacity: 1;
+  display: block;
+}
+
+.resultsBox.error {
+  background-color: red;
+  color: white;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+}

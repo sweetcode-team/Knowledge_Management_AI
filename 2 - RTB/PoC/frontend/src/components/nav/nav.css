@@ -1,0 +1,8 @@
+.nav {
+  max-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-right: 20px;
+}

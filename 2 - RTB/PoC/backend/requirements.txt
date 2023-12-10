@@ -1,0 +1,13 @@
+Flask
+flask_cors
+pinecone-client
+langchain
+pypdf
+PyPDF2
+python-dotenv
+openai
+tiktoken
+huggingface-hub
+InstructorEmbedding
+sentence-transformers
+boto3

@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../chatList/Avatar";
+import Avatar from "../chatInfo/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrochip, faUser } from "@fortawesome/free-solid-svg-icons";
 

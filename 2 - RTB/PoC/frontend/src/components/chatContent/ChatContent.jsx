@@ -1,7 +1,7 @@
 import React, { useState, createRef, useEffect } from "react";
 
 import "./chatContent.css";
-import Avatar from "../chatList/Avatar";
+import Avatar from "../chatInfo/Avatar";
 import ChatItem from "./ChatItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faPaperPlane } from "@fortawesome/free-solid-svg-icons"

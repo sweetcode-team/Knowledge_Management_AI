@@ -1,0 +1,82 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-27}
+\def\oraInizio{14:00}
+\def\oraFine{14:45}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Revisione della rendicontazione oraria di ogni membro per il primo sprint (concluso).}
+%{Azione 2;},
+%{Azione 3.}
+}
+
+\def\listaOrdineGiorno {
+{Confronto tra i vari membri riguardo le difficoltà ed i dubbi incontrati durante la precedente settimana di lavoro per l'inserimento di tali informazioni nelle diapositive per il diario di bordo del 2023-11-29;},
+{Aggiornamento da parte di programmatori e progettista sui progressi del lavoro in corso;},
+{Confronto sulla gestione interna del documento 'Glossario';},
+{Valutazione della possibile richiesta di colloquio al Professor Cardin per un'opinione riguardo il documento 'Analisi dei requisiti'.}
+}
+
+\def\listaDiscussioneInterna {
+{I membri del team durante l'ultima settimana di lavoro hanno riscontrato le seguenti difficoltà:
+\begin{itemize}
+\item Progettazione di più PoC in contemporanea (come richiesto dall'azienda proponente), poichè il lavoro comporta un carico di lavoro molto elevato;
+\item Difficoltà di integrazione della tecnologia \textit{ChromaDB} con \textit{Langchain};
+\item Difficoltà nel trovare un modello \textit{LLM} locale per testare le funzionalità dei PoC;
+\item Difficoltà nella lettura e comprensione della documentazione relativa ad alcune tecnologie;
+\item Difficoltà nella collaborazione intra-ruolo tra alcuni dei membri, tra i quali i programmatori.
+\end{itemize}
+Sono emersi i seguenti dubbi:
+\begin{itemize}
+\item Rappresentazione di alcuni Casi d'uso nell'Analisi dei requisiti;
+\item Rappresentazione dei termini all'interno di 'Glossario'.
+\end{itemize}
+},
+{Il progettista Dugo A. ed i programmatori Michelon R. e Feltrin E. hanno aggiornato il resto del team sui progressi fatti con la progettazione dei PoC richiesti dall'azienda. Dai programmatori era stata decisa una suddivisione del lavoro che prevedeva lo sviluppo di due PoC separati da parte dei due programmatori. Essi si sono occupati dello sviluppo di PoC seguendo le direttive del progettista Dugo A. e con l'utilizzo delle seguenti tecnologie:
+\begin{itemize}
+\item \textit{Streamlit} (per il \textit{front-end}), \textit{Pinecone}, \textit{AWS S3} (per il database), \textit{Langchain},  \textit{OpenAI} e \textit{HuggingFace} (per modelli LLM e modelli per calcolare \textit{vector embeddings}).
+\end{itemize}
+},
+{Sono state discusse alcune norme per la gestione del documento 'Glossario' che verranno inserite nel Way of working;},
+{Data l'importanza del documento 'Analisi dei requisiti' il team ha discusso dell'eventuale richiesta di colloquio al Professor Cardin per ottenere delucidazioni riguardo a Casi d'uso molto specifici e per la correzione di eventuali errori.}
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Il responsabile Ciriolo I. comunicherà al Professor Cardin l'esigenza di un colloquio con i membri del gruppo per la presa in esame del documento 'Analisi dei requisiti'.}
+}

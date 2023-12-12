@@ -1,0 +1,125 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-24}
+\def\oraInizio{14:00}
+\def\oraFine{15:00}
+\def\luogo{Piattaforma Slack}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Vengono presentate le risposte ad alcuni quesiti che il team ha posto all'azienda tramite la piattaforma Slack per dei chiarimenti (nello specifico riguardanti il documento 'Analisi dei requisiti').}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Per quanto riguarda le conversazioni con il chatbot, ogni chat potrà essere realizzata con un modello AI scelto oppure una volta selezionato un modello comune tutte le chat dovranno essere realizzate con il medesimo?
+}
+{Questo è un requisito desiderabile ma non necessario, probabilmente ottenibile con poco sforzo grazie alle astrazioni fornite da \textit{LangChain}. Non sarà l’utente finale a scegliere il modello ma sarà il consulente di riferimento che configurerà la soluzione. Detto questo, sarà utile predisporre ad esempio una tabella di configurazione a \textit{DataBase} dove salvare
+questa ed altre preferenze. Il modello “locale” dovrà essere sempre disponibile;
+},
+\domris
+{L’utente dovrà avere la possibilità di decidere quali chat verranno salvate o verranno tutte salvate di default? 
+}
+{Le chat dovranno essere tutte salvate di default;
+},
+\domris
+{Le chat che verranno salvate dovranno offrire all’utente la possibilità  di rinominare il titolo di una chat? (premettendo ad esempio di assegnare un titolo significativo
+secondo l’argomento trattato)
+}
+{Si tratta di un requisito opzionale;
+},
+\domris
+{Dovrà essere resa disponibile una funzione di ricerca tra i messaggi?
+}
+{Si tratta di un requisito opzionale;
+},
+\domris
+{I messaggi dovranno essere associati all’orario in cui sono stati inviati? \\Se si, nella visualizzazione delle chat dovrà essere riportata l’ora dell’ultimo messaggio di quella chat nella visualizzazione dell’elenco?
+}
+{I messaggi dovranno essere associati all’orario in cui sono stati inviati, ma la visualizzazione dell’orario dell’ultimo messaggio di quella chat nella visualizzazione dell’elenco è un requisito opzionale;
+},
+\domris
+{L’utente dovrà avere la possibilità di rinominare i documenti caricati?
+}
+{No, se gli serve “semplicemente” opererà un'eliminazione ed un caricamento nuovamente. Ovviamente l’eliminazione dovrà, come dire, “de-addestare”/”ri-addestrare” il modello;
+},
+\domris
+{I documenti dovranno mostrare l’estensione nell’area di visualizzazione dei documenti caricati?
+}
+{Non è necessario, esamineremo solo documenti in formato PDF. Eventualmente si dovrà indicare la dimensione in byte/Kbyte del file;
+},
+\domris
+{Dato che addestrare un modello di apprendimento è un processo costoso, invece che procedere al ri-addestramento del modello ad ogni caricamento/cancellazione di un documento, potrebbe essere utile rendere disponibile all’utente la funzionalità di decidere quando addestrare il modello, ovvero quando riterrà di aver caricato i documenti necessari. Si/no?
+}
+{Si, ma allora nell’elenco dei documenti dovrà essere indicato documento per documento quale è attualmente nel modello (o di quale/i modello addestrato fa parte);
+},
+\domris
+{Come dovrà rispondere il sistema ad un'eventuale caduta della rete?
+}
+{Questo non sarà importante, eventualmente potrebbe andare in \textit{fallback} sul modello locale;
+},
+\domris
+{Ci sono particolari obiettvi di usabilità da raggiungere?
+}
+{No, l’unico “ausilio” potrebbe essere il \textit{text-to-speech} delle risposte ed eventualmente il \textit{voice recognition} nella formulazione delle domande. Tutto in ogni caso rimane un requisito desiderabile.\\ In termini di usabilità, c'è da fare qualche ragionamento sulla scelta nel modello locale di quello con miglior \textit{trade-off} prestazioni/qualità (questo vale per la fase di interazione con il \textit{bot}, non nelle fasi di caricamento/addestramento dei modelli);
+},
+\domris
+{Il test sulla correttezza delle risposte sarà da implementare a posteriori. Quali altri tipi di test si potrebbero implementare invece durante lo sviluppo della \textit{web app}?\\Esistono test non funzionali su \textit{web app}, come di usabilità, test sull’interfaccia, sulla performance, compatibilità, sicurezza (gestibili con \textit{LLM Guard});
+}
+{\textit{LLM Guard} è forse il migliore dei requisiti desiderabili ma non si hanno particolari necessità, si accettano idee e suggerimenti;
+},
+\domris
+{Per quanto riguarda i test funzionali, cosa dovrebbero includere nel nostro caso?
+}
+{Sarà sufficiente un testing delle principali \textit{API} (\textit{response status}, \textit{duraMon}, struttura della \textit{response} attesa), nonché validazione del \textit{body} delle chiamate;
+},
+\domris
+{Ci sono particolari vincoli normativi/legislativi a cui si dovrà sottostare?
+}
+{Sarebbe interessante avere un capitolo (capitoletto) dedicato nell’Analisi dei requisiti, che esplori queste tematiche (che rappresentano, comunque, un terreno al momento piuttosto inesplorato).
+}
+}
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+%\def\listaDecisioni {
+
+%}

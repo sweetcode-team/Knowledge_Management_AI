@@ -4,6 +4,7 @@ import "./chatContent.css";
 import Avatar from "../chatInfo/Avatar";
 import ChatItem from "./ChatItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRedo } from '@fortawesome/free-solid-svg-icons' 
 import { faCog, faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import sweetcodelogo from "../../images/sweetcode-logo.svg"
 import { toast } from 'react-toastify';
@@ -27,6 +28,22 @@ export default function ChatContent() {
       insertChatMessage()
     }
   }
+
+  const resetChat = () => {
+    fetch('http://localhost:5050/resetChat', {
+      method: 'POST',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+      // clear the chat messages in state
+      setchatMessages([]);
+    })
+    .catch(error => {
+      console.error('Error resetting chat:', error);
+    });
+  };
 
   const sendQuery = (query) => {
     const formData = new FormData();
@@ -119,6 +136,9 @@ export default function ChatContent() {
         </div>
         <div className="content__footer">
           <div className="sendNewMessage">
+            <button id="resetChatBtn" onClick={() => document.getElementById('confirmModal').style.display = 'block'} disabled={chatMessages.length < 2}>
+              <FontAwesomeIcon icon={faRedo} />
+            </button>
             <input
               type="text"
               placeholder="Type a message here"
@@ -133,6 +153,13 @@ export default function ChatContent() {
             >
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
+          </div>
+          <div id="confirmModal">
+            <div id="confirmModalContent">
+              <p>Sei sicuro di voler cancellare tutti i messaggi?</p>
+              <button id="noButton" onClick={() => document.getElementById('confirmModal').style.display = 'none'}>No</button>
+              <button id="siButton" onClick={() => { resetChat(); document.getElementById('confirmModal').style.display = 'none'; }}>Sì</button>             
+            </div>
           </div>
         </div>
       </div>

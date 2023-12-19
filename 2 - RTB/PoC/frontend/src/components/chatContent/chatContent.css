@@ -205,3 +205,86 @@
   color: #fff;
 }
 
+#resetChatBtn {
+  width: 36px;
+  height: 36px;
+  background-color: #ecefff;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4665ff;
+  background-color: #ff3131;
+  padding: 0;
+  border-radius: 5px;
+  line-height: 36px;
+  transition: all 0.3s;
+}
+
+#resetChatBtn:hover:not([disabled]) {
+  transform: scale(1.2);
+}
+
+#resetChatBtn:disabled {
+  transform: none;
+  background-color: #ecefff;
+  cursor: not-allowed;
+}
+
+#resetChatBtn {
+  color: #fff;
+}
+
+#confirmModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+#confirmModalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 3px solid #ecefff;
+  width: 25%;
+  text-align: center;
+}
+
+#confirmModalContent button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  padding: 0;
+  border-radius: 5px;
+  line-height: 36px;
+  transition: all 0.3s;
+  margin: auto 10px;
+  margin-top: 20px;
+
+}
+
+#confirmModalContent button:hover:not([disabled]) {
+  transform: scale(1.2);
+}
+
+
+#siButton {
+  background-color: #ff3131;
+}
+
+#noButton {
+  background-color: #3b5bfe;  
+}
+

@@ -224,5 +224,17 @@ def askChatbot():
 
     return jsonify(response), 200
 
+
+@app.route('/resetChat', methods=['POST'])
+def reset_chat():
+    try:
+        chat_engine.resetMemory()
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        app.logger.error(f"Error resetting chat: {str(e)}")
+        return jsonify({'error': 'Error resetting chat', 'message': str(e)}), 500
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)

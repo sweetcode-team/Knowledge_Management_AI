@@ -1,0 +1,82 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-12-06}
+\def\oraInizio{16:00}
+\def\oraFine{16:30}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Dugo A.} % Cognome N.
+\def\nomeVer{Bresolin G.} % Cognome N.
+\def\nomeSegr{Dugo A.} % Cognome N.
+
+\def\firmaResp{alberto.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Revisione della rendicontazione oraria di ogni membro per il secondo sprint (concluso);},
+{Retrospettiva sprint 2.}
+%{Azione 2;},
+%{Azione 3.}
+}
+\def\listaOrdineGiorno {
+{Assegnazione dei ruoli per il nuovo sprint;},
+{Aggiornamento da parte di tutti i membri del gruppo riguardo al loro lavoro svolto;},
+{Discussione e decisione riguardo le future \textit{milestone};},
+{Definizione e assegnazione dei nuovi task;},
+{Confronto tra i vari membri riguardo le difficoltà ed i dubbi incontrati durante la precedente settimana di lavoro per l'inserimento di tali informazioni nelle diapositive per il diario di bordo del 2023-12-11. }
+}
+\def\listaDiscussioneInterna {
+{Il team ha assegnato i ruoli che i membri assumeranno per il terzo sprint di lavoro. Sono stati definiti nel modo seguente: 
+\begin{itemize}
+\item Amministratore: Ciriolo I.;
+\item Analista: Feltrin E., Michelon R., Campese M.;
+\item Progettista: ruolo non assegnato;
+\item Programmatori: Orlandi G.;
+\item Responsabile: Dugo A.;
+\item Verificatore: Bresolin G.
+\end{itemize} 
+},
+{Tutti i membri del gruppo, hanno aggiornato il team del lavoro svolto durante il secondo sprint.
+\begin{itemize}
+\item I programmatori insieme al progettista hanno concluso il PoC;
+\item L'analista e il responsabile hanno ultimato il documento "Analisi dei requisiti" che dovrà essere aggiornato dopo l'incontro con il professor Cardin R.;
+\item L'amministratore ha esposto le nuove \textit{milestone}. 
+\end{itemize}
+},
+{Dopo una breve discussione sulla gestione delle \textit{milestone} del team, si è presa la decisione consigliata dall'analista Michelon R., riportata in "Decisioni";},
+{Sono state assegnati ad ogni membro i task riportati in "Azioni da intraprendere", tenendo conto del fatto che ne verranno assegnati di nuovi con l'avanzare dei giorni;
+},
+{Il gruppo ha riscontrato alcune problematiche legate a :
+\begin{itemize}
+\item Produrre un PoC funzionante con diverse tecnologie nuove in un breve lasso di tempo;
+\item Impostare una struttura adeguata al PoC;
+\end{itemize}
+}
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Aggiungere le seguenti \textit{milestone}:
+'Documentazione PoC\_Sprint3', 'Code PoC\_Sprint3', 'Analisi dei requisiti'.}
+}

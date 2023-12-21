@@ -31,20 +31,9 @@
 % INTRODUZIONE
 \section{Introduzione}
 \subsection{Scopo del documento}
-\paragraph{}Questo documento si prefigge lo scopo di normare e documentare un corretto \textit{Way of Working} che verrà seguito lungo l'intero svolgimento del progetto.\\
-	Tutti i membri del team sono tenuti a visionare tale documento e a seguire le norme contenute in esso. Tali norme permettono di perseguire e migliorare la coerenza ed omogeneità del lavoro e dei file prodotti.
-	Viene inoltre fornito uno storico delle modifiche e delle versioni del documento per seguire un approccio incrementale nella sua redazione, facilitandone i cambiamenti nel corso del tempo.
-%\subsection{Scopo del prodotto}
-\subsection{Glossario}
-Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario. I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
-All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza di un termine presente nel Glossario.\\All'interno di quest'ultimo i termini vengono ordinati in ordine alfabetico e raggruppati per lettera d'inizio del termine.\\
-I documenti che sono corredati dal Glossario sono:
-\begin{itemize}
-    \item Analisi dei requisiti;
-    \item Norme di progetto;
-    \item Piano di progetto;
-    \item Piano di qualifica.
-\end{itemize}
+Questo documento si prefigge lo scopo di normare e documentare un corretto \textit{Way of Working} che verrà seguito lungo l'intero svolgimento del progetto.\\
+Tutti i membri del team sono tenuti a visionare tale documento e a seguire le norme contenute in esso. Tali norme permettono di perseguire e migliorare la coerenza ed omogeneità del lavoro e dei file prodotti.
+Viene inoltre fornito uno storico delle modifiche e delle versioni del documento per seguire un approccio incrementale nella sua redazione, facilitandone i cambiamenti nel corso del tempo.
 
 \section{Riferimenti}
     \subsection{Riferimenti normativi}
@@ -52,7 +41,9 @@ I documenti che sono corredati dal Glossario sono:
         \item \textit{ISO/IEC 12207:1997 Information technology — Software life cycle processes}\\
         \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf};
         \item \textit{SEMAT}\\
-        \url{https://semat.org/documents/20181/57862/formal-18-10-02.pdf/formal-18-10-02.pdf}.
+        \url{https://semat.org/documents/20181/57862/formal-18-10-02.pdf/formal-18-10-02.pdf};
+        \item \textit{Regolamento del progetto didattico}
+        \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}.
     \end{itemize}
     \subsection{Riferimenti informativi}
     \begin{itemize}
@@ -79,6 +70,19 @@ I documenti che sono corredati dal Glossario sono:
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T11.pdf}.
             \end{itemize}.
     \end{itemize}
+
+\section{Glossario}
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario. 
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza di un termine presente nel Glossario.\\
+All'interno di quest'ultimo i termini vengono ordinati in ordine alfabetico e raggruppati per lettera d'inizio del termine.\\
+I documenti che sono corredati dal Glossario sono:
+\begin{itemize}
+    \item Analisi dei requisiti;
+    \item Norme di progetto;
+    \item Piano di progetto;
+    \item Piano di qualifica.
+\end{itemize}
 
 % APPLICAZIONE STANDARD
 \section{Applicazione standard ISO/IEC 12207:1997}
@@ -132,35 +136,76 @@ I processi organizzativi presentati nel presento documento sono:
 % PROCESSI PRIMARI
 \newpage
 \section{Processi primari}
+
 \subsection{Acquisizione}
-Il Processo di Acquisizione comprende le attività e i compiti dell'acquirente. Il processo inizia con la definizione della necessità di acquisire un sistema, un prodotto software o un servizio software. Il processo prosegue con la preparazione e l'emissione di una richiesta di proposta, la selezione di un fornitore e la gestione del processo di acquisizione fino all'accettazione del sistema, del prodotto software o del servizio software. L'organizzazione individuale che ha la necessità può essere chiamata il proprietario, ma nel contesto del progetto didattico sarà citata all'interno della documentazione come 'il proponente' o 'l'azienda'.
-\subsubsection{Modalità}
-Le modalità del Processo di Acquisizione per il progetto sono state fissate dal docente e sono reperibili all'interno della sezione 'Riferimenti', in 'Riferimenti normativi', in 'Regolamento del progetto didattico'.\\
-Le fasi del Processo di Acquisizione stabilite sono le seguenti:
+Le modalità del processo di acquisizione per il progetto sono state fissate dal docente e sono reperibili all'interno della sezione 
+(\S Riferimenti), in (\S Riferimenti normativi), in (\S Regolamento del progetto didattico).\\
+Le fasi del processo di acquisizione stabilite sono le seguenti:
+\begin{enumerate}
+    \item Definizione della necessità di acquisizione di un prodotto software da parte dell'azienda proponente;
+    \item Formazione dei gruppi di lavoro da parte del docente del corso Vardanega T.(2023-10-14);
+    \item Presentazione dei capitolati d'appalto da parte dell'azienda proponente nei confronti dei gruppi di lavoro (2023-10-17);
+    \item Presentazione delle candidature di appalto da parte dei gruppi di lavoro (2023-10-31);
+    \item Aggiudicazione appalti con assegnazione svolta da parte del docente Vardanega T. in base alle candidature presentate e alle sue 
+    valutazioni interne e ad una consultazione con il proponente (2023-11-06);
+    \item Presentazione del \textit{Proof of Concept (PoC)} da parte del gruppo di lavoro all'azienda proponente;
+    \item Accettazione da parte dell'azienda proponente del \textit{PoC} proposto dal gruppo di lavoro;
+    \item Presentazione della candidatura per la revisione \textit{Requirements and Technology Baseline} da parte del gruppo di lavoro;
+    \item Revisione \textit{Requirements and Technology Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con 
+    conseguente valutazione;
+    \item Presentazione del \textit{Minimum Viable Product (MVP)} da parte del gruppo di lavoro all'azienda proponente;
+    \item Accettazione da parte dell'azienda proponente del \textit{MVP} proposto dal gruppo di lavoro;
+    \item Presentazione della candidatura per la revisione \textit{Product Baseline} da parte del gruppo di lavoro;
+    \item Revisione \textit{Product Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con 
+    conseguente valutazione.
+\end{enumerate}
+I ruoli definiti all'interno di questo progetto didattico universitario sono:
 \begin{itemize}
-    \item \textbf{Formazione dei gruppi di lavoro};
-    \item \textbf{Presentazione dei capitolati d'appalto};
-    \item \textbf{Presentazione delle candidature};
-    \item \textbf{Aggiudicazione appalti}.
+    \item Docente del corso: committente;
+    \item Azienda proponente: cliente e mentore;
+    \item Gruppo di lavoro: fornitore. 
 \end{itemize}
+Le stime dei tempi di consegna e del prezzo viene effettuata dal gruppo di lavoro durante la fase di presentazione della 
+candidatura d'appalto.\\
+La definizione del prezzo durante la fase di candidatura costituisce il limite superiore invalicabile durante lo svolgimento del progetto ed
+è derivante dai costi (stabiliti dal docente del corso) di ciascun ruolo ricopribile all'interno del gruppo di lavoro.\\
+Le date di consegna sono invece libere e soggette a stringenti regole di ingresso e vengono stabilite dal gruppo di lavoro assieme al proponente,
+cercando di rispettare il più possibile le stime iniziali stabilite durante la fase di candidatura d'appalto.
+
 \subsection{Fornitura}
-Il processo di fornitura descrive le attività svolte dal fornitore e coinvolge pianificazione, acquisizione e gestione delle risorse necessarie. Il processo segue la determinazione delle procedure e delle risorse necessarie per gestire e garantire il progetto.
-L'obiettivo del processo è la garanzia dell'efficienza e della conformità ai requisiti del progetto per raggiungere gli obiettivi stabiliti con il proponente.\\
-Viene fissata con il proponente la data di consegna del prodotto finale e viene discussa la gestione della manutenzione del progetto.\\
-Il processo di fornitura `e formato dalle seguenti 7 fasi:
+Il processo di fornitura descrive le attività svolte dal fornitore e coinvolge pianificazione, acquisizione e gestione delle risorse 
+necessarie. Il processo segue la determinazione delle procedure e delle risorse necessarie per gestire e garantire il progetto.
+L'obiettivo del processo è la garanzia dell'efficienza e della conformità ai requisiti del progetto per raggiungere gli obiettivi stabiliti 
+con il proponente.\\
+Viene fissata con il proponente la data di consegna del prodotto finale.\\
+Il processo di fornitura è formato dalle seguenti 7 fasi:
 \begin{itemize}
     \item \textbf{Iniziazione}: Il fornitore effettua una revisione dei requisiti nella richiesta di proposta;
     \item \textbf{Preparazione della risposta}: Il fornitore definisce e prepara una proposta in risposta alla richiesta di proposta;
-    \item \textbf{Contratto}: Il fornitore negozia e stipula un accordo con il proponente per fornire il prodotto finale;
-    \item \textbf{Pianificazione}: Il fornitore  effettua una revisione dei requisiti di acquisizione per definire la struttura per gestire e garantire il progetto e per garantire la qualità del prodotto finale. Una volta stabiliti i requisiti di pianificazione, il fornitore valuta le opzioni per lo sviluppo del prodotto software in base ad un'analisi dei rischi associati a ciascuna opzione (il fornitore deve sviluppare e documentare il piano di gestione del progetto in base ai requisiti di pianificazione);
-    \item \textbf{Esecuzione e controllo}: Il fornitore implementa ed esegue il piano di gestione del progetto, e monitora e controlla il progresso e la qualità del prodotto del progetto durante l'intero ciclo del progetto;
-    \item \textbf{Revisione e valutazione}: Il fornitore coordina le attività di comunicazione con il proponente, e conduce o supporta riunioni informali, revisioni di accettazione, test di accettazione, revisioni congiunte. Il fornitore  esegue la verifica e la convalida del processo per dimostrare che i prodotti o servizi software e i processi soddisfano appieno i rispettivi requisiti;
-    \item \textbf{Consegna e completamento}: Il fornitore consegna il prodotto finale, e dovrà fornire assistenza al proponente a supporto del prodotto consegnato.
+    \item \textbf{Negoziazione}: Il fornitore negozia e stipula un accordo con il proponente per fornire il prodotto finale;
+    \item \textbf{Pianificazione}: Il fornitore effettua una revisione dei requisiti di acquisizione e valuta le opzioni per lo 
+    sviluppo del prodotto software in base ad un'analisi dei rischi associati a ciascuna opzione per definire la struttura del piano di gestione 
+    del progetto e per garantire la qualità del prodotto finale (il fornitore deve sviluppare e documentare tale piano);
+    \item \textbf{Esecuzione e controllo}: Il fornitore esegue il piano di gestione del progetto e monitora e controlla il progresso e la qualità
+    del prodotto durante l'intero ciclo del progetto;
+    \item \textbf{Revisione e valutazione}: Il fornitore coordina le attività di comunicazione con il proponente e conduce o supporta riunioni informali,
+    revisioni di accettazione, test di accettazione, revisioni congiunte. Il fornitore  esegue la verifica e la convalida del processo 
+    per dimostrare che i prodotti o servizi software e i processi soddisfano appieno i rispettivi requisiti;
+    \item \textbf{Consegna e completamento}: Il fornitore consegna il prodotto finale, e dovrà fornire assistenza al proponente a supporto 
+    del prodotto consegnato.
 \end{itemize}
 \subsubsection{Gestione}
-Per garantire un processo di fornitura efficace ed efficiente viene mantenuta la comunicazione con l'azienda proponente durante tutto il corso del progetto, mediante riunioni settimanali su \textit{Google Meet} pianificate con \textit{Google Calendar} e scambio di messaggi qualora fosse necessario attraverso la piattaforma \textit{Slack}. In questo modo al fornitore risulta possibile un'identificazione accurata dei bisogni del proponente con conseguente individuazione accurata dei requisiti e dei vincoli del progetto. Il dialogo continuo con il proponente permette infine una valutazione continua e costante del lavoro svolto dal fornitore, in modo da permettere correzioni, integrazioni e miglioramenti in modo incrementale e costruttivo.  
+Per garantire un processo di fornitura efficace ed efficiente viene mantenuta la comunicazione con l'azienda proponente durante tutto il 
+corso del progetto, mediante riunioni settimanali su \textit{Google Meet} pianificate con \textit{Google Calendar} e scambio di messaggi 
+qualora fosse necessario attraverso la piattaforma \textit{Slack}. In questo modo al fornitore risulta possibile un'identificazione accurata
+dei bisogni del proponente con conseguente individuazione accurata dei requisiti e dei vincoli del progetto. Il dialogo continuo con il 
+proponente permette infine una valutazione continua e costante del lavoro svolto dal fornitore, in modo da permettere correzioni, 
+integrazioni e miglioramenti in modo incrementale e costruttivo.  
 \subsubsection{Piano di Progetto}
-Il Piano di progetto viene redatto dal responsabile con l'aiuto degli amministratori. Fornisce una guida dettagliata per la pianificazione, l'esecuzione e il controllo del progetto e serve come base per il monitoraggio del progresso, la gestione dei rischi e la comunicazione tra proponente e fornitore.\\ Il suo contenuto comprende:
+Il Piano di progetto viene redatto dal responsabile con l'aiuto degli amministratori. Fornisce una guida dettagliata per la pianificazione, 
+l'esecuzione e il controllo del progetto e serve come base per il monitoraggio del progresso, la gestione dei rischi e la comunicazione tra
+proponente e fornitore.\\ 
+Il suo contenuto comprende:
 \begin{itemize}
     \item Calendario di progetto;
     \item Stima dei costi di realizzazione;
@@ -170,8 +215,11 @@ Il Piano di progetto viene redatto dal responsabile con l'aiuto degli amministra
     \item Retrospettiva.
 \end{itemize}
 \subsubsection{Piano di Qualifica}
-Il Piano di qualifica definisce le strategie, gli obiettivi e le attività per garantire la qualità del prodotto finale. Vengono definite in tale documento le metriche di valutazione e validazione del progetto e la specifica degli obiettivi di qualità del prodotto finale. Tali parametri vengono stabiliti in accordo ai requisiti e 
-alle aspettative del proponente e talvolta a discrezione del team sulla base delle valutazioni fatte nel corso di studi. Il suo scopo è assicurare che il prodotto soddisfi gli standard di qualità definiti e che eventuali deviazioni vengano gestite in modo appropriato.\\
+Il Piano di qualifica definisce le strategie, gli obiettivi e le attività per garantire la qualità del prodotto finale. Vengono definite in 
+tale documento le metriche di valutazione e validazione del progetto e la specifica degli obiettivi di qualità del prodotto finale. 
+Tali parametri vengono stabiliti in accordo ai requisiti e alle aspettative del proponente e talvolta a discrezione del team sulla base 
+delle valutazioni fatte nel corso di studi. Il suo scopo è assicurare che il prodotto soddisfi gli standard di qualità definiti e che 
+eventuali deviazioni vengano gestite in modo appropriato.\\
 Il suo contenuto comprende:
 \begin{itemize}
     \item Qualità di processo;
@@ -181,7 +229,6 @@ Il suo contenuto comprende:
     \item Resoconto delle attività di verifica.
 \end{itemize}
 \subsubsection{Strumenti}
-Gli strumenti utilizzati nel corso del progetto in modo specifico per il processo di fornitura sono stati:
 \begin{itemize}
     \item {\textbf{Gmail}}: servizio di posta elettronica fornito da \textit{Google}, utilizzato per le prime comunicazioni tra proponente e fornitore;
     \item {\textbf{Google Calendar}}: sistema di calendari usato per pianificare riunioni, scadenze e in generale
@@ -191,88 +238,130 @@ Gli strumenti utilizzati nel corso del progetto in modo specifico per il process
 \end{itemize}
 
 \subsection{Sviluppo}
-Il processo di sviluppo si pone lo scopo di descrivere tutte le azioni che portano un prodotto dalla fase di ideazione a quella di realizzazione. Per tale motivo include le seguenti azioni:
+Il processo di sviluppo si pone lo scopo di descrivere tutte le attività e i compiti che portano un prodotto dalla fase di ideazione a quella di realizzazione. 
+Per tale motivo vengono dunque presentate le seguenti attività:
 \begin{itemize}
-    \item Determinazione di ogni genere di requisito del prodotto, con eventuali vincoli;
-    \item Progettazione del prodotto seguendo i vincoli ed i requisiti analizzati;
-    \item Testing del prodotto secondo le direttive del committente;
-    \item Realizzazione del prodotto.
-\end{itemize}
-\subsubsection{Analisi dei requisiti}
-Il documento 'Analisi dei requisiti' è stilato secondo le seguenti fasi:
-\begin{itemize}
-    \item Studio accurato del Capitolato e delle esigenze del committente;
-    \item Ideazione dei Casi d'uso principali ed individuazione dei requisiti obbligatori per il proponente;
-    \item Discussione con il proponente per eventuali chiarimenti;
-    \item Divisione dei requisiti nelle tre categorie individuate con conseguente ampliamento dei Casi d'uso;
-\end{itemize}
-Il risultato di tale processo è un documento che contiene
-tutti i requisiti richiesti dal proponente con relativi Casi d'uso dal punto di vista dell'utente finale.
-\\\\
-\textbf{Casi d'uso: Notazione}\\
-I Casi d'Uso sono indicati con la notazione seguente: \\ UC[X].[Y] \ \  in cui:
-\begin{itemize}
-\item UC sta per \textit{Use Case};
-\item .[X] indica il numero del Caso d'Uso, presentati secondo successione gerarchica;
-\item .[Y] indica il possibile numero del sotto-Caso d'uso, che aggiunge informazioni al Caso d'Uso [X]. Anche i sotto-Casi d'Uso sono presentati secondo successione gerarchica.\\
+    \item Analisi dei requisiti;
+    \item Progettazione logica;
+    \item Progettazione di dettaglio;
+    \item Codifica;
+    \item Testing;
+    \item Integrazione software;
+    \item Installazione software.
 \end{itemize}
 
-\textbf{Requisiti: Notazione}\\
-Ogni requisito preso in analisi è trattato con la sigla:\\
-R[Tipo].[Importanza].[Ordine];\\
-nella quale:\\
+\subsubsection{Analisi dei requisiti}
+L'attività di analisi dei requisiti, la quale viene documentata all'interno del documento (\S Analisi dei requisiti), viene svolta seguendo le seguenti fasi:
 \begin{itemize}
-\item R indica la parola "requisito";
-\item Tipo può essere:
+    \item Studio accurato del capitolato e delle esigenze del committente;
+    \item Individuazione dei casi d'uso (e relativa produzione dei diagrammi dei casi d'uso) e dei requisiti;
+    \item Discussione con il proponente del materiale prodotto;
+    \item Divisione dei requisiti nelle tre categorie individuate e applicazione degli spunti emersi dalla discussione col proponente.
+\end{itemize}
+(L'analisi dei requisiti, essendo una attività incrementale, prevede che alcune fasi siano svolte più volte all'interno del progetto).
+Il risultato di tale processo è un documento che contiene tutti i requisiti richiesti dal proponente, con relativi casi d'uso dal punto di vista dell'utente finale.
+
+\paragraph{Casi d'uso: Notazione\\}
+I casi d'uso sono indicati con la notazione seguente: \textbf{UC[X].[Y].[Z]}\\
+in cui:
+\begin{itemize}
+\item \textbf{UC} sta per Use Case;
+\item \lbrack \textbf{X}] indica il numero del caso d'uso, presentato secondo successione gerarchica;
+\item \lbrack \textbf{Y}] indica il possibile numero del sottocaso d'uso, che aggiunge informazioni a casi d'uso del tipo UC[X];
+\item \lbrack \textbf{Z}] indica il numero del sottocaso d'uso di un sottocaso d'uso, approfondendo ulteriormente casi d'uso del tipo UC[X].[Y].
+\end{itemize}
+
+\paragraph{Casi d'uso: Didascalie\\}
+Per ogni caso d'uso è presentata una breve didascalia che ne indica:
+\begin{itemize}
+    \item Identificatore;
+    \item Attore principale;
+    \item Attore secondario (attore esterno al sistema che, se presente, aiuta il sistema a raggiungere l'obiettivo dell'attore principale);
+    \item Precondizioni (condizioni che devono essere vere affinché il caso d'uso possa essere eseguito);
+    \item Postcondizioni (condizioni del sistema dopo che il caso d'uso si è concluso);
+    \item Scenario principale (sequenza di passaggi che definisce un'interazione tra attore e sistema);
+    \item Scenario alternativo (scenario che si verifica se si diverge dallo scenario principale);
+    \item Estensioni (punti in cui il flusso principale può essere interrotto da un flusso alternativo);
+    \item Inclusioni (Comportamenti comuni a più casi d’uso, descritti una volta e inclusi dove necessario);
+    \item Generalizzazioni (Un caso d’uso eredita il comportamento da un altro, aggiungendo o sovrascrivendo dove necessario);
+    \item Trigger (evento scatenante del caso d'uso).
+\end{itemize}
+
+\paragraph{Requisiti: Notazione\\}
+Ogni requisito preso in analisi sarà trattato con la sigla:\\
+\textbf{R[Tipo].[Importanza].[Ordine].[N.figlio]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{R}] indica la parola "requisito";
+\item \lbrack \textbf{Tipo}] può essere:
     \begin{itemize}
 	\item F (Funzionale);
 	\item Q (Qualità);
 	\item V (Vincolo).
     \end{itemize}
-\item Importanza può essere:
+\item \lbrack \textbf{Importanza}] classifica i requisiti in:
     \begin{itemize}
         \item O (Obbligatorio);
 	\item D (Desiderabile);
 	\item OP (Opzionale).
     \end{itemize}
-\item Ordine: indica l’ordine in cui il requisito è stato preso in esame. Per i requisiti con stessa importanza e tipologia indica l’ordine cronologico di precedenza che esso ha avuto rispetto agli altri, ovvero il suo ordine inserimento nell'Analisi dei requisiti.
+\item \lbrack \textbf{Ordine}]: indice che distingue i requisiti. Indica l’ordine in cui il requisito è stato preso in esame.
+\item \lbrack \textbf{N.Figlio}]: indice che distingue eventuali requisiti figli di un requisito padre del tipo R[Tipo].[Importanza].[Ordine].
 \end{itemize}
-N.B: per requisiti che dovessero generare requisiti figli, si andrà ad aggiungere .[N.figlio] alla notazione successivamente all’ordine, di modo da avere i figli ordinati per importanza.\\\\
-\textbf{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo)}
+
+\paragraph{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo)}
 \begin{itemize}
 \item I requisiti funzionali descrivono le funzionalità del sistema, le azioni
-che il sistema può compiere e le informazioni che il sistema può fornire.
-Si intende che la numerologia di ciascuno rispecchi ove previsto gli UC presenti, mentre le sigle sotto
-riportate indicano:
+che il sistema può compiere e le informazioni che il sistema può fornire.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \begin{itemize}
-    \item ROF - Requisito Obbligatorio Funzionale;
-    \item RDF - Requisito Desiderabile Funzionale;
-    \item ROPF - Requisito Opzionale Funzionale.
+    \item RF.O - Requisito Funzionale Obbligatorio;
+    \item RF.D - Requisito Funzionale Desiderabile;
+    \item RF.OP - Requisito Funzionale Opzionale.
 \end{itemize}
 \end{itemize}
 \begin{itemize}
 \item I requisiti di qualità descrivono come un sistema deve essere, o
-come il sistema deve esibirsi, per soddisfare le esigenze dell'utente.
-Le sigle sotto riportate possono essere così classificate:
+come il sistema deve esibirsi, per soddisfare le esigenze dell'utente.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \begin{itemize}
-    \item ROQ - Requisito Obbligatorio di Qualità;
-    \item RDQ - Requisito Desiderabile di Qualità;
-    \item ROPQ - Requisito Opzionale di Qualità.
+    \item RQ.O - Requisito di Qualità Obbligatorio;
+    \item RQ.D - Requisito di Qualità Desiderabile;
+    \item RQ.OP - Requisito di Qualità Opzionale.
 \end{itemize}
 \end{itemize}
 \begin{itemize}
 \item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema
-deve rispettare per soddisfare le esigenze dell'utente.
-Le sigle sotto riportate possono essere così classificate:
+deve rispettare per soddisfare le esigenze dell'utente.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \begin{itemize}
-    \item ROV - Requisito Obbligatorio di Vincolo;
-    \item RDV - Requisito Desiderabile di Vincolo;
-    \item ROPV - Requisito Opzionale di Vincolo. 
+    \item RV.O - Requisito di Vincolo Obbligatorio;
+    \item RV.D - Requisito di Vincolo Desiderabile;
+    \item RV.OP - Requisito di Vincolo Opzionale. 
 \end{itemize}
 \end{itemize}
 
+\subsubsection{Progettazione logica}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
+\subsubsection{Progettazione di dettaglio}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
+\subsubsection{Codifica}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
+\subsubsection{Testing}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
+\subsubsection{Integrazione software}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
+\subsubsection{Installazione software}
+Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+
 % PROCESSI DI SUPPORTO
 \newpage
+
 \section{Processi di supporto}
 Nella seguente sezione vengono presentati i processi di supporto allo sviluppo del progetto.
 

@@ -1,9 +1,3 @@
-%TODO:
-% - Modificare procedimento accettazione pull request (accetta solo il verificatore, non più il responsabile)
-        % Per la repo della documentazione possiamo scrivere che può pushare chiunque e accetta solo il verificatore, mentre per la repo del codice pushano solo i programmatori e accetta solo il verificatore. 
-% - Aggiungere che associamo le azioni dei verbali con le issue di GitHub tramite la colonna "ID Issue Github" nella tabella delle azioni
-% - Aggiungere che il nome del file è il nome del documento + versione
-% - Dire che le versioni iniziano da V.0.1
 
 \documentclass[10pt, a4paper]{article}
 
@@ -51,12 +45,12 @@ Viene inoltre fornito uno storico delle modifiche e delle versioni del documento
         \item \textit{Analisi dei requisiti};
         \item \textit{Piano di progetto};
         \item \textit{Piano di qualifica};
-        \item Capitolato C1: \textit{Knowledge Management AI}\\
+        \item Capitolato C1: \textit{Knowledge Management AI}
             \begin{itemize}
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf};
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}.
-            \end{itemize};
-        \item Slide lezioni \textit{Ingegneria del sowftware} 2023/2024:
+            \end{itemize}
+        \item Slide lezioni \textit{Ingegneria del software} 2023/2024:
             \begin{itemize}
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T2.pdf};
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T3.pdf};
@@ -86,9 +80,7 @@ I documenti che sono corredati dal Glossario sono:
 
 % APPLICAZIONE STANDARD
 \section{Applicazione standard ISO/IEC 12207:1997}
-In questo documento il team si impegna ad essere conforme allo Standard textit{ISO/IEC 12207:1997 - Information technology — Software 
-life cycle processes}. Questa sezione del documento è dedicata all'applicazione pratica degli standard e dei processi definiti 
-nell'ambito di questo Standard Internazionale.
+In questo documento il team si impegna ad essere conforme allo Standard textit{ISO/IEC 12207:1997 - Information technology — Software life cycle processes}. Questa sezione del documento è dedicata all'applicazione pratica degli standard e dei processi definiti nell'ambito di questo Standard Internazionale.
 
 \subsection{Organizzazione dello Standard: processi del ciclo di vita del software}
 In questa sezione viene presentata l'organizzazione dei processi secondo lo Standard textit{ISO/IEC 12207:1997 - Information technology 
@@ -259,57 +251,55 @@ L'attività di analisi dei requisiti, la quale viene documentata all'interno del
     \item Divisione dei requisiti nelle tre categorie individuate e applicazione degli spunti emersi dalla discussione col proponente.
 \end{itemize}
 (L'analisi dei requisiti, essendo una attività incrementale, prevede che alcune fasi siano svolte più volte all'interno del progetto).
-Il risultato di tale processo è un documento che contiene tutti i requisiti richiesti dal proponente, con relativi casi d'uso dal punto di vista dell'utente finale.
+Il risultato di tale processo è un documento che contiene tutti i requisiti richiesti dal proponente, con relativi casi d'uso dal punto di vista dell'utente finale.\\
 
 \paragraph{Casi d'uso: Notazione\\}
-I casi d'uso sono indicati con la notazione seguente: \textbf{UC[X].[Y].[Z]}\\
+I casi d'uso sono indicati con la notazione seguente: \textbf{UC[codice] - [titolo]}\\
 in cui:
 \begin{itemize}
 \item \textbf{UC} sta per Use Case;
-\item \lbrack \textbf{X}] indica il numero del caso d'uso, presentato secondo successione gerarchica;
-\item \lbrack \textbf{Y}] indica il possibile numero del sottocaso d'uso, che aggiunge informazioni a casi d'uso del tipo UC[X];
-\item \lbrack \textbf{Z}] indica il numero del sottocaso d'uso di un sottocaso d'uso, approfondendo ulteriormente casi d'uso del tipo UC[X].[Y].
+\item \lbrack \textbf{codice}] è l'identificativo del caso d'uso. È composto da un unico numero progressivo univoco se il caso d'uso non ha padre, mentre se si tratta di un sottocaso d'uso, segue il formato \textbf{[codice\_padre].[numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\item \lbrack \textbf{titolo}] è il titolo del caso d'uso.
 \end{itemize}
 
 \paragraph{Casi d'uso: Didascalie\\}
 Per ogni caso d'uso è presentata una breve didascalia che ne indica:
 \begin{itemize}
-    \item Identificatore;
-    \item Attore principale;
+    \item Attore principale (attore che partecipa e dialoga attivamente con il sistema nello scenario principale per raggiungere uno scopo);
     \item Attore secondario (attore esterno al sistema che, se presente, aiuta il sistema a raggiungere l'obiettivo dell'attore principale);
     \item Precondizioni (condizioni che devono essere vere affinché il caso d'uso possa essere eseguito);
     \item Postcondizioni (condizioni del sistema dopo che il caso d'uso si è concluso);
     \item Scenario principale (sequenza di passaggi che definisce un'interazione tra attore e sistema);
     \item Scenario alternativo (scenario che si verifica se si diverge dallo scenario principale);
-    \item Estensioni (punti in cui il flusso principale può essere interrotto da un flusso alternativo);
-    \item Inclusioni (Comportamenti comuni a più casi d’uso, descritti una volta e inclusi dove necessario);
-    \item Generalizzazioni (Un caso d’uso eredita il comportamento da un altro, aggiungendo o sovrascrivendo dove necessario);
+    \item Estensioni (lista di casi d'uso che deviano il flusso principale del caso d'uso in esame, introducendo flussi alternativi);
+    \item Inclusioni (lista di casi d'uso che rappresentano una parte dello scenario principale, ma estratti come casi d'uso singoli per aumentare il riuso nel caso in cui appaiono in scenari principali di più casi d'uso);
+    \item Generalizzazioni (lista di casi d'uso che ereditano le caratteristiche del caso d'uso in esame aggiungendo specificità);
     \item Trigger (evento scatenante del caso d'uso).
 \end{itemize}
 
 \paragraph{Requisiti: Notazione\\}
-Ogni requisito preso in analisi sarà trattato con la sigla:\\
-\textbf{R[Tipo].[Importanza].[Ordine].[N.figlio]}\\
+Ogni requisito preso in analisi sarà trattato con la sigla:
+\textbf{R[Tipo].[Importanza].[codice]}\\
 nella quale:
 \begin{itemize}
 \item \lbrack \textbf{R}] indica la parola "requisito";
 \item \lbrack \textbf{Tipo}] può essere:
     \begin{itemize}
-	\item F (Funzionale);
-	\item Q (Qualità);
-	\item V (Vincolo).
+	    \item F (Funzionale);
+	    \item Q (Qualità);
+	    \item V (Vincolo);
+        \item V (Prestazione).
     \end{itemize}
 \item \lbrack \textbf{Importanza}] classifica i requisiti in:
     \begin{itemize}
         \item O (Obbligatorio);
-	\item D (Desiderabile);
-	\item OP (Opzionale).
+		\item D (Desiderabile);
+		\item OP (Opzionale).
     \end{itemize}
-\item \lbrack \textbf{Ordine}]: indice che distingue i requisiti. Indica l’ordine in cui il requisito è stato preso in esame.
-\item \lbrack \textbf{N.Figlio}]: indice che distingue eventuali requisiti figli di un requisito padre del tipo R[Tipo].[Importanza].[Ordine].
+\item \lbrack \textbf{codice}] identifica i requisiti per ogni tipologia. È composto da un unico numero progressivo univoco se il requisito non ha padre, mentre se si tratta di un sotto-requisito, segue il formato \textbf{[codice\_padre].[numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
 \end{itemize}
 
-\paragraph{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo)}
+\paragraph{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo, di Prestazione)}
 \begin{itemize}
 \item I requisiti funzionali descrivono le funzionalità del sistema, le azioni
 che il sistema può compiere e le informazioni che il sistema può fornire.\\
@@ -331,33 +321,42 @@ Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \end{itemize}
 \end{itemize}
 \begin{itemize}
-\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema
-deve rispettare per soddisfare le esigenze dell'utente.\\
+\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema deve rispettare per soddisfare le esigenze dell'utente.\\
 Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \begin{itemize}
     \item RV.O - Requisito di Vincolo Obbligatorio;
     \item RV.D - Requisito di Vincolo Desiderabile;
     \item RV.OP - Requisito di Vincolo Opzionale. 
 \end{itemize}
+\item I requisiti di prestazione descrivono vincoli di tempo e spazio che il prodotto deve rispettare.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
+\begin{itemize}
+    \item RP.O - Requisito di Prestazione Obbligatorio;
+    \item RP.D - Requisito di Prestazione Desiderabile;
+    \item RP.OP - Requisito di Prestazione Opzionale. 
+\end{itemize}
 \end{itemize}
 
+\paragraph{Diagrammi}
+I diagrammi dei casi d'uso e di attività riportati all'interno del documento (Analisi dei requisiti) devono seguire la notazione e le specifiche indicate da \textit{UML v2.5}.
+
 \subsubsection{Progettazione logica}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 \subsubsection{Progettazione di dettaglio}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 \subsubsection{Codifica}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 \subsubsection{Testing}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 \subsubsection{Integrazione software}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 \subsubsection{Installazione software}
-Tale sezione sarà realizzata a seguito della versione V.2.0.0 delle (\S Norme di progetto).
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
 
 % PROCESSI DI SUPPORTO
 \newpage
@@ -431,7 +430,7 @@ presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
 A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
 allo stato \textit{Completato}.
 
-\subsubsection{Pull requests} %TODO: Cambiare chi accetta pull request da Responsabili a Verificatori
+\subsubsection{Pull requests} 
 \label{sec:pull_request}
 A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
 Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e, a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata sollevata in caso di esito positivo.
@@ -465,65 +464,58 @@ La richiesta dell'intervento umano, in questo caso, non è un fattore limitante,
 verifica, che garantiscono la pulizia del repo remota e la correttezza del suo contenuto.
 
 \subsection{Documentazione}
-Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l'obiettivo di permettere una consultazione semplice e rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla manutenzione.
-\subsubsection{Ciclo di vita}
-\label{sec:ciclo_vita}
-Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
-\begin{enumerate}
-    \item Assegnazione: \\
-    Ogni documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.
-    Una volta presa la decisione per i precedenti ruoli viene aperta su \textit{GitHub} una issue a loro associata relativa alla  realizzazione del documento, la quale viene immediatamente inserita all'interno della Board del progetto. Ogni issue viene inoltre etichettata da una label relativa al tipo di documento da produrre;
-    \item Stesura: \\
-    La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale interno o esterno) o dai responsabili di stesura.
-    La produzione della documentazione in formato \textit{Latex} viene gestita tramite la piattaforma \textit{Overleaf}, la quale rende disponibile gli strumenti adatti
-    ad una eventuale stesura sincronizzata e collaborativa tra i membri del team. Una volta che la stesura viene ritenuta stabile, tramite l'automazione descritta in (Norme di progetto, automazione documenti),
-    viene poste le basi per una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} su \textit{GitHub};
-    \item Verifica e validazione: \\
-    La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle (Norme di progetto). 
-    Se il documento è di tipo esterno, una volta eseguita la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, per essere sottoposto ad una sua ulteriore verifica e validazione.
-    In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla fase precedente, in modo da produrre una documentazione che tiene conto delle precisazioni presentate dal revisore e/o dall'eventuale parte esterna;
-    \item Pubblicazione: \\
-    La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui la fase di verifica abbia avuto un riscontro positivo: una volta risolta la
-    \textit{pull request} il documento troverà infatti collocazione all'interno del repository
-    \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} del team su \textit{GitHub}.
-    In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
-\end{enumerate}
+Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l'obiettivo di permettere una consultazione semplice e 
+rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla 
+manutenzione.
 
-    \subsubsection{Automazione versionamento documenti}
-    \label{sec:automazione_docs}
-    L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repo remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
-    Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
-    in cui aggiorna il registro delle versioni e crea il pdf usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
+\subsubsection{Implementazione del processo}
+In questa sezione viene documentato e implementato un piano che identifica i documenti da produrre durante il ciclo di vita del prodotto 
+software. Tutti i documenti da redigere vengono presentati nella tabella che segue. Vengono inclusi solamente i documenti relativi al vero e
+ proprio ciclo di vita del prodotto software e sono di conseguenza esclusi i documenti presentati per la candidatura per il progetto 
+ didattico, quali "Lettera di presentazione", "Preventivo costi e impegni orari" e "Valutazione dei capitolati d'appalto".
 
-    Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
-    sito web della repository su GitHub e creare la Pull Request.
-    Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica) e
-    secondo le modalità citate nel paragrafo (Norme di progetto, \S \nameref{sec:ciclo_vita}).
+{\renewcommand{\arraystretch}{1.5}
+  \begin{xltabular}{\textwidth}{X|X|X|X|X}
+    \textbf{Nome del documento} & \textbf{Scopo}  & \textbf{Redattore} &  \textbf{Destinatari} & \textbf{Consegne previste} \\
     
-    L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
-    versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
-    volutamente le loro azioni alla sola modifica del contenuto della documentazione.
+    \hline
+    Analisi dei requisiti & Definizione requisiti utente & Analista & Azienda proponente, Docenti & RTB, PB\\
+    \hline
+    Norme di progetto & Definizione regolamento normativo per il team & Responsabile, Amministratore & Docenti & RTB, PB\\
+    \hline
+    Piano di progetto & Definizione temporale scadenze e progressi & Responsabile & Docenti & RTB, PB\\
+    \hline
+    Piano di qualifica & Definizione qualità e testing del prodotto finale & Amministratore & Docenti & RTB, PB\\
+    \hline
+    Verbali esterni & Tracciamento riunioni esterne & Responsabile & Azienda proponente, Docenti & Candidatura, RTB, PB\\
+    \hline
+    Verbali interni & Tracciamento riunioni interne & Responsabile & Docenti & Candidatura, RTB, PB\\
 
-    \subsubsection{Template}
+\end{xltabular}}
+
+\subsubsection{Progettazione e sviluppo}
+In questa sezione vengono presentati gli standard e le regole (nello specifico di stile) a cui i membri di SWEetCode si attengono 
+relativamente alla stesura di documenti relativi al progetto. 
+    
+    \paragraph{Template}
     Il team ha deciso di produrre un template grafico ricorrente all'interno della documentazione.\\
-    Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
+    Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito 
+    disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
     Le seguenti pagine di ciascun documento presentano un:
         \begin{itemize}
-            \item header: intestazione contenente il nostro logo, il nome del documento ed il nostro nome;
-            \item footer: piè di pagina contenente i link alla nostra email e al nostro account \href{https://sweetcode-team.github.io/}{\textcolor{black}{\textit{GitHub}}}; ed infine la numerazione di pagina.
+            \item \textbf{\textit{Header}}: intestazione contenente il nostro logo, il nome del documento ed il nostro nome;
+            \item \textbf{\textit{Footer}}: piè di pagina contenente i link alla nostra email e al nostro account \href{https://sweetcode-team.github.io/}{\textcolor{black}{\textit{GitHub}}}; 
+            ed infine la numerazione di pagina.
         \end{itemize}
-    
-    \subsubsection{Struttura di documento}
-    Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
-    \begin{itemize}
-        \item Pagina di copertina: descritta nella sezione Template precedente;
-        \item Registro delle versioni: presente in tutti i documenti ad eccezione dei verbali. Questo registro utilizzato per tenere traccia delle varie versioni permette di comprendere in modo rapido chi ha realizzato determinate sezioni della documentazione, quando sono state realizzate, cosa è stato aggiunto e perché (sotto la voce "Dettaglio e motivazioni"). Il registro presenta le versioni ordinate a partire dalla versione più recente; 
-        \item Indice: presente nel caso in cui si abbia un documento di notevole dimensione, dotato di sezioni. Il suo obiettivo è quello di facilitare e agevolare l'accesso ad un determinato contenuto trattato nel documento;
-        \item Contenuto: il contenuto vero e proprio del documento.
-    \end{itemize}
 
-    \paragraph{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come \textit{ifthen} e \textit{forloop}.
-    Considerando i valori dei parametri, durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico, assumendo l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi. L'adozione di questa pratica permette al team di mantenere coerenti struttura, formato del contenuto e presentazione, aumentando il throughput e consentendo ai componenti del gruppo di concentrarsi più sul contenuto che sulla sua visualizzazione.
+    \paragraph{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con 
+    il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già 
+    presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come 
+    \textit{ifthen} e \textit{forloop}.
+    Considerando i valori dei parametri, durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico, assumendo 
+    l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi. L'adozione di 
+    questa pratica permette al team di mantenere coerenti struttura, formato del contenuto e presentazione, aumentando il throughput e 
+    consentendo ai componenti del gruppo di concentrarsi più sul contenuto che sulla sua visualizzazione.
     
     Di seguito vengono elencati i parametri utilizzati a seconda del tipo di documento:
     \begin{itemize}
@@ -541,66 +533,145 @@ Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
         \item Lista decisioni.
     \end{itemize}
     
-    %\textbf{Verbali}$\\$
-    \paragraph{Verbali}Fanno eccezione a questa struttura i verbali, sia esterni che interni, che oltre a presentare nella prima pagina di copertina i ruoli inerenti alla sua produzione al posto dell'elenco dei membri del team e una sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate dell'azienda), offre una struttura particolare.\\
-    Il contenuto presenta infatti le seguenti sezioni:
+    \paragraph{Struttura di documento}
+    Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
     \begin{itemize}
-        \item Intestazione: sezione contenente le informazioni inerenti a data, ora e luogo della riunione;
-        \item Partecipanti: sezione contenente l'elenco in ordine alfabetico dei partecipanti interni ed eventualmente esterni alla riunione e una voce apposita per gli assenti;
-        \item Revisione delle azioni: sezione contenente un elenco cronologico delle azioni assegnate nelle riunioni precedenti, con informazioni in merito al progresso, problematiche riscontrate ed eventuale conclusione di tale azione;
-        \item Ordine del giorno: elenco cronologico e approssimativo delle tematiche trattate all'interno della riunione;
-        \item Discussione: sezione contente l'elenco cronologico delle tematiche affrontate, trattate con una descrizione accurata delle informazioni emerse;
-        \item Decisioni: decisioni prossime e/o future da intraprendere o intraprese a seguito della riunione affrontata;
-        \item Azioni da intraprendere: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. Ogni voce è accompagnata dal numero del \textit{ticket} associato (se presente) nell'ITS su \textit{Jira}, un incaricato, da un revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta completata;
-        \item Altro: sezione contente informazioni aggiuntive quali riferimenti esterni e la data della prossima riunione (nel caso in cui essa sia stata stabilita).
-    \end{itemize}    
-    % \textbf{Posta elettronica}$\\$
-    \paragraph{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
-    Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
-    \begin{itemize}
-        \item Oggetto: campo da riempire obbligatoriamente in maniera breve e concisa;
-        \item Firma: ogni mail viene conclusa con la firma digitale del gruppo collocata automaticamente;
-        \item Forma: le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio. La lunghezza del testo della mail non deve essere eccessivo, onde evitare la perdita di visibilità di informazioni preziose; qualora fosse necessario un testo complesso e denso di informazioni, ci si deve servire dell'uso di paragrafi ed elenchi per strutturarlo;
-        \item Stile: è buona norma seguire lo stile del mittente. La mail sarà dotata di formule di saluto iniziale e finale quali ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
+        \item \textbf{Pagina di copertina}: descritta nella sezione Template precedente;
+        \item \textbf{Registro delle versioni}: presente in tutti i documenti ad eccezione dei verbali. Questo registro utilizzato per 
+        tenere traccia delle varie versioni permette di comprendere in modo rapido chi ha realizzato determinate sezioni della 
+        documentazione, quando sono state realizzate, cosa è stato aggiunto e perché (sotto la voce "Dettaglio e motivazioni"). Il registro 
+        presenta le versioni ordinate a partire dalla versione più recente; 
+        \item \textbf{Indice}: presente nel caso in cui si abbia un documento di notevole dimensione, dotato di sezioni. Il suo obiettivo è 
+        quello di facilitare e agevolare l'accesso ad un determinato contenuto trattato nel documento;
+        \item \textbf{Contenuto}: il contenuto vero e proprio del documento.
     \end{itemize}
     
-    \subsubsection{Norme tipografiche}
-        % \textbf{Citazioni tecnologiche e strumentali}$\\$
-        \paragraph{Citazioni tecnologiche e strumentali}Ogni tecnologia e/o strumento menzionato all'interno della documentazione deve essere scritta in \textit{corsivo}.
+    \paragraph{Verbali}Fanno eccezione alla struttura precedentemente esposta i verbali, sia esterni che interni. Essi infatti oltre a 
+    presentare nella prima pagina di copertina i ruoli inerenti alla loro produzione (al posto dell'elenco dei membri del team) ed una 
+    sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate 
+    dell'azienda), offrono una struttura particolare.\\
+    Il loro contenuto presenta le seguenti sezioni:
+    \begin{itemize}
+        \item \textbf{Intestazione}: sezione contenente le informazioni inerenti a data, ora e luogo della riunione;
+        \item \textbf{Partecipanti}: sezione contenente l'elenco in ordine alfabetico dei partecipanti interni ed eventualmente esterni 
+        alla riunione e una voce apposita per gli assenti;
+        \item \textbf{Revisione delle azioni}: sezione contenente un elenco cronologico delle azioni assegnate nelle riunioni precedenti, 
+        con informazioni in merito al progresso, problematiche riscontrate ed eventuale conclusione di tale azione;
+        \item \textbf{Ordine del giorno}: elenco cronologico e approssimativo delle tematiche trattate all'interno della riunione;
+        \item \textbf{Discussione}: sezione contente l'elenco cronologico delle tematiche affrontate, trattate con una descrizione accurata 
+        delle informazioni emerse;
+        \item \textbf{Decisioni}: decisioni prossime e/o future da intraprendere o intraprese a seguito della riunione affrontata;
+        \item \textbf{Azioni da intraprendere}: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. 
+        Ogni voce è accompagnata dal numero del \textit{ticket} associato (se presente) nell'ITS su \textit{Jira}, un incaricato, da un 
+        revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta 
+        completata;
+        \item \textbf{Altro}: sezione contente informazioni aggiuntive quali riferimenti esterni e la data della prossima riunione 
+        (nel caso in cui essa sia stata stabilita).
+    \end{itemize}    
+    
+    \paragraph{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e 
+    committente.\\ 
+    Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
+    \begin{itemize}
+        \item \textbf{Oggetto}: campo da riempire obbligatoriamente in maniera breve e concisa;
+        \item \textbf{Firma}: ogni mail viene conclusa con la firma digitale del gruppo collocata automaticamente;
+        \item \textbf{Forma}: le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio. La lunghezza del 
+        testo della mail non deve essere eccessivo, onde evitare la perdita di visibilità di informazioni preziose; qualora fosse necessario un testo complesso e denso di informazioni, ci si deve servire dell'uso di paragrafi ed elenchi per strutturarlo;
+        \item \textbf{Stile}: è buona norma seguire lo stile del mittente. La mail sarà dotata di formule di saluto iniziale e finale quali 
+        ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
+    \end{itemize}
+    
+    \paragraph{Norme tipografiche}
+    \begin{itemize}
+
+        \item {\textbf{Citazioni tecnologiche e strumentali}}: Ogni tecnologia e/o strumento menzionato all'interno della documentazione 
+        deve essere scritta in \textit{corsivo}.
         
-        % \textbf{Date}$\\$
-        \paragraph{Date}Tutte le date presenti nella documentazione prevedono il seguente formato: AAAA-MM-GG.
+        \item {\textbf{Date}}: Tutte le date presenti nella documentazione prevedono il seguente formato: AAAA-MM-GG.
         
-        % \textbf{Elenchi}$\\$
-        \paragraph{Elenchi}Tutti gli elenchi presenti nella documentazione prevedono un ordine:
+        \item {\textbf{Elenchi}}: Tutti gli elenchi presenti nella documentazione prevedono un ordine:
             \begin{itemize}
-                \item alfabetico: sono puntati che non presentano alcuna correlazione con l'aspetto temporale;
-                \item cronologico: sono elenchi numerati e descrivono il seguirsi di avvenimenti o argomenti nel tempo.
+                \item \textbf{Alfabetico}: sono puntati e non presentano alcuna correlazione con l'aspetto temporale;
+                \item \textbf{Cronologico}: sono  numerati e descrivono una serie di eventi o argomenti ordinati nel tempo.
             \end{itemize}
         In tutti gli elenchi ogni punto termina con il ";", fatta eccezione per l'ultimo elemento che termina con il ".".
         
-        % \textbf{Menzioni}$\\$
-        \paragraph{Menzioni}Ogni menzione di una persona, interna od esterna al team, avviene nel seguente formato: Cognome N. (dove la lettera N sta per l'iniziale del nome).
+        \item {\textbf{Menzioni}}: Ogni menzione di una persona, interna od esterna al team, avviene nel seguente formato: Cognome N. 
+        (dove la lettera N sta per l'iniziale del nome).
         
-        % \textbf{Nome del documento}$\\$
-        \paragraph{Nome del documento}I nomi dei documenti prevedono la lettera iniziale maiuscola seguiti dal resto dei caratteri in case minuscolo e dalla versione del documento stesso.
 
-        I verbali, sia interni che esterni, fanno eccezione e presentano un titolo composta dalla data in cui sono stati svolti nel seguente formato: AAAA-MM-GG.
+        \item {\textbf{Nome del documento}}: I nomi dei documenti prevedono la lettera iniziale maiuscola seguiti dal resto dei caratteri 
+        in case minuscolo e dalla versione del documento stesso.\\
+        I verbali, sia interni che esterni, fanno eccezione e presentano un titolo composta dalla data in cui sono stati svolti nel 
+        seguente formato: AAAA-MM-GG.
 
-        \paragraph{Riferimenti interni}Menzioni e riferimenti a sezioni interne vengono riportate seguendo la notazione (Nome documento, \S Nome sezione). Questi riferimenti saranno opportunamente collegati tramite link al paragrafo indicato.
+        \item {\textbf{Riferimenti interni}}: Menzioni e riferimenti a sezioni interne allo stesso documento a cui appartengono vengono 
+        riportate seguendo la notazione (\S Nome sezione). Questi riferimenti saranno opportunamente collegati tramite link al paragrafo 
+        indicato.
         
-        \paragraph{Riferimenti esterni}Menzioni e riferimenti a sezioni di documenti esterni vengono riportate seguento la notazione (Nome documento, \S Numero sezione)
+        \item {\textbf{Riferimenti esterni}}: Menzioni e riferimenti a sezioni di documenti esterni vengono riportate seguendo la notazione 
+        (Nome documento, \S Nome sezione)
 
-        % \textbf{Nome del gruppo} $\\$
-        \paragraph{Nome del gruppo}Il nome del gruppo presenta il seguente formato: "SWEetCode".
+        \item{\textbf{Nome del gruppo}}: Il nome del gruppo presenta il seguente formato: "SWEetCode".
+
+        \item{\textbf{Stile tipografico}}: La formattazione del testo dei documenti segue rigorosamente un unico stile tipografico: 
+        \textit{Poppins}.
         
-        % \textbf{Stile tipografico}$\\$
-        \paragraph{Stile tipografico}La formattazione del testo dei documenti segue rigorosamente un unico stile tipografico: \textit{Poppins}.
-        
-        % \textbf{Versioni}$\\$ 
-        \paragraph{Versioni}Ogni documento viene associato nel nostro \href{https://sweetcode-team.github.io/}{sito GitHub} alla versione del progetto per cui risulta essere ancora in vigore.\\
-        All'interno del documento, nella prima riga del registro delle versioni, viene invece presentata la versione del progetto in cui è avvenuta l'ultima modifica al documento.\\
-        L'incremento della versione del progetto a seguito di elaborazioni nella documentazione viene gestito attraverso la seguente norma: l'aggiunta di documentazione non precedentemente presente all'interno del repository o la modifica della documentazione precedentemente presente all'interno del repository porta all'incremento del solo valore "(build)".
+        \item {\textbf{Versioni}}: Ogni documento viene associato nel nostro \href{https://sweetcode-team.github.io/}{sito GitHub} alla 
+        versione del progetto per cui risulta essere ancora in vigore.\\
+        All'interno del documento, nella prima riga del registro delle versioni, viene invece presentata la versione del progetto in cui è 
+        avvenuta l'ultima modifica al documento.\\
+        L'incremento della versione del progetto a seguito di elaborazioni nella documentazione viene gestito attraverso la seguente norma: 
+        l'aggiunta di documentazione non precedentemente presente all'interno del repository o la modifica della documentazione 
+        precedentemente presente all'interno del repository porta all'incremento del solo valore "(build)".
+        \end{itemize}
+
+\subsubsection{Produzione}
+\label{sec:ciclo_vita}
+La produzione di ogni documento redatto da SWEetCode presenta le seguenti fasi:
+\begin{enumerate}
+    \item \textbf{Assegnazione}: Il documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.
+    Una volta presa la decisione per i precedenti ruoli viene aperto su \textit{Jira} un task a loro associato, relativo alla  realizzazione del 
+    documento, il quale viene immediatamente inserita all'interno di una epic e ad una versione. 
+    \item \textbf{Stesura}: La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale 
+    interno o esterno) o dai responsabili di stesura.
+    La produzione della documentazione in formato \textit{Latex} viene gestita tramite la condivisione dei sorgenti attraverso \textit{GitHub}. 
+    Una volta che la stesura viene ritenuta stabile, tramite l'automazione descritta in (Norme di progetto, automazione versionamento documenti), 
+    viene creata una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+    su \textit{GitHub};
+    \item \textbf{Verifica e Validazione}: La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene 
+    sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle (Norme di progetto, \S Documenti). 
+    Se il documento è di tipo esterno, una volta passata la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, 
+    per essere sottoposto ad una sua ulteriore verifica e validazione.
+    In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla 
+    fase precedente, in modo da produrre una documentazione che tiene conto delle correzioni e precisazioni presentate dal revisore e/o 
+    dall'eventuale parte esterna;
+    \item \textbf{Pubblicazione}: La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui 
+    la fase di verifica abbia avuto un riscontro positivo: una volta risolta la \textit{pull request} il documento troverà infatti collocazione 
+    all'interno del repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+    del team su \textit{GitHub}. In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
+\end{enumerate}
+
+\subsubsection{Manutenzione}
+Il processo di manutenzione della documentazione è fondamentale per garantire che la stessa rimanga accurata, aggiornata ed utile nel corso del ciclo di vita del progetto. Tale processo è integrato in modo continuo in base ai progressi svolti. Il team segue le seguenti fasi per il processo di manutenzione:
+\begin{itemize}
+    \item \textbf{Identificazione della necessità della modifica}: Monitoraggio continuo delle esigenze di modifica della documentazione e 
+    comunicazione al team della necessità di una possibile modifica;
+    \item \textbf{Valutazione dell'impatto}: Discussione tra i membri che ricoprono i ruoli interessati alla modifica per valutarne l'impatto 
+    sulla documentazione già esistente. Tale discussione coinvolge tutto il team se necssario;
+    \item \textbf{Aggiornamento della documentazione}: Modifica e aggiornamento del documento interessato secondo le esigenze identificate, e 
+    verifica dell'accuratezza delle informazioni e dell'allineamento con le  modifiche del progetto relative;
+    \item \textbf{Push della modifica}: Una volta che la stesura della modifica viene ritenuta stabile, tramite l'automazione descritta in 
+    (Norme di progetto, \S automazione versionamento documenti),
+    viene creata una pull request nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+    su \textit{GitHub} per la nuova versione del documento da parte di chi ha operato la modifica;
+    \item \textbf{Verifica e validazione}: A seguito della creazione della pull request, le modifiche apportate ai documenti sono sottoposte a
+    verifica eseguita da parte del verificatore. Se tale operazione ha esito positivo, se necessario, il documento viene posto ad ulteriore validazione
+    con l'ente esterno in questione.
+    Se sia la verifica che la eventuale validazione hanno avuto esito positivo, le modifiche vengono pubblicate attraverso l'accettazione della 
+    pull request da parte del revisore, in caso invece di esito negativo in anche una delle due operazioni, la pull request viene rifiutata e colui 
+    che aveva realizzato le modifiche è responsabile di applicare le correzzioni emerse, ripetendo i passi precedentemente descritti.
+\end{itemize}
 
 \subsection{Verifica}
 Ogni produzione realizzata da SWEetCode viene sottoposta ad una fase di verifica che permette la sua validazione.
@@ -635,19 +706,7 @@ SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gr
 
 \paragraph{Comunicazioni asincrone} Il canale scelto per la comunicazione asincrona concordato con l'azienda è \textit{Slack}. Questo strumento viene usato per brevi comunicazioni e per accordarsi sugli orari degli incontri.
 
-\subsection{GitHub Teams}
-SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di \textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
-I \textit{Teams} presentati sono dunque:
-\begin{itemize}
-    \item Amministratori;
-    \item Analisti;
-    \item Progettisti;
-    \item Programmatori;
-    \item Responsabili;
-    \item Verificatori.
-\end{itemize}
-Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei modi, permettendo di assegnare responsabilità e permessi specifici a determinate posizioni piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
-
+\newpage
 
 % STRUMENTI
 \newpage
@@ -674,9 +733,9 @@ Piattaforma di hosting e collaborazione per lo sviluppo di software che offre st
 \href{https://www.atlassian.com/it/software/jira}{https://www.atlassian.com/it/software/jira}\\\\
 Software utilizzato per l'ITS e gli strumenti di organizzazione del lavoro tra i membri del team.
 
-\subsection{Lucidchart}
-\href{https://www.lucidchart.com/pages/it/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_it_allcountries_mixed_search_brand_exact_&km_CPC_CampaignId=9594860760&km_CPC_AdGroupID=99270039979&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=424699413281&km_CPC_TargetID=kwd-33511936169&km_CPC_Country=1008611&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gad_source=1&gclid=CjwKCAiAu9yqBhBmEiwAHTx5p4TQe0-7u0ZhVN-N_fc86zgphNfT-Tl5YNwSklJXC8E3NH5yE9t0HRoCnmAQAvD_BwE}{https://www.lucidchart.com}\\\\
-Applicazione utilizzata per la creazione dei diagrammi dei Casi d'Uso presenti nell'Analisi dei Requisiti.
+\subsection{Diagrams.net}
+\href{https://app.diagrams.net/}{https://app.diagrams.net/}\\\\
+Applicazione utilizzata per la creazione dei diagrammi UML.
 
 \subsection{Notion}
 \href{https://www.notion.so/product}{https://www.notion.so/product}\\\\

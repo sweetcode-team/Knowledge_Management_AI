@@ -1,9 +1,21 @@
+%\subsubsection{Verifica dei documenti}
+%Ogni documento prodotto dal team passa per una o più fasi di verifica prima di essere pubblicato ufficialmente nel repository \textit{GitHub}.\\
+%Tale fasi vengono realizzate solamente in seguito alla consegna del documento da parte dei responsabili di stesura, i quali ritengono che in quel momento il prodotto da loro realizzato sia completato.\\
+%La verifica dei documenti prevede che venga assicurato:
+%\begin{itemize}
+%    \item Il rispetto delle norme tipografiche stabilite nelle \textit{Norme di progetto} del team;
+%    \item Il rispetto della struttura definita nelle \textit{Norme di progetto} del team;
+%    \item Il rispetto del contenuto, il quale deve essere chiaro, coerente, preciso ed esaustivo;
+%    \item Il rispetto della sintassi italiana e della correttezza ortografica dei termini utilizzati.
+%\end{itemize}
+
 \documentclass[10pt, a4paper]{article}
 
 \input{parameters}
 
 \usepackage{style}
 \usepackage{headerfooter}
+\usepackage{comment}
 
 \title{\titolo}
 \author{SWEetCode}
@@ -20,74 +32,115 @@
 % INDICE
 \tableofcontents
 \newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
 
 % INTRODUZIONE
 \section{Introduzione}
 \subsection{Scopo del documento}
+L'obiettivo che ci si pone nella realizzazione di questo documento è la definizione delle metriche di valutazione e validazione del progetto, e la specifica degli obiettivi di qualità del prodotto finale. Tali parametri vengono stabiliti in accordo ai requisiti e 
+alle aspettative del proponente e talvolta a discrezione del team sulla base delle valutazioni fatte nel corso di studi.
 
-\paragraph{}
-%\subsection{Scopo del prodotto}
-%\subsection{Glossario}
-%\paragraph{}Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento, viene fornito un Glossario nel file apposito, tale da non avere terminologie ambigue nell’attività progettuale individuata e dandone una definizione precisa. Ogni termine avrà nel documento una lettera G come apice, per meglio evidenziare la loro appartenenza al documento indicato.
+\subsection{Glossario}
+Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. Ogni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
 
 \subsection{Riferimenti}
    \subsubsection{Riferimenti normativi}
    \begin{itemize}
+    \item \textit{Norme di progetto};
     \item \textit{Regolamento del progetto didattico}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
-    \item \textit{Norme di progetto v0.4.3};
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf};
+    \item \textit{Guidelines for
+    the application of ISO 9001:2000 to
+    computer software}: \\
+    \href{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}.
     \end{itemize}
     
     \subsubsection{Riferimenti informativi}
-    
     \begin{itemize}
-   % \item \textit{Glossario v0.0.1} (da creare parallelamente) 
-    \item \textit{Presentazione capitolato C1}:\\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}
+    \item \textit{Presentazione capitolato C1}: \\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf};
+    \item \textit{Analisi dei requisiti};
+    \item \textit{Piano di progetto};
     \item \textit{Verbali esterni ed interni};
-    \item \textit{Analisi e descrizione delle funzionalità: Use Case e relativi diagrammi (UML)}:\\
-    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi\%20Use\%20Case.pdf}
-    \item \textit{Analisi e descrizione delle funzionalità: Diagrammi delle Attività (UML)}:\\
-    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20di%20Attivit%C3%A0.pdf}{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi\%20di\%20Attivit\%C3\%A0.pdf}
-    \item \textit{Progettazione e Programmazione: Diagrammi delle Classi}:\\
-    \href{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf}{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi\%20delle\%20Classi.pdf}
+    \item \textit{Qualità di processo (argomento T8)}: \\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf};
+    \item \textit{Verifica e Validazione: Introduzione (argomento T9)}: \\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}.
+    
+   
     \end{itemize}
 
-% Qualità di Processo
+    
+% Obiettivi di qualità
 \newpage
-\section{Qualità di processo}
-\subsection{Scopo ed obiettivi}
-
-\subsection{Processi primari}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
-    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
+\section{Obiettivi di qualità}
+Per garantire la qualità di processo si è deciso di aderire allo standard ISO/IEC 90003:2004. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate nella sezione apposita (\color{red}6.3.4 Lista delle metriche\color{black}) del documento Norme di progetto(\color{red}Aggiungere versione\color{black}).
+\subsection{Qualità di processo}
+%\paragraph{}breve descrizione qualità di processo da inserire.\\
+ {\renewcommand{\arraystretch}{1.5}
+ \begin{table}[H]
+    \begin{tabularx}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}  \\
     \hline
-    Fornitura &  & \\
+     M1PMS & Percentuale di metriche soddisfatte & $ \ge75\% $& $\ge95\% $\\
     \hline
-    Sviluppo &  &  \\
-    \end{tabularx}}
-
-\subsection{Processi di supporto}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
-    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
+     M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
     \hline
-    Verifica &  &  \\
+     M3VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
     \hline
-    Gestione della qualità &  &  \\
-    \end{tabularx}}
+     M4VC & Variazione di costo & $0$ & $\le0 $ \\
+    \hline
+     M5ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
+    \hline
+     M6CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+    \hline
+    M7SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
     
-\subsection{Processi organizzativi}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
-    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
     \hline
-    Gestione organizzativa &  &  \\
-    \end{tabularx}}
+     M8BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
+    \end{tabularx}
+    \caption{Metriche per la qualità di processo}
+    \end{table}
     
-\subsection{Metriche utilizzate}
+\subsection{Qualità di prodotto}
+Abbiamo analizzato quali caratteristiche fossero necessarie per la realizzazione di un prodotto di 
+qualità.\\
+ {\renewcommand{\arraystretch}{1.5}
+ \begin{table}[H]
+  \begin{tabularx}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}  \\
+    %\endfirsthead
+    \hline
+     M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
+    \hline
+     M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\
+    \hline
+     M11LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+    \hline
+    M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\
+    \hline
+     M13TUS & Percentuale di test di unità superati & $ \ge85\% $& $100\%$\\
+    \hline
+     M14TIS & Percentuale di test di integrazione superati & $ \ge85\% $& $100\%$\\
+    
+    \end{tabularx}
+    \caption{Metriche per la qualità di prodotto}
+    \end{table}
+
+    
+%\subsection{Software}
+
+
+
+
+
+\subsection{Qualità per obiettivo}
 \subsubsection{Processi primari}
+
+ 
     {\renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
     \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
@@ -114,8 +167,128 @@
     \hline
      &  &  &  \\
     \end{tabularx}}
-   
+
+% PROCESSI DI SUPPORTO
 \subsubsection{Processi di supporto}
+\begin{comment}
+%\subsubsection{Documentazione}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
+    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
+    \hline
+    Correttezza Risposte &   & \\
+    \hline
+    Velocità di esecuzione &  &  \\
+    \end{tabularx}}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
+    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
+    \hline
+    Verifica &  &  \\
+    \hline
+    Gestione della qualità &  &  \\
+    \end{tabularx}}
+
+\end{comment}    
+ % PROCESSI ORGANIZZATIVI   
+\subsubsection{Processi organizzativi}
+\begin{comment}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
+    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
+    \hline
+    Gestione organizzativa &  &  \\
+    \end{tabularx}}
+    \end{comment}
+    
+
+
+    
+
+\begin{comment}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
+    \hline
+    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione organizzativa}}} \\
+    \hline
+     &  &  &  \\
+    \end{tabularx}}  
+\end{comment}
+
+
+
+
+%Test e specifiche
+\newpage
+\section{Verifica}
+
+
+\subsection{Test di unità}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+    \hline
+     &  & \\
+    \hline
+     &  &  \\
+    \hline
+     &  & \\
+    \hline
+     &  &  \\
+    \end{tabularx}}
+    \subsubsection{Tracciamento}
+    
+\subsection{Test di integrazione}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+    \hline
+     &  & \\
+    \hline
+     &  &  \\
+    \hline
+     &  & \\
+    \end{tabularx}}
+    \subsubsection{Tracciamento}
+
+\subsection{Test di sistema}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.55\textwidth}|p{0.12\textwidth}|X}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato}  \\
+    \hline
+     &  & \\
+    \hline
+     &  &  \\
+    \end{tabularx}}
+    \subsubsection{Tracciamento}
+
+\subsection{Test di accettazione}
+    {\renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+    \hline
+     &  & \\
+    \hline
+     &  &  \\
+    \end{tabularx}}
+    \subsubsection{Tracciamento}
+
+\subsection{Checklist di controllo}
+
+\subsubsection{Documentazione}
+\subsubsection{Analisi dei Requisiti}
+\subsubsection{Codifica}
+
+
+
+
+\section{Dashboard metriche impiegate}
+\subsection{Processi primari}
+    
+   
+\subsection{Processi di supporto}
+\begin{comment}
     {\renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
     \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
@@ -133,157 +306,46 @@
     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione della qualità}}} \\
     \hline
      &  &  &  \\
-    \end{tabularx}}    
-    
-\subsubsection{Processi organizzativi}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione organizzativa}}} \\
-    \hline
-     &  &  &  \\
     \end{tabularx}}  
-
-% Qualità di prodotto
-\newpage
-\section{Qualità di prodotto}
-
-\subsection{Documentazione}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
-    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
-    \hline
-    Correttezza linguistica &  & \\
-    \hline
-    Leggibilità &  &  \\
-    \end{tabularx}}
-    
-\subsection{Software}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
-    \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
-    \hline
-    Funzionalità &  & \\
-    \hline
-    Usabilità &  & \\
-    \hline
-    Efficienza &  &  \\
-    \hline
-    Affidabilità &  &  \\
-    \hline
-    Portabilità &  &  \\
-    \hline
-    Manutenibilità &  &  \\
-    \hline
-    Copertura dei test &  &  \\
-    \end{tabularx}}
-
-\subsection{Metriche utilizzate}
+  
 \subsubsection{Documentazione}
     {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Correttezza linguistica}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Leggibilità}}} \\
-    \hline
-     &  &  &  \\
-    \end{tabularx}}
-    
-\subsubsection{Software}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
+    \begin{tabularx}{\textwidth}{p{0.15\textwidth}|p{0.35\textwidth}|X|X}
     \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
     \hline
     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Funzionalità}}} \\
     \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Usabilità}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Efficienza}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Affidabilità}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Portabilità}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Manutenibilità}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Copertura dei test}}} \\
-    \hline
-     &  &  &  \\
-    \end{tabularx}}
-
-%Test e specifiche
-\newpage
-\section{Test e specifiche}
-
-\subsection{Formato ID dei test}
-\subsection{Test di unità}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \end{tabularx}}
+    MPD-CR & Copertura dei requisiti & 100 & 100 \\
     
-\subsection{Test di integrazione}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
     \hline
-     &  & \\
+   
+    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Usabilità}}}
+    \\
     \hline
-     &  &  \\
+     MPD-DIU & Difficoltà incontrate dall'utente & 2  & 0 \\
+      
     \hline
-     &  & \\
-    \end{tabularx}}
+   
+    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Efficienza}}}
+    \\
+    \hline
+     MPD-TA & Tempo di apprendimento & 10 minuti & 5 minuti \\
+      \hline
+     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Affidabiltà}}} \\
+     MPD-TM & Tempo di risposta medio & 3 secondi & 2 secondi \\
+      \hline
+     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Portabiltà}}} \\
+     MPD-VS & La capacità del programma di eseguire su più piattaforme & 100  & 100 \\
+    \hline
+     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Manutenibilità}}} \\
+     MPD-CC & la capacità del software di essere modificato, 
+     includendo correzioni, miglioramenti o adattamenti. & 30  & 45 \\
+    \end{tabularx}}   
+\end{comment} 
+\subsection{Processi organizzativi}
 
-\subsection{Test di sistema}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.55\textwidth}|p{0.12\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato}  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \end{tabularx}}
-
-\subsection{Test di accettazione}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \end{tabularx}}
-    
+\section{Valutazioni per il miglioramento}  
+\begin{comment}
 \section{Resoconto delle attività di verifica}
 
 \subsection{Verifica della documentazione}
@@ -291,6 +353,7 @@
 \subsubsection{Indici di Gulpease}
 
 \subsection{Verifica dei processi}
+
 \subsubsection{Estimated at completion}
 \subsubsection{Budget variance e schedule variance}
 \subsubsection{Actual cost e estimate to complete}
@@ -301,5 +364,5 @@
 \subsubsection{Passed test cases percentage}
 \subsubsection{Failed test cases percentage}
 \subsubsection{Comprensibilità del codice}
-
+\end{comment}
 \end{document}

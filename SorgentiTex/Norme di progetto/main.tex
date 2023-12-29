@@ -579,183 +579,6 @@ Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di
 \section{Processi di supporto}
 Nella seguente sezione vengono presentati i processi di supporto allo sviluppo del progetto.
 
-\subsection{Configuration management}
-
-\subsubsection{Scopo}
-Nella seguente sezione vengono presentate le attività svolte dal gruppo SWEetCode che rientrano all'interno del processo "configuration management".
-
-\subsubsection{Descrizione}
-Il processo di configuration management è un processo di applicazione di procedure amministrative e tecniche lungo l'intero ciclo di vita del software al fine di:
-\begin{itemize}
-    \item Identificare, definire e stabilire una base per gli elementi software in un sistema;
-    \item Controllare le modifiche e le release degli elementi;
-    \item Registrare e riportare lo stato degli elementi e delle richieste di modifica;
-    \item Garantire la completezza, la coerenza e la correttezza degli elementi.
-\end{itemize}
-
-\subsubsection{Configuration control}
-\paragraph{Scopo}
-L'attività di configuration control si pone i seguenti obiettivi:
-\begin{itemize}
-    \item Identificare e registrare le richieste di modifica;
-    \item Analizzare e valutare le modifiche;
-    \item Approvare o rifiutare le richieste di modifica;
-    \item Tracciamento di audit.
-\end{itemize}
-
-\paragraph{Issue tracking system (ITS)} 
-Per raggiungere l'obiettivo di tracciamento di audit, ovvero la registrazione sistematica e dettagliata dei task e delle modifiche, SWEetCode utilizza 
-l'\textit{Issue Tracking System Jira} fornito da \textit{Atlassian}: \textit{Jira}.
-\subparagraph{Ticket}
-In questo sistema di tracciamento si permette la creazione di \textit{ticket} che possono essere di tre tipi:
-\begin{itemize}
-    \item \textit{task}: tale tipo di ticket viene utilizzato dal team per assegnate compiti atomici ai vari membri del gruppo;
-    \item \textit{bug}: tale tipo di ticket viene utilizzato dal team per assegnare un compito di fix di un bug all'interno del progetto ad un membro del gruppo; 
-    \item \textit{story}: tale tipo di ticket viene utilizzato per rappresentare un requisito.
-\end{itemize}
-Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalità utilizzate dal team):
-\begin{itemize}
-    \item Titolo: un titolo breve ma esplicativo del compito associato al \textit{ticket};
-    \item Id numerico univoco: tale id viene generato in automatico dall'ITS nella forma \textit{SWE-ID};
-    \item \textit{epic}: ogni \textit{ticket} può essere infatti associato ad una \textit{epic};
-    \item Collegamento: \textit{Jira} mette a disposizione una funzionalità di collegamento per stabilire le dipendenze tra i vari \textit{ticket};
-    \item Assegnatario: il membro del team che a cui è stata affidata la responsabilità di svolgere il \textit{ticket};
-    \item Descrizione: una breve descrizione inerente al \textit{ticket} associata;
-    \item Data: la data di creazione del \textit{ticket};
-    \item Reporter: il membro del team che ha creato il \textit{ticket};
-    \item Sviluppo: voce contenente il link ai commit, alle pull request e alle build che sono stati effettuati nel repo su \textit{GitHub} in correlazione al \textit{ticket} in questione;
-    \item Stato: gli stati possibili di un \textit{ticket} sono \textit{Da fare}, \textit{In Progress}, \textit{Pronto per commit} (introdotto dagli amministratori di SWEetCode nel flusso di lavoro) ed infine \textit{Completato};
-    \item \textit{Sprint}: ogni \textit{ticket} può essere associato ad uno \textit{sprint};
-    \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associata ad una determinata \textit{versione}.
-\end{itemize}
-
-\subparagraph{Epic}
-Un insieme di \textit{ticket} può essere raggruppato all'interno di una \textit{epic}: una \textit{epic} costituisce un'unità 
-logica e strategica di lavoro più ampia, rappresentando un obiettivo o un risultato di alto livello. Questo strumento di lavoro offre
-al team una panoramica di completamento generale di un particolare insieme di azioni correlate tra loro, attraverso una 
-scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
-Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta i medesimi field di un \textit{ticket} precedentemente descritti.
-
-\subparagraph{Versioni}
-Per rappresentare le milestone su \textit{Jira} vengono utilizzate le \textit{Versioni}, alle quali possono essere associate \textit{epic}
-e i relativi \textit{ticket}, riportando come nelle \textit{epic} una scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
-Una volta che tutti i \textit{ticket} associati alla \textit{versione} sono stati completati, tale \textit{versione} può essere rilasciata.
-Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta una breve descrizione, una data di inizio ed una di fine.
-
-\subparagraph{Backlog e Sprint}
-\textit{Jira} offre all'interno dell'\textit{ITS} differenti funzionalità di supporto al metodo agile, seguendo il framework Scrum, in particolare
-quando i \textit{ticket} vengono creati sono inseriti di default all'interno del \textit{Backlog} per essere in seguito
-assegnati ai vari \textit{Sprint}. 
-Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
-
-\subparagraph{Timeline}
-\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un diagramma di Gantt all'interno del quale poter inserire i \textit{ticket}
-creati associati ad una \textit{epic}.\\
-Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
-all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
-le dipendenze presenti tra essi.\\
-Ogni \textit{versione} viene rappresentata all'interno della \textit{timeline} da una linea verticale posta in corrispondenza della data di scadenza
-della versione stessa.\\
-Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi.\\
-Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
-permettendo di effettuare una istantanea.
-
-\subparagraph{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
-Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS}: ogni volta che un membro del team 
-effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto, \S 3.2.2 Automazione versionamento documenti)
-presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
-A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
-allo stato \textit{Completato}.
-
-\paragraph{Pull requests} 
-\label{sec:pull_request}
-A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato che permetta di analizzare 
-e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
-Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e,
-a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata 
-sollevata in caso di esito positivo.
-Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Protection Rules} offerte da \textit{GitHub}.
-L'identificazione attraverso un titolo fornito da colui che solleva la pull request e la registrazione delle richieste di modifica e del loro esito è una conseguenza
-dell'applicazione della pratica delle pull request offerta da \textit{GitHub}.
-
-\paragraph{GitHub Teams}
-SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di 
-\textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
-I \textit{Teams} presentati sono dunque:
-\begin{itemize}
-    \item Amministratori;
-    \item Analisti;
-    \item Progettisti;
-    \item Programmatori;
-    \item Responsabili;
-    \item Verificatori.
-\end{itemize}
-Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei modi, permettendo di assegnare responsabilità e permessi specifici a determinate posizioni 
-piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
-
-\subsubsection{Configuration status accounting}
-\paragraph{Scopo}
-L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in
-relazione allo stato del prodotto stesso nel corso del tempo.
-
-\paragraph{Version control}
-\label{sec:version}
-Per tenere traccia dello stato e della storia degli elementi controllati, il team ha deciso di utilizzare un sistema di \textit{Version control} basato su una versione 
-del prodotto che si attiene al seguente formato: vX.Y.Z(build).
-\begin{itemize}
-    \item v: sta per versione, rimane immutato lungo tutte le versioni;
-    \item X: numero che indica la versione principale di riferimento. Viene incrementato quando viene superata una fase di revisione di avanzamento;
-    \item Y: numero che viene incrementato con l'introduzione di nuove features o di miglioramenti significativi;
-    \item Z:  numero che indica piccoli cambiamenti rispetto alla versione vX.Y, come il fix di bug o il caricamento di nuovi documenti all'interno del repository (ad esclusione di verbali, sia interni che esterni);
-    \item (build): numero che indica le build di progetto eseguite nella versione vX.Y.Z. Tale valore viene incrementato a seguito di modifiche/aggiunte nella documentazione.
-\end{itemize}
-Il sistema di numerazione delle versioni ha come prima versione il valore "v0.0.1(0)".\\
-Ogni volta che viene incrementato il valore X, i valori Y, Z e (build) ripartono dai loro valori iniziali, ovvero "0".\\
-Ogni volta che viene incrementato il valore Y, il valore Z e (build) ripartono dal valore ”0”.\\
-Ogni volta che viene incrementato il valore Z, il valore (build) riparte dal valore "0".
-
-\subsubsection{Configuration evaluation}
-\paragraph{Scopo}
-L'attività di configuration evaluation si pone l'obiettivo di garantire la completezza funzionale degli elementi software realizzati rispetto ai loro
-requisiti.
-
-\paragraph{Tracciamento dei requisiti}
-Per raggiungere l'obiettivo precedentemente citato, il team SWEetCode ha deciso di effettuare un tracciamento dei requisiti all'interno del prodotto software,
-in modo da portare nel concreto l'evidenza della correlazione tra requisiti e codice.\\
-Per effettuare il tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
-del requisito menzionato.
-
-\subsubsection{Release management}
-\paragraph{Scopo}
-L'attività di release management si occupa di effettuare un rilascio controllato.
-
-\paragraph{Automazione release}
-L'automazione del versionamento consente di rilasciare nuove release in modo automatico, seguendo le regole di
-cambio versione indicate in (Norme di progetto, \S \nameref{sec:version}). Attraverso l'uso delle \textit{GitHub Actions}, l'accettazione di una pull request, 
-eseguita seguendo le norme indicate nel paragrafo (Norme di progetto, \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
-Il tipo di cambio versione viene indicato dal prefisso del titolo della Pull Request.
-
-Questa automazione si integra in modo efficace con quella citata nel paragrafo (Norme di progetto, \S \nameref{sec:automazione_docs}).
-Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione della pull request e la sua accettazione.
-
-La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
-verifica, che garantiscono la pulizia del repository remota e la correttezza del suo contenuto.
-
-\paragraph{Automazione versionamento documenti}
-\label{sec:automazione_docs}
-L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repository remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
-Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
-in cui aggiorna il registro delle versioni e crea il pdf usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
-
-Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
-sito web della repository su GitHub e creare la Pull Request.
-Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica) e
-secondo le modalità citate nel paragrafo (\S \nameref{sec:ciclo_vita}).
-
-L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
-versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
-volutamente le loro azioni alla sola modifica del contenuto della documentazione.
-
 \subsection{Documentazione}
 Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l'obiettivo di permettere una consultazione semplice e 
 rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla 
@@ -964,6 +787,276 @@ Il processo di manutenzione della documentazione è fondamentale per garantire c
     Se sia la verifica che la eventuale validazione hanno avuto esito positivo, le modifiche vengono pubblicate attraverso l'accettazione della 
     pull request da parte del revisore, in caso invece di esito negativo in anche una delle due operazioni, la pull request viene rifiutata e colui 
     che aveva realizzato le modifiche è responsabile di applicare le correzzioni emerse, ripetendo i passi precedentemente descritti.
+\end{itemize}
+
+\subsection{Configuration management}
+
+\subsubsection{Scopo}
+Nella seguente sezione vengono presentate le attività svolte dal gruppo SWEetCode che rientrano all'interno del processo "configuration management".
+
+\subsubsection{Descrizione}
+Il processo di configuration management è un processo di applicazione di procedure amministrative e tecniche lungo l'intero ciclo di vita del software al fine di:
+\begin{itemize}
+    \item Identificare, definire e stabilire una base per gli elementi software in un sistema;
+    \item Controllare le modifiche e le release degli elementi;
+    \item Registrare e riportare lo stato degli elementi e delle richieste di modifica;
+    \item Garantire la completezza, la coerenza e la correttezza degli elementi.
+\end{itemize}
+
+\subsubsection{Configuration control}
+\paragraph{Scopo}
+L'attività di configuration control si pone i seguenti obiettivi:
+\begin{itemize}
+    \item Identificare e registrare le richieste di modifica;
+    \item Analizzare e valutare le modifiche;
+    \item Approvare o rifiutare le richieste di modifica;
+    \item Tracciamento di audit.
+\end{itemize}
+
+\paragraph{Issue tracking system (ITS)} 
+Per raggiungere l'obiettivo di tracciamento di audit, ovvero la registrazione sistematica e dettagliata dei task e delle modifiche, SWEetCode utilizza 
+l'\textit{Issue Tracking System Jira} fornito da \textit{Atlassian}: \textit{Jira}.
+\subparagraph{Ticket}
+In questo sistema di tracciamento si permette la creazione di \textit{ticket} che possono essere di tre tipi:
+\begin{itemize}
+    \item \textit{task}: tale tipo di ticket viene utilizzato dal team per assegnate compiti atomici ai vari membri del gruppo;
+    \item \textit{bug}: tale tipo di ticket viene utilizzato dal team per assegnare un compito di fix di un bug all'interno del progetto ad un membro del gruppo; 
+    \item \textit{story}: tale tipo di ticket viene utilizzato per rappresentare un requisito.
+\end{itemize}
+Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalità utilizzate dal team):
+\begin{itemize}
+    \item Titolo: un titolo breve ma esplicativo del compito associato al \textit{ticket};
+    \item Id numerico univoco: tale id viene generato in automatico dall'ITS nella forma \textit{SWE-ID};
+    \item \textit{epic}: ogni \textit{ticket} può essere infatti associato ad una \textit{epic};
+    \item Collegamento: \textit{Jira} mette a disposizione una funzionalità di collegamento per stabilire le dipendenze tra i vari \textit{ticket};
+    \item Assegnatario: il membro del team che a cui è stata affidata la responsabilità di svolgere il \textit{ticket};
+    \item Descrizione: una breve descrizione inerente al \textit{ticket} associata;
+    \item Data: la data di creazione del \textit{ticket};
+    \item Reporter: il membro del team che ha creato il \textit{ticket};
+    \item Sviluppo: voce contenente il link ai commit, alle pull request e alle build che sono stati effettuati nel repo su \textit{GitHub} in correlazione al \textit{ticket} in questione;
+    \item Stato: gli stati possibili di un \textit{ticket} sono \textit{Da fare}, \textit{In Progress}, \textit{Pronto per commit} (introdotto dagli amministratori di SWEetCode nel flusso di lavoro) ed infine \textit{Completato};
+    \item \textit{Sprint}: ogni \textit{ticket} può essere associato ad uno \textit{sprint};
+    \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associata ad una determinata \textit{versione}.
+\end{itemize}
+
+\subparagraph{Epic}
+Un insieme di \textit{ticket} può essere raggruppato all'interno di una \textit{epic}: una \textit{epic} costituisce un'unità 
+logica e strategica di lavoro più ampia, rappresentando un obiettivo o un risultato di alto livello. Questo strumento di lavoro offre
+al team una panoramica di completamento generale di un particolare insieme di azioni correlate tra loro, attraverso una 
+scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta i medesimi field di un \textit{ticket} precedentemente descritti.
+
+\subparagraph{Versioni}
+Per rappresentare le milestone su \textit{Jira} vengono utilizzate le \textit{Versioni}, alle quali possono essere associate \textit{epic}
+e i relativi \textit{ticket}, riportando come nelle \textit{epic} una scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Una volta che tutti i \textit{ticket} associati alla \textit{versione} sono stati completati, tale \textit{versione} può essere rilasciata.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta una breve descrizione, una data di inizio ed una di fine.
+
+\subparagraph{Backlog e Sprint}
+\textit{Jira} offre all'interno dell'\textit{ITS} differenti funzionalità di supporto al metodo agile, seguendo il framework Scrum, in particolare
+quando i \textit{ticket} vengono creati sono inseriti di default all'interno del \textit{Backlog} per essere in seguito
+assegnati ai vari \textit{Sprint}. 
+Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
+
+\subparagraph{Timeline}
+\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un diagramma di Gantt all'interno del quale poter inserire i \textit{ticket}
+creati associati ad una \textit{epic}.\\
+Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
+all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
+le dipendenze presenti tra essi.\\
+Ogni \textit{versione} viene rappresentata all'interno della \textit{timeline} da una linea verticale posta in corrispondenza della data di scadenza
+della versione stessa.\\
+Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi.\\
+Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
+permettendo di effettuare una istantanea.
+
+\subparagraph{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
+Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS}: ogni volta che un membro del team 
+effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto, \S 3.2.2 Automazione versionamento documenti)
+presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
+A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
+allo stato \textit{Completato}.
+
+\paragraph{Pull requests} 
+\label{sec:pull_request}
+A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato che permetta di analizzare 
+e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
+Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e,
+a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata 
+sollevata in caso di esito positivo.
+Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Protection Rules} offerte da \textit{GitHub}.
+L'identificazione attraverso un titolo fornito da colui che solleva la pull request e la registrazione delle richieste di modifica e del loro esito è una conseguenza
+dell'applicazione della pratica delle pull request offerta da \textit{GitHub}.
+
+\paragraph{GitHub Teams}
+SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di 
+\textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
+I \textit{Teams} presentati sono dunque:
+\begin{itemize}
+    \item Amministratori;
+    \item Analisti;
+    \item Progettisti;
+    \item Programmatori;
+    \item Responsabili;
+    \item Verificatori.
+\end{itemize}
+Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei modi, permettendo di assegnare responsabilità e permessi specifici a determinate posizioni 
+piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
+
+\subsubsection{Configuration status accounting}
+\paragraph{Scopo}
+L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in
+relazione allo stato del prodotto stesso nel corso del tempo.
+
+\paragraph{Version control}
+\label{sec:version}
+Per tenere traccia dello stato e della storia degli elementi controllati, il team ha deciso di utilizzare un sistema di \textit{Version control} basato su una versione 
+del prodotto che si attiene al seguente formato: vX.Y.Z(build).
+\begin{itemize}
+    \item v: sta per versione, rimane immutato lungo tutte le versioni;
+    \item X: numero che indica la versione principale di riferimento. Viene incrementato quando viene superata una fase di revisione di avanzamento;
+    \item Y: numero che viene incrementato con l'introduzione di nuove features o di miglioramenti significativi;
+    \item Z:  numero che indica piccoli cambiamenti rispetto alla versione vX.Y, come il fix di bug o il caricamento di nuovi documenti all'interno del repository (ad esclusione di verbali, sia interni che esterni);
+    \item (build): numero che indica le build di progetto eseguite nella versione vX.Y.Z. Tale valore viene incrementato a seguito di modifiche/aggiunte nella documentazione.
+\end{itemize}
+Il sistema di numerazione delle versioni ha come prima versione il valore "v0.0.1(0)".\\
+Ogni volta che viene incrementato il valore X, i valori Y, Z e (build) ripartono dai loro valori iniziali, ovvero "0".\\
+Ogni volta che viene incrementato il valore Y, il valore Z e (build) ripartono dal valore ”0”.\\
+Ogni volta che viene incrementato il valore Z, il valore (build) riparte dal valore "0".
+
+\subsubsection{Configuration evaluation}
+\paragraph{Scopo}
+L'attività di configuration evaluation si pone l'obiettivo di garantire la completezza funzionale degli elementi software realizzati rispetto ai loro
+requisiti.
+
+\paragraph{Tracciamento dei requisiti}
+Per raggiungere l'obiettivo precedentemente citato, il team SWEetCode ha deciso di effettuare un tracciamento dei requisiti all'interno del prodotto software,
+in modo da portare nel concreto l'evidenza della correlazione tra requisiti e codice.\\
+Per effettuare il tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
+del requisito menzionato.
+
+\subsubsection{Release management}
+\paragraph{Scopo}
+L'attività di release management si occupa di effettuare un rilascio controllato.
+
+\paragraph{Automazione release}
+L'automazione del versionamento consente di rilasciare nuove release in modo automatico, seguendo le regole di
+cambio versione indicate in (Norme di progetto, \S \nameref{sec:version}). Attraverso l'uso delle \textit{GitHub Actions}, l'accettazione di una pull request, 
+eseguita seguendo le norme indicate nel paragrafo (Norme di progetto, \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
+Il tipo di cambio versione viene indicato dal prefisso del titolo della Pull Request.
+
+Questa automazione si integra in modo efficace con quella citata nel paragrafo (Norme di progetto, \S \nameref{sec:automazione_docs}).
+Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione della pull request e la sua accettazione.
+
+La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
+verifica, che garantiscono la pulizia del repository remota e la correttezza del suo contenuto.
+
+\paragraph{Automazione versionamento documenti}
+\label{sec:automazione_docs}
+L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repository remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
+Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
+in cui aggiorna il registro delle versioni e crea il pdf usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
+
+Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
+sito web della repository su GitHub e creare la Pull Request.
+Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica) e
+secondo le modalità citate nel paragrafo (\S \nameref{sec:ciclo_vita}).
+
+L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
+versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
+volutamente le loro azioni alla sola modifica del contenuto della documentazione.
+
+\subsection{Assicurazione della qualità}
+\subsubsection{Scopo}
+Lo scopo di questo processo è fornire un'adeguata garanzia che i prodotti software e i processi nel ciclo di vita del progetto sono conformi ai requisiti specificati e aderiscono ai loro piani stabiliti.
+Per essere imparziale, deve avere libertà organizzativa e autorità da parte delle persone direttamente responsabili dello sviluppo del prodotto software.
+L'assicurazione della qualità può utilizzare i risultati di altri processi di supporto, come la verifica e la validazione.
+
+\subsubsection{Process assurance}
+Per garantire che la qualità prefissata venga raggiunta e mantenuta, viene adottato il ciclo PDCA, noto anche come ciclo di Deming, un approccio metodologico utilizzato per il miglioramento continuo. Si divide in 4 fasi:
+\paragraph{Plan} Questa fase coinvolge la definizione degli obiettivi di qualità, la pianificazione delle attività e la creazione di criteri di valutazione. Aiuta a stabilire le aspettative, i processi e le risorse necessarie per raggiungere gli standard di qualità prefissati.
+\paragraph{Do} Durante questa fase, vengono implementate le azioni pianificate, eseguendo le attività identificate nel piano e raccogliendo dati per il monitoraggio della qualità.
+\paragraph{Check} Questa fase consiste nella valutazione dei risultati ottenuti rispetto agli obiettivi prestabiliti. Attraverso metriche precise stabilite dal team, si verifica se i risultati sono in linea con le aspettative di qualità.
+\paragraph{Act} Basandosi sull'analisi dei dati raccolti, si apportano correzioni migliorative ai processi esistenti, al fine di migliorare la qualità del prodotto.
+
+\subsubsection{Metriche: Notazione}
+Le metriche di qualità, definite successivamente, vengono identificate con la seguente notazione:
+\textbf{M.[Codice].[Sigla]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{M}] indica la parola "metrica";
+\item \lbrack \textbf{Codice}] è un numero progressivo univoco che identifica le metriche per ogni tipologia;
+\item \lbrack \textbf{Sigla}] composta dalle iniziali del nome della metrica; aiuta a identificarla più velocemente.
+\end{itemize}
+\paragraph{Metriche: Didascalia}
+Ogni metrica è descritta dai seguenti campi:
+\begin{itemize}
+    \item \textbf{Nome}: nome della metrica;
+    \item \textbf{Descrizione}: descrizione della metrica;
+    \item \textbf{Motivo}: motivazione per la quale è necessario misurarla;
+    \item \textbf{Misurazione}: formula e strumenti tramite la quale viene calcolata.
+\end{itemize}
+
+\subsubsection{Lista delle metriche}
+% TODO: definire lista metriche
+\textbf{Qualità del processo}:
+% Percentuale di metriche soddisfatte
+% Variazione di piano
+% Variazione di costo
+% Variazione dei requisiti
+% Numero di rischi non previsti
+% Percentuale di rischi gestiti male
+% Complessità ciclomatica media
+% Statement coverage
+% Branch coverage
+\begin{itemize}
+    \item \textbf{M1PMS}:
+    \begin{itemize}
+        \item \textbf{Nome}:
+        \item \textbf{Descrizione}:
+        \item \textbf{Motivo}:
+        \item \textbf{Misurazione}:
+    \end{itemize}
+    \item 
+    \begin{itemize}
+        \item \textbf{Nome}:
+        \item \textbf{Descrizione}:
+        \item \textbf{Motivo}:
+        \item \textbf{Misurazione}:
+    \end{itemize}
+\end{itemize}
+
+\textbf{Qualità del prodotto}:
+% Indice di Gulpease
+% Percentuale di requisiti implementati
+% Linee medie di codice per metodo
+% Rapporto commenti - codice
+% Percentuale di test di unità superati
+% Percentuale di test di integrazione superati
+\begin{itemize}
+    \item 
+    \begin{itemize}
+        \item \textbf{Nome}:
+        \item \textbf{Descrizione}:
+        \item \textbf{Motivo}:
+        \item \textbf{Misurazione}:
+    \end{itemize}
+    \item 
+    \begin{itemize}
+        \item \textbf{Nome}:
+        \item \textbf{Descrizione}:
+        \item \textbf{Motivo}:
+        \item \textbf{Misurazione}:
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Obiettivi di qualità: Struttura}
+Gli obiettivi di qualità, divisi in obiettivi di processo e di prodotto, vengono indicati nel documento (Piano di qualifica). Ognuno di questi è descritto da:
+\begin{itemize}
+    \item \textbf{Metrica}: codice della metrica;
+    \item \textbf{Nome}: nome esteso della metrica;
+    \item \textbf{Valore tollerabile}: valore oltre il quale la metrica è da considerare soddisfatta;
+    \item \textbf{Valore ambito}: valore ideale della metrica.
 \end{itemize}
 
 \subsection{Verifica}

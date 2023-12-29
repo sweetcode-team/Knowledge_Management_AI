@@ -408,7 +408,7 @@ Queste specifiche sono raccolte nel documento (Specifica architetturale), che ve
 Le modalità di stesura e l'organizzazione di questo documento verranno indicate in parallelo alla sua creazione.
 
 \subsubsection{Codifica}
-\subsubsection{Scopo}
+\subsubsubsection{Scopo}
 La codifica, svolta dai programmatori, ha lo scopo di realizzare concretamente il prodotto software seguendo l'architettura definita dai progettisti.
 Questa sezione ha il compito di normare il codice, in modo da:
 \begin{itemize}
@@ -967,18 +967,93 @@ Il processo di manutenzione della documentazione è fondamentale per garantire c
 \end{itemize}
 
 \subsection{Verifica}
-Ogni produzione realizzata da SWEetCode viene sottoposta ad una fase di verifica che permette la sua validazione.
-Onde evitare conflitti di interesse, tale compito viene assegnato ad uno o più membri differenti da coloro che hanno conseguito alla realizzazione del prodotto in questione.
+\subsubsection{Scopo}
+Il processo di verifica ha lo scopo di determinare se ciò che viene prodotto è conforme ai requisiti stabiliti e ai vincoli qualitativi specificati nel (Piano di qualifica).
+Lo scopo principale della verifica è garantire la completezza e la correttezza del prodotto, fornendo evidenze oggettive e misurabili.
 
-\subsubsection{Verifica dei documenti}
-Ogni documento prodotto dal team passa per una o più fasi di verifica prima di essere pubblicato ufficialmente nel repository \textit{GitHub}.\\
-Tale fasi vengono realizzate solamente in seguito alla consegna del documento da parte dei responsabili di stesura, i quali ritengono che in quel momento il prodotto da loro realizzato sia completato.\\
-La verifica dei documenti prevede che venga assicurato:
+\subsubsection{Descrizione}
+Ogni produzione realizzata da SWEetCode viene sottoposta ad uno o più fasi di verifica prima di essere pubblicata ufficialmente nel repository \textit{GitHub}.
+Questo processo viene svolto dai verificatori. Onde evitare conflitti di interesse, tale compito viene assegnato ad uno o più membri diversi da coloro che hanno conseguito alla realizzazione del prodotto in questione.
+
+\subsubsection{Analisi statica}
+L'analisi statica è un'attività di verifica che costituisce un'esplorazione dell'oggetto di verifica senza richiedere l'esecuzione di esso. Può essere estesa anche ai documenti testuali.\\
+Due tecniche di analisi statica utilizzate dal team, il walkthrough e l'ispezione, sono descritte in seguito.
+
+\subsubsubsection{Walkthrough} Il walkthrough è un'approfondita procedura collaborativa in cui il verificatore e il realizzatore del prodotto leggono criticamente tutto l'oggetto in esame. In particolare, questa attività è composta dalle seguenti fasi:
 \begin{itemize}
-    \item Il rispetto delle norme tipografiche stabilite nelle \textit{Norme di progetto} del team;
-    \item Il rispetto della struttura definita nelle \textit{Norme di progetto} del team;
-    \item Il rispetto del contenuto, il quale deve essere chiaro, coerente, preciso ed esaustivo;
-    \item Il rispetto della sintassi italiana e della correttezza ortografica dei termini utilizzati.
+    \item \textbf{Pianificazione}: coinvolge sia il verificatore che l'autore. In questa fase vengono definite le modalità, le risorse e le tempistiche entro le quali svolgere l'attività;
+    \item \textbf{Lettura}: il verificatore esamina l'intero prodotto per individuare errori, incongruenze e migliorie;
+    \item \textbf{Discussione}: il verificatore comunica all'autore tutti gli elementi individuati e ritenuti migliorabili; in questa sessione vengono definite anche possibili soluzioni e correzioni;
+    \item \textbf{Correzione dei difetti}: Una volta accordata la modalità e il contenuto delle modifiche, l'autore procede con l'effettiva attuazione delle correzioni.
+\end{itemize}
+
+\subsubsubsection{Ispezione} L'ispezione è una tecnica che utilizza liste di controllo per eseguire verifiche mirate sugli errori più comuni, evitando la lettura dell'intero documento. L'ispezione è composta dalle seguenti fasi:
+\begin{itemize}
+    \item \textbf{Pianificazione}: coinvolge sia il verificatore che l'autore. In questa fase vengono definite le modalità, le risorse e le tempistiche entro le quali svolgere l'attività;
+    \item \textbf{Definizione lista di controllo}: vengono definiti i punti e gli aspetti critici dell'oggetto in esame; queste liste vengono costruite incrementalmente e aggiornate nel momento in cui la frequente occorrenza di certi errori diventa evidente;
+    \item \textbf{Lettura}: il verificatore esamina il prodotto seguendo la lista di controllo per individuare errori, incongruenze e migliorie;
+    \item \textbf{Correzione dei difetti}: L'autore procede con l'attuazione delle correzioni.
+\end{itemize}
+
+Data l'iniziale inesperienza del team, per i primi periodi è stato utilizzato l'approccio walkthrough.
+Nel momento in cui le liste di controllo diventeranno sufficientemente ampie per permettere una verifica adeguata, l'ispezione permetterà al team di svolgere questa attività più velocemente, preservando una grande quantità di risorse.\\
+Le liste di controllo sono raccolte nel documento (Piano di qualifica).
+
+\subsubsection{Analisi dinamica}
+L'analisi dinamica è una metodologia di verifica che richiede l'esecuzione effettiva del software al fine di valutarne il comportamento, le performance e la correttezza durante l'esecuzione.
+Questo tipo di analisi deve poter essere automatizzata e ripetibile. Per questo motivo, devono essere stabilite e regolamentate le condizioni dell'ambiente di esecuzione dei test. 
+L'analisi dinamica viene resa possibile dall'implementazione di varie categorie di test, in particolare: di unità, di integrazione, di sistema e di regressione.
+
+\subsubsubsection{Test di unità}
+I Verificatori sono incaricati di formulare i test di unità durante la fase di progettazione di dettaglio, descritta in (\S \nameref{sec:progettazione_di_dettaglio}). Questi test sono progettati in conformità alle specifiche di ciascuna unità software, consentendo l'associazione di più test a una singola unità, qualora necessario, costruendo una suite di test dedicata a quell'unità.
+L'esecuzione dei test di unità potrebbe richiedere l'utilizzo di stub o driver, strumenti che permettono di testare le singole unità simulando alcuni dei loro componenti, nel caso in cui non fossero tutti disponibili per l'esecuzione.
+Tale pratica si rivela essenziale, specialmente nelle fasi iniziali dello sviluppo, quando l'ambiente è ancora piuttosto scarno.
+
+I test di unità possono essere suddivisi in due categorie:
+\begin{itemize}
+    \item \textbf{Funzionali} (o \textbf{black box}): dato un input e un'aspettativa di output, verificano se l'esecuzione di una certa funzionalità produce l'aspettativa dichiarata;
+    \item \textbf{Strutturali} (o \textbf{white box}): verificano la logica interna del codice, analizzando i vari cammini di esecuzione all'interno dell'unità.
+\end{itemize}
+I verificatori utilizzano entrambe queste tipologie di test di unità, sfruttando strumenti di automazione disponibili per le tecnologie adottate. Questo approccio mira a garantire un processo sistematico ed efficiente, assicurando che ciascuna unità software sia accuratamente testata e rispetti le specifiche stabilite durante la progettazione dettagliata.
+
+\subsubsubsection{Test di integrazione}
+I test di integrazione vengono definiti dai verificatori durante la fase di progettazione architetturale. In particolare, si applicano alle componenti individuate con lo scopo di rilevare difetti di progettazione, errori a livello di unit testing, incompatibilità e incongruenza nell'uso delle interfacce o errata integrazione con altre applicazioni. Devono assemblare incrementalmente, ampliando il loro raggio di azione di volta in volta.
+
+Esistono due strategie di integrazione:
+\begin{itemize}
+    \item \textbf{Bottom-up}: integrazione partendo dalle componenti con minor numero di dipendenze d'uso e maggiore utilità interna (molto chiamate ma che chiamano poco). Richiede pochi stub ma ritarda l'emissione di funzionalità visibili all'utente;
+    \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta all'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
+\end{itemize}
+
+\subsubsubsection{Test di sistema}
+I test di sistema mirano a valutare il sistema nel suo complesso per garantire che soddisfi tutti i requisiti delineati nel documento (Analisi dei requisiti). Questa fase di testing viene definita dai verificatori e avviene dopo il completamento dei test di unità e dei test di integrazione e prima del collaudo con il committente.
+Vegnono considerati come test funzionali (o black-box), non richiedono conoscenza della logica e del funzionamento interno del software.
+
+\subsubsubsection{Test di regressione}
+I test di regressione sono un tipo specifico di test che include una selezione dei test già implementati, tra cui test di unità, di integrazione e di sistema, per verificare che le modifiche apportate al software non abbiano introdotto nuovi difetti o non abbiano alterato il comportamento esistente del sistema. In altre parole, i test di regressione mirano a garantire che le modifiche apportate durante lo sviluppo del software non abbiano effetti collaterali negativi su funzionalità precedentemente testate e correttamente funzionanti.
+
+\subsubsection{Test: Notazione}
+I test vengono identificati con la seguente notazione:
+\textbf{T[Tipo].[Codice]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{T}] indica la parola "test";
+\item \lbrack \textbf{Tipo}] può essere:
+    \begin{itemize}
+	    \item U (Unità);
+	    \item I (Integrazione);
+	    \item S (Sistema);
+        \item A (Accettazione).
+    \end{itemize}
+\item \lbrack \textbf{Codice}] identifica i test per ogni tipologia. È composto da un unico numero progressivo univoco se il test non ha padre, mentre se si tratta di un sotto-test, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\end{itemize}
+
+\subsubsection{Test: Stato}
+Ogni test è associato a uno stato che indica il risultato di soddisfacimento di esso nell'ultima versione rilasciata del prodotto software. Lo stato può assumere i seguenti valori:
+\begin{itemize}
+    \item I (Indisponibile, test non in funzione);
+    \item S (Superato);
+    \item N (Non superato).
 \end{itemize}
 
 

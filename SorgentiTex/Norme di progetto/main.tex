@@ -255,16 +255,16 @@ L'attività di analisi dei requisiti, la quale viene documentata all'interno del
 (L'analisi dei requisiti, essendo una attività incrementale, prevede che alcune fasi siano svolte più volte all'interno del progetto).
 Il risultato di tale processo è un documento che contiene tutti i requisiti richiesti dal proponente, con relativi casi d'uso dal punto di vista dell'utente finale.\\
 
-\paragraph{Casi d'uso: Notazione\\}
-I casi d'uso sono indicati con la notazione seguente: \textbf{UC[codice] - [titolo]}\\
+\subsubsubsection{Casi d'uso: Notazione}
+I casi d'uso sono indicati con la notazione seguente: \textbf{UC[Codice] - [Titolo]}\\
 in cui:
 \begin{itemize}
 \item \textbf{UC} sta per Use Case;
-\item \lbrack \textbf{codice}] è l'identificativo del caso d'uso. È composto da un unico numero progressivo univoco se il caso d'uso non ha padre, mentre se si tratta di un sottocaso d'uso, segue il formato \textbf{[codice\_padre].[numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
-\item \lbrack \textbf{titolo}] è il titolo del caso d'uso.
+\item \lbrack \textbf{Codice}] è l'identificativo del caso d'uso. È composto da un unico numero progressivo univoco se il caso d'uso non ha padre, mentre se si tratta di un sottocaso d'uso, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\item \lbrack \textbf{Titolo}] è il titolo del caso d'uso.
 \end{itemize}
 
-\paragraph{Casi d'uso: Didascalie\\}
+\subsubsubsection{Casi d'uso: Didascalie}
 Per ogni caso d'uso è presentata una breve didascalia che ne indica:
 \begin{itemize}
     \item Attore principale (attore che partecipa e dialoga attivamente con il sistema nello scenario principale per raggiungere uno scopo);
@@ -279,9 +279,9 @@ Per ogni caso d'uso è presentata una breve didascalia che ne indica:
     \item Trigger (evento scatenante del caso d'uso).
 \end{itemize}
 
-\paragraph{Requisiti: Notazione\\}
+\subsubsubsection{Requisiti: Notazione}
 Ogni requisito preso in analisi sarà trattato con la sigla:
-\textbf{R[Tipo].[Importanza].[codice]}\\
+\textbf{R[Tipo].[Importanza].[Codice]}\\
 nella quale:
 \begin{itemize}
 \item \lbrack \textbf{R}] indica la parola "requisito";
@@ -298,12 +298,10 @@ nella quale:
 		\item D (Desiderabile);
 		\item OP (Opzionale).
     \end{itemize}
-\item \lbrack \textbf{codice}] identifica i requisiti per ogni tipologia. È composto da un unico numero progressivo univoco se il 
-requisito non ha padre, mentre se si tratta di un sotto-requisito, segue il formato \textbf{[codice\_padre].[numero\_figlio]}; questa 
-struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\item \lbrack \textbf{Codice}] identifica i requisiti per ogni tipologia. È composto da un unico numero progressivo univoco se il requisito non ha padre, mentre se si tratta di un sotto-requisito, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
 \end{itemize}
 
-\paragraph{Requisiti: Suddivisione (Funzionali, di Qualità, di Vincolo, di Prestazione)}
+\subsubsubsection{Requisiti: Suddivisione}
 \begin{itemize}
 \item I requisiti funzionali descrivono le funzionalità del sistema, le azioni
 che il sistema può compiere e le informazioni che il sistema può fornire.\\
@@ -325,8 +323,7 @@ Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \end{itemize}
 \end{itemize}
 \begin{itemize}
-\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema deve rispettare per soddisfare le 
-esigenze dell'utente.\\
+\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema deve rispettare per soddisfare le esigenze dell'utente.\\
 Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \begin{itemize}
     \item RV.O - Requisito di Vincolo Obbligatorio;
@@ -342,19 +339,73 @@ Seguendo la notazione riportata sopra, questi si possono partizionare in:
 \end{itemize}
 \end{itemize}
 
-\paragraph{Diagrammi}
-I diagrammi dei casi d'uso e di attività riportati all'interno del documento (Analisi dei requisiti) devono seguire la notazione e le 
-specifiche indicate da \textit{UML v2.5}.
+\subsubsubsection{Diagrammi}
+I diagrammi dei casi d'uso e di attività riportati all'interno del documento (Analisi dei requisiti) devono seguire la notazione e le specifiche indicate da \textit{UML v2.5}.
 
-\paragraph{Applicazione milestone SEMAT}
+\subsubsubsection{Applicazione milestone SEMAT}
 SWEetCode nell'esecuzione dell'attività di analisi dei requisiti ha deciso di adottare la pianificazione in milestone presentata 
 da \textit{SEMAT}: tale pianificazione viene spiegata nel dettaglio all'interno del (\S Piano di progetto).
 
-\subsubsection{Progettazione logica}
-Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
+\subsubsection{Progettazione}
+\paragraph{Scopo}
+L'attività di progettazione ha lo scopo di fissare un'archiettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
+La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
 
-\subsubsection{Progettazione di dettaglio}
-Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
+I progettisti del team avranno l'obbligo di considerare le seguenti proprietà durante l'attività di progettazione:
+\begin{itemize}
+    \item \textbf{Sufficienza}: in grado di soddisfare tutti i requisiti;
+    \item \textbf{Modularità}: suddivisa in parti chiare e ben distinte, esponendo interfacce e nascondendo l'implementazione;
+    \item \textbf{Robustezza}: resiliente a più tipi e quantità di input;
+    \item \textbf{Flessibilità}: permette modifiche mantenendo limitati i costi per apportarle;
+    \item \textbf{Riusabilità}: permette il riuso delle sue parti in applicazioni esterne;
+    \item \textbf{Efficienza}: è efficiente nello spazio, nel tempo e nei consumi;
+    \item \textbf{Affidabilità}: svolge bene il suo lavoro;
+    \item \textbf{Semplicità}: ogni parte contiene lo stretto necessario;
+    \item \textbf{Incapsulazione}: nasconde l'interno delle componenti architetturali all'esterno;
+    \item \textbf{Coesione}: parti che agiscono sulle stesse unità di dati sono raccolte nello stesso componente;
+    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse;
+\end{itemize}
+
+Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
+
+\paragraph{Progettazione logica}
+La progettazione logica consiste nel trasformare i requisiti software in un'architettura che descrive la struttura di alto livello del prodotto software e ne identifica i componenti.
+In questa fase i progettisti devono assicurarsi che tutti i requisiti siano assegnati ai componenti e che questi siano ulteriormente dettagliati, in modo da facilitare la successiva progettazione di dettaglio.
+
+In particolare, i progettisti devono:
+\begin{itemize}
+    \item Progettare le interfacce esterne al software e tra i componenti del software;
+    \item Definire e progettare le strutture dati necessarie per soddisfare i requisiti;
+    \item Documentare una versione preliminare del (Manuale utente);
+    \item Pianificare e definire, collaborando con i verificatori, i test di integrazione tra componenti;
+    \item Valutare e revisionare l'architettura definita nei passi precedenti, coinvolgendo tutti i membri del team e altre parti interessate. In particolare, il team collaborerà con dei membri dell'azienda proponente in modo da ottenere consigli e correzioni da fonti autorevoli e con esperienza.
+\end{itemize}
+
+\paragraph{Progettazione di dettaglio}
+\label{sec:progettazione_di_dettaglio}
+La progettazione di dettaglio consiste nel suddividere il sistema affinché ogni singola parte abbia una complessità tale da poter essere codificata da un unico individuo, in modo rapido, fattibile e verificabile.
+
+I progettisti hanno il dovere di fermarsi quando la decomposizione diventa controproduttiva, cioè nel momento in cui il costo di coordinamento tra le parti decomposte è maggiore del beneficio prodotto decomponendo.
+
+La progettazione di dettaglio agisce sulle unità architetturali, cioè unità funzionali ben definite, la cui codifica può essere assegnata ad un unico programmatore.
+Ogni unità architetturale è formata da uno o più moduli, e più unità architetturali formano un componente, che è l'oggetto dell'architettura logica.
+L'architettura di dettaglio guida la codifica e l'integrazione e semplifica il tracciamento dei requisiti.
+
+Durante la progettazione di dettaglio, i progettisti hanno il compito di:
+\begin{itemize}
+    \item Definire e progettare in modo dettagliato i componenti software, lavorando a livello di unità e moduli;
+    \item Aggiornare e dettagliare il (Manuale utente);
+    \item Definire la specifica dei test di unità, collaborando con i verificatori;
+    \item Definire la specifica dei test di integrazione, collaborando con i verificatori;
+\end{itemize}
+
+\paragraph{Specifica architetturale}
+La progettazione deve essere ben documentata, affinché la codifica e la verifica del software possano essere svolte in modo autonomo e disciplinato.
+
+Ogni parte individuata deve essere dodata di una specifica chiara e coesa, realizzabile entro i costi e le risorse disponibili.
+
+Queste specifiche sono raccolte nel documento (Specifica architetturale), che verrà prodotto dopo il superamento della fase di revisione RTB.
+Le modalità di stesura e l'organizzazione di questo documento verranno indicate in parallelo alla sua creazione.
 
 \subsubsection{Codifica}
 Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).

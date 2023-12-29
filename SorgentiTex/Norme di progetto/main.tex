@@ -408,7 +408,161 @@ Queste specifiche sono raccolte nel documento (Specifica architetturale), che ve
 Le modalità di stesura e l'organizzazione di questo documento verranno indicate in parallelo alla sua creazione.
 
 \subsubsection{Codifica}
-Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).
+\subsubsection{Scopo}
+La codifica, svolta dai programmatori, ha lo scopo di realizzare concretamente il prodotto software seguendo l'architettura definita dai progettisti.
+Questa sezione ha il compito di normare il codice, in modo da:
+\begin{itemize}
+    \item Facilitarne la lettura, aumentarne l'uniformità e la robustezza;
+    \item Facilitarne e velocizzarne la verifica;
+    \item Facilitarne la manutenzione, il debugging e l'estensione;
+    \item Migliorarne la qualità;
+\end{itemize}
+
+\subsubsubsection{Stile di codifica: Python}
+\subsubsubsubsection{Struttura dei file}
+La struttura di un sorgente Python è definita dalle seguenti parti:
+\begin{itemize}
+    \item Import: insieme di istruzioni di import che seguono l'ordine:
+    \begin{enumerate}
+        \item Librerie esterne;
+        \item Librerie interne.
+    \end{enumerate}
+    \item Classe: rappresenta un'unità o raccoglie funzioni di utilità.
+\end{itemize}
+\subsubsubsubsection{Struttura delle classi}
+La struttura di una classe Python è definita dalle seguenti parti, se necessarie:
+\begin{enumerate}
+    \item Lista di classi estese o interfaccia implementata;
+    \item Costruttore;
+    \item Attributi;
+    \item Metodi.
+\end{enumerate}
+Ogni classe deve essere opportunamente documentata, seguendo il formato \textit{Google docstrings}; in particolare:
+\begin{itemize}
+    \item Dopo la definizione della classe, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del ruolo della classe;
+        \item Lista degli argomenti richiesti dal costrutture, seguiti da una breve descrizione;
+        \item Lista degli attributi della classe, seguiti da una breve descrizione;
+        \item Lista dei metodi della classe, seguiti da una breve descrizione.
+    \end{itemize}
+    \item Dopo la definizione dei metodi, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del metodo;
+        \item Lista di argomenti del metodo, seguiti da una breve descrizione;
+        \item Lista degli eventuali return, seguiti da una breve descrizione.
+    \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Pratiche di programmazione}
+\begin{itemize}
+    \item \textbf{Metodi}: preferire più metodi semplici e con responsabilità singola rispetto a metodi lunghi e complessi;
+    \item \textbf{Attributi}: mai accedere direttamente ad attributi di una classe. Utilizzare solo i metodi forniti per interagire con essa;
+    \item \textbf{Self}: riferirsi ai parametri interni attraverso l'uso del riferimento self;
+    \item \textbf{Visibilità}: usare la minima visibilità possibile per gli attributi;
+    \item \textbf{Importazioni}: Importare i moduli all'inizio dello script o del modulo. Evitare importazioni con asterisco (\texttt{from module import *});
+    \item \textbf{Commenti}: usare le seguenti convenzioni nei commenti:
+        \begin{itemize}
+            \item TODO: per indicare sezioni di codice non ancora completate;
+            \item FIXME: per indicare sezioni di codice che necessitano di revisione e miglioramenti;
+        \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Formattazione del codice}
+Per la formattazione del codice Python sono state adottate le convenzioni indicate dal formatter PEP8 (\url{https://peps.python.org/pep-0008/}).
+Il rispetto della formattazione sopraindicata è garantito dallo strumento di formattazione incluso nell'estensione per il liguaggio Python di VSCode fornita da Microsoft (\url{https://marketplace.visualstudio.com/items?itemName=ms-python.python})
+\subsubsubsubsection{Convenzioni sintattiche}
+\begin{itemize}
+    \item \textbf{Nomi autoesplicativi}: i nomi assegnati a qualsiasi costrutto devono essere autoesplicativi, cioè devono racchiudere il significato di ciò a cui si riferiscono;
+    preferire nomi lunghi ma privi di ambiguità a nomi corti ma interpretabili;
+    \item \textbf{Lingua}: usare la lingua inglese per i nomi dei costrutti e per i commenti;
+    \item \textbf{Convenzioni di nomenclatura}: seguire le convenzioni di nomenclatura PEP 8;
+    \item \textbf{Abbreviazioni}: usare cautelamente le abbreviazioni, solo se queste sono comunemente conosciute;
+    \item \textbf{Nomi classi}: i nomi delle classi devono seguire lo stile PascalCase;
+    \item \textbf{Nomi metodi e variabili}: i nomi dei metodi e delle variabili devono seguire lo stile snake\_case;
+    \item \textbf{Nomi costanti}: i nomi delle costanti devono seguire lo stile UPPER\_ SNAKE\_CASE;
+    \item \textbf{Nomi argomenti}: usare lo stesso nome per gli argomenti del costruttore e i rispettivi attributi della classe;
+    \item \textbf{Indentazione}: utilizzare quattro spazi o un carattere di tabulazione per definire i blocchi di codice;
+    \item \textbf{Spaziatura}: utilizzare uno spazio attorno agli operatori binari per una migliore leggibilità;
+    \item \textbf{Parentesi}: aggiungere lo spazio prima e dopo un blocco raccolto tra parentesi;
+    \item \textbf{Commenti}: utilizzare il simbolo \texttt{\#} per i commenti;
+    \item \textbf{Quoting}: utilizzare singoli (\texttt{'}) apici per le stringhe;
+    \item \textbf{Definizioni di funzioni e metodi}: separare le definizioni di funzioni e metodi con due linee vuote;
+    \item \textbf{Lunghezza massima della linea}: limitare le linee a un massimo di 79 caratteri per il codice e 72 per docstrings;
+    \item \textbf{Più istruzioni su una linea}: evitare più istruzioni sulla stessa linea;
+\end{itemize}
+
+\subsubsubsection{Stile di codifica: Javascript (React)}
+\subsubsubsubsection{Struttura dei file} La struttura di un sorgente Javascript è definita dalle seguenti parti:
+\begin{itemize}
+    \item Import: insieme di istruzioni di import che seguono l'ordine:
+    \begin{enumerate}
+        \item Dipendenze esterne;
+        \item Dipendenze interne.
+    \end{enumerate}
+    \item Funzioni: definiscono un componente o funzioni di utilità;
+\end{itemize}
+\subsubsubsubsection{Struttura dei componenti} La struttura di un componente React è definita dalle seguenti parti, se necessarie:
+\begin{enumerate}
+    \item \textbf{Arrow function}: definisce il componente;
+    \item \textbf{Funzioni ausiliarie}: funzioni di supporto che aiutano a gestire casi complessi e aumentano il riuso;
+    \item \textbf{Logica del componente}: definisce la struttura e il comportamento del componente;
+    \item \textbf{Export}: istruzione di export che rende disponibile il componente all'utilizzo esterno.
+\end{enumerate}
+Ogni classe deve essere opportunamente documentata, seguendo il formato \textit{JSDoc}; in particolare:
+\begin{itemize}
+    \item Dopo la definizione del componente, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del ruolo della classe;
+        \item Lista dei props, seguiti da una breve descrizione;
+        \item Lista dei metodi della classe, seguiti da una breve descrizione.
+    \end{itemize}
+    \item Dopo la definizione dei metodi, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del metodo;
+        \item Lista di argomenti del metodo, seguiti da una breve descrizione;
+        \item Lista degli eventuali return, seguiti da una breve descrizione.
+    \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Pratiche di programmazione}
+\begin{itemize}
+    \item \textbf{Grandezza componenti}: prediligere l'uso e la creazione di componenti di taglia e responsabilità limitata. Un componente dovrebbe limitarsi a svolgere un'unica funzione;
+    \item \textbf{Riutilizzo}: sfruttare il più possibile il riutilizzo dei componenti. Se due componenti hanno la stessa struttura ma si differenziano per aspetto o comportamento, usare i props per gestire queste differenze;
+    \item \textbf{Funzioni di utilità}: evitare di posizionare le funzioni di utilità all'interno di componenti, ma raccoglierle in classi specifiche e mirate;
+    \item \textbf{Unico component per file}: esportare un unico component per file;
+    \item \textbf{Metodi iterativi}: quando si vogliono eseguire operazioni su ogni elemento di un oggetto iterabile, prediligere l'uso di metodi iterativi;
+    \item \textbf{Organizzazione file}: organizzare i file dello stesso component in una apposita cartella;
+    \item \textbf{Commenti}: usare le seguenti convenzioni nei commenti:
+        \begin{itemize}
+            \item TODO: per indicare sezioni di codice non ancora completate;
+            \item FIXME: per indicare sezioni di codice che necessitano di revisione e miglioramenti;
+        \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Formattazione del codice} Per la formattazione del codice Javascript sono state adottate le convenzioni indicate dall'estensione Prettier di VSCode (\url{https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode}).
+Per garantire il rispetto delle convenzioni di Prettier, tutti i componenti del gruppo hanno impostato il formatter Prettier di default e impostato il suo intervento correttivo ad ogni salvataggio dei file.
+
+\subsubsubsubsection{Convenzioni sintattiche}
+\begin{itemize}
+    \item \textbf{Nomi autoesplicativi}: i nomi assegnati a qualsiasi costrutto devono essere autoesplicativi, cioè devono racchiudere il significato di ciò a cui si riferiscono;
+        preferire nomi lunghi ma privi di ambiguità a nomi corti ma interpretabili;
+    \item \textbf{Lingua}: usare la lingua inglese per i nomi dei costrutti e per i commenti;
+    \item \textbf{Abbreviazioni}: usare cautelamente le abbreviazioni, solo se queste sono comunemente conosciute;
+    \item \textbf{Indentazione}: utilizzare quattro spazi o un carattere di tabulazione per definire i blocchi di codice;
+    \item \textbf{Spaziatura}: utilizzare uno spazio attorno agli operatori binari per una migliore leggibilità;
+    \item \textbf{Parentesi}: aggiungere lo spazio prima e dopo un blocco raccolto tra parentesi;
+    \item \textbf{Quoting}: utilizzare singoli (\texttt{'}) apici per le stringhe;
+    \item \textbf{Più istruzioni su una linea}: evitare più istruzioni sulla stessa linea;
+    \item \textbf{Punto e virgola}: aggiungere sempre il simbolo ';' alla fine di ogni statement;
+    \item \textbf{Nomi componenti}: i nomi dei componenti devono seguire lo stile PascalCase;
+    \item \textbf{Nomi file componenti}: i nomi dei file che contengono un componente devono essere uguali al nome del componente;
+    \item \textbf{Nomi css componenti}: i nomi dei fogli di stile riferiti ad un unico componente devono essere uguali al nome del componente, ma scritti in camelCase;
+    \item \textbf{Nomi cartelle componenti}: i nomi delle cartelle che contentengono un componente devono essere uguali al nome del componente, ma scritti in camelCase;
+    \item \textbf{Nomi file ausiliari}: i nomi dei file ausiliari devono seguire lo stile camelCase;
+    \item \textbf{Nomi metodi e variabili}: i nomi dei componenti devono seguire lo stile camelCase;
+    \item \textbf{Nomi costanti}: i nomi delle costanti devono seguire lo stile UPPER\_SNAKE\_CASE;
+    \end{itemize}
+
+\subsubsubsection{Stile di codifica: HTML e CSS}
+Per lo stile di codifica dei linguaggi HTML e CSS è stato seguito il modello indicato al seguente
+indirizzo: \url{https://google.github.io/styleguide/htmlcssguide.html}.
 
 \subsubsection{Testing}
 Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (\S Norme di progetto).

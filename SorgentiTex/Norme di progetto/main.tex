@@ -347,7 +347,7 @@ SWEetCode nell'esecuzione dell'attività di analisi dei requisiti ha deciso di a
 da \textit{SEMAT}: tale pianificazione viene spiegata nel dettaglio all'interno del (\S Piano di progetto).
 
 \subsubsection{Progettazione}
-\paragraph{Scopo}
+\subsubsubsection{Scopo}
 L'attività di progettazione ha lo scopo di fissare un'archiettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
 La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
 
@@ -368,7 +368,7 @@ I progettisti del team avranno l'obbligo di considerare le seguenti proprietà d
 
 Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
 
-\paragraph{Progettazione logica}
+\subsubsubsection{Progettazione logica}
 La progettazione logica consiste nel trasformare i requisiti software in un'architettura che descrive la struttura di alto livello del prodotto software e ne identifica i componenti.
 In questa fase i progettisti devono assicurarsi che tutti i requisiti siano assegnati ai componenti e che questi siano ulteriormente dettagliati, in modo da facilitare la successiva progettazione di dettaglio.
 
@@ -381,7 +381,7 @@ In particolare, i progettisti devono:
     \item Valutare e revisionare l'architettura definita nei passi precedenti, coinvolgendo tutti i membri del team e altre parti interessate. In particolare, il team collaborerà con dei membri dell'azienda proponente in modo da ottenere consigli e correzioni da fonti autorevoli e con esperienza.
 \end{itemize}
 
-\paragraph{Progettazione di dettaglio}
+\subsubsubsection{Progettazione di dettaglio}
 \label{sec:progettazione_di_dettaglio}
 La progettazione di dettaglio consiste nel suddividere il sistema affinché ogni singola parte abbia una complessità tale da poter essere codificata da un unico individuo, in modo rapido, fattibile e verificabile.
 
@@ -399,7 +399,7 @@ Durante la progettazione di dettaglio, i progettisti hanno il compito di:
     \item Definire la specifica dei test di integrazione, collaborando con i verificatori;
 \end{itemize}
 
-\paragraph{Specifica architetturale}
+\subsubsubsection{Specifica architetturale}
 La progettazione deve essere ben documentata, affinché la codifica e la verifica del software possano essere svolte in modo autonomo e disciplinato.
 
 Ogni parte individuata deve essere dodata di una specifica chiara e coesa, realizzabile entro i costi e le risorse disponibili.
@@ -613,7 +613,7 @@ software. Tutti i documenti da redigere vengono presentati nella tabella che seg
 In questa sezione vengono presentati gli standard e le regole (nello specifico di stile) a cui i membri di SWEetCode si attengono 
 relativamente alla stesura di documenti relativi al progetto. 
     
-    \paragraph{Template}
+    \subsubsubsection{Template}
     Il team ha deciso di produrre un template grafico ricorrente all'interno della documentazione.\\
     Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito 
     disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
@@ -624,7 +624,7 @@ relativamente alla stesura di documenti relativi al progetto.
             ed infine la numerazione di pagina.
         \end{itemize}
 
-    \paragraph{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con 
+    \subsubsubsection{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con 
     il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già 
     presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come 
     \textit{ifthen} e \textit{forloop}.
@@ -649,7 +649,7 @@ relativamente alla stesura di documenti relativi al progetto.
         \item Lista decisioni.
     \end{itemize}
     
-    \paragraph{Struttura di documento}
+    \subsubsubsection{Struttura di documento}
     Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
     \begin{itemize}
         \item \textbf{Pagina di copertina}: descritta nella sezione Template precedente;
@@ -662,7 +662,7 @@ relativamente alla stesura di documenti relativi al progetto.
         \item \textbf{Contenuto}: il contenuto vero e proprio del documento.
     \end{itemize}
     
-    \paragraph{Verbali}Fanno eccezione alla struttura precedentemente esposta i verbali, sia esterni che interni. Essi infatti oltre a 
+    \subsubsubsection{Verbali}Fanno eccezione alla struttura precedentemente esposta i verbali, sia esterni che interni. Essi infatti oltre a 
     presentare nella prima pagina di copertina i ruoli inerenti alla loro produzione (al posto dell'elenco dei membri del team) ed una 
     sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate 
     dell'azienda), offrono una struttura particolare.\\
@@ -685,7 +685,7 @@ relativamente alla stesura di documenti relativi al progetto.
         (nel caso in cui essa sia stata stabilita).
     \end{itemize}    
     
-    \paragraph{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e 
+    \subsubsubsection{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e 
     committente.\\ 
     Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
     \begin{itemize}
@@ -697,7 +697,7 @@ relativamente alla stesura di documenti relativi al progetto.
         ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
     \end{itemize}
     
-    \paragraph{Norme tipografiche}
+    \subsubsubsection{Norme tipografiche}
     \begin{itemize}
 
         \item {\textbf{Citazioni tecnologiche e strumentali}}: Ogni tecnologia e/o strumento menzionato all'interno della documentazione 
@@ -804,7 +804,7 @@ Il processo di configuration management è un processo di applicazione di proced
 \end{itemize}
 
 \subsubsection{Configuration control}
-\paragraph{Scopo}
+\subsubsubsection{Scopo}
 L'attività di configuration control si pone i seguenti obiettivi:
 \begin{itemize}
     \item Identificare e registrare le richieste di modifica;
@@ -813,10 +813,10 @@ L'attività di configuration control si pone i seguenti obiettivi:
     \item Tracciamento di audit.
 \end{itemize}
 
-\paragraph{Issue tracking system (ITS)} 
+\subsubsubsection{Issue tracking system (ITS)} 
 Per raggiungere l'obiettivo di tracciamento di audit, ovvero la registrazione sistematica e dettagliata dei task e delle modifiche, SWEetCode utilizza 
 l'\textit{Issue Tracking System Jira} fornito da \textit{Atlassian}: \textit{Jira}.
-\subparagraph{Ticket}
+\subsubsubsubsection{Ticket}
 In questo sistema di tracciamento si permette la creazione di \textit{ticket} che possono essere di tre tipi:
 \begin{itemize}
     \item \textit{task}: tale tipo di ticket viene utilizzato dal team per assegnate compiti atomici ai vari membri del gruppo;
@@ -839,26 +839,26 @@ Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalit�
     \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associata ad una determinata \textit{versione}.
 \end{itemize}
 
-\subparagraph{Epic}
+\subsubsubsubsection{Epic}
 Un insieme di \textit{ticket} può essere raggruppato all'interno di una \textit{epic}: una \textit{epic} costituisce un'unità 
 logica e strategica di lavoro più ampia, rappresentando un obiettivo o un risultato di alto livello. Questo strumento di lavoro offre
 al team una panoramica di completamento generale di un particolare insieme di azioni correlate tra loro, attraverso una 
 scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
 Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta i medesimi field di un \textit{ticket} precedentemente descritti.
 
-\subparagraph{Versioni}
+\subsubsubsubsection{Versioni}
 Per rappresentare le milestone su \textit{Jira} vengono utilizzate le \textit{Versioni}, alle quali possono essere associate \textit{epic}
 e i relativi \textit{ticket}, riportando come nelle \textit{epic} una scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
 Una volta che tutti i \textit{ticket} associati alla \textit{versione} sono stati completati, tale \textit{versione} può essere rilasciata.
 Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta una breve descrizione, una data di inizio ed una di fine.
 
-\subparagraph{Backlog e Sprint}
+\subsubsubsubsection{Backlog e Sprint}
 \textit{Jira} offre all'interno dell'\textit{ITS} differenti funzionalità di supporto al metodo agile, seguendo il framework Scrum, in particolare
 quando i \textit{ticket} vengono creati sono inseriti di default all'interno del \textit{Backlog} per essere in seguito
 assegnati ai vari \textit{Sprint}. 
 Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
 
-\subparagraph{Timeline}
+\subsubsubsubsection{Timeline}
 \textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un diagramma di Gantt all'interno del quale poter inserire i \textit{ticket}
 creati associati ad una \textit{epic}.\\
 Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
@@ -870,14 +870,14 @@ Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \
 Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
 permettendo di effettuare una istantanea.
 
-\subparagraph{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
+\subsubsubsubsection{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
 Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS}: ogni volta che un membro del team 
 effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto, \S 3.2.2 Automazione versionamento documenti)
 presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
 A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
 allo stato \textit{Completato}.
 
-\paragraph{Pull requests} 
+\subsubsubsection{Pull requests} 
 \label{sec:pull_request}
 A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato che permetta di analizzare 
 e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
@@ -888,7 +888,7 @@ Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Prote
 L'identificazione attraverso un titolo fornito da colui che solleva la pull request e la registrazione delle richieste di modifica e del loro esito è una conseguenza
 dell'applicazione della pratica delle pull request offerta da \textit{GitHub}.
 
-\paragraph{GitHub Teams}
+\subsubsubsection{GitHub Teams}
 SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di 
 \textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
 I \textit{Teams} presentati sono dunque:
@@ -904,11 +904,11 @@ Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei mo
 piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
 
 \subsubsection{Configuration status accounting}
-\paragraph{Scopo}
+\subsubsubsection{Scopo}
 L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in
 relazione allo stato del prodotto stesso nel corso del tempo.
 
-\paragraph{Version control}
+\subsubsubsection{Version control}
 \label{sec:version}
 Per tenere traccia dello stato e della storia degli elementi controllati, il team ha deciso di utilizzare un sistema di \textit{Version control} basato su una versione 
 del prodotto che si attiene al seguente formato: vX.Y.Z(build).
@@ -925,21 +925,21 @@ Ogni volta che viene incrementato il valore Y, il valore Z e (build) ripartono d
 Ogni volta che viene incrementato il valore Z, il valore (build) riparte dal valore "0".
 
 \subsubsection{Configuration evaluation}
-\paragraph{Scopo}
+\subsubsubsection{Scopo}
 L'attività di configuration evaluation si pone l'obiettivo di garantire la completezza funzionale degli elementi software realizzati rispetto ai loro
 requisiti.
 
-\paragraph{Tracciamento dei requisiti}
+\subsubsubsection{Tracciamento dei requisiti}
 Per raggiungere l'obiettivo precedentemente citato, il team SWEetCode ha deciso di effettuare un tracciamento dei requisiti all'interno del prodotto software,
 in modo da portare nel concreto l'evidenza della correlazione tra requisiti e codice.\\
 Per effettuare il tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
 del requisito menzionato.
 
 \subsubsection{Release management}
-\paragraph{Scopo}
+\subsubsubsection{Scopo}
 L'attività di release management si occupa di effettuare un rilascio controllato.
 
-\paragraph{Automazione release}
+\subsubsubsection{Automazione release}
 L'automazione del versionamento consente di rilasciare nuove release in modo automatico, seguendo le regole di
 cambio versione indicate in (Norme di progetto, \S \nameref{sec:version}). Attraverso l'uso delle \textit{GitHub Actions}, l'accettazione di una pull request, 
 eseguita seguendo le norme indicate nel paragrafo (Norme di progetto, \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
@@ -951,7 +951,7 @@ Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione d
 La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
 verifica, che garantiscono la pulizia del repository remota e la correttezza del suo contenuto.
 
-\paragraph{Automazione versionamento documenti}
+\subsubsubsection{Automazione versionamento documenti}
 \label{sec:automazione_docs}
 L'aggiornamento del registro delle versioni, la creazione dei pdf e la pubblicazione delle modifiche nella repository remota avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
 Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
@@ -1056,6 +1056,33 @@ Ogni test è associato a uno stato che indica il risultato di soddisfacimento di
     \item N (Non superato).
 \end{itemize}
 
+\subsection{Validazione}
+\subsubsection{Scopo}
+Il processo di validazione è finalizzato a determinare se i requisiti stabiliti da contratto all'interno del documento (\S Analisi dei requisiti) vengono soddisfatti nel 
+prodotto sottoposto a tale processo.
+
+\subsubsection{Implementazione del processo}
+La validazione viene effettuata in presenza dell'azienda proponente.\\
+Precondizione necessaria dell'avvio di questo processo è l'esito positivo dei:
+\begin{itemize}
+    \item Test di unità;
+    \item Test di integrità;
+    \item Test di sistema.
+\end{itemize}
+Lo svolgimento di tale processo coinvolge i seguenti passi:
+\begin{enumerate}
+    \item \textbf{Tracciamento dei requisiti}: il team espone all'azinda proponente il tracciamento dei requisiti realizzato, portando così 
+    l'evidenza della presenza dei requisiti all'interno del prodotto posto a validazione;
+    \item \textbf{Collaudo}: il team assieme all'azienda proponente eseguono il prodotto. L'esecuzione del prodotto viene accompagnata 
+    dall'esecuzione dei test di accettazione.
+\end{enumerate}
+Se i test di accettazione effettuati durante il collaudo terminano con esito positivo, il prodotto realizzato dal team viene ritenuto validato dall'azienda proponente.
+
+\subsubsection{Test di accettazione}
+I test di accettazione prevedono la simulazione degli scenari principali di utilizzo del prodotto da parte degli utenti.\\ 
+Questi test permettono di testare le principali funzionalità che vengono rese disponsibili dal prodotto sottposto a validazione, portando ad una
+rapida evidenza del soddisfacimento di alcuni dei requisiti richiesti, compatibile coi tempi di un collaudo (la responsabilità di dimostrare la completezza del 
+prodotto nei confronti di tutti requisiti richiesti da contratto viene infatti affidata al tracciamento dei requisiti).
 
 \section{Processi organizzativi}
 

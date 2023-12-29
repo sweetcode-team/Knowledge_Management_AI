@@ -25,6 +25,7 @@
 \usepackage{fontawesome}
 \usepackage{ifthen}
 \usepackage{forloop}
+\usepackage{tocloft}
 \hypersetup{
     colorlinks=true, % Imposta i collegamenti come testo colorato anziché riquadri intorno al testo
     linkcolor=black,  % Colore dei link alle sezioni
@@ -58,3 +59,151 @@
 \setlist[itemize]{label=\color{primarycolor}\textbullet}
 
 \setlength{\parindent}{0pt}
+
+\newcounter{uccounter}
+\newcommand{\uc}[2]{%
+  \refstepcounter{uccounter}%
+  \addcontentsline{toc}{subsubsection}{UC\arabic{uccounter}\ - #1}%
+  \subsubsection*{\label{#2}\textbf{UC\arabic{uccounter}\ - #1}}%
+}
+
+\newcounter{subuccounter}[uccounter]
+\newcommand{\subuc}[2]{%
+  \refstepcounter{subuccounter}%
+  \addcontentsline{toc}{subsubsection}{UC\arabic{uccounter}.\arabic{subuccounter}\ - #1}%
+  \subsubsection*{\label{#2}\textbf{UC\arabic{uccounter}.\arabic{subuccounter}\ - #1}}%
+}
+
+\newcounter{subsubuccounter}[subuccounter]
+\newcommand{\subsubuc}[2]{%
+  \refstepcounter{subsubuccounter}%
+  \addcontentsline{toc}{subsubsection}{UC\arabic{uccounter}.\arabic{subuccounter}.\arabic{subsubuccounter}\ - #1}%
+  \subsubsection*{\label{#2}\textbf{UC\arabic{uccounter}.\arabic{subuccounter}.\arabic{subsubuccounter}\ - #1}}%
+}
+
+\newcounter{subsubsubuccounter}[subsubuccounter]
+\newcommand{\subsubsubuc}[2]{%
+  \refstepcounter{subsubsubuccounter}%
+  \addcontentsline{toc}{subsubsection}{UC\arabic{uccounter}.\arabic{subuccounter}.\arabic{subsubuccounter}.\arabic{subsubsubuccounter}\ - #1}%
+  \subsubsection*{\label{#2}\textbf{UC\arabic{uccounter}.\arabic{subuccounter}.\arabic{subsubuccounter}.\arabic{subsubsubuccounter}\ - #1}}%
+}
+
+\newcommand{\rifuc}[1]{\hyperref[#1]{UC\ref*{#1}}}
+\newcommand{\rifsubuc}[2]{\hyperref[#2]{UC\ref*{#1}.\ref*{#2}}}
+\newcommand{\rifsubsubuc}[3]{\hyperref[#3]{UC\ref*{#1}.\ref*{#2}.\ref*{#3}}}
+\newcommand{\rifsubsubsubuc}[4]{\hyperref[#4]{UC\ref*{#1}.\ref*{#2}.\ref*{#3}.\ref*{#4}}}
+
+\newcommand{\ucimg}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#3\textwidth, height=#3\textheight, keepaspectratio]{img/UC/#1}
+        \caption{#2}
+    \end{figure}
+}
+
+\newcounter{rfcounter}
+\newcommand{\rf}[1]{%
+  \refstepcounter{rfcounter}%
+  \textbf{RF.#1.\arabic{rfcounter}}%
+}
+
+\newcounter{subrfcounter}[rfcounter]
+\newcommand{\subrf}[1]{%
+  \refstepcounter{subrfcounter}%
+  \textbf{RF.#1.\arabic{rfcounter}.\arabic{subrfcounter}}%
+}
+
+\newcounter{subsubrfcounter}[subrfcounter]
+\newcommand{\subsubrf}[1]{%
+  \refstepcounter{subsubrfcounter}%
+  \textbf{RF.#1.\arabic{rfcounter}.\arabic{subrfcounter}.\arabic{subsubrfcounter}}%
+}
+
+\newcounter{subsubsubrfcounter}[subsubrfcounter]
+\newcommand{\subsubsubrf}[1]{%
+  \refstepcounter{subsubsubrfcounter}%
+  \textbf{RF.#1.\arabic{rfcounter}.\arabic{subrfcounter}.\arabic{subsubrfcounter}.\arabic{subsubsubrfcounter}}%
+}
+
+
+\newcounter{rqcounter}
+\newcommand{\rql}[1]{%
+ \refstepcounter{rqcounter}%
+  \textbf{RQ.#1.\arabic{rqcounter}}%
+}
+
+\newcounter{subrqcounter}[rqcounter]
+\newcommand{\subrq}[1]{%
+ \refstepcounter{subrqcounter}%
+  \textbf{RQ.#1.\arabic{rqcounter}.\arabic{subrqcounter}}%
+}
+
+\newcounter{subsubrqcounter}[subrqcounter]
+\newcommand{\subsubrq}[1]{%
+ \refstepcounter{subsubrqcounter}%
+  \textbf{RQ.#1.\arabic{rqcounter}.\arabic{subrqcounter}.\arabic{subsubrqcounter}}%
+}
+
+\newcounter{subsubsubrqcounter}[subsubrqcounter]
+\newcommand{\subsubsubrq}[1]{%
+ \refstepcounter{subsubsubrqcounter}%
+  \textbf{RQ.#1.\arabic{rqcounter}.\arabic{subrqcounter}.\arabic{subsubrqcounter}.\arabic{subsubsubrqcounter}}%
+}
+
+
+\newcounter{rvcounter}
+\newcommand{\rv}[1]{%
+ \refstepcounter{rvcounter}%
+  \textbf{RV.#1.\arabic{rvcounter}}%
+}
+
+\newcounter{subrvcounter}[rvcounter]
+\newcommand{\subrv}[1]{%
+ \refstepcounter{subrvcounter}%
+  \textbf{RV.#1.\arabic{rvcounter}.\arabic{subrvcounter}}%
+}
+
+\newcounter{subsubrvcounter}[subrvcounter]
+\newcommand{\subsubrv}[1]{%
+ \refstepcounter{subsubrvcounter}%
+  \textbf{RV.#1.\arabic{rvcounter}.\arabic{subrvcounter}.\arabic{subsubrvcounter}}%
+}
+
+\newcounter{subsubsubrvcounter}[subsubrvcounter]
+\newcommand{\subsubsubrv}[1]{%
+ \refstepcounter{subsubsubrvcounter}%
+  \textbf{RV.#1.\arabic{rvcounter}.\arabic{subrvcounter}.\arabic{subsubrvcounter}.\arabic{subsubsubrvcounter}}%
+}
+
+
+\newcounter{rpcounter}
+\newcommand{\rp}[1]{%
+ \refstepcounter{rpcounter}%
+  \textbf{RP.#1.\arabic{rpcounter}}%
+}
+
+\newcounter{subrpcounter}[rpcounter]
+\newcommand{\subrp}[1]{%
+ \refstepcounter{subrpcounter}%
+  \textbf{RP.#1.\arabic{rpcounter}.\arabic{subrpcounter}}%
+}
+
+\newcounter{subsubrpcounter}[subrpcounter]
+\newcommand{\subsubrp}[1]{%
+ \refstepcounter{subsubrpcounter}%
+  \textbf{RP.#1.\arabic{rpcounter}.\arabic{subrpcounter}.\arabic{subsubrpcounter}}%
+}
+
+\newcounter{subsubsubrpcounter}[subsubrpcounter]
+\newcommand{\subsubsubrp}[1]{%
+ \refstepcounter{subsubsubrpcounter}%
+  \textbf{RP.#1.\arabic{rpcounter}.\arabic{subrpcounter}.\arabic{subsubrpcounter}.\arabic{subsubsubrpcounter}}%
+}
+
+\newcommand{\reqimg}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#3\textwidth, height=#3\textheight, keepaspectratio]{img/Attivita/#1}
+        \caption{#2}
+    \end{figure}
+}

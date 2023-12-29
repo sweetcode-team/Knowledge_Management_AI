@@ -87,8 +87,10 @@ Questa sezione ha l'obiettivo di presentare i casi d'uso relativi all'applicazio
 
 \subsection{Attori}
 \subsubsection{Attori primari}
+\ucimg{attori_pr}{Attori primari}{0.1}
 L'applicazione \textit{Knowledge Management AI} richiede un singolo attore principale che rappresenta l'utente (ovvero il lavoratore) che interagisce con il sistema.
 \subsubsection{Attori secondari}
+\ucimg{attori_sec}{Attori secondari}{1}
 L'applicazione dialoga inoltre con i seguenti attori secondari:
 \begin{itemize}
     \item Modello LLM, generalizzato in:
@@ -133,7 +135,15 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole configurare i componenti del sistema.
     \end{itemize}
+    \ucimg{avvio_sist}{Diagramma primo avvio sistema}{0.75}
+    \ucimg{conf_sist}{Diagramma configurazione sistema}{0.75}
+    \ucimg{conf_comp_sist}{Diagramma \rifuc{conf_comp_sistema}}{1}
 
+    \attimg{conf_comp_sist}{Diagramma attività configurazione sistema}{0.5}
+    \attimg{conf_LLM}{Diagramma attività configurazione LLM}{1}
+    \attimg{conf_vd}{Diagramma attività configurazione vector database}{1}
+    \attimg{conf_emb}{Diagramma attività configurazione modello di embeddings}{1}
+    \attimg{conf_sis_arc}{Diagramma attività configurazione sistema di archiviazione documenti}{1}
     
     \subuc{Configurazione modello LLM}{conf_LLM}
     \begin{itemize}
@@ -150,6 +160,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Estensioni}: visualizzazione errore configurazione modello LLM (\rifuc{vis_err_LLM});
         \item \textbf{Trigger}: l’utente vuole configurare il modello LLM del sistema.
     \end{itemize}
+    \ucimg{conf_LLM}{Diagramma \rifsubuc{conf_comp_sistema}{conf_LLM}}{1}
     
 
     \subsubuc{Visualizzazione lista modelli LLM disponibili}{vis_lista_LLM}
@@ -159,6 +170,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli LLM in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM}{vis_sing_LLM});
         \item \textbf{Trigger}: l’utente vuole conoscere i modelli LLM resi disponibili dall’applicazione web.
     \end{itemize}
+    \ucimg{vis_lista_LLM}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM}}{1}
 
     \subsubsubuc{Visualizzazione singolo modello LLM in lista}{vis_sing_LLM}
     \begin{itemize}
@@ -257,6 +269,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Estensioni}: visualizzazione errore configurazione vector database (\rifuc{vis_err_vd});
         \item \textbf{Trigger}: l’utente vuole configurare il vector database del sistema.
     \end{itemize}
+    \ucimg{conf_vd}{Diagramma \rifsubuc{conf_comp_sistema}{conf_vd}}{1}
 
     \subsubuc{Visualizzazione lista vector database disponibili}{vis_lista_vd}
     \begin{itemize}
@@ -265,6 +278,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l’utente visualizza i singoli vector database in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd}{vis_sing_vd});
         \item \textbf{Trigger}: l’utente vuole conoscere i vector database resi disponibili dall’applicazione web.
     \end{itemize}
+    \ucimg{vis_lista_vd}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd}}{1}
 
     \subsubsubuc{Visualizzazione singolo vector database in lista}{vis_sing_vd}
     \begin{itemize}
@@ -354,6 +368,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Estensioni}: visualizzazione errore configurazione modello embeddings (\rifuc{vis_err_emb});
         \item \textbf{Trigger}: l’utente vuole configurare il modello di embeddings del sistema.
     \end{itemize}
+    \ucimg{conf_emb}{Diagramma \rifsubuc{conf_comp_sistema}{conf_emb}}{1}
 
     \subsubuc{Visualizzazione lista modelli di embeddings disponibili}{vis_lista_emb}
     \begin{itemize}
@@ -362,6 +377,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli di embeddings in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb}{vis_sing_emb});
         \item \textbf{Trigger}: l’utente vuole conoscere i modelli di embeddings resi disponibili dall’applicazione web.
     \end{itemize}
+    \ucimg{vis_lista_emb}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb}}{1}
 
     \subsubsubuc{Visualizzazione singolo modello di embeddings in lista}{vis_sing_emb}
     \begin{itemize}
@@ -460,6 +476,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Estensioni}: visualizzazione errore configurazione sistema di archiviazione documenti (\rifuc{vis_err_sis});
         \item \textbf{Trigger}: l’utente vuole configurare il sistema di archiviazione documenti.
     \end{itemize}
+    \ucimg{conf_sist_arc}{Diagramma \rifsubuc{conf_comp_sistema}{conf_sis}}{1}
 
     \subsubuc{Visualizzazione lista sistemi di archiviazione documenti disponibili}{vis_lista_sis}
     \begin{itemize}
@@ -468,6 +485,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l’utente visualizza i singoli sistemi di archiviazione in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis}{vis_sing_sis});
         \item \textbf{Trigger}: l’utente vuole conoscere i sistemi di archiviazione dei documenti resi disponibili dall’applicazione web.
     \end{itemize}
+    \ucimg{vis_lista_arc}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis}}{1}
 
     \subsubsubuc{Visualizzazione singolo sistema di archiviazione in lista}{vis_sing_sis}
     \begin{itemize}
@@ -623,6 +641,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello LLM.
     \end{itemize}
+    \ucimg{vis_car_LLM}{Diagramma \rifuc{vis_car_LLM}}{0.75}
 
     \subuc{Visualizzazione nome modello LLM}{vis_nome_LLM}
     \begin{itemize}
@@ -703,6 +722,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un vector database.
     \end{itemize}
+    \ucimg{vis_car_vd}{Diagramma \rifuc{vis_car_vd}}{0.75}
 
     \subuc{Visualizzazione nome vector database}{vis_nome_vd}
     \begin{itemize}
@@ -783,6 +803,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello di embeddings.
     \end{itemize}
+    \ucimg{vis_car_emb}{Diagramma \rifuc{vis_car_emb}}{0.75}
 
     \subuc{Visualizzazione nome modello di embeddings}{vis_nome_emb}
     \begin{itemize}
@@ -863,6 +884,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un sistema di archiviazione.
     \end{itemize}
+    \ucimg{vis_car_arc}{Diagramma \rifuc{vis_car_sis}}{0.75}
 
     \subuc{Visualizzazione nome sistema di archiviazione}{vis_nome_sis}
     \begin{itemize}
@@ -939,6 +961,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
     \end{itemize}
+    \ucimg{vis_conf}{Diagramma \rifuc{vis_conf}}{1}
 
     \subuc{Visualizzazione configurazione modello LLM}{vis_conf_LLM}
     \begin{itemize}
@@ -992,6 +1015,8 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l'utente visualizza i singoli documenti in lista (\rifsubuc{vis_lista_doc}{vis_sing_doc});
         \item \textbf{Trigger}: l’utente desidera visualizzare la lista dei documenti caricati all’interno del sistema di archiviazione.
     \end{itemize}
+    \ucimg{gest_docs}{Diagramma gestione documenti}{1}
+    \ucimg{vis_lista_docs}{Diagramma \rifuc{vis_lista_doc}}{0.75}
 
     \subuc{Visualizzazione singolo documento in lista}{vis_sing_doc}
     \begin{itemize}
@@ -1011,6 +1036,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare il singolo documento all’interno della lista di documenti caricati.
     \end{itemize}
+    \ucimg{vis_sing_doc}{Diagramma \rifsubuc{vis_lista_doc}{vis_sing_doc}}{0.8}
 
     \subsubuc{Visualizzazione titolo singolo documento}{vis_tit_doc}
     \begin{itemize}
@@ -1134,7 +1160,9 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Estensioni}: Sostituzione documento già presente (\rifuc{sost_doc})
         \item \textbf{Trigger}: l’utente vuole inserire un documento all’interno del sistema, rendendolo disponibile sia nel sistema di archiviazione che reperibile dal chatbot.
     \end{itemize}
+    \ucimg{up_docs}{Diagramma \rifuc{up_doc}}{1}
 
+    \attimg{up_doc}{Diagramma attività upload documento}{1}
 
     \uc{Sostituzione documento già presente}{sost_doc}
     \begin{itemize}
@@ -1242,6 +1270,8 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l'utente visualizza le singole chat in lista (\rifsubuc{vis_lista_chat}{vis_sing_chat});
         \item \textbf{Trigger}: l’utente desidera visualizzare la lista delle chat.
     \end{itemize}
+    \ucimg{vis_lista_chat}{Diagramma \rifuc{vis_lista_chat}}{0.75}
+    \ucimg{gest_chat}{Diagramma gestione chat}{1}
 
     \subuc{Visualizzazione singola chat in lista}{vis_sing_chat}
     \begin{itemize}
@@ -1259,6 +1289,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare la singola chat all’interno della lista.
     \end{itemize}
+    \ucimg{vis_sing_chat}{Diagramma \rifsubuc{vis_lista_chat}{vis_sing_chat}}{0.8}
 
     \subsubuc{Visualizzazione titolo singola chat in lista}{vis_tit_chat}
     \begin{itemize}
@@ -1404,6 +1435,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
     \end{itemize}
+    \ucimg{vis_cont_chat}{Diagramma \rifuc{vis_cont_chat}}{0.75}
 
     \subuc{Visualizzazione singolo messaggio in chat}{vis_sing_mess}
     \begin{itemize}
@@ -1418,6 +1450,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
     \end{itemize}
+    \ucimg{vis_sing_mess}{Diagramma \rifsubuc{vis_cont_chat}{vis_sing_mess}}{0.8}
 
     \subsubuc{Visualizzazione contenuto testuale singolo messaggio in chat}{vis_cont_mess}
     \begin{itemize}
@@ -1460,6 +1493,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l’utente richiede di visualizzare le domande suggerite;
         \item \textbf{Trigger}: l’utente vuole visualizzare le domande suggerite in una chat vuota.
     \end{itemize}
+    \ucimg{gest_dom_sugg}{Diagramma gestione domande suggerite}{0.75}
 
     \uc{Invio domanda suggerita}{invio_dom_sugg}
     \begin{itemize}
@@ -1473,6 +1507,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole inviare una delle domande suggerite in una chat vuota.
     \end{itemize}
+    \ucimg{invio_dom_sugg}{Diagramma \rifuc{invio_dom_sugg}}{0.75}
 
     \subuc{Scelta domanda suggerita}{scelta_dom_sugg}
     \begin{itemize}
@@ -1512,6 +1547,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \end{enumerate} 
         \item \textbf{Trigger}: l’utente desidera ascoltare la lettura di un messaggio.
     \end{itemize}
+    \ucimg{gest_mess}{Diagramma gestione messaggio}{0.6}
 
     \uc{Copia messaggio}{copia_mess}
     \begin{itemize}
@@ -1529,6 +1565,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole copiare un messaggio.
     \end{itemize}
+    \ucimg{gest_mod_voc}{Diagramma gestione modalità vocale}{0.75}
 
     \uc{Attivazione modalità vocale}{att_mod_voc}
     \begin{itemize}
@@ -1573,7 +1610,9 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole inviare un messaggio.
     \end{itemize}
+    \ucimg{invio_mess}{Diagramma \rifuc{invio_mess}}{1}
     
+    \attimg{invio_mess}{Diagramma attività dialogo chatbot}{1}
 
     \subuc{Inserimento messaggio}{ins_mess}
     \begin{itemize}
@@ -1896,6 +1935,5 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rp{O} & Il sistema deve garantire il servizio per almeno un utente. & Verbale esterno (2023-11-15) \\
 
 \end{xltabular}
-
 
 \end{document}

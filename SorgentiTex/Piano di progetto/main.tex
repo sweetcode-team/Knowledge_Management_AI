@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{svg}
 \usepackage{comment}
+\definecolor{primarycolor}{RGB}{248, 182, 143}
 
 \title{\titolo}
 \author{SWEetCode}
@@ -23,9 +24,9 @@
 
 % INDICE
 \tableofcontents
-% SOMMARIO
-\section*{Sommario}
+\newpage
 \listoffigures
+\newpage
 \listoftables
 \newpage
 
@@ -35,7 +36,7 @@
 
 
 \subsection{Scopo del documento}
-\paragraph{}Il documento ha l'obiettivo di definire le risorse da impiegare, le modalità e le tempistiche da seguire per lo svolgimento del progetto. In particolare viene effettuata un'\textbf{analisi dei rischi attesi}, a cui vengono affiancate delle \textbf{pratiche di mitigazione} degli stessi. Si propone inoltre una \textbf{valutazione dell'efficacia} di queste pratiche,così da portare ad eventuali miglioramenti o correzioni delle stesse nel caso in cui non dovessero portare ai risultati desiderati.
+\paragraph{}Il documento ha l'obiettivo di definire le risorse da impiegare, le modalità e le tempistiche da seguire per lo svolgimento del progetto. In particolare viene effettuata un'\textbf{analisi dei rischi attesi}, a cui vengono affiancate delle \textbf{pratiche di mitigazione} degli stessi. Si propone inoltre una \textbf{valutazione dell'efficacia} di queste pratiche, così da portare ad eventuali miglioramenti o correzioni delle stesse nel caso in cui non dovessero portare ai risultati desiderati.
 \paragraph{}Il documento si sviluppa poi nelle sezioni di \textbf{pianificazione} delle attività, indicando \textbf{preventivo} e \textbf{consuntivo} di ogni periodo e infine si conclude con la parte di \textbf{retrospettiva}, in cui vengono analizzate la gestione del tempo e del budget e le pratiche che si sono rivelate più o meno buone nel corso dello svolgimento del progetto.
 \paragraph{}In aggiunta è necessario specificare che tale documento viene redatto con un approccio incrementale, in maniera tale da poter implementare facilmente dei cambiamenti nel corso del tempo a seconda delle necessità.
 
@@ -44,16 +45,17 @@
 %\subsection{Scopo del prodotto}
 
 \subsection{Glossario}
-\paragraph{}Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione relativa al progetto viene presentato un Glossario. I termini ambigui o specifici presenti nello stesso, verranno identificati con un pedice |g|. (DA VALUTARE COME RICONOSCERE IL TERMINE )
+\paragraph{}Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione relativa al progetto viene presentato un Glossario. I termini ambigui o specifici presenti nello stesso, verranno identificati con un pedice |g|.
 \subsection{Riferimenti}
 
  %SEZIONE RIF. NORMATIVI
 \subsubsection{Riferimenti normativi} 
 \begin{itemize}
+\item \textit{Norme di progetto v0.0.1(23)};
 \item \textit{Regolamento del progetto didattico}: \\
 \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
-(Ultimo accesso: $2023-11-13$);
-\item \textit{Norme di progetto v0.0.1(23)};
+(Ultimo accesso: $2023-11-13$)
+
 \item \textit{Analisi dei requisiti v1.0.1}.
 \end{itemize}
 
@@ -77,16 +79,222 @@
     \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T4.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T4.pdf}\\
     (Ultimo accesso: $2023-11-27$).
 \end{itemize}
+
+\newpage
+
+\section{Rischi e loro mitigazione}
+\label{section:Rischi}
+\paragraph{}Questa sezione si occupa di analizzare le difficoltà che si possono incontrare durante lo svolgimento del progetto e che possono influenzare negativamente la pianificazione delle attività, portando a rallentamenti e ostacoli nell'avanzamento.\\
+Per poter individuare e gestire i rischi, questi vengono di seguito elencati, esaminati e corredati da descrizione, previsione della loro occorrenza, grado di pericolosità e misure di mitigazione nel caso in cui si verifichino.
+La notazione utilizzata per identificare i rischi è descritta in (Norme di progetto).
+
+%PERSONALI
+\subsection{Rischi personali}
+
+% RISCHIO IMPEGNI PERSONALI
+
+\subsubsection{Impegni universitari}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RP.1 \\
+\hline
+\textbf{Rischio} & Impegni universitari\\
+\hline
+\textbf{Descrizione} & Ogni componente del team ha impegni universitari oltre che esterni e può inoltre avere problemi strettamente personali. Questo indica che qualche membro potrebbe non essere disponibile in certi momenti. Questo rischio aumenta significativamente nel periodo imminente alle sessioni, che limitano di molto il tempo da dedicare al progetto per tutti i componenti del gruppo. \\
+\hline
+\textbf{Occorrenza} & Media\\
+\hline
+\textbf{Impatto} & Alto\\
+\hline
+\textbf{Misure di mitigazione} & I membri interessati si impegnano ad avvisare tempestivamente il gruppo; per far fronte a tale rischio si coprirà l’intervallo non produttivo del componente con una suddivisione omogenea tra i restanti colleghi delle attività rimaste in sospeso.
+Riuscire a non spostare la \textit{milestone} è prioritario.\\
+\end{tabularx}
+\caption{Rischi imprevisti e impegni universitari}
+\end{table}}
+
+
+
+
+\subsubsection{Problemi fra i membri del gruppo}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RP.2 \\
+\hline
+\textbf{Rischio} & Problemi fra i membri del gruppo  \\
+\hline
+\textbf{Descrizione} & Possono verificarsi divergenze di pensiero tra i componenti del gruppo che rischiano di portare a discussioni. \\
+\hline
+\textbf{Occorrenza} & Media\\
+\hline
+\textbf{Impatto} & Medio \\
+\hline
+\textbf{Misure di mitigazione} & Le parti prese in causa esporranno il loro punto di vista in maniera educata con lo scopo di migliorare e crescere invece di giudicare; il Responsabile è tenuto a fare da moderatore. \\
+\end{tabularx}
+\caption{Divergenze interne}
+\end{table}
+}
+
+
+%ORGANIZZATIVI
+
+\subsection{Rischi organizzativi}
+
+\subsubsection{Sottostima del tempo necessario per una attività}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RO.1 \\
+\hline
+\textbf{Rischio} & Sottostima del tempo necessario per una attività\\
+\hline
+\textbf{Descrizione} & Il team può andare in contro ad una sottostima del tempo necessario per il soddisfacimento di un requisito o di un'attività.\\
+\hline
+\textbf{Occorrenza} & Alta\\
+\hline
+\textbf{Impatto} & Alto\\
+\hline
+\textbf{Misure di mitigazione} & Tale errore deve essere reso noto al team tempestivamente; chi ha disponibilità viene incaricato di fornire assistenza per minimizzare il ritardo nel completamento dell'obiettivo.\\
+\end{tabularx}
+\caption{Tabella sottostima del tempo}
+\end{table}
+
+\subsubsection{Stima errata dei costi}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RO.2 \\
+\hline
+\textbf{Rischio} & Stima errata dei costi \\
+\hline
+\textbf{Descrizione} & Potrebbe verificarsi una valutazione scorretta dei costi di incarico.\\
+\hline
+\textbf{Occorrenza} & Media\\
+\hline
+\textbf{Impatto} & Medio\\
+\hline
+\textbf{Misure di mitigazione} & Si provvederà a far uso dei diagrammi di Gantt per l'organizzazione delle attività lasciando dello "slack" tra le attività con dipendenze.\\
+\end{tabularx}
+\caption{Stima errata dei costi}
+\end{table}
+
+
+
+\subsubsection{Disponibilità di lavoro non sfruttato}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RO.3 \\
+\hline
+\textbf{Rischio} & Disponibilità di lavoro non sfruttato \\
+\hline
+\textbf{Descrizione} & Caso in cui un membro del team si ritrova del tempo produttivo "libero" senza attività assegnate al proprio ruolo che lo impegnino.\\
+\hline
+\textbf{Occorrenza} & Media\\
+\hline
+\textbf{Impatto} & Medio\\
+\hline
+\textbf{Misure di mitigazione} & Il membro del team in questione viene invitato a farsi avanti e ad aiutare i membri in difficoltà o a farsi carico di attività non ancora assegnate anche non necessariamente legate al proprio ruolo in quel determinato \textit{sprint}. \\
+
+\end{tabularx}
+\caption{Disponibilità non sfruttata}
+\end{table}
+
+
+
+%TECNOLOGICI
+
+\subsection{Rischi tecnologici}
+
+\subsubsection{Scarsa esperienza con le tecnologie del progetto}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RT.1 \\
+\hline
+\textbf{Rischio} & Scarsa esperienza con le tecnologie del progetto \\
+\hline
+\textbf{Descrizione} & Si possono verificare difficoltà di utilizzo di strumenti di lavoro o inesperienze\\
+\hline
+\textbf{Occorrenza} & Alta\\
+\hline
+\textbf{Impatto} & Alta\\
+\hline
+\textbf{Misure di mitigazione} & Il rischio non può essere evitato, dato che una buona esperienza con le tecnologie si ottiene con gli anni (tempo non a disposizione per questo progetto comunque complesso). Il primo passo è la comunicazione interna delle difficoltà più gravi.
+\begin{itemize}
+    \item Se le lacune riguardano le tecnologie usate abitualmente da AzzurroDigitale, è possibile richiedere un colloquio di formazione o supporto;
+    \item Se le tecnologie sono note solo ad alcuni membri del gruppo, questi si impegnano a realizzare dei workshop per portare a regime le conoscenze degli altri componenti;
+    \item Nel caso si parli di una tecnologia sconosciuta a tutti i membri, si prosegue cercando e studiando la guida utente e la documentazione associata;
+    \item Se un membro incontra difficoltà gravi, questi verrà affiancato da un altro membro del gruppo che lo segua nell'apprendimento.
+\end{itemize}
+\end{tabularx}
+\caption{Scarsa esperienza tecnologica}
+\end{table}
+
+
+\subsubsection{Guasti hardware e problematiche software}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X}
+\textbf{ID Rischio} & RT.2 \\
+\hline
+\textbf{Rischio} & Guasti hardware e problematiche software \\
+\hline
+\textbf{Descrizione} & Si potrebbero presentare difficoltà legate all’hardware o al software utilizzati per cui un membro del gruppo risulta ostacolato nel portare a compimento un obiettivo o una attività. \\
+\hline
+\textbf{Occorrenza} & Bassa \\
+\hline
+\textbf{Impatto} & Medio\\
+\hline
+\textbf{Misure di mitigazione} & Comunicare tempestivamente il guasto al gruppo e se necessario chiedere aiuto e condivisione di un mezzo funzionante.\\
+\end{tabularx}
+\caption{Guasti hardware e software}
+\end{table}
+
+
+\subsection{Valutazione efficacia delle misure}
+\paragraph{}Questa sezione riassume la sezione di analisi dei rischi e valuta l'efficacia delle pratiche di mitigazioni degli stessi nel caso questi si siano verificati.\\
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|c|c|X}
+\textbf{ID Rischio} & \textbf{Occorrenza effettiva} & \textbf{Impatto effettivo} & \textbf{\quantities{Efficacia misure di \\mitigazione}} \\
+\hline
+RP.1 & - & - & -\\
+\hline
+RP.2 & Media & Basso & Discreta \\
+\hline
+RO.1 & - & - & -\\
+\hline
+RO.2 & - & - & -\\
+\hline
+RO.3 & Media & Medio & Buona\\
+\hline
+RT.1 & Alta & Alto & Sufficiente\\
+\hline
+RT.2 & - & - & -\\
+
+
+\end{tabularx}
+\caption{Tabella riassuntiva delle misure di mitigazione}
+\end{table}
+
 \newpage
 
 \section{Calendario di massima del progetto}
 \paragraph{}In questa sezione vengono riportate le date stimate per le revisioni di avanzamento alla luce di quanto analizzato nelle sezioni di \hyperref[section:Rischi]{\textbf{Rischi e mitigazione}} e \hyperref[section:Pianificazione]{\textbf{Pianificazione}}.
 
 \subsection{Prima stesura 2023-11-23}
-\paragraph{}A differenza di quanto visto nel Preventivo costi riportato nei documenti forniti alla presentazione della candidatura, il team cercherà di presentare la candidatura alla revisione \textit{Requirements and Technology Baseline} nel Periodo \color{red}(inserire periodo e data per RTB corretta). \color{black}Questo anticipo viene dettato dal bisogno di venire incontro alla richiesta dell'azienda proponente di poter avere il \textit{Proof of Concept} in data \textbf{2023-12-06} affiancato da una solida Analisi dei requisiti; questi prodotti verranno quindi migliorati e portati alla revisione di avanzamento con il committente.
+\paragraph{}A differenza di quanto visto nel Preventivo costi riportato nei documenti forniti alla presentazione della candidatura, il team cercherà di presentare la candidatura alla revisione \textit{Requirements and Technology Baseline} nel periodo 15-20 dicembre 2023. Questo anticipo viene dettato dal bisogno di venire incontro alla richiesta dell'azienda proponente di poter avere il \textit{Proof of Concept} in data \textbf{2023-12-06} affiancato da una solida Analisi dei requisiti; questi prodotti verranno quindi migliorati e portati alla revisione di avanzamento con il committente.
 \paragraph{} Questo accorciamento dei tempi viene permesso grazie ad una riduzione dei requisiti fondamentali richiesti dalla azienda per la creazione del \textit{Proof of Concept}. Verrà quindi spostato il peso sull'intervallo successivo, ovvero il periodo che porterà alla revisione \textit{Product Baseline} con la creazione del \textit{Minimum Viable Product}.
 
- \begin{figure}[!h]
+ \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{Calendario di massima - prima stesura.png}
         \caption{Grafico calendario - prima stesura}
@@ -107,8 +315,6 @@ Product Baseline &  $2024-04-08$\\
 \end{comment}
 
 
-
-
 \section{Stima dei costi di realizzazione}
 \paragraph{}In questa sezione vengono riportate le stime dei costi e degli impegni orari alla luce di quanto analizzato nelle sezioni di \hyperref[section:Rischi]{\textbf{Rischi e mitigazione}} e \hyperref[section:Pianificazione]{\textbf{Pianificazione}}.
 
@@ -127,244 +333,48 @@ Product Baseline &  $2024-04-08$\\
         \hline Michelon R. & 9 & 8 & 10 & 13 & 30 & 24 & 94 \\
         \hline Orlandi G. & 9 & 8 & 9 & 14 & 26 & 28 & 94 
     \end{tabularx}
-    \caption{Tabella distribuzione ore - prima stesura}
+    \caption{Distribuzione ore - prima stesura}
     \end{table}
-\paragraph{Schema a torta di distribuzione ore ruoli} Di seguito viene illustrata in maniera immediata la redistribuzione delle ore nei ruoli di progetto.
-    \begin{figure}[!h]
-        \centering
-        \includegraphics[width=10cm]{torta.png}
-        %\includesvg{torta 1}
-        \caption{Grafico ore percentuali - prima stesura}
-        
+
+\paragraph{Schema a torta di distribuzione ore ruoli} Di seguito viene illustrata la redistribuzione delle ore nei ruoli di progetto.
+    \begin{figure}[H]
+        \centering               
+        \includegraphics[width=14cm]{torta.png}
+         \caption{Grafico ore percentuali - prima stesura}
     \end{figure}
 
-
-\section{Rischi e loro mitigazione}
-\label{section:Rischi}
-\paragraph{}Questa sezione di occupa di analizzare le difficoltà che si possono verificare durante lo svolgimento del progetto e che possono avere influenze sulla pianificazione delle attività, portando a rallentamenti e ostacoli nell'avanzamento.\\
-Per poter individuare e gestire questi rischi, vengono di seguito esaminati e corredati da descrizione, previsione della loro occorrenza, grado di pericolosità e infine da misure di mitigazione degli effetti negativi nel caso si verifichino.
-I rischi sono indicati con la notazione seguente: \\ R[Tipo]-[Numero] \ \  
-\begin{itemize}
-\item \textbf{R} sta per \textit{Rischio};
-\item \textbf{Tipo} indica il tipo che può essere tra i seguenti:
-    \begin{itemize}
-	\item \textbf{P} (Personale);
-	\item \textbf{O} (Organizzativo);
-	\item \textbf{T} (Tecnologico).
-    \end{itemize}
-\item \textbf{Numero} indica il numero in quella categoria.
-\end{itemize}
-
-
-%PERSONALI
-
-\subsection{Rischi personali}
-
-% RISCHIO IMPEGNI PERSONALI
-
-\subsubsection{Impegni e problemi personali}
-{\renewcommand{\arraystretch}{1.5}
+{\renewcommand{\arraystretch}{1.2}
+\begin{center}
 \begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RP-1 \\
-\hline
-\textbf{Rischio} & Impegni e problemi personali\\
-\hline
-\textbf{Descrizione} & Ogni componente del team ha impegni esterni e può avere problemi strettamente personali. Questo indica che qualche membro può non essere disponibile in certi momenti.\\
-\hline
-\textbf{Occorrenza} & Media\\
-\hline
-\textbf{Impatto} & Alto\\
-\hline
-\textbf{Misure di mitigazione} & I membri interessati si impegnano ad avvisare tempestivamente il gruppo; per far fronte a tale rischio si coprirà l’intervallo non produttivo del componente con una suddivisione omogenea tra i restanti colleghi delle attività rimaste in sospeso.
-Riuscire a non spostare la \textit{milestone} è prioritario.\\
-\end{tabularx}
-\caption{Tabella rischi imprevisti e impegni personali}
-\end{table}}
+    \begin{tabular}{l|c|c|c|c}
+     \textbf{Ruoli} & \textbf{Costo Orario} & \textbf{Ore per Ruolo} & \quantities{\textbf{Ore Medie per}\\\textbf{Membro}} & \textbf{Percentuale Ore} \\
+    \hline Responsabile & 30,00\texteuro & 70 & 10 & 10.6\% \\
+    \hline Amministratore & 20,00\texteuro & 63 & 9 & 9.6\%\% \\
+    \hline Verificatore & 15,00\texteuro & 168 & 24 & 25.5\% \\
+    \hline Progettista & 25,00\texteuro & 98 & 14 & 14.9\%\% \\
+    \hline Programmatore & 15,00\texteuro & 196 & 28 & 29.8\% \\
+    \hline Analista & 25,00\texteuro & 63 & 9 & 9.6\%\\
+    \hline  & \textbf{Totale Costo} & \textbf{Totale Ore} & \quantities{\textbf{Totale Ore per}\\\textbf{Membro}}\\
+    \hline  & \cellcolor{primarycolor} 12845,00\texteuro & \cellcolor{primarycolor}658 &\cellcolor{primarycolor} 94 \\
+    \end{tabular}
+    \caption{Costo totale - prima stesura}
+    \end{table}
+\end{center}
 
-
-
-
-\subsubsection{Problemi fra i membri del gruppo}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RP-2 \\
-\hline
-\textbf{Rischio} & Problemi fra i membri del gruppo  \\
-\hline
-\textbf{Descrizione} & Possono verificarsi divergenze di pensiero tra i componenti del gruppo che rischiano di portare a discussioni. \\
-\hline
-\textbf{Occorrenza} & Media\\
-\hline
-\textbf{Impatto} & Medio \\
-\hline
-\textbf{Misure di mitigazione} & Le parti prese in causa esporranno il loro punto di vista in maniera educata; il Responsabile è tenuto a fare da moderatore. \\
-\end{tabularx}
-\caption{Tabella divergenze interne}
-\end{table}
-}
-
-
-%ORGANIZZATIVI
-
-\subsection{Rischi organizzativi}
-
-\subsubsection{Sottostima del tempo necessario per una attività}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[h]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RO-1 \\
-\hline
-\textbf{Rischio} & Sottostima del tempo necessario per una attività\\
-\hline
-\textbf{Descrizione} & Il team può andare in contro ad una sottostima del tempo necessario per il soddisfacimento di un requisito o di un' attività.\\
-\hline
-\textbf{Occorrenza} & Alta\\
-\hline
-\textbf{Impatto} & Alto\\
-\hline
-\textbf{Misure di mitigazione} & Tale errore deve essere reso noto al team tempestivamente; chi ha disponibilità viene incaricato di fornire assistenza per minimizzare il ritardo nel completamento dell'obiettivo.\\
-\end{tabularx}
-\caption{Tabella sottostima del tempo}
-\end{table}
-
-\subsubsection{Stima errata dei costi}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RO-2 \\
-\hline
-\textbf{Rischio} & Stima errata dei costi \\
-\hline
-\textbf{Descrizione} & Potrebbe verificarsi una valutazione scorretta dei costi di incarico.\\
-\hline
-\textbf{Occorrenza} & Media\\
-\hline
-\textbf{Impatto} & Medio\\
-\hline
-\textbf{Misure di mitigazione} & Si provvederà a far uso dei diagrammi di Gantt per l'organizzazione delle attività lasciando dello "slack" tra le attività con dipendenze.\\
-\end{tabularx}
-\caption{Tabella stima errata dei costi}
-\end{table}
-
-
-
-\subsubsection{Disponibilità di lavoro non sfruttato}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RO-3 \\
-\hline
-\textbf{Rischio} & Disponibilità di lavoro non sfruttato \\
-\hline
-\textbf{Descrizione} & Caso in cui un membro del team si ritrova del tempo produttivo "libero" senza attività assegnate al proprio ruolo che lo impegnino.\\
-\hline
-\textbf{Occorrenza} & Media\\
-\hline
-\textbf{Impatto} & Medio\\
-\hline
-\textbf{Misure di mitigazione} & Il membro del team in questione viene invitato a farsi avanti e ad aiutare i membri in difficoltà o a farsi carico di attività non ancora assegnate anche non necessariamente legate al proprio ruolo in quel determinato \textit{sprint}. \\
-
-\end{tabularx}
-\caption{Tabella disponibilità non sfruttata}
-\end{table}
-
-
-
-%TECNOLOGICI
-
-\subsection{Rischi tecnologici}
-
-\subsubsection{Scarsa esperienza con le tecnologie del progetto}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RT-1 \\
-\hline
-\textbf{Rischio} & Scarsa esperienza con le tecnologie del progetto \\
-\hline
-\textbf{Descrizione} & Si possono verificare difficoltà di utilizzo di strumenti di lavoro o inesperienze\\
-\hline
-\textbf{Occorrenza} & Alta\\
-\hline
-\textbf{Impatto} & Alta\\
-\hline
-\textbf{Misure di mitigazione} & Il rischio non può essere evitato, dato che una buona esperienza con le tecnologie si ottiene con gli anni (tempo non a disposizione per questo progetto comunque complesso). Il primo passo è la comunicazione interna delle difficoltà più gravi.
-\begin{itemize}
-    \item Se le lacune riguardano le tecnologie usate abitualmente da AzzurroDigitale, è possibile richiedere un colloquio di formazione o supporto;
-    \item Se le tecnologie sono note solo ad alcuni membri del gruppo, questi si impegnano a realizzare dei workshop per portare a regime le conoscenze degli altri componenti;
-    \item Nel caso si parli di una tecnologia sconosciuta a tutti i membri, si prosegue cercando e studiando la guida utente e la documentazione associata.
-\end{itemize}
-\end{tabularx}
-\caption{Tabella scarsa esperienza tecnologica}
-\end{table}
-
-
-\subsubsection{Guasti hardware e problematiche software}
-
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X}
-\textbf{ID Rischio} & RT-2 \\
-\hline
-\textbf{Rischio} & Guasti hardware e problematiche software \\
-\hline
-\textbf{Descrizione} & Si potrebbero presentare difficoltà legate all’hardware o al software utilizzati per cui un membro del gruppo risulta ostacolato nel portare a compimento un obiettivo o una attività. \\
-\hline
-\textbf{Occorrenza} & Bassa \\
-\hline
-\textbf{Impatto} & Medio\\
-\hline
-\textbf{Misure di mitigazione} & Comunicare tempestivamente il guasto al gruppo e se necessario chiedere aiuto e condivisione di un mezzo funzionante.\\
-\end{tabularx}
-\caption{Tabella guasti hardware e software}
-\end{table}
-
-
-\subsection{Valutazione efficacia delle misure}
-\paragraph{}Questa sezione riassume la sezione di analisi dei rischi e valuta l'efficacia delle pratiche di mitigazioni degli stessi nel caso questi si siano verificati.\\
-{\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{c|c|c|X}
-\textbf{ID Rischio} & \textbf{Occorrenza effettiva} & \textbf{Impatto effettivo} & \textbf{\quantities{Efficacia misure di \\mitigazione}} \\
-\hline
-RP-1 & - & - & -\\
-\hline
-RP-2 & - & - & - \\
-\hline
-RO-1 & - & - & -\\
-\hline
-RO-2 & - & - & -\\
-\hline
-RO-3 & - & - & -\\
-\hline
-RT-1 & - & - & -\\
-\hline
-RT-2 & - & - & -\\
-
-
-\end{tabularx}
-\caption{Tabella riassuntiva delle misure di mitigazione}
-\end{table}
-
-
+%    PIANIFICAZIONE
 \section{Pianificazione e modello di sviluppo}
 \label{section:Pianificazione}
 
 \paragraph{}Il team decide di adottare il modello di sviluppo \textit{Agile} 
-promuovendo un approccio incrementale al lavoro; questo consentirà di suddividere il progetto in compiti più gestibili, ovvero \textit{sprint}, ciascuno dei quali produrrà risultati funzionanti. Questo consente al team di progetto di reagire ai cambiamenti in modo più efficace.\\
-\paragraph{}I periodi individuati sono \textit{sprint} di 14 giorni con seguente rotazione dei ruoli assunti dai componenti del gruppo.\\
-Questo tipo di pianificazione permette di avere un orizzonte temporale limitato; ciò aiuta nel caso in cui vengano riscontrate difficoltà che causano danni ad attività che dipendono le une dalle altre, è possibile contenere questi ultimi e riorganizzare le attività nel periodo successivo.
-\subsection{Requirements and Technology Baseline}
-\paragraph{}Questo periodo antecedente la revisione RTB di progetto si focalizza sulla preparazione dei documenti (Analisi dei requisiti, Piano di progetto, Piano di qualifica, ampliamento Norme di progetto) e alla creazione del Proof of Concept per il progetto.
+promuovendo un approccio incrementale al lavoro; questo consentirà di suddividere il progetto in compiti più gestibili, ovvero \textit{sprint}, ciascuno dei quali produrrà risultati funzionanti. Questo consente al team di progetto di reagire ai cambiamenti in modo più efficace.
+Il team definisce in seguito una pianificazione generale che verrà approfondita prima di ogni sprint.
+\paragraph{}I periodi individuati sono \textit{sprint} di 14 giorni con conseguente rotazione dei ruoli assunti dai componenti del gruppo.\\
+Questo tipo di pianificazione permette di avere un orizzonte temporale limitato, sebbene vi sia una pianificazione dell'intero periodo del progetto; ciò aiuta nel caso in cui vengano riscontrate difficoltà che causano danni ad attività che dipendono le une dalle altre. In questi casi è quindi possibile contenere i danni e riorganizzare le attività nel periodo successivo.
 
-\subsubsection{Periodo da 2023-11-07 a 2023-11-21}
+\subsection{Requirements and Technology Baseline}
+\paragraph{}Questo periodo antecedente la revisione RTB di progetto si focalizza sulla preparazione dei documenti (Analisi dei requisiti, Piano di progetto, Piano di qualifica, ampliamento Norme di progetto) e sulla creazione del \textit{Proof of Concept} per il progetto.
+%\vspace{2em}
+\subsubsection{Periodo 1: da 2023-11-07 a 2023-11-21}
 \paragraph{}Questo primo periodo segue l'assegnazione dei capitolati e viene utilizzato principalmente per configurare l'ambiente di lavoro, le norme e per studiare i casi d'uso e perseguire l'analisi dei requisiti del progetto. Infine lo \textit{sprint} si concentra sullo studio e selezione di tecnologie utili allo sviluppo del progetto.
 \paragraph{Obiettivi}
 \begin{itemize}
@@ -381,144 +391,896 @@ Questo tipo di pianificazione permette di avere un orizzonte temporale limitato;
 
  \begin{figure}[H]
         \centering        
-        \includegraphics[width=15.5cm]{periodo1.png}
-        \caption{Diagramma di Gantt da 2023-11-07 a 2023-11-21 }
+        \includegraphics[width=15.5cm]{ganttPeriodo1.png}
+        \caption{Diagramma di Gantt Periodo 1 }
     \end{figure}
-%\paragraph{Ruoli:} (vanno messi nel consuntivo chi e per quante ore?)
 
-
-\subsubsection{Periodo da 2023-11-21 a 2023-12-05}
-\paragraph{}In questo periodo le ore di lavoro sono concentrate nella creazione di un PoC richiesto dall'azienda e nell'ampliamento e miglioramento della documentazione necessaria per guidare l'avanzamento del progetto.
+%\vspace{2em}
+\subsubsection{Periodo 2: da 2023-11-21 a 2023-12-05}
 \paragraph{Obiettivi}
 \begin{itemize}
     \item Progettazione PoC;
-    \item Codifica PoC ;
+    \item Codifica PoC;
     \item Prosecuzione stesura Analisi dei requisiti;
     \item Migliorie Norme di progetto e Piano di progetto;
-    \item Stesura correttiva Piano di qualifica.
+    \item Stesura correttiva Piano di qualifica;
+    \item Verbali delle riunioni.
   
 \end{itemize}
-%\paragraph{Diagramma di Gantt}
 
-\subsubsection{Periodo da 2023-12-05 a 2023-12-19}
+\subsubsection{Periodo 3: da 2023-12-05 a 2023-12-19}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Refactoring codice PoC;
+    \item Refactoring architettura PoC;
+    \item Correzione e conclusione stesura Analisi dei requisiti;
+    \item Migliorie Norme di progetto e ampliamento Piano di progetto alla luce del Piano di Qualifica;
+    \item Ampliamento sostanziale del Piano di qualifica;
+    \item Verbali delle riunioni.
+\end{itemize}
 
-
-
-
-
+\subsubsection{Periodo 4: da 2023-12-19 a 2024-01-02}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Progettazione con Azzurro Digitale;
+    \item Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
 \subsection{Product Baseline}
 
+\subsubsection{Periodo 5: da 2024-01-02 a 2024-01-16}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Progettazione con Azzurro Digitale;
+    \item Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
+
+\subsubsection{Periodo 6: da 2024-01-16 a 2024-01-30}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Progettazione con Azzurro Digitale;
+    \item Inizio programmazione;
+    \item Primi test;
+    \item Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
+
+\subsubsection{Periodo 7: da 2024-01-30 a 2024-02-13}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Progettazione di dettaglio;
+    \item Programmazione;
+    \item Test di unità;
+    \item Documentazione relativa al codice;
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
+
+\subsubsection{Periodo 8: da 2024-02-13 a 2024-02-27}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Progettazione di dettaglio;
+    \item Programmazione;
+    \item Test di unità e di integrazione;
+    \item Documentazione relativa al codice;
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
+
+\subsubsection{Periodo 9: da 2024-02-27 a 2024-03-12}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Programmazione;
+    \item Test di unità e di integrazione;
+    \item Documentazione relativa al codice;
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto.
+    \item Verbali delle riunioni.
+\end{itemize}
+
+\subsubsection{Periodo 10: da 2024-03-12 a 2024-03-26}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Programmazione;
+    \item Test di integrazione;
+    \item Test di sistema;
+    \item Documentazione relativa al codice;
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto;
+    \item Verbali delle riunioni.
+\end{itemize}
+\subsubsection{Periodo 11: da 2024-03-26 a 2024-04-08}
+%\paragraph{}
+\paragraph{Obiettivi}
+\begin{itemize}
+    \item Conclusione Programmazione;
+    \item Documentazione relativa al codice;
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto;
+    \item Verbali delle riunioni.
+\end{itemize}
 
 
-\subsubsection{Periodo da 2023-12-19 a 2024-01-02}
-
-
-
-\subsubsection{Periodo da 2024-01-02 a 2024-01-16}
-
-
-
-\subsubsection{Periodo da 2024-01-16 a 2024-01-30}
-
-
-
-\subsubsection{Periodo da 2024-01-30 a 2024-02-13}
-
-
-
-\subsubsection{Periodo da 2024-02-13 a 2024-02-27}
-
-
-
-\subsubsection{Periodo da 2024-02-27 a 2024-03-12}
-
-
-\subsubsection{Periodo da 2024-03-12 a 2024-03-26}
-
-
-
-\subsubsection{Periodo da 2024-03-26 a 2024-04-09}
-
-
+\newpage
+% PREVENTIVO
 
 \section{Preventivo}
+Ogni membro del team mette a disposizione le sue conoscenze e le 94 ore produttive ciascuno, divise nei vari ruoli. Il preventivo è stato calcolato in base al costo orario di ciascun componente, e in base alla nostra previsione di attività da svolgere in ogni sprint. Di seguito, vengono dettagliati gli aspetti di ciascun incremento e il relativo costo. La distribuzione dei ruoli tra i membri è stata equa, offrendo a ognuno l'opportunità di sperimentare diverse mansioni. Abbreviazioni specifiche sono utilizzate nelle tabelle per brevità:
+\begin{itemize}
+    \item Re: Responsabile;
+    \item Am: Amministratore;
+    \item An: Analista;
+    \item Proj: Progettista;
+    \item Prgm: Programmatore;
+    \item Ver: Verificatore.
+\end{itemize}
+Nelle tabelle sottostanti relative al preventivo è possibile trovare una cella colorata per ogni membro del team, la quale si riferisce al ruolo che il membro stesso assumerà.
+% SPRINT 1 PREVENTIVO
+\subsubsection{Sprint 1: da 2023-11-07 a 2023-11-21}
+\paragraph{}Di seguito, la distribuzione delle ore del primo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 0 & 0 & 4 \\
+        \hline Ciriolo I.  & 0 & 0 & \cellcolor{primarycolor}6 & 0 & 0 & 1 & 7 \\
+        \hline Campese M.  & 0 & 0 & 2 & 0 & 0 & \cellcolor{primarycolor}8 & 10 \\
+        \hline Dugo A.     & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 0 & 0 & 4 \\
+        \hline Feltrin E.  & \cellcolor{primarycolor}8 & 1 & 0 & 0 & 0 & 0 & 9 \\
+        \hline Michelon R. & 0 & \cellcolor{primarycolor}6 & 0 & 0 & 0 & 0 & 6 \\
+        \hline Orlandi G.  & 0 & 0 & \cellcolor{primarycolor}3 & 0 & 0 & 1 & 4 \\
+        \hline
+        \textbf{Totale ruolo} & 8 & 15 & 11 & 0 & 0 & 10 & 44 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 1}
+    \end{table}
 
-%Per queste voci si rimanda al documento “Preventivo costi e assunzione impegni”, presente nella repository Presentazio
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_1_periodo.png}
+        \caption{Sprint 1 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+ 
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 8 & 240,00\texteuro\\
+\hline
+\textbf{Amministratore} & 15 & 300,00\texteuro \\
+\hline
+\textbf{Analista} & 11 & 275,00\texteuro \\
+\hline
+\textbf{Progettista} & 0 & 0\texteuro\\
+\hline
+\textbf{Programmatore} & 0 & 0\texteuro \\ 
+\hline
+\textbf{Verificatore} & 10 & 150,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 44 & 965,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 1}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_1_periodo.png}
+        \caption{Sprint 1 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+%SPRINT 2 PREVENTIVO
+\subsubsection{Sprint 2: da 2023-11-21 a 2023-12-05 }
+
+\paragraph{}Di seguito, la distribuzione delle ore del secondo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & 1 & \cellcolor{primarycolor}6 & 0 & 0 & 0 & 7 \\
+        \hline Ciriolo I.  & \cellcolor{primarycolor}7 & 0 & 0 & 0 & 0 & 1 & 8 \\
+        \hline Campese M.  & 0 & \cellcolor{primarycolor}5 & 2 & 0 & 0 & 1,5 & 8,5 \\
+        \hline Dugo A.     & 0 & 0 & 2 & \cellcolor{primarycolor}2 & 9 & 0 & 13 \\
+        \hline Feltrin E.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}11 & 0 & 11 \\
+        \hline Michelon R. & 0 & 0 & 2 & 1 & \cellcolor{primarycolor}13 & 0 & 16 \\
+        \hline Orlandi G.  & 0 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}7 & 7 \\
+        \hline
+        \textbf{Totale ruolo} & 7 & 6 & 12 & 3 & 33 & 9,5 & 70,5 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 2}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_2_periodo.png}
+        \caption{Sprint 2 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+ 
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 7 & 210,00\texteuro\\
+\hline
+\textbf{Amministratore} & 6 & 120,00\texteuro \\
+\hline
+\textbf{Analista} & 12 & 300,00\texteuro \\
+\hline
+\textbf{Progettista} & 3 & 75,00\texteuro\\
+\hline
+\textbf{Programmatore} & 33 & 495,00\texteuro \\ 
+\hline
+\textbf{Verificatore} & 9,5 & 142,50\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 70,5 & 1342,50\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 2}
+\end{table}
+
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_2_periodo.png}
+        \caption{Sprint 2 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
 
 
 
+
+
+\subsubsection{Sprint 3: da 2023-12-05 a 2023-12-19}
+\paragraph{}Di seguito, la distribuzione delle ore del terzo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & 0 & 2 & 1 & 0 & \cellcolor{primarycolor}7 & 10 \\
+        \hline Ciriolo I.  & 0 & \cellcolor{primarycolor}4 & 1 & 0 & 0 & 3 & 7 \\
+        \hline Campese M.  & 0 & 0 & \cellcolor{primarycolor}2 & 0 & 0 & 4 & 6 \\
+        \hline Dugo A.     & \cellcolor{primarycolor}6 & 0 & 2 & 0 & 0 & 0 & 8 \\
+        \hline Feltrin E.  & 0 & 0 & \cellcolor{primarycolor}8 & 0 & 0 & 0 & 8 \\
+        \hline Michelon R. & 0 & 0 & \cellcolor{primarycolor}7 & 0 & 0 & 0 & 7 \\
+        \hline Orlandi G.  & 0 & 0 & 3 & 0 & \cellcolor{primarycolor}4 & 0 & 7 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 25 & 1 & 4 & 14 & 54 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 3}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_3_periodo.png}
+        \caption{Sprint 3 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 25 & 625,00\texteuro \\
+\hline
+\textbf{Progettista} & 1 & 25,00\texteuro\\
+\hline
+\textbf{Programmatore} & 4 & 60,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 14 & 210,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 53 & 1180,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 3}
+\end{table}
+
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_3_periodo.png}
+        \caption{Sprint 3 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+%   PERIODO 4
+
+\subsubsection{Sprint 4: da 2023-12-19 a 2024-01-02}
+\paragraph{}Di seguito, la distribuzione delle ore del quarto sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}7 & 0 & 7 \\
+        \hline Ciriolo I.  & 0 & 0 & 0 & \cellcolor{primarycolor}8 & 0 & 0 & 8 \\
+        \hline Campese M.  & \cellcolor{primarycolor}6 & 0 & 2 & 3 & 0 & 0 & 11 \\
+        \hline Dugo A.     & 0 & 0 & 1 & \cellcolor{primarycolor}10 & 0 & 0 & 11 \\
+        \hline Feltrin E.  & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 3 & 1 & 8 \\
+        \hline Michelon R. & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 0 & 0 & 5 \\
+        \hline Orlandi G.  & 0 & 1 & 3 & 0 & 0 & \cellcolor{primarycolor}7 & 11 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 5 & 6 & 26 & 10 & 8 & 61 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 4}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_4_periodo.png}
+        \caption{Sprint 4 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 5 & 100,00\texteuro \\
+\hline
+\textbf{Analista} & 6 & 150,00\texteuro \\
+\hline
+\textbf{Progettista} & 26 & 650,00\texteuro\\
+\hline
+\textbf{Programmatore} & 10 & 150,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 8 & 120,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 61 & 1350,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 4}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_4_periodo.png}
+        \caption{Primo Periodo - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+
+%   PERIODO 5
+
+
+\subsubsection{Sprint 5: da 2023-01-02 a 2024-01-16}
+\paragraph{}Di seguito, la distribuzione delle ore del quinto sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 0 & 10 \\
+        \hline Ciriolo I.  & 0 & 0 & 3 & \cellcolor{primarycolor}5 & 0 & 4 & 12 \\
+        \hline Campese M.  & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 6 & 0 & 11 \\
+        \hline Dugo A.     & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
+        \hline Feltrin E.  & 0 & 0 & 0 & 4 & 0 & \cellcolor{primarycolor}5 & 9 \\
+        \hline Michelon R. & \cellcolor{primarycolor}6 & 0 & 0 & 5 & 0 & 0 & 11 \\
+        \hline Orlandi G.  & 0 & \cellcolor{primarycolor}4 & 0 & 1 & 3 & 0 & 8 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 3 & 30 & 19 & 9 & 71 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 5}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_5_periodo.png}
+        \caption{Sprint 5 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 3 & 75,00\texteuro \\
+\hline
+\textbf{Progettista} & 30 & 750,00\texteuro\\
+\hline
+\textbf{Programmatore} & 19 & 285,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 9 & 135,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 71 & 1505,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 5}
+\end{table}
+
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_5_periodo.png}
+        \caption{Sprint 5 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+%   PERIODO 6
+
+\subsubsection{Sprint 6: da 2023-01-16 a 2024-01-30}
+\paragraph{}Di seguito, la distribuzione delle ore del sesto sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline Bresolin G. & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
+        \hline Ciriolo I.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
+        \hline Campese M.  & 0 & 0 & 0 & \cellcolor{primarycolor}6 & 0 & 0 & 6 \\
+        \hline Dugo A.     & 0 & \cellcolor{primarycolor}4 & 1 & 0 & 0 & 3 & 8 \\
+        \hline Feltrin E.  & 0 & 0 & 2 & \cellcolor{primarycolor}4 & 0 & 0 & 6 \\
+        \hline Michelon R. & 0 & 0 & 0 & 2 & 0 & \cellcolor{primarycolor}7 & 9 \\
+        \hline Orlandi G.  & \cellcolor{primarycolor}6 & 0 & 0 & 1 & 0 & 0 & 9 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 3 & 13 & 20 & 12 & 58 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 6}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_6_periodo.png}
+        \caption{Primo Periodo - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 3 & 75,00\texteuro \\
+\hline
+\textbf{Progettista} & 13 & 325,00\texteuro\\
+\hline
+\textbf{Programmatore} & 20 & 300,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 12 & 180,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 58 & 1140,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 6}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_6_periodo.png}
+        \caption{Sprint 6 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+
+%   PERIODO 7
+\subsubsection{Sprint 7: da 2024-01-30 a 2024-02-13}
+\paragraph{}Di seguito, la distribuzione delle ore del settimo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & \cellcolor{primarycolor}6 & 0 & 0 & 2 & 0 & 3 & 11 \\
+        \hline Ciriolo I.  & 0 & \cellcolor{primarycolor}3 & 0 & 3 & 2 & 0 & 8 \\
+        \hline Campese M.  & 0 & 0 & 0 & 1 & \cellcolor{primarycolor}11 & 0 & 12 \\
+        \hline Dugo A.     & 0 & 0 & 1 & 3 & 0 & \cellcolor{primarycolor}5 & 9 \\
+        \hline Feltrin E.  & 0 & 1 & 0 & \cellcolor{primarycolor}4 & 2 & 0 & 7 \\
+        \hline Michelon R. & 0 & 0 & 1 & 0 & 0 & \cellcolor{primarycolor}4 & 5 \\
+        \hline Orlandi G.  & 6 & 0 & 0 & 2 & \cellcolor{primarycolor}9 & 0 & 11 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 2 & 15 & 24 & 12 & 63 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 7}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_7_periodo.png}
+        \caption{Sprint 7- Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 2 & 50,00\texteuro \\
+\hline
+\textbf{Progettista} & 15 & 375,00\texteuro\\
+\hline
+\textbf{Programmatore} & 24 & 360,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 12 & 180,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 63 & 1225,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 7}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_7_periodo.png}
+        \caption{Sprint 7 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+
+%   PERIDO 8
+\subsubsection{Sprint 8: da 2024-02-13 a 2024-02-27}
+\paragraph{}Di seguito, la distribuzione delle ore dell'ottavo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 3 & 0 & 7 \\
+        \hline Ciriolo I.  & 4 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 9 \\
+        \hline Campese M.  & 0 & 0 & 0 & 0 & 3 & \cellcolor{primarycolor}6 & 9 \\
+        \hline Dugo A.     & \cellcolor{primarycolor}3 & 0 & 1 & 0 & 0 & 3 & 7 \\
+        \hline Feltrin E.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
+        \hline Michelon R. & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}4 & 4 & 8 \\
+        \hline Orlandi G.  & 0 & 0 & 0 & \cellcolor{primarycolor}8 & 4 & 0 & 12 \\
+        \hline
+        \textbf{Totale ruolo} & 7 & 4 & 1 & 8 & 24 & 18 & 62 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 8}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_8_periodo.png}
+        \caption{Sprint 8 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 7 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 1 & 25,00\texteuro \\
+\hline
+\textbf{Progettista} & 8 & 200,00\texteuro\\
+\hline
+\textbf{Programmatore} & 24 & 360,00 \texteuro \\ 
+\hline
+\textbf{Verificatore} & 18 & 270,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 62 & 1145,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Periodo 8}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_8_periodo.png}
+        \caption{Sprint 8 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+
+%   PERIODO 9
+\subsubsection{Sprint 9: da 2024-02-27 a 2024-03-12}
+\paragraph{}Di seguito, la distribuzione delle ore del nono sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & 0 & 0 & 0 & 0 & 0 & 10 & \cellcolor{primarycolor}10 \\
+        \hline Ciriolo I.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}12 & 0 & 12 \\
+        \hline Campese M.  & 3 & \cellcolor{primarycolor}4 & 0 & 0 & 0 & 3 & 10 \\
+        \hline Dugo A.     & 0 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}9 & 9 \\
+        \hline Feltrin E.  & 0 & 0 & 0 & 0 & 2 & \cellcolor{primarycolor}4 & 6 \\
+        \hline Michelon R. & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}12 & 0 & 12 \\
+        \hline Orlandi G.  & \cellcolor{primarycolor}3 & 0 & 0 & 2 & 3 & 1 & 9 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 0 & 2 & 29 & 27 & 68 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 9}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_9_periodo.png}
+        \caption{Sprint 9 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 0 & 0,00\texteuro \\
+\hline
+\textbf{Progettista} & 2 & 50,00\texteuro\\
+\hline
+\textbf{Programmatore} & 29 & 435,00\texteuro \\ 
+\hline
+\textbf{Verificatore} & 27 & 405,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 68 & 1150,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 9}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_9_periodo.png}
+        \caption{Sprint 9 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+
+%   PERIODO 10
+
+\subsubsection{Sprint 10: da 2024-03-12 a 2024-03-26}
+\paragraph{}Di seguito, la distribuzione delle ore del decimo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & 3 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 13 \\
+        \hline Ciriolo I.  & 0 & 0 & 0 & 0 & 2 & \cellcolor{primarycolor}3 & 5 \\
+        \hline Campese M.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 0 & 5 \\
+        \hline Dugo A.     & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}7 & 4 & 11 \\
+        \hline Feltrin E.  & 0 & 2 & 0 & 0 & 0 & \cellcolor{primarycolor}9 & 11 \\
+        \hline Michelon R. & \cellcolor{primarycolor}3 & 2 & 0 & 0 & 1 & 4 & 10 \\
+        \hline Orlandi G.  & 0 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}7 & 7 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 4 & 0 & 0 & 25 & 27 & 62 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 10}
+    \end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_10_periodo.png}
+        \caption{Sprint 10 - Istogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 0 & 0,00\texteuro \\
+\hline
+\textbf{Progettista} & 0 & 0,00\texteuro\\
+\hline
+\textbf{Programmatore} & 25 & 375,00\texteuro \\ 
+\hline
+\textbf{Verificatore} & 27 & 405,00\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 62 & 1040,00\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 10}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_10_periodo.png}
+        \caption{Sprint 10 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+%   PERIODO 11
+\subsubsection{Sprint 11: da 2024-03-26 a 2024-04-08}
+\paragraph{}Di seguito, la distribuzione delle ore dell'undicesimo sprint; ogni componente del gruppo rivestirà i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & 0 & 0 & 0 & 0 & 1 & \cellcolor{primarycolor}4 & 5 \\
+        \hline Ciriolo I.  & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 1 & 2 & 7 \\
+        \hline Campese M.  & 1 & 1 & 0 & 0 & 1 & \cellcolor{primarycolor}2,5 & 5,5 \\
+        \hline Dugo A.     & \cellcolor{primarycolor}2 & 0 & 0 & 0 & 2 & 0 & 4 \\
+        \hline Feltrin E.  & 3 & 1 & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 9 \\
+        \hline Michelon R. & 0 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 5 \\
+        \hline Orlandi G.  & 0 & 3 & 0 & 0 & \cellcolor{primarycolor}3 & 3 & 9 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 9 & 0 & 0 & 8 & 21,5 & 44,5 
+    \end{tabularx}
+    \caption{Preventivo ore - Sprint 11}
+\end{table}
+
+\paragraph{}La tabella è riassunta dal seguente istogramma:
+\begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{istogrammi/istogramma_11_periodo.png}
+        \caption{Sprint 11 - Istogramma della ripartizione oraria dei ruoli. }
+\end{figure}
+
+\paragraph{}In questo incremento, il costo per ogni ruolo sarà come da tabella:
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabularx}{0.42\textwidth}{c|c|c}
+
+\textbf{Ruolo} & \textbf{Ore} & \textbf{Costo}\\
+\hline
+\textbf{Responsabile} & 6 & 180,00\texteuro\\
+\hline
+\textbf{Amministratore} & 9 & 80,00\texteuro \\
+\hline
+\textbf{Analista} & 0 & 0,00\texteuro \\
+\hline
+\textbf{Progettista} & 0 & 0,00\texteuro\\
+\hline
+\textbf{Programmatore} & 8 & 120,00\texteuro \\ 
+\hline
+\textbf{Verificatore} & 21,5 & 322,50\texteuro \\ 
+\hline
+\rowcolor{primarycolor}
+\textbf{Totale} & 44,5 & 802,50\texteuro \\
+\end{tabularx}
+%}
+\caption{Preventivo costi - Sprint 11}
+\end{table}
+\paragraph{}La tabella è riassunta dal seguente aereogramma:
+ \begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{aereogrammi/areogramma_11_periodo.png}
+        \caption{Sprint 11 - Areogramma della ripartizione oraria dei ruoli. }
+    \end{figure}
+
+
+
+\newpage
+%   CONSUNTIVO
 
 \section{Consuntivo}
 
+% PERIODO 1 CONSUNTIVO
+\subsubsection{Sprint 1: da 2023-11-07 a 2023-11-21}
 
-\subsubsection{Periodo da 2023-11-07 a 2023-11-21}
+\paragraph{}Di seguito, la distribuzione delle ore del primo sprint; ogni componente del gruppo ha rivestito i ruoli come segue:
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
+        \hline Bresolin G. & 0 & 5 & 0 & 0 & 0 & 0 & 5 \\
+        \hline Ciriolo I.  & 0 & 0 & 7 & 0 & 0 & 1 & 8 \\
+        \hline Campese M.  & 0 & 0 & 2 & 0 & 0 & 7 & 9 \\
+        \hline Dugo A.     & 0 & 5 & 0 & 0 & 0 & 0 & 5 \\
+        \hline Feltrin E.  & 7 & 1 & 0 & 0 & 0 & 0 & 8 \\
+        \hline Michelon R. & 0 & 6 & 0 & 0 & 0 & 0 & 6 \\
+        \hline Orlandi G.  & 0 & 0 & 3 & 0 & 0 & 1 & 4 \\
+        \hline
+        \textbf{Totale ruolo} & 2 & 17 & 12 & 0 & 0 & 9 & 45 
+    \end{tabularx}
+    \caption{Consuntivo ore - Sprint 1}
+    \end{table}
 
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
-        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
-        \hline Bresolin G. & 0& 4 & 1 & 0 & 0 & 0 & 5 \\
-        \hline Ciriolo I. & 0 & 0 & 5 & 0 & 0 & 1 & 6 \\
-        \hline Campese M. & 0 & 1 & 0 & 0 & 0 & 8 & 9 \\
-        \hline Dugo A. & 0 & 3 & 0 & 0 & 0 & 0 & 3 \\
-        \hline Feltrin E. & 4 & 0 & 0 & 0 & 0 & 0 & 4 \\
-        \hline Michelon R. & 0 & 4 & 0 & 0 & 0 & 0 & 4 \\
-        \hline Orlandi G. & 0 & 0 & 3 & 0 & 0 & 1 & 4 \\
+        \textbf{Ruolo} & \textbf{Ore preventivo} & \textbf{Ore consuntivo} & \textbf{Delta ore} & \textbf{Costo preventivo} & \textbf{Costo consuntivo} & \textbf{Delta costo} \\
         \hline
-        \textbf{Totale ruolo} & 4 & 12 & 9 & 0 & 0 & 10 & - 
+        \textbf{RES} & 8 & 7 & -1 & 240,00\texteuro & € 210,00\texteuro & € 30,00\texteuro \\
+        \hline
+        \textbf{AMM} & 15 & 17 & 2 & 300,00\texteuro & 340,00\texteuro & -€ 40,00\texteuro \\
+        \hline
+        \textbf{AN} & 11 & 12 & 1 & 275,00\texteuro & 300,00\texteuro & -€ 25,00\texteuro \\
+        \hline
+        \textbf{PROJ} & 0 & 0 & 0 & 0,00\texteuro & 0,00\texteuro & € 0,00\texteuro \\
+        \hline
+        \textbf{PROG} & 0 & 0 & 0 & 0,00\texteuro & € 0,00 & € 0,00\texteuro \\
+        \hline
+        \textbf{VER} & 10 & 9 & -1 & 150,00\texteuro & € 135,00 & € 15,00\texteuro \\
+        \hline
+        \rowcolor{primarycolor}
+        \textbf{TOT} & 44 & 45 & 1 & 965,00\texteuro & 985,00\texteuro & -20,00\texteuro
     \end{tabularx}
-    \caption{Consuntivo ore - da 2023-11-07 a 2023-11-21}
-    \end{table}
-    
+    \caption{Consuntivo costi - Sprint 2}
+\end{table}
 
-
-
-
-
-
-\subsubsection{Periodo da 2023-11-21 a 2023-12-05}
-
-\subsubsection{Periodo da 2023-12-05 a 2023-12-19}
-
-
-\subsubsection{Periodo da 2023-12-19 a 2024-01-02}
-
-
-
-\subsubsection{Periodo da 2024-01-02 a 2024-01-16}
-
-
-
-\subsubsection{Periodo da 2024-01-16 a 2024-01-30}
-
-
-
-\subsubsection{Periodo da 2024-01-30 a 2024-02-13}
-
-
-
-\subsubsection{Periodo da 2024-02-13 a 2024-02-27}
-
-
-
-\subsubsection{Periodo da 2024-02-27 a 2024-03-12}
-
-
-\subsubsection{Periodo da 2024-03-12 a 2024-03-26}
-
-
-
-\subsubsection{Periodo da 2024-03-26 a 2024-04-09}
-
-
-\section{Retrospettiva generale}
-\subsection{Gestione delle risorse}
-\subsubsection{Tempo}
-\subsubsection{Budget}
-\subsection{Aspetti positivi}
-\subsection{Aspetti negativi}
-%\color{gray}\paragraph{}pratica del vincolo di un ruolo, può non far sfruttare tutta la disponibilità di lavoro dei componenti, etc.
-%\color{black}
-\subsection{Conclusioni}
+\paragraph{Considerazioni}
+\begin{itemize}
+\item Il consuntivo di periodo possiede delle discrepanze rispetto al preventivo stilato. Questo è dovuto alla sottostima delle tempistiche per alcune attività onerose che si sono rivelate più importanti dal punto di vista delle ore necessarie;
+\item A seguito di incomprensioni tra le componenti del gruppo, sono state stilate in maniera non sufficiente alcune sezioni del Piano di Qualifica; questo ha comportato un ritardo e un aggiornamento della pianificazione che tenesse conto della nuova stesura del documento.
+\end{itemize}
 
 \end{document}

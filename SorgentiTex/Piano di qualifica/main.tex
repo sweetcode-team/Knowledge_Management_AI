@@ -1,3 +1,4 @@
+
 %\subsubsection{Verifica dei documenti}
 %Ogni documento prodotto dal team passa per una o più fasi di verifica prima di essere pubblicato ufficialmente nel repository \textit{GitHub}.\\
 %Tale fasi vengono realizzate solamente in seguito alla consegna del documento da parte dei responsabili di stesura, i quali ritengono che in quel momento il prodotto da loro realizzato sia completato.\\
@@ -12,6 +13,13 @@
 \documentclass[10pt, a4paper]{article}
 
 \input{parameters}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\makeatletter
+\newcommand\subsubsubsection{\@startsection{paragraph}{4}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus .25ex}{\normalfont\normalsize\bfseries}}
+\newcommand\subsubsubsubsection{\@startsection{subparagraph}{5}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus .25ex}{\normalfont\normalsize\bfseries}}
+\makeatother
 
 \usepackage{style}
 \usepackage{headerfooter}
@@ -44,7 +52,7 @@ L'obiettivo che ci si pone nella realizzazione di questo documento è la definiz
 alle aspettative del proponente e talvolta a discrezione del team sulla base delle valutazioni fatte nel corso di studi.
 
 \subsection{Glossario}
-Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. Ogni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
+Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. La prima occorrenza di gni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
 
 \subsection{Riferimenti}
    \subsubsection{Riferimenti normativi}
@@ -76,8 +84,9 @@ Al fine di evitare incomprensioni relative alla terminologia usata all’interno
     
 % Obiettivi di qualità
 \newpage
-\section{Obiettivi di qualità}
-Per garantire la qualità di processo si è deciso di aderire allo standard ISO/IEC 90003:2004. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate nella sezione apposita (\color{red}6.3.4 Lista delle metriche\color{black}) del documento Norme di progetto(\color{red}Aggiungere versione\color{black}).
+\section{Obiettivi metrici di qualità}
+\label{ObiettiviQualità}
+Per garantire la qualità di processo si è deciso di aderire allo standard ISO/IEC 90003:2004. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate nella sezione apposita (\S Lista delle metriche) del documento Norme di progetto(\color{red}Aggiungere versione\color{black}).
 \subsection{Qualità di processo}
 %\paragraph{}breve descrizione qualità di processo da inserire.\\
  {\renewcommand{\arraystretch}{1.5}
@@ -121,10 +130,6 @@ qualità.\\
      M11LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
     \hline
     M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\
-    \hline
-     M13TUS & Percentuale di test di unità superati & $ \ge85\% $& $100\%$\\
-    \hline
-     M14TIS & Percentuale di test di integrazione superati & $ \ge85\% $& $100\%$\\
     
     \end{tabularx}
     \caption{Metriche per la qualità di prodotto}
@@ -140,6 +145,141 @@ qualità.\\
 \subsection{Qualità per obiettivo}
 \subsubsection{Processi primari}
 
+\subsubsubsection{Acquisizione}
+ 
+\subsubsubsection{Fornitura}
+
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+ M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+\hline
+ M3VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
+\hline
+ M4VC & Variazione di costo & $0$ & $\le0 $ \\
+
+\end{xltabular}
+\caption{Metriche per la fornitura}
+\end{table}
+
+
+ 
+\subsubsubsection{Sviluppo}
+
+\subsubsubsubsection{Analisi dei requisiti}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+  \hline
+ M5ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
+
+\end{xltabular}
+\caption{Metriche per l'analisi dei requisiti}
+\end{table}
+
+
+\subsubsubsubsection{Progettazione}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+\hline
+M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\ 
+\end{xltabular}
+\caption{Metriche per la progettazione}
+\end{table}
+
+\subsubsubsubsection{Codifica}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+\hline
+ M6CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+\hline
+M7SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\  
+\hline
+M8BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
+\hline
+M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\ \hline
+M11LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+\hline
+M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\ 
+\end{xltabular}
+\caption{Metriche per la codifica}
+\end{table}
+
+\subsubsubsubsection{Testing}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+M13TUS & Percentuale di test di unità superati & $ \ge85\% $& $100\%$\\
+\hline
+ M14TIS & Percentuale di test di integrazione superati & $ \ge85\% $& $100\%$\\
+    
+\end{xltabular}
+\caption{Metriche per il testing}
+\end{table}
  
     {\renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
@@ -170,6 +310,27 @@ qualità.\\
 
 % PROCESSI DI SUPPORTO
 \subsubsection{Processi di supporto}
+\subsubsubsection{Documentazione}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+\hline
+M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
+\end{xltabular}
+\caption{Metriche per la documentazione}
+\end{table}
+
 \begin{comment}
 %\subsubsection{Documentazione}
     {\renewcommand{\arraystretch}{1.5}
@@ -192,6 +353,25 @@ qualità.\\
 \end{comment}    
  % PROCESSI ORGANIZZATIVI   
 \subsubsection{Processi organizzativi}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+\hline
+ M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+\end{xltabular}
+\caption{Metriche per i processi organizzativi }
+\end{table}
 \begin{comment}
     {\renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
@@ -275,15 +455,191 @@ qualità.\\
     \subsubsection{Tracciamento}
 
 \subsection{Checklist di controllo}
+\paragraph{}Questa sezione contiene le liste di controllo usate per l'ispezione dei documenti e del codice; questa è una tecnica di analisi statica che permette di esporre in maniera sistematica gli errori più comuni eventualmente presenti nel prodotto in esame.
+\subsubsection{Struttura documentazione}
 
-\subsubsection{Documentazione}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{c|X}
+
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endfirsthead
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endhead
+
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+\textbf{Riferimenti a documenti} &  Quando viene menzionato un documento versionabile del progetto, al suo titolo va affiancato il numero di versione a cui si riferisce.\\
+\hline
+\textbf{Riferimenti a risorse web} &  Quando viene menzionato una risorsa web, presumibilmente soggetta a cambiamenti frequenti, a questa va affiancata la data di ultimo accesso alla risorsa stessa.\\
+\hline
+\textbf{Metriche non ammissibili} & Questa circostanza si può verificare quando si ha l’uscita dal range di accettazione degli indici di misurazione descritti alla sezione \S \hyperref[ObiettiviQualità]{Obiettivi di qualità}; In particolare riferendosi all'indice di Gulpease.\\
+\hline
+\textbf{Didascalie mancanti} & Tutte le immagini e tabelle devono avere la propria didascalia.\\
+
+\hline
+\textbf{Numerazione pagine/slide} & Ogni documento o presentazione deve presentare a piè di pagina una numerazione scritta come segue \textit{"\# pagina corrente / \# pagine totali"}.\\
+\hline
+\textbf{Occorrenze multiple con pedice} & Quando un termine appare più volte in un documento e ha un pedice, il pedice deve essere presente solamente nella prima occorrenza.\\
+\hline
+\textbf{Punteggiatura elenchi} & Gli elenchi devono terminare con un punto se completano la frase introduttiva, altrimenti con una virgola o punto e virgola.\\
+\hline
+\textbf{Formato delle date errato} & Tutte le date presenti nella documentazione prevedono il seguente formato: \textit{"AAAA-MM-GG"}.\\
+\hline
+\textbf{Citazione scorretta di persona }& Ogni menzione di una persona deve essere formulata come segue: \textit{"Cognome M."} \\
+
+\hline
+\textbf{Ordine alfabetico} & (\textbf{da controllare}) Gli elenchi di nomi e le tabelle devono essere ordinati in ordine alfabetico a meno che non sia specificato diversamente o le circostanze richiedono altre tipologie di ordinamento.\\
+\hline
+\textbf{Ordine task per scadenza} & I task devono essere ordinati in base alla loro scadenza, dal più vicino al più lontano.\\
+
+\end{xltabular}
+\caption{Punti di controllo per l'ispezione della struttura dei documenti}
+\end{table}
+
+
+\subsubsection{Errori di forma e ortografici}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{c|X}
+
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endfirsthead
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endhead
+
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+
+\hline
+\textbf{Repo sos. maschile} & Il termine "repository" deve essere usato nel genere maschile.\\
+\hline
+\textbf{Errori di battitura} & Possono essere presenti errori di battitura o di distrazione.\\
+\hline
+\textbf{Accenti invertiti} & Invertire l’accento acuto con il grave o viceversa.\\
+\hline
+\textbf{Discordanza soggetto-verbo} & La coniugazione verbale è discordante con il soggetto.\\
+\hline
+\textbf{Forma dei verbi} & Sarebbe preferibile utilizzare il presente indicativo .\\
+\hline
+\textbf{Backend e frontend} & Può essere utilizzata la forma con o senza ‘-’, pertanto è corretto sia l’uso di "back-end" e "front-end", sia "backend" e "frontend".\\
+
+\end{xltabular}
+\caption{Punti di controllo per l'ispezione degli errori di forma e ortografici}
+\end{table}
+
+
+
 \subsubsection{Analisi dei Requisiti}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{c|X}
+
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endfirsthead
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endhead
+
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+\textbf{Associazione UC - R}  &   Ogni caso d’uso dovrebbe avere un legame con uno o più requisiti.\\
+\hline
+\textbf{Ordinamento UC} & La numerazione dei casi d’uso dovrebbe rispecchiare la struttura di estensione.\\
+\hline
+\textbf{Diagrammi UML per UC} & (\textbf{da controllare}) Le estensioni di un caso d’uso dovrebbero essere rappresentate nello stesso diagramma UML del caso d’uso principale.\\
+\hline
+\textbf{Coerenza UC}  &   Verificare la coerenza tra la descrizione e il diagramma dei casi d'uso.\\
+\hline
+\textbf{Chiarezza Requisiti non funzionali} & I requisiti non funzionali dovrebbero essere definiti in modo chiaro.\\
+\hline
+\textbf{Completezza Tracciamento requisiti} & Il tracciamento dei requisiti dovrebbe essere completo e senza errori.\\
+\hline
+\textbf{Prioritizzazione Requisiti} & La priorità dei requisiti dovrebbe essere definita in modo coerente con le esigenze del progetto.\\
+
+\end{xltabular}
+\caption{Punti di controllo per l'ispezione del documento di Analisi dei Requisiti}
+\end{table}
+
 \subsubsection{Codifica}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{c|X}
+
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endfirsthead
+
+\textbf{Titolo} & \textbf{Descrizione}   \\
+\endhead
+
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+\textbf{Nomi significativi} & Ogni componente del codice, come metodi e classi, dovrebbe avere un nome che ne descriva chiaramente la funzione.\\
+\hline
+\textbf{Case scorretto} & Le convenzioni descritte nelle Norme di progetto per i nomi delle classi o costanti devono essere rispettate.\\
+\hline
+\textbf{Commenti adeguati} & I metodi importanti dovrebbero essere preceduti da un commento che ne descriva lo scopo.\\
+\hline
+\textbf{Intestazioni mancanti} & Le intestazioni devono essere sempre presenti e conformi alle norme.\\
+\hline
+\textbf{Aggiornamento test} & Se un test produce un esito diverso da quanto riportato nel Piano di Qualifica, quest'ultimo deve essere aggiornato.\\
+
+\end{xltabular}
+\caption{Punti di controllo per l'ispezione del codice}
+\end{table}
+
 
 
 
 
 \section{Dashboard metriche impiegate}
+\subsection{Misurazione e verifica} Sezione in cui vengono riportati i valori di misurazione delle metriche in uso. \color{red} Da implementare con strumenti e da misurare per ogni periodo a partire dal terzo o dal quarto periodo. \color{black}\\
+\subsection{M1PMS}
+\subsection{M2RNP}
+\subsection{M3VP}
+\subsection{M4VC}
+\subsection{M5ISR}
+\subsection{M6CCM}
+\subsection{M7SC}
+\subsection{M8BC}
+\subsection{M9IG}
+\subsubsection{Analisi dei requisiti}
+\subsubsection{Norme di progetto}
+\subsubsection{Piano di progetto}
+\subsubsection{Piano di qualifica}
+\subsection{M10PRI}
+\subsection{M11LMC}
+\subsection{M12DC}
+
+
+
+
+
+
 \subsection{Processi primari}
     
    

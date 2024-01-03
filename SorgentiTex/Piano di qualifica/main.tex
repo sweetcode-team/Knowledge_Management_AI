@@ -88,53 +88,100 @@ Al fine di evitare incomprensioni relative alla terminologia usata all’interno
 Per garantire la qualità di processo si è deciso di aderire allo standard ISO/IEC 90003:2004. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate nella sezione apposita (\S Lista delle metriche) del documento Norme di progetto(\color{red}Aggiungere versione\color{black}).
 \subsection{Qualità di processo}
 %\paragraph{}breve descrizione qualità di processo da inserire.\\
- {\renewcommand{\arraystretch}{1.5}
- \begin{table}[H]
-    \begin{tabularx}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}  \\
+{\renewcommand{\arraystretch}{1.5}
+%\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
+
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+\caption{Metriche per la qualità di processo (cont.)}\\
+\multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}} \\
+\endfoot
+\caption[]{Metriche per la qualità di processo}\\
+
+\endlastfoot
+
     \hline
-     M1PMS & Percentuale di metriche soddisfatte & $ \ge75\% $& $\ge95\% $\\
+    M.PC.1.PMS & Percentuale di metriche soddisfatte & $ \ge75\% $& $\ge95\% $\\
     \hline
-     M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+     M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
     \hline
-     M3VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
+    M.PC.3.VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
     \hline
-     M4VC & Variazione di costo & $0$ & $\le0 $ \\
+    M.PC.4.VC & Variazione di costo & $0$ & $\ge100 $ \\
     \hline
-     M5ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
+    M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
     \hline
-     M6CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+    M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
     \hline
-    M7SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
+    M.PC.7.SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
     
     \hline
-     M8BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
-    \end{tabularx}
-    \caption{Metriche per la qualità di processo}
-    \end{table}
+     M.PC.8.BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
+    \end{xltabular}
+   
+    
     
 \subsection{Qualità di prodotto}
 Abbiamo analizzato quali caratteristiche fossero necessarie per la realizzazione di un prodotto di 
 qualità.\\
- {\renewcommand{\arraystretch}{1.5}
- \begin{table}[H]
-  \begin{tabularx}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}  \\
-    %\endfirsthead
-    \hline
-     M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
-    \hline
-     M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\
-    \hline
-     M11LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
-    \hline
-    M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\
-    \hline
-M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 
-    \end{tabularx}
-    \caption{Metriche per la qualità di prodotto}
-    \end{table}
+{\renewcommand{\arraystretch}{1.5}
+%\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
+
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+\caption{Metriche per la qualità di prodotto (cont.)}\\
+\multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}} \\
+\endfoot
+\caption[]{Metriche per la qualità di prodotto}\\
+
+\endlastfoot
+
+
+    \hline
+    M.PD.1.IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
+    \hline
+   M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+   \hline
+    M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
+    \hline
+    M.PD.4.AR &  Accuratezza della risposta &-& - \\
+    \hline
+    M.PD.5.RD &  Rimozione dei difetti &-& - \\
+   \hline
+    M.PD.6.LCG &   Livello di controllo dei guasti &-& - \\
+    
+    \hline
+    M.PD.7.CD &  Completezza descrittiva &-& - \\
+    \hline
+   M.PD.8.IM & Impatto delle modifiche &-& - \\
+    
+    \hline
+   M.PD.9.TS & Percentuale di test superati  & $ \ge85\% $& $100\%$\\
+     \hline
+  M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
+   \hline
+   M.PD.11.AFPH &Accesso fisico alle funzioni da  parte di personale portatore di handicap &-& - \\
+   \hline
+ M.PD.12.TR & Tempo di risposta &-& - \\
+   \hline
+M.PD.13.EI & Efficienza dell’installazione &-& - \\
+   
+ 
+
+\end{xltabular}
+%\caption{Metriche per la qualità di prodotto}
+%\end{table}}
 
     
 %\subsection{Software}
@@ -153,7 +200,7 @@ M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
@@ -167,12 +214,11 @@ M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 
 \endlastfoot
 
-\hline
- M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
-\hline
- M3VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
-\hline
- M4VC & Variazione di costo & $0$ & $\le0 $ \\
+ 
+    \hline
+    M.PC.3.VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
+    \hline
+    M.PC.4.VC & Variazione di costo & $0$ & $\ge100 $ \\
 
 \end{xltabular}
 \caption{Metriche per la fornitura}
@@ -185,7 +231,7 @@ M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 \subsubsubsubsection{Analisi dei requisiti}
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
 \endfirsthead
@@ -198,8 +244,7 @@ M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 
 \endlastfoot
   \hline
- M5ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
-
+    M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
 \end{xltabular}
 \caption{Metriche per l'analisi dei requisiti}
 \end{table}
@@ -221,8 +266,7 @@ M13TUS & Percentuale di test superati & $ \ge85\% $& $100\%$\\
 \endfoot
 
 \endlastfoot
-\hline
-M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\ 
+
 \end{xltabular}
 \caption{Metriche per la progettazione}
 \end{table}
@@ -230,7 +274,7 @@ M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\
 \subsubsubsubsection{Codifica}
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
 \endfirsthead
@@ -242,17 +286,17 @@ M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\
 \endfoot
 
 \endlastfoot
-\hline
- M6CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
-\hline
-M7SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\  
-\hline
-M8BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
-\hline
-M10PRI & Percentuale di requisiti implementati & $ \ge85\% $ & $ 100\% $ \\ \hline
-M11LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
-\hline
-M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\ 
+ \hline
+    M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+    \hline
+    M.PC.7.SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
+    
+    \hline
+     M.PC.8.BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
+ \hline
+   M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+       
+
 \end{xltabular}
 \caption{Metriche per la codifica}
 \end{table}
@@ -260,7 +304,7 @@ M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\
 \subsubsubsubsection{Testing}
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
 \endfirsthead
@@ -274,46 +318,27 @@ M12DC & Densità dei commenti & $\ge25\%$ & $\ge30\%$ \\
 \endlastfoot
 
 \hline
-M13TUS & Percentuale di test & $ \ge85\% $& $100\%$\\
+   M.PD.9.TS & Percentuale di test superati  & $ \ge85\% $& $100\%$\\
+   \hline
+    M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
+
+    \hline
+   M.PD.8.IM & Impatto delle modifiche &-& - \\
+      \hline
+  M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
 
     
 \end{xltabular}
 \caption{Metriche per il testing}
 \end{table}
  
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Fornitura}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Sviluppo}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \end{tabularx}}
-
+   
 % PROCESSI DI SUPPORTO
 \subsubsection{Processi di supporto}
 \subsubsubsection{Documentazione}
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
 \endfirsthead
@@ -326,7 +351,9 @@ M13TUS & Percentuale di test & $ \ge85\% $& $100\%$\\
 
 \endlastfoot
 \hline
-M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
+    M.PD.1.IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
+     \hline
+    M.PD.7.CD &  Completezza descrittiva &-& - \\
 \end{xltabular}
 \caption{Metriche per la documentazione}
 \end{table}
@@ -350,12 +377,13 @@ M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
     Gestione della qualità &  &  \\
     \end{tabularx}}
 
+
 \end{comment}    
- % PROCESSI ORGANIZZATIVI   
-\subsubsection{Processi organizzativi}
+
+\subsubsubsection{Assicurazione della qualità}
 {\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
 \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
 \endfirsthead
@@ -368,7 +396,42 @@ M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
 
 \endlastfoot
 \hline
- M2RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+    M.PD.4.AR &  Accuratezza della risposta &-& - \\
+        
+    \hline
+    M.PD.5.RD &  Rimozione dei difetti &-& - \\
+   \hline
+    M.PD.6.LCG &   Livello di controllo dei guasti &-& - \\
+    \hline
+   M.PD.11.AFPH &Accesso fisico alle funzioni da  parte di personale portatore di handicap &-& - \\
+    \hline
+ M.PD.12.TR & Tempo di risposta &-& - \\
+   \hline
+M.PD.13.EI & Efficienza dell’installazione &-& - \\
+
+\end{xltabular}
+\caption{Metriche per la assicurazione della qualità}
+\end{table}
+
+ % PROCESSI ORGANIZZATIVI   
+\subsubsection{Processi organizzativi}
+{\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endfirsthead
+
+\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
+\endhead
+
+\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+\hline
+     M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+     
 \end{xltabular}
 \caption{Metriche per i processi organizzativi }
 \end{table}
@@ -385,16 +448,6 @@ M9IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
 
     
 
-\begin{comment}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione organizzativa}}} \\
-    \hline
-     &  &  &  \\
-    \end{tabularx}}  
-\end{comment}
 
 
 

@@ -89,35 +89,6 @@ Questa sezione ha l'obiettivo di presentare i casi d'uso relativi all'applicazio
 \subsubsection{Attori primari}
 \ucimg{attori_pr}{Attori primari}{0.1}
 L'applicazione \textit{Knowledge Management AI} richiede un singolo attore principale che rappresenta l'utente (ovvero il lavoratore) che interagisce con il sistema.
-\subsubsection{Attori secondari}
-\ucimg{attori_sec}{Attori secondari}{1}
-L'applicazione dialoga inoltre con i seguenti attori secondari:
-\begin{itemize}
-    \item Modello LLM, generalizzato in:
-        \begin{itemize}
-            \item OpenAI LLM;
-            \item HuggingFace LLM;
-            \item LLM locale.
-        \end{itemize}
-    \item Vector database, generalizzato in:
-        \begin{itemize}
-            \item Pinecone;
-            \item ChromaDB.
-        \end{itemize}
-    \item Modello di embeddings, generalizzato in:
-        \begin{itemize}
-            \item OpenAI embeddings;
-            \item HuggingFace embeddings;
-            \item Modello embeddings locale.
-        \end{itemize}
-    \item Sistema di archiviazione documenti, generalizzato in:
-        \begin{itemize}
-            \item AWS S3;
-            \item Database archiviazione locale;
-        \end{itemize}
-    \item Database chat.
-\end{itemize}
-
 \newpage
 \subsection{Elenco dei casi d'uso}
 
@@ -1006,7 +977,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Visualizzazione lista documenti caricati}{vis_lista_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1021,7 +991,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subuc{Visualizzazione singolo documento in lista}{vis_sing_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1041,7 +1010,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione titolo singolo documento}{vis_tit_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1054,7 +1022,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione dimensioni singolo documento}{vis_dim_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1067,7 +1034,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione data di caricamento singolo documento}{vis_data_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1080,7 +1046,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione indicatore di occultamento singolo documento}{vis_occ_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1089,7 +1054,7 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
         \item \textbf{Scenario principale}: l'utente visualizza se il singolo documento è occultato o meno;
         \item \textbf{Trigger}: l’utente desidera sapere se il singolo documento all’interno della lista di documenti caricati è occultato o meno.
     \end{itemize}
-
+    
     \uc{Caricamento documento in area di staging}{car_staging}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1139,12 +1104,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Upload documento}{up_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}:
-        \begin{itemize}
-            \item sistema di archiviazione;
-            \item modello di embeddings;
-            \item vector database.
-        \end{itemize}
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item l’utente ha caricato almeno un documento valido nell’area di staging;
@@ -1167,12 +1126,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Sostituzione documento già presente}{sost_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}:
-        \begin{itemize}
-            \item sistema di archiviazione;
-            \item modello di embeddings;
-            \item vector database.
-        \end{itemize}
         \item \textbf{Precondizioni}: Il documento caricato ha lo stesso nome di un documento già presente nel sistema
         \item \textbf{Postcondizioni}:
         \begin{itemize}
@@ -1186,7 +1139,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Visualizzazione contenuto documento}{vis_cont_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}:
         \begin{itemize}
             \item il sistema è configurato e attivo;
@@ -1200,11 +1152,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Eliminazione documento}{elim_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}:
-        \begin{itemize}
-            \item sistema di archiviazione;
-            \item vector database.
-        \end{itemize}
         \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
         \item \textbf{Postcondizioni}:
         \begin{itemize}
@@ -1222,7 +1169,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Occultamento documento}{occ_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}: vector database;
         \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
         \item \textbf{Postcondizioni}: il documento è stato occultato (visibile all’utente ma non reperibile per la formulazione delle risposte);
         \item \textbf{Scenario principale}:
@@ -1236,7 +1182,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Riabilitazione documento}{riab_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}: vector database;
         \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
         \item \textbf{Postcondizioni}: il documento è stato riabilitato ed è di nuovo reperibile per la formulazione delle risposte;
         \item \textbf{Scenario principale}:
@@ -1250,7 +1195,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Ricerca documenti}{ric_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: sistema di archiviazione;
         \item \textbf{Precondizioni}: l’utente sta visualizzando la lista dei documenti caricati;
         \item \textbf{Postcondizioni}: il sistema ha mostrato i risultati della ricerca eseguita;
         \item \textbf{Scenario principale}: l’utente richiede al sistema di effettuare una ricerca dei documenti;
@@ -1261,7 +1205,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Visualizzazione lista chat}{vis_lista_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}:
         \begin{itemize}
             \item il sistema è configurato e attivo;
@@ -1276,7 +1219,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subuc{Visualizzazione singola chat in lista}{vis_sing_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1294,7 +1236,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione titolo singola chat in lista}{vis_tit_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1307,7 +1248,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione timestamp ultimo messaggio singola chat in lista}{vis_timestamp_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
@@ -1320,7 +1260,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Creazione nuova chat}{creaz_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}:
         \begin{itemize}
             \item il sistema è configurato e attivo;
@@ -1350,7 +1289,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Eliminazione chat}{elim_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
         \item \textbf{Postcondizioni}: la chat è stata eliminata dal database chat;
         \item \textbf{Scenario principale}:
@@ -1364,7 +1302,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Rinominazione chat}{rinom_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
         \item \textbf{Postcondizioni}: la chat è stata rinominata nel database chat;
         \item \textbf{Scenario principale}:
@@ -1415,7 +1352,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Ricerca chat}{ric_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
         \item \textbf{Postcondizioni}: il sistema ha mostrato i risultati della ricerca eseguita;
         \item \textbf{Scenario principale}: l’utente richiede al sistema di effettuare una ricerca delle chat e del loro contenuto;
@@ -1425,7 +1361,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \uc{Visualizzazione contenuto chat}{vis_cont_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
         \item \textbf{Postcondizioni}: il sistema ha mostrato il contenuto di una chat;
         \item \textbf{Scenario principale}:
@@ -1440,7 +1375,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subuc{Visualizzazione singolo messaggio in chat}{vis_sing_mess}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando il contenuto di una chat;
         \item \textbf{Postcondizioni}: il sistema ha mostrato il singolo messaggio in chat;
         \item \textbf{Scenario principale}:
@@ -1455,7 +1389,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione contenuto testuale singolo messaggio in chat}{vis_cont_mess}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
         \item \textbf{Postcondizioni}: il sistema ha mostrato il contenuto testuale del singolo messaggio in chat;
         \item \textbf{Scenario principale}: l’utente visualizza il contenuto testuale del messaggio in chat.
@@ -1465,7 +1398,6 @@ L'applicazione dialoga inoltre con i seguenti attori secondari:
     \subsubuc{Visualizzazione orario singolo messaggio in chat}{vis_or_mess}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attore secondario}: database chat;
         \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
         \item \textbf{Postcondizioni}: il sistema ha mostrato l'orario del singolo messaggio in chat;
         \item \textbf{Scenario principale}: l’utente visualizza l'orario di invio/ricezione del messaggio in chat.

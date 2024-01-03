@@ -1101,39 +1101,43 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole rimuovere un documento dall’area di staging.
     \end{itemize}
 
-    \uc{Upload documento}{up_doc}
+    \uc{Upload nuovo documento}{up_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
             \begin{itemize}
-                \item l’utente ha caricato almeno un documento valido nell’area di staging;
-                \item è presente almeno un documento valido nell’area di staging.
+                \item l’utente ha caricato un documento valido nell’area di staging;
+                \item il documento caricato nell'area di staging non è già presente nel sistema;
+                \item è presente un documento valido nell’area di staging.
             \end{itemize}
         \item \textbf{Postcondizioni}:
         \begin{itemize}
             \item il documento è stato caricato nello spazio di archiviazione documenti configurato;
             \item gli embeddings sono stati calcolati e caricati nel vector database configurato;
-            \item i documenti caricati vengono rimossi dall’area di staging.
+            \item il documento caricato viene rimosso dall’area di staging.
         \end{itemize}
         \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell’area di staging verso il sistema di archiviazione e il vector database;
-        \item \textbf{Estensioni}: Sostituzione documento già presente (\rifuc{sost_doc})
         \item \textbf{Trigger}: l’utente vuole inserire un documento all’interno del sistema, rendendolo disponibile sia nel sistema di archiviazione che reperibile dal chatbot.
     \end{itemize}
-    \ucimg{up_docs}{Diagramma \rifuc{up_doc}}{1}
 
-    \attimg{up_doc}{Diagramma attività upload documento}{1}
+    \attimg{up_doc}{Diagramma attività upload nuovo documento}{1}
 
-    \uc{Sostituzione documento già presente}{sost_doc}
+    \uc{Sostituzione documento}{sost_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: Il documento caricato ha lo stesso nome di un documento già presente nel sistema
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un documento valido nell’area di staging;
+                \item il documento caricato nell'area di staging presenta lo stesso nome e formato di un documento già presente nel sistema;
+                \item è presente un documento valido nell’area di staging.
+            \end{itemize}
         \item \textbf{Postcondizioni}:
-        \begin{itemize}
-            \item se l'utente ha scelto di sostituire il documento già presente, questo è stato cancellato, il nuovo documento viene inserito nel sistema di archiviazione, ne vengono calcolati gli embeddings, caricati poi nel vector database;
-            \item se l'utente ha scelto di annullare l'upload, il nuovo documento viene ignorato;
-            \item il documento è stato rimosso dall’area di staging.
-        \end{itemize}
-        \item \textbf{Scenario principale}: l’utente sceglie se sostituire il documento già presente o annullare l'upload del documento in questione;
+            \begin{itemize}
+                \item il documento precedentemente presente nel sistema viene sostituito dal documento caricato dall'area di staging;
+                \item il documento caricato è stato rimosso dall’area di staging.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole sostituire un documento già presente all'interno del sistema, rendendolo disponibile la nuova versione sia nel sistema di archiviazione che reperibile dal chatbot.
     \end{itemize}
     
 

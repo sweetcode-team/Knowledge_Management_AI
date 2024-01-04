@@ -1,10 +1,10 @@
-
 \documentclass[10pt, a4paper]{article}
 
 \input{parameters}
 
 \usepackage{style}
 \usepackage{headerfooter}
+\usepackage{comment}
 
 \title{\titolo}
 \author{SWEetCode}
@@ -79,7 +79,6 @@ I documenti che sono corredati dal Glossario sono:
 \end{itemize}
 
 % APPLICAZIONE STANDARD
-
 \section{Applicazione standard ISO/IEC 12207:1997}
 In questo documento il team si impegna ad essere conforme allo Standard textit{ISO/IEC 12207:1997 - Information technology — Software life cycle processes}. Questa sezione del documento è dedicata all'applicazione pratica degli standard e dei processi definiti nell'ambito di questo Standard Internazionale.
 
@@ -91,7 +90,7 @@ loro volta possono presentare delle procedure e un elenco di strumenti utilizzat
 
 \subsubsection{Processi primari del ciclo di vita}
 Sebbene lo Standard adottato presenti cinque processi primari (\textit{Acquisizione, Fornitura, Sviluppo, Operazione, Manutenzione}),
-all'interno del contesto del progetto universitario in atto, il team non ritiene il processo \textit{Manutenzione} pertienente e, pertanto, 
+all'interno del contesto del progetto universitario in atto, il team non ritiene il processo \textit{Manutenzione} pertinenente e, pertanto, 
 si è deciso di escluderlo dalla presentazione nel documento.\\
 I processi primari presentati nel presente documento sono:
 \begin{itemize}
@@ -128,7 +127,6 @@ I processi organizzativi presentati nel presento documento sono:
 
 % PROCESSI PRIMARI
 \newpage
-
 \section{Processi primari}
 
 \subsection{Acquisizione}
@@ -150,8 +148,7 @@ Le fasi del processo di acquisizione stabilite sono le seguenti:
     \item Presentazione del \textit{Minimum Viable Product (MVP)} da parte del gruppo di lavoro all'azienda proponente;
     \item Accettazione da parte dell'azienda proponente del \textit{MVP} proposto dal gruppo di lavoro;
     \item Presentazione della candidatura per la revisione \textit{Product Baseline} da parte del gruppo di lavoro;
-    \item Revisione \textit{Product Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con 
-    conseguente valutazione.
+    \item Revisione \textit{Product Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con conseguente valutazione.
 \end{enumerate}
 I ruoli definiti all'interno di questo progetto didattico universitario sono:
 \begin{itemize}
@@ -159,8 +156,7 @@ I ruoli definiti all'interno di questo progetto didattico universitario sono:
     \item Azienda proponente: cliente e mentore;
     \item Gruppo di lavoro: fornitore. 
 \end{itemize}
-Le stime dei tempi di consegna e del prezzo viene effettuata dal gruppo di lavoro durante la fase di presentazione della 
-candidatura d'appalto.\\
+Le stime dei tempi di consegna e del prezzo vengono effettuate dal gruppo di lavoro durante la fase di presentazione della candidatura d'appalto.\\
 La definizione del prezzo durante la fase di candidatura costituisce il limite superiore invalicabile durante lo svolgimento del progetto ed
 è derivante dai costi (stabiliti dal docente del corso) di ciascun ruolo ricopribile all'interno del gruppo di lavoro.\\
 Le date di consegna sono invece libere e soggette a stringenti regole di ingresso e vengono stabilite dal gruppo di lavoro assieme al proponente,
@@ -228,7 +224,7 @@ Il suo contenuto comprende:
     \item {\textbf{Google Calendar}}: sistema di calendari usato per pianificare riunioni, scadenze e in generale
     eventi significativi tra proponente e gruppo;
     \item {\textbf{Google Sheet}}: parte del Google Workspace, fornisce dei fogli di calcolo utilizzati per la creazione di tabelle e grafici utili in particolare al Piano di progetto;
-    \item {\textbf{Slack}}: piattaforma di messaggistica specializzata nella comunicazione e collaborazione all’interno di team aziendali. Viene utilizzata dal team per le comunicazioni asincrone con il proponente.
+    \item {\textbf{Slack}}: piattaforma di messaggistica specializzata nella comunicazione e collaborazione all'interno di team aziendali. Viene utilizzata dal team per le comunicazioni asincrone con il proponente.
 \end{itemize}
 
 \subsection{Sviluppo}
@@ -373,6 +369,21 @@ I progettisti del team avranno l'obbligo di considerare le seguenti proprietà d
     \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse;
 \end{itemize}
 
+\subsubsubsection{Scelte tecnologiche e PoC}
+La scelta delle tecnologie viene effettuata dal responsabile e dagli amministratori.
+Considerando i requisiti prodotti dall'attività di analisi dei requisiti, vengono analizzate le caratteristiche, i pro e i contro delle opzioni tecnologiche disponibili, trovando una soluzione possibile.
+Questa soluzione viene validata dai progettisti e dai programmatori tramite la realizzazione di un Proof of Concept, il cui scopo è:
+\begin{itemize}
+    \item Dimostrare la fattibilità del progetto;
+    \item Dimostrare che le scelte tecnologiche fatte sono adeguate e compatibili;
+    \item Avere feedback concreto e veloce da parte dell'azienda proponente;
+    \item Eslorare concretamente le tecnologie scelte;
+    \item %TODO
+\end{itemize}
+
+Qualora fosse necessario un confronto concreto tra tecnologie, i progettisti e i programmatori si assumono il compito di realizzare più PoC, confrontando poi i risultati finali con amministratori e responsabile, che sceglieranno la soluzione migliore a fronte di questi.
+
+\subsubsubsection{Fasi di progettazione}
 Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
 
 \subsubsubsection{Progettazione logica}
@@ -476,6 +487,7 @@ Ogni classe deve essere opportunamente documentata, seguendo il formato \textit{
 \subsubsubsubsection{Formattazione del codice}
 Per la formattazione del codice Python sono state adottate le convenzioni indicate dal formatter PEP8 (\url{https://peps.python.org/pep-0008/}).
 Il rispetto della formattazione sopraindicata è garantito dallo strumento di formattazione incluso nell'estensione per il liguaggio Python di VSCode fornita da Microsoft (\url{https://marketplace.visualstudio.com/items?itemName=ms-python.python})
+
 \subsubsubsubsection{Convenzioni sintattiche}
 \begin{itemize}
     \item \textbf{Nomi autoesplicativi}: i nomi assegnati a qualsiasi costrutto devono essere autoesplicativi, cioè devono racchiudere il significato di ciò a cui si riferiscono;
@@ -797,7 +809,7 @@ Il processo di manutenzione della documentazione è fondamentale per garantire c
 \end{itemize}
 
 \subsection{Configuration management}
-
+\label{sec:configuration_control}
 \subsubsection{Scopo}
 Nella seguente sezione vengono presentate le attività svolte dal gruppo SWEetCode che rientrano all'interno del processo "configuration management".
 
@@ -1094,8 +1106,8 @@ prodotto nei confronti di tutti requisiti richiesti da contratto viene infatti a
 \subsection{Revisione congiunta}
 
 \subsubsection{Scopo}
-La revisione congiunta consiste nel definire le attività per valutare lo stato e i prodotti di un’attività. Questo processo può 
-essere utilizzato da qualsiasi coppia di parti, in cui una parte (la parte che esegue la revisione) valuta un’altra parte (la parte che viene 
+La revisione congiunta consiste nel definire le attività per valutare lo stato e i prodotti di un'attività. Questo processo può 
+essere utilizzato da qualsiasi coppia di parti, in cui una parte (la parte che esegue la revisione) valuta un'altra parte (la parte che viene 
 revisionata) in un forum congiunto.
 
 \subsubsection{Implementazione del processo}
@@ -1244,27 +1256,28 @@ Ai fini di tener traccia della quantità di tempo utilizzato per svolgere le att
 Ogni componente del gruppo è tenuto a registrare in questo foglio, dopo ogni sessione lavorativa, il numero di ore effettive della sua durata, oltre al ruolo svolto.
 Questa azione garantisce un calcolo preciso e affidabile dei consuntivi di ogni periodo. 
 
-\subsection{Comunicazione}
+\subsubsection{Comunicazione}
+\label{sec:comunicazione}
 SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gruppo. In particolare, di seguito vengono esposte le modalità di comunicazione, interna ed esterna, e le applicazioni utilizzate.
 
-\subsubsection{Comunicazioni interne}
+\subsubsubsection{Comunicazioni interne}
 
-\subsubsubsection{Comunicazioni sincrone}
+\subsubsubsubsection{Comunicazioni sincrone}
 Il gruppo ha deciso che gli incontri si svolgeranno  in presenza oppure attraverso la piattaforma \textit{Discord}. Per gli incontri in presenza, essi verranno decisi alcuni giorni prima in modo tale da poter consentire la presenza di tutti i membri del gruppo. Per quanto riguarda \textit{Discord}, invece, si opta per una comunicazione asincrona anche pochi minuti prima del collegamento. In entrambe le situazioni, il gruppo utilizza un approccio libero alla discussione e improntato alla crescita.
 
-\subsubsubsection{Comunicazioni asincrone}
+\subsubsubsubsection{Comunicazioni asincrone}
 Il gruppo utilizzerà \textit{Whatsapp} e \textit{Notion} per le comunicazioni asincrone. In particolare è stata creata una \textit{community} su \textit{Whatsapp}, composta da un gruppo principale per comunicazioni informali, una bacheca nella quale verranno inviati i messaggi più importanti dei quali è necessario prendere visione, ed altri canali in cui i componenti del gruppo si organizzano per task collaborativi.
 
-\subsubsection{Comunicazioni esterne}
+\subsubsubsection{Comunicazioni esterne}
 
-\subsubsubsection{Comunicazioni sincrone}
+\subsubsubsubsection{Comunicazioni sincrone}
 Con la collaborazione dei referenti della azienda AzzurroDigitale, il gruppo ha concordato ed accettato un calendario di incontri settimanali su piattaforma \textit{Google Meet}. Tali incontri saranno cruciali nella possibilità di discutere con maggiore facilità e immediatezza argomenti complessi ed estesi. Il gruppo si impegna a presenziare in maniera più assidua possibile agli incontri con il proponente e a redarre un verbale al fine di documentare gli stessi.
 
-\subsubsubsection{Comunicazioni asincrone}
+\subsubsubsubsection{Comunicazioni asincrone}
 Il canale scelto per la comunicazione asincrona concordato con l'azienda è \textit{Slack}. Questo strumento viene usato per brevi comunicazioni e per accordarsi sugli orari degli incontri.
 Per comunicare con soggetti esterni diversi dall'azienda proponente, verrà utilizzata sempre e solo l'indirizzo mail ufficiale del gruppo: \textbf{sweetcode.team@gmail.com}.
 
-\subsubsection{Moderazione}
+\subsubsubsection{Moderazione}
 La gestione della comunicazione viene affidata al responsabile. In particolare, ha il compito di:
 \begin{itemize}
     \item Fissare la data, l'orario e il luogo delle riunioni interne;
@@ -1273,7 +1286,7 @@ La gestione della comunicazione viene affidata al responsabile. In particolare, 
     \item Comunicare con l'esterno, dopo aver preso delle decisioni con il team. 
 \end{itemize}
 
-\subsubsection{Norme comportamentali}
+\subsubsubsection{Norme comportamentali}
 Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'interno del gruppop, ogni componente ha l'obbligo di:
 \begin{itemize}
     \item Essere puntuale o eventualmente comunicare tempestivamente al responsabile eventuali indisposizioni;
@@ -1281,12 +1294,12 @@ Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'int
     \item Mantenere un comportamento rispettoso e disciplinato, aperto a discussioni e cambi di posizione;
 \end{itemize}
 
-\subsubsection{Gestione dei rischi}
+\subsubsubsection{Gestione dei rischi}
 La definizione e la gestione dei rischi sono attività svolte dal responsabile e dall'amministratore.
 I risultati di queste attività sono incluse nel documento (Piano di progetto).
 Le seguenti sezioni definiscono le modalità tramite le quali questi rischi vengono documentati.
 
-\subsubsubsection{Notazione}
+\subsubsubsubsection{Notazione}
 I rischi sono indicati con la notazione seguente:\\
 \textbf{R[Tipo].[Numero]}
 nella quale:
@@ -1301,7 +1314,7 @@ nella quale:
 \item \textbf{Numero} è un numero univoco progressivo, correlato ad ogni tipo, che identifica il rischio.
 \end{itemize}
 
-\subsubsubsection{Didascalia}
+\subsubsubsubsection{Didascalia}
 La definizione dei rischi è dettagliata nel seguente modo:
 \begin{itemize}
     \item \textbf{Nome}: nome del rischio;
@@ -1314,7 +1327,39 @@ La definizione dei rischi è dettagliata nel seguente modo:
 \subsection{Infrastruttura}
 \subsubsection{Scopo}
 Il processo di infrastruttura ha lo scopo di definire e documentare l'infrastruttura utilizzata dal team e il modo in cui questa viene stabilita e manutenuta.
-%TODO
+
+\subsubsubsection{Implementazione dell'infrastruttura}
+Questa attività definisce e documenta l'infrastruttura e le modalità di installazione e configurazione di essa.
+Il ruolo che si occupa dello svolgimento di questa attività è l'amministratore.
+
+Dopo una fase di discussione con il team, in cui viene stabilita la configurazione ideale, l'amministratore ha il compito di implementare le scelte infrastrutturali.
+In primo luogo, verifica la fattibilità di esse, considerando i seguenti aspetti:
+\begin{itemize}
+    \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
+    \item \textbf{Performance}: una modifica dell'infrastruttura deve categoricamente portare ad un miglioramento o al mantenimento delle performance precedenti;
+    \item \textbf{Sicurezza}: le scelte fatte non devono andare a impattare negativamente la sicurezza dell'infrastruttura;
+    \item \textbf{Disponibilità}: la configurazione deve essere disponibile e attuabile per ogni dispositivo utilizzato nel progetto. Onde evitare discrepanze tra infrastrutture implementate, la disponibilità deve essere totale;
+    \item \textbf{Vincoli di spazio}: l'infrastruttura deve rispettare i vincoli di spazio imposti dai dispositivi dei componenti;
+    \item \textbf{Attrezzatura disponibile}: la configurazione scelta deve essere compatibile con le configurazioni hardware a disposizione dei componenti del gruppo;
+    \item \textbf{Costi}: In particolare, vengono preferite soluzioni open-source o gratuite rispetto a opzioni a pagamento, anche se queste dovessero rappresentare la scelta migliore;
+    \item \textbf{Vincoli di tempo}: le fasi di installazione e configurazione dell'infrastruttura devono essere limitate in termini di tempo, evitando di rallentare l'avanzamento del progetto. Per ovviare a ciò, si preferisce posticipare le modifiche migliorative non obbligatorie, destinandole a periodi meno densi.
+\end{itemize}
+
+Se questa fase di verifica risulta soddisfatta, l'amministratore procede nel documentare le procedure necessarie per l'installazione e la configurazione, considerando anche le divergenze che possono nascere dalla diversità di dispositivi utilizzati dai membri.
+
+Queste procedure vengono raccolte in una sezione apposita del workspace \textbf{Notion}
+Una volta finita la fase di documentazione, l'amministratore informa i componenti del team, che procederanno nel seguire e attuare i passaggi documentati.
+
+Nell'eventualità in cui alcuni componenti riscontrassero problemi durante le fasi di installazione e configurazione, l'amministratore ha il compito di seguirli passo per passo, individuando e risolvendo i problemi il prima possibile.
+
+Nel caso in cui questi passaggi fossero particolarmente complicati e critici, il responsabile, in accordo con l'amministratore, organizzerà degli incontri in cui verranno spiegate in dettaglio le procedure necessarie.
+
+\subsubsubsection{Manutenzione dell'infrastruttura}
+L'infrastruttura deve essere mantenuta, monitorata e modificata, in modo che continui a soddisfare le aspettative.
+Questa attività viene svolta dall'amministratore.
+Oltre a verificare periodicamente il funzionamento e lo stato dell'infrastruttura, l'amministratore ha il compito di intervenire tempestivamente in presenza di difetti o malfuzionamenti, fornendo una correzione definitiva, o quantomeno temporanea ma risolutiva.
+
+I membri del gruppo sono tenuti a segnalare eventuali guasti, proporre migliorie e rispettare l'infrastruttura, collaborando durante le fasi di configurazione e tenendosi aggiornati riguardo le novità introdotte.
 
 \subsection{Miglioramento}
 \subsubsection{Scopo}

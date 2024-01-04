@@ -62,7 +62,7 @@ Viene inoltre fornito uno storico delle modifiche e delle versioni del documento
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf};
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T10.pdf};
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T11.pdf}.
-            \end{itemize}.
+            \end{itemize}
     \end{itemize}
 
 \section{Glossario}
@@ -983,6 +983,407 @@ secondo le modalità citate nel paragrafo (\S \nameref{sec:ciclo_vita}).
 L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
 versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
 volutamente le loro azioni alla sola modifica del contenuto della documentazione.
+
+
+\subsection{Accertamento di qualità}
+\subsubsection{Scopo}
+Lo scopo di questo processo è fornire un'adeguata garanzia che i prodotti software e i processi nel ciclo di vita del progetto siano conformi ai requisiti specificati e aderiscano ai loro piani stabiliti.
+L'assicurazione della qualità può utilizzare i risultati di altri processi di supporto, come la verifica e la validazione.
+
+\subsubsection{Process assurance}
+Per garantire che la qualità prefissata venga raggiunta e mantenuta, viene adottato il ciclo PDCA, noto anche come ciclo di Deming, un approccio metodologico utilizzato per il miglioramento continuo. Si divide in 4 fasi:
+\begin{itemize}
+    \item \textbf{Plan}: questa fase coinvolge la definizione degli obiettivi di qualità, la pianificazione delle attività e la creazione di criteri di valutazione. Aiuta a stabilire le aspettative, i processi e le risorse necessarie per raggiungere gli standard di qualità prefissati.
+    \item \textbf{Do}: durante questa fase, vengono implementate le azioni pianificate, eseguendo le attività identificate nel piano e raccogliendo dati per il monitoraggio della qualità.
+    \item \textbf{Check}: questa fase consiste nella valutazione dei risultati ottenuti rispetto agli obiettivi prestabiliti. Attraverso metriche precise stabilite dal team, si verifica se i risultati sono in linea con le aspettative di qualità.
+    \item \textbf{Act}: basandosi sull'analisi dei dati raccolti, si apportano correzioni migliorative ai processi esistenti, al fine di migliorare la qualità del prodotto.
+\end{itemize}
+
+\subsubsection{Metriche: Notazione}
+Le metriche di qualità, definite successivamente, vengono identificate con la seguente notazione:
+\textbf{M.[Tipo].[Codice].[Sigla]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{M}] indica la parola "metrica";
+\item \lbrack \textbf{Tipo}] indica il tipo di qualità:
+\begin{itemize}
+    \item \textbf{PC}: Qualità di processo;
+    \item \textbf{PD}: Qualità di prodotto.
+\end{itemize}
+\item \lbrack \textbf{Codice}] è un numero progressivo univoco che identifica le metriche per ogni tipologia;
+\item \lbrack \textbf{Sigla}] composta dalle iniziali del nome della metrica; aiuta a identificarla più velocemente.
+\end{itemize}
+
+\subsubsection{Metriche: Didascalia}
+Ogni metrica è descritta dai seguenti campi:
+\begin{itemize}
+    \item \textbf{Nome}: nome della metrica;
+    \item \textbf{Descrizione}: descrizione della metrica;
+    \item \textbf{Caratteristica di riferimento}: caratteristica dello standard a cui la metrica fa riferimento;
+    \item \textbf{Motivo}: motivazione per la quale è necessario misurarla;
+    \item \textbf{Misurazione}: formula e strumenti tramite la quale viene calcolata.
+\end{itemize}
+
+\subsubsection{Standard per la qualità del prodotto}
+% ISO/IEC 9126
+Nella definizione delle metriche di qualità, il team si prefigge di seguire lo standard ISO/IEC 9126, che descrive un modello di qualità del prodotto
+dividendo la qualità in esterna, interna e in uso.
+Qualità esterna e interna sono organizzate attraverso le seguenti caratteristiche:
+\begin{itemize}
+    \item Funzionalità: capacità del software di fornire le funzioni necessarie per operare in un determinato contesto;
+    \item Affidabilità: capacità di un prodotto software di mantenere il livello di prestazione quando viene utilizzato in condizioni specifiche;
+    \item Usabilità: capacità di un prodotto software di essere comprensibile. Chiarisce tutti gli ambienti e scenari di utilizzi del prodotto, 
+        inclusa la preparazione all'utilizzo del software e la valutazione dei risultati;
+    \item Efficienza: capacità di un prodotto software di realizzare le funzioni richieste nel minor tempo possibile e utilizzando nel miglior modo le risorse necessarie;
+    \item Manutenibilità: capacità di un prodotto di essere modificabile, sia per correzioni che per adattare il software e modifiche all'ambiente o ai requisiti;
+    \item Portabilità: capacità di un prodotto di essere trasportato a ambienti diversi, con organizzazione e tecnologie diverse;
+    \item Qualità in uso: rappresenta il punto di vista dell'utente sulla qualità interna ed esterna. 
+\end{itemize}
+
+La qualità in uso viene descritta tramite le seguenti caratteristiche:
+\begin{itemize}
+    \item Efficacia: capacità di permettere all'utente di raggiungere obiettivi specifici con accuratezza e completezza in uno specifico contesto di utilizzo;
+    \item Produttività: capacità di permettere all'utente di impegnare un numero definito di risorse, in relazione all'efficienza raggiunta in uno specifico contesto di utilizzo;
+    \item Sicurezza fisica: capacità di raggiungere un livello accettabile di rischio per i dati, le persone, il business, la proprietà o gli ambienti;
+    \item Soddisfazione: capacità di soddisfare gli utenti a seguito di interazioni con il prodotto. 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%% ISO/IEC 25010
+
+
+\subsubsection{Lista delle metriche}
+
+\subsubsubsection{Qualità del processo}
+\begin{itemize}
+    \item \textbf{M.PC.1.PMS}:
+    \begin{itemize}
+        \item \textbf{Nome}: Percentuale di metriche soddisfatte;
+        \item \textbf{Descrizione}: Valore che indica la percentuale di metriche soddisfatte; una metrica si dice "soddisfatta" se la sua misurazione supera il valore accettabile specificato nel documento Piano di qualifica; 
+        \item \textbf{Motivo}: Questa metrica ci assicura il raggiungimento di una buon livello di qualità generale nello svolgimento del progetto;
+        \item \textbf{Misurazione}: \  \[ M=\frac{N° Metriche \ soddisfatte}{N° Metriche\ totali} * 100 \] \\
+    \end{itemize}
+  
+     \item \textbf{M.PC.2.RNP}:
+    \begin{itemize}
+        \item \textbf{Nome}: Rischi non previsti;
+        \item \textbf{Descrizione}: Valore che specifica il numero di rischi verificatisi che non rientrano tra quelli esaminati nel documento di Analisi dei requisiti;
+        \item \textbf{Motivo}: Valore che indica se è stata fatta una accurata analisi dei rischi a monte della pianificazione. 
+        \item \textbf{Misurazione}:  \[
+        M=N°Rischi \ non \ previsti
+        \] \\
+    \end{itemize}
+ 
+
+    
+    \item \textbf{M.PC.3.VP}:
+    \begin{itemize}
+        \item \textbf{Nome}: Variazione di piano;
+        \item \textbf{Descrizione}: Variazione percentuale utilizzata per analizzare se il progetto è in linea, in anticipo o in ritardo rispetto alla schedulazione specificata nel documento Piano di progetto  Ai seguenti valori si associano i seguenti significati:
+        \begin{itemize}
+            \item < 0 significa che si sta procedendo con un certo ritardo;
+            \item = 0 si è in linea con quanto pianificato;
+            \item > 0 significa che si sta procedendo con un certo anticipo rispetto a quanto pianificato.
+        \end{itemize}
+        \item \textbf{Caratteristica di riferimento}:
+        \item \textbf{Motivo}: Valore che aiuta a controllare come si procede e ad evitare ritardi;
+        \item \textbf{Misurazione}: \  \[ M=(FP-AP)-(FC-AC) \] \\
+        \begin{itemize}
+        \item AP= Avvio pianificato;
+        \item FP= Fine pianificata;
+        \item AC= Avvio consuntivato;
+        \item FC= Fine consuntivata.\\
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{M.PC.4.VC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Variazione di costo;
+        \item \textbf{Descrizione}: Valore che indica se il costo attuale del progetto è maggiore, uguale o minore rispetto al costo preventivato;
+        \item \textbf{Caratteristica di riferimento}:
+        \item \textbf{Motivo}: Valore che aiuta a controllare come si procede e ad evitare maggiorazioni di prezzo rispetto al preventivo. Ai seguenti valori si associano i seguenti significati:
+        \begin{itemize}
+            \item > 0 significa che si sta producendo con maggior efficienza risparmiando rispetto a quanto pianificato;
+            \item = 0 si è in linea con i costi pianificati;
+            \item < 0 significa che si sta producendo con minor efficienza causando maggiorazioni di costo rispetto a quanto pianificato.
+        \end{itemize}
+        \item \textbf{Misurazione}:  \[ M=CP-CC \] \\
+        \begin{itemize}
+        \item CP= Costo preventivato;
+        \item CC= Costo consuntivato.\\
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{M.PC.5.ISR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Indice di stabilità dei requisiti;
+        \item \textbf{Descrizione}: Indice che traccia la variazione dei requisiti nell’arco del progetto;
+        \item \textbf{Caratteristica di riferimento}:
+        \item \textbf{Motivo}: Questo valore indica eventuali discostamenti dai requisiti analizzati nel documento di Analisi dei requisiti; 
+        \item \textbf{Misurazione}: \[ M=1- \frac{RM + RC + RA}{RTI} *100 \] \\
+        \begin{itemize}
+        \item RM= Requisiti modificati;
+        \item RC= Requisiti cancellati;
+        \item RA= Requisiti aggiunti;
+        \item RTI= Requisiti totali iniziali.\\
+        \end{itemize}
+    \end{itemize}
+
+  \item \textbf{M.PC.6.CCM}:
+    \begin{itemize}
+        \item \textbf{Nome}: Complessità ciclomatica media;
+        \item \textbf{Descrizione}: Metrica utilizzata per valutare la complessità di un programma; misura direttamente il numero di cammini linearmente indipendenti attraverso il grafo di controllo di flusso;
+        %\item \textbf{Caratteristica di riferimento}: Manutenibilità-Modificabilità;
+        \item \textbf{Motivo}: Permette di controllare la complessità e di limitarla, semplificando il testing;
+        \item \textbf{Misurazione}: \[ M=\sum_{Metodo} \frac{e-n+2}{NMT} \] \\
+         \begin{itemize}
+        \item e= il numero di archi nel grafo dei cammini;
+        \item n= Numero di nodi nel grafo dei cammini;
+        \item NMT= Numero dei metodi totali.\\
+        \end{itemize}
+   \end{itemize}
+   
+    \item \textbf{M.PC.7.SC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Statement coverage;
+        \item \textbf{Descrizione}: Misura la percentuale di istruzioni nel codice eseguite dai test;
+        \item \textbf{Caratteristica di riferimento}:
+        \item \textbf{Motivo}: Metrica che permette di valutare la correttezza del comportamento del software in esecuzione;
+        \item \textbf{Misurazione}:  \[M=\frac{N° Statement
+        \ eseguiti}{N° Statement\ totali} * 100 \] \\
+    \end{itemize}
+
+
+
+    \item \textbf{M.PC.8.BC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Branch coverage;
+        \item \textbf{Descrizione}: Misura la percentuale di rami eseguiti o punti decisionali nel codice, come istruzioni \textit{if} o \textit{cicli}, e determina se i test esaminano sia il ramo vero che quello falso delle istruzioni condizionali;
+        \item \textbf{Caratteristica di riferimento}:
+        \item \textbf{Motivo}: Metrica che permette di valutare la correttezza del comportamento del software in esecuzione;
+        \item \textbf{Misurazione}:  \[M=\frac{N° Branch \ eseguiti}{N° Branch\ totali} * 100 \] \\
+    \end{itemize}
+    
+\end{itemize}
+
+\subsubsubsection{Qualità del prodotto}
+\subsubsubsubsection{Interne}
+\begin{itemize}
+     \item \textbf{M.PD.1.IG}:
+    \begin{itemize}
+        \item \textbf{Nome}: Indice di Gulpease;
+        \item \textbf{Descrizione}: Questo indice descrive il grado di leggibilità di un testo tarato sulla lingua italiana. I valori sono compresi tra 0 (leggibilità più bassa) e 100 (leggibilità più alta). Ai seguenti valori si associano i seguenti significati:
+        \begin{itemize}
+            \item < 80 sono difficili da leggere per chi ha la licenza elementare;
+            \item < 60 sono difficili da leggere per chi ha la licenza media;
+            \item < 40 sono difficili da leggere per chi ha un diploma superiore.
+        \end{itemize}
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Comprensibilità;
+        \item \textbf{Motivo}: I documenti devono essere di facile fruizione per il maggior numero di persone possibili.
+        \item \textbf{Misurazione}: \[M=89 + \frac{300* NF -10* NL}{NP} \] \\
+        \begin{itemize}
+        \item NF= Numero delle frasi;
+        \item NL= Numero delle lettere;
+        \item NP= Numero delle parole.\\
+        \end{itemize}
+        \end{itemize}
+        \begin{comment}
+       \item Per lo scopo dei documenti e per la formalità
+richiesta da essi, capiterà spesso che vengano impiegati termini tecnici che non si possono
+sostituire. Anche interrompere la frase a favore di un indice più alto potrebbe spezzarne il
+ragionamento o, peggio, storpiarne il contenuto. Infine, usare frasi troppo dirette potrebbe
+risultare poco professionale ai fini del documento. Perciò, i documenti saranno valutati da
+un essere umano per stabilire se e come il testo potrebbe essere semplificato. I limiti imposti
+da tale indice saranno sufficientemente rilassati per accettare frasi un po’ più articolate.
+Per migliorare l’utilizzo di questo indice non verrà controllato solamente a livello
+\end{comment}
+
+
+ \item \textbf{M.PD.2.LMC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Linee medie di codice per metodo;
+        \item \textbf{Descrizione}: Valore rappresentante, in media, il numero di linee di codice che ogni metodo possiede;
+        \item \textbf{Caratteristica di riferimento}: Manutenibilità-Modificabilità;
+        \item \textbf{Motivo}: Questo valore serve a valutare la complessità del codice scritto; 
+       \item \textbf{Misurazione}: Misurabile con strumenti di analisi statica. \\
+    \end{itemize}
+
+     \item \textbf{M.PD.3.AFS}:
+    \begin{itemize}
+        \item \textbf{Nome}: Adeguatezza delle funzioni sviluppate;
+        \item \textbf{Descrizione}: Metrica interna utilizzata per verificare in anticipo se il software soddisferà i requisiti funzionali;
+        \item \textbf{Caratteristica di riferimento}: Funzionalità-Adeguatezza;
+        \item \textbf{Motivo}: Misurare il livello di adeguatezza delle funzioni sviluppate rispetto alle esigenze specificate; 
+       \item \textbf{Misurazione}:   \[ M=\frac{FA}{FT} \] \\
+       \begin{itemize}
+           \item \textbf{FA}= Numero di funzioni ritenute adeguate allo svolgimento del task specificato;
+           \item \textbf{FT}= Numero totale di funzioni sviluppate.\\
+       \end{itemize}
+    \end{itemize}
+
+  \item \textbf{M.PD.4.AR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Accuratezza della risposta;
+        \item \textbf{Descrizione}: Metrica che consente di misurare se i risultati ottenuti siano coretti, graditi e in linea con le aspettative;
+        \item \textbf{Caratteristica di riferimento}: Funzionalità-Accuratezza;
+        \item \textbf{Motivo}: Misurare il livello di adeguatezza delle risposte ottenute con la applicazione; 
+       \item \textbf{Misurazione}: Il team eseguirà varie strategie indicate in questa pagina web: \url{https://python.langchain.com/docs/guides/evaluation}. \\
+       
+    \end{itemize}
+
+
+    \item \textbf{M.PD.5.RD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Rimozione dei difetti;
+        \item \textbf{Descrizione}: Metrica interna di affidabilità che permette di valutare la maturità del prodotto dal punto di vista della riduzione delle possibili cause di malfunzionamenti;
+        \item \textbf{Caratteristica di riferimento}: Affidabilità-Maturità;
+        \item \textbf{Motivo}:Misura l'efficacia della rimozione degli errori rilevati nelle diverse fasi di sviluppo del prodotto ; 
+       \item \textbf{Misurazione}:   \[ M=\frac{DC}{DT} \] \\
+       \begin{itemize}
+           \item \textbf{DC}= Numero di difetti corretti;
+           \item \textbf{DT}= Numero totale di difetti rilevati nelle diverse fasi di sviluppo del prodotto (dati ricavati dai modelli statistici creati sulla base dei dati presenti nello storico del progetto).\\
+       \end{itemize}
+    \end{itemize}
+
+    
+    \item \textbf{M.PD.6.LCG}:
+    \begin{itemize}
+        \item \textbf{Nome}: Livello di controllo dei guasti;
+        \item \textbf{Descrizione}: Metrica che aiuta a valutare la capacità del prodotto a mantenere le prestazioni desiderate anche in caso di malfunzionamenti;
+        \item \textbf{Caratteristica di riferimento}: Affidabilità-Tolleranza ai guasti;
+        \item \textbf{Motivo}: Misura il numero di condizioni di errore messe sotto controllo per evitare guasti al prodotto; 
+       \item \textbf{Misurazione}:   \[ M=\frac{E}{TC} \] \\
+       \begin{itemize}
+           \item \textbf{E}= Numero di condizioni di errore gestite correttamente;
+           \item \textbf{TC}= Numero totale di condizioni di errori possibili nel sistema.\\
+       \end{itemize}
+    \end{itemize}
+
+
+
+    \item \textbf{M.PD.7.CD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Completezza descrittiva;
+        \item \textbf{Descrizione}: Metrica che valuta se nuovi utenti possono comprendere i seguenti punti:
+        \begin{itemize}
+            \item Se il software è adatto alle loro esigenze; 
+            \item Come il software possa essere utilizzato per particolari task;
+        \end{itemize} 
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Comprensibilità;
+        \item \textbf{Motivo}: Misurare il livello di completezza delle funzionalità descritte nella documentazione del prodotto; 
+       \item \textbf{Misurazione}:   \[ M=\frac{D}{FT} \] \\
+       \begin{itemize}
+           \item \textbf{D}= Numero di funzioni descritte nella documentazione;
+           \item \textbf{FT}= Numero totale di funzioni previste.\\
+       \end{itemize}
+    \end{itemize}
+
+
+
+    \item \textbf{M.PD.8.IM}:
+    \begin{itemize}
+        \item \textbf{Nome}: Impatto delle modifiche;
+        \item \textbf{Descrizione}: Metrica che permette di valutare quanto stabile risulta il prodotto software dopo aver apportato modifiche;
+        \item \textbf{Caratteristica di riferimento}: Manutenibilità-Stabilità;
+        \item \textbf{Motivo}: Misurare l'impatto negativo sulla corretta esecuzione del software procurato dalle modifiche del codice; 
+       \item \textbf{Misurazione}:   \[ M=\frac{E}{MT} \] \\
+       \begin{itemize}
+           \item \textbf{E}= Numero di modifiche che hanno procurato un malfunzionamento del software o hanno influito negativamente sulle prestazioni;
+           \item \textbf{MT}= Numero totale di modifiche eseguite.\\
+       \end{itemize}
+    \end{itemize}
+
+\end{itemize}
+\subsubsubsubsection{Esterne}
+
+\begin{itemize}
+     \item \textbf{M.PD.9.TS}: 
+    \begin{itemize}
+        \item \textbf{Nome}: Percentuale di test superati;
+        \item \textbf{Descrizione}: Valore che sta a indicare la percentuale di test che si concludono con successo;
+        \item \textbf{Caratteristica di riferimento}: Funzionabilità-Accuratezza;
+        \item \textbf{Motivo}: Rappresenta la capacità di un prodotto software di fornire i risultati o gli effetti attesi con il livello di precisione attesa;
+       \item \textbf{Misurazione}: \[M=\frac{N° Test \ superati}{N° Test \ totali} * 100 \] \\
+       \end{itemize}
+
+
+
+    \item \textbf{M.PD.10.CSD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Correttezza dello scambio di dati (Percezione degli utenti);
+        \item \textbf{Descrizione}: Metrica per misurare la mancanza di problemi nelle funzioni e strutture dati richieste per lo scambio di dati e di comandi tra il prodotto ed altre applicazioni con cui quest'ultimo interagisce ed è connesso;
+        \item \textbf{Caratteristica di riferimento}: Funzionabilità-Interoperabilità;
+        \item \textbf{Motivo}: Misura il livello di correttezza dei dati scambiati con altri applicativi così come percepito dagli utenti; 
+       \item \textbf{Misurazione}:   \[M= 1-\frac{SF}{NT} \] \\
+       \begin{itemize}
+           \item \textbf{SF}= Numero di volte in cui il prodotto fallisce nello scambiare dati con altri applicativi;
+           \item \textbf{NT}= Numero totale di volte in cui l'utente cerca di scambiare dati.\\
+       \end{itemize}
+    \end{itemize}
+
+    
+
+     \item \textbf{M.PD.11.AFPH}:
+    \begin{itemize}
+        \item \textbf{Nome}: Accesso fisico alle funzioni da parte di personale portatore di handicap;
+        \item \textbf{Descrizione}: Serve per misurare se gli utenti diversamente abili siano in grado di operare con il prodotto;
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Operabilità;
+        \item \textbf{Motivo}: Misura il numero di funzioni disponibili del prodotto accessibili da parte di portatori di handicap; 
+       \item \textbf{Misurazione}:   \[ M=\frac{N°funzioni \ accessibili}{N°funzioni \ totali} \] \\
+      
+      
+    \end{itemize}
+
+
+ \item \textbf{M.PD.12.TR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Tempo di risposta;
+        \item \textbf{Descrizione}: Fa parte delle metriche esterne di comportamento rispetto al tempo necessario, serve per misurare l'efficienza del prodotto;
+        \item \textbf{Caratteristica di riferimento}: Efficienza-Comportamento rispetto al tempo;
+        \item \textbf{Motivo}: Misura il tempo medio in cui il sistema risponde ad un comando immesso dall'utente; 
+       \item \textbf{Misurazione}:   \[ M=T \] 
+       \begin{itemize}
+           \item \textbf{T}= Tempo che intercorre tra l'immissione del comando da parte dell'operatore e la presentazione della risposta del sistema.\\ 
+       \end{itemize}
+    \end{itemize}
+
+        \item \textbf{M.PD.13.EI}:
+    \begin{itemize}
+        \item \textbf{Nome}: Efficienza dell'installazione;
+        \item \textbf{Descrizione}: Metrica che serve per misurare il lavoro richiesto ad un operatore che debba installare il software in un determinato ambiente;
+        \item \textbf{Caratteristica di riferimento}: Portabilità-Installabilità;
+        \item \textbf{Motivo}: Misura il tempo necessario ad installare e personalizzare il prodotto nel nuovo ambiente; 
+      \item \textbf{Misurazione}:   \[ M=\frac{OI}{OT} \] \\
+       \begin{itemize}
+           \item \textbf{OI}= Numero di ore impiegate per installare e personalizzare il prodotto nel nuovo ambiente;
+           \item \textbf{OT}= Numero di ore previste dal design e specifiche.\\
+       \end{itemize}
+    \end{itemize}
+    
+ \end{itemize}
+
+    
+
+%\subsubsubsubsection{In uso}
+
+   
+       
+
+   
+
+    
+   
+    
+
+
+\subsubsection{Obiettivi di qualità: Struttura}
+Gli obiettivi di qualità, divisi in obiettivi di processo e di prodotto, vengono indicati nel documento (Piano di qualifica). Ognuno di questi è descritto da:
+\begin{itemize}
+    \item \textbf{Metrica}: codice della metrica;
+    \item \textbf{Nome}: nome esteso della metrica;
+    \item \textbf{Valore tollerabile}: valore oltre il quale la metrica è da considerare soddisfatta;
+    \item \textbf{Valore ambito}: valore ideale della metrica.
+\end{itemize}
+
 
 \subsection{Verifica}
 \subsubsection{Scopo}

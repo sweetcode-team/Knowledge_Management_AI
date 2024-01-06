@@ -1068,18 +1068,31 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole aggiungere un documento nell’area di staging.
     \end{itemize}
 
-    \uc{Visualizzazione errore documento con formato errato}{vis_err_formato}
+    \uc{Caricamento documenti in area di staging}{car_staging_s}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
             \begin{itemize}
-                \item L’utente ha selezionato o rilasciato il documento che vuole caricare nell’area di staging;
-                \item Il formato del documento non è supportato.
+                \item il sistema è configurato e attivo;
+            \end{itemize}
+        \item \textbf{Postcondizioni}: i documenti selezionati dall’utente sono presenti nell’area di staging;
+        \item \textbf{Scenario principale}: l’utente seleziona o rilascia i documenti che vuole caricare nell’area di staging;
+        \item \textbf{Estensioni}: visualizzazione errore caricamento documenti con formato errato (\rifuc{vis_err_formato});
+        \item \textbf{Trigger}: l’utente vuole aggiungere un insieme documenti nell’area di staging.
+    \end{itemize}
+
+    \uc{Visualizzazione errore formato errato}{vis_err_formato}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item L’utente ha selezionato o rilasciato almeno un documento che vuole caricare nell’area di staging;
+                \item Il formato di almeno un documento non è supportato.
             \end{itemize}
         \item \textbf{Postcondizioni}:
             \begin{itemize}
-                \item Viene mostrato un messaggio di errore che specifica il formato non valido del documento che l'utente ha provato a caricare;
-                \item Il documento non valido viene ignorato dal sistema e non aggiunto all’area di staging.
+                \item Viene mostrato un messaggio di errore che specifica l'elenco dei formati non validi che l'utente ha provato a caricare;
+                \item Nell’area di staging vengono caricati solamente i documenti che presentavano un formato valido.
             \end{itemize}
         \item \textbf{Scenario principale}: L’utente visualizza il messaggio di errore.
     \end{itemize}
@@ -1090,7 +1103,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Precondizioni}:
             \begin{itemize}
                 \item il sistema è configurato e attivo;
-                \item sono presenti dei documenti validi nell’area di staging.
+                \item è presente almeno un documenti valido nell’area di staging.
             \end{itemize}
         \item \textbf{Postcondizioni}: il documento è stato rimosso dall’area di staging;
         \item \textbf{Scenario principale}: 
@@ -1099,6 +1112,23 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
                 \item l’utente rimuove il documento selezionato.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole rimuovere un documento dall’area di staging.
+    \end{itemize}
+
+    \uc{Rimozione documenti da area di staging}{rim_staging_s}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item sono presenti dei documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}: i documenti sono stati rimossi dall’area di staging;
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole rimuovere dall’area di staging;
+                \item l’utente rimuove i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole rimuovere un insieme di documenti dall’area di staging.
     \end{itemize}
 
     \uc{Upload nuovo documento}{up_doc}
@@ -1116,11 +1146,31 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \item gli embeddings sono stati calcolati e caricati nel vector database configurato;
             \item il documento caricato viene rimosso dall’area di staging.
         \end{itemize}
-        \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell’area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento del documento presente nell’area di staging verso il sistema di archiviazione e il vector database;
         \item \textbf{Trigger}: l’utente vuole inserire un documento all’interno del sistema, rendendolo disponibile sia nel sistema di archiviazione che reperibile dal chatbot.
     \end{itemize}
 
     \attimg{up_doc}{Diagramma attività upload nuovo documento}{1}
+
+    \uc{Upload nuovi documenti}{up_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un insieme di documenti valido nell’area di staging;
+                \item i documenti caricati nell'area di staging non sono già presente nel sistema;
+                \item sono presenti un insieme di documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item i documenti sono stati caricati nello spazio di archiviazione documenti configurato;
+            \item gli embeddings sono stati calcolati e caricati nel vector database configurato;
+            \item i documenti caricati vengono rimossi dall’area di staging.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell’area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole inserire un insieme di documenti all’interno del sistema, rendendoli disponibile sia nel sistema di archiviazione che reperibili dal chatbot.
+    \end{itemize}
+
 
     \uc{Sostituzione documento}{sost_doc}
     \begin{itemize}
@@ -1138,6 +1188,24 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \end{itemize}
         \item \textbf{Scenario principale}: l’utente conferma il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;
         \item \textbf{Trigger}: l’utente vuole sostituire un documento già presente all'interno del sistema, rendendolo disponibile la nuova versione sia nel sistema di archiviazione che reperibile dal chatbot.
+    \end{itemize}
+
+    \uc{Sostituzione documenti}{sost_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un insieme di documenti validi nell’area di staging;
+                \item i documenti caricati nell'area di staging presentano gli stessi nomi e formati di un documento già presente nel sistema;
+                \item è presente un insieme di documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+            \begin{itemize}
+                \item i documenti precedentemente presenti nel sistema vengono sostituiti dai documenti caricati dall'area di staging;
+                \item i documenti caricati sono stati rimossi dall’area di staging.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole sostituire un insieme di documenti già presenti all'interno del sistema, rendendoli disponibili nella nuova versione sia nel sistema di archiviazione che reperibili dal chatbot.
     \end{itemize}
     
 
@@ -1171,6 +1239,23 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole eliminare un documento.
     \end{itemize}
 
+    \uc{Eliminazione documenti}{elim_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item i documenti sono stati eliminati dal sistema di archiviazione;
+            \item gli embeddings dei documenti sono stati eliminati dal vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole eliminare;
+                \item l’utente richiede di eliminare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare un insieme di documenti.
+    \end{itemize}
+
     \uc{Occultamento documento}{occ_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1184,6 +1269,19 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole occultare un documento.
     \end{itemize}
 
+    \uc{Occultamento documenti}{occ_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: i documenti sono stati occultati (visibili all’utente ma non reperibili per la formulazione delle risposte);
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole occultare;
+                \item l’utente richiede di occultare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole occultare un insieme di documenti.
+    \end{itemize}
+
     \uc{Riabilitazione documento}{riab_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1195,6 +1293,19 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
                 \item l’utente richiede di riabilitare il documento selezionato.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole riabilitare un documento.
+    \end{itemize}
+
+    \uc{Riabilitazione documenti}{riab_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: i documenti sono stati riabilitati ed sono di nuovo reperibili per la formulazione delle risposte;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole riabilitare;
+                \item l’utente richiede di riabilitare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole riabilitare un insieme di documenti.
     \end{itemize}
 
     \uc{Ricerca documenti}{ric_doc}
@@ -1294,11 +1405,32 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \uc{Eliminazione chat}{elim_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item è presente almeno una chat nel database delle chat;
+            \item il sistema sta mostrando la lista delle chat esistenti;
+        \end{itemize}
         \item \textbf{Postcondizioni}: la chat è stata eliminata dal database chat;
         \item \textbf{Scenario principale}:
         \begin{enumerate}
             \item l’utente seleziona una chat che vuole eliminare;
+            \item l’utente richiede di eliminare la chat selezionata.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare una chat.
+    \end{itemize}
+
+    \uc{Eliminazione multipla chat}{elim_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item sono presenti almeno due chat nel database delle chat;
+            \item il sistema sta mostrando la lista delle chat esistenti;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: le chat sono state eliminate dal database chat;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona un insieme di chat che vuole eliminare;
             \item l’utente richiede di eliminare la chat selezionata.
         \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole eliminare una chat.

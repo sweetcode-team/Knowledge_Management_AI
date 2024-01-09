@@ -92,524 +92,200 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
 \newpage
 \subsection{Elenco dei casi d'uso}
 
-    \uc{Configurazione componenti del sistema}{conf_comp_sistema}
+    \uc{Scelta componenti del sistema}{scel_sistema}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: il sistema è in fase di configurazione;
-        \item \textbf{Postcondizioni}: le varie componenti del sistema sono state configurate;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item tutte le componenti rese disponibili sono state configurate;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: le varie componenti utilizzate dal sistema sono state scelte;
         \item \textbf{Scenario principale}:
             \begin{enumerate}
-                \item l'utente configura uno dei modello LLM disponibili (\rifsubuc{conf_comp_sistema}{conf_LLM});
-                \item l'utente configura uno dei vector database disponibili (\rifsubuc{conf_comp_sistema}{conf_vd});
-                \item l'utente configura uno dei modelli di embeddings disponibili (\rifsubuc{conf_comp_sistema}{conf_emb});
-                \item l'utente configura uno dei sistemi di archiviazione documenti disponibili (\rifsubuc{conf_comp_sistema}{conf_sis}).
+                \item l'utente sceglie le componenti del sistema tra quelle che vengono rese disponibili.
             \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare i componenti del sistema.
+        \item \textbf{Trigger}: l’utente vuole scegliere le componenti da utilizzare nel sistema.
     \end{itemize}
+
     \ucimg{avvio_sist}{Diagramma primo avvio sistema}{0.75}
-    \ucimg{conf_sist}{Diagramma configurazione sistema}{0.75}
-    \ucimg{conf_comp_sist}{Diagramma \rifuc{conf_comp_sistema}}{1}
+    \ucimg{config_utente}{Diagramma configurazione utente}{0.75}
 
-    \attimg{conf_comp_sist}{Diagramma attività configurazione sistema}{0.5}
-    \attimg{conf_LLM}{Diagramma attività configurazione LLM}{1}
-    \attimg{conf_vd}{Diagramma attività configurazione vector database}{1}
-    \attimg{conf_emb}{Diagramma attività configurazione modello di embeddings}{1}
-    \attimg{conf_sis_arc}{Diagramma attività configurazione sistema di archiviazione documenti}{1}
+    \attimg{scelt_comp_sist}{Diagramma attività configurazione utente}{0.5}
     
-    \subuc{Configurazione modello LLM}{conf_LLM}
+    \ucimg{scel_comp}{Diagramma \rifuc{scel_sistema}}{0.75}
+    \subuc{Scelta modello LLM}{scel_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: il sistema è in fase di configurazione del modello LLM;
-        \item \textbf{Postcondizioni}: il modello LLM è stato configurato;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello LLM scelto è ora attivo nel sistema;
         \item \textbf{Scenario principale}:
             \begin{enumerate}
-                \item l’utente visualizza i modelli LLM disponibili (\rifsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM});
-                \item l’utente sceglie un modello LLM da lista (\rifsubsubuc{conf_comp_sistema}{conf_LLM}{scelta_LLM});
-                \item l’utente inserisce le credenziali e i parametri richiesti dal modello LLM scelto (\rifsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM});
-                \item l’utente conferma la scelta del modello LLM (\rifsubsubuc{conf_comp_sistema}{conf_LLM}{conferma_LLM}).
+                \item l’utente visualizza i modelli LLM disponibili;
+                \item l’utente sceglie un modello LLM dalla lista.
             \end{enumerate}
-        \item \textbf{Estensioni}: visualizzazione errore configurazione modello LLM (\rifuc{vis_err_LLM});
-        \item \textbf{Trigger}: l’utente vuole configurare il modello LLM del sistema.
+        \item \textbf{Trigger}: l’utente vuole scegliere il modello LLM da utilizzare nel sistema.
     \end{itemize}
-    \ucimg{conf_LLM}{Diagramma \rifsubuc{conf_comp_sistema}{conf_LLM}}{1}
-    
 
-    \subsubuc{Visualizzazione lista modelli LLM disponibili}{vis_lista_LLM}
+    \subuc{Scelta vector database}{scel_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il modello LLM del sistema;
-        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli LLM in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM}{vis_sing_LLM});
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il vector database scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i vector database disponibili;
+                \item l’utente sceglie un vector database dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il vector database da utilizzare nel sistema.
+    \end{itemize}
+
+    \subuc{Scelta modello di embeddings}{scel_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello di embeddings scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli di embeddings disponibili;
+                \item l’utente sceglie un modello di embeddings dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il modello di embeddings da utilizzare nel sistema.
+    \end{itemize}
+
+    \subuc{Scelta sistema di archiviazione dei documenti}{scel_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema di archiviazione dei documenti scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i sistemi di archiviazione dei documenti disponibili;
+                \item l’utente sceglie un sistema di archiviazione dei documenti dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il sistema di archiviazione dei documenti da utilizzare nel sistema.
+    \end{itemize}
+    
+    \uc{Cambio scelta modello LLM}{camb_scel_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema presenta un modello LLM già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello LLM scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli LLM disponibili;
+                \item l’utente sceglie un modello LLM dalla lista per sostituire il modello LLM precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il modello LLM scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta vector database}{camb_scel_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema presenta un vector database già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il vector database scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i vector database disponibili;
+                \item l’utente sceglie un vector database dalla lista per sostituire il vector database precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il vector database scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta modello di embeddings}{camb_scel_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema presenta un modello di embeddings già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello di embeddings scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli di embeddings disponibili;
+                \item l’utente sceglie un modello di embeddings dalla lista per sostituire il modello di embeddings precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il modello di embeddings scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta sistema di archiviazione dei documenti}{camb_scel_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema presenta un sistema di archiviazione dei documenti già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema di archiviazione dei documenti scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i sistemi di archiviazione dei documenti disponibili;
+                \item l’utente sceglie un sistema di archiviazione dei documenti dalla lista per sostituire il sistema di archiviazione dei documenti precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il sistema di archiviazione dei documenti scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \ucimg{vis_comp_disp}{Diagramma visualizzazione componenti disponibili}{0.75}
+    \uc{Visualizzazione lista modelli LLM disponibili}{vis_lista_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei modelli LLM disponibili;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli LLM in lista;
         \item \textbf{Trigger}: l’utente vuole conoscere i modelli LLM resi disponibili dall’applicazione web.
     \end{itemize}
-    \ucimg{vis_lista_LLM}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM}}{1}
 
-    \subsubsubuc{Visualizzazione singolo modello LLM in lista}{vis_sing_LLM}
+    \ucimg{vis_s_mLLM}{Diagramma \rifuc{vis_lista_LLM}}{0.75}
+    \subuc{Visualizzazione singolo modello LLM in lista}{vis_sing_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il modello LLM del sistema;
-        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello LLM in lista (\rifuc{vis_car_LLM});
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un modello LLM in lista;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello LLM in lista;
         \item \textbf{Inclusioni}: visualizzazione caratteristiche modello LLM (\rifuc{vis_car_LLM});
         \item \textbf{Trigger}: l’utente vuole conoscere un modello LLM in lista.
     \end{itemize}
     
-    \subsubuc{Scelta modello LLM da lista}{scelta_LLM}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei modelli LLM disponibili;
-        \item \textbf{Postcondizioni}: è stato scelto un modello LLM;
-        \item \textbf{Scenario principale}: l’utente sceglie uno dei modelli LLM presenti nella lista proposta dall’applicazione web;
-        \item \textbf{Trigger}: l’utente vuole scegliere il modello LLM da configurare nel sistema.
-    \end{itemize}
-
-    \subsubuc{Inserimento credenziali e parametri modello LLM scelto}{ins_LLM}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto uno dei modelli LLM disponibili;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dallo specifico modello LLM scelto;
-        \item \textbf{Scenario principale}: l’utente inserisce le credenziali e i parametri richiesti dal modello LLM scelto;
-        \item \textbf{Generalizzazioni}:
-            \begin{enumerate}
-                \item Inserimento credenziali e parametri OpenAI LLM (\rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_OpenAI});
-                \item Inserimento credenziali e parametri Hugging Face (\rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_HF});
-                \item Inserimento credenziali e parametri modello locale (\rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_locale}).
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole inserire le informazioni richieste per configurare il modello LLM scelto.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri OpenAI LLM}{ins_LLM_OpenAI}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello LLM di OpenAI;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello LLM di OpenAI;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’API key di un account OpenAI;
-                \item l’utente inserisce il nome del modello di LLM OpenAI.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il modello LLM di OpenAI.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri Hugging Face}{ins_LLM_HF}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello LLM di Hugging Face;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello LLM di Hugging Face;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’API key di un account Hugging Face;
-                \item l’utente inserisce il nome del modello di LLM Hugging Face.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il modello LLM di Hugging Face.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri modello locale}{ins_LLM_locale}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello LLM locale;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello LLM locale;
-        \item \textbf{Scenario principale}: l’utente inserisce il parametri richiesti dal modello LLM locale;
-        \item \textbf{Trigger}: l’utente vuole configurare il modello LLM locale.
-    \end{itemize}
-
-    \subsubuc{Conferma modello LLM scelto}{conferma_LLM}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item l’utente ha scelto il modello LLM;
-                \item l’utente ha inserito le credenziali e i parametri richiesti.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: è stata configurata la componente riguardante il modello LLM del sistema;
-        \item \textbf{Scenario principale}: l’utente conferma il modello LLM scelto, le credenziali e i parametri inseriti;
-        \item \textbf{Trigger}: l’utente vuole confermare il modello LLM scelto.
-    \end{itemize}
-
-
-    \subuc{Configurazione vector database}{conf_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:  il sistema è in fase di configurazione del vector database;
-        \item \textbf{Postcondizioni}: il vector database è stato configurato;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente visualizza i vector database disponibili (\rifsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd});
-                \item l’utente sceglie un vector database da lista (\rifsubsubuc{conf_comp_sistema}{conf_vd}{vis_sing_vd});
-                \item l’utente inserisce le credenziali e i parametri richiesti dal vector database scelto (\rifsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd});
-                \item l’utente conferma la scelta del vector database (\rifsubsubuc{conf_comp_sistema}{conf_vd}{conferma_vd}).
-            \end{enumerate}
-        \item \textbf{Estensioni}: visualizzazione errore configurazione vector database (\rifuc{vis_err_vd});
-        \item \textbf{Trigger}: l’utente vuole configurare il vector database del sistema.
-    \end{itemize}
-    \ucimg{conf_vd}{Diagramma \rifsubuc{conf_comp_sistema}{conf_vd}}{1}
-
-    \subsubuc{Visualizzazione lista vector database disponibili}{vis_lista_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il vector database del sistema;
-        \item \textbf{Scenario principale}: l’utente visualizza i singoli vector database in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd}{vis_sing_vd});
-        \item \textbf{Trigger}: l’utente vuole conoscere i vector database resi disponibili dall’applicazione web.
-    \end{itemize}
-    \ucimg{vis_lista_vd}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd}}{1}
-
-    \subsubsubuc{Visualizzazione singolo vector database in lista}{vis_sing_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il vector database del sistema;
-        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo vector database in lista (\rifuc{vis_car_vd});
-        \item \textbf{Inclusioni}: visualizzazione caratteristiche vector database (\rifuc{vis_car_vd});
-        \item \textbf{Trigger}: l’utente vuole conoscere un vector database in lista.
-    \end{itemize}
-
-    \subsubuc{Scelta vector database da lista}{scelta_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei vector database disponibili;
-        \item \textbf{Postcondizioni}: è stato scelto un vector database;
-        \item \textbf{Scenario principale}: l’utente sceglie uno dei vector database presenti nella lista proposta dall’applicazione web;
-        \item \textbf{Trigger}: l’utente vuole scegliere il vector database da configurare nel sistema.
-    \end{itemize}
-
-    \subsubuc{Inserimento credenziali e parametri del vector database scelto}{ins_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto uno dei vector database disponibili;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal vector database scelto;
-        \item \textbf{Scenario principale}: l’utente inserisce le credenziali e i parametri richiesti dal vector database scelto;
-        \item \textbf{Generalizzazioni}:
-            \begin{enumerate}
-                \item Inserimento credenziali e parametri Pinecone (\rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_Pinecone});
-                \item Inserimento parametri ChromaDB (\rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_ChromaDB}).
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole inserire le informazioni richieste per configurare il vector database scelto.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri Pinecone}{ins_vd_Pinecone}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il vector database Pinecone;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal vector database Pinecone;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’ API key di un account Pinecone;
-                \item l’utente inserisce il nome index;
-                \item l’utente inserisce il nome environment di Pinecone.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il vector database Pinecone.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento parametri ChromaDB}{ins_vd_ChromaDB}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il vector database ChromaDB;
-        \item \textbf{Postcondizioni}: sono stati inseriti i parametri richiesti dal vector database ChromaDB;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce il percorso della cartella di persistenza ChromaDB;
-                \item l’utente inserisce il nome collection di ChromaDB.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il vector database ChromaDB.
-    \end{itemize}
-
-    \subsubuc{Conferma vector database scelto}{conferma_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item l’utente ha scelto il vector database;
-                \item l’utente ha inserito le credenziali e i parametri richiesti.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: è stata configurata la componente vector database del sistema;
-        \item \textbf{Scenario principale}: l’utente conferma il vector database scelto e le credenziali e i parametri inseriti;
-        \item \textbf{Trigger}: l’utente vuole confermare il vector database scelto.
-    \end{itemize}
-
-
-    \subuc{Configurazione modello di embeddings}{conf_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:  il sistema è in fase di configurazione del modello di embeddings;
-        \item \textbf{Postcondizioni}: il modello di embeddings è stato configurato;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente visualizza i modelli di embeddings disponibili (\rifsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb});
-                \item l’utente sceglie un modello di embeddings da lista (\rifsubsubuc{conf_comp_sistema}{conf_emb}{vis_sing_emb});
-                \item l’utente inserisce le credenziali e i parametri richiesti dal modello scelto (\rifsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb});
-                \item l’utente conferma la scelta del modello di embeddings (\rifsubsubuc{conf_comp_sistema}{conf_emb}{conferma_emb}).
-            \end{enumerate}
-        \item \textbf{Estensioni}: visualizzazione errore configurazione modello embeddings (\rifuc{vis_err_emb});
-        \item \textbf{Trigger}: l’utente vuole configurare il modello di embeddings del sistema.
-    \end{itemize}
-    \ucimg{conf_emb}{Diagramma \rifsubuc{conf_comp_sistema}{conf_emb}}{1}
-
-    \subsubuc{Visualizzazione lista modelli di embeddings disponibili}{vis_lista_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il modello di embeddings del sistema;
-        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli di embeddings in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb}{vis_sing_emb});
-        \item \textbf{Trigger}: l’utente vuole conoscere i modelli di embeddings resi disponibili dall’applicazione web.
-    \end{itemize}
-    \ucimg{vis_lista_emb}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb}}{1}
-
-    \subsubsubuc{Visualizzazione singolo modello di embeddings in lista}{vis_sing_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il modello di embeddings del sistema;
-        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello di embeddings in lista (\rifuc{vis_car_emb});
-        \item \textbf{Inclusioni}: visualizzazione caratteristiche modello di embeddings (\rifuc{vis_car_emb});
-        \item \textbf{Trigger}: l’utente vuole conoscere un modello di embeddings in lista.
-    \end{itemize}
-
-    \subsubuc{Scelta modello di embeddings da lista}{scelta_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei modelli di embeddings disponibili;
-        \item \textbf{Postcondizioni}: è stato scelto un modello di embeddings;
-        \item \textbf{Scenario principale}: l’utente sceglie uno dei modelli presenti nella lista proposta dall’applicazione web;
-        \item \textbf{Trigger}: l’utente vuole scegliere il modello di embeddings da configurare nel sistema.
-    \end{itemize}
-
-    \subsubuc{Inserimento credenziali e parametri del modello di embeddings scelto}{ins_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto uno dei modelli di embeddings disponibili;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello di embeddings scelto;
-        \item \textbf{Scenario principale}: l’utente inserisce le credenziali e i parametri richiesti dal modello di embeddings scelto;
-        \item \textbf{Generalizzazioni}:
-            \begin{enumerate}
-                \item Inserimento credenziali e parametri OpenAI embeddings  (\rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_OpenAI});
-                \item Inserimento credenziali e parametri Hugging Face embeddings (\rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_HF});
-                \item Inserimento credenziali e parametri modello di embeddings locale (\rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_locale}).
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole inserire le informazioni richieste per configurare il modello di embeddings scelto.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri OpenAI embeddings}{ins_emb_OpenAI}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello di embeddings OpenAI LLM;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello OpenAI LLM;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’ API key di un account OpenAI LLM;
-                \item l’utente inserisce il nome del modello.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il modello di embeddings OpenAI LLM.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri Hugging Face embeddings}{ins_emb_HF}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello di embeddings Hugging Face;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello Hugging Face;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’ API key di un account Hugging Face;
-                \item l’utente inserisce il nome del modello.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il modello di embeddings Hugging Face.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri modello di embeddings locale}{ins_emb_locale}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il modello di embeddings locale;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal modello locale;
-        \item \textbf{Scenario principale}: l’utente inserisce i parametri richiesti dal modello di embeddings locale;
-        \item \textbf{Trigger}: l’utente vuole configurare il modello di embeddings locale.
-    \end{itemize}
-
-    \subsubuc{Conferma modello di embeddings scelto}{conferma_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item l’utente ha scelto il modello di embeddings;
-                \item l’utente ha inserito le credenziali e i parametri richiesti.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: è stata configurata la componente modello di embeddings del sistema;
-        \item \textbf{Scenario principale}: l’utente conferma il modello scelto, le credenziali e i parametri inseriti;
-        \item \textbf{Trigger}: l’utente vuole confermare il modello di embeddings scelto.
-    \end{itemize}
-
-
-    \subuc{Configurazione sistema di archiviazione documenti}{conf_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:  il sistema è in fase di configurazione del sistema di archiviazione documenti;
-        \item \textbf{Postcondizioni}: il sistema di archiviazione documenti è stato configurato;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente visualizza i sistemi di archiviazione disponibili (\rifsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis});
-                \item l’utente sceglie un sistema di archiviazione da lista (\rifsubsubuc{conf_comp_sistema}{conf_sis}{vis_sing_sis});
-                \item l’utente inserisce le credenziali e i parametri richiesti dal sistema di archiviazione scelto (\rifsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis});
-                \item l’utente conferma la scelta del sistema di archiviazione (\rifsubsubuc{conf_comp_sistema}{conf_sis}{conferma_sis}).
-            \end{enumerate}
-        \item \textbf{Estensioni}: visualizzazione errore configurazione sistema di archiviazione documenti (\rifuc{vis_err_sis});
-        \item \textbf{Trigger}: l’utente vuole configurare il sistema di archiviazione documenti.
-    \end{itemize}
-    \ucimg{conf_sist_arc}{Diagramma \rifsubuc{conf_comp_sistema}{conf_sis}}{1}
-
-    \subsubuc{Visualizzazione lista sistemi di archiviazione documenti disponibili}{vis_lista_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il sistema di archiviazione dei documenti del sistema;
-        \item \textbf{Scenario principale}: l’utente visualizza i singoli sistemi di archiviazione in lista (\rifsubsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis}{vis_sing_sis});
-        \item \textbf{Trigger}: l’utente vuole conoscere i sistemi di archiviazione dei documenti resi disponibili dall’applicazione web.
-    \end{itemize}
-    \ucimg{vis_lista_arc}{Diagramma \rifsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis}}{1}
-
-    \subsubsubuc{Visualizzazione singolo sistema di archiviazione in lista}{vis_sing_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta configurando il sistema di archiviazione dei documenti del sistema;
-        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo sistema di archiviazione in lista (\rifuc{vis_car_sis});
-        \item \textbf{Inclusioni}: visualizzazione caratteristiche sistema di archiviazione (\rifuc{vis_car_sis});
-        \item \textbf{Trigger}: l’utente vuole conoscere un sistema di archiviazione in lista.
-    \end{itemize}
-
-    \subsubuc{Scelta sistema di archiviazione dei documenti scelto dalla lista}{scelta_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista sistemi di archiviazione disponibili;
-        \item \textbf{Postcondizioni}: è stato scelto un sistema di archiviazione;
-        \item \textbf{Scenario principale}: l’utente sceglie uno dei sistemi di archiviazione presenti nella lista proposta dall’applicazione web;
-        \item \textbf{Trigger}: l’utente vuole scegliere il sistema di archiviazione dei documenti da configurare nel sistema.
-    \end{itemize}
-
-    \subsubuc{Inserimento credenziali e parametri del sistema di archiviazione dei documenti scelto}{ins_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto uno dei sistemi di archiviazione disponibili;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal sistema scelto;
-        \item \textbf{Scenario principale}: l’utente inserisce le credenziali e i parametri richiesti dal sistema di archiviazione scelto;
-        \item \textbf{Generalizzazioni}:
-            \begin{enumerate}
-                \item Inserimento credenziali e parametri AWS S3 (\rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS});
-                \item Inserimento parametri database documenti locale (\rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_locale}).
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole inserire le informazioni richieste per configurare il sistema di archiviazione dei documenti scelto.
-    \end{itemize}
-
-    \subsubsubuc{Inserimento credenziali e parametri AWS S3}{ins_sis_AWS}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il sistema di archiviazione documenti AWS;
-        \item \textbf{Postcondizioni}: sono state inserite le credenziali e i parametri richiesti dal sistema di archiviazione AWS;
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l’utente inserisce l’ Access Key Id;
-                \item l’utente inserisce la Secret Access Key;
-                \item l’utente inserisce il nome Bucket;
-                \item l’utente inserisce il nome della regione.
-            \end{enumerate}
-        \item \textbf{Trigger}: l’utente vuole configurare il sistema di archiviazione documenti AWS S3 Bucket.
-    \end{itemize}
-    
-
-    \subsubsubuc{Inserimento parametri database documenti locale}{ins_sis_locale}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente ha scelto il sistema di archiviazione locale;
-        \item \textbf{Postcondizioni}: sono stati inseriti i parametri del database documenti locale;
-        \item \textbf{Scenario principale}: l’utente inserisce i parametri del database documenti locale;
-        \item \textbf{Trigger}: l’utente vuole configurare il sistema di archiviazione locale.
-    \end{itemize}
-
-    \subsubuc{Conferma sistema di archiviazione dei documenti scelto}{conferma_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item l’utente ha scelto il sistema di archiviazione;
-                \item l’utente ha inserito le credenziali e i parametri richiesti.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: è stata configurata la componente sistema di archiviazione dei documenti caricati;
-        \item \textbf{Scenario principale}: l’utente conferma il sistema scelto e le credenziali e i parametri inseriti;
-        \item \textbf{Trigger}: l’utente vuole confermare il sistema di archiviazione scelto.
-    \end{itemize}
-
-
-    \uc{Visualizzazione errore configurazione modello LLM}{vis_err_LLM}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: 
-            \begin{itemize}
-                \item l’utente ha concluso la configurazione del modello LLM;
-                \item l’utente ha inserito parametri o credenziali errati.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: 
-            \begin{itemize}
-                \item il sistema ha mostrato un messaggio che indica l’errore commesso dall’utente;
-                \item il sistema mostra ancora la fase di configurazione del modello LLM.
-            \end{itemize}
-        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore.
-    \end{itemize}
-
-    \uc{Visualizzazione errore configurazione vector database}{vis_err_vd}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: 
-            \begin{itemize}
-                \item l’utente ha concluso la configurazione del vector database;
-                \item l’utente ha inserito parametri o credenziali errati.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: 
-            \begin{itemize}
-                \item il sistema ha mostrato un messaggio che indica l’errore commesso dall’utente;
-                \item il sistema mostra ancora la fase di configurazione del vector database.
-            \end{itemize}
-        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore.
-    \end{itemize}
-
-    \uc{Visualizzazione errore configurazione modello embeddings}{vis_err_emb}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: 
-            \begin{itemize}
-                \item l’utente ha concluso la configurazione del modello di embeddings;
-                \item l’utente ha inserito parametri o credenziali errati.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: 
-            \begin{itemize}
-                \item il sistema ha mostrato un messaggio che indica l’errore commesso dall’utente;
-                \item il sistema mostra ancora la fase di configurazione del modello di embeddings.
-            \end{itemize}
-        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore.
-    \end{itemize}
-
-    \uc{Visualizzazione errore configurazione sistema di archiviazione documenti}{vis_err_sis}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: 
-            \begin{itemize}
-                \item l’utente ha concluso la configurazione del sistema di archiviazione documenti;
-                \item l’utente ha inserito parametri o credenziali errati.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: 
-            \begin{itemize}
-                \item il sistema ha mostrato un messaggio che indica l’errore commesso dall’utente;
-                \item il sistema mostra ancora la fase di configurazione del sistema di archiviazione documenti.
-            \end{itemize}
-        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore.
-    \end{itemize}
-
-
     \uc{Visualizzazione caratteristiche modello LLM}{vis_car_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
             \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando un modello LLM.
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando le caratteristiche di un modello LLM.
             \end{itemize}
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l'utente visualizza il nome del modello LLM (\rifsubuc{vis_car_LLM}{vis_nome_LLM});
-                \item l'utente visualizza l'organizzazione proprietaria del modello LLM (\rifsubuc{vis_car_LLM}{vis_org_LLM});
-                \item l'utente visualizza la descrizione del modello LLM (\rifsubuc{vis_car_LLM}{vis_descr_LLM});
-                \item l'utente visualizza la tipologia del modello LLM (\rifsubuc{vis_car_LLM}{vis_tip_LLM});
-                \item l'utente visualizza l'indicatore dei costi del modello LLM (\rifsubuc{vis_car_LLM}{vis_costi_LLM});
-            \end{enumerate}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del modello LLM;
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello LLM.
     \end{itemize}
     \ucimg{vis_car_LLM}{Diagramma \rifuc{vis_car_LLM}}{0.75}
@@ -619,8 +295,8 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
             \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello LLM.
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando il nome di un modello LLM.
             \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza il nome del modello LLM;
         \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
@@ -631,66 +307,84 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
             \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello LLM.
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando l'organizzazione proprietaria del modello LLM.
             \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del modello LLM;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un modello LLM.
     \end{itemize}
 
     \subuc{Visualizzazione descrizione modello LLM}{vis_descr_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello LLM.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando la descrizione del modello LLM.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la descrizione del modello LLM;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un modello LLM.
     \end{itemize}
 
     \subuc{Visualizzazione tipologia modello LLM}{vis_tip_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello LLM.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando la tipologia del modello LLM.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la tipologia del modello LLM;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un modello LLM.
     \end{itemize}
 
     \subuc{Visualizzazione indicatore costi modello LLM}{vis_costi_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello LLM.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del modello LLM.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del modello LLM;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un modello LLM.
     \end{itemize}
 
+    \uc{Visualizzazione lista vector database disponibili}{vis_lista_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei vector database disponibili;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli vector database in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i vector database resi disponibili dall’applicazione web.
+    \end{itemize}
+    
+    \ucimg{vis_s_vd}{Diagramma \rifuc{vis_lista_vd}}{0.75}
+    \subuc{Visualizzazione singolo vector database in lista}{vis_sing_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un vector database in lista;
+        \end{itemize} 
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo vector database in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche vector database (\rifuc{vis_car_vd});
+        \item \textbf{Trigger}: l’utente vuole conoscere un vector database in lista.
+    \end{itemize}
 
     \uc{Visualizzazione caratteristiche vector database}{vis_car_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando un vector database.
-            \end{itemize}
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l'utente visualizza il nome del vector database (\rifsubuc{vis_car_vd}{vis_nome_vd});
-                \item l'utente visualizza l'organizzazione proprietaria del vector database (\rifsubuc{vis_car_vd}{vis_org_vd});
-                \item l'utente visualizza la descrizione del vector database (\rifsubuc{vis_car_vd}{vis_descr_vd});
-                \item l'utente visualizza la tipologia del vector database (\rifsubuc{vis_car_vd}{vis_tip_vd});
-                \item l'utente visualizza l'indicatore dei costi del vector database (\rifsubuc{vis_car_vd}{vis_costi_vd});
-            \end{enumerate}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del vector database;
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un vector database.
     \end{itemize}
     \ucimg{vis_car_vd}{Diagramma \rifuc{vis_car_vd}}{0.75}
@@ -699,10 +393,10 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un vector database.
-            \end{itemize}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando il nome del vector database.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza il nome del vector database;
         \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
     \end{itemize}
@@ -711,67 +405,85 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un vector database.
-            \end{itemize}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del vector database.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del vector database;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un vector database.
     \end{itemize}
 
     \subuc{Visualizzazione descrizione vector database}{vis_descr_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un vector database.
-            \end{itemize}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando la descrizione del vector database.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la descrizione del vector database;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un vector database.
     \end{itemize}
 
     \subuc{Visualizzazione tipologia vector database}{vis_tip_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un vector database.
-            \end{itemize}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando la tipologia del vector database.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la tipologia del vector database;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un vector database.
     \end{itemize}
 
     \subuc{Visualizzazione indicatore costi vector database}{vis_costi_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un vector database.
-            \end{itemize}
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del vector database.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del vector database;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un vector database.
     \end{itemize}
-    
-    
+
+    \uc{Visualizzazione lista modelli di embeddings disponibili}{vis_lista_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei modelli di embeddings disponibili.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli di embeddings in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i modelli di embeddings resi disponibili dall’applicazione web.
+    \end{itemize}
+
+    \ucimg{vis_s_emb}{Diagramma \rifuc{vis_lista_emb}}{0.75}
+    \subuc{Visualizzazione singolo modello di embeddings in lista}{vis_sing_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un modello di embeddings in lista.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello di embeddings in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche modello di embeddings (\rifuc{vis_car_emb});
+        \item \textbf{Trigger}: l’utente vuole conoscere un modello di embeddings in lista.
+    \end{itemize}
+
     \uc{Visualizzazione caratteristiche modello di embeddings}{vis_car_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando un modello di embeddings.
-            \end{itemize}
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l'utente visualizza il nome del modello di embeddings (UC8.1);
-                \item l'utente visualizza l'organizzazione proprietaria del modello di embeddings (\rifsubuc{vis_car_emb}{vis_org_emb});
-                \item l'utente visualizza la descrizione del modello di embeddings (\rifsubuc{vis_car_emb}{vis_descr_emb});
-                \item l'utente visualizza la tipologia del modello di embeddings (\rifsubuc{vis_car_emb}{vis_tip_emb});
-                \item l'utente visualizza l'indicatore dei costi del modello di embeddings (\rifsubuc{vis_car_emb}{vis_costi_emb});
-            \end{enumerate}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del modello di embeddings
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello di embeddings.
     \end{itemize}
     \ucimg{vis_car_emb}{Diagramma \rifuc{vis_car_emb}}{0.75}
@@ -780,10 +492,10 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello di embeddings.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando il nome del modello di embeddings.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza il nome del modello di embeddings;
         \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
     \end{itemize}
@@ -792,79 +504,97 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello di embeddings.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del modello di embeddings.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del modello di embeddings;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un modello di embeddings.
     \end{itemize}
 
     \subuc{Visualizzazione descrizione modello di embeddings}{vis_descr_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello di embeddings.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando la descrizione del modello di embeddings.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la descrizione del modello di embeddings;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un modello di embeddings.
     \end{itemize}
 
     \subuc{Visualizzazione tipologia modello di embeddings}{vis_tip_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello di embeddings.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando la tipologia del modello di embeddings.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la tipologia del modello di embeddings;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un modello di embeddings.
     \end{itemize}
 
     \subuc{Visualizzazione indicatore costi modello di embeddings}{vis_costi_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un modello di embeddings.
-            \end{itemize}
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del modello di embeddings.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del modello di embeddings;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un modello di embeddings.
     \end{itemize}
 
+    \uc{Visualizzazione lista sistemi di archiviazione documenti disponibili}{vis_lista_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei sistemi di archiviazione resi disponibile.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli sistemi di archiviazione in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i sistemi di archiviazione dei documenti resi disponibili dall’applicazione web.
+    \end{itemize}
+    
+    \ucimg{vis_s_sis}{Diagramma \rifuc{vis_lista_sis}}{0.75}
+    \subuc{Visualizzazione singolo sistema di archiviazione documenti in lista}{vis_sing_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un sistema di archiviazione documenti in lista;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo sistema di archiviazione in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche sistema di archiviazione (\rifuc{vis_car_sis});
+        \item \textbf{Trigger}: l’utente vuole conoscere un sistema di archiviazione in lista.
+    \end{itemize}
 
     \uc{Visualizzazione caratteristiche sistema di archiviazione}{vis_car_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando un sistema di archiviazione.
-            \end{itemize}
-        \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item l'utente visualizza il nome del sistema di archiviazione (\rifsubuc{vis_car_sis}{vis_nome_sis});
-                \item l'utente visualizza l'organizzazione proprietaria del sistema di archiviazione (\rifsubuc{vis_car_sis}{vis_org_sis});
-                \item l'utente visualizza la descrizione del sistema di archiviazione (\rifsubuc{vis_car_sis}{vis_descr_sis});
-                \item l'utente visualizza la tipologia del sistema di archiviazione (\rifsubuc{vis_car_sis}{vis_tip_sis});
-                \item l'utente visualizza l'indicatore dei costi del sistema di archiviazione (\rifsubuc{vis_car_sis}{vis_costi_sis});
-            \end{enumerate}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del sistema di archiviazione;
         \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un sistema di archiviazione.
     \end{itemize}
-    \ucimg{vis_car_arc}{Diagramma \rifuc{vis_car_sis}}{0.75}
+    \ucimg{vis_car_sis}{Diagramma \rifuc{vis_car_sis}}{0.75}
 
     \subuc{Visualizzazione nome sistema di archiviazione}{vis_nome_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un sistema di archiviazione.
-            \end{itemize}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando il nome del sistema di archiviazione.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza il nome del sistema di archiviazione;
         \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
     \end{itemize}
@@ -873,105 +603,119 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un sistema di archiviazione.
-            \end{itemize}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del sistema di archiviazione.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del sistema di archiviazione;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un sistema di archiviazione.
     \end{itemize}
 
     \subuc{Visualizzazione descrizione sistema di archiviazione}{vis_descr_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un sistema di archiviazione.
-            \end{itemize}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando la descrizione del sistema di archiviazione.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la descrizione del sistema di archiviazione;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un sistema di archiviazione.
     \end{itemize}
 
     \subuc{Visualizzazione tipologia sistema di archiviazione}{vis_tip_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un sistema di archiviazione.
-            \end{itemize}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando la tipologia del sistema di archiviazione.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza la tipologia del sistema di archiviazione;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un sistema di archiviazione.
     \end{itemize}
 
     \subuc{Visualizzazione indicatore costi sistema di archiviazione}{vis_costi_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item il sistema è configurato e attivo;
-                \item il sistema sta mostrando le caratteristiche di un sistema di archiviazione.
-            \end{itemize}
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando l'indicatore costi del sistema di archiviazione.
+        \end{itemize}
         \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del sistema di archiviazione;
-        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore costi di un sistema di archiviazione.
     \end{itemize}
 
-
-    \uc{Visualizzazione configurazione}{vis_conf}
+    \uc{Visualizzazione configurazione attuale utente}{vis_conf}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: le componenti del sistema sono state configurate;
-        \item \textbf{Postcondizioni}: il sistema ha mostrato la configurazione attuale del sistema;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale dell'utente.
+        \end{itemize}
         \item \textbf{Scenario principale}:
             \begin{enumerate}
-                \item l’utente visualizza il modello LLM configurato (\rifsubuc{vis_conf}{vis_conf_LLM});
-                \item l’utente visualizza il vector database configurato (\rifsubuc{vis_conf}{vis_conf_vd});
-                \item l’utente visualizza il modello di embeddings configurato (\rifsubuc{vis_conf}{vis_conf_emb});
-                \item l’utente visualizza il sistema di archiviazione documenti configurato (\rifsubuc{vis_conf}{vis_conf_sis});
+                \item l’utente visualizza il modello LLM scelto;
+                \item l’utente visualizza il vector database scelto;
+                \item l’utente visualizza il modello di embeddings scelto;
+                \item l’utente visualizza il sistema di archiviazione documenti scelto.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
     \end{itemize}
-    \ucimg{vis_conf}{Diagramma \rifuc{vis_conf}}{1}
+    \ucimg{vis_config_a_utente}{Diagramma \rifuc{vis_conf}}{0.75}
 
-    \subuc{Visualizzazione configurazione modello LLM}{vis_conf_LLM}
+    \subuc{Visualizzazione configurazione attuale modello LLM attuale}{vis_conf_LLM}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: le componenti del sistema sono state configurate;
-        \item \textbf{Postcondizioni}: il sistema ha mostrato la configurazione attuale del modello LLM;
-        \item \textbf{Scenario principale}: l’utente visualizza il modello LLM configurato e le sue caratteristiche;
+        \item \textbf{Precondizioni}
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del modello LLM scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il modello LLM scelto e le sue caratteristiche;
         \item \textbf{Inclusioni}: Visualizzazione caratteristiche modello LLM (\rifuc{vis_car_LLM});
-        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del modello LLM del sistema.
     \end{itemize}
 
-    \subuc{Visualizzazione configurazione vector database}{vis_conf_vd}
+    \subuc{Visualizzazione configurazione vector database attuale}{vis_conf_vd}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: le componenti del sistema sono state configurate;
-        \item \textbf{Postcondizioni}: il sistema ha mostrato la configurazione attuale del vector database;
-        \item \textbf{Scenario principale}: l’utente visualizza il vector database configurato e le sue caratteristiche;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del vector database scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il vector database scelto e le sue caratteristiche;
         \item \textbf{Inclusioni}: Visualizzazione caratteristiche vector database (\rifuc{vis_car_vd});
-        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del vector database del sistema.
     \end{itemize}
 
-    \subuc{Visualizzazione configurazione modello di embeddings}{vis_conf_emb}
+    \subuc{Visualizzazione configurazione modello di embeddings attuale}{vis_conf_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: le componenti del sistema sono state configurate;
-        \item \textbf{Postcondizioni}: il sistema ha mostrato la configurazione attuale del modello di embeddings;
-        \item \textbf{Scenario principale}: l’utente visualizza il modello di embeddings configurato e le sue caratteristiche;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del modello di embeddings scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il modello di embeddings scelto e le sue caratteristiche;
         \item \textbf{Inclusioni}: Visualizzazione caratteristiche modello di embeddings (\rifuc{vis_car_emb});
-        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale modello di embeddings del sistema.
     \end{itemize}
 
     \subuc{Visualizzazione configurazione sistema di archiviazione documenti}{vis_conf_sis}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: le componenti del sistema sono state configurate;
-        \item \textbf{Postcondizioni}: il sistema ha mostrato la configurazione attuale del sistema di archiviazione documenti;
-        \item \textbf{Scenario principale}: l’utente visualizza il sistema di archiviazione documenti configurato e le sue caratteristiche;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del sistema di archiviazione documenti scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il sistema di archiviazione documenti scelto e le sue caratteristiche;
         \item \textbf{Inclusioni}: Visualizzazione caratteristiche sistema di archiviazione (\rifuc{vis_car_sis});
-        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale sistema di archiviazione del sistema.
     \end{itemize}
 
     \uc{Visualizzazione lista documenti caricati}{vis_lista_doc}
@@ -1295,7 +1039,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole riabilitare un documento.
     \end{itemize}
 
-    \uc{Riabilitazione documenti}{riab_doc}
+    \uc{Riabilitazione documenti}{riab_docs}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
@@ -1342,8 +1086,8 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \end{itemize}
         \item \textbf{Scenario principale}:
         \begin{enumerate}
-            \item l'utente visualizza il titolo della singola chat in lista (\rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_tit_chat});
-            \item l'utente visualizza il timestamp dell'ultimo messaggio della singola chat in lista (\rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_timestamp_chat}).
+            \item l'utente visualizza il titolo della singola chat in lista;
+            \item l'utente visualizza il timestamp dell'ultimo messaggio della singola chat in lista.
         \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare la singola chat all’interno della lista.
     \end{itemize}
@@ -1419,7 +1163,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole eliminare una chat.
     \end{itemize}
 
-    \uc{Eliminazione multipla chat}{elim_chat}
+    \uc{Eliminazione multipla chat}{elim_chat_s}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: 
@@ -1516,8 +1260,8 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Postcondizioni}: il sistema ha mostrato il singolo messaggio in chat;
         \item \textbf{Scenario principale}:
             \begin{enumerate}
-                \item l’utente visualizza il contenuto testuale del messaggio in chat (\rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_cont_mess});
-                \item l’utente visualizza l'orario di invio/ricezione del messaggio in chat (\rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_or_mess});
+                \item l’utente visualizza il contenuto testuale del messaggio in chat;
+                \item l’utente visualizza l'orario di invio/ricezione del messaggio in chat;
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
     \end{itemize}
@@ -1571,33 +1315,10 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Postcondizioni}: la domanda scelta è stata inviata;
         \item \textbf{Scenario principale}:
         \begin{enumerate}
-            \item l’utente sceglie una delle domande suggerite (\rifsubuc{invio_dom_sugg}{scelta_dom_sugg}).
-            \item l’utente conferma l'invio della domanda suggerita selezionata (\rifsubuc{invio_dom_sugg}{conferma_dom_sugg}).
+            \item l’utente sceglie una delle domande suggerite.
+            \item l’utente conferma l'invio della domanda suggerita selezionata.
         \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole inviare una delle domande suggerite in una chat vuota.
-    \end{itemize}
-    \ucimg{invio_dom_sugg}{Diagramma \rifuc{invio_dom_sugg}}{0.75}
-
-    \subuc{Scelta domanda suggerita}{scelta_dom_sugg}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l’utente sta visualizzando la chat vuota;
-        \item \textbf{Postcondizioni}: la domanda scelta è stata selezionata;
-        \item \textbf{Scenario principale}: l’utente sceglie una delle domande suggerite;
-        \item \textbf{Trigger}: l’utente vuole scegliere una delle domande suggerite in una chat vuota.
-    \end{itemize}
-
-    \subuc{Conferma invio domanda suggerita scelta}{conferma_dom_sugg}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}:
-            \begin{itemize}
-                \item l’utente sta visualizzando la chat vuota;
-                \item è stata scelta una delle domande suggerite.
-            \end{itemize}
-        \item \textbf{Postcondizioni}: la domanda scelta è stata inviata;
-        \item \textbf{Scenario principale}: l’utente conferma l'invio della domanda suggerita scelta;
-        \item \textbf{Trigger}: l’utente vuole confermare l'invio di una delle domande suggerite in una chat vuota.
     \end{itemize}
 
     \uc{Lettura vocale messaggio}{lett_mess}
@@ -1665,68 +1386,58 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \uc{Invio messaggio}{invio_mess}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
-        \item \textbf{Attori secondari}: database chat;
-        \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l’utente ha selezionato e sta visualizzando una chat;
+            \item l'utente ha inserito un messaggio nell'area di input di una chat.
+        \end{itemize}
         \item \textbf{Postcondizioni}: 
             \begin{itemize}
                 \item il messaggio è stato memorizzato nel database chat.
                 \item il sistema elabora una risposta alla domanda inviata.
             \end{itemize}
-        \item \textbf{Scenario principale}:
-        \begin{enumerate}
-            \item l'utente inserisce un messaggio (\rifsubuc{invio_mess}{ins_mess});
-            \item l’utente conferma l'invio del messaggio inserito (\rifsubuc{invio_mess}{conferma_mess}).
-        \end{enumerate}
+        \item \textbf{Scenario principale}: l’utente conferma l'invio del messaggio inserito nell'area di input della chat;
         \item \textbf{Trigger}: l’utente vuole inviare un messaggio.
     \end{itemize}
-    \ucimg{invio_mess}{Diagramma \rifuc{invio_mess}}{1}
     
     \attimg{invio_mess}{Diagramma attività dialogo chatbot}{1}
 
-    \subuc{Inserimento messaggio}{ins_mess}
+    \uc{Inserimento messaggio}{ins_mess}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input da inviare nella chat selezionata;
         \item \textbf{Scenario principale}: l’utente inserisce un messaggio;
         \item \textbf{Generalizzazioni}:
             \begin{itemize}
-                \item Inserimento messaggio testuale (\rifsubsubuc{invio_mess}{ins_mess}{ins_mess_test})
-                \item Inserimento messaggio tramite comando vocale (\rifsubsubuc{invio_mess}{ins_mess}{ins_mess_voc})
+                \item Inserimento messaggio testuale (\rifsubuc{ins_mess}{ins_mess_test});
+                \item Inserimento messaggio tramite comando vocale (\rifsubuc{ins_mess}{ins_mess_voc});
             \end{itemize}
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio in una chat.
     \end{itemize}
     
-    \subsubuc{Inserimento messaggio testuale}{ins_mess_test}
+    \subuc{Inserimento messaggio testuale}{ins_mess_test}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input testuale da inviare nella chat selezionata;
         \item \textbf{Scenario principale}: l’utente inserisce un messaggio testuale;
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio testuale in una chat.
     \end{itemize}
     
-    \subsubuc{Inserimento messaggio tramite comando vocale}{ins_mess_voc}
+    \subuc{Inserimento messaggio tramite comando vocale}{ins_mess_voc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input da inviare nella chat selezionata;
         \item \textbf{Scenario principale}:
             \begin{enumerate}
                 \item l’utente richiede di inserire un messaggio tramite comando vocale;
-                \item l’utente indica vocalmente il messaggio che vuole inserire.
+                \item l’utente indica vocalmente il messaggio che vuole inserire nell'area di input della chat.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio tramite comando vocale.
     \end{itemize}
 
-    \subuc{Conferma invio messaggio}{conferma_mess}
-    \begin{itemize}
-        \item \textbf{Attore principale}: utente;
-        \item \textbf{Precondizioni}: l'utente ha inserito un messaggio;
-        \item \textbf{Postcondizioni}: l'invio del messaggio inserito è stato confermato;
-        \item \textbf{Scenario principale}: l’utente conferma l'invio del messaggio inserito;
-        \item \textbf{Trigger}: l’utente vuole confermare l'invio del messaggio inserito.
-    \end{itemize}
 
 % REQUISITI
 \newpage
@@ -1751,78 +1462,39 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endhead
 \multicolumn{3}{r}{\footnotesize\textit{Continua nella pagina successiva}}
 \endfoot
-\hline
+\hline 
 \endlastfoot
 
-\rf{O} & L'utente deve poter configurare i componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio dell'applicazione. & \rifuc{conf_comp_sistema} \\
+\rf{O} & L'utente deve poter scegliere le componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio dell'applicazione. & \rifuc{scel_sistema} \\
+\hline \subrf{O} & L'utente deve poter scegliere un modello LLM tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_LLM} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_LLM} \\
+\hline \subrf{O} & L'utente deve poter scegliere il vector database tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_vd}\\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo vector database tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_vd} \\
+\hline \subrf{O} & L'utente deve poter scegliere un modello di embeddings tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_emb} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_emb} \\
+\hline \subrf{O} & L'utente deve poter scegliere un sistema di archiviazione documenti tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_sis} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_sis} \\
 
-\hline \rf{O} & L'utente deve poter configurare il modello LLM. & \rifsubuc{conf_comp_sistema}{conf_LLM} \\
-\hline \subrf{O} & L'utente deve poter visualizzare la lista dei modelli LLM disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM} \\
-\hline \subsubrf{O} & L'utente deve poter visualizzare i singoli modelli LLM presenti in lista. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{vis_lista_LLM}{vis_sing_LLM} \\
-\hline \subrf{O} & L'utente deve poter scegliere un modello LLM tra quelli disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_LLM}{scelta_LLM} \\
-\hline \subrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM. & \rifsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM di OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_OpenAI} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'API key di un account OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_OpenAI} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome del modello di LLM di OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_OpenAI} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM di HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_HF} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'API key di un account HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_HF} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome del modello di LLM di HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_HF} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM locale. & \rifsubsubsubuc{conf_comp_sistema}{conf_LLM}{ins_LLM}{ins_LLM_locale} \\
-\hline \subrf{O} & L'utente deve poter confermare la scelta del modello LLM. & \rifsubsubuc{conf_comp_sistema}{conf_LLM}{conferma_LLM} \\
-\hline \rf{O} & Il tentativo di configurazione del modello LLM deve fallire se l'utente ha inserito credenziali o parametri non validi. & \rifuc{vis_err_LLM} \\
-\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del modello LLM. & \rifuc{vis_err_LLM} \\
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei modelli LLM disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_LLM}\\ \rifuc{vis_lista_LLM}\\ \rifuc{camb_scel_LLM}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli modelli LLM presenti in lista. & \rifsubuc{vis_lista_LLM}{vis_sing_LLM} \\
 
-\hline \rf{O} & L'utente deve poter configurare il vector database. & \rifsubuc{conf_comp_sistema}{conf_vd}\\
-\hline \subrf{O} & L'utente deve poter visualizzare la lista dei vector database disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd} \\
-\hline \subsubrf{O} & L'utente deve poter visualizzare i singoli vector database presenti in lista. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{vis_lista_vd}{vis_sing_vd} \\
-\hline \subrf{O} & L'utente deve poter scegliere un vector database tra quelli disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_vd}{scelta_vd} \\
-\hline \subrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal vector database. & \rifsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal vector database Pinecone. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_Pinecone} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'API key di un account Pinecone. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_Pinecone} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome dell'index del database di Pinecone. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_Pinecone} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome dell'environment di Pinecone. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_Pinecone} \\
-\hline \subsubrf{O} & L'utente deve poter inserire database ChromaDB. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_ChromaDB} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il percorso della cartella di persistenza per il database di ChromaDB. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_ChromaDB} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome della collection di ChromaDB. & \rifsubsubsubuc{conf_comp_sistema}{conf_vd}{ins_vd}{ins_vd_ChromaDB} \\
-\hline \subrf{O} & L'utente deve poter confermare la scelta del vector database. & \rifsubsubuc{conf_comp_sistema}{conf_vd}{conferma_vd} \\
-\hline \rf{O} & Il tentativo di configurazione del vector database deve fallire se l'utente ha inserito credenziali o parametri non validi. & \rifuc{vis_err_vd} \\
-\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del vector database. & \rifuc{vis_err_vd} \\
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei vector database disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_vd}\\ \rifuc{vis_lista_vd}\\ \rifuc{camb_scel_vd}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli vector database presenti in lista. & \rifsubuc{vis_lista_vd}{vis_sing_vd} \\
 
-\hline \rf{O} & L'utente deve poter configurare il modello di embeddings. & \rifsubuc{conf_comp_sistema}{conf_emb} \\
-\hline \subrf{O} & L'utente deve poter visualizzare la lista dei modelli di embeddings disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb} \\
-\hline \subsubrf{O} & L'utente deve poter visualizzare i singoli modelli di embeddings presenti in lista. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{vis_lista_emb}{vis_sing_emb} \\
-\hline \subrf{O} & L'utente deve poter scegliere un modello di embeddings tra quelli disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_emb}{scelta_emb} \\
-\hline \subrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings. & \rifsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings di OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_OpenAI} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'API key di un account OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_OpenAI} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome del modello di embeddings di OpenAI. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_OpenAI} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings di HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_HF} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'API key di un account HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_HF} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome del modello di embeddings di HuggingFace. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_HF} \\
-\hline \subsubrf{OP} & L'utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings locale. & \rifsubsubsubuc{conf_comp_sistema}{conf_emb}{ins_emb}{ins_emb_locale} \\
-\hline \subrf{O} & L'utente deve poter confermare la scelta del modello di embeddings. & \rifsubsubuc{conf_comp_sistema}{conf_emb}{conferma_emb} \\
-\hline \rf{O} & Il tentativo di configurazione del modello di embeddings deve fallire se l'utente ha inserito credenziali o parametri non validi. & \rifuc{vis_err_emb} \\
-\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del modello di embeddings. & \rifuc{vis_err_emb} \\
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei modelli di embeddings disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_emb}\\ \rifuc{vis_lista_emb}\\ \rifuc{camb_scel_emb}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli modelli di embeddings presenti in lista. & \rifsubuc{vis_lista_emb}{vis_sing_emb} \\
 
-\hline \rf{O} & L'utente deve poter configurare la scelta del sistema di archiviazione documenti. & \rifsubuc{conf_comp_sistema}{conf_sis} \\
-\hline \subrf{O} & L'utente deve poter visualizzare la lista dei sistemi di archiviazione disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis} \\
-\hline \subsubrf{O} & L'utente deve poter visualizzare i singoli sistemi di archiviazione presenti in lista. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{vis_lista_sis}{vis_sing_sis} \\
-\hline \subrf{O} & L'utente deve poter scegliere un sistema di archiviazione tra quelli disponibili. & \rifsubsubuc{conf_comp_sistema}{conf_sis}{scelta_sis} \\
-\hline \subrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione. & \rifsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione AWS S3. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire l'access key id di AWS S3. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire la secret access key di AWS S3. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome del bucket di AWS S3. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS} \\
-\hline \subsubsubrf{O} & L'utente deve poter inserire il nome della regione di AWS S3. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_AWS} \\
-\hline \subsubrf{O} & L'utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione locale. & \rifsubsubsubuc{conf_comp_sistema}{conf_sis}{ins_sis}{ins_sis_locale} \\
-\hline \subrf{O} & L'utente deve poter confermare la scelta del sistema di archiviazione. & \rifsubsubuc{conf_comp_sistema}{conf_sis}{conferma_sis} \\
-\hline \rf{O} & Il tentativo di configurazione del sistema di archiviazione deve fallire se l'utente ha inserito credenziali o parametri non validi. & \rifuc{vis_err_sis} \\
-\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del sistema di archiviazione. & \rifuc{vis_err_sis} \\
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei sistemi di archiviazione disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_sis}\\ \rifuc{vis_lista_sis}\\ \rifuc{camb_scel_sis}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli sistemi di archiviazione presenti in lista. & \rifsubuc{vis_lista_sis}{vis_sing_sis} \\
 
-\hline \rf{O} & L'utente deve poter cambiare la scelta del modello LLM. & \quantities{\rifsubuc{conf_comp_sistema}{conf_LLM}\\ \rifsubsubuc{conf_comp_sistema}{vis_conf}{vis_conf_LLM}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifsubuc{conf_comp_sistema}{conf_vd}\\ \rifsubsubuc{conf_comp_sistema}{vis_conf}{vis_conf_vd}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifsubuc{conf_comp_sistema}{conf_emb}\\ \rifsubsubuc{conf_comp_sistema}{vis_conf}{vis_conf_emb}\\ Verbale esterno (2023-11-24)}\\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifsubuc{conf_comp_sistema}{conf_sis}\\ \rifsubsubuc{conf_comp_sistema}{vis_conf}{vis_conf_sis}\\ Verbale esterno (2023-11-24)}\\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del modello LLM. & \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. &  \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
 
 \hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un modello LLM. & \rifuc{vis_car_LLM}\\
 \hline \subrf{O} & L'utente deve poter visualizzare il nome di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_nome_LLM}\\
@@ -1868,17 +1540,33 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{O} & L'utente deve poter caricare un documento nell'area di staging. & \quantities{\rifuc{car_staging}\\ Verbale esterno (2023-11-15)} \\
 \hline \subrf{O} & L'utente deve poter caricare nell'area di staging un documento di tipo .\textit{PDF}. & \rifuc{car_staging} \\
 \hline \subrf{O} & L'utente deve poter caricare nell'area di staging un documento di tipo .\textit{docx}. & \rifuc{car_staging} \\
+\hline \rf{O} & L'utente deve poter caricare un insieme di documenti nell'area di staging. & \quantities{\rifuc{car_staging_s}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{PDF}. & \rifuc{car_staging_s} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{docx}. & \rifuc{car_staging_s} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{PDF} e .\textit{docx}. & \rifuc{car_staging_s} \\
 \hline \rf{O} & Il tentativo di caricamento in area di staging di un documento deve fallire se il formato di questo non è supportato. & \rifuc{vis_err_formato} \\
 \hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a caricare nell'area di staging un documento con formato non supportato. & \rifuc{vis_err_formato} \\
 \hline \rf{O} & L'utente deve poter rimuovere un documento caricato nell'area di staging. & \rifuc{rim_staging} \\
+\hline \rf{O} & L'utente deve poter rimuovere un insieme di documenti caricati nell'area di staging. & \rifuc{rim_staging_s} \\
 
-\hline \rf{O} & L'utente deve poter fare l'upload nel sistema di archiviazione e nel vector database dei documenti caricati nell'area di staging. & \rifuc{up_doc} \\
-\hline \subrf{O} & L'utente deve poter scegliere se sostituire con il documento caricato un documento con lo stesso nome già presente nel sistema. & \rifuc{sost_doc} \\
+\hline \rf{O} & L'utente deve poter fare l'upload nel sistema di archiviazione e nel vector database dei documenti caricati nell'area di staging. & \quantities{ \rifuc{up_doc} \\ \rifuc{up_docs}} \\
+\hline \subrf{O} & L'utente deve poter scegliere se sostituire con il documento caricato un documento con lo stesso nome e formato già presente nel sistema. & \quantities{ \rifuc{up_doc} \\ \rifuc{sost_doc}} \\
+\hline \subrf{O} & L'utente deve poter confermare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{sost_doc} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituire con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{up_doc} \\
+\hline \subrf{O} & L'utente deve poter scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \quantities{ \rifuc{up_docs} \\ \rifuc{sost_docs}} \\
+\hline \subrf{O} & L'utente deve poter confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{sost_docs} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituire con i documento caricato di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
 
 \hline \rf{O} & L'utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & \rifuc{vis_cont_doc} \\
 \hline \rf{O} & L'utente deve poter eliminare un documento presente nel sistema. &  \rifuc{elim_doc} \\
+\hline \rf{O} & L'utente deve poter eliminare un insieme di documenti presenti nel sistema. &  \rifuc{elim_docs} \\
+\hline \subrf{O} & L'utente deve poter selezinare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
 \hline \rf{O} & L'utente deve poter occultare un documento presente nel sistema. & \quantities{\rifuc{occ_doc}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter occultare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per occultarli. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
 \hline \rf{O} & L'utente deve poter riabilitare un documento presente nel sistema. & \quantities{\rifuc{riab_doc}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter riabilitare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{riab_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per riabilitarli. & \quantities{\rifuc{riab_docs}\\ Verbale esterno (2023-11-15)} \\
 \hline \rf{O} & L'utente deve poter ricercare un documento presente nel sistema. & \quantities{\rifuc{ric_doc}} \\
 
 \hline \rf{O} & L'utente deve poter visualizzare la lista delle chat presenti nell'applicazione. & \rifuc{vis_lista_chat} \\
@@ -1889,6 +1577,8 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{O} & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \rf{O} & L'utente deve poter eliminare una chat. & \rifuc{elim_chat} \\
+\hline \rf{O} & L'utente deve poter eliminare un insieme di chat. & \rifuc{elim_chat_s} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di chat per poterle eliminare. & \rifuc{elim_chat_s} \\
 
 \hline \rf{O} & L'utente deve poter rinominare una chat. & \quantities{\rifuc{rinom_chat}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & Il tentativo di rinominazione di una chat deve fallire se il titolo inserito appartiene già ad un'altra chat. & \rifuc{vis_err_tit_ug} \\
@@ -1907,19 +1597,20 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 
 \hline \rf{D} & L'utente deve poter visualizzare le domande suggerite in una chat vuota. & \rifuc{vis_dom_sugg}\\
 \hline \rf{D} & L'utente deve poter inviare una domanda suggerita in una chat vuota. & \rifuc{invio_dom_sugg}\\
-\hline \subrf{D} & L'utente deve poter scegliere una delle domande suggerite in una chat vuota. & \rifsubuc{invio_dom_sugg}{scelta_dom_sugg} \\
-\hline \subrf{D} & L'utente deve poter confermare l'invio di una domanda suggerita in una chat vuota. & \rifsubuc{invio_dom_sugg}{conferma_dom_sugg} \\
+\hline \subrf{D} & L'utente deve poter selezionare una delle domande suggerite in una chat vuota. & \rifuc{invio_dom_sugg} \\
+\hline \subrf{D} & L'utente deve poter confermare l'invio di una domanda suggerita in una chat vuota. & \rifuc{invio_dom_sugg} \\
 
 \hline \rf{D} & L'utente deve poter ascoltare tramite audio un messaggio. & \quantities{\rifuc{lett_mess}\\ Verbale esterno (2023-11-24)}\\
 \hline \rf{D} & L'utente deve poter copiare un messaggio. & \rifuc{copia_mess} \\
 \hline \rf{OP} & L'utente deve poter attivare la modalità vocale. & \quantities{\rifuc{att_mod_voc}\\ Verbale esterno (2023-11-24)}\\
 \hline \rf{OP} & L'utente deve poter disattivare la modalità vocale. & \quantities{\rifuc{dis_mod_voc}\\ Verbale esterno (2023-11-24)}\\
 
+\hline \rf{O} & L'utente deve poter inserire un messaggio nell'area di testo di una chat. & \rifuc{ins_mess} \\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio testuale nell'area di input in una chat. & \rifsubuc{ins_mess}{ins_mess_test} \\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio in una chat tramite comando vocale nell'area di input di una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)}\\
+\hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
+\hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
-\hline \subrf{O} & L'utente deve poter inserire un messaggio in una chat. & \rifsubuc{invio_mess}{ins_mess} \\
-\hline \subsubrf{O} & L'utente deve poter inserire un messaggio testuale in una chat. & \rifsubsubuc{invio_mess}{ins_mess}{ins_mess_test} \\
-\hline \subsubrf{O} & L'utente deve poter inserire un messaggio in una chat tramite comando vocale. & \quantities{ \rifsubsubuc{invio_mess}{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)}\\
-\hline \subrf{O} & L'utente deve poter confermare l'invio del messaggio inserito. & \rifsubuc{invio_mess}{conferma_mess} \\
 
 \end{xltabular}
 

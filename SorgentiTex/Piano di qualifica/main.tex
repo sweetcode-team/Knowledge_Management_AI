@@ -494,11 +494,6 @@ Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio
 
 
 
-
-
-
-
-
 \subsection{Test di sistema}
 Il documento Analisi dei Requisiti identifica i requisiti che devono essere completamente coperti dai test di sistema. Di seguito è presente un elenco dei test di sistema:
     \begin{xltabular}{\textwidth}{|c|X|c|c|}
@@ -518,587 +513,582 @@ Il documento Analisi dei Requisiti identifica i requisiti che devono essere comp
     \endfoot
     \hline
     \endlastfoot
-    TS.1 & L’utente deve poter configurare i componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio  dell’applicazione. & RF.O.1 & I \\
-    \hline
-    TS.2 & L’utente deve poter configurare il modello LLM. & RF.O.2 & I \\
-    \hline
-    TS.3 & L’utente deve poter visualizzare la lista dei modelli LLM disponibili. & RF.O.2.1 & I \\
-    \hline
-    TS.4 & L’utente deve poter visualizzare i singoli modelli LLM presenti in lista. & RF.O.2.1.1 & I \\
-    \hline
-    TS.5 & L’utente deve poter scegliere un modello LLM tra quelli disponibili. & RF.O.2.2 & I \\
-    \hline
-    TS.6 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM. & RF.O.2.3 & I \\
-    \hline
-    TS.7 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM di OpenAI. & RF.O.2.3.1 & I \\
-    \hline
-    TS.8 & L’utente deve poter inserire l’API key di un account OpenAI. & RF.O.2.3.1.1 & I \\
-    \hline
-    TS.9 & L’utente deve poter inserire il nome del modello di LLM di OpenAI. & RF.O.2.3.1.2 & I \\
-    \hline
-    TS.10 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM di HuggingFace. & RF.O.2.3.2 & I \\
-    \hline
-    TS.11 & L’utente deve poter inserire l’API key di un account HuggingFace. & RF.O.2.3.2.1 & I \\
-    \hline
-    TS.12 & L’utente deve poter inserire il nome del modello di LLM di HuggingFace. & RF.O.2.3.2.2 & I \\
-    \hline
-    TS.13 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello LLM locale. & RF.O.2.3.3 & I \\
-    \hline
-    TS.14 & L’utente deve poter confermare la scelta del modello LLM. & RF.O.2.4 & I \\
-    \hline
-    TS.15 & Il tentativo di configurazione del modello LLM deve fallire se l’utente ha inserito credenziali o parametri non validi. & RF.O.3 & I \\
-    \hline
-    TS.16 & L’utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del modello LLM. & RF.O.3.1 & I \\
-    \hline
-    TS.17 & L’utente deve poter configurare il vector database. & RF.O.4 & I \\
-    \hline
-    TS.18 & L’utente deve poter visualizzare la lista dei vector database disponibili. & RF.O.4.1 & I \\
-    \hline
-    TS.19 & L’utente deve poter visualizzare i singoli vector database presenti in lista. & RF.O.4.1.1 & I \\
-    \hline
-    TS.20 & L’utente deve poter scegliere un vector database tra quelli disponibili. & RF.O.4.2 & I \\
-    \hline
-    TS.21 & L’utente deve poter inserire le credenziali e i parametri richiesti dal vector database. & RF.O.4.3 & I \\
-    \hline
-    TS.22 & L’utente deve poter inserire le credenziali e i parametri richiesti dal vector database Pinecone. & RF.O.4.3.1 & I \\
-    \hline
-    TS.23 & L’utente deve poter inserire l’API key di un account Pinecone. & RF.O.4.3.1.1 & I \\
-    \hline
-    TS.24 & L’utente deve poter inserire il nome dell’index del database di Pinecone. & RF.O.4.3.1.2 & I \\
-    \hline
-    TS.25 & L’utente deve poter inserire il nome dell’environment di Pinecone. & RF.O.4.3.1.3 & I \\
-    \hline
-    TS.26 & L’utente deve poter inserire database ChromaDB. & RF.O.4.3.2 & I \\
-    \hline
-    TS.27 & L’utente deve poter inserire il percorso della cartella di persistenza per il database di ChromaDB. & RF.O.4.3.2.1 & I \\
-    \hline
-    TS.28 & L’utente deve poter inserire il nome della collection di ChromaDB. & RF.O.4.3.2.2 & I \\
-    \hline
-    TS.29 & L’utente deve poter confermare la scelta del vector database. & RF.O.4.4 & I \\
-    \hline
-    TS.30 & Il tentativo di configurazione del vector database deve fallire se l’utente ha inserito credenziali o parametri non validi. & RF.O.5 & I \\
-    \hline
-    TS.31 & L’utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del vector database. & RF.O.5.1 & I \\
-    \hline
-    TS.32 & L’utente deve poter configurare il modello di embeddings. & RF.O.6 & I \\
-    \hline
-    TS.33 & L’utente deve poter visualizzare la lista dei modelli di embeddings disponibili. & RF.O.6.1 & I \\
-    \hline
-    TS.34 & L’utente deve poter visualizzare i singoli modelli di embeddings presenti in lista. & RF.O.6.1.1 & I \\
-    \hline
-    TS.35 & L’utente deve poter scegliere un modello di embeddings tra quelli disponibili. & RF.O.6.2 & I \\
-    \hline
-    TS.36 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings. & RF.O.6.3 & I \\
-    \hline
-    TS.37 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings di OpenAI. & RF.O.6.3.1 & I \\
-    \hline
-    TS.38 & L’utente deve poter inserire l’API key di un account OpenAI. & RF.O.6.3.1.1 & I \\
-    \hline
-    TS.39 & L’utente deve poter inserire il nome del modello di embeddings di OpenAI. & RF.O.6.3.1.2 & I \\
-    \hline
-    TS.40 & L’utente deve poter inserire le credenziali e i parametri richiesti dal modello di embeddings di HuggingFace. & RF.O.6.3.2 & I \\
-    \hline
-    TS.41 & L’utente deve poter inserire l’API key di un account HuggingFace. & RF.O.6.3.2.1 & I \\
-    \hline
-    TS.42 & L’utente deve poter inserire il nome del modello di embeddings di HuggingFace. & RF.O.6.3.2.2 & I \\
-    \hline
-    TS.43 & L’utente deve poter confermare la scelta del modello di embeddings. & RF.O.6.4 & I \\
-    \hline
-    TS.44 & Il tentativo di configurazione del modello di embeddings deve fallire se l’utente ha inserito credenziali o parametri non validi. & RF.O.7 & I \\
-    \hline
-    TS.45 & L’utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del modello di embeddings. & RF.O.7.1 & I \\
-    \hline
-    TS.46 & L’utente deve poter configurare la scelta del sistema di archiviazione documenti. & RF.O.8 & I \\
-    \hline
-    TS.47 & L’utente deve poter visualizzare la lista dei sistemi di archiviazione disponibili. & RF.O.8.1 & I \\
-    \hline
-    TS.48 & L’utente deve poter visualizzare i singoli sistemi di archiviazione presenti in lista. & RF.O.8.1.1 & I \\
-    \hline
-    TS.49 & L’utente deve poter scegliere un sistema di archiviazione tra quelli disponibili. & RF.O.8.2 & I \\
-    \hline
-    TS.50 & L’utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione. & RF.O.8.3 & I \\
-    \hline
-    TS.51 & L’utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione AWS S3. & RF.O.8.3.1 & I \\
-    \hline
-    TS.52 & L’utente deve poter inserire l’access key id di AWS S3. & RF.O.8.3.1.1 & I \\
-    \hline
-    TS.53 & L’utente deve poter inserire la secret access key di AWS S3. & RF.O.8.3.1.2 & I \\
-    \hline
-    TS.54 & L’utente deve poter inserire il nome del bucket di AWS S3. & RF.O.8.3.1.3 & I \\
-    \hline
-    TS.55 & L’utente deve poter inserire il nome della regione di AWS S3. & RF.O.8.3.1.4 & I \\
-    \hline
-    TS.56 & L’utente deve poter inserire le credenziali e i parametri richiesti dal sistema di archiviazione locale. & RF.O.8.3.2 & I \\
-    \hline
-    TS.57 & L’utente deve poter confermare la scelta del sistema di archiviazione. & RF.O.8.4 & I \\
-    \hline
-    TS.58 & Il tentativo di configurazione del sistema di archiviazione deve fallire se l’utente ha inserito credenziali o parametri non validi. & RF.O.9 & I \\
-    \hline
-    TS.59 & L’utente deve visualizzare un errore nel caso in cui abbia inserito parametri o credenziali non validi del sistema di archiviazione. & RF.O.9.1 & I \\
-    \hline
-    TS.60 & L’utente deve poter cambiare la scelta del modello LLM. & RF.O.10 & I \\
-    \hline
-    TS.61 & L’utente deve poter cambiare la scelta del vector database. & RF.O.11 & I \\
-    \hline
-    TS.62 & L’utente deve poter cambiare la scelta del modello di embeddings. & RF.O.12 & I \\
-    \hline
-    TS.63 & L’utente deve poter cambiare la scelta del sistema di archiviazione documenti. & RF.O.13 & I \\
-    \hline
-    TS.64 & L’utente deve poter visualizzare le caratteristiche di un modello LLM. & RF.O.14 & I \\
-    \hline
-    TS.65 & L’utente deve poter visualizzare il nome di un modello LLM. & RF.O.14.1 & I \\
-    \hline
-    TS.66 & L’utente deve poter visualizzare l’organizzazione proprietaria di un modello LLM. & RF.O.14.2 & I \\
-    \hline
-    TS.67 & L’utente deve poter visualizzare la descrizione di un modello LLM. & RF.O.14.3 & I \\
-    \hline
-    TS.68 & L’utente deve poter visualizzare la tipologia di un modello LLM. & RF.O.14.4 & I \\
-    \hline
-    TS.69 & L’utente deve poter visualizzare l’indicatore di costi di un modello LLM. & RF.O.14.5 & I \\
-    \hline
-    TS.70 & L’utente deve poter visualizzare le caratteristiche di un vector database. & RF.O.15 & I \\
-    \hline
-    TS.71 & L’utente deve poter visualizzare il nome di un vector database. & RF.O.15.1 & I \\
-    \hline
-    TS.72 & L’utente deve poter visualizzare l’organizzazione proprietaria di un vector database. & RF.O.15.2 & I \\
-    \hline
-    TS.73 & L’utente deve poter visualizzare la descrizione di un vector database. & RF.O.15.3 & I \\
-    \hline
-    TS.74 & L’utente deve poter visualizzare la tipologia di un vector database. & RF.O.15.4 & I \\
-    \hline
-    TS.75 & L’utente deve poter visualizzare l’indicatore di costi di un vector database. & RF.O.15.5 & I \\
-    \hline
-    TS.76 & L’utente deve poter visualizzare le caratteristiche di un modello di embeddings. & RF.O.16 & I \\
-    \hline
-    TS.77 & L’utente deve poter visualizzare il nome di un modello di embeddings. & RF.O.16.1 & I \\
-    \hline
-    TS.78 & L’utente deve poter visualizzare l’organizzazione proprietaria di un modello di embeddings. & RF.O.16.2 & I \\
-    \hline
-    TS.79 & L’utente deve poter visualizzare la descrizione di un modello di embeddings. & RF.O.16.3 & I \\
-    \hline
-    TS.80 & L’utente deve poter visualizzare la tipologia di un modello di embeddings. & RF.O.16.4 & I \\
-    \hline
-    TS.81 & L’utente deve poter visualizzare l’indicatore di costi di un modello di embeddings. & RF.O.16.5 & I \\
-    \hline
-    TS.82 & L’utente deve poter visualizzare le caratteristiche di un sistema di archiviazione. & RF.O.17 & I \\
-    \hline
-    TS.83 & L’utente deve poter visualizzare il nome di un sistema di archiviazione. & RF.O.17.1 & I \\
-    \hline
-    TS.84 & L’utente deve poter visualizzare l’organizzazione proprietaria di un sistema di archiviazione. & RF.O.17.2 & I \\
-    \hline
-    TS.85 & L’utente deve poter visualizzare la descrizione di un sistema di archiviazione. & RF.O.17.3 & I \\
-    \hline
-    TS.86 & L’utente deve poter visualizzare la tipologia di un sistema di archiviazione. & RF.O.17.4 & I \\
-    \hline
-    TS.87 & L’utente deve poter visualizzare l’indicatore di costi di un sistema di archiviazione. & RF.O.17.5 & I \\
-    \hline
-    TS.88 & L’utente deve poter visualizzare la configurazione attuale del sistema. & RF.O.18 & I \\
-    \hline
-    TS.89 & L’utente deve poter visualizzare la configurazione attuale del modello LLM. & RF.O.18.1 & I \\
-    \hline
-    TS.90 & L’utente deve poter visualizzare la configurazione attuale del vector database. & RF.O.18.2 & I \\
-    \hline
-    TS.91 & L’utente deve poter visualizzare la configurazione attuale del modello di embeddings. & RF.O.18.3 & I \\
-    \hline
-    TS.92 & L’utente deve poter visualizzare la configurazione attuale del sistema di archiviazione documenti. & RF.O.18.4 & I \\
-    \hline
-    TS.93 & L’utente deve poter visualizzare la lista dei documenti presenti nel sistema di archiviazione. & RF.O.19 & I \\
-    \hline
-    TS.94 & L’utente deve poter visualizzare i singoli documenti presenti nel sistema di archiviazione. & RF.O.19.1 & I \\
-    \hline
-    TS.95 & L’utente deve poter visualizzare il titolo di un documento presente nel sistema di archiviazione. & RF.O.19.1.1 & I \\
-    \hline
-    TS.96 & L’utente deve poter visualizzare le dimensioni di un documento presente nel sistema di archiviazione. & RF.O.19.1.2 & I \\
-    \hline
-    TS.97 & L’utente deve poter visualizzare la data di caricamento di un documento presente nel sistema di archiviazione. & RF.O.19.1.3 & I \\
-    \hline
-    TS.98 & L’utente deve poter visualizzare se un documento è stato occultato. & RF.O.19.1.4 & I \\
-    \hline
-    TS.99 & L’utente deve poter caricare un documento nell’area di staging. & RF.O.20 & I \\
-    \hline
-    TS.100 & L’utente deve poter caricare nell’area di staging un documento di tipo .PDF. & RF.O.20.1 & I \\
-    \hline
-    TS.101 & L’utente deve poter caricare nell’area di staging un documento di tipo .docx. & RF.O.20.2 & I \\
-    \hline
-    TS.102 & Il tentativo di caricamento in area di staging di un documento deve fallire se il formato di questo non è supportato. & RF.O.21 & I \\
-    \hline
-    TS.103 & L’utente deve visualizzare un errore nel caso in cui abbia provato a caricare nell’area di staging un documento con formato non supportato. & RF.O.21.1 & I \\
-    \hline
-    TS.104 & L’utente deve poter rimuovere un documento caricato nell’area di staging. & RF.O.22 & I \\
-    \hline
-    TS.105 & L’utente deve poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging. & RF.O.23 & I \\
-    \hline
-    TS.106 & L’utente deve poter scegliere se sostituire con il documento caricato un documento con lo stesso nome già presente nel sistema. & RF.O.23.1 & I \\
-    \hline
-    TS.107 & L’utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & RF.O.24 & I \\
-    \hline
-    TS.108 & L’utente deve poter eliminare un documento presente nel sistema. & RF.O.25 & I \\
-    \hline
-    TS.109 & L’utente deve poter occultare un documento presente nel sistema. & RF.O.26 & I \\
-    \hline
-    TS.110 & L’utente deve poter riabilitare un documento presente nel sistema. & RF.O.27 & I \\
-    \hline
-    TS.111 & L’utente deve poter ricercare un documento presente nel sistema. & RF.O.28 & I \\
-    \hline
-    TS.112 & L’utente deve poter visualizzare la lista delle chat presenti nell’applicazione. & RF.O.29 & I \\
-    \hline
-    TS.113 & L’utente deve poter visualizzare le singole chat presenti in lista. & RF.O.29.1 & I \\
-    \hline
-    TS.114 & L’utente deve poter visualizzare il titolo di una chat. & RF.O.29.1.1 & I \\
-    \hline
-    TS.115 & L’utente deve poter visualizzare il timestamp dell’ultimo messaggio di una chat. & RF.O.29.1.2 & I \\
-    \hline
-    TS.116 & L’utente deve poter creare una nuova chat. & RF.O.30 & I \\
-    \hline
-    TS.117 & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & RF.O.31 & I \\
-    \hline
-    TS.118 & L’utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & RF.O.31.1 & I \\
-    \hline
-    TS.119 & L’utente deve poter eliminare una chat. & RF.O.32 & I \\
-    \hline
-    TS.120 & L’utente deve poter rinominare una chat. & RF.O.33 & I \\
-    \hline
-    TS.121 & Il tentativo di rinominazione di una chat deve fallire se il titolo inserito appartiene già ad un’altra chat. & RF.O.34 & I \\
-    \hline
-    TS.122 & L’utente deve visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un’altra chat. & RF.O.34.1 & I \\
-    \hline
-    TS.123 & Il tentativo di rinominazione di una chat deve fallire se il titolo inserito è vuoto. & RF.O.35 & I \\
-    \hline
-    TS.124 & L’utente deve visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & RF.O.35.1 & I \\
-    \hline
-    TS.125 & L’utente deve poter ricercare una chat e il suo contenuto. & RF.O.36 & I \\
-    \hline
-    TS.126 & L’utente deve poter visualizzare il contenuto di una chat. & RF.O.37 & I \\
-    \hline
-    TS.127 & L’utente deve poter visualizzare i singoli messaggi di una chat. & RF.O.37.1 & I \\
-    \hline
-    TS.128 & L’utente deve poter visualizzare il contenuto testuale di un messaggio presente in una chat. & RF.O.37.1.1 & I \\
-    \hline
-    TS.129 & L’utente deve poter visualizzare l’orario di un messaggio presente in una chat. & RF.O.37.1.2 & I \\
-    \hline
-    TS.130 & La risposta fornita dal chatbot deve presentare un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & RF.D.38 & I \\
-    \hline
-    TS.131 & L’utente deve poter visualizzare le domande suggerite in una chat vuota. & RF.D.39 & I \\
-    \hline
-    TS.132 & L’utente deve poter inviare una domanda suggerita in una chat vuota. & RF.D.40 & I \\
-    \hline
-    TS.133 & L’utente deve poter scegliere una delle domande suggerite in una chat vuota. & RF.D.40.1 & I \\
-    \hline
-    TS.134 & L’utente deve poter confermare l’invio di una domanda suggerita in una chat vuota. & RF.D.40.2 & I \\
-    \hline
-    TS.135 & L’utente deve poter ascoltare tramite audio un messaggio. & RF.D.41 & I \\
-    \hline
-    TS.136 & L’utente deve poter copiare un messaggio. & RF.D.42 & I \\
-    \hline
-    TS.137 & L’utente deve poter attivare la modalità vocale. & RF.OP.43 & I \\
-    \hline
-    TS.138 & L’utente deve poter disattivare la modalità vocale. & RF.OP.44 & I \\
-    \hline
-    TS.139 & L’utente deve poter inviare un messaggio in una chat. & RF.O.45 & I \\
-    \hline
-    TS.140 & L’utente deve poter inserire un messaggio in una chat. & RF.O.45.1 & I \\
-    \hline
-    TS.141 & L’utente deve poter inserire un messaggio testuale in una chat. & RF.O.45.1.1 & I \\
-    \hline
-    TS.142 & L’utente deve poter inserire un messaggio in una chat tramite comando vocale. & RF.O.45.1.2 & I \\
-    \hline
-    TS.143 & L’utente deve poter confermare l’invio del messaggio inserito. & RF.O.45.2 & I \\
+    TS.1 & Verificare che l'utente possa scegliere le componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio dell'applicazione. & RF.O.1 & I \\
+\hline
+TS.2 & Verificare che l'utente possa scegliere un modello LLM tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.1 & I \\
+\hline
+TS.3 & Verificare che l'utente possa selezionare un solo modello LLM tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.1.1 & I \\
+\hline
+TS.4 & Verificare che l'utente possa scegliere il vector database tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.2 & I \\
+\hline
+TS.5 & Verificare che l'utente possa selezionare un solo vector database tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.2.1 & I \\
+\hline
+TS.6 & Verificare che l'utente possa scegliere un modello di embeddings tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.3 & I \\
+\hline
+TS.7 & Verificare che l'utente possa selezionare un solo modello di embeddings tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.3.1 & I \\
+\hline
+TS.8 & Verificare che l'utente possa scegliere un sistema di archiviazione documenti tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.4 & I \\
+\hline
+TS.9 & Verificare che l'utente possa selezionare un solo sistema di archiviazione dei documenti tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.4.1 & I \\
+\hline
+TS.10 & Verificare che l'utente possa visualizzare la lista dei modelli LLM disponibili. & RF.O.2 & I \\
+\hline
+TS.11 & Verificare che l'utente possa visualizzare i singoli modelli LLM presenti in lista. & RF.O.2.1 & I \\
+\hline
+TS.12 & Verificare che l'utente possa visualizzare la lista dei vector database disponibili. & RF.O.3 & I \\
+\hline
+TS.13 & Verificare che l'utente possa visualizzare i singoli vector database presenti in lista. & RF.O.3.1 & I \\
+\hline
+TS.14 & Verificare che l'utente possa visualizzare la lista dei modelli di embeddings disponibili. & RF.O.4 & I \\
+\hline
+TS.15 & Verificare che l'utente possa visualizzare i singoli modelli di embeddings presenti in lista. & RF.O.4.1 & I \\
+\hline
+TS.16 & Verificare che l'utente possa visualizzare la lista dei sistemi di archiviazione disponibili. & RF.O.5 & I \\
+\hline
+TS.17 & Verificare che l'utente possa visualizzare i singoli sistemi di archiviazione presenti in lista. & RF.O.5.1 & I \\
+\hline
+TS.18 & Verificare che l'utente possa cambiare la scelta del modello LLM. & RF.O.6 & I \\
+\hline
+TS.19 & Verificare che l'utente possa selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. & RF.O.6.1 & I \\
+\hline
+TS.20 & Verificare che l'utente possa cambiare la scelta del vector database. & RF.O.7 & I \\
+\hline
+TS.21 & Verificare che l'utente possa selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. & RF.O.7.1 & I \\
+\hline
+TS.22 & Verificare che l'utente possa cambiare la scelta del modello di embeddings. & RF.O.8 & I \\
+\hline
+TS.23 & Verificare che l'utente possa selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. & RF.O.8.1 & I \\
+\hline
+TS.24 & Verificare che l'utente possa cambiare la scelta del sistema di archiviazione documenti. & RF.O.9 & I \\
+\hline
+TS.25 & Verificare che l'utente possa selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. & RF.O.9.1 & I \\
+\hline
+TS.26 & Verificare che l'utente possa visualizzare le caratteristiche di un modello LLM. & RF.O.10 & I \\
+\hline
+TS.27 & Verificare che l'utente possa visualizzare il nome di un modello LLM. & RF.O.10.1 & I \\
+\hline
+TS.28 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un modello LLM. & RF.O.10.2 & I \\
+\hline
+TS.29 & Verificare che l'utente possa visualizzare la descrizione di un modello LLM. & RF.O.10.3 & I \\
+\hline
+TS.30 & Verificare che l'utente possa visualizzare la tipologia di un modello LLM. & RF.O.10.4 & I \\
+\hline
+TS.31 & Verificare che l'utente possa visualizzare l’indicatore di costi di un modello LLM. & RF.O.10.5 & I \\
+\hline
+TS.32 & Verificare che l'utente possa visualizzare le caratteristiche di un vector database. & RF.O.11 & I \\
+\hline
+TS.33 & Verificare che l'utente possa visualizzare il nome di un vector database. & RF.O.11.1 & I \\
+\hline
+TS.34 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un vector database. & RF.O.11.2 & I \\
+\hline
+TS.35 & Verificare che l'utente possa visualizzare la descrizione di un vector database. & RF.O.11.3 & I \\
+\hline
+TS.36 & Verificare che l'utente possa visualizzare la tipologia di un vector database. & RF.O.11.4 & I \\
+\hline
+TS.37 & Verificare che l'utente possa visualizzare l’indicatore di costi di un vector database. & RF.O.11.5 & I \\
+\hline
+TS.38 & Verificare che l'utente possa visualizzare le caratteristiche di un modello di embeddings. & RF.O.12 & I \\
+\hline
+TS.39 & Verificare che l'utente possa visualizzare il nome di un modello di embeddings. & RF.O.12.1 & I \\
+\hline
+TS.40 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un modello di embeddings. & RF.O.12.2 & I \\
+\hline
+TS.41 & Verificare che l'utente possa visualizzare la descrizione di un modello di embeddings. & RF.O.12.3 & I \\
+\hline
+TS.42 & Verificare che l'utente possa visualizzare la tipologia di un modello di embeddings. & RF.O.12.4 & I \\
+\hline
+TS.43 & Verificare che l'utente possa visualizzare l’indicatore di costi di un modello di embeddings. & RF.O.12.5 & I \\
+\hline
+TS.44 & Verificare che l'utente possa visualizzare le caratteristiche di un sistema di archiviazione. & RF.O.13 & I \\
+\hline
+TS.45 & Verificare che l'utente possa visualizzare il nome di un sistema di archiviazione. & RF.O.13.1 & I \\
+\hline
+TS.46 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un sistema di archiviazione. & RF.O.13.2 & I \\
+\hline
+TS.47 & Verificare che l'utente possa visualizzare la descrizione di un sistema di archiviazione. & RF.O.13.3 & I \\
+\hline
+TS.48 & Verificare che l'utente possa visualizzare la tipologia di un sistema di archiviazione. & RF.O.13.4 & I \\
+\hline
+TS.49 & Verificare che l'utente possa visualizzare l’indicatore di costi di un sistema di archiviazione. & RF.O.13.5 & I \\
+\hline
+TS.50 & Verificare che l'utente possa visualizzare la configurazione attuale del sistema. & RF.O.14 & I \\
+\hline
+TS.51 & Verificare che l'utente possa visualizzare la configurazione attuale del modello LLM. & RF.O.14.1 & I \\
+\hline
+TS.52 & Verificare che l'utente possa visualizzare la configurazione attuale del vector database. & RF.O.14.2 & I \\
+\hline
+TS.53 & Verificare che l'utente possa visualizzare la configurazione attuale del modello di embeddings. & RF.O.14.3 & I \\
+\hline
+TS.54 & Verificare che l'utente possa visualizzare la configurazione attuale del sistema di archiviazione documenti. & RF.O.14.4 & I \\
+\hline
+TS.55 & Verificare che l'utente possa visualizzare la lista dei documenti presenti nel sistema di archiviazione. & RF.O.15 & I \\
+\hline
+TS.56 & Verificare che l'utente possa visualizzare i singoli documenti presenti nel sistema di archiviazione. & RF.O.15.1 & I \\
+\hline
+TS.57 & Verificare che l'utente possa visualizzare il titolo di un documento presente nel sistema di archiviazione. & RF.O.15.1.1 & I \\
+\hline
+TS.58 & Verificare che l'utente possa visualizzare le dimensioni di un documento presente nel sistema di archiviazione. & RF.O.15.1.2 & I \\
+\hline
+TS.59 & Verificare che l'utente possa visualizzare la data di caricamento di un documento presente nel sistema di archiviazione. & RF.O.15.1.3 & I \\
+\hline
+TS.60 & Verificare che l'utente possa visualizzare se un documento è stato occultato. & RF.O.15.1.4 & I \\
+\hline
+TS.61 & Verificare che l'utente possa caricare un documento nell’area di staging. & RF.O.16 & I \\
+\hline
+TS.62 & Verificare che l'utente possa caricare nell’area di staging un documento di tipo .PDF. & RF.O.16.1 & I \\
+\hline
+TS.63 & Verificare che l'utente possa caricare nell’area di staging un documento di tipo .docx. & RF.O.16.2 & I \\
+\hline
+TS.64 & Verificare che l'utente possa caricare un insieme di documenti nell’area di staging. & RF.O.17 & I \\
+\hline
+TS.65 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .PDF. & RF.O.17.1 & I \\
+\hline
+TS.66 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .docx. & RF.O.17.2 & I \\
+\hline
+TS.67 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .PDF e .docx. & RF.O.17.3 & I \\
+\hline
+TS.68 & Verificare che il tentativo di caricamento in area di staging di un documento debba fallire se il formato di questo non è supportato. & RF.O.18 & I \\
+\hline
+TS.69 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a caricare nell’area di staging un documento con formato non supportato. & RF.O.18.1 & I \\
+\hline
+TS.70 & Verificare che l'utente possa rimuovere un documento caricato nell’area di staging. & RF.O.19 & I \\
+\hline
+TS.71 & Verificare che l'utente possa rimuovere un insieme di documenti caricati nell’area di staging. & RF.O.20 & I \\
+\hline
+TS.72 & Verificare che l'utente possa fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging. & RF.O.21 & I \\
+\hline
+TS.73 & Verificare che l'utente possa scegliere se sostituire con il documento caricato un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.1 & I \\
+\hline
+TS.74 & Verificare che l'utente possa confermare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.2 & I \\
+\hline
+TS.75 & Verificare che l'utente possa annullare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.3 & I \\
+\hline
+TS.76 & Verificare che l'utente possa scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.4 & I \\
+\hline
+TS.77 & Verificare che l'utente possa confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.5 & I \\
+\hline
+TS.78 & Verificare che l'utente possa annullare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.6 & I \\
+\hline
+TS.79 & Verificare che l'utente possa visualizzare il contenuto di ciascun documento presente nel sistema. & RF.O.22 & I \\
+\hline
+TS.80 & Verificare che l'utente possa eliminare un documento presente nel sistema. & RF.O.23 & I \\
+\hline
+TS.81 & Verificare che l'utente possa eliminare un insieme di documenti presenti nel sistema. & RF.O.24 & I \\
+\hline
+TS.82 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per eliminarli. & RF.O.24.1 & I \\
+\hline
+TS.83 & Verificare che l'utente possa occultare un documento presente nel sistema. & RF.O.25 & I \\
+\hline
+TS.84 & Verificare che l'utente possa occultare un insieme di documenti presenti nel sistema. & RF.O.26 & I \\
+\hline
+TS.85 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per occultarli. & RF.O.26.1 & I \\
+\hline
+TS.86 & Verificare che l'utente possa riabilitare un documento presente nel sistema. & RF.O.27 & I \\
+\hline
+TS.87 & Verificare che l'utente possa riabilitare un insieme di documenti presenti nel sistema. & RF.O.28 & I \\
+\hline
+TS.88 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per riabilitarli. & RF.O.28.1 & I \\
+\hline
+TS.89 & Verificare che l'utente possa ricercare un documento presente nel sistema. & RF.O.29 & I \\
+\hline
+TS.90 & Verificare che l'utente possa visualizzare la lista delle chat presenti nell’applicazione. & RF.O.30 & I \\
+\hline
+TS.91 & Verificare che l'utente possa visualizzare le singole chat presenti in lista. & RF.O.30.1 & I \\
+\hline
+TS.92 & Verificare che l'utente possa visualizzare il titolo di una chat. & RF.O.30.1.1 & I \\
+\hline
+TS.93 & Verificare che l'utente possa visualizzare il timestamp dell’ultimo messaggio di una chat. & RF.O.30.1.2 & I \\
+\hline
+TS.94 & Verificare che l'utente possa creare una nuova chat. & RF.O.31 & I \\
+\hline
+TS.95 & Verificare che il tentativo di creazione di una nuova chat debba fallire se esiste già una chat vuota. & RF.O.32 & I \\
+\hline
+TS.96 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & RF.O.32.1 & I \\
+\hline
+TS.97 & Verificare che l'utente possa eliminare una chat. & RF.O.33 & I \\
+\hline
+TS.98 & Verificare che l'utente possa eliminare un insieme di chat. & RF.O.34 & I \\
+\hline
+TS.99 & Verificare che l'utente possa selezionare un insieme di chat per poterle eliminare. & RF.O.34.1 & I \\
+\hline
+TS.100 & Verificare che l'utente possa rinominare una chat. & RF.O.35 & I \\
+\hline
+TS.101 & Verificare che il tentativo di rinominazione di una chat debba fallire se il titolo inserito appartiene già ad un’altra chat. & RF.O.36 & I \\
+\hline
+TS.102 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un’altra chat. & RF.O.36.1 & I \\
+\hline
+TS.103 & Verificare che il tentativo di rinominazione di una chat debba fallire se il titolo inserito è vuoto. & RF.O.37 & I \\
+\hline
+TS.104 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & RF.O.37.1 & I \\
+\hline
+TS.105 & Verificare che l'utente possa ricercare una chat e il suo contenuto. & RF.O.38 & I \\
+\hline
+TS.106 & Verificare che l'utente possa visualizzare il contenuto di una chat. & RF.O.39 & I \\
+\hline
+TS.107 & Verificare che l'utente possa visualizzare i singoli messaggi di una chat. & RF.O.39.1 & I \\
+\hline
+TS.108 & Verificare che l'utente possa visualizzare il contenuto testuale di un messaggio presente in una chat. & RF.O.39.1.1 & I \\
+\hline
+TS.109 & Verificare che l'utente possa visualizzare l’orario di un messaggio presente in una chat. & RF.O.39.1.2 & I \\
+\hline
+TS.110 & Verificare che la risposta fornita dal chatbot debba presentare un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & RF.D.40 & I \\
+\hline
+TS.111 & Verificare che l'utente possa visualizzare le domande suggerite in una chat vuota. & RF.D.41 & I \\
+\hline
+TS.112 & Verificare che l'utente possa inviare una domanda suggerita in una chat vuota. & RF.D.42 & I \\
+\hline
+TS.113 & Verificare che l'utente possa selezionare una delle domande suggerite in una chat vuota. & RF.D.42.1 & I \\
+\hline
+TS.114 & Verificare che l'utente possa confermare l’invio di una domanda suggerita in una chat vuota. & RF.D.42.2 & I \\
+\hline
+TS.115 & Verificare che l'utente possa ascoltare tramite audio un messaggio. & RF.D.43 & I \\
+\hline
+TS.116 & Verificare che l'utente possa copiare un messaggio. & RF.D.44 & I \\
+\hline
+TS.117 & Verificare che l'utente possa attivare la modalità vocale. & RF.OP.45 & I \\
+\hline
+TS.118 & Verificare che l'utente possa disattivare la modalità vocale. & RF.OP.46 & I \\
+\hline
+TS.119 & Verificare che l'utente possa inserire un messaggio nell’area di testo di una chat. & RF.O.47 & I \\
+\hline
+TS.120 & Verificare che l'utente possa inserire un messaggio testuale nell’area di input in una chat. & RF.O.47.1 & I \\
+\hline
+TS.121 & Verificare che l'utente possa inserire un messaggio in una chat tramite comando vocale nell’area di input di una chat. & RF.O.47.2 & I \\
+\hline
+TS.122 & Verificare che l'utente possa attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & RF.O.47.2.1 & I \\
+\hline
+TS.123 & Verificare che l'utente possa disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & RF.O.47.2.2 & I \\
+\hline
+TS.124 & Verificare che l'utente possa inviare un messaggio in una chat. & RF.O.48 & I \\
+\hline
+TS.125 & Verificare che il sistema offra opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & RQ.O.1 & I \\
+\hline
+TS.126 & Verificare che il sistema garantisca il servizio per almeno un utente. & RQ.O.2 & I \\
+\hline
+TS.127 & Verificare che in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RQ.OP.3 & I \\
+\hline
+TS.128 & Verificare che nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RQ.D.4 & I \\
+\hline
+TS.129 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RQ.OP.5 & I \\
+\hline
+TS.130 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RQ.D.6 & I \\
+\hline
+TS.131 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Norme di progetto). & RV.O.1 & I \\
+\hline
+TS.132 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Piano di qualifica). & RV.O.2 & I \\
+\hline
+TS.133 & Verificare che l’applicazione web garantisca la presenza di almeno un modello AI locale. & RV.O.3 & I \\
+\hline
+TS.134 & Verificare che le chat siano salvate in automatico in un database. & RV.O.4 & I \\
+\hline
+TS.135 & Verificare che i documenti caricati siano memorizzati in un sistema di archiviazione. & RV.O.5 & I \\
+\hline
+TS.136 & Verificare che il sistema garantisca il servizio per almeno un utente. & RP.O.1 & I \\
+\hline
+
     \end{xltabular}
     }
 
     
     \subsubsection{Tracciamento}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|X}
-    \textbf{ID Test} & \textbf{Requisito}  \\
+    \begin{xltabular}{\textwidth}{|c|c|}
+    %\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
+    \caption{Tabella di tracciamento dei test di sistema}
+    \label{tab:test_tracciamento_sistema}\\
     \hline
+    \textbf{ID Test} & \textbf{Requisito}\\
+    \hline
+    \endfirsthead
+    \caption[]{Tabella di tracciamento dei test di sistema (cont)}\\
+    \hline
+    \textbf{ID} & \textbf{Descrizione}\\
+    \hline
+    \endhead
+    \multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+    \endfoot
+    \hline
+    \endlastfoot   
     TS.1 & RF.O.1 \\
     \hline
-    TS.2 & RF.O.2 \\
-    \hline
-    TS.3 & RF.O.2.1 \\
-    \hline
-    TS.4 & RF.O.2.1.1 \\
-    \hline
-    TS.5 & RF.O.2.2 \\
-    \hline
-    TS.6 & RF.O.2.3 \\
-    \hline
-    TS.7 & RF.O.2.3.1 \\
-    \hline
-    TS.8 & RF.O.2.3.1.1 \\
-    \hline
-    TS.9 & RF.O.2.3.1.2 \\
-    \hline
-    TS.10 & RF.O.2.3.2 \\
-    \hline
-    TS.11 & RF.O.2.3.2.1 \\
-    \hline
-    TS.12 & RF.O.2.3.2.2 \\
-    \hline
-    TS.13 & RF.O.2.3.3 \\
-    \hline
-    TS.14 & RF.O.2.4 \\
-    \hline
-    TS.15 & RF.O.3 \\
-    \hline
-    TS.16 & RF.O.3.1 \\
-    \hline
-    TS.17 & RF.O.4 \\
-    \hline
-    TS.18 & RF.O.4.1 \\
-    \hline
-    TS.19 & RF.O.4.1.1 \\
-    \hline
-    TS.20 & RF.O.4.2 \\
-    \hline
-    TS.21 & RF.O.4.3 \\
-    \hline
-    TS.22 & RF.O.4.3.1 \\
-    \hline
-    TS.23 & RF.O.4.3.1.1 \\
-    \hline
-    TS.24 & RF.O.4.3.1.2 \\
-    \hline
-    TS.25 & RF.O.4.3.1.3 \\
-    \hline
-    TS.26 & RF.O.4.3.2 \\
-    \hline
-    TS.27 & RF.O.4.3.2.1 \\
-    \hline
-    TS.28 & RF.O.4.3.2.2 \\
-    \hline
-    TS.29 & RF.O.4.4 \\
-    \hline
-    TS.30 & RF.O.5 \\
-    \hline
-    TS.31 & RF.O.5.1 \\
-    \hline
-    TS.32 & RF.O.6 \\
-    \hline
-    TS.33 & RF.O.6.1 \\
-    \hline
-    TS.34 & RF.O.6.1.1 \\
-    \hline
-    TS.35 & RF.O.6.2 \\
-    \hline
-    TS.36 & RF.O.6.3 \\
-    \hline
-    TS.37 & RF.O.6.3.1 \\
-    \hline
-    TS.38 & RF.O.6.3.1.1 \\
-    \hline
-    TS.39 & RF.O.6.3.1.2 \\
-    \hline
-    TS.40 & RF.O.6.3.2 \\
-    \hline
-    TS.41 & RF.O.6.3.2.1 \\
-    \hline
-    TS.42 & RF.O.6.3.2.2 \\
-    \hline
-    TS.43 & RF.O.6.4 \\
-    \hline
-    TS.44 & RF.O.7 \\
-    \hline
-    TS.45 & RF.O.7.1 \\
-    \hline
-    TS.46 & RF.O.8 \\
-    \hline
-    TS.47 & RF.O.8.1 \\
-    \hline
-    TS.48 & RF.O.8.1.1 \\
-    \hline
-    TS.49 & RF.O.8.2 \\
-    \hline
-    TS.50 & RF.O.8.3 \\
-    \hline
-    TS.51 & RF.O.8.3.1 \\
-    \hline
-    TS.52 & RF.O.8.3.1.1 \\
-    \hline
-    TS.53 & RF.O.8.3.1.2 \\
-    \hline
-    TS.54 & RF.O.8.3.1.3 \\
-    \hline
-    TS.55 & RF.O.8.3.2 \\
-    \hline
-    TS.56 & RF.O.8.3.2.1 \\
-    \hline
-    TS.57 & RF.O.8.4 \\
-    \hline
-    TS.58 & RF.O.9 \\
-    \hline
-    TS.59 & RF.O.9.1 \\
-    \hline
-    TS.60 & RF.O.10 \\
-    \hline
-    TS.61 & RF.O.11 \\
-    \hline
-    TS.62 & RF.O.12 \\
-    \hline
-    TS.63 & RF.O.13 \\
-    \hline
-    TS.64 & RF.O.14 \\
-    \hline
-    TS.65 & RF.O.14.1 \\
-    \hline
-    TS.66 & RF.O.14.2 \\
-    \hline
-    TS.67 & RF.O.14.3 \\
-    \hline
-    TS.68 & RF.O.14.4 \\
-    \hline
-    TS.69 & RF.O.14.5 \\
-    \hline
-    TS.70 & RF.O.15 \\
-    \hline
-    TS.71 & RF.O.15.1 \\
-    \hline
-    TS.72 & RF.O.15.2 \\
-    \hline
-    TS.73 & RF.O.15.3 \\
-    \hline
-    TS.74 & RF.O.15.4 \\
-    \hline
-    TS.75 & RF.O.15.5 \\
-    \hline
-    TS.76 & RF.O.16 \\
-    \hline
-    TS.77 & RF.O.16.1 \\
-    \hline
-    TS.78 & RF.O.16.2 \\
-    \hline
-    TS.79 & RF.O.16.3 \\
-    \hline
-    TS.80 & RF.O.16.4 \\
-    \hline
-    TS.81 & RF.O.16.5 \\
-    \hline
-    TS.82 & RF.O.17 \\
-    \hline
-    TS.83 & RF.O.17.1 \\
-    \hline
-    TS.84 & RF.O.17.2 \\
-    \hline
-    TS.85 & RF.O.17.3 \\
-    \hline
-    TS.86 & RF.O.17.4 \\
-    \hline
-    TS.87 & RF.O.17.5 \\
-    \hline
-    TS.88 & RF.O.18 \\
-    \hline
-    TS.89 & RF.O.18.1 \\
-    \hline
-    TS.90 & RF.O.18.2 \\
-    \hline
-    TS.91 & RF.O.18.3 \\
-    \hline
-    TS.92 & RF.O.18.4 \\
-    \hline
-    TS.93 & RF.O.19 \\
-    \hline
-    TS.94 & RF.O.19.1 \\
-    \hline
-    TS.95 & RF.O.19.1.1 \\
-    \hline
-    TS.96 & RF.O.19.1.2 \\
-    \hline
-    TS.97 & RF.O.19.1.3 \\
-    \hline
-    TS.98 & RF.O.19.1.4 \\
-    \hline
-    TS.99 & RF.O.20 \\
-    \hline
-    TS.100 & RF.O.20.1 \\
-    \hline
-    TS.101 & RF.O.20.2 \\
-    \hline
-    TS.102 & RF.O.21 \\
-    \hline
-    TS.103 & RF.O.21.1 \\
-    \hline
-    TS.104 & RF.O.22 \\
-    \hline
-    TS.105 & RF.O.23 \\
-    \hline
-    TS.106 & RF.O.23.1 \\
-    \hline
-    TS.107 & RF.O.24 \\
-    \hline
-    TS.108 & RF.O.25 \\
-    \hline
-    TS.109 & RF.O.26 \\
-    \hline
-    TS.110 & RF.O.27 \\
-    \hline
-    TS.111 & RF.O.28 \\
-    \hline
-    TS.112 & RF.O.29 \\
-    \hline
-        TS.113 & RF.O.29 \\
-    \hline
-    TS.114 & RF.O.29.1 \\
-    \hline
-    TS.115 & RF.O.29.1.1 \\
-    \hline
-    TS.116 & RF.O.29.1.2 \\
-    \hline
-    TS.117 & RF.O.30 \\
-    \hline
-    TS.118 & RF.O.31 \\
-    \hline
-    TS.119 & RF.O.31.1 \\
-    \hline
-    TS.120 & RF.O.32 \\
-    \hline
-    TS.121 & RF.O.33 \\
-    \hline
-    TS.122 & RF.O.34 \\
-    \hline
-    TS.123 & RF.O.34.1 \\
-    \hline
-    TS.124 & RF.O.35 \\
-    \hline
-    TS.125 & RF.O.35.1 \\
-    \hline
-    TS.126 & RF.O.36 \\
-    \hline
-    TS.127 & RF.O.37 \\
-    \hline
-    TS.128 & RF.O.37.1 \\
-    \hline
-    TS.129 & RF.O.37.1.1 \\
-    \hline
-    TS.130 & RF.O.37.1.2 \\
-    \hline
-    TS.131 & RF.D.38 \\
-    \hline
-    TS.132 & RF.D.39 \\
-    \hline
-    TS.133 & RF.D.40 \\
-    \hline
-    TS.134 & RF.D.40.1 \\
-    \hline
-    TS.135 & RF.D.40.2 \\
-    \hline
-    TS.136 & RF.D.41 \\
-    \hline
-    TS.137 & RF.D.42 \\
-    \hline
-    TS.138 & RF.OP.43 \\
-    \hline
-    TS.139 & RF.OP.44 \\
-    \hline
-    TS.140 & RF.O.45 \\
-    \hline
-    TS.141 & RF.O.45.1 \\
-    \hline
-    TS.142 & RF.O.45.1.1 \\
-    \hline
-    TS.143 & RF.O.45.1.2 \\
-    \end{tabularx}
+    TS.2 & RF.O.1.1 \\
+\hline
+TS.3 & RF.O.1.1.1 \\
+\hline
+TS.4 & RF.O.1.2 \\
+\hline
+TS.5 & RF.O.1.2.1 \\
+\hline
+TS.6 & RF.O.1.3 \\
+\hline
+TS.7 & RF.O.1.3.1 \\
+\hline
+TS.8 & RF.O.1.4 \\
+\hline
+TS.9 & RF.O.1.4.1 \\
+\hline
+TS.10 & RF.O.2 \\
+\hline
+TS.11 & RF.O.2.1 \\
+\hline
+TS.12 & RF.O.3 \\
+\hline
+TS.13 & RF.O.3.1 \\
+\hline
+TS.14 & RF.O.4 \\
+\hline
+TS.15 & RF.O.4.1 \\
+\hline
+TS.16 & RF.O.5 \\
+\hline
+TS.17 & RF.O.5.1 \\
+\hline
+TS.18 & RF.O.6 \\
+\hline
+TS.19 & RF.O.6.1 \\
+\hline
+TS.20 & RF.O.7 \\
+\hline
+TS.21 & RF.O.7.1 \\
+\hline
+TS.22 & RF.O.8 \\
+\hline
+TS.23 & RF.O.8.1 \\
+\hline
+TS.24 & RF.O.9 \\
+\hline
+TS.25 & RF.O.9.1 \\
+\hline
+TS.26 & RF.O.10 \\
+\hline
+TS.27 & RF.O.10.1 \\
+\hline
+TS.28 & RF.O.10.2 \\
+\hline
+TS.29 & RF.O.10.3 \\
+\hline
+TS.30 & RF.O.10.4 \\
+\hline
+TS.31 & RF.O.10.5 \\
+\hline
+TS.32 & RF.O.11 \\
+\hline
+TS.33 & RF.O.11.1 \\
+\hline
+TS.34 & RF.O.11.2 \\
+\hline
+TS.35 & RF.O.11.3 \\
+\hline
+TS.36 & RF.O.11.4 \\
+\hline
+TS.37 & RF.O.11.5 \\
+\hline
+TS.38 & RF.O.12 \\
+\hline
+TS.39 & RF.O.12.1 \\
+\hline
+TS.40 & RF.O.12.2 \\
+\hline
+TS.41 & RF.O.12.3 \\
+\hline
+TS.42 & RF.O.12.4 \\
+\hline
+TS.43 & RF.O.12.5 \\
+\hline
+TS.44 & RF.O.13 \\
+\hline
+TS.45 & RF.O.13.1 \\
+\hline
+TS.46 & RF.O.13.2 \\
+\hline
+TS.47 & RF.O.13.3 \\
+\hline
+TS.48 & RF.O.13.4 \\
+\hline
+TS.49 & RF.O.13.5 \\
+\hline
+TS.50 & RF.O.14 \\
+\hline
+TS.51 & RF.O.14.1 \\
+\hline
+TS.52 & RF.O.14.2 \\
+\hline
+TS.53 & RF.O.14.3 \\
+\hline
+TS.54 & RF.O.14.4 \\
+\hline
+TS.55 & RF.O.15 \\
+\hline
+TS.56 & RF.O.15.1 \\
+\hline
+TS.57 & RF.O.15.1.1 \\
+\hline
+TS.58 & RF.O.15.1.2 \\
+\hline
+TS.59 & RF.O.15.1.3 \\
+\hline
+TS.60 & RF.O.15.1.4 \\
+\hline
+TS.61 & RF.O.16 \\
+\hline
+TS.62 & RF.O.16.1 \\
+\hline
+TS.63 & RF.O.16.2 \\
+\hline
+TS.64 & RF.O.17 \\
+\hline
+TS.65 & RF.O.17.1 \\
+\hline
+TS.66 & RF.O.17.2 \\
+\hline
+TS.67 & RF.O.17.3 \\
+\hline
+TS.68 & RF.O.18 \\
+\hline
+TS.69 & RF.O.18.1 \\
+\hline
+TS.70 & RF.O.19 \\
+\hline
+TS.71 & RF.O.20 \\
+\hline
+TS.72 & RF.O.21 \\
+\hline
+TS.73 & RF.O.21.1 \\
+\hline
+TS.74 & RF.O.21.2 \\
+\hline
+TS.75 & RF.O.21.3 \\
+\hline
+TS.76 & RF.O.21.4 \\
+\hline
+TS.77 & RF.O.21.5 \\
+\hline
+TS.78 & RF.O.21.6 \\
+\hline
+TS.79 & RF.O.22 \\
+\hline
+TS.80 & RF.O.23 \\
+\hline
+TS.81 & RF.O.24 \\
+\hline
+TS.82 & RF.O.24.1 \\
+\hline
+TS.83 & RF.O.25 \\
+\hline
+TS.84 & RF.O.26 \\
+\hline
+TS.85 & RF.O.26.1 \\
+\hline
+TS.86 & RF.O.27 \\
+\hline
+TS.87 & RF.O.28 \\
+\hline
+TS.88 & RF.O.28.1 \\
+\hline
+TS.89 & RF.O.29 \\
+\hline
+TS.90 & RF.O.30 \\
+\hline
+TS.91 & RF.O.30.1 \\
+\hline
+TS.92 & RF.O.30.1.1 \\
+\hline
+TS.93 & RF.O.30.1.2 \\
+\hline
+TS.94 & RF.O.31 \\
+\hline
+TS.95 & RF.O.32 \\
+\hline
+TS.96 & RF.O.32.1 \\
+\hline
+TS.97 & RF.O.33 \\
+\hline
+TS.98 & RF.O.34 \\
+\hline
+TS.99 & RF.O.34.1 \\
+\hline
+TS.100 & RF.O.35 \\
+\hline
+TS.101 & RF.O.36 \\
+\hline
+TS.102 & RF.O.36.1 \\
+\hline
+TS.103 & RF.O.37 \\
+\hline
+TS.104 & RF.O.37.1 \\
+\hline
+TS.105 & RF.O.38 \\
+\hline
+TS.106 & RF.O.39 \\
+\hline
+TS.107 & RF.O.39.1 \\
+\hline
+TS.108 & RF.O.39.1.1 \\
+\hline
+TS.109 & RF.O.39.1.2 \\
+\hline
+TS.110 & RF.D.40 \\
+\hline
+TS.111 & RF.D.41 \\
+\hline
+TS.112 & RF.D.42 \\
+\hline
+TS.113 & RF.D.42.1 \\
+\hline
+TS.114 & RF.D.42.2 \\
+\hline
+TS.115 & RF.D.43 \\
+\hline
+TS.116 & RF.D.44 \\
+\hline
+TS.117 & RF.OP.45 \\
+\hline
+TS.118 & RF.OP.46 \\
+\hline
+TS.119 & RF.O.47 \\
+\hline
+TS.120 & RF.O.47.1 \\
+\hline
+TS.121 & RF.O.47.2 \\
+\hline
+TS.122 & RF.O.47.2.1 \\
+\hline
+TS.123 & RF.O.47.2.2 \\
+\hline
+TS.124 & RF.O.48 \\
+\hline
+TS.125 & RQ.O.1 \\
+\hline
+TS.126 & RQ.O.2 \\
+\hline
+TS.127 & RQ.OP.3 \\
+\hline
+TS.128 & RQ.D.4 \\
+\hline
+TS.129 & RQ.OP.5 \\
+\hline
+TS.130 & RQ.D.6 \\
+\hline
+TS.131 & RV.O.1 \\
+\hline
+TS.132 & RV.O.2 \\
+\hline
+TS.133 & RV.O.3 \\
+\hline
+TS.134 & RV.O.4 \\
+\hline
+TS.135 & RV.O.5 \\
+\hline
+TS.136 & RP.O.1 \\
+\hline
+
+
+    \end{xltabular}
     }
+
+    
+
+
+
 
 
 \subsection{Test di accettazione}

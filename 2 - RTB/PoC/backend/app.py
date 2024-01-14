@@ -43,7 +43,7 @@ from langchain.llms import HuggingFaceHub
 from langchain.callbacks import get_openai_callback
 from config import OPENAI_API_KEY, PINECONE_API, HUGGINGFACEHUB_API_TOKEN, BUCKET_NAME, AWS_ACCESS_KEY_ID, \
     AWS_SECRET_ACCESS_KEY, REGION_NAME, PINECONE_INDEX_NAME, EMBEDDINGS_DIMENSION, PINECONE_ENVIRONMENT, CHUNK_SIZE, CHUNK_OVERLAP, \
-    PROMPT_TEMPLATE, RETRIEVER_CHUNKS_NUM
+    RETRIEVER_CHUNKS_NUM 
 from modules.load_document import FileStore
 from modules.chat_engine import ChatEngine
 from modules.vector_store import VectorStore
@@ -76,7 +76,7 @@ def create_app():
     vector_store = VectorStore(PINECONE_API, PINECONE_INDEX_NAME, EMBEDDINGS_DIMENSION, PINECONE_ENVIRONMENT)
 
     global llm_model
-    llm_model = OpenAI(openai_api_key=OPENAI_API_KEY, model= "gpt-3.5-turbo-instruct")
+    llm_model = OpenAI(openai_api_key=OPENAI_API_KEY, model= "gpt-3.5-turbo-instruct", temperature=0.3)
 
     global memory
     memory = ConversationBufferMemory(memory_key='chat_history', output_key='answer', return_messages=False)
@@ -160,7 +160,7 @@ def handle_exception(err):
     return jsonify(response), 500
 
 @app.route('/uploadFile', methods=['POST'])
-def upFile():
+def up_file():
     """
     Endpoint for uploading PDF files and corresponding embeddings.
 
@@ -198,7 +198,7 @@ def upFile():
     return jsonify({"message": "Success"}), 200
 
 @app.route(rule='/askChatbot', methods=['POST'])
-def askChatbot():
+def ask_chatbot():
     """
     Endpoint for querying the chatbot and receiving responses.
 

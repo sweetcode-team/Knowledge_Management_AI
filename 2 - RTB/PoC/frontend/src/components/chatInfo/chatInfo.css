@@ -13,6 +13,7 @@
 }
 
 .about__section {
+  font-size: 14px;
   overflow: auto;
   background-color: #fff;
   margin-right: 15px;

@@ -28,6 +28,7 @@ class FileStore:
         self.bucket_name = bucket_name
         self.set_bucket(self.bucket_name)
 
+
     def buckets_list(self):
         """
         Lists all S3 buckets in the AWS account.
@@ -46,6 +47,7 @@ class FileStore:
             logging.error(e)
             return None
         return buckets
+
 
     def set_bucket(self, bucket_name):
         """
@@ -66,6 +68,7 @@ class FileStore:
             return False
         self.bucket_name = bucket_name
         return True
+
 
     def upload_file(self, file_path, file_name):
         """
@@ -89,6 +92,7 @@ class FileStore:
             return False
         return True
 
+
     def download_file(self, file_name, destination_file_path):
         """
         Downloads a file from the current S3 bucket to a local destination.
@@ -107,6 +111,7 @@ class FileStore:
             return False
         return True
 
+
     def delete_file(self, file_name):
         """
         Deletes a file from the current S3 bucket.
@@ -123,6 +128,7 @@ class FileStore:
             logging.error(e)
             return False
         return True
+
 
     def delete_bucket(self, bucket_name):
         """

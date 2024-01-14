@@ -48,6 +48,7 @@ class VectorStore:
         if index_name not in pinecone.list_indexes():
             pinecone.create_index(name=index_name, dimension=index_dimension, metric="cosine")
 
+
     def get_langchain_retriever(self, model, k):
         """Returns a Langchain retriever for querying embeddings.
 
@@ -62,8 +63,9 @@ class VectorStore:
         return Pinecone(
             index,
             model.embed_query,
-            "text"
-        ).as_retriever(search_kwargs={"k": k})
+            'text'
+        ).as_retriever(search_kwargs={'k': k})
+
 
     def upload_embeddings(self, embeddings, chunks):
         """Uploads embeddings along with associated metadata to the Pinecone index.
@@ -77,6 +79,7 @@ class VectorStore:
         """
         ids = [f"{chunks[i].metadata.get('file_name')}@{i}" for i in range(len(chunks))]
         metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page'), "file_name": chunk.metadata.get('file_name')} for chunk in chunks]
+        print(ids[0], metadatas[0])
         index = pinecone.Index(self.index_name)
         index.upsert([
             (id_c, embedding, metadata) for id_c, embedding, metadata in zip(ids, embeddings, metadatas)

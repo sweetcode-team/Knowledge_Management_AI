@@ -69,6 +69,7 @@
 }
 
 .chat__item {
+  font-size: 14px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

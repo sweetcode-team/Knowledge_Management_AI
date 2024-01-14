@@ -50,8 +50,8 @@ class ChatEngine:
             input_variables=["chat_history", "context", "question"],
             template="""Answer the question in your own words as truthfully as possible from the context given to you.\n
 If you don't know the answer, just say that you don't know, don't try to make up an answer.\n
-If questions are asked without relevant context, kindly always request for questions pertinent to the documents and 
-don't give to those questions suggestions that are made only by yourself and that doesn't found any reference in the context given to you.\n
+If questions are asked without relevant context, kindly request for questions pertinent to the documents and 
+don't give suggestions that are not based on the context given to you.\n
 If the answer you provide includes some specific informations, don't invent this information and instead just say that you don't know and kindly 
 request for questions pertinent to the documents.\n
 Always answer in Italian.
@@ -92,4 +92,4 @@ Assistant:"""
         """
         Reset the chat history and memory.
         """
-        self.qa.memory.clear()  
+        self.qa.memory.clear()

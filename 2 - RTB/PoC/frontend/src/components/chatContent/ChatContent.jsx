@@ -1,11 +1,10 @@
 import React, { useState, createRef, useEffect } from "react";
 
 import "./chatContent.css";
-import Avatar from "../chatInfo/Avatar";
 import ChatItem from "./ChatItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons' 
-import { faCog, faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import sweetcodelogo from "../../images/sweetcode-logo.svg"
 import { toast } from 'react-toastify';
 
@@ -122,7 +121,7 @@ export default function ChatContent() {
               )
               }) :
                   <div className="welcome_message">
-                    <img src={sweetcodelogo} />
+                    <img src={sweetcodelogo} alt="SWEetCode logo"/>
                     <h2>Hey, come posso aiutarti?</h2>
                   </div>
             }

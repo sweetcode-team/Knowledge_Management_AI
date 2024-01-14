@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className="__main">
-      {/* <Nav /> */}
       <ChatBody />
       <ToastContainer
         position="bottom-center"

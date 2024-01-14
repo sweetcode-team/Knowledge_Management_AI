@@ -40,6 +40,7 @@ class DocumentManager:
         if os.path.exists(upload_folder):
             shutil.rmtree(upload_folder)
 
+
     @staticmethod
     def configure_upload_folder():
         """Configure and return the upload folder path.
@@ -56,6 +57,7 @@ class DocumentManager:
         upload_folder = os.path.join(path, STORAGE_FOLDER)
         os.makedirs(upload_folder, exist_ok=True)
         return upload_folder
+
 
     @staticmethod
     def pdf_to_documents(pdf_file, upload_folder):
@@ -78,6 +80,7 @@ class DocumentManager:
         for document in documents:
             document.metadata["file_name"] = pdf_file.filename[:-4]
         return documents, save_path
+
 
     @staticmethod
     def get_docs_chunks(documents, chunk_size, chunk_overlap):

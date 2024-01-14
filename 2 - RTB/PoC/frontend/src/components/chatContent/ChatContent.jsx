@@ -103,11 +103,6 @@ export default function ChatContent() {
             <h1>Knowledge Management AI</h1>
           </div>
         </div>
-        {/* <div className="blocks">
-            <button className="btn-nobg">
-              <FontAwesomeIcon icon={faCog} style={{ color: "black", fontSize: "25px", padding: "0"}}/>
-            </button>
-        </div> */}
       </div>
       
       <div className="content__body">

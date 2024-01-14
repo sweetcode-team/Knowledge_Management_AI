@@ -7,7 +7,6 @@ export default function Avatar(props) {
       <div className="avatar-img">
         {props.image}
       </div>
-      {/* <span className={`isOnline ${this.props.isOnline}`}></span> */}
     </div>
   )
 }

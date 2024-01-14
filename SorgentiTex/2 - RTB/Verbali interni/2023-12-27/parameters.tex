@@ -1,0 +1,74 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-12-27}
+\def\oraInizio{11:00}
+\def\oraFine{11:40}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Campese M.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Campese M.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{martina.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Revisione della rendicontazione oraria di ogni membro e retrospettiva del terzo sprint;},
+{Controllo della ristrutturazione in corso del documento Norme di progetto},
+{Aggiornamento riguardante le modifiche non terminate sul documento di Analisi dei requisiti. Il documento è stato ampliato ma non portato a termine per la presenza di alcuni dubbi emersi durante il processo di analisi; questi verranno meglio discussi in un colloquio con il Professor Cardin pianificato per venerdì 2023-12-29 alle 8:45;},
+{Valutazione della stesura finale del Glossario;},
+{Presa in esame del Piano di qualifica e degli ampliamenti essenziali da eseguire sul documento stesso.}
+}
+
+\def\listaOrdineGiorno {
+{Conferma dei ruoli assegnati per il quarto sprint;},
+{Discussione riguardante il Piano di progetto;},
+{Analisi dello strumento Overleaf;},
+{Considerazioni sulle modifiche da apportare alla pagina GitHub.io e i commenti da associare al codice del PoC.}
+}
+
+\def\listaDiscussioneInterna {
+{ Il team, in seguito al cambiamento della pianificazione della finestra per la revisione RTB ha modificato la pianificazione dei ruoli che i membri hanno iniziato ad assumere nel quarto sprint di lavoro. Sono stati definiti
+nel modo seguente:
+\begin{itemize}
+\item Amministratore: Feltrin E.;
+\item Analista: Ciriolo I., Dugo A., Michelon R.;
+\item Progettista: nessuno;
+\item Programmatori: Bresolin G.;
+\item Responsabile: Campese M.;
+\item Verificatore: Orlandi G.
+\end{itemize}},
+{In seguito allo spostamento della finestra di candidatura per la revisione RTB, sono emersi dei dubbi riguardanti la pianificazione dello sviluppo del progetto; tra questi rientra la pianificazione dello sprint attuale che non sarà il primo sprint del periodo che porta alla revisione PB, rendendo così necessarie delle  modifiche alla pianificazione programmata finora. Viene inoltre previsto un rallentamento del lavoro dovuto al periodo festivo che sposterà in avanti le date di scadenza dei task;},
+{In seguito ad un esame attento del Way of Working del gruppo, si sono analizzati i pro e i contro dello strumento Overleaf: per quanto questo strumento riesca a favorire un lavoro semplificato sui documenti, il fatto di non lavorare direttamente sui sorgenti in locale lascia spazio ad errori, perdita di controllo e riduce la coerenza delle automazioni del versionamento;},
+{Il team ha discusso brevemente le modifiche che è necessario apportare alla pagina GitHub.io del progetto in previsione all' apertura della finestra delle candidature alla revisione RTB. Vengono inoltre trattati il PoC e i cambiamenti da portare a termine a seguito del colloquio di chiarimento dell'Analisi dei requisiti con il Professor Cardin.}
+}
+
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni{
+{Il gruppo ha deciso di lasciare il proprio workspace su Overleaf;}, 
+{Il gruppo, a causa del periodo di rallentamento, ha deciso di organizzare brevi riunioni di revisione delle azioni a inizio anno che non verranno tracciate. Questi brevi incontri di aggiornamento infatti non conterranno decisioni o nuovi task.}
+}

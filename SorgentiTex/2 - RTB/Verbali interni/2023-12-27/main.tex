@@ -1,0 +1,109 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{14.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{8em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+%\vspace{18cm}
+
+ \newpage
+% ~\newpage
+% ~ \\\\\\~
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+
+\newpage
+
+\decisioni
+
+\end{paracol}
+
+\vspace{5em}
+
+\heading{Azioni da Intraprendere}\\
+Nella sezione seguente vengono riportati i task generali, spetterà agli incaricati suddividerli, se necessario, in task minori e riportarli sulla timeline di Jira.
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|c|c|c}
+\label{tab:long}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endfirsthead
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endhead
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+% Per ID Task: vuoto se non l'abbiamo messa come issue, SWE-id_task altrimenti
+\hline
+SWE-126 & Ampliamento Glossario con termini specifici PoC & Feltrin E. & Campese M. & $2023-12-31$ \\
+\hline
+SWE-118 & Stesura verbale 2023-12-27 & Campese M. & Orlandi G. & $2023-12-31$ \\
+
+\hline
+SWE-112 & Ultimazione Norme di progetto & \quantities{ Bresolin G. \\ Michelon R. } & Orlandi G. & $2024-01-05$ \\
+\hline
+SWE-129 & Ampliamento Piano di qualifica & \quantities{ Campese M. \\ Ciriolo I. \\ Feltrin E. } & Orlandi G. & $2024-01-05$ \\
+\hline
+SWE-130 & Modifiche Analisi dei requisiti post colloquio & Bresolin G. & Dugo A.& $2024-01-09$ \\
+\hline
+SWE-139 & Modifiche Piano di progetto & Dugo A. & Orlandi G. & $2024-01-10$ \\
+\hline
+ & Modifiche pagina GitHub.io & Michelon R. & Team & $2024-01-15$ \\
+
+\end{xltabular}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+Non è stata fissata una data per una nuova riunione.
+
+\end{document}

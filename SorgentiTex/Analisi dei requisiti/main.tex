@@ -726,7 +726,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
                 \item il sistema è configurato e attivo;
             \end{itemize}
         \item \textbf{Postcondizioni}: il sistema ha mostrato la lista dei documenti presenti nel sistema di archiviazione;
-        \item \textbf{Scenario principale}: l'utente visualizza i singoli documenti in lista (\rifsubuc{vis_lista_doc}{vis_sing_doc});
+        \item \textbf{Scenario principale}: l'utente visualizza i singoli documenti in lista;
         \item \textbf{Trigger}: l’utente desidera visualizzare la lista dei documenti caricati all’interno del sistema di archiviazione.
     \end{itemize}
     \ucimg{gest_docs}{Diagramma gestione documenti}{1}
@@ -742,10 +742,10 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \end{itemize}
         \item \textbf{Scenario principale}:
             \begin{enumerate}
-                \item l'utente visualizza il titolo del documento (\rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_tit_doc});
-                \item l'utente visualizza le dimensioni del documento  (\rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_dim_doc});
-                \item l'utente visualizza la data di caricamento del documento (\rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_data_doc});
-                \item l'utente visualizza l'indicatore di occultamento del documento (\rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_occ_doc});
+                \item l'utente visualizza il titolo del documento;
+                \item l'utente visualizza le dimensioni del documento ;
+                \item l'utente visualizza la data di caricamento del documento;
+                \item l'utente visualizza l'indicatore di occultamento del documento;
             \end{enumerate}
         \item \textbf{Trigger}: l’utente desidera visualizzare il singolo documento all’interno della lista di documenti caricati.
     \end{itemize}
@@ -799,6 +799,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente desidera sapere se il singolo documento all’interno della lista di documenti caricati è occultato o meno.
     \end{itemize}
     
+    \ucimg{area_staging}{Diagramma area di staging}{0.75}
     \uc{Caricamento documento in area di staging}{car_staging}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -875,6 +876,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole rimuovere un insieme di documenti dall’area di staging.
     \end{itemize}
 
+    \ucimg{uploading_docs}{Diagramma uploading nel sistema di archiviazione dei documenti}{0.75}
     \uc{Upload nuovo documento}{up_doc}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1070,7 +1072,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \item il sistema è configurato e attivo;
         \end{itemize}
         \item \textbf{Postcondizioni}: il sistema ha mostrato la lista delle chat;
-        \item \textbf{Scenario principale}: l'utente visualizza le singole chat in lista (\rifsubuc{vis_lista_chat}{vis_sing_chat});
+        \item \textbf{Scenario principale}: l'utente visualizza le singole chat in lista;
         \item \textbf{Trigger}: l’utente desidera visualizzare la lista delle chat.
     \end{itemize}
     \ucimg{vis_lista_chat}{Diagramma \rifuc{vis_lista_chat}}{0.75}
@@ -1247,7 +1249,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Scenario principale}:
             \begin{enumerate}
                 \item l’utente richiede l’apertura di una chat;
-                \item l'utente visualizza i singoli messaggi nella chat (\rifsubuc{vis_cont_chat}{vis_sing_mess}).
+                \item l'utente visualizza i singoli messaggi nella chat.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
     \end{itemize}
@@ -1389,14 +1391,14 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Precondizioni}: 
         \begin{itemize}
             \item l’utente ha selezionato e sta visualizzando una chat;
-            \item l'utente ha inserito un messaggio nell'area di input di una chat.
+            \item l'utente ha inserito un messaggio nella chat.
         \end{itemize}
         \item \textbf{Postcondizioni}: 
             \begin{itemize}
                 \item il messaggio è stato memorizzato nel database chat.
                 \item il sistema elabora una risposta alla domanda inviata.
             \end{itemize}
-        \item \textbf{Scenario principale}: l’utente conferma l'invio del messaggio inserito nell'area di input della chat;
+        \item \textbf{Scenario principale}: l’utente conferma l'invio del messaggio inserito nella chat;
         \item \textbf{Trigger}: l’utente vuole inviare un messaggio.
     \end{itemize}
     
@@ -1406,7 +1408,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
         \item \textbf{Scenario principale}: l’utente inserisce un messaggio;
         \item \textbf{Generalizzazioni}:
             \begin{itemize}
@@ -1420,7 +1422,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input testuale da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio testuale da inviare nella chat selezionata;
         \item \textbf{Scenario principale}: l’utente inserisce un messaggio testuale;
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio testuale in una chat.
     \end{itemize}
@@ -1429,11 +1431,11 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
         \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
-        \item \textbf{Postcondizioni}: è stato inserito un messaggio nell'area di input da inviare nella chat selezionata;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
         \item \textbf{Scenario principale}:
             \begin{enumerate}
                 \item l’utente richiede di inserire un messaggio tramite comando vocale;
-                \item l’utente indica vocalmente il messaggio che vuole inserire nell'area di input della chat.
+                \item l’utente indica vocalmente il messaggio che vuole inserire nella chat.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio tramite comando vocale.
     \end{itemize}
@@ -1606,8 +1608,8 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{OP} & L'utente deve poter disattivare la modalità vocale. & \quantities{\rifuc{dis_mod_voc}\\ Verbale esterno (2023-11-24)}\\
 
 \hline \rf{O} & L'utente deve poter inserire un messaggio nell'area di testo di una chat. & \rifuc{ins_mess} \\
-\hline \subrf{O} & L'utente deve poter inserire un messaggio testuale nell'area di input in una chat. & \rifsubuc{ins_mess}{ins_mess_test} \\
-\hline \subrf{O} & L'utente deve poter inserire un messaggio in una chat tramite comando vocale nell'area di input di una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio testuale nella chat. & \rifsubuc{ins_mess}{ins_mess_test} \\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio in una chat tramite comando vocale nella di una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)}\\
 \hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
@@ -1716,7 +1718,7 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 134 & 7 & 3 & 144 \\
+Funzionali & 115 & 7 & 2 & 144 \\
 \hline Qualità & 2 & 1 & 2 & 5 \\
 \hline Vincolo & 5 & 0 & 0 & 5 \\
 \hline Prestazione & 1 & 0 & 0 & 1 \\

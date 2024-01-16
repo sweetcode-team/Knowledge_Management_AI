@@ -494,6 +494,7 @@ Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio
 
 
 
+
 \subsection{Test di sistema}
 Il documento Analisi dei Requisiti identifica i requisiti che devono essere completamente coperti dai test di sistema. Di seguito è presente un elenco dei test di sistema:
     \begin{xltabular}{\textwidth}{|c|X|c|c|}
@@ -763,33 +764,31 @@ TS.124 & Verificare che l'utente possa inviare un messaggio in una chat. & RF.O.
 \hline
 TS.125 & Verificare che il sistema offra opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & RQ.O.1 & I \\
 \hline
-TS.126 & Verificare che il sistema garantisca il servizio per almeno un utente. & RQ.O.2 & I \\
+TS.126 & Verificare che in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RQ.OP.2 & I \\
 \hline
-TS.127 & Verificare che in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RQ.OP.3 & I \\
+TS.127 & Verificare che nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RQ.D.3 & I \\
 \hline
-TS.128 & Verificare che nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RQ.D.4 & I \\
+TS.128 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RQ.OP.4 & I \\
 \hline
-TS.129 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RQ.OP.5 & I \\
+TS.129 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RQ.D.5 & I \\
 \hline
-TS.130 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RQ.D.6 & I \\
+TS.130 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Norme di progetto). & RV.O.1 & I \\
 \hline
-TS.131 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Norme di progetto). & RV.O.1 & I \\
+TS.131 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Piano di qualifica). & RV.O.2 & I \\
 \hline
-TS.132 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Piano di qualifica). & RV.O.2 & I \\
+TS.132 & Verificare che l’applicazione web garantisca la presenza di almeno un modello AI locale. & RV.O.3 & I \\
 \hline
-TS.133 & Verificare che l’applicazione web garantisca la presenza di almeno un modello AI locale. & RV.O.3 & I \\
+TS.133 & Verificare che le chat siano salvate in automatico in un database. & RV.O.4 & I \\
 \hline
-TS.134 & Verificare che le chat siano salvate in automatico in un database. & RV.O.4 & I \\
+TS.134 & Verificare che i documenti caricati siano memorizzati in un sistema di archiviazione. & RV.O.5 & I \\
 \hline
-TS.135 & Verificare che i documenti caricati siano memorizzati in un sistema di archiviazione. & RV.O.5 & I \\
-\hline
-TS.136 & Verificare che il sistema garantisca il servizio per almeno un utente. & RP.O.1 & I \\
+TS.135 & Verificare che il sistema garantisca il servizio per almeno un utente. & RP.O.1 & I \\
 \hline
 
     \end{xltabular}
     }
 
-    
+      
     \subsubsection{Tracciamento}
     \begin{xltabular}{\textwidth}{|c|c|}
     %\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
@@ -1058,27 +1057,25 @@ TS.124 & RF.O.48 \\
 \hline
 TS.125 & RQ.O.1 \\
 \hline
-TS.126 & RQ.O.2 \\
+TS.126 & RQ.OP.2 \\
 \hline
-TS.127 & RQ.OP.3 \\
+TS.127 & RQ.D.3 \\
 \hline
-TS.128 & RQ.D.4 \\
+TS.128 & RQ.OP.4 \\
 \hline
-TS.129 & RQ.OP.5 \\
+TS.129 & RQ.D.5 \\
 \hline
-TS.130 & RQ.D.6 \\
+TS.130 & RV.O.1 \\
 \hline
-TS.131 & RV.O.1 \\
+TS.131 & RV.O.2 \\
 \hline
-TS.132 & RV.O.2 \\
+TS.132 & RV.O.3 \\
 \hline
-TS.133 & RV.O.3 \\
+TS.133 & RV.O.4 \\
 \hline
-TS.134 & RV.O.4 \\
+TS.134 & RV.O.5 \\
 \hline
-TS.135 & RV.O.5 \\
-\hline
-TS.136 & RP.O.1 \\
+TS.135 & RP.O.1 \\
 \hline
 
 
@@ -1087,69 +1084,269 @@ TS.136 & RP.O.1 \\
 
     
 
+    
+    \subsection{Test di accettazione}
 
-
-
-
-\subsection{Test di accettazione}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+    Questa sezione illustra i test di accettazione del prodotto. L’obiettivo dei test di accettazione è confermare la validità del prodotto.  
+    \begin{xltabular}{\textwidth}{|c|X|c|c|}
+    \caption{Tabella dei test di accettazione}
+    \label{tab:test_accettazione}\\
     \hline
-    TA.1 & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & I \\
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
     \hline
-    TA.2 & Il sistema deve garantire il servizio per almeno un utente. & I \\
+    \endfirsthead
+    \caption[]{Tabella dei test di accettazione (cont)}\\
     \hline
-    TA.3 & In caso di caduta dalle connessione, l’applicazione va in fallback su un modello AI locale. & I \\
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
     \hline
-    TA.4 & Nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & I \\
+    \endhead
+    \multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+    \endfoot
     \hline
-    TA.5 & Il chatbot deve essere in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & I \\
+    \endlastfoot
+    TA.1 & Verificare che l'utente, durante la configurazione del modello LLM, possa: \newline 1. Avviare la configurazione del modello LLM; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.1, UC2 & I \\
     \hline
-    TA.6 & L’eliminazione di un documento dallo spazio di storage deve portare all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli embeddings generati dallo stesso. & I \\
+    TA.2 & Verificare che l'utente, durante la configurazione del vector database, possa: \newline 1. Avviare la configurazione del vector database; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.2, UC3 & I \\
     \hline
-    TA.7 & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto). & I \\
+    TA.3 & Verificare che l'utente, durante la configurazione del modello di embeddings, possa: \newline 1. Avviare la configurazione del modello di embeddings; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.3, UC4 & I \\
     \hline
-    TA.8 & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica). & I \\
+    TA.4 & Verificare che l'utente, durante la configurazione del sistema di archiviazione documenti, possa: \newline 1. Avviare la configurazione del sistema di archiviazione documenti; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.4, UC5 & I \\
     \hline
-    TA.9 & L’applicazione web deve garantire la presenza di almeno un modello AI locale. & I \\
+    TA.5 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Caricare un insieme di documenti valido nell'area di staging;\newline
+    3. Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;\newline
+    4. Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente. & UC22 & I \\
     \hline
-    TA.10 & Le chat devono essere salvate in automatico in un database. & I \\
+    TA.6 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Caricare un documento valido nell'area di staging che presenta lo stesso nome e formato di un documento già presente nel sistema;\newline
+    3. Confermare il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;\newline
+    4. Visualizzare un messaggio di conferma una volta che il documento è stato caricato correttamente. & UC23, UC22 & I \\
     \hline
-    TA.11 & I documenti caricati devono essere memorizzati in un sistema di archiviazione. & I \\
+    TA.7 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Caricare un insieme di documenti validi nell'area di staging che presentano gli stessi nomi e formati di documenti già presenti nel sistema;\newline
+    3. Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;\newline
+    4. Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente. & UC24, UC22 & I \\
     \hline
-    TA.12 & Il sistema deve garantire il servizio per almeno un utente. & I \\
-    \end{tabularx}}
-
+    TA.8 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Selezionare un documento presente nel sistema di archiviazione;\newline
+    3. Richiedere di visualizzare il contenuto del documento selezionato;\newline
+    4. Visualizzare il contenuto del documento selezionato. & UC25 & I \\
+    \hline
+    TA.9 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare il documento che vuole eliminare;\newline
+    4. Richiedere di eliminare il documento selezionato;\newline
+    5. Visualizzare un messaggio di conferma una volta che il documento è stato eliminato correttamente. & UC26, UC25 & I \\
+    \hline
+    TA.10 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare i documenti che vuole eliminare;\newline
+    4. Richiedere di eliminare i documenti selezionati;\newline
+    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati eliminati correttamente. & UC27, UC26, UC25 & I \\
+    \hline
+    TA.11 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare il documento che vuole occultare;\newline
+    4. Richiedere di occultare il documento selezionato;\newline
+    5. Visualizzare un messaggio di conferma una volta che il documento è stato occultato correttamente. & UC28, UC25 & I \\
+    \hline
+    TA.12 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare i documenti che vuole occultare;\newline
+    4. Richiedere di occultare i documenti selezionati;\newline
+    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati occultati correttamente. & UC29, UC28, UC25 & I \\
+    \hline
+    TA.13 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare il documento che vuole riabilitare;\newline
+    4. Richiedere di riabilitare il documento selezionato;\newline
+    5. Visualizzare un messaggio di conferma una volta che il documento è stato riabilitato correttamente. & UC30, UC25 & I \\
+    \hline
+    TA.14 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
+    3. Selezionare i documenti che vuole riabilitare;\newline
+    4. Richiedere di riabilitare i documenti selezionati;\newline
+    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati riabilitati correttamente. & UC31, UC30, UC25 & I \\
+    \hline
+    TA.15 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista dei documenti caricati;\newline
+    3. Richiedere al sistema di effettuare una ricerca dei documenti;\newline
+    4. Visualizzare i risultati della ricerca eseguita. & UC32 & I \\
+    \hline
+    TA.16 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista delle chat;\newline
+    3. Selezionare una chat;\newline
+    4. Richiedere di visualizzare il contenuto della chat selezionata;\newline
+    5. Visualizzare il contenuto della chat selezionata. & UC33, UC42 & I \\
+    \hline
+    TA.17 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista delle chat esistenti;\newline
+    3. Selezionare la chat che vuole rinominare;\newline
+    4. Richiedere di rinominare la chat selezionata;\newline
+    5. Visualizzare un messaggio di conferma una volta che la chat è stata rinominata correttamente. & UC38, UC33 & I \\
+    \hline
+    TA.18 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista delle chat esistenti;\newline
+    3. Selezionare la chat che vuole eliminare;\newline
+    4. Richiedere di eliminare la chat selezionata;\newline
+    5. Visualizzare un messaggio di conferma una volta che la chat è stata eliminata correttamente. & UC36, UC33 & I \\
+    \hline
+    TA.19 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista delle chat esistenti;\newline
+    3. Selezionare le chat che vuole eliminare;\newline
+    4. Richiedere di eliminare le chat selezionate;\newline
+    5. Visualizzare un messaggio di conferma una volta che le chat sono state eliminate correttamente. & UC37, UC36, UC33 & I \\
+    \hline
+    TA.20 & Verificare che l'utente possa:\newline
+    1. Accedere al sistema con le credenziali corrette;\newline
+    2. Visualizzare la lista delle chat esistenti;\newline
+    3. Selezionare la chat che vuole rinominare;\newline
+    4. Richiedere di rinominare la chat selezionata;\newline
+    5. Visualizzare un messaggio di conferma una volta che la chat è stata rinominata correttamente. & UC38, UC33 & I \\
+    \hline
+    \end{xltabular}
+    
+    
+    
+    
+    
     \subsubsection{Tracciamento}
-    {\renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|X}
-    \textbf{ID Test} & \textbf{Requisito}  \\
+    \begin{xltabular}{\textwidth}{|c|c|}
+    \caption{Tabella di tracciamento dei test di accettazione}
+    \label{tab:test_tracciamento_accettazione}\\
     \hline
-    TA.1 & RQ.O.1 \\
+    \textbf{ID Test} & \textbf{Casi d'uso}\\
     \hline
-    TA.2 & RQ.O.2 \\
+    \endfirsthead
+    \caption[]{Tabella di tracciamento dei test di accettazione (cont)}\\
     \hline
-    TA.3 & RQ.OP.3 \\
+    \textbf{ID Test} & \textbf{Casi d'uso}\\
     \hline
-    TA.4 & RQ.D.4 \\
+    \endhead
+    \multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+    \endfoot
     \hline
-    TA.5 & RQ.OP.5 \\
+    \endlastfoot 
+    TA.1 & UC1.1, UC2 \\
     \hline
-    TA.6 & RQ.D.6 \\
+    TA.2 & UC1.2, UC3 \\
     \hline
-    TA.7 & RV.O.1 \\
+    TA.3 & UC1.3, UC4 \\
     \hline
-    TA.8 & RV.O.2 \\
+    TA.4 & UC1.4, UC5 \\
     \hline
-    TA.9 & RV.O.3 \\
+    TA.5 & UC22 \\
     \hline
-    TA.10 & RV.O.4 \\
+    TA.6 & UC23, UC22 \\
     \hline
-    TA.11 & RV.O.5 \\
+    TA.7 & UC24, UC22 \\
     \hline
-    TA.12 & RP.O.1 \\
-    \end{tabularx}}
+    TA.8 & UC25 \\
+    \hline
+    TA.9 & UC26, UC25 \\
+    \hline
+    TA.10 & UC27, UC26, UC25 \\
+    \hline
+    TA.11 & UC28, UC25 \\
+    \hline
+    TA.12 & UC29, UC28, UC25 \\
+    \hline
+    TA.13 & UC30, UC25 \\
+    \hline
+    TA.14 & UC31, UC30, UC25 \\
+    \hline
+    TA.15 & UC32 \\
+    \hline
+    TA.16 & UC33, UC42 \\
+    \hline
+    TA.17 & UC38, UC33 \\
+    \hline
+    TA.18 & UC36, UC33 \\
+    \hline
+    TA.19 & UC37, UC36, UC33 \\
+    \hline
+    TA.20 & UC38, UC33 \\
+    \hline
+    \end{xltabular}
+    
+    
+
+
+
+%\subsection{Test di accettazione}
+%    {\renewcommand{\arraystretch}{1.5}
+%    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+%    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+%    \hline
+%    TA.1 & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & I \\
+%    \hline
+%    TA.2 & Il sistema deve garantire il servizio per almeno un utente. & I \\
+%    \hline
+%    TA.3 & In caso di caduta dalle connessione, l’applicazione va in fallback su un modello AI locale. & I \\
+%    \hline
+%    TA.4 & Nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & I \\
+%    \hline
+%    TA.5 & Il chatbot deve essere in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & I \\
+%    \hline
+%    TA.6 & L’eliminazione di un documento dallo spazio di storage deve portare all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli embeddings generati dallo stesso. & I \\
+%    \hline
+%    TA.7 & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto). & I \\
+%    \hline
+%    TA.8 & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica). & I \\
+%    \hline
+%    TA.9 & L’applicazione web deve garantire la presenza di almeno un modello AI locale. & I \\
+%    \hline
+%    TA.10 & Le chat devono essere salvate in automatico in un database. & I \\
+%    \hline
+%    TA.11 & I documenti caricati devono essere memorizzati in un sistema di archiviazione. & I \\
+%    \hline
+%    TA.12 & Il sistema deve garantire il servizio per almeno un utente. & I \\
+%    \end{tabularx}}
+
+%    \subsubsection{Tracciamento}
+%    {\renewcommand{\arraystretch}{1.5}
+%    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|X}
+%    \textbf{ID Test} & \textbf{Requisito}  \\
+%    \hline
+%    TA.1 & RQ.O.1 \\
+%    \hline
+%    TA.2 & RQ.O.2 \\
+%    \hline
+%    TA.3 & RQ.OP.3 \\
+%    \hline
+%    TA.4 & RQ.D.4 \\
+%    \hline
+%    TA.5 & RQ.OP.5 \\
+%    \hline
+%    TA.6 & RQ.D.6 \\
+%    \hline
+%    TA.7 & RV.O.1 \\
+%    \hline
+%    TA.8 & RV.O.2 \\
+%    \hline
+%    TA.9 & RV.O.3 \\
+%    \hline
+%    TA.10 & RV.O.4 \\
+%    \hline
+%    TA.11 & RV.O.5 \\
+%    \hline
+%    TA.12 & RP.O.1 \\
+%    \end{tabularx}}
 
 
 \subsection{Checklist }

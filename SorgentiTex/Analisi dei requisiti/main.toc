@@ -1,0 +1,55 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Introduzione}{8}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Scopo del documento}{8}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Scopo del prodotto}{8}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Glossario}{8}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Riferimenti}{8}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Riferimenti normativi}{8}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Riferimenti informativi}{8}{subsubsection.1.4.2}%
+\contentsline {section}{\numberline {2}Descrizione}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Obiettivi del prodotto}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Funzioni del prodotto}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Caratteristiche del prodotto}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Utenti}{9}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Casi d'uso}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Introduzione}{10}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Attori}{10}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Attori primari}{10}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Elenco dei casi d'uso}{11}{subsection.3.3}%
+\contentsline {subsubsection}{UC1\ - Scelta componenti del sistema}{11}{uccounter.1}%
+\contentsline {subsubsection}{UC1.1\ - Scelta modello LLM}{14}{subuccounter.1.1}%
+\contentsline {subsubsection}{UC1.2\ - Scelta vector database}{14}{subuccounter.1.2}%
+\contentsline {subsubsection}{UC1.3\ - Scelta modello di embeddings}{15}{subuccounter.1.3}%
+\contentsline {subsubsection}{UC1.4\ - Scelta sistema di archiviazione dei documenti}{15}{subuccounter.1.4}%
+\contentsline {subsubsection}{UC2\ - Cambio scelta modello LLM}{15}{uccounter.2}%
+\contentsline {subsubsection}{UC3\ - Cambio scelta vector database}{16}{uccounter.3}%
+\contentsline {subsubsection}{UC4\ - Cambio scelta modello di embeddings}{16}{uccounter.4}%
+\contentsline {subsubsection}{UC5\ - Cambio scelta sistema di archiviazione dei documenti}{16}{uccounter.5}%
+\contentsline {subsubsection}{UC6\ - Visualizzazione lista modelli LLM disponibili}{17}{uccounter.6}%
+\contentsline {subsubsection}{UC6.1\ - Visualizzazione singolo modello LLM in lista}{18}{subuccounter.6.1}%
+\contentsline {subsubsection}{UC7\ - Visualizzazione caratteristiche modello LLM}{18}{uccounter.7}%
+\contentsline {subsubsection}{UC7.1\ - Visualizzazione nome modello LLM}{19}{subuccounter.7.1}%
+\contentsline {subsubsection}{UC7.2\ - Visualizzazione organizzazione proprietaria modello LLM}{19}{subuccounter.7.2}%
+\contentsline {subsubsection}{UC7.3\ - Visualizzazione descrizione modello LLM}{20}{subuccounter.7.3}%
+\contentsline {subsubsection}{UC7.4\ - Visualizzazione tipologia modello LLM}{20}{subuccounter.7.4}%
+\contentsline {subsubsection}{UC7.5\ - Visualizzazione indicatore costi modello LLM}{20}{subuccounter.7.5}%
+\contentsline {subsubsection}{UC8\ - Visualizzazione lista vector database disponibili}{20}{uccounter.8}%
+\contentsline {subsubsection}{UC8.1\ - Visualizzazione singolo vector database in lista}{21}{subuccounter.8.1}%
+\contentsline {subsubsection}{UC9\ - Visualizzazione caratteristiche vector database}{21}{uccounter.9}%
+\contentsline {subsubsection}{UC9.1\ - Visualizzazione nome vector database}{22}{subuccounter.9.1}%
+\contentsline {subsubsection}{UC9.2\ - Visualizzazione organizzazione proprietaria vector database}{22}{subuccounter.9.2}%
+\contentsline {subsubsection}{UC9.3\ - Visualizzazione descrizione vector database}{23}{subuccounter.9.3}%
+\contentsline {subsubsection}{UC9.4\ - Visualizzazione tipologia vector database}{23}{subuccounter.9.4}%
+\contentsline {subsubsection}{UC9.5\ - Visualizzazione indicatore costi vector database}{23}{subuccounter.9.5}%
+\contentsline {subsubsection}{UC10\ - Visualizzazione lista modelli di embeddings disponibili}{23}{uccounter.10}%
+\contentsline {subsubsection}{UC10.1\ - Visualizzazione singolo modello di embeddings in lista}{24}{subuccounter.10.1}%
+\contentsline {subsubsection}{UC11\ - Visualizzazione caratteristiche modello di embeddings}{24}{uccounter.11}%
+\contentsline {subsubsection}{UC11.1\ - Visualizzazione nome modello di embeddings}{25}{subuccounter.11.1}%
+\contentsline {subsubsection}{UC11.2\ - Visualizzazione organizzazione proprietaria modello di embeddings}{25}{subuccounter.11.2}%
+\contentsline {subsubsection}{UC11.3\ - Visualizzazione descrizione modello di embeddings}{26}{subuccounter.11.3}%
+\contentsline {subsubsection}{UC11.4\ - Visualizzazione tipologia modello di embeddings}{26}{subuccounter.11.4}%
+\contentsline {subsubsection}{UC11.5\ - Visualizzazione indicatore costi modello di embeddings}{26}{subuccounter.11.5}%
+\contentsline {subsubsection}{UC12\ - Visualizzazione lista sistemi di archiviazione documenti disponibili}{26}{uccounter.12}%
+\contentsline {subsubsection}{UC12.1\ - Visualizzazione singolo sistema di archiviazione documenti in lista}{27}{subuccounter.12.1}%
+\contentsline {subsubsection}{UC13\ - Visualizzazione caratteristiche sistema di archiviazione}{27}{uccounter.13}%

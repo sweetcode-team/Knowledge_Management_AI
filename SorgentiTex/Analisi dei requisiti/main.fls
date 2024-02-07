@@ -310,8 +310,8 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr7.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr5.tfm
 INPUT ./img/logo.png
 INPUT ./img/logo.png
-INPUT ./main.toc
 INPUT ./img/logo.png
+INPUT ./main.toc
 INPUT ./img/logo.png
 OUTPUT main.toc
 INPUT ./img/logo.png

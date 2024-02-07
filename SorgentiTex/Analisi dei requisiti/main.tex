@@ -1612,35 +1612,12 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
+\hline \rf{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
+\hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
+\hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
+\hline \rf{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
+\hline \rf{D} & L'eliminazione di un documento dallo spazio di storage deve portare all'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale esterno (2023-11-24)
 
-\end{xltabular}
-
-\subsection{Requisiti di qualità}
-
-\renewcommand{\arraystretch}{1.5}
-\begin{xltabular}{\textwidth}{|c|X|c|c}
-
-\caption{Tabella dei requisiti di qualità}
-\label{tab:requisiti_qualita}\\
-\hline
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
-\hline
-\endfirsthead
-\caption[]{Tabella dei requisiti di qualità (cont)}\\
-\hline
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
-\hline
-\endhead
-\multicolumn{3}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-\endfoot
-\hline
-\endlastfoot
-
-\rql{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
-\hline \rql{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
-\hline \rql{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
-\hline \rql{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
-\hline \rql{D} & L'eliminazione di un documento dallo spazio di storage deve portare all'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale esterno (2023-11-24)
 \end{xltabular}
 
 \subsection{Requisiti di vincolo}

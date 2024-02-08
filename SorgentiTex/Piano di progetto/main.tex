@@ -283,9 +283,8 @@ RT.2 & - & - & -\\
 \section{Calendario di massima del progetto}
 In questa sezione vengono riportate le date stimate per le revisioni di avanzamento alla luce di quanto analizzato nelle sezioni di \hyperref[section:Rischi]{\textbf{Rischi e mitigazione}} e \hyperref[section:Pianificazione]{\textbf{Pianificazione}}.
 
-\subsection{Prima stesura 2023-11-23}
-A differenza di quanto visto nel Preventivo costi riportato nei documenti forniti alla presentazione della candidatura, il team cercherà di presentare la candidatura alla revisione \textit{Requirements and Technology Baseline} nel periodo 15-20 dicembre 2023. Questo anticipo viene dettato dal bisogno di venire incontro alla richiesta dell'azienda proponente di poter avere il \textit{Proof of Concept} in data \textbf{2023-12-06} affiancato da una solida Analisi dei requisiti; questi prodotti verranno quindi migliorati e portati alla revisione di avanzamento con il committente.
- Questo accorciamento dei tempi viene permesso grazie ad una riduzione dei requisiti fondamentali richiesti dalla azienda per la creazione del \textit{Proof of Concept}. Verrà quindi spostato il peso sull'intervallo successivo, ovvero il periodo che porterà alla revisione \textit{Product Baseline} con la creazione del \textit{Minimum Viable Product}.
+\subsection{Stesura 2023-12-20}
+Il team si impegna a presentare la candidatura alla revisione \textit{Requirements and Technology Baseline} nel periodo dal 2024-01-12 al 2024-02-09. Questo periodo ampio viene dettato dal bisogno sostenere i colloqui pertinenti alla revisione in prossimità al periodo di rallentamento della produttività dovuto alla sessione invernale di esami universitari. \\
 
  \begin{figure}[H]
         \centering
@@ -309,28 +308,35 @@ Product Baseline &  $2024-04-08$\\
 \section{Stima dei costi di realizzazione}
 In questa sezione vengono riportate le stime dei costi e degli impegni orari alla luce di quanto analizzato nelle sezioni di \hyperref[section:Rischi]{\textbf{Rischi e mitigazione}} e \hyperref[section:Pianificazione]{\textbf{Pianificazione}}.
 
-\subsection{Preventivo costi}
-La stima dei costi di realizzazione non viene intaccata in maniera significativa dal cambiamento del calendario.
+\subsection{Stesura 2023-12-20}
+A differenza di quanto visto nel Preventivo costi riportato nei documenti forniti alla presentazione della candidatura, la stima dei costi di realizzazione viene modificata. Il preventivo viene riformulato al ribasso, a seguito di diverse riflessioni e considerazioni. \\ Nel corso dei primi periodi è stata ponderata attentamente la suddivisione delle ore proposta in sede di candidatura e sono stati consolidati i seguenti punti critici:
+\begin{itemize}
+    \item Il team converte alcune ore disponibili in eccesso di Progettista in ore di Analista a parità di costo;
+    \item Il team converte alcune ore disponibili in eccesso di Progettista in ore di Amministratore andando a ridurre il costo preventivato.
+\end{itemize}
+Questi cambiamenti riflettono una maggiore importanza posta sul lavoro di analisi dei requisiti e di amministrazione rispetto a quanto preventivato a inizio progetto.\\
+
 
 {\renewcommand{\arraystretch}{1.2}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
         \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Tot} \\
-        \hline Bresolin G. & 9 & 9 & 8 & 13 & 31 & 24 & 94 \\
-        \hline Ciriolo I. & 11 & 11 & 10 & 16 & 27 & 19 & 94 \\
-        \hline Campese M. & 10 & 10 & 8 & 15 & 26 & 25 & 94 \\
-        \hline Dugo A. & 11 & 8 & 8 & 15 & 28 & 24 & 94 \\
+        \hline Bresolin G. & 9 & 9 & 10 & 11 & 31 & 24 & 94 \\
+        \hline Ciriolo I. & 11 & 13 & 12 & 12 & 27 & 19 & 94 \\
+        \hline Campese M. & 10 & 10 & 11 & 12 & 26 & 25 & 94 \\
+        \hline Dugo A.   & 11 & 9 & 10 & 12 & 28 & 24 & 94 \\
         \hline Feltrin E. & 11 & 9 & 10 & 12 & 28 & 24 & 94 \\
-        \hline Michelon R. & 9 & 8 & 10 & 13 & 30 & 24 & 94 \\
-        \hline Orlandi G. & 9 & 8 & 9 & 14 & 26 & 28 & 94 
+        \hline Michelon R. & 9 & 10 & 11 & 10 & 30 & 24 & 94 \\
+        \hline Orlandi G. & 9 & 9 & 9 & 13 & 26 & 28 & 94 
     \end{tabularx}
     \caption{Distribuzione ore - prima stesura}
     \end{table}
 
-\subsubsubsection{Schema a torta di distribuzione ore ruoli} Di seguito viene illustrata la redistribuzione delle ore nei ruoli di progetto.
+\subsubsubsection{Schema a torta di distribuzione ore ruoli}
+Di seguito viene illustrata la redistribuzione delle ore nei ruoli di progetto.
     \begin{figure}[H]
         \centering               
-        \includegraphics[width=14cm]{torta.png}
+     \includegraphics[width=14cm]{tortaPreventivoCosti.png}
          \caption{Grafico ore percentuali - prima stesura}
     \end{figure}
 
@@ -339,14 +345,14 @@ La stima dei costi di realizzazione non viene intaccata in maniera significativa
 \begin{table}[H]
     \begin{tabular}{l|c|c|c|c}
      \textbf{Ruoli} & \textbf{Costo Orario} & \textbf{Ore per Ruolo} & \quantities{\textbf{Ore Medie per}\\\textbf{Membro}} & \textbf{Percentuale Ore} \\
-    \hline Responsabile & 30,00\texteuro & 70 & 10 & 10.6\% \\
-    \hline Amministratore & 20,00\texteuro & 63 & 9 & 9.6\%\% \\
-    \hline Verificatore & 15,00\texteuro & 168 & 24 & 25.5\% \\
-    \hline Progettista & 25,00\texteuro & 98 & 14 & 14.9\%\% \\
+    \hline Responsabile  & 30,00\texteuro & 70 & 10 & 10.6\% \\
+    \hline Amministratore & 20,00\texteuro & 69 & 9.9 & 10.5\%\% \\
+    \hline Verificatore  & 15,00\texteuro & 168 & 24 & 25.5\% \\
+    \hline Progettista  & 25,00\texteuro & 82 & 11.7 & 12.5\% \\
     \hline Programmatore & 15,00\texteuro & 196 & 28 & 29.8\% \\
-    \hline Analista & 25,00\texteuro & 63 & 9 & 9.6\%\\
+    \hline Analista      & 25,00\texteuro & 73 & 10.42 & 11.1\%\\
     \hline  & \textbf{Totale Costo} & \textbf{Totale Ore} & \quantities{\textbf{Totale Ore per}\\\textbf{Membro}}\\
-    \hline  & \cellcolor{primarycolor} 12845,00\texteuro & \cellcolor{primarycolor}658 &\cellcolor{primarycolor} 94 \\
+    \hline  & \cellcolor{primarycolor} 12815,00\texteuro & \cellcolor{primarycolor}658 &\cellcolor{primarycolor} 94 \\
     \end{tabular}
     \caption{Costo totale - prima stesura}
     \end{table}
@@ -383,7 +389,7 @@ Questo primo periodo segue l'assegnazione dei capitolati e viene utilizzato prin
 
  \begin{figure}[H]
         \centering        
-        \includegraphics[width=15.5cm]{ganttPeriodo1.png}
+        \includegraphics[width=15.5cm]{gantt/ganttPeriodo1.png}
         \caption{Diagramma di Gantt Periodo 1 }
     \end{figure}
 \newpage
@@ -405,7 +411,7 @@ In questo periodo le ore di lavoro sono concentrate nella creazione di un PoC ri
 
  \begin{figure}[H]
         \centering        
-        \includegraphics[width=15.5cm]{ganttPeriodo2.png}
+        \includegraphics[width=15.5cm]{gantt/ganttPeriodo2.png}
         \caption{Diagramma di Gantt Periodo 2 }
     \end{figure}
 \newpage
@@ -421,7 +427,7 @@ In questo periodo le ore di lavoro sono concentrate nella creazione di un PoC ri
 \end{itemize}
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=15.5cm]{ganttPeriodo3.png}
+    \includegraphics[width=15.5cm]{gantt/ganttPeriodo3.png}
     \caption{Diagramma di Gantt Periodo 3 }
 \end{figure}
 \newpage
@@ -435,25 +441,34 @@ In questo periodo le ore di lavoro sono concentrate nella creazione di un PoC ri
 \end{itemize}
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=15.5cm]{ganttPeriodo4.png}
+    \includegraphics[width=15.5cm]{gantt/ganttPeriodo4.png}
     \caption{Diagramma di Gantt Periodo 4}
 \end{figure}
 
 \subsubsection{Periodo 5: da 2024-01-02 a 2024-01-16}
 \subsubsubsection{Obiettivi}
 \begin{itemize}
-    \item Progettazione con Azzurro Digitale;
     \item Aggiornamento Piano di qualifica;
     \item Aggiornamento Piano di progetto;
+    \item Aggiornamento Analisi dei requisiti;
+    \item Presentazione candidatura prima fase di revisione RTB;
     \item Verbali delle riunioni.
 \end{itemize}
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=15.5cm]{gantt/ganttPeriodo5.png}
+    \caption{Diagramma di Gantt Periodo 5}
+\end{figure}
 
 \subsubsection{Periodo 6: da 2024-01-16 a 2024-01-30}
 %
 \subsubsubsection{Obiettivi}
 \begin{itemize}
     \item Progettazione con Azzurro Digitale;
-
+    \item Aggiornamento Piano di progetto;
+    \item Aggiornamento Piano di qualifica;
+    \item Verbali delle riunioni;
+    \item Colloquio con il Professore Cardin per la revisione RTB.
 \end{itemize}
 
 \subsection{Product Baseline}
@@ -465,7 +480,7 @@ In questo periodo le ore di lavoro sono concentrate nella creazione di un PoC ri
     \item Inizio progettazione;
     \item Inizio programmazione;
     \item Primi test di unità;
-    \item Presentazione RTB;
+    \item Colloquio con il Professore Vardanega per la revisione RTB;
     \item Piano di qualifica;
     \item Aggiornamento Piano di progetto;
     \item Verbali delle riunioni.
@@ -792,20 +807,27 @@ La tabella è riassunta dal seguente aereogramma:
 \subsubsection{Sprint 5: da 2023-01-02 a 2024-01-16}
 Di seguito, la distribuzione delle ore del quinto sprint; ogni componente del gruppo rivestirà i ruoli come segue:
 \begin{table}[H]
-\begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+    \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
         \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
-        \hline Bresolin G. & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 0 & 10 \\
-        \hline Ciriolo I.  & 0 & 0 & 3 & \cellcolor{primarycolor}5 & 0 & 4 & 12 \\
-        \hline Campese M.  & 0 & 0 & 0 & \cellcolor{primarycolor}5 & 6 & 0 & 11 \\
-        \hline Dugo A.     & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
-        \hline Feltrin E.  & 0 & 0 & 0 & 4 & 0 & \cellcolor{primarycolor}5 & 9 \\
-        \hline Michelon R. & \cellcolor{primarycolor}6 & 0 & 0 & 5 & 0 & 0 & 11 \\
-        \hline Orlandi G.  & 0 & \cellcolor{primarycolor}4 & 0 & 1 & 3 & 0 & 8 \\
         \hline
-        \textbf{Totale ruolo} & 6 & 4 & 3 & 30 & 19 & 9 & 71 
+        \textbf{Bresolin G.} & 0 & 0 & 1 & 0 & 0 & \cellcolor{primarycolor}2 & 3 \\
+        \hline
+        \textbf{Ciriolo I.}  & 0 & 0 & 1 & 0 & 0 & \cellcolor{primarycolor}4 & 5 \\
+        \hline
+        \textbf{Campese M.}  & 0 & \cellcolor{primarycolor}2 & 1 & 0 & 0 & 2 & 5 \\
+        \hline
+        \textbf{Dugo A.}     & 0 & 1 & \cellcolor{primarycolor}3 & 0 & 0 & 2 & 6 \\
+        \hline
+        \textbf{Feltrin E.}  & 0 & 0 & 0 & 0 & 0 &\cellcolor{primarycolor} 5 & 5 \\
+        \hline
+        \textbf{Michelon R.} & \cellcolor{primarycolor}6 & 0 & 0 & 0 & 0 & 0 & 6 \\
+        \hline
+        \textbf{Orlandi G.}  & 0 & 4 & \cellcolor{primarycolor}3 & 0 & 0 & 0 & 7 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 7 & 9 & 0 & 0 & 15 & 37 \\
     \end{tabularx}
     \caption{Preventivo ore - Sprint 5}
-    \end{table}
+\end{table}
 
 La tabella è riassunta dal seguente istogramma:
  \begin{figure}[H]
@@ -823,22 +845,22 @@ In questo incremento, il costo per ogni ruolo sarà come da tabella:
 \hline
 \textbf{Responsabile} & 6 & 180,00\texteuro\\
 \hline
-\textbf{Amministratore} & 6 & 120,00\texteuro \\
+\textbf{Amministratore} & 7 & 140,00\texteuro \\
 \hline
-\textbf{Analista} & 6 & 150,00\texteuro \\
+\textbf{Analista} & 9 & 225,00\texteuro \\
 \hline
-\textbf{Progettista} & 2 & 50,00\texteuro\\
+\textbf{Progettista} & 0 & 0,00\texteuro\\
 \hline
-\textbf{Programmatore} & 10 & 150,00 \texteuro \\ 
+\textbf{Programmatore} & 0 & 0,00\texteuro \\ 
 \hline
-\textbf{Verificatore} & 8 & 120,00\texteuro \\ 
+\textbf{Verificatore} & 15 & 225,00\texteuro \\ 
 \hline
 \rowcolor{primarycolor}
-\textbf{Totale} & 38 & 770,00\texteuro \\
+\textbf{Totale} & 37 & 770,00\texteuro \\
 \end{tabularx}
-%}
 \caption{Preventivo costi - Sprint 5}
 \end{table}
+
 
 
 La tabella è riassunta dal seguente aereogramma:
@@ -858,15 +880,15 @@ Di seguito, la distribuzione delle ore del sesto sprint; ogni componente del gru
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
         \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
-        \hline Bresolin G. & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
-        \hline Ciriolo I.  & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}10 & 0 & 10 \\
-        \hline Campese M.  & 0 & 0 & 0 & \cellcolor{primarycolor}6 & 0 & 0 & 6 \\
-        \hline Dugo A.     & 0 & \cellcolor{primarycolor}4 & 1 & 0 & 0 & 3 & 8 \\
-        \hline Feltrin E.  & 0 & 0 & 2 & \cellcolor{primarycolor}4 & 0 & 0 & 6 \\
-        \hline Michelon R. & 0 & 0 & 0 & 2 & 0 & \cellcolor{primarycolor}7 & 9 \\
-        \hline Orlandi G.  & \cellcolor{primarycolor}6 & 0 & 0 & 1 & 0 & 0 & 9 \\
+        \hline Bresolin G. & 0 & \cellcolor{primarycolor}2 & 1 & 0 & 0 & 0 & 3 \\
+        \hline Ciriolo I.  & 0 & \cellcolor{primarycolor}3 & 2 & 0 & 0 & 0 & 5 \\
+        \hline Campese M.  & 0 & 0 & \cellcolor{primarycolor}3 & 0 & 0 & 2 & 5 \\
+        \hline Dugo A.     & 0 & \cellcolor{primarycolor}4 & 0 & 0 & 0 & 1 & 5 \\
+        \hline Feltrin E.  & 0 & 1 & \cellcolor{primarycolor}2 & 0 & 0 & 1 & 4 \\
+        \hline Michelon R. & 0 & 0 & 0 & 0 & 0 & \cellcolor{primarycolor}6 & 6 \\
+        \hline Orlandi G.  & \cellcolor{primarycolor}6 & 0 & 0 & 0 & 0 & 2 & 8 \\
         \hline
-        \textbf{Totale ruolo} & 6 & 4 & 3 & 13 & 20 & 12 & 58 
+        \textbf{Totale ruolo} & 6 & 10 & 8 & 0 & 0 & 12 & 36
     \end{tabularx}
     \caption{Preventivo ore - Sprint 6}
     \end{table}
@@ -889,24 +911,24 @@ In questo incremento, il costo per ogni ruolo sarà come da tabella:
 \hline
 \textbf{Responsabile} & 6 & 180,00\texteuro\\
 \hline
-\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\textbf{Amministratore} & 10 & 200,00\texteuro \\
 \hline
-\textbf{Analista} & 3 & 75,00\texteuro \\
+\textbf{Analista} & 8 & 200,00\texteuro \\
 \hline
-\textbf{Progettista} & 13 & 325,00\texteuro\\
+\textbf{Progettista} & 0 & 0,00\texteuro\\
 \hline
-\textbf{Programmatore} & 20 & 300,00 \texteuro \\ 
+\textbf{Programmatore} & 0 & 0,00 \texteuro \\ 
 \hline
 \textbf{Verificatore} & 12 & 180,00\texteuro \\ 
 \hline
 \rowcolor{primarycolor}
-\textbf{Totale} & 58 & 1140,00\texteuro \\
+\textbf{Totale} & 36 & 760,00\texteuro \\
 \end{tabularx}
 %}
 \caption{Preventivo costi - Sprint 6}
 \end{table}
 
-La tabella è riassunta dal seguente aereogramma:
+La tabella è riassunta dal seguente areogramma:
  \begin{figure}[H]
         \centering        
         \includegraphics[width=15.5cm]{aereogrammi/areogramma_6_periodo.png}
@@ -923,15 +945,15 @@ Di seguito, la distribuzione delle ore del settimo sprint; ogni componente del g
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
     \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
-        \hline Bresolin G. & \cellcolor{primarycolor}6 & 0 & 0 & 2 & 0 & 3 & 11 \\
-        \hline Ciriolo I.  & 0 & \cellcolor{primarycolor}3 & 0 & 3 & 2 & 0 & 8 \\
-        \hline Campese M.  & 0 & 0 & 0 & 1 & \cellcolor{primarycolor}11 & 0 & 12 \\
-        \hline Dugo A.     & 0 & 0 & 1 & 3 & 0 & \cellcolor{primarycolor}5 & 9 \\
-        \hline Feltrin E.  & 0 & 1 & 0 & \cellcolor{primarycolor}4 & 2 & 0 & 7 \\
-        \hline Michelon R. & 0 & 0 & 1 & 0 & 0 & \cellcolor{primarycolor}4 & 5 \\
-        \hline Orlandi G.  & 6 & 0 & 0 & 2 & \cellcolor{primarycolor}9 & 0 & 11 \\
+        \hline Bresolin G. & \cellcolor{primarycolor}6 & 0 & 0 & 2 & 0 & 1 & 9 \\
+        \hline Ciriolo I.  & 0 & 1 & 0 & \cellcolor{primarycolor}8 & 2 & 0 & 11 \\
+        \hline Campese M.  & 0 & 0 & 0 & \cellcolor{primarycolor}8 & 4 & 0 & 12 \\
+        \hline Dugo A.     & 0 & 0 & 1 & \cellcolor{primarycolor}8 & 2 & 2 & 13 \\
+        \hline Feltrin E.  & 0 & 1 & 0 & 3 & 2 & \cellcolor{primarycolor}4 & 10 \\
+        \hline Michelon R. & 0 & \cellcolor{primarycolor}3 & 0 & 1 & 0 & 3 & 7 \\
+        \hline Orlandi G.  & 0 & 0 & 0 & 4 & \cellcolor{primarycolor}9 & 0 & 13 \\
         \hline
-        \textbf{Totale ruolo} & 6 & 4 & 2 & 15 & 24 & 12 & 63 
+        \textbf{Totale ruolo} & 6 & 5 & 1 & 34 & 19 & 10 & 75 
     \end{tabularx}
     \caption{Preventivo ore - Sprint 7}
     \end{table}
@@ -953,24 +975,24 @@ In questo incremento, il costo per ogni ruolo sarà come da tabella:
 \hline
 \textbf{Responsabile} & 6 & 180,00\texteuro\\
 \hline
-\textbf{Amministratore} & 4 & 80,00\texteuro \\
+\textbf{Amministratore} & 5 & 100,00\texteuro \\
 \hline
-\textbf{Analista} & 2 & 50,00\texteuro \\
+\textbf{Analista} & 1 & 25,00\texteuro \\
 \hline
-\textbf{Progettista} & 15 & 375,00\texteuro\\
+\textbf{Progettista} & 34 & 850,00\texteuro\\
 \hline
-\textbf{Programmatore} & 24 & 360,00 \texteuro \\ 
+\textbf{Programmatore} & 19 & 285,00 \texteuro \\ 
 \hline
-\textbf{Verificatore} & 12 & 180,00\texteuro \\ 
+\textbf{Verificatore} & 10 & 150,00\texteuro \\ 
 \hline
 \rowcolor{primarycolor}
-\textbf{Totale} & 63 & 1225,00\texteuro \\
+\textbf{Totale} & 75 & 1590,00\texteuro \\
 \end{tabularx}
 %}
 \caption{Preventivo costi - Sprint 7}
 \end{table}
 
-La tabella è riassunta dal seguente aereogramma:
+La tabella è riassunta dal seguente areogramma:
  \begin{figure}[H]
         \centering        
         \includegraphics[width=15.5cm]{aereogrammi/areogramma_7_periodo.png}
@@ -1079,7 +1101,7 @@ Di seguito, la distribuzione delle ore del secondo sprint; ogni componente del g
     \caption{Consuntivo ore e costi - Sprint 2}
 \end{table}
 \subsubsubsection{Retrospettiva dell'incremento}
-Il team nel primo sprint ha svolto le seguenti attività:
+Il team nel secondo sprint ha svolto le seguenti attività:
 \begin{itemize}
     \item Codifica dei vari PoC;
     \item Aggiornamento Norme di progetto;
@@ -1118,13 +1140,13 @@ Di seguito, la distribuzione delle ore del terzo sprint; ogni componente del gru
         \hline
         \textbf{RES} & 6 & 6 & 0 & 180,00\texteuro & 180,00\texteuro & 0,00\texteuro \\
         \hline
-        \textbf{AMM} & 4 & 5 & -1 & 80,00\texteuro & 100,00\texteuro & 20,00\texteuro \\
+        \textbf{AMM} & 4 & 5 & -1 & 80,00\texteuro & 100,00\texteuro & -20,00\texteuro \\
         \hline
         \textbf{AN} & 25 & 23 & 2 & 625,00\texteuro & 575,00\texteuro & 50,00\texteuro \\
         \hline
         \textbf{PROJ} & 1 & 1 & 0 & 25,00\texteuro & 25,00\texteuro & 0,00\texteuro \\
         \hline
-        \textbf{PROG} & 4 & 3 & 1 & 60,00\texteuro & 45,00\texteuro & -15,00\texteuro \\
+        \textbf{PROG} & 4 & 3 & 1 & 60,00\texteuro & 45,00\texteuro & 15,00\texteuro \\
         \hline
         \textbf{VER} & 14 & 14 & 0 & 210,00\texteuro & 210,00\texteuro & 0,00\texteuro \\
         \hline
@@ -1134,7 +1156,7 @@ Di seguito, la distribuzione delle ore del terzo sprint; ogni componente del gru
     \caption{Consuntivo ore e costi - Sprint 3}
 \end{table}
 \subsubsubsection{Retrospettiva dell'incremento}
-Il team nel primo sprint ha svolto le seguenti attività:
+Il team nel terzo sprint ha svolto le seguenti attività:
 \begin{itemize}
     \item Codifica del PoC finale;
     \item Aggiornamento Norme di progetto;
@@ -1156,19 +1178,19 @@ Di seguito, la distribuzione delle ore del quarto sprint; ogni componente del gr
         \hline
         \textbf{Bresolin G.} & 0 & 0 & 0 & 0 & 7 & 0 & 7 \\
         \hline
-        \textbf{Ciriolo I.}  & 0 & 3 & 2 & 0 & 0 & 0 & 5 \\
+        \textbf{Ciriolo I.}  & 0 & 2 & 2 & 0 & 0 & 0 & 4 \\
         \hline
         \textbf{Campese M.}  & 6 & 0 & 1 & 0 & 0 & 0 & 7 \\
         \hline
-        \textbf{Dugo A.}     & 0 & 0 & 1 & 0 & 0 & 2 & 3 \\
+        \textbf{Dugo A.}     & 0 & 1 & 1 & 0 & 0 & 3 & 5 \\
         \hline
         \textbf{Feltrin E.}  & 0 & 4 & 0 & 0 & 3 & 0 & 7 \\
         \hline
-        \textbf{Michelon R.} & 0 & 0 & 2 & 2 & 0 & 0 & 4 \\
+        \textbf{Michelon R.} & 0 & 1 & 2 & 2 & 0 & 0 & 5 \\
         \hline
-        \textbf{Orlandi G.}  & 0 & 1 & 0 & 0 & 0 & 7 & 8 \\
+        \textbf{Orlandi G.}  & 0 & 1 & 0 & 0 & 0 & 6 & 7 \\
         \hline
-        \textbf{Totale ruolo} & 6 & 8 & 6 & 2 & 10 & 9 & 41 \\
+        \textbf{Totale ruolo} & 6 & 9 & 6 & 2 & 10 & 9 & 42 \\
     \end{tabularx}
     \caption{Consuntivo ore - Sprint 4}
 \end{table}
@@ -1179,7 +1201,7 @@ Di seguito, la distribuzione delle ore del quarto sprint; ogni componente del gr
         \hline
         \textbf{RES} & 6 & 6 & 0 & 180,00\texteuro & 180,00\texteuro & 0,00\texteuro \\
         \hline
-        \textbf{AMM} & 8 & 8 & 0 & 160,00\texteuro & 160,00\texteuro & 0,00\texteuro \\
+        \textbf{AMM} & 8 & 9 & -1 & 160,00\texteuro & 180,00\texteuro & -20,00\texteuro \\
         \hline
         \textbf{AN} & 6 & 6 & 0 & 150,00\texteuro & 150,00\texteuro & 0,00\texteuro \\
         \hline
@@ -1190,12 +1212,12 @@ Di seguito, la distribuzione delle ore del quarto sprint; ogni componente del gr
         \textbf{VER} & 9 & 9 & 0 & 135,00\texteuro & 135,00\texteuro & 0,00\texteuro \\
         \hline
         \rowcolor{primarycolor}
-        \textbf{TOT} & 41 & 41 & 0 & 825,00\texteuro & 825,00\texteuro & 0,00\texteuro \\
+        \textbf{TOT} & 41 & 42 & -1 & 825,00\texteuro & 845,00\texteuro & -20,00\texteuro \\
     \end{tabularx}
     \caption{Consuntivo ore e costi - Sprint 4}
 \end{table}
 \subsubsubsection{Retrospettiva dell’incremento}
-Il team nel primo sprint ha svolto le seguenti attività:
+Il team nel quarto sprint ha svolto le seguenti attività:
 \begin{itemize}
     \item Refactoring totale del Piano di progetto;
     \item Aggiornamento Piano di qualifica;
@@ -1209,5 +1231,69 @@ Nel corso del quarto sprint, il team si è dedicato alla revisione della pianifi
 Questa necessità è scaturita dalla posticipazione dell'apertura delle finestre per la candidatura RTB. 
 È importante notare che a causa della pausa natalizia e dell'imminente sessione di esami, il team ha lavorato in modo limitato durante questo periodo.
 Nonostante questi imprevisti il team è riuscito a portare a termine tutte le attività previste nei tempi prestabiliti.
+
+\subsubsection{Periodo 5: da 2024-01-02 a 2024-01-16}
+Di seguito, la distribuzione delle ore del quinto sprint; ogni componente del gruppo ha rivestito i ruoli come segue:
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Membri} & $\operatorname{\textbf{Re}}$ & $\mathrm{\textbf{Am}}$ & \textbf{An} & \textbf{Proj} & \textbf{Prgm} & \textbf{Ver} & \textbf{Totale} \\
+        \hline
+        \textbf{Bresolin G.} & 0 & 0 & 1 & 0 & 0 & 2 & 3 \\
+        \hline
+        \textbf{Ciriolo I.}  & 0 & 0 & 1 & 0 & 0 & 4 & 5 \\
+        \hline
+        \textbf{Campese M.}  & 0 & 2 & 1 & 0 & 0 & 2 & 5 \\
+        \hline
+        \textbf{Dugo A.}     & 0 & 1 & 3 & 0 & 0 & 0 & 4 \\
+        \hline
+        \textbf{Feltrin E.}  & 0 & 0 & 0 & 0 & 0 & 5 & 5 \\
+        \hline
+        \textbf{Michelon R.} & 6 & 0 & 0 & 0 & 0 & 0 & 6 \\
+        \hline
+        \textbf{Orlandi G.}  & 0 & 3 & 2 & 0 & 0 & 0 & 4 \\
+        \hline
+        \textbf{Totale ruolo} & 6 & 6 & 8 & 0 & 0 & 13 & 33 \\
+    \end{tabularx}
+    \caption{Consuntivo ore - Sprint 5}
+\end{table}
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{c|X|X|X|X|X|X|X}
+        \textbf{Ruolo} & \textbf{Ore preve} & \textbf{Ore consu} & \textbf{Delta ore} & \textbf{Costo preve} & \textbf{Costo consu} & \textbf{Delta costo} \\
+        \hline
+        \textbf{RES} & 6 & 6 & 0 & 180,00\texteuro & 180,00\texteuro & 0,00\texteuro \\
+        \hline
+        \textbf{AMM} & 7 & 6 & 1 & 140,00\texteuro & 120,00\texteuro & 20,00\texteuro \\
+        \hline
+        \textbf{AN} & 9 & 8 & 1 & 225,00\texteuro & 200,00\texteuro & 25,00\texteuro \\
+        \hline
+        \textbf{PROJ} & 0 & 0 & 0 & 0,00\texteuro & 0,00\texteuro & 0,00\texteuro \\
+        \hline
+        \textbf{PROG} & 0 & 0 & 0 & 0,00\texteuro & 0,00\texteuro & 0,00\texteuro \\
+        \hline
+        \textbf{VER} & 15 & 13 & 2 & 225,00\texteuro & 195,00\texteuro & 30,00\texteuro \\
+        \hline
+        \rowcolor{primarycolor}
+        \textbf{TOT} & 37 & 33 & 4 & 770,00\texteuro & 695,00\texteuro & 75,00\texteuro \\
+    \end{tabularx}
+    \caption{Consuntivo ore e costi - Sprint 5}
+\end{table}
+\subsubsubsection{Retrospettiva dell’incremento}
+Il team nel quinto sprint ha svolto le seguenti attività:
+\begin{itemize}
+    \item Aggiornamento Piano di qualifica;
+    \item Aggiornamento Piano di progetto;
+    \item Aggiornamento Analisi dei requisiti;
+    \item Stilato verbali relativi allo sprint;
+    \item Presentata candidatura per fase di revisione RTB;
+    \item Definiti struttura e contenuto della presentazione per il primo colloquio di revisione RTB.
+\end{itemize}
+\subsubsubsection{Considerazioni}
+Nel corso del quinto sprint, il team si è concentrato sulla documentazione, terminando la stesura delle versioni di Analisi dei requisiti, Piano di qualifica e Piano di progetto da presentare per la fase di revisione RTB. La maggior parte del lavoro è stato svolto nella seconda parte del periodo, data l'intersezione con il periodo festivo di inizio anno.
+Il team è riuscito a portare a termine tutti i task assegnati all'inizio dello sprint.
+Il team non ha riscontrato difficoltà nell'aggiornare la documentazione senza usufruire dello strumento Overleaf, abbandonato a causa di una serie di problemi, riportati e discussi nel verbale interno (2023-12-27).
+Inoltre, considerando la prossimità con l'inizio della sessione universitaria di esami, il team ha manifestato la volontà di procedere con la candidatura al primo colloquio della fase di revisione RTB, in modo da non ritardare ulteriormente la consegna.
+Durante questo periodo festivo, il team è riuscito a mantenere i contatti grazie a riunioni brevi ma frequenti, di natura più informativa che decisionale. Conoscere lo stato e la velocità di avanzamento frequentemente ha permesso al team di lavorare più in sintonia, aumentando la collaborazione e lo spirito di gruppo. Considerando questi benefici, il team ha deciso di mantenere l'utilizzo di questa strategia anche per i prossimi sprint.
+Il team è a conoscenza del rallentamento inevitabile che si presenterà durante i prossimi periodi, e terrà conto di questo cercando di pianificare nel dettaglio in modo realistico e ragionato. 
 
 \end{document}

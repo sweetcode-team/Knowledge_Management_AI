@@ -1,0 +1,77 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-01-15}
+\def\oraInizio{17:00}
+\def\oraFine{19:00}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Michelon R.} % Cognome N.
+\def\nomeVer{Feltrin E.} % Cognome N.
+\def\nomeSegr{Campese M.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{riccardo.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Dugo A.,
+Feltrin E.,
+Michelon R.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Revisione della rendicontazione oraria di ogni membro e retrospettiva del quinto sprint;},
+{Controllo generale e autovalutazione del documento Norme di progetto a fronte della sua ristrutturazione;},
+{Controllo delle liste delle metriche di processo e di prodotto e discussione sulla definizione del test di sistema;},
+{Controllo delle modifiche apportate al documento Analisi dei requisiti, a seguito del colloquio con il Professor Cardin e a monte della consegna del medesimo documento per la valutazione della prima fase di revisione RTB.}
+}
+
+\def\listaOrdineGiorno {
+{Conferma dei ruoli assegnati per il quinto sprint;},
+{Discussione riguardante le modifiche apportate al documento Analisi dei requisiti;},
+{Discussione riguardante le modifiche apportate al documento Piano di qualifica;},
+{Controllo della struttura e del contenuto della pagina GitHub.io del progetto;},
+{Invio mail di candidatura al colloquio per la prima fase di revisione RTB;},
+{Controllo funzionamento generale PoC;},
+{Discussione sul contenuto della presentazione per il colloquio per la prima fase di revisione RTB.}
+}
+
+\def\listaDiscussioneInterna {
+{I ruoli che i membri assumeranno all'inizio del sesto sprint sono i seguenti:
+\begin{itemize}
+\item Amministratore: nessuno;
+\item Analista: nessuno;
+\item Progettista: nessuno;
+\item Programmatori: nessuno;
+\item Responsabile: Orlandi G.;
+\item Verificatore: nessuno
+\end{itemize}},
+{Durante la visione del documento Analisi dei requisiti sono state controllate e confermate le modifiche apportate. A seguito di questo controllo, il gruppo ha deciso che la versione attuale del documento, v1.10.4(2), sarà quella che verrà presentata alla fase di revisione RTB;},
+{Analizzando le metriche di prodotto riportate nel Piano di qualifica, è emersa la necessità di trovare degli strumenti che rendessero automatico il calcolo di esse. Ogni componente del gruppo effettuerà delle ricerche autonome e gli strumenti trovati verranno analizzati e scelti in seguito;},
+{Le modifiche apportate alla pagina GitHub.io del gruppo sono state valutate soddisfacenti. In particolare, al gruppo risulta più chiara l'organizzazione generale e la separazione netta tra documentazione interna ed esterna;},
+{Dopo un riepilogo generale in cui ogni componente del gruppo si è espresso riguardo la volontà e la prontezza percepita nell'affrontare il primo colloquio della fase di revisione RTB con il professor Cardin, il gruppo ha deciso di presentare la propria candidatura;},
+{A fronte di questa decisione, il gruppo ha poi controllato il corretto funzionamento del PoC e stabilito ciò che verrà mostrato nella demo durante la presentazione. In particolare, sono stati scelti i documenti da caricare nel sistema e le domande da porre al chatbot, in modo da limitare il più possibile l'incertezza e i ritardi;},
+{Il gruppo ha infine discusso e determinato la struttura e il contenuto delle slide di presentazione. Questa sarà quindi suddivisa in: introduzione, analisi del capitolato e principali richieste dell'azienda, esigenze particolari nate in discussioni interne ed esterne, schema di funzionamento generale del sistema e illustrazione dei componenti necessari, scelte tecnologiche e presentazione della demo.}
+}
+
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni{
+{Il gruppo ha deciso di presentare la candidatura al colloquio per la prima fase di revisione RTB;},
+{Il gruppo ha deciso di rallentare il passo di avanzamento del sesto sprint per dedicarsi allo studio delle materie di esame della sessione universitaria invernale, come previsto da pianificazione.}
+}

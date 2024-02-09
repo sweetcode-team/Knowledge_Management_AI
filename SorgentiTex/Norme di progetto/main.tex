@@ -899,7 +899,7 @@ Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalit�
     \item Sviluppo: voce contenente il link ai commit, alle pull request e alle build che sono stati effettuati nel repo su \textit{GitHub} in correlazione al \textit{ticket} in questione;
     \item Stato: gli stati possibili di un \textit{ticket} sono \textit{Da fare}, \textit{In Progress}, \textit{Pronto per commit} (introdotto dagli amministratori di SWEetCode nel flusso di lavoro) ed infine \textit{Completato};
     \item \textit{Sprint\pg}: ogni \textit{ticket} può essere associato ad uno \textit{sprint};
-    \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associata ad una determinata \textit{versione}.
+    \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associato ad una determinata \textit{versione}.
 \end{itemize}
 
 \subsubsubsubsection{Epic}
@@ -922,7 +922,7 @@ assegnati ai vari \textit{Sprint}.
 Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
 
 \subsubsubsubsection{Timeline}
-\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un \textit{diagramma di Gantt\pg} all'interno del quale poter inserire i \textit{ticket}
+\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un \textit{diagramma di Gantt\pg} all'interno del quale si possono inserire i \textit{ticket}
 creati associati ad una \textit{epic}.\\
 Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
 all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
@@ -968,8 +968,7 @@ piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe disp
 
 \subsubsection{Configuration status accounting}
 \subsubsubsection{Scopo}
-L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in
-relazione allo stato del prodotto stesso nel corso del tempo.
+L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in relazione allo stato del prodotto stesso nel corso del tempo.
 
 \subsubsubsection{Version control}
 \label{sec:version}
@@ -1038,9 +1037,9 @@ L'assicurazione della qualità può utilizzare i risultati di altri processi di 
 \subsubsection{Process assurance}
 Per garantire che la qualità prefissata venga raggiunta e mantenuta, viene adottato il ciclo \textit{PDCA\pg}, noto anche come ciclo di Deming, un approccio metodologico utilizzato per il miglioramento continuo. Si divide in 4 fasi:
 \begin{itemize}
-    \item \textbf{Plan}: questa fase coinvolge la definizione degli obiettivi di qualità, la pianificazione delle attività e la creazione di criteri di valutazione. Aiuta a stabilire le aspettative, i processi e le risorse necessarie per raggiungere gli standard di qualità prefissati.
-    \item \textbf{Do}: durante questa fase, vengono implementate le azioni pianificate, eseguendo le attività identificate nel piano e raccogliendo dati per il monitoraggio della qualità.
-    \item \textbf{Check}: questa fase consiste nella valutazione dei risultati ottenuti rispetto agli obiettivi prestabiliti. Attraverso metriche precise stabilite dal team, si verifica se i risultati sono in linea con le aspettative di qualità.
+    \item \textbf{Plan}: questa fase coinvolge la definizione degli obiettivi di qualità, la pianificazione delle attività e la creazione di criteri di valutazione. Aiuta a stabilire le aspettative, i processi e le risorse necessarie per raggiungere gli standard di qualità prefissati;
+    \item \textbf{Do}: durante questa fase, vengono implementate le azioni pianificate, eseguendo le attività identificate nel piano e raccogliendo dati per il monitoraggio della qualità;
+    \item \textbf{Check}: questa fase consiste nella valutazione dei risultati ottenuti rispetto agli obiettivi prestabiliti. Attraverso metriche precise stabilite dal team, si verifica se i risultati sono in linea con le aspettative di qualità;
     \item \textbf{Act}: basandosi sull'analisi dei dati raccolti, si apportano correzioni migliorative ai processi esistenti, al fine di migliorare la qualità del prodotto.
 \end{itemize}
 
@@ -1066,7 +1065,7 @@ Ogni metrica è descritta dai seguenti campi:
     \item \textbf{Descrizione}: descrizione della metrica;
     \item \textbf{Caratteristica di riferimento}: caratteristica dello standard a cui la metrica fa riferimento;
     \item \textbf{Motivo}: motivazione per la quale è necessario misurarla;
-    \item \textbf{Misurazione}: formula e strumenti tramite la quale viene calcolata.
+    \item \textbf{Misurazione}: formula e strumenti tramite i quali viene calcolata.
 \end{itemize}
 
 \subsubsection{Standard per la qualità del prodotto}
@@ -1081,7 +1080,7 @@ Qualità esterna e interna sono organizzate attraverso le seguenti caratteristic
         inclusa la preparazione all'utilizzo del software e la valutazione dei risultati;
     \item \textbf{Efficienza}: capacità di un prodotto software di realizzare le funzioni richieste nel minor tempo possibile e utilizzando nel miglior modo le risorse necessarie;
     \item \textbf{Manutenibilità}: capacità di un prodotto di essere modificabile, sia per correzioni che per adattare il software e modifiche all'ambiente o ai requisiti;
-    \item \textbf{Portabilità}: capacità di un prodotto di essere trasportato a ambienti diversi, con organizzazione e tecnologie diverse;
+    \item \textbf{Portabilità}: capacità di un prodotto di essere trasportato in ambienti diversi, con organizzazione e tecnologie diverse;
     \item \textbf{Qualità} in uso: rappresenta il punto di vista dell'utente sulla qualità interna ed esterna. 
 \end{itemize}
 
@@ -1105,7 +1104,7 @@ La qualità in uso viene descritta tramite le seguenti caratteristiche:
         \item \textbf{Nome}: Percentuale di metriche soddisfatte;
         \item \textbf{Descrizione}: Valore che indica la percentuale di metriche soddisfatte; una metrica si dice "soddisfatta" se la sua misurazione supera il valore accettabile specificato nel documento (Piano di qualifica v2.0.0(0)); 
         \item \textbf{Caratteristica di riferimento}: -
-        \item \textbf{Motivo}: Questa metrica ci assicura il raggiungimento di una buon livello di qualità generale nello svolgimento del progetto;
+        \item \textbf{Motivo}: Questa metrica ci assicura il raggiungimento di un buon livello di qualità generale nello svolgimento del progetto;
         \item \textbf{Misurazione}: \  \[ M=\frac{N° Metriche \ soddisfatte}{N° Metriche\ totali} * 100 \] \\
     \end{itemize}
   
@@ -1125,18 +1124,18 @@ La qualità in uso viene descritta tramite le seguenti caratteristiche:
     \item \textbf{M.PC.3.VP}:
     \begin{itemize}
         \item \textbf{Nome}: Variazione di piano;
-        \item \textbf{Descrizione}: Variazione utilizzata per analizzare se ogni attività del progetto è in linea, in anticipo o in ritardo rispetto alla schedulazione specificata nel documento (Piano di progetto v2.0.0(0)).  Ai seguenti valori si associano i seguenti significati:
+        \item \textbf{Descrizione}: Variazione utilizzata per analizzare se ogni attività o task del progetto, in un dato istante di tempo, è in linea o in ritardo rispetto alla pianificazione specificata nel documento (Piano di progetto v2.0.0(0)).  Ai seguenti valori si associano i seguenti significati:
         \begin{itemize}
-            \item < 0 significa che si sta procedendo con un certo ritardo;
-            \item = 0 si è in linea con quanto pianificato;
-            \item > 0 significa che si sta procedendo con un certo anticipo rispetto a quanto pianificato.
+            \item > 0 significa che si sta procedendo con un certo ritardo;
+            \item = 0 si è in linea con quanto pianificato.
+            %\item > 0 significa che si sta procedendo con un certo anticipo rispetto a quanto pianificato.
         \end{itemize}
         \item \textbf{Caratteristica di riferimento}: -
-        \item \textbf{Motivo}: Valore che aiuta a controllare come si procede e ad evitare ritardi;
-        \item \textbf{Misurazione}: \  \[ M=OP-OC \] \\
+        \item \textbf{Motivo}: Valore che aiuta a controllare come il team procede e ad evitare ritardi;
+        \item \textbf{Misurazione}: \  \[ M=TP-TC \] \\
         \begin{itemize}
-        \item OP= Numero di ore preventivate per l'attività;
-        \item OC= Numero di ore consuntivate per l'attività.\\
+        \item TP= Numero di task pianificati;
+        \item TC= Numero di task completati.\\
         \end{itemize}
     \end{itemize}
 
@@ -1164,7 +1163,7 @@ La qualità in uso viene descritta tramite le seguenti caratteristiche:
         \item \textbf{Descrizione}: Indice che traccia la variazione dei requisiti nell’arco del progetto;
         \item \textbf{Caratteristica di riferimento}: -
         \item \textbf{Motivo}: Questo valore indica eventuali discostamenti dai requisiti analizzati nel documento di (Analisi dei requisiti v2.0.0(0)); 
-        \item \textbf{Misurazione}: \[ M=1- \frac{RM + RC + RA}{RTI} *100 \] \\
+        \item \textbf{Misurazione}: \[ M=100- \frac{RM + RC + RA}{RTI} *100 \] \\
         \begin{itemize}
         \item RM= Requisiti modificati;
         \item RC= Requisiti cancellati;
@@ -1181,7 +1180,7 @@ La qualità in uso viene descritta tramite le seguenti caratteristiche:
         \item \textbf{Motivo}: Permette di controllare la complessità e di limitarla, semplificando il testing;
         \item \textbf{Misurazione}: \[ M=\sum_{Metodo} \frac{e-n+2}{NMT} \] \\
          \begin{itemize}
-        \item e= il numero di archi nel grafo dei cammini;
+        \item e= Numero di archi nel grafo dei cammini;
         \item n= Numero di nodi nel grafo dei cammini;
         \item NMT= Numero dei metodi totali.\\
         \end{itemize}
@@ -1206,6 +1205,20 @@ La qualità in uso viene descritta tramite le seguenti caratteristiche:
         \item \textbf{Caratteristica di riferimento}: -
         \item \textbf{Motivo}: Metrica che permette di valutare la correttezza del comportamento del software in esecuzione;
         \item \textbf{Misurazione}:  \[M=\frac{N° Branch \ eseguiti}{N° Branch\ totali} * 100 \] \\
+    \end{itemize}
+
+
+    \item \textbf{M.PC.9.ET}:
+    \begin{itemize}
+        \item \textbf{Nome}: Efficienza temporale;
+        \item \textbf{Descrizione}: Percentuale che misura l'efficienza (in termini di ore impiegate) esercitata nello svolgere attività e task;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Metrica che permette di valutare la produttività effettiva del team;
+        \item \textbf{Misurazione}:  \[ET=\frac{OR}{OP} * 100 \] \\
+        \item  \begin{itemize}
+            \item OR= Numero di ore di orologio;
+            \item OP= Numero di ore produttive (ore che portano al raggiungimento di obiettivi).\\
+            \end{itemize}
     \end{itemize}
     
 \end{itemize}
@@ -1281,7 +1294,7 @@ Per migliorare l’utilizzo di questo indice non verrà controllato solamente a 
         \item \textbf{Nome}: Rimozione dei difetti;
         \item \textbf{Descrizione}: Metrica interna di affidabilità che permette di valutare la maturità del prodotto dal punto di vista della riduzione delle possibili cause di malfunzionamenti;
         \item \textbf{Caratteristica di riferimento}: Affidabilità-Maturità;
-        \item \textbf{Motivo}:Misura l'efficacia della rimozione degli errori rilevati nelle diverse fasi di sviluppo del prodotto ; 
+        \item \textbf{Motivo}:Misura l'efficacia della rimozione degli errori rilevati nelle diverse fasi di sviluppo del prodotto; 
        \item \textbf{Misurazione}:   \[ M=\frac{DC}{DT} \] \\
        \begin{itemize}
            \item \textbf{DC}= Numero di difetti corretti;
@@ -1308,10 +1321,10 @@ Per migliorare l’utilizzo di questo indice non verrà controllato solamente a 
     \item \textbf{M.PD.7.CD}:
     \begin{itemize}
         \item \textbf{Nome}: Completezza descrittiva;
-        \item \textbf{Descrizione}: Metrica che valuta se nuovi utenti possono comprendere i seguenti punti:
+        \item \textbf{Descrizione}: Metrica che valuta se dei nuovi utenti possono comprendere i seguenti punti:
         \begin{itemize}
             \item Se il software è adatto alle loro esigenze; 
-            \item Come il software possa essere utilizzato per particolari task;
+            \item Come il software possa essere utilizzato per particolari task.
         \end{itemize} 
         \item \textbf{Caratteristica di riferimento}: Usabilità-Comprensibilità;
         \item \textbf{Motivo}: Misurare il livello di completezza delle funzionalità descritte nella documentazione del prodotto; 
@@ -1400,7 +1413,7 @@ Per migliorare l’utilizzo di questo indice non verrà controllato solamente a 
       \item \textbf{Misurazione}:   \[ M=\frac{OI}{OT} \] \\
        \begin{itemize}
            \item \textbf{OI}= Numero di ore impiegate per installare e personalizzare il prodotto nel nuovo ambiente;
-           \item \textbf{OT}= Numero di ore previste dal design e specifiche.\\
+           \item \textbf{OT}= Numero di ore previste dal design e dalle specifiche.\\
        \end{itemize}
     \end{itemize}
     
@@ -1446,7 +1459,7 @@ Questo processo viene svolto dai verificatori. Onde evitare conflitti di interes
 
 \subsubsection{Analisi statica}
 L'analisi statica è un'attività di verifica che costituisce un'esplorazione dell'oggetto di verifica senza richiedere l'esecuzione di esso. Può essere estesa anche ai documenti testuali.\\
-Due tecniche di analisi statica utilizzate dal team, il walkthrough e l'ispezione, sono descritte in seguito.
+Due tecniche di analisi statica utilizzate dal team, il walkthrough e l'ispezione, sono descritte di seguito.
 
 \subsubsubsection{Walkthrough} Il walkthrough è un'approfondita procedura collaborativa in cui il verificatore e il realizzatore del prodotto leggono criticamente tutto l'oggetto in esame. In particolare, questa attività è composta dalle seguenti fasi:
 \begin{itemize}
@@ -1491,7 +1504,7 @@ I test di integrazione vengono definiti dai verificatori durante la fase di prog
 Esistono due strategie di integrazione:
 \begin{itemize}
     \item \textbf{Bottom-up}: integrazione partendo dalle componenti con minor numero di dipendenze d'uso e maggiore utilità interna (molto chiamate ma che chiamano poco). Richiede pochi stub ma ritarda l'emissione di funzionalità visibili all'utente;
-    \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta all'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
+    \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta l'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
 \end{itemize}
 
 \subsubsubsection{Test di sistema}
@@ -1514,7 +1527,7 @@ nella quale:
 	    \item S (Sistema);
         \item A (Accettazione).
     \end{itemize}
-\item \lbrack \textbf{Codice}] identifica i test per ogni tipologia. È composto da un unico numero progressivo univoco se il test non ha padre, mentre se si tratta di un sotto-test, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\item \lbrack \textbf{Codice}] identifica i test per ogni tipologia. È composto da un unico numero progressivo univoco se il test non ha padre, mentre se si tratta di un sotto-test, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia.
 \end{itemize}
 
 \subsubsection{Test: Stato}
@@ -1540,9 +1553,9 @@ Precondizione necessaria dell'avvio di questo processo è l'esito positivo dei:
 \end{itemize}
 Lo svolgimento di tale processo coinvolge i seguenti passi:
 \begin{enumerate}
-    \item \textbf{Tracciamento dei requisiti}: il team espone all'azinda proponente il tracciamento dei requisiti realizzato, portando così 
+    \item \textbf{Tracciamento dei requisiti}: il team espone all'azienda proponente il tracciamento dei requisiti realizzato, portando così 
     l'evidenza della presenza dei requisiti all'interno del prodotto posto a validazione;
-    \item \textbf{Collaudo}: il team assieme all'azienda proponente eseguono il prodotto. L'esecuzione del prodotto viene accompagnata 
+    \item \textbf{Collaudo}: il team, assieme all'azienda proponente, esegue il prodotto. L'esecuzione del prodotto viene accompagnata 
     dall'esecuzione dei test di accettazione.
 \end{enumerate}
 Se i test di accettazione effettuati durante il collaudo terminano con esito positivo, il prodotto realizzato dal team viene ritenuto validato dall'azienda proponente.
@@ -1603,9 +1616,9 @@ Il processo di revisione è un processo interno al team per determinare la confo
 La revisione avviene all'interno del team SWEetCode e prevede il seguente svolgimento:
 \begin{enumerate}
     \item Definizione del materiale da sottoporre a revisione, con assegnazione di uno o più revisori, attraverso il supporto fornito dall'ITS \textit{Jira};
-    \item Revisione completa da parte dei verificatori una volta ritenuto utlimato il materiale in questione;
-    \item Definizione di una data e un orario per svolgere l'incontro tra il team;
-    \item Svolgimento dell'incontro tra il team attraverso la piattaforma \textit{Discord\pg}, in cui i membri che hanno realizzato il materiale da sottoporre a revisione espongono rapidamente 
+    \item Revisione completa da parte dei verificatori una volta ritenuto ultimato il materiale in questione;
+    \item Definizione di una data e un orario per svolgere l'incontro tra i membri del team;
+    \item Svolgimento dell'incontro attraverso la piattaforma \textit{Discord\pg}, in cui i membri che hanno realizzato il materiale da sottoporre a revisione espongono rapidamente 
     i relativi progressi ed il relativo stato del materiale ai restanti membri del team, seguiti dalle considerazioni effettuate dai revisori;
     \item Documentazione tramite verbale interno dei risultati della revisione e degli eventuali problemi rilevati.
 \end{enumerate}
@@ -1618,15 +1631,14 @@ Le revisioni di project management pongono a revisione i seguenti materiali:
 \end{itemize}
 I fini di tale revisione consistono nel far progredire le attività secondo quanto pianificato, anche in termini di tempi e costi, mantenendo il controllo del progetto e 
 permettendo di cambiare direzione o definire nuove necessità ove si presentasse l'esigenza nel modo più responsivo possibile: attraverso ciò il team
-ritiene di individuare quelle che sono le criticità e i punti di debolezza del way of working adottato, in modo da attuare e dove possibile rimpiazzare
+ritiene di individuare quelle che sono le criticità e i punti di debolezza del way of working adottato, in modo da attuare e, dove possibile, rimpiazzare
 tali aspetti per offrire un servizio di maggior qualità.
 
 \subsubsection{Revisioni tecniche}
 Le revisioni tecniche pongono a revisione i prodotti software e la documentazione, considerando la completezza e la conformità alle specifiche e agli standard.\\
 Tale tipo di revisione permette di apportare modifiche correttive attraverso feedback interni, agevolando un rapido aggiustamento delle eventuali lacune o deviazioni
 dalle aspettative di produzione del team nei confronti del lavoro prodotto. Inoltre, tali revisioni forniscono un importante 
-mezzo per valutare lo stato di avanzamento dei prodotti software e della documentazione, contribuendo così a mantenere il progetto allineato agli obiettivi 
-prefissati.
+mezzo per valutare lo stato di avanzamento dei prodotti software e della documentazione, contribuendo così a mantenere il progetto allineato agli obiettivi prefissati.
 
 \subsubsection{Strumenti}
 \begin{itemize}
@@ -1698,7 +1710,7 @@ L'amministratore definisce, controlla, e manutiene l'ambiente di sviluppo. Si oc
 Ha il compito di:
 \begin{itemize}
     \item Selezionare e abilitare risorse informatiche a supporto del way of working;
-    \item Gestire errori e segnalazioni di malfunzionamenti di meccanismi nell'infrastruttura;
+    \item Gestire errori e segnalazioni di malfunzionamenti di meccanismi nell'infrastruttura.
 \end{itemize}
 \subsubsubsection{Analista}
 Questo ruolo ha la funzione di analizzare il problema e definire i requisiti del prodotto. Necessita di una buona conoscenza del dominio del problema. Raccoglie le sue produzioni nel documento (Analisi dei requisiti v2.0.0(0)).
@@ -1736,7 +1748,7 @@ Dopo di ciò, l'amministratore avrà il compito di inserire la task associata su
     \item Stima originaria;
     \item Urgency.
 \end{itemize}
-Tale task dovrà inoltre essere collocato nello spazio temporale del diagramma di Gantt utilizzato dal team, sempre presente all'interno dell'ITS \textit{Jira}.\\
+Tale task dovrà inoltre essere collocato nello spazio temporale del \textit{diagramma di Gantt} utilizzato dal team, sempre presente all'interno dell'ITS \textit{Jira}.\\
 Molte di queste procedure sono documentante più nel dettaglio nella sezione (\S \nameref{sec:configuration_control}).
 \subsubsubsection{Strumenti}
 \begin{itemize}
@@ -1746,8 +1758,7 @@ Molte di queste procedure sono documentante più nel dettaglio nella sezione (\S
 L'esecuzione dell'attività avverrà da parte dell'assegnatario, definito dal responsabile. L'esecutore dell'attività dovrà proporre una soluzione 
 effettuando una pull request.
 \subsubsection{Revisione delle attività}
-La revisione dell'attività viene effettuata dal verificatore prima dell'effettiva introduzione delle modifiche nel repository \textit{GitHub}: la 
-pull request sollevata dall'esecutore viene infatti accettata o rifiutata a seconda dell'esito della verifica effettuata.
+La revisione dell'attività viene effettuata dal verificatore prima dell'effettiva introduzione delle modifiche nel repository \textit{GitHub}: la pull request sollevata dall'esecutore viene infatti accettata o rifiutata a seconda dell'esito della verifica effettuata.
 \subsubsubsection{Strumenti}
 \begin{itemize}
     \item \textit{GitHub}.
@@ -1834,7 +1845,7 @@ Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'int
 \begin{itemize}
     \item Essere puntuale o eventualmente comunicare tempestivamente al responsabile eventuali indisposizioni;
     \item Partecipare attivamente ad ogni discussione;
-    \item Mantenere un comportamento rispettoso e disciplinato, aperto a discussioni e cambi di posizione;
+    \item Mantenere un comportamento rispettoso e disciplinato, aperto a discussioni e cambi di posizione.
 \end{itemize}
 
 \subsubsubsection{Gestione dei rischi}
@@ -1864,7 +1875,7 @@ La definizione dei rischi è dettagliata nel seguente modo:
     \item \textbf{Descrizione}: descrizione del rischio;
     \item \textbf{Occorrenza}: misura di occorrenza del rischio (Alta, Media, Bassa);
     \item \textbf{Impatto}: misura di impatto del rischio (Alto, Medio, Basso);
-    \item \textbf{Misure di mitigazione}: descrizione delle misure da adottare in caso di occorrenza della situazione problematica descritta dal rischio;
+    \item \textbf{Misure di mitigazione}: descrizione delle misure da adottare in caso di occorrenza della situazione problematica descritta dal rischio.
 \end{itemize}
 
 \subsection{Infrastruttura}
@@ -1872,13 +1883,13 @@ La definizione dei rischi è dettagliata nel seguente modo:
 Il processo di infrastruttura ha lo scopo di definire e documentare l'infrastruttura utilizzata dal team e il modo in cui questa viene stabilita e manutenuta.
 
 \subsubsubsection{Implementazione dell'infrastruttura}
-Questa attività definisce e documenta l'infrastruttura e le modalità di installazione e configurazione di essa.
+Questa attività definisce e documenta l'infrastruttura e le modalità di installazione e configurazione della stessa.
 Il ruolo che si occupa dello svolgimento di questa attività è l'amministratore.
 
 Dopo una fase di discussione con il team, in cui viene stabilita la configurazione ideale, l'amministratore ha il compito di implementare le scelte infrastrutturali.
 In primo luogo, verifica la fattibilità di esse, considerando i seguenti aspetti:
 \begin{itemize}
-    \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
+    \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo su ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
     \item \textbf{Performance}: una modifica dell'infrastruttura deve categoricamente portare ad un miglioramento o al mantenimento delle performance precedenti;
     \item \textbf{Sicurezza}: le scelte fatte non devono andare a impattare negativamente la sicurezza dell'infrastruttura;
     \item \textbf{Disponibilità}: la configurazione deve essere disponibile e attuabile per ogni dispositivo utilizzato nel progetto. Onde evitare discrepanze tra infrastrutture implementate, la disponibilità deve essere totale;

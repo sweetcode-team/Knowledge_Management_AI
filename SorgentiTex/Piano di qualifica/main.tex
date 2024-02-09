@@ -51,31 +51,42 @@ L'obiettivo che ci si pone nella realizzazione di questo documento è la definiz
 alle aspettative del proponente e talvolta a discrezione del team sulla base delle valutazioni fatte nel corso di studi.
 
 \subsection{Glossario}
-Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. La prima occorrenza di gni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
+Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. La prima occorrenza di ogni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
 
 \subsection{Riferimenti}
    \subsubsection{Riferimenti normativi}
    \begin{itemize}
-    \item \textit{Norme di progetto};
+    \item \textit{(Norme di progetto v2.0.0(0))};
     \item \textit{Regolamento del progetto didattico}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf};
-    \item \textit{Guidelines for
-    the application of ISO 9001:2000 to
-    computer software}: \\
-    \href{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}.
+    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
+    (Ultimo accesso: 2024-02-08);
+    \item \textit{Guidelines for the application of ISO/IEC 90003:2004 to computer software}: \\
+    \url{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}\\
+    (Ultimo accesso: 2024-02-08);
+    \item \textit{Standard ISO/IEC 9126}:\\
+    \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}\\
+    (Ultimo accesso: 2024-02-08).
     \end{itemize}
     
     \subsubsection{Riferimenti informativi}
     \begin{itemize}
-    \item \textit{Presentazione capitolato C1}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf};
-    \item \textit{Analisi dei requisiti};
-    \item \textit{Piano di progetto};
+    \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+            \begin{itemize}
+                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+                (Ultimo accesso: 2024-02-08);
+                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
+                (Ultimo accesso: 2024-02-08).
+            \end{itemize}
+    \item \textit{(Analisi dei requisiti v2.0.0(0))};
+    \item \textit{(Piano di progetto v2.0.0(0))};
     \item \textit{Verbali esterni ed interni};
     \item \textit{Qualità di processo (argomento T8)}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf};
+    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
+    (Ultimo accesso: 2024-02-08);
     \item \textit{Verifica e Validazione: Introduzione (argomento T9)}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}.
+    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
+    (Ultimo accesso: 2024-02-08).
+    
     
    
     \end{itemize}
@@ -85,10 +96,10 @@ Al fine di evitare incomprensioni relative alla terminologia usata all’interno
 \newpage
 \section{Obiettivi metrici di qualità}
 \label{ObiettiviQualità}
-Per garantire la qualità di processo si è deciso di aderire allo standard ISO/IEC 90003:2004. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate nella sezione apposita (\S Lista delle metriche) del documento Norme di progetto(\color{red}Aggiungere versione\color{black}).
+Per garantire la qualità di processo si è deciso di aderire agli standard ISO/IEC 90003:2004 e ISO/IEC 9126. In questa sezione si presentano i valori accettabili e ideali delle metriche che si rifanno a questo standard; le definizioni di tali metriche sono riportate in (Norme di progetto v2.0.0, \S Lista delle metriche).
 \subsection{Qualità di processo}
 %\paragraph{}breve descrizione qualità di processo da inserire.\\
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 %\begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -110,7 +121,7 @@ Per garantire la qualità di processo si è deciso di aderire allo standard ISO/
     \hline
      M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
     \hline
-    M.PC.3.VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
+    M.PC.3.VP & Variazione di piano & $ \ge-6 $ & $ \ge0 $ \\
     \hline
     M.PC.4.VC & Variazione di costo & $0$ & $\ge100 $ \\
     \hline
@@ -121,7 +132,7 @@ Per garantire la qualità di processo si è deciso di aderire allo standard ISO/
     M.PC.7.SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
     
     \hline
-     M.PC.8.BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
+     M.PC.8.BC & Branch coverage & $ \ge75\% $ & $ 100\% $ \\
     \end{xltabular}
    
     
@@ -130,7 +141,7 @@ Per garantire la qualità di processo si è deciso di aderire allo standard ISO/
 Abbiamo analizzato quali caratteristiche fossero necessarie per la realizzazione di un prodotto di 
 qualità.\\
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 %\begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -198,7 +209,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \subsubsubsection{Fornitura}
 
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -229,7 +240,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \subsubsubsection{Sviluppo}
 
 \subsubsubsubsection{Analisi dei requisiti}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -252,7 +263,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \subsubsubsubsection{Progettazione}
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -272,7 +283,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \end{table}
 
 \subsubsubsubsection{Codifica}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -302,7 +313,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \end{table}
 
 \subsubsubsubsection{Testing}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -336,7 +347,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 % PROCESSI DI SUPPORTO
 \subsubsection{Processi di supporto}
 \subsubsubsection{Documentazione}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -360,28 +371,26 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \begin{comment}
 %\subsubsection{Documentazione}
-    {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
     \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
     \hline
     Correttezza Risposte &   & \\
     \hline
     Velocità di esecuzione &  &  \\
-    \end{tabularx}}
-    {\renewcommand{\arraystretch}{1.5}
+    \end{tabularx}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
     \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
     \hline
     Verifica &  &  \\
     \hline
     Gestione della qualità &  &  \\
-    \end{tabularx}}
-
-
+    \end{tabularx}
 \end{comment}    
 
 \subsubsubsection{Assicurazione della qualità}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -415,7 +424,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
  % PROCESSI ORGANIZZATIVI   
 \subsubsection{Processi organizzativi}
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{p{0.13\textwidth}|p{0.5\textwidth}|X|X}
 
@@ -431,38 +440,27 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \endlastfoot
 \hline
      M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
-     
 \end{xltabular}
-\caption{Metriche per i processi organizzativi }
+\caption{Metriche per i processi organizzativi}
 \end{table}
 \begin{comment}
-    {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.18\textwidth}|p{0.6\textwidth}|X}
     \textbf{Obiettivo} & \textbf{Descrizione} & \textbf{Metriche}  \\
     \hline
     Gestione organizzativa &  &  \\
-    \end{tabularx}}
-    \end{comment}
-    
-
-
-    
-
-
-
-
+    \end{tabularx}
+\end{comment}
 
 %Test e specifiche
 \newpage
 \section{Verifica}
 
-
 \subsection{Test di unità}
 Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.
-\begin{comment}
-    
 
-    {\renewcommand{\arraystretch}{1.5}
+\begin{comment}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
     \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
     \hline
@@ -473,13 +471,14 @@ Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio
      &  & \\
     \hline
      &  &  \\
-    \end{tabularx}}
+    \end{tabularx}
     \subsubsection{Tracciamento}
 \end{comment}    
 \subsection{Test di integrazione}
 Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.
+
 \begin{comment}
-    {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
     \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
     \hline
@@ -488,15 +487,12 @@ Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio
      &  &  \\
     \hline
      &  & \\
-    \end{tabularx}}
+    \end{tabularx}
     \subsubsection{Tracciamento}
 \end{comment}
 
-
-
-
 \subsection{Test di sistema}
-Il documento Analisi dei Requisiti identifica i requisiti che devono essere completamente coperti dai test di sistema. Di seguito è presente un elenco dei test di sistema:
+Il documento Analisi dei Requisiti identifica i requisiti che devono essere completamente coperti dai test di sistema. Di seguito è presente l'elenco dei test di sistema:
     \begin{xltabular}{\textwidth}{|c|X|c|c|}
     %\begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.55\textwidth}|p{0.12\textwidth}|X}
     \caption{Tabella dei test di sistema}
@@ -648,9 +644,9 @@ TS.66 & Verificare che l'utente possa caricare nell’area di staging un insieme
 \hline
 TS.67 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .PDF e .docx. & RF.O.17.3 & I \\
 \hline
-TS.68 & Verificare che il tentativo di caricamento in area di staging di un documento debba fallire se il formato di questo non è supportato. & RF.O.18 & I \\
+TS.68 & Verificare che il tentativo di caricamento in area di staging di un documento fallisca nel caso in cui il formato di questo non sia supportato. & RF.O.18 & I \\
 \hline
-TS.69 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a caricare nell’area di staging un documento con formato non supportato. & RF.O.18.1 & I \\
+TS.69 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a caricare nell’area di staging un documento con formato non supportato. & RF.O.18.1 & I \\
 \hline
 TS.70 & Verificare che l'utente possa rimuovere un documento caricato nell’area di staging. & RF.O.19 & I \\
 \hline
@@ -702,9 +698,9 @@ TS.93 & Verificare che l'utente possa visualizzare il timestamp dell’ultimo me
 \hline
 TS.94 & Verificare che l'utente possa creare una nuova chat. & RF.O.31 & I \\
 \hline
-TS.95 & Verificare che il tentativo di creazione di una nuova chat debba fallire se esiste già una chat vuota. & RF.O.32 & I \\
+TS.95 & Verificare che il tentativo di creazione di una nuova chat fallisca nel caso in cui sia già presente una chat vuota. & RF.O.32 & I \\
 \hline
-TS.96 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & RF.O.32.1 & I \\
+TS.96 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & RF.O.32.1 & I \\
 \hline
 TS.97 & Verificare che l'utente possa eliminare una chat. & RF.O.33 & I \\
 \hline
@@ -714,13 +710,13 @@ TS.99 & Verificare che l'utente possa selezionare un insieme di chat per poterle
 \hline
 TS.100 & Verificare che l'utente possa rinominare una chat. & RF.O.35 & I \\
 \hline
-TS.101 & Verificare che il tentativo di rinominazione di una chat debba fallire se il titolo inserito appartiene già ad un’altra chat. & RF.O.36 & I \\
+TS.101 & Verificare che il tentativo di rinominazione di una chat fallisca nel caso in cui il titolo inserito appartenga già ad un’altra chat. & RF.O.36 & I \\
 \hline
-TS.102 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un’altra chat. & RF.O.36.1 & I \\
+TS.102 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un’altra chat. & RF.O.36.1 & I \\
 \hline
-TS.103 & Verificare che il tentativo di rinominazione di una chat debba fallire se il titolo inserito è vuoto. & RF.O.37 & I \\
+TS.103 & Verificare che il tentativo di rinominazione di una chat fallisca nel caso in cui il titolo inserito sia vuoto. & RF.O.37 & I \\
 \hline
-TS.104 & Verificare che l'utente debba visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & RF.O.37.1 & I \\
+TS.104 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & RF.O.37.1 & I \\
 \hline
 TS.105 & Verificare che l'utente possa ricercare una chat e il suo contenuto. & RF.O.38 & I \\
 \hline
@@ -732,7 +728,7 @@ TS.108 & Verificare che l'utente possa visualizzare il contenuto testuale di un 
 \hline
 TS.109 & Verificare che l'utente possa visualizzare l’orario di un messaggio presente in una chat. & RF.O.39.1.2 & I \\
 \hline
-TS.110 & Verificare che la risposta fornita dal chatbot debba presentare un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & RF.D.40 & I \\
+TS.110 & Verificare che la risposta fornita dal chatbot presenti un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & RF.D.40 & I \\
 \hline
 TS.111 & Verificare che l'utente possa visualizzare le domande suggerite in una chat vuota. & RF.D.41 & I \\
 \hline
@@ -762,54 +758,49 @@ TS.123 & Verificare che l'utente possa disattivare la funzionalità di inserimen
 \hline
 TS.124 & Verificare che l'utente possa inviare un messaggio in una chat. & RF.O.48 & I \\
 \hline
-TS.125 & Verificare che il sistema offra opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & RQ.O.1 & I \\
+TS.125 & Verificare che il sistema offra opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & RF.O.49 & I \\
 \hline
-TS.126 & Verificare che in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RQ.OP.2 & I \\
+TS.126 & Verificare che, in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RF.OP.50 & I \\
 \hline
-TS.127 & Verificare che nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RQ.D.3 & I \\
+TS.127 & Verificare che, nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RF.D.52 & I \\
 \hline
-TS.128 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RQ.OP.4 & I \\
+TS.128 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RF.OP.52 & I \\
 \hline
-TS.129 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RQ.D.5 & I \\
+TS.129 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RF.D.53 & I \\
 \hline
-TS.130 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Norme di progetto). & RV.O.1 & I \\
-\hline
-TS.131 & Verificare che il prodotto software rispetti tutto ciò che è descritto da (Piano di qualifica). & RV.O.2 & I \\
-\hline
+\end{xltabular}
+
+\begin{comment}
 TS.132 & Verificare che l’applicazione web garantisca la presenza di almeno un modello AI locale. & RV.O.3 & I \\
 \hline
 TS.133 & Verificare che le chat siano salvate in automatico in un database. & RV.O.4 & I \\
 \hline
 TS.134 & Verificare che i documenti caricati siano memorizzati in un sistema di archiviazione. & RV.O.5 & I \\
-\hline
-TS.135 & Verificare che il sistema garantisca il servizio per almeno un utente. & RP.O.1 & I \\
-\hline
+\hline    
+\end{comment}
 
-    \end{xltabular}
-    }
-
-      
-    \subsubsection{Tracciamento}
-    \begin{xltabular}{\textwidth}{|c|c|}
-    %\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
-    \caption{Tabella di tracciamento dei test di sistema}
-    \label{tab:test_tracciamento_sistema}\\
-    \hline
-    \textbf{ID Test} & \textbf{Requisito}\\
-    \hline
-    \endfirsthead
-    \caption[]{Tabella di tracciamento dei test di sistema (cont)}\\
-    \hline
-    \textbf{ID} & \textbf{Descrizione}\\
-    \hline
-    \endhead
-    \multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-    \endfoot
-    \hline
-    \endlastfoot   
-    TS.1 & RF.O.1 \\
-    \hline
-    TS.2 & RF.O.1.1 \\
+    
+\subsubsection{Tracciamento}
+\begin{xltabular}{\textwidth}{|c|c|}
+%\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
+\caption{Tabella di tracciamento dei test di sistema}
+\label{tab:test_tracciamento_sistema}\\
+\hline
+\textbf{ID Test} & \textbf{Requisito}\\
+\hline
+\endfirsthead
+\caption[]{Tabella di tracciamento dei test di sistema (cont)}\\
+\hline
+\textbf{ID} & \textbf{Descrizione}\\
+\hline
+\endhead
+\multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline
+\endlastfoot   
+TS.1 & RF.O.1 \\
+\hline
+TS.2 & RF.O.1.1 \\
 \hline
 TS.3 & RF.O.1.1.1 \\
 \hline
@@ -1078,295 +1069,403 @@ TS.134 & RV.O.5 \\
 TS.135 & RP.O.1 \\
 \hline
 
-
-    \end{xltabular}
-    }
+\end{xltabular}
 
     
+\subsection{Test di accettazione}
+Questa sezione illustra i test di accettazione del prodotto. L’obiettivo dei test di accettazione è confermare la validità del prodotto.  
+\begin{xltabular}{\textwidth}{|c|X|p{2.5cm}|c|}
+\caption{Tabella dei test di accettazione}
+\label{tab:test_accettazione}\\
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
+\hline
+\endfirsthead
+\caption[]{Tabella dei test di accettazione (cont)}\\
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
+\hline
+\endhead
+\multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline
+\endlastfoot
+TA.1 & Verificare che l'utente, durante la configurazione del modello LLM, possa: 
+\begin{enumerate}
+    \item Avviare la configurazione del modello LLM;
+    \item Visualizzare la lista dei modelli LLM disponibili;
+    \item Visualizzare le caratteristiche di ogni modello LLM in lista;
+    \item Scegliere un modello LLM tra quelli disponibili;
+    \item Confermare la configurazione.
+\end{enumerate}
+& UC1.1, UC2, UC6, UC6.1, UC7, UC7.1, UC7.2, UC7.3, UC7.4, UC7.5 & I \\
+\hline
+TA.2 & Verificare che l'utente, durante la configurazione del vector database, possa:
+\begin{enumerate}
+    \item Avviare la configurazione del vector database;
+    \item Visualizzare la lista dei vector database disponibili;
+    \item Visualizzare le caratteristiche di ogni vector database in lista;
+    \item Scegliere un vector database tra quelli disponibili;
+    \item Confermare la configurazione.
+\end{enumerate}
+& UC1.2, UC3, UC8, UC8.1, UC9, UC9.1, UC9.2, UC9.3, UC9.4, UC9.5 & I \\
+\hline
+TA.3 & Verificare che l'utente, durante la configurazione del modello di embeddings, possa:
+\begin{enumerate}
+    \item Avviare la configurazione del modello di embeddings;
+    \item Visualizzare la lista dei modelli di embeddings disponibili;
+    \item Visualizzare le caratteristiche di ogni modello di embeddings in lista;
+    \item Scegliere un modello di embeddings tra quelli disponibili;
+    \item Confermare la configurazione.
+\end{enumerate}
+& UC1.3, UC4, UC10, UC10.1, UC11, UC11.1, UC11.2, UC11.3, UC11.4, UC11.5 & I \\
+\hline
+TA.4 & Verificare che l'utente, durante la configurazione del sistema di archiviazione documenti, possa:
+\begin{enumerate}
+    \item Avviare la configurazione del sistema di archiviazione documenti;
+    \item Visualizzare la lista dei sistemi di archiviazione documenti disponibili;
+    \item Visualizzare le caratteristiche di ogni sistema di archiviazione documenti in lista;
+    \item Scegliere un sistema di archiviazione documenti tra quelli disponibili;
+    \item Confermare la configurazione.
+\end{enumerate}
+& UC1.4, UC5, UC12, UC12.1, UC13, UC13.1, UC13.2, UC13.3, UC13.4, UC13.5 & I \\
+\hline
+TA.5 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Accedere alla sezione di gestione dei documenti;
+    \item Caricare un insieme di documenti valido nell'area di staging;
+    \item Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;
+    \item Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente.
+\end{enumerate}
+& UC16, UC17, UC18, UC19, UC20, UC21, UC22 & I \\
+\hline
+TA.6 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Accedere alla sezione di gestione dei documenti;
+    \item Caricare un documento valido nell'area di staging che presenta lo stesso nome e formato di un documento già presente nel sistema;
+    \item Confermare il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;
+    \item Visualizzare un messaggio di conferma una volta che il documento è stato sostituito correttamente.
+\end{enumerate}
+& UC16, UC18, UC19, UC21, UC23 & I \\
+\hline
+TA.7 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Accedere alla sezione di gestione dei documenti;
+    \item Caricare un insieme di documenti validi nell'area di staging che presentano gli stessi nomi e formati di documenti già presenti nel sistema;
+    \item Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;
+    \item Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente.
+\end{enumerate}
+& UC17, UC18, UC20, UC22, UC24 & I \\
+\hline
+TA.8 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti caricati nel sistema;
+    \item Visualizzare i dettagli di ogni documento in lista;
+    \item Selezionare un documento presente nel sistema di archiviazione;
+    \item Richiedere di visualizzare il contenuto del documento selezionato;
+    \item Visualizzare il contenuto del documento selezionato.
+\end{enumerate}
+& UC15, UC15.1, UC15.1.1, UC15.1.2, UC15.1.3, UC15.1.4, UC25 & I \\
+\hline
+TA.9 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare il documento che vuole eliminare;
+    \item Richiedere di eliminare il documento selezionato;
+    \item Visualizzare un messaggio di conferma una volta che il documento è stato eliminato correttamente.
+\end{enumerate}
+& UC26 & I \\
+\hline
+TA.10 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare i documenti che vuole eliminare;
+    \item Richiedere di eliminare i documenti selezionati;
+    \item Visualizzare un messaggio di conferma una volta che i documenti sono stati eliminati correttamente.
+\end{enumerate}
+& UC27 & I \\
+\hline
+TA.11 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare il documento che vuole occultare;
+    \item Richiedere di occultare il documento selezionato;
+    \item Visualizzare un messaggio di conferma una volta che il documento è stato occultato correttamente.
+\end{enumerate}
+& UC25, UC28 & I \\
+\hline
+TA.12 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare i documenti che vuole occultare;
+    \item Richiedere di occultare i documenti selezionati;
+    \item Visualizzare un messaggio di conferma una volta che i documenti sono stati occultati correttamente.
+\end{enumerate}
+& UC25, UC29 & I \\
+\hline
+TA.13 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare il documento che vuole riabilitare;
+    \item Richiedere di riabilitare il documento selezionato;
+    \item Visualizzare un messaggio di conferma una volta che il documento è stato riabilitato correttamente.
+\end{enumerate}
+& UC25, UC30 & I \\
+\hline
+TA.14 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti presenti nel sistema di archiviazione;
+    \item Selezionare i documenti che vuole riabilitare;
+    \item Richiedere di riabilitare i documenti selezionati;
+    \item Visualizzare un messaggio di conferma una volta che i documenti sono stati riabilitati correttamente.
+\end{enumerate}
+& UC25, UC31 & I \\
+\hline
+TA.15 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista dei documenti caricati;
+    \item Richiedere al sistema di effettuare una ricerca dei documenti;
+    \item Visualizzare i risultati della ricerca eseguita.
+\end{enumerate}
+& UC32 & I \\
+\hline
+TA.16 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata.
+\end{enumerate}
+& UC33, UC33.1, UC33.1.1, UC33.1.1, UC33.1.2, UC42 & I \\
+\hline
+TA.17 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Richiedere la creazione di una chat vuota;
+    \item Visualizzare un messaggio di conferma una volta che la chat vuota è stata creata.
+\end{enumerate}
+& UC33, UC34, UC35 & I \\
+\hline
+TA.18 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat esistenti;
+    \item Selezionare la chat che vuole eliminare;
+    \item Richiedere di eliminare la chat selezionata;
+    \item Visualizzare un messaggio di conferma una volta che la chat è stata eliminata correttamente.
+\end{enumerate}
+& UC33, UC36 & I \\
+\hline
+TA.19 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat esistenti;
+    \item Selezionare le chat che vuole eliminare;
+    \item Richiedere di eliminare le chat selezionate;
+    \item Visualizzare un messaggio di conferma una volta che le chat sono state eliminate correttamente.
+\end{enumerate}
+& UC33, UC37 & I \\
+\hline
+TA.20 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat esistenti;
+    \item Selezionare la chat che vuole rinominare;
+    \item Richiedere la rinominazione della chat selezionata;
+    \item Visualizzare un messaggio di conferma una volta che la chat è stata rinominata correttamente.
+\end{enumerate}
+& UC33, UC38, UC39, UC40 & I \\
+\hline
+TA.21 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat esistenti;
+    \item Richiedere al sistema di effettuare una ricerca delle chat;
+    \item Visualizzare i risultati della ricerca eseguita.
+\end{enumerate}
+& UC33, UC41 & I \\
+\hline
+TA.22 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Visualizzare la lista di documenti pertinenti nelle risposte del chatbot.
+\end{enumerate}
+& UC33, UC42, UC43 & I \\
+\hline
+TA.23 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista di domande suggerite in una chat vuota;
+    \item Selezionare una domanda suggerita in lista;
+    \item Inviare la domanda selezionata;
+    \item Visualizzare la risposta generata dal chatbot.
+\end{enumerate}
+& UC42, UC44, UC45 & I \\
+\hline
+TA.24 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Selezionare un messaggio all'interno della chat;
+    \item Richiedere al sistema di leggere il messaggio vocalmente;
+    \item Ascoltare il messaggio selezionato.
+\end{enumerate}
+& UC42, UC46 & I \\
+\hline
+TA.25 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Selezionare un messaggio all'interno della chat;
+    \item Richiedere al sistema di copiare il messaggio selezionato.
+\end{enumerate}
+& UC42, UC47 & I \\
+\hline
+TA.26 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Attivare la modalità vocale;
+    \item Interagire con il chatbot vocalmente.
+\end{enumerate}
+& UC42, UC48 & I \\
+\hline
+TA.27 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Disattivare la modalità vocale.
+\end{enumerate}
+& UC42, UC49 & I \\
+\hline
+TA.28 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Inserire un messaggio testuale;
+    \item Inviare il messaggio inserito;
+    \item Visualizzare la risposta generata dal chatbot.
+\end{enumerate}
+& UC42, UC50, UC51, UC51.1 & I \\
+\hline
+TA.29 & Verificare che l'utente possa:
+\begin{enumerate}
+    \item Visualizzare la lista delle chat;
+    \item Selezionare una chat;
+    \item Richiedere di visualizzare il contenuto della chat selezionata;
+    \item Visualizzare il contenuto della chat selezionata;
+    \item Inserire un messaggio testuale tramite comando vocale;
+    \item Inviare il messaggio inserito;
+    \item Visualizzare la risposta generata dal chatbot.
+\end{enumerate}
+& UC42, UC50, UC51, UC51.2 & I \\
+\hline
 
-    
-    \subsection{Test di accettazione}
+% TODO: Test accettazione per:
+    % Invio messaggio testuale
+    % Invio messaggio vocale
 
-    Questa sezione illustra i test di accettazione del prodotto. L’obiettivo dei test di accettazione è confermare la validità del prodotto.  
-    \begin{xltabular}{\textwidth}{|c|X|c|c|}
-    \caption{Tabella dei test di accettazione}
-    \label{tab:test_accettazione}\\
-    \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
-    \hline
-    \endfirsthead
-    \caption[]{Tabella dei test di accettazione (cont)}\\
-    \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Casi d'uso} & \textbf{Stato}  \\
-    \hline
-    \endhead
-    \multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-    \endfoot
-    \hline
-    \endlastfoot
-    TA.1 & Verificare che l'utente, durante la configurazione del modello LLM, possa: \newline 1. Avviare la configurazione del modello LLM; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.1, UC2 & I \\
-    \hline
-    TA.2 & Verificare che l'utente, durante la configurazione del vector database, possa: \newline 1. Avviare la configurazione del vector database; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.2, UC3 & I \\
-    \hline
-    TA.3 & Verificare che l'utente, durante la configurazione del modello di embeddings, possa: \newline 1. Avviare la configurazione del modello di embeddings; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.3, UC4 & I \\
-    \hline
-    TA.4 & Verificare che l'utente, durante la configurazione del sistema di archiviazione documenti, possa: \newline 1. Avviare la configurazione del sistema di archiviazione documenti; \newline 2. Inserire le credenziali e i parametri richiesti; \newline 3. Confermare la configurazione; \newline 4. Visualizzare un messaggio di errore a causa di credenziali o parametri errati; \newline 5. Correggere le credenziali o i parametri errati e ripetere il processo di configurazione. & UC1.4, UC5 & I \\
-    \hline
-    TA.5 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Caricare un insieme di documenti valido nell'area di staging;\newline
-    3. Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;\newline
-    4. Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente. & UC22 & I \\
-    \hline
-    TA.6 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Caricare un documento valido nell'area di staging che presenta lo stesso nome e formato di un documento già presente nel sistema;\newline
-    3. Confermare il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;\newline
-    4. Visualizzare un messaggio di conferma una volta che il documento è stato caricato correttamente. & UC23, UC22 & I \\
-    \hline
-    TA.7 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Caricare un insieme di documenti validi nell'area di staging che presentano gli stessi nomi e formati di documenti già presenti nel sistema;\newline
-    3. Confermare il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;\newline
-    4. Visualizzare un messaggio di conferma una volta che i documenti sono stati caricati correttamente. & UC24, UC22 & I \\
-    \hline
-    TA.8 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Selezionare un documento presente nel sistema di archiviazione;\newline
-    3. Richiedere di visualizzare il contenuto del documento selezionato;\newline
-    4. Visualizzare il contenuto del documento selezionato. & UC25 & I \\
-    \hline
-    TA.9 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare il documento che vuole eliminare;\newline
-    4. Richiedere di eliminare il documento selezionato;\newline
-    5. Visualizzare un messaggio di conferma una volta che il documento è stato eliminato correttamente. & UC26, UC25 & I \\
-    \hline
-    TA.10 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare i documenti che vuole eliminare;\newline
-    4. Richiedere di eliminare i documenti selezionati;\newline
-    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati eliminati correttamente. & UC27, UC26, UC25 & I \\
-    \hline
-    TA.11 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare il documento che vuole occultare;\newline
-    4. Richiedere di occultare il documento selezionato;\newline
-    5. Visualizzare un messaggio di conferma una volta che il documento è stato occultato correttamente. & UC28, UC25 & I \\
-    \hline
-    TA.12 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare i documenti che vuole occultare;\newline
-    4. Richiedere di occultare i documenti selezionati;\newline
-    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati occultati correttamente. & UC29, UC28, UC25 & I \\
-    \hline
-    TA.13 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare il documento che vuole riabilitare;\newline
-    4. Richiedere di riabilitare il documento selezionato;\newline
-    5. Visualizzare un messaggio di conferma una volta che il documento è stato riabilitato correttamente. & UC30, UC25 & I \\
-    \hline
-    TA.14 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti presenti nel sistema di archiviazione;\newline
-    3. Selezionare i documenti che vuole riabilitare;\newline
-    4. Richiedere di riabilitare i documenti selezionati;\newline
-    5. Visualizzare un messaggio di conferma una volta che i documenti sono stati riabilitati correttamente. & UC31, UC30, UC25 & I \\
-    \hline
-    TA.15 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista dei documenti caricati;\newline
-    3. Richiedere al sistema di effettuare una ricerca dei documenti;\newline
-    4. Visualizzare i risultati della ricerca eseguita. & UC32 & I \\
-    \hline
-    TA.16 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista delle chat;\newline
-    3. Selezionare una chat;\newline
-    4. Richiedere di visualizzare il contenuto della chat selezionata;\newline
-    5. Visualizzare il contenuto della chat selezionata. & UC33, UC42 & I \\
-    \hline
-    TA.17 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista delle chat esistenti;\newline
-    3. Selezionare la chat che vuole rinominare;\newline
-    4. Richiedere di rinominare la chat selezionata;\newline
-    5. Visualizzare un messaggio di conferma una volta che la chat è stata rinominata correttamente. & UC38, UC33 & I \\
-    \hline
-    TA.18 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista delle chat esistenti;\newline
-    3. Selezionare la chat che vuole eliminare;\newline
-    4. Richiedere di eliminare la chat selezionata;\newline
-    5. Visualizzare un messaggio di conferma una volta che la chat è stata eliminata correttamente. & UC36, UC33 & I \\
-    \hline
-    TA.19 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista delle chat esistenti;\newline
-    3. Selezionare le chat che vuole eliminare;\newline
-    4. Richiedere di eliminare le chat selezionate;\newline
-    5. Visualizzare un messaggio di conferma una volta che le chat sono state eliminate correttamente. & UC37, UC36, UC33 & I \\
-    \hline
-    TA.20 & Verificare che l'utente possa:\newline
-    1. Accedere al sistema con le credenziali corrette;\newline
-    2. Visualizzare la lista delle chat esistenti;\newline
-    3. Selezionare la chat che vuole rinominare;\newline
-    4. Richiedere di rinominare la chat selezionata;\newline
-    5. Visualizzare un messaggio di conferma una volta che la chat è stata rinominata correttamente. & UC38, UC33 & I \\
-    \hline
-    \end{xltabular}
-    
-    
-    
-    
-    
-    \subsubsection{Tracciamento}
-    \begin{xltabular}{\textwidth}{|c|c|}
-    \caption{Tabella di tracciamento dei test di accettazione}
-    \label{tab:test_tracciamento_accettazione}\\
-    \hline
-    \textbf{ID Test} & \textbf{Casi d'uso}\\
-    \hline
-    \endfirsthead
-    \caption[]{Tabella di tracciamento dei test di accettazione (cont)}\\
-    \hline
-    \textbf{ID Test} & \textbf{Casi d'uso}\\
-    \hline
-    \endhead
-    \multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-    \endfoot
-    \hline
-    \endlastfoot 
-    TA.1 & UC1.1, UC2 \\
-    \hline
-    TA.2 & UC1.2, UC3 \\
-    \hline
-    TA.3 & UC1.3, UC4 \\
-    \hline
-    TA.4 & UC1.4, UC5 \\
-    \hline
-    TA.5 & UC22 \\
-    \hline
-    TA.6 & UC23, UC22 \\
-    \hline
-    TA.7 & UC24, UC22 \\
-    \hline
-    TA.8 & UC25 \\
-    \hline
-    TA.9 & UC26, UC25 \\
-    \hline
-    TA.10 & UC27, UC26, UC25 \\
-    \hline
-    TA.11 & UC28, UC25 \\
-    \hline
-    TA.12 & UC29, UC28, UC25 \\
-    \hline
-    TA.13 & UC30, UC25 \\
-    \hline
-    TA.14 & UC31, UC30, UC25 \\
-    \hline
-    TA.15 & UC32 \\
-    \hline
-    TA.16 & UC33, UC42 \\
-    \hline
-    TA.17 & UC38, UC33 \\
-    \hline
-    TA.18 & UC36, UC33 \\
-    \hline
-    TA.19 & UC37, UC36, UC33 \\
-    \hline
-    TA.20 & UC38, UC33 \\
-    \hline
-    \end{xltabular}
-    
-    
+\end{xltabular}
 
 
+\subsubsection{Tracciamento}
+\begin{xltabular}{\textwidth}{|c|c|}
+\caption{Tabella di tracciamento dei test di accettazione}
+\label{tab:test_tracciamento_accettazione}\\
+\hline
+\textbf{ID Test} & \textbf{Casi d'uso}\\
+\hline
+\endfirsthead
+\caption[]{Tabella di tracciamento dei test di accettazione (cont)}\\
+\hline
+\textbf{ID Test} & \textbf{Casi d'uso}\\
+\hline
+\endhead
+\multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline
+\endlastfoot 
+TA.1 & UC1.1, UC2, UC6, UC6.1, UC7, UC7.1, UC7.2, UC7.3, UC7.4, UC7.5 \\
+\hline
+TA.2 & UC1.2, UC3, UC8, UC8.1, UC9, UC9.1, UC9.2, UC9.3, UC9.4, UC9.5 \\
+\hline
+TA.3 & UC1.3, UC4, UC10, UC10.1, UC11, UC11.1, UC11.2, UC11.3, UC11.4, UC11.5 \\
+\hline
+TA.4 & UC1.4, UC5, UC12, UC12.1, UC13, UC13.1, UC13.2, UC13.3, UC13.4, UC13.5 \\
+\hline
+TA.5 & UC16, UC17, UC18, UC19, UC20, UC21, UC22 \\
+\hline
+TA.6 & UC16, UC18, UC19, UC21, UC23 \\
+\hline
+TA.7 & UC17, UC18, UC20, UC22, UC24 \\
+\hline
+TA.8 & UC15, UC15.1, UC15.1.1, UC15.1.2, UC15.1.3, UC15.1.4, UC25 \\
+\hline
+TA.9 & UC26 \\
+\hline
+TA.10 & UC27 \\
+\hline
+TA.11 & UC25, UC28 \\
+\hline
+TA.12 & UC25, UC29 \\
+\hline
+TA.13 & UC25, UC30 \\
+\hline
+TA.14 & UC25, UC31 \\
+\hline
+TA.15 & UC32 \\
+\hline
+TA.16 & UC33, UC33.1, UC33.1.1, UC33.1.1, UC33.1.2, UC42 \\
+\hline
+TA.17 & UC33, UC34, UC35 \\
+\hline
+TA.18 & UC33, UC36 \\
+\hline
+TA.19 & UC33, UC37 \\
+\hline
+TA.20 & UC33, UC38, UC39, UC40 \\
+\hline
+TA.21 & UC33, UC41 \\
+\hline
+TA.22 & UC33, UC42, UC43 \\
+\hline
+TA.23 & UC42, UC44, UC45 \\
+\hline
+TA.24 & UC42, UC46 \\
+\hline
+TA.25 & UC42, UC47 \\
+\hline
+TA.26 & UC42, UC48 \\
+\hline
+TA.27 & UC42, UC49 \\
+\hline
+TA.28 & UC42, UC50, UC51, UC51.1 \\
+\hline
+TA.29 & UC42, UC50, UC51, UC51.2 \\
+\hline
+\end{xltabular}
 
-%\subsection{Test di accettazione}
-%    {\renewcommand{\arraystretch}{1.5}
-%    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-%    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
-%    \hline
-%    TA.1 & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & I \\
-%    \hline
-%    TA.2 & Il sistema deve garantire il servizio per almeno un utente. & I \\
-%    \hline
-%    TA.3 & In caso di caduta dalle connessione, l’applicazione va in fallback su un modello AI locale. & I \\
-%    \hline
-%    TA.4 & Nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & I \\
-%    \hline
-%    TA.5 & Il chatbot deve essere in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & I \\
-%    \hline
-%    TA.6 & L’eliminazione di un documento dallo spazio di storage deve portare all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli embeddings generati dallo stesso. & I \\
-%    \hline
-%    TA.7 & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto). & I \\
-%    \hline
-%    TA.8 & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica). & I \\
-%    \hline
-%    TA.9 & L’applicazione web deve garantire la presenza di almeno un modello AI locale. & I \\
-%    \hline
-%    TA.10 & Le chat devono essere salvate in automatico in un database. & I \\
-%    \hline
-%    TA.11 & I documenti caricati devono essere memorizzati in un sistema di archiviazione. & I \\
-%    \hline
-%    TA.12 & Il sistema deve garantire il servizio per almeno un utente. & I \\
-%    \end{tabularx}}
-
-%    \subsubsection{Tracciamento}
-%    {\renewcommand{\arraystretch}{1.5}
-%    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|X}
-%    \textbf{ID Test} & \textbf{Requisito}  \\
-%    \hline
-%    TA.1 & RQ.O.1 \\
-%    \hline
-%    TA.2 & RQ.O.2 \\
-%    \hline
-%    TA.3 & RQ.OP.3 \\
-%    \hline
-%    TA.4 & RQ.D.4 \\
-%    \hline
-%    TA.5 & RQ.OP.5 \\
-%    \hline
-%    TA.6 & RQ.D.6 \\
-%    \hline
-%    TA.7 & RV.O.1 \\
-%    \hline
-%    TA.8 & RV.O.2 \\
-%    \hline
-%    TA.9 & RV.O.3 \\
-%    \hline
-%    TA.10 & RV.O.4 \\
-%    \hline
-%    TA.11 & RV.O.5 \\
-%    \hline
-%    TA.12 & RP.O.1 \\
-%    \end{tabularx}}
-
-
-\subsection{Checklist }
+\subsection{Checklist}
 Questa sezione contiene le liste di controllo usate per l'ispezione dei documenti e del codice; questa è una tecnica di analisi statica che permette di esporre in maniera sistematica gli errori più comuni eventualmente presenti nel prodotto in esame.
 \subsubsection{Struttura documentazione}
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{c|X}
-
-
 \textbf{Titolo} & \textbf{Descrizione}   \\
 \endfirsthead
-
 \textbf{Titolo} & \textbf{Descrizione}   \\
 \endhead
-
 \multicolumn{2}{r}{{Continua nella pagina successiva}} \\
 \endfoot
-
 \endlastfoot
 
 \hline
@@ -1392,9 +1491,8 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 \textbf{Menzioni a documenti errate} & Tutte le menzioni a documenti devono avere la lettera iniziale del documento in maiuscolo e le restanti lettere in minuscolo.\\
 \hline
 \textbf{Citazione scorretta di persona }& Ogni menzione di una persona deve essere formulata come segue: \textit{"Cognome N."} \\
-
 \hline
-\textbf{Ordine alfabetico} & (\textbf{da controllare}) Gli elenchi di nomi e le tabelle devono essere ordinati in ordine alfabetico a meno che non sia specificato diversamente o le circostanze richiedono altre tipologie di ordinamento.\\
+\textbf{Ordine alfabetico} & Le liste e le tabelle di nomi devono essere riportate in ordine alfabetico a meno che non sia specificato diversamente o le circostanze richiedono altre tipologie di ordinamento.\\
 \hline
 \textbf{Ordine task per scadenza} & I task devono essere ordinati in base alla loro scadenza, dal più vicino al più lontano.\\
 
@@ -1405,7 +1503,7 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 
 \subsubsection{Errori di forma e ortografici}
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{c|X}
 
@@ -1443,7 +1541,7 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 
 \subsubsection{Analisi dei Requisiti}
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{c|X}
 
@@ -1464,7 +1562,7 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 \hline
 \textbf{Ordinamento UC} & La numerazione dei casi d’uso dovrebbe rispecchiare la struttura di estensione.\\
 \hline
-\textbf{Diagrammi UML per UC} & (\textbf{da controllare}) Le estensioni di un caso d’uso dovrebbero essere rappresentate nello stesso diagramma UML del caso d’uso principale.\\
+\textbf{Diagrammi UML per UC} & Le estensioni di un caso d’uso dovrebbero essere rappresentate nello stesso diagramma UML del caso d’uso coinvolto.\\
 \hline
 \textbf{Coerenza UC}  &   Verificare la coerenza tra la descrizione e il diagramma dei casi d'uso.\\
 \hline
@@ -1480,7 +1578,7 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 
 \subsubsection{Codifica}
 
-{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
 \begin{xltabular}{\textwidth}{c|X}
 
@@ -1511,16 +1609,27 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 \caption{Punti di controllo per l'ispezione del codice}
 \end{table}
 
-
-
-
+\newpage
 
 \section{Dashboard metriche impiegate}
-\subsection{Misurazione e verifica} Sezione in cui vengono riportati i valori di misurazione delle metriche in uso. \color{red} Da implementare con strumenti e da misurare per ogni periodo a partire dal terzo o dal quarto periodo. \color{black}\\
+\subsection{Misurazione e verifica}
+Sezione in cui vengono riportati i valori di misurazione delle metriche in uso.
 \subsection{M1PMS}
 \subsection{M2RNP}
 \subsection{M3VP}
+\subsubsection{variazione di piano}
+\begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{img/metriche/m3vp.png}
+        \caption{M3VP - Variazione di piano. }
+    \end{figure}
 \subsection{M4VC}
+\subsubsection{variazione di costo}
+\begin{figure}[H]
+        \centering        
+        \includegraphics[width=15.5cm]{img/metriche/m4vc.png}
+        \caption{M4VC - Variazione di costi. }
+    \end{figure}
 \subsection{M5ISR}
 \subsection{M6CCM}
 \subsection{M7SC}
@@ -1535,17 +1644,11 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 \subsection{M11LMC}
 \subsection{M12DC}
 
-
-
-
-
-
 \subsection{Processi primari}
-    
-   
+
 \subsection{Processi di supporto}
 \begin{comment}
-    {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
     \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
     \hline
@@ -1562,10 +1665,10 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione della qualità}}} \\
     \hline
      &  &  &  \\
-    \end{tabularx}}  
+    \end{tabularx}
   
 \subsubsection{Documentazione}
-    {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\textwidth}{p{0.15\textwidth}|p{0.35\textwidth}|X|X}
     \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
     \hline
@@ -1596,11 +1699,12 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
      \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Manutenibilità}}} \\
      MPD-CC & la capacità del software di essere modificato, 
      includendo correzioni, miglioramenti o adattamenti. & 30  & 45 \\
-    \end{tabularx}}   
-\end{comment} 
+    \end{tabularx}
+\end{comment}
+
 \subsection{Processi organizzativi}
 
-\section{Valutazioni per il miglioramento}  
+\section{Valutazioni per il miglioramento}
 \begin{comment}
 \section{Resoconto delle attività di verifica}
 

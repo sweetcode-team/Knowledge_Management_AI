@@ -46,49 +46,49 @@
 
 % INTRODUZIONE
 \section{Introduzione}
-\subsection{Scopo del documento}
+\subsection{Obiettivo del documento}
 L'obiettivo che ci si pone nella realizzazione di questo documento è la definizione delle metriche di valutazione e validazione del progetto, e la specifica degli obiettivi di qualità del prodotto finale. Tali parametri vengono stabiliti in accordo ai requisiti e 
 alle aspettative del proponente e talvolta a discrezione del team sulla base delle valutazioni fatte nel corso di studi.
 
 \subsection{Glossario}
-Al fine di evitare incomprensioni relative alla terminologia usata all’interno del documento viene fornito un Glossario nel file apposito. La prima occorrenza di ogni termine presente in tale documento presenta una scrittura in corsivo ed un pedice |g|.
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine definito nel Glossario.
 
 \subsection{Riferimenti}
    \subsubsection{Riferimenti normativi}
    \begin{itemize}
+    \item \textit{Guidelines for the application of ISO/IEC 90003:2004 to computer software}: \\
+        \url{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}\\
+        (Ultimo accesso: 2024-02-08);
     \item \textit{(Norme di progetto v2.0.0(0))};
     \item \textit{Regolamento del progetto didattico}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
-    (Ultimo accesso: 2024-02-08);
-    \item \textit{Guidelines for the application of ISO/IEC 90003:2004 to computer software}: \\
-    \url{https://cdn.standards.iteh.ai/samples/35867/36860aa4caba4c84b26051db576456d3/ISO-IEC-90003-2004.pdf}\\
-    (Ultimo accesso: 2024-02-08);
+        \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
+        (Ultimo accesso: 2024-02-08);
     \item \textit{Standard ISO/IEC 9126}:\\
-    \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}\\
-    (Ultimo accesso: 2024-02-08).
+        \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}\\
+        (Ultimo accesso: 2024-02-08).
     \end{itemize}
     
     \subsubsection{Riferimenti informativi}
     \begin{itemize}
-    \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+        \item \textit{(Analisi dei requisiti v2.0.0(0))};
+        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
             \begin{itemize}
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
                 (Ultimo accesso: 2024-02-08);
                 \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
                 (Ultimo accesso: 2024-02-08).
             \end{itemize}
-    \item \textit{(Analisi dei requisiti v2.0.0(0))};
-    \item \textit{(Piano di progetto v2.0.0(0))};
-    \item \textit{Verbali esterni ed interni};
-    \item \textit{Qualità di processo (argomento T8)}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
-    (Ultimo accesso: 2024-02-08);
-    \item \textit{Verifica e Validazione: Introduzione (argomento T9)}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
-    (Ultimo accesso: 2024-02-08).
-    
-    
-   
+        \item \textit{(Glossario v2.0.0(0))};
+        \item \textit{(Piano di progetto v2.0.0(0))};
+        \item \textit{Qualità di processo (argomento T8)}: \\
+        \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+        \item \textit{Verbali esterni ed interni};
+        \item \textit{Verifica e Validazione: Introduzione (argomento T9)}: \\
+            \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
+            (Ultimo accesso: 2024-02-08).
     \end{itemize}
 
     
@@ -116,26 +116,25 @@ Per garantire la qualità di processo si è deciso di aderire agli standard ISO/
 
 \endlastfoot
 
-    \hline
-    M.PC.1.PMS & Percentuale di metriche soddisfatte & $ \ge75\% $& $\ge95\% $\\
-    \hline
-     M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
-    \hline
-    M.PC.3.VP & Variazione di piano & $ \ge-6 $ & $ \ge0 $ \\
-    \hline
-    M.PC.4.VC & Variazione di costo & $0$ & $\ge100 $ \\
-    \hline
-    M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
-    \hline
-    M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
-    \hline
-    M.PC.7.SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
-    
-    \hline
-     M.PC.8.BC & Branch coverage & $ \ge75\% $ & $ 100\% $ \\
-    \end{xltabular}
-   
-    
+\hline
+M.PC.1.PMS & Percentuale di metriche soddisfatte & $ \ge75\% $& $ 100\% $\\
+\hline
+M.PC.2.RNP & Rischi non previsti & $ \le2 $ & $ 0 $\\
+\hline
+M.PC.3.VP & Variazione di piano & $ \le1 $ & $ 0 $ \\
+\hline
+M.PC.4.VC & Variazione di costo & $ 0 $ & $ \ge100 $ \\
+\hline
+M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
+\hline
+M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+\hline
+M.PC.7.SC & Statement coverage & $ \ge90\% $ & $ 100\% $ \\
+\hline
+M.PC.8.BC & Branch coverage & $ \ge90\% $ & $ 100\% $ \\
+\hline
+M.PC.9.ET & Efficienza temporale & $ \le140\% $ & $ 100\% $ \\
+\end{xltabular}
     
 \subsection{Qualità di prodotto}
 Abbiamo analizzato quali caratteristiche fossero necessarie per la realizzazione di un prodotto di 
@@ -159,33 +158,33 @@ qualità.\\
 \endlastfoot
 
 
+\hline
+M.PD.1.IG & Indice di Gulpease & $ \ge60\% $& $\ge80\% $\\
+\hline
+M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+\hline
+M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
+\hline
+M.PD.4.AR &  Accuratezza della risposta &-& - \\
+\hline
+M.PD.5.RD &  Rimozione dei difetti &-& - \\
+\hline
+M.PD.6.LCG &   Livello di controllo dei guasti &-& - \\
+
+\hline
+M.PD.7.CD &  Completezza descrittiva &-& - \\
+\hline
+M.PD.8.IM & Impatto delle modifiche &-& - \\
+
+\hline
+M.PD.9.TS & Percentuale di test superati  & $ \ge90\% $& $100\%$\\
     \hline
-    M.PD.1.IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
-    \hline
-   M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
-   \hline
-    M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
-    \hline
-    M.PD.4.AR &  Accuratezza della risposta &-& - \\
-    \hline
-    M.PD.5.RD &  Rimozione dei difetti &-& - \\
-   \hline
-    M.PD.6.LCG &   Livello di controllo dei guasti &-& - \\
-    
-    \hline
-    M.PD.7.CD &  Completezza descrittiva &-& - \\
-    \hline
-   M.PD.8.IM & Impatto delle modifiche &-& - \\
-    
-    \hline
-   M.PD.9.TS & Percentuale di test superati  & $ \ge85\% $& $100\%$\\
-     \hline
-  M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
-   \hline
-   M.PD.11.AFPH &Accesso fisico alle funzioni da  parte di personale portatore di handicap &-& - \\
-   \hline
- M.PD.12.TR & Tempo di risposta &-& - \\
-   \hline
+M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
+\hline
+M.PD.11.AFPH &Accesso fisico alle funzioni da  parte di personale portatore di handicap &-& - \\
+\hline
+M.PD.12.TR & Tempo di risposta &-& - \\
+\hline
 M.PD.13.EI & Efficienza dell’installazione &-& - \\
    
  
@@ -203,11 +202,8 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \subsection{Qualità per obiettivo}
 \subsubsection{Processi primari}
-
-\subsubsubsection{Acquisizione}
  
 \subsubsubsection{Fornitura}
-
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[H]
@@ -225,11 +221,10 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \endlastfoot
 
- 
-    \hline
-    M.PC.3.VP & Variazione di piano & $ \ge-8 $ & $ \ge0 $ \\
-    \hline
-    M.PC.4.VC & Variazione di costo & $0$ & $\ge100 $ \\
+\hline
+M.PC.3.VP & Variazione di piano & $ \le1 $ & $ 0 $ \\
+\hline
+M.PC.4.VC & Variazione di costo & $ 0 $ & $ \ge100 $ \\
 
 \end{xltabular}
 \caption{Metriche per la fornitura}
@@ -254,32 +249,10 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \endfoot
 
 \endlastfoot
-  \hline
-    M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
+\hline
+M.PC.5.ISR &  Indice di stabilità dei requisiti & $ \ge70\% $ & $ 100\% $  \\
 \end{xltabular}
 \caption{Metriche per l'analisi dei requisiti}
-\end{table}
-
-
-\subsubsubsubsection{Progettazione}
-
-\renewcommand{\arraystretch}{1.5}
-\begin{table}[H]
-\begin{xltabular}{\textwidth}{p{0.1\textwidth}|p{0.5\textwidth}|X|X}
-
-\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
-\endfirsthead
-
-\textbf{ID} & \textbf{Nome metrica} & \textbf{Valore tollerabile} & \textbf{Valore ambito}   \\
-\endhead
-
-\multicolumn{4}{r}{{Continua nella pagina successiva}} \\
-\endfoot
-
-\endlastfoot
-
-\end{xltabular}
-\caption{Metriche per la progettazione}
 \end{table}
 
 \subsubsubsubsection{Codifica}
@@ -297,15 +270,14 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \endfoot
 
 \endlastfoot
- \hline
-    M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
-    \hline
-    M.PC.7.SC & Statement coverage & $ \ge75\% $ & $ 100\% $ \\
-    
-    \hline
-     M.PC.8.BC & Branch Coverage & $ \ge75\% $ & $ 100\% $ \\
- \hline
-   M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
+\hline
+M.PC.6.CCM & Complessità ciclomatica media & $\le6 $ & $\le3 $ \\
+\hline
+M.PC.7.SC & Statement coverage & $ \ge90\% $ & $ 100\% $ \\
+\hline
+M.PC.8.BC & Branch Coverage & $ \ge90\% $ & $ 100\% $ \\
+\hline
+M.PD.2.LMC & Linee medie di codice per metodo & $\le30$ & $\le20$ \\
        
 
 \end{xltabular}
@@ -329,14 +301,13 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 \endlastfoot
 
 \hline
-   M.PD.9.TS & Percentuale di test superati  & $ \ge85\% $& $100\%$\\
-   \hline
-    M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
-
-    \hline
-   M.PD.8.IM & Impatto delle modifiche &-& - \\
-      \hline
-  M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
+M.PD.9.TS & Percentuale di test superati  & $ \ge90\% $& $100\%$\\
+\hline
+M.PD.3.AFS &  Adeguatezza delle funzioni sviluppate &-& - \\
+\hline
+M.PD.8.IM & Impatto delle modifiche &-& - \\
+\hline
+M.PD.10.CSD & Correttezza dello scambio di dati (Percezione degli utenti) &-& - \\
 
     
 \end{xltabular}
@@ -362,9 +333,9 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \endlastfoot
 \hline
-    M.PD.1.IG & Indice di Gulpease & $ \ge40\% $& $\ge80\% $\\
-     \hline
-    M.PD.7.CD &  Completezza descrittiva &-& - \\
+M.PD.1.IG & Indice di Gulpease & $ \ge60\% $& $\ge80\% $\\
+\hline
+M.PD.7.CD &  Completezza descrittiva &-& - \\
 \end{xltabular}
 \caption{Metriche per la documentazione}
 \end{table}
@@ -439,7 +410,7 @@ M.PD.13.EI & Efficienza dell’installazione &-& - \\
 
 \endlastfoot
 \hline
-     M.PC.2.RNP & Rischi non previsti & $ \le2 $& $\le1 $\\
+M.PC.2.RNP & Rischi non previsti & $ \le2 $ & $ 0 $\\
 \end{xltabular}
 \caption{Metriche per i processi organizzativi}
 \end{table}
@@ -1611,118 +1582,111 @@ Questa sezione contiene le liste di controllo usate per l'ispezione dei document
 
 \newpage
 
-\section{Dashboard metriche impiegate}
-\subsection{Misurazione e verifica}
-Sezione in cui vengono riportati i valori di misurazione delle metriche in uso.
-\subsection{M1PMS}
-\subsection{M2RNP}
-\subsection{M3VP}
-\subsubsection{variazione di piano}
+\section{Dashboard di valutazione della qualità}
+\subsection{M.PC.1.PMS}
 \begin{figure}[H]
-        \centering        
-        \includegraphics[width=15.5cm]{img/metriche/m3vp.png}
-        \caption{M3VP - Variazione di piano. }
-    \end{figure}
-\subsection{M4VC}
-\subsubsection{variazione di costo}
+\includegraphics[width=15.5cm]{img/metriche/MPC1PMS.png}
+\caption{M.PC.1.PMS - Percentuale di metriche soddisfatte.}
+\end{figure}
+\subsubsection{Considerazioni}
+Osservando il grafico si nota come, per la maggior parte delle metriche, inizialmente non sia stata raggiunta la soglia tollerabile.
+La difficoltà nel portare qualità al progetto era dovuta all’inesperienza iniziale, che ha portato il gruppo ad esplorare con cautela i vari aspetti del progetto.
+Con il tempo, il team ha iniziato ad esporre più frequentemente le problematiche riscontrate, discutendo e proponendo migliorie.
+Questo passo ha aiutato il gruppo a capire l’importanza della collaborazione e del dialogo aperto.
+Alla fine del secondo sprint, il team ha iniziato a porre più attenzione al PDCA e alla definizione del proprio Way of working nelle Norme di progetto, aumentando notevolmente la qualità dei processi.
+È possibile notare infatti un netto miglioramento a partire dal terzo sprint, fino ad arrivare ad un valore ambito, alla fine del quinto sprint. 
+Il team punta a mantenere la stessa qualità anche per quanto riguarda le metriche di prodotto, le cui misurazioni verranno effettuate una volta iniziate le attività di progettazione, codifica e testing del processo di sviluppo.
+\subsection{M.PC.2.RNP}
 \begin{figure}[H]
-        \centering        
-        \includegraphics[width=15.5cm]{img/metriche/m4vc.png}
-        \caption{M4VC - Variazione di costi. }
-    \end{figure}
-\subsection{M5ISR}
-\subsection{M6CCM}
-\subsection{M7SC}
-\subsection{M8BC}
-\subsection{M9IG}
-\subsubsection{Analisi dei requisiti}
-\subsubsection{Norme di progetto}
-\subsubsection{Piano di progetto}
+\includegraphics[width=15.5cm]{img/metriche/MPC2RNP.png}
+\caption{M.PC.2.RNP - Rischi non previsti.}
+\end{figure}
+\subsubsection{Considerazioni}
+Attraverso il grafico possiamo notare un'iniziale difficoltà nell'individuare i possibili rischi.
+Si sono infatti presentati due imprevisti che sono emersi a causa della nostra inesperienza generale.
+Tuttavia, il team è riuscito a mantenere la misurazione entro i limiti di tolleranza, gestendo i rischi pervenuti con metodo e ragionamento.
+Nel quarto sprint non è stato riscontrato alcun rischio, raggiungendo così il livello desiderato.
+Nel quinto sprint il team ha incontrato una nuova problematica legata alla scarsa comunicazione tra i membri, dovuta a impegni extra-universitari e periodi festivi.
+In linea di massima, il team ha quindi inizialmente sottovalutato i rischi, imparando poi ad affrontarli in modo più professionale, riportandoli e tracciandoli in modo dettagliato attraverso discussioni documentate nei vari verbali.
+\subsection{M.PC.3.VP}
+\begin{figure}[H]
+\includegraphics[width=15.5cm]{img/metriche/MPC3VP.png}
+\caption{M.PC.3.VP - Variazione di piano.}
+\end{figure}
+\subsubsection{Considerazioni}
+Inizialmente il team ha avuto difficoltà nel mantenere un ritmo adeguato e una pianificazione accurata.
+A causa di una sovraccarico della quantità di lavoro assegnata ad ogni membro e di una pianificazione superficiale, si è verificata una discrepanza significativa tra i compiti pianificati e quelli effettivamente completati.
+Tuttavia, nel secondo sprint, il team ha preso decisioni più precise e prudenti, raggiungendo un livello ottimale di performance.
+Successivamente, dopo due sprint con un leggero technical debt legato alla grande quantità di lavoro pianificato, il team è riuscito a ristabilire il valore ambito durante il quinto e sesto sprint.
+\subsection{M.PC.4.VC}
+\begin{figure}[H]
+\includegraphics[width=15.5cm]{img/metriche/MPC4VC.png}
+\caption{M.PC.4.VC - Variazione di costo.}
+\end{figure}
+\subsubsection{Considerazioni}
+Inizialmente il team ha sottovalutato la quantità di lavoro necessario per completare le attività pianificate, superando i costi stimati.
+Nel terzo periodo, data una sovrastima dei costi di realizzazione del PoC, il team è riuscito a contenere le spese e rientrare nelle stime iniziali.
+Durante il quarto sprint, il colloquio con il professor Cardin ha richiesto una ristrutturazione dell'Analisi dei requisiti, causando un aumento delle ore dedicate alla preparazione della prima revisione RTB.
+Nonostante questo impegno aggiuntivo e apparentemente dispendioso, il team è riuscito a portare a termine lo sprint limitando le perdite.
+Il gruppo punta a migliorare la pianificazione, ponendo più attenzione alla definizione dei task e alla loro stima oraria, cercando di abbassare la varianza, molto evidente nel grafico. 
+\subsection{M.PC.5.ISR}
+\begin{figure}[H]
+\includegraphics[width=15.5cm]{img/metriche/MPC5ISR.png}
+\caption{M.PC.5.ISR - Indice di stabilità dei requisiti.}
+\end{figure}
+\subsubsection{Considerazioni}
+Nei primi due sprint, la nostra inesperienza nella definizione di un gran numero di requisiti ha portato ad un'alta instabilità dei requisiti.
+Nel terzo sprint, il team ha aggiunto numerosi requisiti, anche grazie a incontri interni ed esterni che hanno contribuito a rendere più chiare le funzionalità del prodotto.
+Nel quarto sprint, dopo un incontro con il Professore Cardin, è stato necessario ristrutturare l'Analisi dei requisiti, sia per struttura del documento che per contenuto.
+Nel quinto e sesto sprint, il team ha rapidamente ristabilito l'ordine, definendo un elenco dei requisiti che, al netto di eventuali modifiche future limitate, rappresenterà l'insieme finale che verrà considerato nello sviluppo dell'MVP.
+\subsection{M.PC.6.CCM}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PC.7.SC}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PC.8.BC}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PC.9.ET}
+\begin{figure}[H]
+\includegraphics[width=15.5cm]{img/metriche/MPC9ET.png}
+\caption{M.PC.9.ET - Efficienza temporale.}
+\end{figure}
+\subsubsection{Considerazioni}
+Nonostante un inizio caratterizzato da un elevato rapporto tra ore di lavoro e ore produttive, dovuto all'inesperienza e alla scarsa familiarità con gli strumenti utilizzati, si è registrato un notevole miglioramento dal terzo sprint in poi.
+Questo è stato possibile grazie al miglioramento delle norme, che hanno infatti ricoperto la funzione di guida durante lo svolgimento delle attività da parte dei componenti del gruppo.
+Con l'obiettivo di migliorare in modo costante la qualità, il team ha deciso di ridurre la soglia tollerabile da 160\% a 140\%.
+Il team punta a migliorare ulteriormente questo rapporto, ritenendolo uno degli indicatori più importanti da considerare nella valutazione dell'automiglioramento.
+\subsection{M.PD.1.IG}
+\begin{figure}[H]
+\includegraphics[width=15.5cm]{img/metriche/MPD1IG.png}
+\caption{M.PD.1.IG - Indice di Gulpease.}
+\end{figure}
+\subsubsection{Considerazioni}
+Tutti i documenti sono facilmente comprensibili anche per chi ha una licenza media, poiché rispettano la soglia di tolleranza del 60\%.
+Trattando argomenti più specifici, le Norme di progetto utilizzano frasi più elaborate, rendendo l'indice di leggibilità di tale documento leggermente più basso degli altri.
+Il gruppo pensa di continuare a migliorare questo indice rielaborando i periodi lunghi, abbreviandoli o riformulando i concetti esposti ove possibile.
+\subsection{M.PD.2.LMC}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.3.AFS}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.4.AR}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.5.RD}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.6.LCG}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.7.CD}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.8.IM}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.9.TS}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.10.CSD}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.11.AFPH}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.12.TR}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
+\subsection{M.PD.13.EI}
+Questa metrica verrà misurata solo dopo il superamento della revisione RTB.
 
-\subsubsection{Piano di qualifica}
-\subsection{M10PRI}
-\subsection{M11LMC}
-\subsection{M12DC}
-
-\subsection{Processi primari}
-
-\subsection{Processi di supporto}
-\begin{comment}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.05\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Verifica}}} \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-     &  &  &  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Gestione della qualità}}} \\
-    \hline
-     &  &  &  \\
-    \end{tabularx}
-  
-\subsubsection{Documentazione}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.15\textwidth}|p{0.35\textwidth}|X|X}
-    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale}  \\
-    \hline
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Funzionalità}}} \\
-    \hline
-    MPD-CR & Copertura dei requisiti & 100 & 100 \\
-    
-    \hline
-   
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Usabilità}}}
-    \\
-    \hline
-     MPD-DIU & Difficoltà incontrate dall'utente & 2  & 0 \\
-      
-    \hline
-   
-    \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Efficienza}}}
-    \\
-    \hline
-     MPD-TA & Tempo di apprendimento & 10 minuti & 5 minuti \\
-      \hline
-     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Affidabiltà}}} \\
-     MPD-TM & Tempo di risposta medio & 3 secondi & 2 secondi \\
-      \hline
-     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Portabiltà}}} \\
-     MPD-VS & La capacità del programma di eseguire su più piattaforme & 100  & 100 \\
-    \hline
-     \multicolumn{4}{l}{\cellcolor{primarycolor}\textbf{\textit{Manutenibilità}}} \\
-     MPD-CC & la capacità del software di essere modificato, 
-     includendo correzioni, miglioramenti o adattamenti. & 30  & 45 \\
-    \end{tabularx}
-\end{comment}
-
-\subsection{Processi organizzativi}
-
-\section{Valutazioni per il miglioramento}
-\begin{comment}
-\section{Resoconto delle attività di verifica}
-
-\subsection{Verifica della documentazione}
-\subsubsection{Errori ortografici}
-\subsubsection{Indici di Gulpease}
-
-\subsection{Verifica dei processi}
-
-\subsubsection{Estimated at completion}
-\subsubsection{Budget variance e schedule variance}
-\subsubsection{Actual cost e estimate to complete}
-\subsubsection{Earned value e planned value}
-\subsubsection{Requirements stability index e satisfied obligatory requirements}
-\subsubsection{Code coverage back-end}
-\subsubsection{Code coverage front-end}
-\subsubsection{Passed test cases percentage}
-\subsubsection{Failed test cases percentage}
-\subsubsection{Comprensibilità del codice}
-\end{comment}
 \end{document}

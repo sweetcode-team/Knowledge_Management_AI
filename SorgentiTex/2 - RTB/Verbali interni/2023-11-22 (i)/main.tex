@@ -1,0 +1,110 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{11.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{19.2em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{17.2cm}
+
+\newpage
+% ~\newpage
+% ~ \\\\\\~
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+
+\vspace{15em}
+
+\decisioni
+
+\end{paracol}
+
+\newpage
+
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|c|c|c}
+\label{tab:long}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endfirsthead
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endhead
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+% Per ID Task: vuoto se non l'abbiamo messa come issue, SWE-id_task altrimenti
+\hline
+SWE-59 & Stesura verbale riunione & Ciriolo I. & Orlandi G. & $2023-11-28$ \\
+
+\hline
+SWE-63 & Completamento diagrammi Casi d'Uso con relativa stesura di 'Analisi dei requisiti' & Bresolin G. & Orlandi G. & $2023-11-28$ \\
+
+
+\hline
+Nessuna & Assegnazione materiale per lo studio individuale delle tecnologie & Dugo A. & Team & $2023-11-28$ \\
+\hline
+Nessuna & Studio e testing di tecnologie concordate con l'azienda & \quantities{Dugo A.\\ Feltrin E.\\ Michelon R.} & Team & $2023-11-29$ \\
+\hline
+SWE-41 & Prima stesura 'Glossario' & Campese M. & Orlandi G. & $2023-11-29$ \\
+\hline
+SWE-66 & Prima stesura 'Piano di qualifica' & Ciriolo I. & Orlandi G. & $2023-12-13$ \\
+ 
+
+    
+\end{xltabular}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione interna è programmata per il 2023-11-27 alle ore 14:00.
+
+\end{document}

@@ -1,0 +1,630 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\usepackage{xhfill}
+
+
+
+\title{\titolo}
+\author{SWEetCode}
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+%\renewcommand{\thesubsubsection}{}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\fontsize{28}{15}\bfseries}{\thesection}{1em}{}
+
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% REGISTRO DELLE VERSIONI
+\include{registroversioni}
+\newpage
+
+% INDICE
+\tableofcontents
+\newpage
+
+% INIZIO PAGINE
+\section{Introduzione}
+\subsection{Obiettivo del documento}
+\paragraph{}Questo documento è stato creato con l'intento di raccogliere tutti i termini che possano risultare sconosciuti ad un lettore esterno o che possano creare ambiguità. Lo scopo è quello di creare una base omogenea di conoscenza specifica. 
+
+\subsection{Impostazione}
+\paragraph{}Il documento è suddiviso in sezioni rappresentanti le lettere dell'alfabeto;
+all'interno di queste si troveranno i termini ambigui o specifici del progetto che sono stati contrassegnati nel resto della documentazione con un pedice \textit{|g|} alla fine della parola.
+
+\newpage
+\vspace{2em}
+\section{A}
+\vspace{2em}
+\paragraph{Abbreviazioni}\noindent\hrulefill
+\paragraph{}Forme abbreviate di parole o frasi comunemente utilizzate nel codice o nella documentazione per migliorare la concisione e la leggibilità.
+
+\vspace{2em}
+\paragraph{Agile}\noindent\hrulefill
+\paragraph{}Nel campo dello sviluppo software, il metodo Agile fa riferimento ad un modello di sviluppo che promuove la consegna del software al cliente/destinatario in tempi brevi e frequenti in modo da garantire sempre elevata qualità e un perfetto funzionamento.
+Altri aspetti caratteristici di questo metodo sono: formazioni di team di sviluppo piccoli, auto-organizzati caratterizzati da una comunicazione informale, sviluppo incrementale e iterativo e coinvolgimento continuo del cliente.
+
+
+\vspace{2em}
+\paragraph{AI}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Artificial Intelligence\pg}.
+
+
+\vspace{2em}
+\paragraph{Amazon S3}\noindent\hrulefill
+\paragraph{}Amazon Simple Storage Service (Amazon S3) È un servizio di archiviazione di oggetti offerto da \textit{Amazon Web Services\pg} (AWS). S3 consente agli utenti di archiviare e recuperare quantità virtualmente illimitate di dati in modo sicuro ed affidabile attraverso il cloud. S3 è un servizio progettato per offrire scalabilità, durabilità e bassa latenza per l'archiviazione di file.
+
+\vspace{2em}
+\paragraph{Amazon Web Services}\noindent\hrulefill
+\paragraph{}Amazon Web Services è una collezione completa di servizi di cloud computing offerti da Amazon. Fornisce una serie di servizi tra cui potenza di calcolo, archiviazione di database, distribuzione di contenuti e molte altre funzionalità.
+
+\vspace{2em}
+\paragraph{API}\noindent\hrulefill
+\paragraph{}Vedi \textit{Application Programming Interface\pg}
+
+\vspace{2em}
+\paragraph{Application Programming Interface}\noindent\hrulefill
+\paragraph{}Un Application Programming Interface è un insieme di protocolli e specifiche utilizzate per la programmazione di applicazioni software. Fornisce un insieme di operazioni predefinite che un'applicazione può eseguire per interagire con un sistema o una piattaforma.
+
+\vspace{2em}
+\paragraph{Architettura del Software}\noindent\hrulefill
+\paragraph{}La struttura organizzativa e concettuale di un sistema software, che include componenti, relazioni e principi guida per garantire la coerenza e l'efficienza del sistema nel suo insieme.
+
+
+
+\vspace{2em}
+\paragraph{Artificial Intelligence}\noindent\hrulefill
+\paragraph{}Con questo termine si intende la scienza e l’ingegneria della creazione di macchine intelligenti, in particolare di programmi informatici intelligenti. Questo campo studia i fondamenti teorici, le metodologie e le tecniche che consentono la progettazione di sistemi hardware e software capaci di fornire prestazioni che, a un osservatore comune, sembrerebbero essere di pertinenza esclusiva dell’intelligenza umana.
+
+\vspace{2em}
+\paragraph{Attributi}\noindent\hrulefill
+\paragraph{}Variabili associate a una classe in programmazione orientata agli oggetti che definiscono lo stato di un oggetto.
+
+
+\vspace{2em}
+\paragraph{Attore}\noindent\hrulefill
+\paragraph{}Elemento che rappresenta un soggetto esterno che interagisce con il sistema modellato. Gli attori possono essere utenti, altri sistemi o qualsiasi altra entità che abbia un ruolo nelle interazioni con il sistema modellato.
+
+\vspace{2em}
+\paragraph{AWS}\noindent\hrulefill
+\paragraph{}Vedi \textit{Amazon Web Services\pg}
+
+
+\newpage
+\section{B}
+\vspace{2em}
+\paragraph{Backend}\noindent\hrulefill
+\paragraph{}Il backend è la parte di un'applicazione che gestisce la logica di business, l'accesso ai dati e le operazioni del server.
+
+\vspace{2em}
+\paragraph{Boto3}\noindent\hrulefill
+\paragraph{}Boto3 è una libreria \textit{Python\pg} sviluppata da \textit{Amazon Web Services\pg} (AWS) per semplificare l'interazione con i servizi di AWS tramite Python. Questa libreria permette agli sviluppatori di scrivere script o applicazioni Python per gestire i servizi AWS.
+
+\vspace{2em}
+\paragraph{Bug}\noindent\hrulefill
+\paragraph{}Un bug è un errore o un difetto in un programma o sistema che produce un risultato indesiderato o imprevisto.
+
+
+
+
+
+\newpage
+\section{C}
+
+\vspace{2em}
+\paragraph{CamelCase}\noindent\hrulefill
+\paragraph{}Convenzione di denominazione in cui le parole sono unite senza spazi e ogni parola successiva inizia con una lettera maiuscola, spesso utilizzata per nominare variabili e funzioni in molti linguaggi di programmazione.
+
+
+\vspace{2em}
+\paragraph{Capitolato}\noindent\hrulefill\noindent\hrulefill
+\paragraph{} È un documento tecnico generalmente collegato ad un contratto d'appalto e definisce delle specifiche tecniche delle opere che andranno eseguite per effetto del contratto stesso.
+
+\vspace{2em}
+\paragraph{Chain}\noindent\hrulefill
+\paragraph{}Una chain si riferisce a una sequenza di operazioni o attività che vengono eseguite in un ordine specifico.
+
+\vspace{2em}
+\paragraph{Chatbot}\noindent\hrulefill
+\paragraph{}Un chatbot è un software progettato per simulare una conversazione con gli utenti umani. I chatbot sono comunemente utilizzati per rispondere automaticamente alle domande degli utenti, guidare gli utenti attraverso un processo o fornire assistenza automatizzata.
+
+\vspace{2em}
+\paragraph{Ciclo di vita del software}\noindent\hrulefill\noindent\hrulefill
+\paragraph{}Insieme degli stati di maturità che un prodotto software assume tra il suo concepimento e il ritiro in conseguenza alle
+attività svolte su di esso.
+
+\vspace{2em}
+\paragraph{Classe}\noindent\hrulefill
+\paragraph{}In programmazione orientata agli oggetti, una struttura che rappresenta un oggetto e le azioni che possono essere eseguite su di esso.
+
+
+\vspace{2em}
+\paragraph{Codifica}\noindent\hrulefill
+\paragraph{}Il processo di trasformazione delle specifiche del progetto in codice sorgente eseguibile da un computer.
+
+
+\vspace{2em}
+\paragraph{Committente}\noindent\hrulefill
+\paragraph{}Committente è una parola italiana derivante dalla parola latina \textit{committo}. Essa indica una persona o ente che commissiona o ordina un lavoro o un servizio a un fornitore o a un prestatore di
+servizi. Nel corso del progetto in questo caso ci si riferisce al Professor Tullio Vardanega.
+
+\vspace{2em}
+\paragraph{Componente React}\noindent\hrulefill
+\paragraph{}Un blocco costruttivo di un'interfaccia utente in \textit{React\pg}, scritto in \textit{JavaScript\pg}, che può includere logica e presentazione.
+
+
+\vspace{2em}
+\paragraph{Costruttore}\noindent\hrulefill
+\paragraph{}Un metodo speciale di una \textit{classe\pg} che viene eseguito automaticamente quando un oggetto di quella classe viene istanziato, spesso utilizzato per inizializzare gli attributi dell'oggetto.
+
+\vspace{2em}
+\paragraph{CSS}\noindent\hrulefill
+\paragraph{}Linguaggio di stile utilizzato per definire l'aspetto e la presentazione di pagine web.
+
+
+
+\newpage
+\section{D}
+\vspace{2em}
+\paragraph{Database}\noindent\hrulefill
+\paragraph{}Un database è una raccolta organizzata di dati strutturati che consente l'archiviazione, la ricerca e il recupero di dati.
+
+\vspace{2em}
+\paragraph{Database Management System}\noindent\hrulefill
+\paragraph{}Un Database Management System è un sistema software progettato per consentire la creazione, la manipolazione e l’interrogazione efficiente di una o più basi di dati. Un Database Management System funziona come un intermediario tra l’utente e il \textit{database\pg}, facilitando l’accesso e la gestione dei dati.
+
+\vspace{2em}
+\paragraph{DBMS}\noindent\hrulefill
+\paragraph{}Vedi \textit{Database Management System\pg}
+
+
+\vspace{2em}
+\paragraph{Debugging}\noindent\hrulefill
+\paragraph{}Il processo di individuazione e risoluzione degli errori o \textit{bug\pg} nel codice, al fine di migliorare la correttezza e le prestazioni del software.
+
+
+\vspace{2em}
+\paragraph{Diagramma di Gantt}\noindent\hrulefill
+\paragraph{}Il diagramma di Gantt è costruito partendo da un asse orizzontale a rappresentazione dell’arco temporale
+totale del progetto, suddiviso in fasi incrementali (e.g. giorni, settimane, mesi) e da un asse
+verticale a rappresentazione delle mansioni o attività che compongono il progetto.
+
+\vspace{2em}
+\paragraph{Discord}\noindent\hrulefill
+\paragraph{}Discord è una piattaforma di comunicazione che offre funzionalità di chat vocale, video e testuale.
+
+\vspace{2em}
+\paragraph{Docstrings}\noindent\hrulefill
+\paragraph{}Stringhe di documentazione incorporate direttamente nel codice sorgente per descrivere la funzionalità di classi, metodi o moduli.
+
+
+
+\newpage
+\section{E}
+\vspace{2em}
+\paragraph{Embedding}\noindent\hrulefill
+\paragraph{}Gli embedding sono rappresentazioni vettoriali di alta dimensione che catturano le relazioni semantiche tra parole o frasi.
+
+\vspace{2em}
+\paragraph{Efficacia}\noindent\hrulefill
+\paragraph{}L'efficacia indica la capacità di raggiungere l'obiettivo prefissato.
+
+\vspace{2em}
+\paragraph{Efficienza}\noindent\hrulefill
+\paragraph{}La capacità di azione o di produzione con la massima efficacia ma con il minimo scarto/spesa di risorse e di tempo impiegati.
+
+\newpage
+\section{F}
+\vspace{2em}
+\paragraph{FIXME}\noindent\hrulefill
+\paragraph{}Un commento nel codice che indica sezioni che necessitano di revisione e miglioramenti.
+
+
+\vspace{2em}
+\paragraph{Flask}\noindent\hrulefill
+\paragraph{}Flask è un \textit{framework\pg} web open source scritto in \textit{Python\pg}, caratterizzato da flessibilità, leggerezza e semplicità d’uso.
+
+\vspace{2em}
+\paragraph{Formatter PEP8}\noindent\hrulefill
+\paragraph{}Uno strumento o regola di formattazione del codice che segue le linee guida definite nel documento PEP8 per \textit{Python\pg}.
+
+
+\vspace{2em}
+\paragraph{Framework}\noindent\hrulefill
+\paragraph{}Un framework è un sistema che consente di estendere le funzionalità del linguaggio di programmazione su cui è basato, fornendo allo sviluppatore una struttura coerente ed efficace al fine di effettuare azioni e comandi in modo semplice e veloce.
+
+\vspace{2em}
+\paragraph{Frontend}\noindent\hrulefill
+\paragraph{}Il frontend si riferisce alla parte dell'applicazione con cui l'utente interagisce direttamente. È responsabile della presentazione dei dati e dell'interfaccia utente.
+
+\newpage
+\section{G}
+\vspace{2em}
+\paragraph{Git}\noindent\hrulefill
+\paragraph{}Sistema software di controllo di versione distribuito.
+
+\vspace{2em}
+\paragraph{GitHub}\noindent\hrulefill
+\paragraph{}È un servizio web di hosting specializzato per lo sviluppo di progetti software 
+che usa il sistema di controllo di versione \textit{Git\pg}.
+%GitHub offre diversi piani per repository privati a pagamento ma anche piani gratuiti molto utilizzati per
+%lo sviluppo di progetti open-source.
+
+\vspace{2em}
+\paragraph{GitHub Actions}\noindent\hrulefill
+\paragraph{}È un servizio di \textit{GitHub\pg} che permette di automatizzare le fasi di build, test e distribuzione nella pipeline di sviluppo in maniera efficiente e scalabile attraverso semplici file di configurazione.
+
+\vspace{2em}
+\paragraph{Google Meet}\noindent\hrulefill
+\paragraph{}Google Meet è un servizio di videoconferenza sviluppato da Google. Permette riunioni online, presentazioni, webinar e conferenze video.
+
+\vspace{2em}
+\paragraph{Gulpease}\noindent\hrulefill 
+\paragraph{}O “Indice Gulpease” è un indice di leggibilità di un testo tarato sulla
+lingua italiana. A differenza di altri ha il vantaggio di utilizzare la lunghezza delle
+parole in lettere anziché in sillabe, rendendo più semplice il calcolo automatico.
+
+\newpage
+\section{H}
+\vspace{2em}
+\paragraph{HTML}\noindent\hrulefill
+\paragraph{}Linguaggio di markup utilizzato per strutturare il contenuto delle pagine web.
+
+
+\newpage
+\section{I}
+\vspace{2em}
+\paragraph{Indentazione}\noindent\hrulefill
+\paragraph{}La pratica di spaziare o tabulare il codice per migliorare la sua leggibilità, spesso utilizzata per indicare la struttura del codice in linguaggi come \textit{Python\pg}.
+
+
+\vspace{2em}
+\paragraph{Ingegneria del Software}\noindent\hrulefill
+\paragraph{}L' ingegneria del software è quella disciplina informatica che si occupa dei processi produttivi e delle metodologie di sviluppo finalizzate alla realizzazione di sistemi software.
+
+\vspace{2em}
+\paragraph{Issue Tracking System}\noindent\hrulefill
+\paragraph{}È un sistema di monitoraggio dei task; è uno strumento che consente di gestire vari casi, di definire la loro priorità e di tenere traccia del relativo avanzamento durante il processo, dall'inizio alla fine. 
+
+\vspace{2em}
+\paragraph{ITS}\noindent\hrulefill
+\paragraph{}Vedi \textit{Issue Tracking System\pg}
+
+\newpage
+\section{J}
+\vspace{2em}
+\paragraph{JavaScript}\noindent\hrulefill
+\paragraph{}JavaScript è un linguaggio di programmazione interpretato che viene comunemente utilizzato per creare interattività nei siti web.
+
+\vspace{2em}
+\paragraph{Jira}\noindent\hrulefill
+\paragraph{}\href{https://www.atlassian.com/it/software/jira}{https://www.atlassian.com/it/software/jira}\\\\
+Software utilizzato per l'organizzazione del lavoro tra i membri del team per implementare un \textit{ITS\pg}.
+
+\vspace{2em}
+\paragraph{JSDoc}\noindent\hrulefill
+\paragraph{}Uno stile di documentazione per il codice \textit{JavaScript\pg} che utilizza annotazioni nei commenti per descrivere la struttura e il comportamento del codice.
+
+
+
+
+\newpage
+\section{K}
+\vspace{2em}
+\paragraph{Knowledge}\noindent\hrulefill
+\paragraph{}La "knowledge", o conoscenza, si riferisce alla familiarità, consapevolezza o comprensione di qualcuno o qualcosa, come fatti, informazioni, descrizioni o abilità. Questa viene acquisita attraverso l’esperienza o l’educazione, mediante la percezione, la scoperta o l’apprendimento.
+
+
+
+\newpage
+\section{L}
+\vspace{2em}
+\paragraph{Langchain}\noindent\hrulefill
+\paragraph{}LangChain è un framework progettato per semplificare la creazione di applicazioni utilizzando modelli linguistici di grandi dimensioni (\textit{LLM\pg}).
+
+\vspace{2em}
+\paragraph{Large Language Model}\noindent\hrulefill
+\paragraph{}Un Large Language Model è un modello di apprendimento automatico che è in grado di generare testo coerente e informativo. Questi modelli sono addestrati su grandi quantità di testo e possono generare risposte dettagliate alle domande.
+
+\vspace{2em}
+\paragraph{Librerie esterne}\noindent\hrulefill
+\paragraph{}Raccolta di moduli o funzioni già implementati da terze parti, utilizzati per estendere le funzionalità del software.
+
+\vspace{2em}
+\paragraph{Librerie interne}\noindent\hrulefill
+\paragraph{}Moduli o funzioni create internamente al progetto software per gestire specifiche funzionalità.
+
+\vspace{2em}
+\paragraph{Linting}\noindent\hrulefill
+\paragraph{}Processo di analisi statica del codice per identificare possibili errori, \textit{bug\pg} o problemi di stile, spesso automatizzato con strumenti di linting.
+
+
+\vspace{2em}
+\paragraph{LLM}\noindent\hrulefill
+\paragraph{}Vedi \textit{Large Language Model\pg}
+
+
+
+
+
+\newpage
+\section{M}
+
+\vspace{2em}
+\paragraph{Management}\noindent\hrulefill
+\paragraph{}Il management può essere definito come un processo o una forma di lavoro che implica la guida e la direzione di un gruppo di persone verso gli scopi o gli obiettivi dell’organizzazione.
+
+\vspace{2em}
+\paragraph{Metodi}\noindent\hrulefill
+\paragraph{}Funzioni associate a una \textit{classe\pg} che operano su dati specifici dell'oggetto.
+
+
+\vspace{2em}
+\paragraph{Milestone}\noindent\hrulefill
+\paragraph{}Milestone è il termine letterale per pietra miliare. Figurativamente, la milestone determina importanti traguardi in termini di tempo o di attività; quindi stabiliscono una metrica di avanzamento del progetto.
+
+\vspace{2em}
+\paragraph{Minimum Viable Product}\noindent\hrulefill
+\paragraph{}L’MVP è una prima versione del prodotto o servizio finale che l’azienda sviluppa. È una versione minima ma funzionante del prodotto o servizio.
+
+\vspace{2em}
+\paragraph{MVP}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Minimum Viable Product\pg}.
+
+
+
+\newpage
+\section{N}
+\vspace{2em}
+\paragraph{Node.js}\noindent\hrulefill
+\paragraph{}Node.js è un ambiente di runtime \textit{JavaScript\pg} open-source che esegue il codice JavaScript al di fuori di un browser web.
+
+
+\newpage
+\section{O}
+
+\vspace{2em}
+\paragraph{Occultamento}\noindent\hrulefill
+\paragraph{}L’occultamento è l’atto di nascondere o tenere nascosto qualcosa. Il termine si riferisce alla situazione in cui un documento è visibile all’utente, ma non viene considerato nella formulazione delle risposte da parte del \textit{chatbot\pg}.
+
+\vspace{2em}
+\paragraph{OpenAI}\noindent\hrulefill
+\paragraph{}OpenAI è un'organizzazione di ricerca in intelligenza artificiale che mira a promuovere e sviluppare IA. OpenAI ha prodotto numerosi modelli di apprendimento automatico.
+
+\newpage
+\section{P}
+
+\vspace{2em}
+\paragraph{PascalCase}\noindent\hrulefill
+\paragraph{}Convenzione di denominazione in cui ogni parola inizia con una lettera maiuscola, spesso utilizzata per nominare classi e tipi in molti linguaggi di programmazione.
+
+
+\vspace{2em}
+\paragraph{PB}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Product Baseline\pg}.
+
+\vspace{2em}
+\paragraph{PDCA}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Plan-Do-Check-Act\pg}.
+
+\paragraph{PDF}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Portable Document Format\pg}.
+
+\vspace{2em}
+\paragraph{Pinecone}\noindent\hrulefill
+\paragraph{}Pinecone è un servizio di ricerca di vettori che consente di memorizzare e recuperare i vettori di \textit{embedding} in modo efficiente.
+
+
+\vspace{2em}
+\paragraph{Plan-Do-Check-Act}\noindent\hrulefill
+\paragraph{}Anche detto \textit{Ciclo di Deming}, è un modello per il
+miglioramento continuo della qualità, la quale è rivolta ai processi, non al prodotto.
+\begin{itemize}
+    \item Plan: definire e pianificare gli obiettivi e i processi necessari per arrivare ai risultati attesi;
+    \item Do: realizzare questi obiettivi;
+    \item Check: controllare i risultati ottenuti precedentemente;
+    \item Act: agire sui processi che non sono stati valutati bene al passo precedente;
+\end{itemize}
+
+\vspace{2em}
+\paragraph{PoC}\noindent\hrulefill
+\paragraph{} Vedi \textit{Proof of Concept\pg}
+
+\vspace{2em}
+\paragraph{Portable Document Format}\noindent\hrulefill
+\paragraph{}Il Portable Document Format è un formato di file utilizzato per presentare e scambiare documenti in modo affidabile, indipendentemente dal software, dall'hardware o dal sistema operativo.
+
+\vspace{2em}
+\paragraph{Prettier}\noindent\hrulefill
+\paragraph{}Un formatter automatico per il codice \textit{JavaScript\pg} che garantisce uniformità nella formattazione del codice.
+
+
+\vspace{2em}
+\paragraph{Processo}\noindent\hrulefill
+\paragraph{}Insieme di attività coese che hanno come scopo raggiungere un obiettivo/risultato concreto consumando risorse.
+
+\vspace{2em}
+\paragraph{Product Baseline}\noindent\hrulefill
+\paragraph{}Seconda revisione di avanzamento prevista dall’attività progettuale. In preparazione a questa revisione il gruppo si dedica alla progettazione architetturale e di dettaglio del prodotto previsto e compreso ad alto livello nella \textit{Requirements and Technology Baseline\pg}.
+
+\vspace{2em}
+\paragraph{Programmatori}\noindent\hrulefill
+\paragraph{}Professionisti che scrivono codice per sviluppare software, spesso specializzati in linguaggi di programmazione specifici.
+
+
+\vspace{2em}
+\paragraph{Proof of Concept}\noindent\hrulefill
+\paragraph{}È il prototipo o un esempio di un’idea o di un concetto; questo prototipo dimostra che una particolare soluzione è fattibile attraverso determinate tecnologie e che può essere utilizzata in un ambiente reale. Esso è utile per esplorare le criticità inerenti alle tecnologie e alla loro combinazione e compatibilità.
+
+\vspace{2em}
+\paragraph{Proponente}\noindent\hrulefill
+\paragraph{}Il proponente è la persona che ha proposto al \textit{Committente\pg} un \textit{Capitolato\pg}
+d’appalto.
+
+\vspace{2em}
+\paragraph{Props}\noindent\hrulefill
+\paragraph{}Proprietà passate ai \textit{componenti React\pg}. per trasmettere dati.
+
+
+\vspace{2em}
+\paragraph{Python}\noindent\hrulefill
+\paragraph{}Python è un linguaggio di programmazione ad alto livello noto per la sua leggibilità e versatilità.
+
+
+\newpage
+\section{Q}
+\vspace{2em}
+\paragraph{Quoting}\noindent\hrulefill
+\paragraph{}Utilizzare singoli apici (') per racchiudere le stringhe nel codice.
+
+
+\newpage
+\section{R}
+\vspace{2em}
+\paragraph{React}\noindent\hrulefill
+\paragraph{}React è una libreria \textit{JavaScript\pg} per la costruzione di interfacce utente.
+
+\vspace{2em}
+\paragraph{Refactoring}\noindent\hrulefill
+\paragraph{}Il refactoring è una pratica di sviluppo del software che consiste nel ristrutturare il codice sorgente di un programma senza cambiarne il comportamento esterno. L'obiettivo principale del refactoring è migliorare la leggibilità del codice, rendendolo più comprensibile, manutenibile ed efficiente, senza introdurre nuove funzionalità o modificare il comportamento esistente.
+
+
+\vspace{2em}
+\paragraph{Requisito}\noindent\hrulefill
+\paragraph{}Una esigenza, funzione o caratteristica di un sistema o delle sue componenti necessarie per il raggiungimento di un obiettivo. 
+
+
+\vspace{2em}
+\paragraph{Requirements and Technology Baseline}\noindent\hrulefill
+\paragraph{}Prima revisione di avanzamento di progetto nel corso di \textit{Ingegneria del Software\pg}. Questa revisione richiede di aver realizzato un \textit{PoC\pg} accompagnato dalla documentazione di Analisi dei requisiti.
+
+\vspace{2em}
+\paragraph{Retriever}\noindent\hrulefill
+\paragraph{}Un retriever è un componente o strumento utilizzato per recuperare informazioni pertinenti da un insieme di dati o da una fonte di dati.
+
+
+\vspace{2em}
+\paragraph{RTB}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Requirements and Technology Baseline\pg}.
+
+
+\newpage
+\section{S}
+
+\vspace{2em}
+\paragraph{Script}\noindent\hrulefill
+\paragraph{}Letteralmente "copione" in inglese, in ambiente informatico rappresenta un programma di dimensioni limitate, solitamente sequenziale e scritto in un linguaggio interpretato. Spesso ha complessità bassa e realizza un singolo task.
+
+\vspace{2em}
+\paragraph{Scrum}\noindent\hrulefill
+\paragraph{}È un framework  \textit{Agile\pg} per la gestione del ciclo di sviluppo del software che enfatizza il lavoro di squadra, la trasparenza e la responsabilità. Scrum utilizza un metodo incrementale e iterativo per ottimizzare la prevedibilità e il controllo dei rischi.
+I ruoli di Scrum nello sviluppo del software sono i seguenti: Product Owner, Scrum Master, Development Team.
+
+
+\vspace{2em}
+\paragraph{Slack}\noindent\hrulefill
+\paragraph{}Slack è un’applicazione di messaggistica per le aziende che facilita la comunicazione e la collaborazione all’interno di un team o un’organizzazione. Permette agli utenti di inviare messaggi, condividere file e collaborare in canali specifici. 
+
+\vspace{2em}
+\paragraph{Spaziatura}\noindent\hrulefill
+\paragraph{}La pratica di aggiungere spazi attorno agli operatori binari per migliorare la leggibilità del codice.
+
+
+\vspace{2em}
+\paragraph{Sprint}\noindent\hrulefill
+\paragraph{}Periodo di tempo prefissato (14 giorni nel caso del team), entro il quale il gruppo di lavoro si assegna obiettivi, suddivide il lavoro, lo porta a termine e ne verifica la bontà. Questi periodi brevi sono al centro delle metodologie \textit{Agile\pg}.
+
+\vspace{2em}
+\paragraph{Stile di codifica}\noindent\hrulefill
+\paragraph{}Pratiche e convenzioni seguite durante la scrittura del codice, garantendo uniformità e leggibilità.
+
+
+\paragraph{Streamlit}\noindent\hrulefill
+\paragraph{}Streamlit è un open-source framework utilizzato per costruire pagine web attraverso Python. Streamlit è progettato per semplificare il processo di sviluppo poichè fornisce componenti pre-fabbricati.
+
+\newpage
+\section{T}
+\vspace{2em}
+\paragraph{TODO}\noindent\hrulefill
+\paragraph{}Un commento nel codice che indica sezioni non ancora completate o implementate.
+
+
+\newpage
+\section{U}
+
+\vspace{2em}
+\paragraph{UML}\noindent\hrulefill 
+\paragraph{}Vedi \textit{Unified Modeling Language\pg}.
+
+\vspace{2em}
+\paragraph{Unified Modeling Language}\noindent\hrulefill
+\paragraph{}È uno standard industriale basato sul paradigma orientato agli oggetti, permette di agevolare la modellazione e progettazione di sistemi informatici.
+
+\vspace{2em}
+\paragraph{Upper\_SNAKE\_CASE}\noindent\hrulefill
+\paragraph{}Convenzione di denominazione in cui tutte le lettere sono maiuscole e le parole sono separate da underscores, spesso utilizzata per nominare costanti.
+
+
+\vspace{2em}
+\paragraph{Use Case}\noindent\hrulefill
+\paragraph{}Insiemi di scenari e azioni che hanno in comune uno scopo finale per un \textit{Attore\pg}.
+
+\newpage
+\section{V}
+\vspace{2em}
+\paragraph{Validazione}\noindent\hrulefill
+\paragraph{}La validazione è un processo contrattuale ovvero mette in relazione il capitolato con il prodotto. Questo processo ci assicura che quanto prodotto soddisfi le aspettative del cliente finale secondo la corretta individuazione dei requisiti utente.
+
+\vspace{2em}
+\paragraph{Vector Store}\noindent\hrulefill
+\paragraph{}Un vector store è un tipo di \textit{database\pg} che memorizza e recupera vettori di \textit{embedding\pg}. Questi vettori di embedding sono rappresentazioni vettoriali di alta dimensione che catturano le relazioni semantiche tra parole o frasi.
+
+\vspace{2em}
+\paragraph{Verifica}\noindent\hrulefill
+\paragraph{}Insieme di attività che si assicura che un prodotto, sistema o servizio soddisfi i requisiti specificati e ne garantisca la qualità, non introducendo errori.
+
+
+\vspace{2em}
+\paragraph{Versionamento}\noindent\hrulefill
+\paragraph{}Il versionamento è la gestione di versioni multiple di un insieme di informazioni; il controllo di versione è necessario
+per i progetti gestiti da un team collaborativo ed è utilizzato per lo più per gestire la continua evoluzione dei documenti o altro.
+
+\vspace{2em}
+\paragraph{Visibilità}\noindent\hrulefill
+\paragraph{}Il livello di accesso che altre parti del codice hanno agli attributi di una \textit{classe\pg}, spesso regolato da parole chiave come `public`, `private` o `protected`.
+
+\vspace{2em}
+\paragraph{VSCode}\noindent\hrulefill
+\paragraph{}Visual Studio Code, un ambiente di sviluppo integrato (IDE) ampiamente utilizzato.
+
+
+\newpage
+\section{W}
+
+\vspace{2em}
+\paragraph{Way of Working}\noindent\hrulefill
+\paragraph{}È un termine per indicare, nel suo complesso, il modo di lavorare adottato (strumenti, norme, tecnologie). Il tutto deve avvenire con procedure determinate, sistematiche e quantificabili.   
+
+\vspace{2em}
+\paragraph{WoW}\noindent\hrulefill
+\paragraph{}Vedi \textit{Way of Working\pg}
+
+%\section{X}
+%\section{Y}
+\newpage
+\section{Z}
+\vspace{2em}
+\paragraph{Zoom}\noindent\hrulefill
+\paragraph{}Zoom è una piattaforma di comunicazione che offre funzionalità di videoconferenza, riunioni online, chat e webinar.
+
+
+\end{document}

@@ -1,0 +1,95 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-22}
+\def\oraInizio{16:00}
+\def\oraFine{17:00}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{emanuele.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Feedback da parte dei componenti del team riguardo il primo sprint appena conclusosi;},
+{Revisione dei compiti attribuiti ai diversi ruoli;},
+{Revisione delle tecnologie proposte all'azienda;},
+{Revisione delle dinamiche per il passaggio dei ruoli.}
+}
+
+\def\listaOrdineGiorno {
+{Assegnazione dei ruoli per il nuovo sprint;},
+{Confronto e scambio di opinioni riguardo la riunione con l'azienda appena terminata;},
+{Definizione ed assegnazione di nuovi task;},
+{Discussione con relative decisioni sulla gestione delle \textit{milestone};},
+{Scambio di idee per la realizzazione del PoC e formulazione di eventuali quesiti da porre al docente al riguardo.}
+}
+
+\def\listaDiscussioneInterna {
+{Il team ha assegnato i ruoli che i membri assumeranno per il secondo sprint di lavoro. Sono stati definiti nel modo seguente: 
+\begin{itemize}
+\item Amministratore: Campese M.;
+\item Analista: Bresolin G.;
+\item Progettista: Dugo A.;
+\item Programmatori: Feltrin E., Michelon R.;
+\item Responsabile: Ciriolo I.;
+\item Verificatore: Orlandi G.
+\end{itemize} 
+},
+{Il team ha discusso della riunione appena conclusa con l'azienda, in particolar modo sottolineando le possibili difficoltà che lo studio ed il testing di più modelli di apprendimento in modo parallelo porteranno alla luce. Trattandosi di un carico di lavoro abbastanza elevato tutti i membri del team parteciperanno attivamente a tale compito, che verrà suddiviso dai programmatori in modo bilanciato (non dovrà gravare sul lavoro individuale dei singoli ruoli);},
+{Sono state assegnati ad ogni membro i task riportati in 'Azioni da intraprendere', tenendo conto del fatto che ne verranno assegnati di nuovi con l'avanzare dei giorni;
+},
+{Dopo una breve discussione sulla gestione delle \textit{milestone} del team, si è presa la decisione consigliata dall'analista Bresolin G., riportata in 'Decisioni';},
+{Il team ha infine discusso di una possibile struttura del PoC ed ha incontrato l'esigenza di chiedere al docente come sarebbe possibile rendere evidente l’architettura software nel codice, da dove cominciare per farlo e come selezionare un pattern più adeguato rispetto ad altri.}
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Domanda 1
+}
+{Riposta 1;
+},
+\domris
+{Domanda 2
+}
+{Risposta 2;
+},
+\domris
+{Domanda 3
+}
+{Risposta 3.
+}
+}
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Da questa riunione in poi i verbali (sia interni che esterni) saranno redatti dal Responsabile di progetto per quello sprint;},
+{Il nome della \textit{milestone RTB-Analisi dei requisiti} verrà mutato in \textit{RTB-AdR: Bounded} al fine di segnalarne il rispettivo stato di progresso (bisogni macro chiari e meccanismi di gestione dei requisiti fissati). Una volta conclusa tale \textit{milestone} verrà aperta la successiva con il corrispondente stato di progresso \textit{(Coherent)}.}
+}

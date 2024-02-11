@@ -1,16 +1,10 @@
-%TODO:
-% - Modificare procedimento accettazione pull request (accetta solo il verificatore, non più il responsabile)
-        % Per la repo della documentazione possiamo scrivere che può pushare chiunque e accetta solo il verificatore, mentre per la repo del codice pushano solo i programmatori e accetta solo il verificatore. 
-% - Aggiungere che associamo le azioni dei verbali con le issue di GitHub tramite la colonna "ID Issue Github" nella tabella delle azioni
-% - Aggiungere che il nome del file è il nome del documento + versione
-% - Dire che le versioni iniziano da V.0.1
-
 \documentclass[10pt, a4paper]{article}
 
 \input{parameters}
 
 \usepackage{style}
 \usepackage{headerfooter}
+\usepackage{comment}
 
 \title{\titolo}
 \author{SWEetCode}
@@ -30,59 +24,946 @@
 
 % INTRODUZIONE
 \section{Introduzione}
-\subsection{Scopo del documento}
-\paragraph{}Questo documento si prefigge lo scopo di normare e documentare un corretto \textit{Way of Working} che verrà seguito lungo l'intero svolgimento del progetto.\\
-	Tutti i membri del team sono tenuti a visionare tale documento e a seguire le norme contenute in esso. Tali norme permettono di perseguire e migliorare la coerenza ed omogeneità del lavoro e dei file prodotti.
-	Viene inoltre fornito uno storico delle modifiche e delle versioni del documento per seguire un approccio incrementale nella sua redazione, facilitandone i cambiamenti nel corso del tempo.
-%\subsection{Scopo del prodotto}
-%\subsection{Glossario}
-%\paragraph{}Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione relativa al progetto viene presentato un Glossario. I termini ambigui o specifici presenti nello stesso, verranno identificati con un pedice |g|. (DA VALUTARE COME RICONOSCERE IL TERMINE )
+\subsection{Obiettivo del documento}
+L'obiettivo che ci si pone nella realizzazione di questo documento è di normare e documentare un corretto \textit{Way of Working\pg} che verrà seguito lungo l'intero svolgimento del progetto.\\
+Tutti i membri del team sono tenuti a visionare tale documento e a seguire le norme contenute in esso. Tali norme permettono di perseguire e migliorare la coerenza ed omogeneità del lavoro e dei file prodotti.
+Viene inoltre fornito uno storico delle modifiche e delle versioni del documento per seguire un approccio incrementale nella sua redazione, facilitandone i cambiamenti nel corso del tempo.
 
-%\subsection{Riferimenti}
-%    \subsubsection{Riferimenti normativi}
-%    \subsubsection{Riferimenti informativi}
+\subsection{Glossario}
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine definito nel Glossario.
+
+\section{Riferimenti}
+    \subsection{Riferimenti normativi}
+    \begin{itemize}
+        \item \textit{ISO/IEC 12207:1997 Information technology — Software life cycle processes}\\
+        \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+        \item \textit{Regolamento del progetto didattico}\\
+        \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+        \item \textit{SEMAT}\\
+        \url{https://semat.org/documents/20181/57862/formal-18-10-02.pdf/formal-18-10-02.pdf}\\ 
+        (Ultimo accesso: 2024-02-08).
+    \end{itemize}
+    \subsection{Riferimenti informativi}
+    \begin{itemize}
+        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+        \begin{itemize}
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
+            (Ultimo accesso: 2024-02-08).
+        \end{itemize}
+        \item Dispense Ingegneria del software 2023/2024:
+        \begin{itemize}
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T2.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T3.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T4.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T5.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T6.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T7.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T10.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T11.pdf}\\
+            (Ultimo accesso: 2024-02-08).
+        \end{itemize}
+        \item \textit{(Glossario v2.0.0(0))}.
+    \end{itemize}
+
+\newpage
+
+% APPLICAZIONE STANDARD
+\section{Applicazione standard ISO/IEC 12207:1997}
+In questo documento il team si impegna ad essere conforme allo Standard textit{ISO/IEC 12207:1997 - Information technology — Software life cycle processes}. 
+Questa sezione del documento è dedicata all'applicazione pratica degli standard e dei processi definiti nell'ambito di questo Standard Internazionale.
+
+\subsection{Organizzazione dello Standard: processi del ciclo di vita del software}
+In questa sezione viene presentata l'organizzazione dei processi secondo lo \textit{Standard ISO/IEC 12207:1997 - Information technology 
+— Software life cycle processes} del \textit{ciclo di vita del software\pg}. In questo documento utilizzato per normare il \textit{way of working} 
+del team, viene presentata una organizzazione gerarchica in cui ogni \textit{processo\pg} è costituito da un insieme di attività, che a 
+loro volta possono presentare delle procedure e un elenco di strumenti utilizzati nel loro svolgimento.\\
+Al termine del documento, come ultima sezione non prevista dallo \textit{Standard ISO/IEC 12207:1997}, il team presenta un elenco completo di tutti gli strumenti 
+menzionati all'interno di questo documento, accompagnandoli con un riferimento e una breve descrizione.
+
+\subsubsection{Processi primari}
+Sebbene lo Standard adottato presenti cinque processi primari (\textit{Acquisizione, Fornitura, Sviluppo, Operazione, Manutenzione}),
+all'interno del contesto del progetto universitario in atto, il team non ritiene il processo \textit{Manutenzione} pertinente e, pertanto, 
+si è deciso di escluderlo dalla presentazione nel documento.\\
+I processi primari presentati nel presente documento sono:
+\begin{itemize}
+    \item \textbf{Acquisizione}: definisce le attività dell'acquirente, l'organizzazione che acquisisce un prodotto software;
+    \item \textbf{Fornitura}: definisce le attività del fornitore, l'organizzazione che fornisce il prodotto software all'acquirente;
+    \item \textbf{Sviluppo}: definisce le attività dello sviluppatore, l'organizzazione che definisce e sviluppa il prodotto software.
+\end{itemize}
+
+\subsubsection{Processi di supporto}
+I processi di supporto presentati nel presente documento sono:
+\begin{itemize}
+    \item \textbf{Documentazione}: definisce le attività per la registrazione delle informazioni prodotte da un processo del ciclo di vita;
+    \item \textbf{Configuration \textit{Management\pg}}: definisce le attività di gestione della configurazione;
+    \item \textbf{Assicurazione della qualità}: definisce le attività per assicurare in modo oggettivo che i prodotti e i processi software
+    siano conformi ai \textit{requisiti\pg} specificati e rispettino i piani stabiliti;
+    \item \textbf{\textit{Verifica\pg}}: definisce le attività per verificare il prodotto software;
+    \item \textbf{\textit{Validazione\pg}}: definisce le attività per validare il prodotto software;
+    \item \textbf{Revisione congiunta}: definisce le attività per valutare lo stato e i prodotti di un'attività. Questo processo può essere 
+    utilizzato da qualsiasi coppia di parti, in cui una parte (la parte che esegue la revisione) valuta un'altra parte (la parte che viene revisionata)
+    in un forum congiunto;
+    \item \textbf{Revisione}: definisce le attività per determinare la conformità ai requisiti, piani e contratti;
+    \item \textbf{Risoluzione dei problemi}: definisce un processo per analizzare e risolvere i problemi di qualsiasi natura o origine, scoperti
+    durante l'esecuzione di processi.
+\end{itemize}
+
+\subsubsection{Processi organizzativi}
+I processi organizzativi presentati nel presento documento sono:
+\begin{itemize}
+    \item \textbf{Gestione organizzativa}: definisce le attività di management durante i processi del ciclo di vita;
+    \item \textbf{Infrastruttura}: definisce le attività base per stabilire una struttura in un processo del ciclo di vita;
+    \item \textbf{Miglioramento}: definisce le attività che il team esegue per stabilire, misurare, controllare e migliorare i processi del ciclo di vita;
+    \item \textbf{Formazione}: definisce le attività atte a provvedere una adeguata formazione del team.
+\end{itemize}
 
 % PROCESSI PRIMARI
 \newpage
 \section{Processi primari}
 
+\subsection{Acquisizione}
+\subsubsection{Scopo}
+Il processo di acquisizione è finalizzato alla gestione dell'acquisizione del prodotto software realizzato dal gruppo di lavoro.
+
+\subsubsection{Implentazione del processo}
+Le modalità del processo di acquisizione per il progetto sono state fissate dal docente e sono reperibili all'interno della sezione 
+(\S Riferimenti), in (\S Riferimenti normativi), in (\S Regolamento del progetto didattico).\\
+Le fasi del processo di acquisizione stabilite sono le seguenti:
+\begin{enumerate}
+    \item Definizione della necessità di acquisizione di un prodotto software da parte dell'azienda \textit{proponente\pg};
+    \item Formazione dei gruppi di lavoro da parte del docente del corso Vardanega T.(2023-10-14);
+    \item Presentazione dei capitolati d'appalto da parte dell'azienda proponente nei confronti dei gruppi di lavoro (2023-10-17);
+    \item Presentazione delle candidature di appalto da parte dei gruppi di lavoro (2023-10-31);
+    \item Aggiudicazione appalti con assegnazione svolta da parte del docente Vardanega T. in base alle candidature presentate e alle sue 
+    valutazioni interne e ad una consultazione con il proponente (2023-11-06);
+    \item Presentazione del \textit{Proof of Concept\pg (PoC)} da parte del gruppo di lavoro all'azienda proponente;
+    \item Accettazione da parte dell'azienda proponente del \textit{PoC\pg} proposto dal gruppo di lavoro;
+    \item Presentazione della candidatura per la revisione \textit{Requirements and Technology Baseline\pg} da parte del gruppo di lavoro;
+    \item Revisione \textit{Requirements and Technology Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con 
+    conseguente valutazione;
+    \item Presentazione del \textit{Minimum Viable Product\pg (MVP)} da parte del gruppo di lavoro all'azienda proponente;
+    \item Accettazione da parte dell'azienda proponente del \textit{MVP\pg} proposto dal gruppo di lavoro;
+    \item Presentazione della candidatura per la revisione \textit{Product Baseline\pg} da parte del gruppo di lavoro;
+    \item Revisione \textit{Product Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con conseguente valutazione.
+\end{enumerate}
+I ruoli definiti all'interno di questo progetto didattico universitario sono:
+\begin{itemize}
+    \item \textbf{Docente del corso}: \textit{committente\pg};
+    \item \textbf{Azienda proponente}: cliente e mentore;
+    \item \textbf{Gruppo di lavoro}: fornitore. 
+\end{itemize}
+Le stime dei tempi di consegna e del prezzo vengono effettuate dal gruppo di lavoro durante la fase di presentazione della candidatura d'appalto.\\
+La definizione del prezzo durante la fase di candidatura costituisce il limite superiore invalicabile durante lo svolgimento del progetto ed
+è derivante dai costi (stabiliti dal docente del corso) di ciascun ruolo ricopribile all'interno del gruppo di lavoro.\\
+Le date di consegna sono invece libere e soggette a stringenti regole di ingresso e vengono stabilite dal gruppo di lavoro assieme al proponente,
+cercando di rispettare il più possibile le stime iniziali stabilite durante la fase di candidatura d'appalto.\\
+Per assicurare invecece una gestione efficace e attenuare i rischi legati all'acquisizione, il team si impegna a:
+\begin{itemize}
+    \item svolgere attività di diario di bordo con il docente del corso;
+    \item svolgere revisioni congiunte con l'azienda proponente, trattate nel paragrafo (\S Processi di supporto, Revisioni congiunte).
+\end{itemize}
+
+\subsection{Fornitura}
+\subsubsection{Scopo}
+Il processo di fornitura descrive le attività svolte dal fornitore e coinvolge pianificazione, acquisizione e gestione delle risorse 
+necessarie. Il processo segue la determinazione delle procedure e delle risorse necessarie per gestire e garantire il progetto.
+L'obiettivo del processo è la garanzia dell'\textit{efficienza\pg} e della conformità ai requisiti del progetto per raggiungere gli obiettivi stabiliti 
+con il proponente. 
+
+\subsubsection{Implementazione di processo}
+Il processo di fornitura è formato dalle seguenti 7 fasi:
+\begin{itemize}
+    \item \textbf{Iniziazione}: Il fornitore effettua una revisione dei requisiti nella richiesta di proposta;
+    \item \textbf{Preparazione della risposta}: Il fornitore definisce e prepara una proposta in risposta alla richiesta di proposta;
+    \item \textbf{Negoziazione}: Il fornitore negozia e stipula un accordo con il proponente per fornire il prodotto finale;
+    \item \textbf{Pianificazione}: Il fornitore effettua una revisione dei requisiti di acquisizione e valuta le opzioni per lo 
+    sviluppo del prodotto software in base ad un'analisi dei rischi associati a ciascuna opzione per definire la struttura del piano di gestione 
+    del progetto e per garantire la qualità del prodotto finale (il fornitore deve sviluppare e documentare tale piano);
+    \item \textbf{Esecuzione e controllo}: Il fornitore esegue il piano di gestione del progetto e monitora e controlla il progresso e la qualità
+    del prodotto durante l'intero ciclo del progetto;
+    \item \textbf{Revisione e valutazione}: Il fornitore coordina le attività di comunicazione con il proponente e conduce o supporta riunioni informali,
+    revisioni di accettazione, test di accettazione, revisioni congiunte. Il fornitore  esegue la verifica e la convalida del processo 
+    per dimostrare che i prodotti o servizi software e i processi soddisfano appieno i rispettivi requisiti;
+    \item \textbf{Consegna e completamento}: Il fornitore consegna il prodotto finale, e dovrà fornire assistenza al proponente a supporto 
+    del prodotto consegnato.
+\end{itemize}
+\subsubsection{Gestione}
+Per garantire un processo di fornitura efficace ed efficiente viene mantenuta la comunicazione con l'azienda proponente durante tutto il 
+corso del progetto, mediante riunioni settimanali su \textit{Google Meet\pg} pianificate con \textit{Google Calendar} e scambio di messaggi 
+qualora fosse necessario attraverso la piattaforma \textit{Slack\pg}. In questo modo al fornitore risulta possibile un'identificazione accurata
+dei bisogni del proponente con conseguente individuazione accurata dei requisiti e dei vincoli del progetto. Il dialogo continuo con il 
+proponente permette infine una valutazione continua e costante del lavoro svolto dal fornitore, in modo da permettere correzioni, 
+integrazioni e miglioramenti in modo incrementale e costruttivo.  
+\subsubsection{Piano di Progetto }
+Questo documento viene redatto dal responsabile con l'aiuto degli amministratori. Fornisce una guida dettagliata per la pianificazione, 
+l'esecuzione e il controllo del progetto e serve come base per il monitoraggio del progresso, la gestione dei rischi e la comunicazione tra
+proponente e fornitore.\\ 
+Il suo contenuto comprende:
+\begin{itemize}
+    \item Calendario di progetto;
+    \item Stima dei costi di realizzazione;
+    \item Rischi e mitigazione;
+    \item Pianificazione e modello di sviluppo;
+    \item Preventivo e consuntivo;
+    \item Retrospettiva.
+\end{itemize}
+\subsubsection{Piano di Qualifica }
+Il (Piano di qualifica v2.0.0(0)) definisce le strategie, gli obiettivi e le attività per garantire la qualità del prodotto finale. Vengono definite in 
+tale documento le metriche di valutazione e validazione del progetto e la specifica degli obiettivi di qualità del prodotto finale. 
+Tali parametri vengono stabiliti in accordo ai requisiti e alle aspettative del proponente e talvolta a discrezione del team sulla base 
+delle valutazioni fatte nel corso di studi. Il suo scopo è assicurare che il prodotto soddisfi gli standard di qualità definiti e che 
+eventuali deviazioni vengano gestite in modo appropriato.\\
+Il suo contenuto comprende:
+\begin{itemize}
+    \item Qualità di processo;
+    \item Qualità di prodotto;
+    \item Test e specifiche;
+    \item Valutazioni per il miglioramento;
+    \item Resoconto delle attività di verifica.
+\end{itemize}
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Google Calendar};
+    \item \textit{Google Sheet};
+    \item \textit{Slack}.
+\end{itemize}
+
+\subsection{Sviluppo}
+\subsubsection{Scopo}
+Il processo di sviluppo si pone lo scopo di descrivere tutte le attività e i compiti che portano un prodotto dalla fase di ideazione a quella di realizzazione. 
+
+\subsubsection{Sviluppo}
+Il processo di sviluppo presentate le seguenti attività:
+\begin{itemize}
+    \item Analisi dei requisiti;
+    \item Progettazione logica;
+    \item Progettazione di dettaglio;
+    \item \textit{Codifica\pg};
+    \item Testing;
+    \item Integrazione software;
+    \item Installazione software.
+\end{itemize}
+
+\subsubsection{Analisi dei requisiti}
+\subsubsubsection{Scopo}
+Lo scopo dell'attività di analisi dei requisiti è comprendere e definire in modo completo e accurato le esigenze e le aspettative dell'azienda proponente e degli utenti 
+relativamente al prodotto software.
+
+\subsubsubsection{Implementazione dell'attività}
+L'attività di analisi dei requisiti, la quale viene documentata all'interno del documento (Analisi dei requisiti v2.0.0(0)), viene svolta seguendo le seguenti fasi:
+\begin{itemize}
+    \item Studio accurato del capitolato e delle esigenze del committente;
+    \item Individuazione dei casi d'uso (e relativa produzione dei diagrammi dei casi d'uso) e dei requisiti;
+    \item Discussione con il proponente del materiale prodotto;
+    \item Divisione dei requisiti nelle tre categorie individuate e applicazione degli spunti emersi dalla discussione col proponente.
+\end{itemize}
+(L'analisi dei requisiti, essendo una attività incrementale, prevede che alcune fasi siano svolte più volte all'interno del progetto).
+Il risultato di tale processo è un documento che contiene tutti i requisiti richiesti dal proponente, con relativi casi d'uso dal punto di vista dell'utente finale.\\
+
+\subsubsubsection{Casi d'uso: Notazione}
+I casi d'uso sono indicati con la notazione seguente: \textbf{UC[Codice] - [Titolo]}\\
+in cui:
+\begin{itemize}
+\item \textbf{UC} sta per \textit{Use Case\pg};
+\item \lbrack \textbf{Codice}] è l'identificativo del caso d'uso. È composto da un unico numero progressivo univoco assegnato in base all'ordine di esplorazione, se il caso d'uso non ha padre, mentre se si tratta di un sottocaso d'uso, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\item \lbrack \textbf{Titolo}] è il titolo del caso d'uso.
+\end{itemize}
+
+\subsubsubsection{Casi d'uso: Didascalie}
+Per ogni caso d'uso è presentata una breve didascalia che ne indica:
+\begin{itemize}
+    \item \textit{Attore\pg} principale (attore che partecipa e dialoga attivamente con il sistema nello scenario principale per raggiungere uno scopo);
+    \item Attore secondario (attore esterno al sistema che, se presente, aiuta il sistema a raggiungere l'obiettivo dell'attore principale);
+    \item Precondizioni (condizioni che devono essere vere affinché il caso d'uso possa essere eseguito);
+    \item Postcondizioni (condizioni del sistema dopo che il caso d'uso si è concluso);
+    \item Scenario principale (sequenza di passaggi che definisce un'interazione tra attore e sistema);
+    \item Scenario alternativo (scenario che si verifica se si diverge dallo scenario principale);
+    \item Estensioni (lista di casi d'uso che deviano il flusso principale del caso d'uso in esame, introducendo flussi alternativi);
+    \item Inclusioni (lista di casi d'uso che rappresentano una parte dello scenario principale, ma estratti come casi d'uso singoli per aumentare il riuso nel caso in cui appaiono in scenari principali di più casi d'uso);
+    \item Generalizzazioni (lista di casi d'uso che ereditano le caratteristiche del caso d'uso in esame aggiungendo specificità);
+    \item Trigger (evento scatenante del caso d'uso).
+\end{itemize}
+
+\subsubsubsection{Requisiti: Notazione}
+Ogni requisito preso in analisi sarà trattato con la sigla:
+\textbf{R[Tipo].[Importanza].[Codice]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{R}] indica la parola "requisito";
+\item \lbrack \textbf{Tipo}] può essere:
+    \begin{itemize}
+	    \item F (Funzionale);
+	    \item Q (Qualità);
+	    \item V (Vincolo);
+        \item V (Prestazione).
+    \end{itemize}
+\item \lbrack \textbf{Importanza}] classifica i requisiti in:
+    \begin{itemize}
+        \item O (Obbligatorio);
+		\item D (Desiderabile);
+		\item OP (Opzionale).
+    \end{itemize}
+\item \lbrack \textbf{Codice}] identifica i requisiti per ogni tipologia. È composto da un unico numero progressivo univoco assegnato in ordine di importanza se il requisito non ha padre, mentre se si tratta di un sotto-requisito, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia;
+\end{itemize}
+
+\subsubsubsection{Requisiti: Suddivisione}
+\begin{itemize}
+\item I requisiti funzionali descrivono le funzionalità del sistema, le azioni
+che il sistema può compiere e le informazioni che il sistema può fornire.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
+\begin{itemize}
+    \item RF.O - Requisito Funzionale Obbligatorio;
+    \item RF.D - Requisito Funzionale Desiderabile;
+    \item RF.OP - Requisito Funzionale Opzionale.
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item I requisiti di qualità descrivono come un sistema deve essere, o
+come il sistema deve esibirsi, per soddisfare le esigenze dell'utente.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
+\begin{itemize}
+    \item RQ.O - Requisito di Qualità Obbligatorio;
+    \item RQ.D - Requisito di Qualità Desiderabile;
+    \item RQ.OP - Requisito di Qualità Opzionale.
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item I requisiti di vincolo descrivono i limiti e le restrizioni normative/legislative che un sistema deve rispettare per soddisfare le esigenze dell'utente.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
+\begin{itemize}
+    \item RV.O - Requisito di Vincolo Obbligatorio;
+    \item RV.D - Requisito di Vincolo Desiderabile;
+    \item RV.OP - Requisito di Vincolo Opzionale. 
+\end{itemize}
+\item I requisiti di prestazione descrivono vincoli di tempo e spazio che il prodotto deve rispettare.\\
+Seguendo la notazione riportata sopra, questi si possono partizionare in:
+\begin{itemize}
+    \item RP.O - Requisito di Prestazione Obbligatorio;
+    \item RP.D - Requisito di Prestazione Desiderabile;
+    \item RP.OP - Requisito di Prestazione Opzionale. 
+\end{itemize}
+\end{itemize}
+
+\subsubsubsection{Diagrammi}
+I diagrammi dei casi d'uso e di attività riportati all'interno del documento (Analisi dei requisiti v2.0.0(0)) devono seguire la notazione e le specifiche indicate da \textit{UML\pg v2.5}.
+
+\subsubsubsection{Applicazione milestone SEMAT}
+SWEetCode nell'esecuzione dell'attività di analisi dei requisiti ha deciso di adottare la pianificazione in \textit{milestone\pg} presentata 
+da \textit{SEMAT}: tale pianificazione viene però piegata alle esigenze e alla compatibilità di questo progetto didattico universitario, motivo per il quale le milestone presenti saranno:
+\begin{itemize}
+    \item \textit{RTB-AdR: Bounded}: i bisogni macro sono chiari e i meccanismi di gestione dei requisiti sono fissati;
+    \item \textit{RTB-AdR: Coherent}: i requisiti sono classificati e quelli obbligatori sono chiari e ben definiti;
+    \item \textit{PB-AdR: Acceptable}: i requisiti fissati definiscono un sistema soddisfacente per l'utente;
+    \item \textit{PB-AdR: Fulfilled}: il prodotto soddisfa abbastanza requisiti da meritare la piena approvazione dell'azienda proponente. 
+\end{itemize}
+
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Diagrams.net}.
+\end{itemize}
+
+\subsubsection{Progettazione}
+\subsubsubsection{Scopo}
+L'attività di progettazione ha lo scopo di fissare un'archiettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
+La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
+
+I progettisti del team avranno l'obbligo di considerare le seguenti proprietà durante l'attività di progettazione:
+\begin{itemize}
+    \item \textbf{Sufficienza}: in grado di soddisfare tutti i requisiti;
+    \item \textbf{Modularità}: suddivisa in parti chiare e ben distinte, esponendo interfacce e nascondendo l'implementazione;
+    \item \textbf{Robustezza}: resiliente a più tipi e quantità di input;
+    \item \textbf{Flessibilità}: permette modifiche mantenendo limitati i costi per apportarle;
+    \item \textbf{Riusabilità}: permette il riuso delle sue parti in applicazioni esterne;
+    \item \textbf{Efficienza}: è efficiente nello spazio, nel tempo e nei consumi;
+    \item \textbf{Affidabilità}: svolge bene il suo lavoro;
+    \item \textbf{Semplicità}: ogni parte contiene lo stretto necessario;
+    \item \textbf{Incapsulazione}: nasconde l'interno delle componenti architetturali all'esterno;
+    \item \textbf{Coesione}: parti che agiscono sulle stesse unità di dati sono raccolte nello stesso componente;
+    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse;
+\end{itemize}
+
+\subsubsubsection{Scelte tecnologiche e PoC}
+La scelta delle tecnologie viene effettuata dal responsabile e dagli amministratori.
+Considerando i requisiti prodotti dall'attività di analisi dei requisiti, vengono analizzate le caratteristiche, i pro e i contro delle opzioni tecnologiche disponibili, trovando una soluzione possibile.
+Questa soluzione viene validata dai progettisti e dai \textit{programmatori\pg} tramite la realizzazione di un Proof of Concept, il cui scopo è:
+\begin{itemize}
+    \item Dimostrare la fattibilità del progetto;
+    \item Dimostrare che le scelte tecnologiche fatte sono adeguate e compatibili;
+    \item Avere feedback concreto e veloce da parte dell'azienda proponente;
+    \item Eslorare concretamente le tecnologie scelte.
+\end{itemize}
+
+Qualora fosse necessario un confronto concreto tra tecnologie, i progettisti e i programmatori si assumono il compito di realizzare più PoC, confrontando poi i risultati finali con amministratori e responsabile, che sceglieranno la soluzione migliore a fronte di questi.
+
+\subsubsubsection{Fasi di progettazione}
+Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
+
+\subsubsubsection{Progettazione logica}
+La progettazione logica consiste nel trasformare i requisiti software in un'\textit{architettura\pg} che descrive la struttura di alto livello del prodotto software e ne identifica i componenti.
+In questa fase i progettisti devono assicurarsi che tutti i requisiti siano assegnati ai componenti e che questi siano ulteriormente dettagliati, in modo da facilitare la successiva progettazione di dettaglio.
+
+In particolare, i progettisti devono:
+\begin{itemize}
+    \item Progettare le interfacce esterne al software e tra i componenti del software;
+    \item Definire e progettare le strutture dati necessarie per soddisfare i requisiti;
+    \item Documentare una versione preliminare del (Manuale utente);
+    \item Pianificare e definire, collaborando con i verificatori, i test di integrazione tra componenti;
+    \item Valutare e revisionare l'architettura definita nei passi precedenti, coinvolgendo tutti i membri del team e altre parti interessate. In particolare, il team collaborerà con dei membri dell'azienda proponente in modo da ottenere consigli e correzioni da fonti autorevoli e con esperienza.
+\end{itemize}
+
+\subsubsubsection{Progettazione di dettaglio}
+\label{sec:progettazione_di_dettaglio}
+La progettazione di dettaglio consiste nel suddividere il sistema affinché ogni singola parte abbia una complessità tale da poter essere codificata da un unico individuo, in modo rapido, fattibile e verificabile.
+
+I progettisti hanno il dovere di fermarsi quando la decomposizione diventa controproduttiva, cioè nel momento in cui il costo di coordinamento tra le parti decomposte è maggiore del beneficio prodotto decomponendo.
+
+La progettazione di dettaglio agisce sulle unità architetturali, cioè unità funzionali ben definite, la cui codifica può essere assegnata ad un unico programmatore.
+Ogni unità architetturale è formata da uno o più moduli, e più unità architetturali formano un componente, che è l'oggetto dell'architettura logica.
+L'architettura di dettaglio guida la codifica e l'integrazione e semplifica il tracciamento dei requisiti.
+
+Durante la progettazione di dettaglio, i progettisti hanno il compito di:
+\begin{itemize}
+    \item Definire e progettare in modo dettagliato i componenti software, lavorando a livello di unità e moduli;
+    \item Aggiornare e dettagliare il (Manuale utente);
+    \item Definire la specifica dei test di unità, collaborando con i verificatori;
+    \item Definire la specifica dei test di integrazione, collaborando con i verificatori.
+\end{itemize}
+
+\subsubsubsection{Specifica architetturale}
+La progettazione deve essere ben documentata, affinché la codifica e la verifica del software possano essere svolte in modo autonomo e disciplinato.
+
+Ogni parte individuata deve essere dotata di una specifica chiara e coesa, realizzabile entro i costi e le risorse disponibili.
+
+Queste specifiche sono raccolte nel documento (Specifica architetturale), che verrà prodotto dopo il superamento della fase di revisione \textit{RTB\pg}.
+Le modalità di stesura e l'organizzazione di questo documento verranno indicate in parallelo alla sua creazione.
+
+\subsubsection{Codifica}
+\subsubsubsection{Scopo}
+La codifica, svolta dai programmatori, ha lo scopo di realizzare concretamente il prodotto software seguendo l'architettura definita dai progettisti.
+Questa sezione ha il compito di normare il codice, in modo da:
+\begin{itemize}
+    \item Facilitarne la lettura, aumentarne l'uniformità e la robustezza;
+    \item Facilitarne e velocizzarne la verifica;
+    \item Facilitarne la manutenzione, il \textit{debugging\pg} e l'estensione;
+    \item Migliorarne la qualità.
+\end{itemize}
+
+\subsubsubsection{Stile di codifica: Python }
+\subsubsubsubsection{Struttura dei file}
+La struttura di un sorgente \textit{Python\pg} è definita dalle seguenti parti:
+\begin{itemize}
+    \item Import: insieme di istruzioni di import che seguono l'ordine:
+    \begin{enumerate}
+        \item \textit{Librerie esterne\pg};
+        \item \textit{Librerie interne\pg}.
+    \end{enumerate}
+    \item \textit{Classe\pg}: rappresenta un'unità o raccoglie funzioni di utilità.
+\end{itemize}
+\subsubsubsubsection{Struttura delle classi}
+La struttura di una classe Python è definita dalle seguenti parti, se necessarie:
+\begin{enumerate}
+    \item Lista di classi estese o interfaccia implementata;
+    \item \textit{Costruttore\pg};
+    \item \textit{Attributi\pg};
+    \item \textit{Metodi\pg}.
+\end{enumerate}
+Ogni classe deve essere opportunamente documentata, seguendo il formato \textit{Google docstrings\pg}; in particolare:
+\begin{itemize}
+    \item Dopo la definizione della classe, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del ruolo della classe;
+        \item Lista degli argomenti richiesti dal costrutture, seguiti da una breve descrizione;
+        \item Lista degli attributi della classe, seguiti da una breve descrizione;
+        \item Lista dei metodi della classe, seguiti da una breve descrizione.
+    \end{itemize}
+    \item Dopo la definizione dei metodi, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del metodo;
+        \item Lista di argomenti del metodo, seguiti da una breve descrizione;
+        \item Lista degli eventuali return, seguiti da una breve descrizione.
+    \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Pratiche di programmazione}
+\begin{itemize}
+    \item \textbf{Metodi}: preferire più metodi semplici e con responsabilità singola rispetto a metodi lunghi e complessi;
+    \item \textbf{Attributi}: mai accedere direttamente ad attributi di una classe. Utilizzare solo i metodi forniti per interagire con essa;
+    \item \textbf{Self}: riferirsi ai parametri interni attraverso l'uso del riferimento self;
+    \item \textbf{\textit{Visibilità\pg}}: usare la minima visibilità possibile per gli attributi;
+    \item \textbf{Importazioni}: Importare i moduli all'inizio dello \textit{script\pg} o del modulo. Evitare importazioni con asterisco (\texttt{from module import *});
+    \item \textbf{Commenti}: usare le seguenti convenzioni nei commenti:
+        \begin{itemize}
+            \item \textit{TODO\pg}: per indicare sezioni di codice non ancora completate;
+            \item \textit{FIXME\pg}: per indicare sezioni di codice che necessitano di revisione e miglioramenti.
+        \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Formattazione del codice}
+Per la formattazione del codice Python sono state adottate le convenzioni indicate dal \textit{Formatter PEP8\pg} (\url{https://peps.python.org/pep-0008/} \textit{(Ultimo accesso: 2024-02-08)}).
+Il rispetto della formattazione sopra indicata è garantito dallo strumento di formattazione incluso nell'estensione per il liguaggio Python di \textit{VSCode\pg} fornita da Microsoft (\url{https://marketplace.visualstudio.com/items?itemName=ms-python.python} \textit{(Ultimo accesso: 2024-02-08)})
+
+\subsubsubsubsection{Convenzioni sintattiche}
+\begin{itemize}
+    \item \textbf{Nomi autoesplicativi}: i nomi assegnati a qualsiasi costrutto devono essere autoesplicativi, cioè devono racchiudere il significato di ciò a cui si riferiscono;
+    preferire nomi lunghi ma privi di ambiguità a nomi corti ma interpretabili;
+    \item \textbf{Lingua}: usare la lingua inglese per i nomi dei costrutti e per i commenti;
+    \item \textbf{Convenzioni di nomenclatura}: seguire le convenzioni di nomenclatura PEP 8;
+    \item \textbf{Abbreviazioni}: usare cautamente le \textit{abbreviazioni\pg}, solo se queste sono comunemente conosciute;
+    \item \textbf{Nomi classi}: i nomi delle classi devono seguire lo stile \textit{PascalCase\pg};
+    \item \textbf{Nomi metodi e variabili}: i nomi dei metodi e delle variabili devono seguire lo stile snake\_case;
+    \item \textbf{Nomi costanti}: i nomi delle costanti devono seguire lo stile \textit{UPPER\_ SNAKE\_CASE\pg};
+    \item \textbf{Nomi argomenti}: usare lo stesso nome per gli argomenti del costruttore e i rispettivi attributi della classe;
+    \item \textbf{\textit{Indentazione\pg}}: utilizzare quattro spazi o un carattere di tabulazione per definire i blocchi di codice;
+    \item \textbf{\textit{Spaziatura\pg}}: utilizzare uno spazio attorno agli operatori binari per una migliore leggibilità;
+    \item \textbf{Parentesi}: aggiungere lo spazio prima e dopo un blocco raccolto tra parentesi;
+    \item \textbf{Commenti}: utilizzare il simbolo \texttt{\#} per i commenti;
+    \item \textbf{\textit{Quoting\pg}}: utilizzare singoli (\texttt{'}) apici per le stringhe;
+    \item \textbf{Definizioni di funzioni e metodi}: separare le definizioni di funzioni e metodi con due linee vuote;
+    \item \textbf{Lunghezza massima della linea}: limitare le linee a un massimo di 79 caratteri per il codice e 72 per docstrings;
+    \item \textbf{Più istruzioni su una linea}: evitare più istruzioni sulla stessa linea.
+\end{itemize}
+
+\subsubsubsection{Stile di codifica: Javascript (React)}
+\subsubsubsubsection{Struttura dei file} La struttura di un sorgente \textit{Javascript\pg} è definita dalle seguenti parti:
+\begin{itemize}
+    \item Import: insieme di istruzioni di import che seguono l'ordine:
+    \begin{enumerate}
+        \item Dipendenze esterne;
+        \item Dipendenze interne.
+    \end{enumerate}
+    \item Funzioni: definiscono un componente o funzioni di utilità.
+\end{itemize}
+\subsubsubsubsection{Struttura dei componenti} La struttura di un \textit{componente React\pg} è definita dalle seguenti parti, se necessarie:
+\begin{enumerate}
+    \item \textbf{Arrow function}: definisce il componente;
+    \item \textbf{Funzioni ausiliarie}: funzioni di supporto che aiutano a gestire casi complessi e aumentano il riuso;
+    \item \textbf{Logica del componente}: definisce la struttura e il comportamento del componente;
+    \item \textbf{Export}: istruzione di export che rende disponibile il componente all'utilizzo esterno.
+\end{enumerate}
+Ogni classe deve essere opportunamente documentata, seguendo il formato \textit{JSDoc\pg}; in particolare:
+\begin{itemize}
+    \item Dopo la definizione del componente, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del ruolo della classe;
+        \item Lista dei \textit{props\pg}, seguiti da una breve descrizione;
+        \item Lista dei metodi della classe, seguiti da una breve descrizione.
+    \end{itemize}
+    \item Dopo la definizione dei metodi, devono essere presenti, in una serie di commenti:
+    \begin{itemize}
+        \item Descrizione del metodo;
+        \item Lista di argomenti del metodo, seguiti da una breve descrizione;
+        \item Lista degli eventuali return, seguiti da una breve descrizione.
+    \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Pratiche di programmazione}
+\begin{itemize}
+    \item \textbf{Grandezza componenti}: prediligere l'uso e la creazione di componenti di taglia e responsabilità limitata. Un componente dovrebbe limitarsi a svolgere un'unica funzione;
+    \item \textbf{Riutilizzo}: sfruttare il più possibile il riutilizzo dei componenti. Se due componenti hanno la stessa struttura ma si differenziano per aspetto o comportamento, usare i props per gestire queste differenze;
+    \item \textbf{Funzioni di utilità}: evitare di posizionare le funzioni di utilità all'interno di componenti, ma raccoglierle in classi specifiche e mirate;
+    \item \textbf{Unico component per file}: esportare un unico component per file;
+    \item \textbf{Metodi iterativi}: quando si vogliono eseguire operazioni su ogni elemento di un oggetto iterabile, prediligere l'uso di metodi iterativi;
+    \item \textbf{Organizzazione file}: organizzare i file dello stesso component in una apposita cartella;
+    \item \textbf{Commenti}: usare le seguenti convenzioni nei commenti:
+        \begin{itemize}
+            \item TODO: per indicare sezioni di codice non ancora completate;
+            \item FIXME: per indicare sezioni di codice che necessitano di revisione e miglioramenti.
+        \end{itemize}
+\end{itemize}
+\subsubsubsubsection{Formattazione del codice} Per la formattazione del codice Javascript sono state adottate le convenzioni indicate dall'estensione \textit{Prettier\pg} di VSCode (\url{https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode} \textit{(Ultimo accesso: 2024-02-08)}).
+Per garantire il rispetto delle convenzioni di Prettier, tutti i componenti del gruppo hanno impostato il formatter Prettier di default e impostato il suo intervento correttivo ad ogni salvataggio dei file.
+
+\subsubsubsubsection{Convenzioni sintattiche}
+\begin{itemize}
+    \item \textbf{Nomi autoesplicativi}: i nomi assegnati a qualsiasi costrutto devono essere autoesplicativi, cioè devono racchiudere il significato di ciò a cui si riferiscono;
+        preferire nomi lunghi ma privi di ambiguità a nomi corti ma interpretabili;
+    \item \textbf{Lingua}: usare la lingua inglese per i nomi dei costrutti e per i commenti;
+    \item \textbf{Abbreviazioni}: usare cautamente le abbreviazioni, solo se queste sono comunemente conosciute;
+    \item \textbf{Indentazione}: utilizzare quattro spazi o un carattere di tabulazione per definire i blocchi di codice;
+    \item \textbf{Spaziatura}: utilizzare uno spazio attorno agli operatori binari per una migliore leggibilità;
+    \item \textbf{Parentesi}: aggiungere lo spazio prima e dopo un blocco raccolto tra parentesi;
+    \item \textbf{Quoting}: utilizzare singoli (\texttt{'}) apici per le stringhe;
+    \item \textbf{Più istruzioni su una linea}: evitare più istruzioni sulla stessa linea;
+    \item \textbf{Punto e virgola}: aggiungere sempre il simbolo ';' alla fine di ogni statement;
+    \item \textbf{Nomi componenti}: i nomi dei componenti devono seguire lo stile PascalCase;
+    \item \textbf{Nomi file componenti}: i nomi dei file che contengono un componente devono essere uguali al nome del componente;
+    \item \textbf{Nomi \textit{CSS\pg} componenti}: i nomi dei fogli di stile riferiti ad un unico componente devono essere uguali al nome del componente, ma scritti in \textit{camelCase\pg};
+    \item \textbf{Nomi cartelle componenti}: i nomi delle cartelle che contentengono un componente devono essere uguali al nome del componente, ma scritti in camelCase;
+    \item \textbf{Nomi file ausiliari}: i nomi dei file ausiliari devono seguire lo stile camelCase;
+    \item \textbf{Nomi metodi e variabili}: i nomi dei componenti devono seguire lo stile camelCase;
+    \item \textbf{Nomi costanti}: i nomi delle costanti devono seguire lo stile UPPER\_SNAKE\_CASE.
+    \end{itemize}
+
+\subsubsubsection{Stile di codifica: HTML e CSS}
+Per lo \textit{stile di codifica\pg} dei linguaggi \textit{HTML\pg} e CSS è stato seguito il modello indicato al seguente
+indirizzo: \url{https://google.github.io/styleguide/htmlcssguide.html} \textit{(Ultimo accesso: 2024-02-08)}.
+
+\subsubsection{Testing}
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (Norme di progetto).
+
+\subsubsection{Integrazione software}
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (Norme di progetto).
+
+\subsubsection{Installazione software}
+Tale sezione sarà realizzata a seguito della versione v2.0.0 delle (Norme di progetto).
+
 % PROCESSI DI SUPPORTO
 \newpage
+
 \section{Processi di supporto}
 Nella seguente sezione vengono presentati i processi di supporto allo sviluppo del progetto.
 
+\subsection{Documentazione}
+\label{sec:documents}
+\subsubsection{Scopo}
+Il processo di documentazione accompagna tutte le attività di sviluppo, con l'obiettivo di permettere una consultazione semplice e 
+rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla 
+manutenzione.
+
+\subsubsection{Implementazione del processo}
+In questa sezione viene documentato e implementato un piano che identifica i documenti da produrre durante il ciclo di vita del prodotto 
+software. Tutti i documenti da redigere vengono presentati nella tabella che segue. Vengono inclusi solamente i documenti relativi al vero e
+ proprio ciclo di vita del prodotto software e sono di conseguenza esclusi i documenti presentati per la candidatura per il progetto 
+ didattico, quali "Lettera di presentazione", "Preventivo costi e impegni orari" e "Valutazione dei capitolati d'appalto".
+
+{\renewcommand{\arraystretch}{1.5}
+  \begin{xltabular}{\textwidth}{X|X|X|X|X}
+    \textbf{Nome del documento} & \textbf{Scopo}  & \textbf{Redattore} &  \textbf{Destinatari} & \textbf{Consegne previste} \\
+    
+    \hline
+    Analisi dei requisiti & Definizione requisiti utente & Analista & Azienda proponente, Docenti & RTB, \textit{PB\pg}\\
+    \hline
+    Norme di progetto & Definizione regolamento normativo per il team & Responsabile, Amministratore & Docenti & RTB, PB\\
+    \hline
+    Piano di progetto & Definizione temporale scadenze e progressi & Responsabile & Docenti & RTB, PB\\
+    \hline
+    Piano di qualifica & Definizione qualità e testing del prodotto finale & Amministratore & Docenti & RTB, PB\\
+    \hline
+    Verbali esterni & Tracciamento riunioni esterne & Responsabile & Azienda proponente, Docenti & Candidatura, RTB, PB\\
+    \hline
+    Verbali interni & Tracciamento riunioni interne & Responsabile & Docenti & Candidatura, RTB, PB\\
+
+\end{xltabular}}
+
+\subsubsection{Progettazione e sviluppo}
+In questa sezione vengono presentati gli standard e le regole (nello specifico di stile) a cui i membri di SWEetCode si attengono 
+relativamente alla stesura di documenti relativi al progetto. 
+    
+    \subsubsubsection{Template}
+    Il team ha deciso di produrre un template grafico ricorrente all'interno della documentazione.\\
+    Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito 
+    disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
+    Le seguenti pagine di ciascun documento presentano un:
+        \begin{itemize}
+            \item \textbf{\textit{Header}}: intestazione contenente il nostro logo, il nome del documento ed il nostro nome;
+            \item \textbf{\textit{Footer}}: piè di pagina contenente i link alla nostra email e al nostro account \href{https://sweetcode-team.github.io/}{\textcolor{black}{\textit{GitHub\pg}}}; 
+            ed infine la numerazione di pagina.
+        \end{itemize}
+
+    \subsubsubsection{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con 
+    il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già 
+    presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come 
+    \textit{ifthen} e \textit{forloop}.
+    Considerando i valori dei parametri, durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico, assumendo 
+    l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi. L'adozione di 
+    questa pratica permette al team di mantenere coerenti struttura, formato del contenuto e presentazione, aumentando il throughput e 
+    consentendo ai componenti del gruppo di concentrarsi più sul contenuto che sulla sua visualizzazione.
+    
+    Di seguito vengono elencati i parametri utilizzati a seconda del tipo di documento:
+    \begin{itemize}
+        \item Titolo;
+        \item Data;
+        \item Orario inizio / fine;
+        \item Luogo;
+        \item Tipo di verbale (esterno o interno);
+        \item Nome di responsabile, verificatore, segretario ed eventuale azienda;
+        \item Firma di responsabile ed eventuale azienda;
+        \item Lista dei partecipanti (interni e esterni);
+        \item Lista revisione delle azioni;
+        \item Lista ordine del giorno;
+        \item Lista discussione (interna o esterna);
+        \item Lista decisioni.
+    \end{itemize}
+    
+    \subsubsubsection{Struttura di documento}
+    Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
+    \begin{itemize}
+        \item \textbf{Pagina di copertina}: descritta nella sezione Template precedente;
+        \item \textbf{Registro delle versioni}: presente in tutti i documenti ad eccezione dei verbali. Questo registro utilizzato per 
+        tenere traccia delle varie versioni permette di comprendere in modo rapido chi ha realizzato determinate sezioni della 
+        documentazione, quando sono state realizzate, cosa è stato aggiunto e perché (sotto la voce "Dettaglio e motivazioni"). Il registro 
+        presenta le versioni ordinate a partire dalla versione più recente; 
+        \item \textbf{Indice}: presente nel caso in cui si abbia un documento di notevole dimensione, dotato di sezioni. Il suo obiettivo è 
+        quello di facilitare e agevolare l'accesso ad un determinato contenuto trattato nel documento;
+        \item \textbf{Contenuto}: il contenuto vero e proprio del documento.
+    \end{itemize}
+    
+    \subsubsubsection{Verbali}Fanno eccezione alla struttura precedentemente esposta i verbali, sia esterni che interni. Essi infatti oltre a 
+    presentare nella prima pagina di copertina i ruoli inerenti alla loro produzione (al posto dell'elenco dei membri del team) ed una 
+    sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate 
+    dell'azienda), offrono una struttura particolare.\\
+    Il loro contenuto presenta le seguenti sezioni:
+    \begin{itemize}
+        \item \textbf{Intestazione}: sezione contenente le informazioni inerenti a data, ora e luogo della riunione;
+        \item \textbf{Partecipanti}: sezione contenente l'elenco in ordine alfabetico dei partecipanti interni ed eventualmente esterni 
+        alla riunione e una voce apposita per gli assenti;
+        \item \textbf{Revisione delle azioni}: sezione contenente un elenco cronologico delle azioni assegnate nelle riunioni precedenti, 
+        con informazioni in merito al progresso, problematiche riscontrate ed eventuale conclusione di tale azione;
+        \item \textbf{Ordine del giorno}: elenco cronologico e approssimativo delle tematiche trattate all'interno della riunione;
+        \item \textbf{Discussione}: sezione contente l'elenco cronologico delle tematiche affrontate, trattate con una descrizione accurata 
+        delle informazioni emerse;
+        \item \textbf{Decisioni}: decisioni prossime e/o future da intraprendere o intraprese a seguito della riunione affrontata;
+        \item \textbf{Azioni da intraprendere}: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. 
+        Ogni voce è accompagnata dal numero del \textit{ticket} associato (se presente) nell'\textit{ITS\pg} su \textit{Jira\pg}, un incaricato, da un 
+        revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta 
+        completata;
+        \item \textbf{Altro}: sezione contente informazioni aggiuntive quali riferimenti esterni e la data della prossima riunione 
+        (nel caso in cui essa sia stata stabilita).
+    \end{itemize}    
+    
+    \subsubsubsection{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
+    Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
+    \begin{itemize}
+        \item \textbf{Oggetto}: campo da riempire obbligatoriamente in maniera breve e concisa;
+        \item \textbf{Firma}: ogni mail viene conclusa con la firma digitale del gruppo collocata automaticamente;
+        \item \textbf{Forma}: le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio. La lunghezza del 
+        testo della mail non deve essere eccessivo, onde evitare la perdita di visibilità di informazioni preziose; qualora fosse necessario un testo complesso e denso di informazioni, ci si deve servire dell'uso di paragrafi ed elenchi per strutturarlo;
+        \item \textbf{Stile}: è buona norma seguire lo stile del mittente. La mail sarà dotata di formule di saluto iniziale e finale quali 
+        ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
+    \end{itemize}
+    
+    \subsubsubsection{Norme tipografiche}
+    \begin{itemize}
+
+        \item {\textbf{Citazioni tecnologiche e strumentali}}: Ogni tecnologia e/o strumento menzionato all'interno della documentazione 
+        deve essere scritta in \textit{corsivo};
+        
+        \item {\textbf{Date}}: Tutte le date presenti nella documentazione prevedono il seguente formato: AAAA-MM-GG;
+        
+        \item {\textbf{Elenchi}}: Tutti gli elenchi presenti nella documentazione prevedono un ordine:
+            \begin{itemize}
+                \item \textbf{Alfabetico}: sono puntati e non presentano alcuna correlazione con l'aspetto temporale;
+                \item \textbf{Cronologico}: sono  numerati e descrivono una serie di eventi o argomenti ordinati nel tempo.
+            \end{itemize}
+        In tutti gli elenchi ogni punto termina con il ";", fatta eccezione per l'ultimo elemento che termina con il ".";
+        
+        \item {\textbf{Menzioni}}: Ogni menzione di una persona, interna od esterna al team, avviene nel seguente formato: Cognome N. 
+        (dove la lettera N sta per l'iniziale del nome);
+        
+
+        \item {\textbf{Nome del documento}}: I nomi dei documenti prevedono la lettera iniziale maiuscola seguiti dal resto dei caratteri 
+        in case minuscolo e dalla versione del documento stesso.\\
+        I verbali, sia interni che esterni, fanno eccezione e presentano un titolo composta dalla data in cui sono stati svolti nel 
+        seguente formato: AAAA-MM-GG;
+
+        \item {\textbf{Riferimenti interni}}: Menzioni e riferimenti a sezioni interne allo stesso documento a cui appartengono vengono 
+        riportate seguendo la notazione (\S Nome sezione). Questi riferimenti saranno opportunamente collegati tramite link al paragrafo 
+        indicato;
+        
+        \item {\textbf{Riferimenti esterni}}: Menzioni e riferimenti a sezioni di documenti esterni vengono riportate seguendo la notazione 
+        (Nome documento (versione di riferimento), \S Nome sezione);
+
+        \item{\textbf{Nome del gruppo}}: Il nome del gruppo presenta il seguente formato: "SWEetCode";
+
+        \item{\textbf{Stile tipografico}}: La formattazione del testo dei documenti segue rigorosamente un unico stile tipografico: 
+        \textit{Poppins};
+        
+        \item {\textbf{Versioni}}: Ogni documento viene associato nel nostro \href{https://sweetcode-team.github.io/}{sito GitHub} alla 
+        versione del progetto per cui risulta essere ancora in vigore.\\
+        All'interno del documento, nella prima riga del registro delle versioni, viene invece presentata la versione del progetto in cui è 
+        avvenuta l'ultima modifica al documento.\\
+        L'incremento della versione del progetto a seguito di elaborazioni nella documentazione viene gestito attraverso la seguente norma: 
+        l'aggiunta di documentazione non precedentemente presente all'interno del repository o la modifica della documentazione 
+        precedentemente presente all'interno del repository porta all'incremento del solo valore "(build)".
+        \end{itemize}
+
+\subsubsection{Produzione}
+\label{sec:ciclo_vita}
+La produzione di ogni documento redatto da SWEetCode presenta le seguenti fasi:
+\begin{enumerate}
+    \item \textbf{Assegnazione}: Il documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.
+    Una volta presa la decisione per i precedenti ruoli viene aperto su \textit{Jira} un task a loro associato, relativo alla  realizzazione del documento, il quale viene immediatamente inserito all'interno di una epic e di una versione;
+    \item \textbf{Stesura}: La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale 
+    interno o esterno) o dai responsabili di stesura.
+    La produzione della documentazione in formato \textit{Latex} viene gestita tramite la condivisione dei sorgenti attraverso \textit{GitHub}. 
+    Una volta che la stesura viene ritenuta stabile, tramite l'automazione descritta in (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}), viene creata una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} su \textit{GitHub};
+    \item \textbf{Verifica e Validazione}: La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene 
+    sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle (Norme di progetto v2.0.0(0), \S \nameref{sec:documents}). 
+    Se il documento è di tipo esterno, una volta passata la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, 
+    per essere sottoposto ad una sua ulteriore verifica e validazione.
+    In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla 
+    fase precedente, in modo da produrre una documentazione che tiene conto delle correzioni e precisazioni presentate dal revisore e/o 
+    dall'eventuale parte esterna;
+    \item \textbf{Pubblicazione}: La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui 
+    la fase di verifica abbia avuto un riscontro positivo: una volta risolta la \textit{pull request} il documento troverà infatti collocazione 
+    all'interno del repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+    del team su \textit{GitHub}. In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
+\end{enumerate}
+
+\subsubsection{Manutenzione}
+Il processo di manutenzione della documentazione è fondamentale per garantire che la stessa rimanga accurata, aggiornata ed utile nel corso del ciclo di vita del progetto. Tale processo è integrato in modo continuo in base ai progressi svolti. Il team segue le seguenti fasi per il processo di manutenzione:
+\begin{itemize}
+    \item \textbf{Identificazione della necessità della modifica}: Monitoraggio continuo delle esigenze di modifica della documentazione e 
+    comunicazione al team della necessità di una possibile modifica;
+    \item \textbf{Valutazione dell'impatto}: Discussione tra i membri che ricoprono i ruoli interessati alla modifica per valutarne l'impatto 
+    sulla documentazione già esistente. Tale discussione coinvolge tutto il team se necssario;
+    \item \textbf{Aggiornamento della documentazione}: Modifica e aggiornamento del documento interessato secondo le esigenze identificate, e 
+    verifica dell'accuratezza delle informazioni e dell'allineamento con le modifiche del progetto relative;
+    \item \textbf{Push della modifica}: Una volta che la stesura della modifica viene ritenuta stabile, tramite l'automazione descritta in 
+    (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}),
+    viene creata una pull request nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+    su \textit{GitHub} per la nuova versione del documento da parte di chi ha operato la modifica;
+    \item \textbf{Verifica e validazione}: A seguito della creazione della pull request, le modifiche apportate ai documenti sono sottoposte a
+    verifica eseguita da parte del verificatore. Se tale operazione ha esito positivo, se necessario, il documento viene posto ad ulteriore validazione con l'ente esterno in questione.
+    Se sia la verifica che la eventuale validazione hanno avuto esito positivo, le modifiche vengono pubblicate attraverso l'accettazione della 
+    pull request da parte del revisore, in caso invece di esito negativo in anche una delle due operazioni, la pull request viene rifiutata e colui 
+    che aveva realizzato le modifiche è responsabile di applicare le correzzioni emerse, ripetendo i passi precedentemente descritti.
+\end{itemize}
+
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Adobe Illustrator};
+    \item \textit{GitHub};
+    \item \textit{Latexmk(XeLatex)};
+    \item \textit{Jira}.
+\end{itemize}
+
 \subsection{Configuration management}
-In questa sezione vengono presentate tutte le attività che coinvolgono la gestione delle configurazioni del software realizzate da SWEetCode.
+\label{sec:configuration_control}
+\subsubsection{Scopo}
+Nella seguente sezione vengono presentate le attività svolte dal gruppo SWEetCode che rientrano all'interno del processo "configuration management".
 
-\subsubsection{Issue tracking system (ITS)} % TODO: Scrivere che se le issue sono relative ad un'azione presente in un verbale, nella tabella azioni è riportato l'id della issue
-SWEetCode utilizza l'\textit{Issue Tracking System} fornito da \textit{GitHub}.\\
-In questo sistema di tracciamento ogni issue viene dotata di:
+\subsubsection{Descrizione}
+Il processo di configuration management è un processo di applicazione di procedure amministrative e tecniche lungo l'intero ciclo di vita del software al fine di:
 \begin{itemize}
-    \item Titolo: un titolo breve ma esplicativo dell'attività associata alla issue;
-    \item Id numerico univoco: tale id viene generato in automatico dall'ITS;
-    \item Assegnatari: i membri del team che a cui è affidata la responsabilità di risolvere la issue;
-    \item Descrizione: una breve descrizione inerente alla issue associata;
-    \item Data: la data di crezione della issue;
-    \item Stato: gli stati possibili di una issue sono \textit{Todo}, \textit{In Progress} ed infine \textit{Done};
-    \item Labels: etichette che permettono di organizzare e categorizzare le issue presenti nel sistema, rendendo più semplice e immediato il tipo di task a loro associato;
-    \item Data: data di creazione della issue;
-    \item Milestone: ogni issue può essere associata ad una determinata milestone del repository.
-\end{itemize}
-Ogni issue creata dal gruppo viene inserita all'interno di una \textit{Board} che permette di tracciare in modo rapido lo stato interno di ogni issue.
-
-\paragraph{Automatizzazione chiusura issue}Una automatizzazione utilizzata dal team consiste nella chiusura automatica delle issue: ogni volta che un membro del team effettua un commit nel repository finalizzato alla chiusura di una issue, il contenuto di tale commit dovrà prevedere all'interno del suo contenuto l'istruzione "\textit{Close \#id\_issue}".
-Le conseguenze di tale operazione a seguito dell'approvazione della pull request da parte del responsabile di progetto e successiva operazione di merge nel main branch sono:
-\begin{itemize}
-    \item modifica dello stato della issue al valore \textit{Done};
-    \item spostamento della issue all'interno della \textit{Board} sotto la sua voce "\textit{Done}".
+    \item Identificare, definire e stabilire una base per gli elementi software in un sistema;
+    \item Controllare le modifiche e le release degli elementi;
+    \item Registrare e riportare lo stato degli elementi e delle richieste di modifica;
+    \item Garantire la completezza, la coerenza e la correttezza degli elementi.
 \end{itemize}
 
-\subsubsection{Pull requests} %TODO: Cambiare chi accetta pull request da Responsabili a Verificatori
-A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Responsabili}.\\
-Una volta proposta la pull request il responsabile attuale del progetto, membro del \textit{Team Responsabili}, dovrà effettuare un ulteriore verifica sulle modifiche proposte e, a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata sollevata in caso di esito positivo.
+\subsubsection{Configuration control}
+\subsubsubsection{Scopo}
+L'attività di configuration control si pone i seguenti obiettivi:
+\begin{itemize}
+    \item Identificare e registrare le richieste di modifica;
+    \item Analizzare e valutare le modifiche;
+    \item Approvare o rifiutare le richieste di modifica;
+    \item Tracciamento di audit.
+\end{itemize}
 
-\subsubsection{Version control}
-Il sistema di \textit{Version control} adottato dal team prevede una versione nel seguente formato: vX.Y.Z(build).
+\subsubsubsection{Issue tracking system (ITS)} 
+Per raggiungere l'obiettivo di tracciamento di audit, ovvero la registrazione sistematica e dettagliata dei task e delle modifiche, SWEetCode utilizza 
+l'\textit{Issue Tracking System\pg} fornito da \textit{Atlassian}: \textit{Jira}.
+\subsubsubsubsection{Ticket}
+In questo sistema di tracciamento si permette la creazione di \textit{ticket} che possono essere di tre tipi:
+\begin{itemize}
+    \item \textit{task}: tale tipo di ticket viene utilizzato dal team per assegnate compiti atomici ai vari membri del gruppo;
+    \item \textit{\textit{bug\pg}}: tale tipo di ticket viene utilizzato dal team per assegnare un compito di fix di un bug all'interno del progetto ad un membro del gruppo; 
+    \item \textit{story}: tale tipo di ticket viene utilizzato per rappresentare un requisito.
+\end{itemize}
+Ciascun \textit{ticket} presenta (di seguito sono riportate le sole funzionalità utilizzate dal team):
+\begin{itemize}
+    \item Titolo: un titolo breve ma esplicativo del compito associato al \textit{ticket};
+    \item Id numerico univoco: tale id viene generato in automatico dall'ITS nella forma \textit{SWE-ID};
+    \item \textit{epic}: ogni \textit{ticket} può essere infatti associato ad una \textit{epic};
+    \item Collegamento: \textit{Jira} mette a disposizione una funzionalità di collegamento per stabilire le dipendenze tra i vari \textit{ticket};
+    \item Assegnatario: il membro del team che a cui è stata affidata la responsabilità di svolgere il \textit{ticket};
+    \item Descrizione: una breve descrizione inerente al \textit{ticket} associata;
+    \item Data: la data di creazione del \textit{ticket};
+    \item Reporter: il membro del team che ha creato il \textit{ticket};
+    \item Sviluppo: voce contenente il link ai commit, alle pull request e alle build che sono stati effettuati nel repo su \textit{GitHub} in correlazione al \textit{ticket} in questione;
+    \item Stato: gli stati possibili di un \textit{ticket} sono \textit{Da fare}, \textit{In Progress}, \textit{Pronto per commit} (introdotto dagli amministratori di SWEetCode nel flusso di lavoro) ed infine \textit{Completato};
+    \item \textit{Sprint\pg}: ogni \textit{ticket} può essere associato ad uno \textit{sprint};
+    \item \textit{Versione} di correlazione: ogni \textit{ticket} può essere associato ad una determinata \textit{versione}.
+\end{itemize}
+
+\subsubsubsubsection{Epic}
+Un insieme di \textit{ticket} può essere raggruppato all'interno di una \textit{epic}: una \textit{epic} costituisce un'unità 
+logica e strategica di lavoro più ampia, rappresentando un obiettivo o un risultato di alto livello. Questo strumento di lavoro offre
+al team una panoramica di completamento generale di un particolare insieme di azioni correlate tra loro, attraverso una 
+scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta i medesimi field di un \textit{ticket} precedentemente descritti.
+
+\subsubsubsubsection{Versioni}
+Per rappresentare le milestone su \textit{Jira} vengono utilizzate le \textit{Versioni}, alle quali possono essere associate \textit{epic}
+e i relativi \textit{ticket}, riportando come nelle \textit{epic} una scoreboard che indica la percentuale di \textit{ticket} completati, in progresso o ancora da iniziare.
+Una volta che tutti i \textit{ticket} associati alla \textit{versione} sono stati completati, tale \textit{versione} può essere rilasciata.
+Oltre ai \textit{ticket} associati, ogni \textit{versione} presenta una breve descrizione, una data di inizio ed una di fine.
+
+\subsubsubsubsection{Backlog e Sprint}
+\textit{Jira} offre all'interno dell'\textit{ITS} differenti funzionalità di supporto al metodo \textit{Agile\pg}, seguendo il framework \textit{Scrum\pg}, in particolare
+quando i \textit{ticket} vengono creati sono inseriti di default all'interno del \textit{Backlog} per essere in seguito
+assegnati ai vari \textit{Sprint}. 
+Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e da uno stato (\textit{Attivato/Chiuso}).
+
+\subsubsubsubsection{Timeline}
+\textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un \textit{diagramma di Gantt\pg} all'interno del quale si possono inserire i \textit{ticket}
+creati associati ad una \textit{epic}.\\
+Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
+all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
+le dipendenze presenti tra essi.\\
+Ogni \textit{versione} viene rappresentata all'interno della \textit{timeline} da una linea verticale posta in corrispondenza della data di scadenza
+della versione stessa.\\
+Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi.\\
+Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
+permettendo di effettuare una istantanea.
+
+\subsubsubsubsection{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
+Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS}: ogni volta che un membro del team 
+effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto v2.0.0(0), \nameref{sec:automazione_docs})
+presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
+A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
+allo stato \textit{Completato}.
+
+\subsubsubsection{Pull requests} 
+\label{sec:pull_request}
+A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato che permetta di analizzare 
+e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
+Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e,
+a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata 
+sollevata in caso di esito positivo.
+Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Protection Rules} offerte da \textit{GitHub}.
+L'identificazione attraverso un titolo fornito da colui che solleva la pull request e la registrazione delle richieste di modifica e del loro esito è una conseguenza
+dell'applicazione della pratica delle pull request offerta da \textit{GitHub}.
+
+\subsubsubsection{GitHub Teams}
+SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di 
+\textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
+I \textit{Teams} presentati sono dunque:
+\begin{itemize}
+    \item Amministratori;
+    \item Analisti;
+    \item Progettisti;
+    \item Programmatori;
+    \item Responsabili;
+    \item Verificatori.
+\end{itemize}
+Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei modi, permettendo di assegnare responsabilità e permessi specifici a determinate posizioni 
+piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
+
+\subsubsection{Configuration status accounting}
+\subsubsubsection{Scopo}
+L'obiettivo che si pone il configuration status accounting è quello di mantenere una registrazione accurata e aggiornata del prodotto software e dei suoi elementi in relazione allo stato del prodotto stesso nel corso del tempo.
+
+\subsubsubsection{Version control}
+\label{sec:version}
+Per tenere traccia dello stato e della storia degli elementi controllati, il team ha deciso di utilizzare un sistema di \textit{Version control} basato su una versione 
+del prodotto che si attiene al seguente formato: vX.Y.Z(build).
 \begin{itemize}
     \item v: sta per versione, rimane immutato lungo tutte le versioni;
     \item X: numero che indica la versione principale di riferimento. Viene incrementato quando viene superata una fase di revisione di avanzamento;
@@ -95,143 +976,980 @@ Ogni volta che viene incrementato il valore X, i valori Y, Z e (build) ripartono
 Ogni volta che viene incrementato il valore Y, il valore Z e (build) ripartono dal valore ”0”.\\
 Ogni volta che viene incrementato il valore Z, il valore (build) riparte dal valore "0".
 
-\subsection{Documentazione}
-Tutte le attività di sviluppo sono accompagnate da una loro documentazione, con l’obiettivo di permettere una consultazione semplice e rapida alle informazioni inerenti al prodotto e alle attività stesse, svolgendo inoltre un ruolo di storicizzazione e di supporto alla manutenzione.
-    \subsubsection{Ciclo di vita}
-    Ogni documento prodotto da SWEetCode presenta le seguenti fasi:
-        \begin{enumerate}
-            \item Assegnazione: $\\$
-            Ogni documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.\\
-            Una volta presa la decisione per i precedenti ruoli viene aperta su \textit{GitHub} una issue a loro associata relativa alla  realizzazione del documento, la quale viene immediatamente inserita all'interno della Board del progetto. Ogni issue viene inoltre etichettata da una label relativa al tipo di documento da produrre;
-            \item Stesura: $\\$
-            La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale interno o esterno) o dai responsabili di stesura.
-            La produzione della documentazione in formato \textit{Latex} viene gestita tramite la piattaforma \textit{Overleaf}, la quale rende disponibile gli strumenti adatti ad una eventuale stesura sincronizzata e collaborativa tra i membri del team;
-            \item Verifica e validazione: $\\$
-            La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle "Norme di progetto". 
-            Se il documento è di tipo esterno, una volta eseguita la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, per essere sottoposto ad una sua ulteriore verifica e validazione.
-            In caso di esito positivo viene eseguito un commit nel repository \href{https://github.com/sweetcode-team/Documentation}{\textcolor{black}{\textit{Documentation}}}; su \textit{GitHub} che porta alla creazione di una \textit{pull request} (il commit a lui associato dovrà chiudere la issue aperta relativa al documento in oggetto attraverso l'automazione \textit{Close \#id\_issue} ).
-            In caso di esito negativo si ritorna invece alla fase precedente in modo da produrre una documentazione che tiene conto delle precisazioni presentate dal revisore e/o dall'eventuale parte esterna;
-            \item Pubblicazione: $\\$
-            La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui la fase di verifica abbia avuto un riscontro positivo.
-            In questa fase il responsabile attuale di progetto fornisce un'ulteriore conferma alla documentazione prodotta accettando la \textit{pull request} precedentemente aperta all'interno del repository \href{https://github.com/sweetcode-team/Documentation}{\textcolor{black}{\textit{Documentation}}}; del team su \textit{GitHub}.
-        \end{enumerate}
-    \subsubsection{Template}
-    Il team ha deciso di produrre un template grafico ricorrente all'interno della documentazione.\\
-    Ogni documento presenta la medesima pagina di copertina, con una grafica realizzata tramite \textit{Adobe Illustrator} ed in seguito disposta nella pagina tramite \textit{Overleaf}, dove viene esposto il nostro logo, il nostro nome del team e i membri del team.\\
-    Le seguenti pagine di ciascun documento presentano un:
+\subsubsection{Configuration evaluation}
+\subsubsubsection{Scopo}
+L'attività di configuration evaluation si pone l'obiettivo di garantire la completezza funzionale degli elementi software realizzati rispetto ai loro
+requisiti.
+
+\subsubsubsection{Tracciamento dei requisiti}
+Per raggiungere l'obiettivo precedentemente citato, il team SWEetCode ha deciso di effettuare un tracciamento dei requisiti all'interno del prodotto software,
+in modo da portare nel concreto l'evidenza della correlazione tra requisiti e codice.\\
+Per effettuare il tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
+del requisito menzionato.
+
+\subsubsection{Release management}
+\subsubsubsection{Scopo}
+L'attività di release management si occupa di effettuare un rilascio controllato.
+
+\subsubsubsection{Automazione release}
+L'automazione del \textit{versionamento\pg} consente di rilasciare nuove release in modo automatico, seguendo le regole di
+cambio versione indicate in (Norme di progetto v2.0.0(0), \S \nameref{sec:version}). Attraverso l'uso delle \textit{GitHub Actions\pg}, l'accettazione di una pull request, 
+eseguita seguendo le norme indicate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
+Il tipo di cambio versione viene indicato dal prefisso del titolo della Pull Request.
+
+Questa automazione si integra in modo efficace con quella citata nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}).
+Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione della pull request e la sua accettazione.
+
+La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
+verifica, che garantiscono la pulizia del repository remota e la correttezza del suo contenuto.
+
+\subsubsubsection{Automazione versionamento documenti}
+\label{sec:automazione_docs}
+L'aggiornamento del registro delle versioni, la creazione dei \textit{PDF\pg} e la pubblicazione delle modifiche nel repository remoto avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
+Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
+in cui aggiorna il registro delle versioni e crea il PDF usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
+
+Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
+sito web del repository su GitHub e creare la Pull Request.
+Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica v2.0.0(0)) e
+secondo le modalità citate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:ciclo_vita}).
+
+L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
+versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
+volutamente le loro azioni alla sola modifica del contenuto della documentazione.
+
+
+\subsection{Accertamento di qualità}
+\subsubsection{Scopo}
+Lo scopo di questo processo è fornire un'adeguata garanzia che i prodotti software e i processi nel ciclo di vita del progetto siano conformi ai requisiti specificati e aderiscano ai loro piani stabiliti.
+L'assicurazione della qualità può utilizzare i risultati di altri processi di supporto, come la verifica e la validazione.
+
+\subsubsection{Process assurance}
+Per garantire che la qualità prefissata venga raggiunta e mantenuta, viene adottato il ciclo \textit{PDCA\pg}, noto anche come ciclo di Deming, un approccio metodologico utilizzato per il miglioramento continuo. Si divide in 4 fasi:
+\begin{itemize}
+    \item \textbf{Plan}: questa fase coinvolge la definizione degli obiettivi di qualità, la pianificazione delle attività e la creazione di criteri di valutazione. Aiuta a stabilire le aspettative, i processi e le risorse necessarie per raggiungere gli standard di qualità prefissati;
+    \item \textbf{Do}: durante questa fase, vengono implementate le azioni pianificate, eseguendo le attività identificate nel piano e raccogliendo dati per il monitoraggio della qualità;
+    \item \textbf{Check}: questa fase consiste nella valutazione dei risultati ottenuti rispetto agli obiettivi prestabiliti. Attraverso metriche precise stabilite dal team, si verifica se i risultati sono in linea con le aspettative di qualità;
+    \item \textbf{Act}: basandosi sull'analisi dei dati raccolti, si apportano correzioni migliorative ai processi esistenti, al fine di migliorare la qualità del prodotto.
+\end{itemize}
+
+\subsubsection{Metriche: Notazione}
+Le metriche di qualità, definite successivamente, vengono identificate con la seguente notazione:
+\textbf{M.[Tipo].[Codice].[Sigla]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{M}] indica la parola "metrica";
+\item \lbrack \textbf{Tipo}] indica il tipo di qualità:
+\begin{itemize}
+    \item \textbf{PC}: Qualità di processo;
+    \item \textbf{PD}: Qualità di prodotto.
+\end{itemize}
+\item \lbrack \textbf{Codice}] è un numero progressivo univoco che identifica le metriche per ogni tipologia;
+\item \lbrack \textbf{Sigla}] composta dalle iniziali del nome della metrica; aiuta a identificarla più velocemente.
+\end{itemize}
+
+\subsubsection{Metriche: Didascalia}
+Ogni metrica è descritta dai seguenti campi:
+\begin{itemize}
+    \item \textbf{Nome}: nome della metrica;
+    \item \textbf{Descrizione}: descrizione della metrica;
+    \item \textbf{Caratteristica di riferimento}: caratteristica dello standard a cui la metrica fa riferimento;
+    \item \textbf{Motivo}: motivazione per la quale è necessario misurarla;
+    \item \textbf{Misurazione}: formula e strumenti tramite i quali viene calcolata.
+\end{itemize}
+
+\subsubsection{Standard per la qualità del prodotto}
+% ISO/IEC 9126
+Nella definizione delle metriche di qualità, il team si prefigge di seguire lo standard ISO/IEC 9126, che descrive un modello di qualità del prodotto
+dividendo la qualità in esterna, interna e in uso.
+Qualità esterna e interna sono organizzate attraverso le seguenti caratteristiche:
+\begin{itemize}
+    \item \textbf{Funzionalità}: capacità del software di fornire le funzioni necessarie per operare in un determinato contesto;
+    \item \textbf{Affidabilità}: capacità di un prodotto software di mantenere il livello di prestazione quando viene utilizzato in condizioni specifiche;
+    \item \textbf{Usabilità}: capacità di un prodotto software di essere comprensibile. Chiarisce tutti gli ambienti e scenari di utilizzi del prodotto, 
+        inclusa la preparazione all'utilizzo del software e la valutazione dei risultati;
+    \item \textbf{Efficienza}: capacità di un prodotto software di realizzare le funzioni richieste nel minor tempo possibile e utilizzando nel miglior modo le risorse necessarie;
+    \item \textbf{Manutenibilità}: capacità di un prodotto di essere modificabile, sia per correzioni che per adattare il software e modifiche all'ambiente o ai requisiti;
+    \item \textbf{Portabilità}: capacità di un prodotto di essere trasportato in ambienti diversi, con organizzazione e tecnologie diverse;
+    \item \textbf{Qualità} in uso: rappresenta il punto di vista dell'utente sulla qualità interna ed esterna. 
+\end{itemize}
+
+La qualità in uso viene descritta tramite le seguenti caratteristiche:
+\begin{itemize}
+    \item \textbf{\textit{Efficacia\pg}}: capacità di permettere all'utente di raggiungere obiettivi specifici con accuratezza e completezza in uno specifico contesto di utilizzo;
+    \item \textbf{Produttività}: capacità di permettere all'utente di impegnare un numero definito di risorse, in relazione all'efficienza raggiunta in uno specifico contesto di utilizzo;
+    \item \textbf{Sicurezza} fisica: capacità di raggiungere un livello accettabile di rischio per i dati, le persone, il business, la proprietà o gli ambienti;
+    \item \textbf{Soddisfazione}: capacità di soddisfare gli utenti a seguito di interazioni con il prodotto. 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%% ISO/IEC 25010
+
+
+\subsubsection{Lista delle metriche}
+
+\subsubsubsection{Qualità del processo}
+\begin{itemize}
+    \item \textbf{M.PC.1.PMS}:
+    \begin{itemize}
+        \item \textbf{Nome}: Percentuale di metriche soddisfatte;
+        \item \textbf{Descrizione}: Valore che indica la percentuale di metriche soddisfatte; una metrica si dice "soddisfatta" se la sua misurazione supera il valore accettabile specificato nel documento (Piano di qualifica v2.0.0(0)); 
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Questa metrica ci assicura il raggiungimento di un buon livello di qualità generale nello svolgimento del progetto;
+        \item \textbf{Misurazione}: \  \[ M=\frac{N° Metriche \ soddisfatte}{N° Metriche\ totali} * 100 \] \\
+    \end{itemize}
+  
+     \item \textbf{M.PC.2.RNP}:
+    \begin{itemize}
+        \item \textbf{Nome}: Rischi non previsti;
+        \item \textbf{Descrizione}: Valore che specifica il numero di rischi verificatisi che non rientrano tra quelli esaminati nel documento di (Analisi dei requisiti v2.0.0(0));
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Valore che indica se è stata fatta una accurata analisi dei rischi a monte della pianificazione. 
+        \item \textbf{Misurazione}:  \[
+        M=N°Rischi \ non \ previsti
+        \] \\
+    \end{itemize}
+ 
+
+    
+    \item \textbf{M.PC.3.VP}:
+    \begin{itemize}
+        \item \textbf{Nome}: Variazione di piano;
+        \item \textbf{Descrizione}: Variazione utilizzata per analizzare se ogni attività o task del progetto, in un dato istante di tempo, è in linea o in ritardo rispetto alla pianificazione specificata nel documento (Piano di progetto v2.0.0(0)).  Ai seguenti valori si associano i seguenti significati:
         \begin{itemize}
-            \item header: intestazione contenente il nostro logo, il nome del documento ed il nostro nome;
-            \item footer: piè di pagina contenente i link alla nostra email e al nostro account \href{https://sweetcode-team.github.io/}{\textcolor{black}{\textit{GitHub}}}; ed infine la numerazione di pagina.
+            \item > 0 significa che si sta procedendo con un certo ritardo;
+            \item = 0 si è in linea con quanto pianificato.
+            %\item > 0 significa che si sta procedendo con un certo anticipo rispetto a quanto pianificato.
         \end{itemize}
-    \subsubsection{Struttura di documento}
-    Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Valore che aiuta a controllare come il team procede e ad evitare ritardi;
+        \item \textbf{Misurazione}: \  \[ M=TP-TC \] \\
+        \begin{itemize}
+        \item TP= Numero di task pianificati;
+        \item TC= Numero di task completati.\\
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{M.PC.4.VC}:
     \begin{itemize}
-        \item Pagina di copertina: descritta nella sezione Template precedente;
-        \item Registro delle versioni: presente in tutti i documenti ad eccezione dei verbali. Questo registro utilizzato per tenere traccia delle varie versioni permette di comprendere in modo rapido chi ha realizzato determinate sezioni della documentazione, quando sono state realizzate, cosa è stato aggiunto e perché (sotto la voce "Dettaglio e motivazioni"). Il registro presenta le versioni ordinate a partire dalla versione più recente; 
-        \item Indice: presente nel caso in cui si abbia un documento di notevole dimensione, dotato di sezioni. Il suo obiettivo è quello di facilitare e agevolare l'accesso ad un determinato contenuto trattato nel documento;
-        \item Contenuto: il contenuto vero e proprio del documento.
+        \item \textbf{Nome}: Variazione di costo;
+        \item \textbf{Descrizione}: Valore che indica se il costo attuale del progetto è maggiore, uguale o minore rispetto al costo preventivato. Ai seguenti valori si associano i seguenti significati:
+        \begin{itemize}
+            \item > 0 significa che si sta producendo con maggior efficienza risparmiando rispetto a quanto pianificato;
+            \item = 0 si è in linea con i costi pianificati;
+            \item < 0 significa che si sta producendo con minor efficienza causando maggiorazioni di costo rispetto a quanto pianificato.
+        \end{itemize}
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Valore che aiuta a controllare come si procede e ad evitare maggiorazioni di prezzo rispetto al preventivo; 
+        \item \textbf{Misurazione}:  \[ M=CP-CC \] \\
+        \begin{itemize}
+        \item CP= Costo preventivato;
+        \item CC= Costo consuntivato.\\
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{M.PC.5.ISR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Indice di stabilità dei requisiti;
+        \item \textbf{Descrizione}: Indice che traccia la variazione dei requisiti nell’arco del progetto;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Questo valore indica eventuali discostamenti dai requisiti analizzati nel documento di (Analisi dei requisiti v2.0.0(0)); 
+        \item \textbf{Misurazione}: \[ M=100- \frac{RM + RC + RA}{RTI} *100 \] \\
+        \begin{itemize}
+        \item RM= Requisiti modificati;
+        \item RC= Requisiti cancellati;
+        \item RA= Requisiti aggiunti;
+        \item RTI= Requisiti totali iniziali.\\
+        \end{itemize}
+    \end{itemize}
+
+  \item \textbf{M.PC.6.CCM}:
+    \begin{itemize}
+        \item \textbf{Nome}: Complessità ciclomatica media;
+        \item \textbf{Descrizione}: Metrica utilizzata per valutare la complessità di un programma; misura direttamente il numero di cammini linearmente indipendenti attraverso il grafo di controllo di flusso;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Permette di controllare la complessità e di limitarla, semplificando il testing;
+        \item \textbf{Misurazione}: \[ M=\sum_{Metodo} \frac{e-n+2}{NMT} \] \\
+         \begin{itemize}
+        \item e= Numero di archi nel grafo dei cammini;
+        \item n= Numero di nodi nel grafo dei cammini;
+        \item NMT= Numero dei metodi totali.\\
+        \end{itemize}
+   \end{itemize}
+   
+    \item \textbf{M.PC.7.SC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Statement coverage;
+        \item \textbf{Descrizione}: Misura la percentuale di istruzioni nel codice eseguite dai test;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Metrica che permette di valutare la correttezza del comportamento del software in esecuzione;
+        \item \textbf{Misurazione}:  \[M=\frac{N° Statement
+        \ eseguiti}{N° Statement\ totali} * 100 \] \\
     \end{itemize}
 
 
-    
-    %\textbf{Verbali}$\\$
-    \paragraph{Verbali}Fanno eccezione a questa struttura i verbali, sia esterni che interni, che oltre a presentare nella prima pagina di copertina i ruoli inerenti alla sua produzione al posto dell'elenco dei membri del team e una sezione apposita per la firma del responsabile di riunione (e in caso di verbale esterno anche la firma da parte di un rappresentate dell'azienda), offre una struttura particolare.\\
-    Il contenuto presenta infatti le seguenti sezioni:
+
+    \item \textbf{M.PC.8.BC}:
     \begin{itemize}
-        \item Intestazione: sezione contenente le informazioni inerenti a data, ora e luogo della riunione;
-        \item Partecipanti: sezione contenente l'elenco in ordine alfabetico dei partecipanti interni ed eventualmente esterni alla riunione e una voce apposita per gli assenti;
-        \item Revisione delle azioni: sezione contenente un elenco cronologico delle azioni assegnate nelle riunioni precedenti, con informazioni in merito al progresso, problematiche riscontrate ed eventuale conclusione di tale azione;
-        \item Ordine del giorno: elenco cronologico e approssimativo delle tematiche trattate all'interno della riunione;
-        \item Discussione: sezione contente l'elenco cronologico delle tematiche affrontate, trattate con una descrizione accurata delle informazioni emerse;
-        \item Decisioni: decisioni prossime e/o future da intraprendere o intraprese a seguito della riunione affrontata;
-        \item Azioni da intraprendere: tabella contente le azioni assegnate durante l'incontro e da svolgere nel futuro immediato. Ogni voce è accompagnata dal numero della issue associata (se presente) nell'ITS su \textit{GitHub}, un incaricato, da un revisore che dovrà verificare il suo operato e da una data di scadenza entro la quale l'azione da svolgere dovrà essere ritenuta completata;
-        \item Altro: sezione contente informazioni aggiuntive quali riferimenti esterni e la data della prossima riunione (nel caso in cui essa sia stata stabilita).
-    \end{itemize}    
-    % \textbf{Posta elettronica}$\\$
-    \paragraph{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
-    Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
-    \begin{itemize}
-        \item Oggetto: campo da riempire obbligatoriamente in maniera breve e concisa;
-        \item Firma: ogni mail viene conclusa con la firma digitale del gruppo collocata automaticamente;
-        \item Forma: le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio. La lunghezza del testo della mail non deve essere eccessivo, onde evitare la perdita di visibilità di informazioni preziose; qualora fosse necessario un testo complesso e denso di informazioni, ci si deve servire dell'uso di paragrafi ed elenchi per strutturarlo;
-        \item Stile: è buona norma seguire lo stile del mittente. La mail sarà dotata di formule di saluto iniziale e finale quali ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
+        \item \textbf{Nome}: Branch coverage;
+        \item \textbf{Descrizione}: Misura la percentuale di rami eseguiti o punti decisionali nel codice, come istruzioni \textit{if} o \textit{cicli}, e determina se i test esaminano sia il ramo vero che quello falso delle istruzioni condizionali;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Metrica che permette di valutare la correttezza del comportamento del software in esecuzione;
+        \item \textbf{Misurazione}:  \[M=\frac{N° Branch \ eseguiti}{N° Branch\ totali} * 100 \] \\
     \end{itemize}
-    
-    \subsubsection{Norme tipografiche}
-        % \textbf{Citazioni tecnologiche e strumentali}$\\$
-        \paragraph{Citazioni tecnologiche e strumentali}Ogni tecnologia e/o strumento menzionato all'interno della documentazione deve essere scritta in \textit{corsivo}.
-        
-        % \textbf{Date}$\\$
-        \paragraph{Date}Tutte le date presenti nella documentazione prevedono il seguente formato: AAAA-MM-GG.
-        
-        % \textbf{Elenchi}$\\$
-        \paragraph{Elenchi}Tutti gli elenchi presenti nella documentazione prevedono un ordine:
-            \begin{itemize}
-                \item alfabetico: sono puntati che non presentano alcuna correlazione con l'aspetto temporale;
-                \item cronologico: sono elenchi numerati e descrivono il seguirsi di avvenimenti o argomenti nel tempo.
+
+
+    \item \textbf{M.PC.9.ET}:
+    \begin{itemize}
+        \item \textbf{Nome}: Efficienza temporale;
+        \item \textbf{Descrizione}: Percentuale che misura l'efficienza (in termini di ore impiegate) esercitata nello svolgere attività e task;
+        \item \textbf{Caratteristica di riferimento}: -
+        \item \textbf{Motivo}: Metrica che permette di valutare la produttività effettiva del team;
+        \item \textbf{Misurazione}:  \[ET=\frac{OR}{OP} * 100 \] \\
+        \item  \begin{itemize}
+            \item OR= Numero di ore di orologio;
+            \item OP= Numero di ore produttive (ore che portano al raggiungimento di obiettivi).\\
             \end{itemize}
-        In tutti gli elenchi ogni punto termina con il ";", fatta eccezione per l'ultimo elemento che termina con il ".".
-        
-        % \textbf{Menzioni}$\\$
-        \paragraph{Menzioni}Ogni menzione di una persona, interna od esterna al team, avviene nel seguente formato: Cognome N. (dove la lettera N sta per l'iniziale del nome).
-        
-        % \textbf{Nome del documento}$\\$
-        \paragraph{Nome del documento}I nomi dei documenti prevedono la lettera iniziale maiuscola seguiti dal resto dei caratteri in case minuscolo e dalla versione del documento stesso.
+    \end{itemize}
+    
+\end{itemize}
 
-        I verbali, sia interni che esterni, fanno eccezione e presentano un titolo composta dalla data in cui sono stati svolti nel seguente formato: AAAA-MM-GG.
-        
-        % \textbf{Nome del gruppo} $\\$
-        \paragraph{Nome del gruppo}Il nome del gruppo presenta il seguente formato: "SWEetCode".
-        
-        % \textbf{Stile tipografico}$\\$
-        \paragraph{Stile tipografico}La formattazione del testo dei documenti segue rigorosamente un unico stile tipografico: \textit{Poppins}.
-        
-        % \textbf{Versioni}$\\$ 
-        \paragraph{Versioni}Ogni documento viene associato nel nostro \href{https://sweetcode-team.github.io/}{sito GitHub} alla versione del progetto per cui risulta essere ancora in vigore.\\
-        All'interno del documento, nella prima riga del registro delle versioni, viene invece presentata la versione del progetto in cui è avvenuta l'ultima modifica al documento.\\
-        L'incremento della versione del progetto a seguito di elaborazioni nella documentazione viene gestito attraverso la seguente norma: l'aggiunta di documentazione non precedentemente presente all'interno del repository o la modifica della documentazione precedentemente presente all'interno del repository porta all'incremento del solo valore "(build)".
+\subsubsubsection{Qualità del prodotto}
+\subsubsubsubsection{Interne}
+\begin{itemize}
+     \item \textbf{M.PD.1.IG}:
+    \begin{itemize}
+        \item \textbf{Nome}: \textit{Indice di Gulpease\pg};
+        \item \textbf{Descrizione}: Questo indice descrive il grado di leggibilità di un testo tarato sulla lingua italiana. I valori sono compresi tra 0 (leggibilità più bassa) e 100 (leggibilità più alta). Ai seguenti valori si associano i seguenti significati:
+        \begin{itemize}
+            \item < 80 sono difficili da leggere per chi ha la licenza elementare;
+            \item < 60 sono difficili da leggere per chi ha la licenza media;
+            \item < 40 sono difficili da leggere per chi ha un diploma superiore.
+        \end{itemize}
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Comprensibilità;
+        \item \textbf{Motivo}: I documenti devono essere di facile fruizione per il maggior numero di persone possibili.
+        \item \textbf{Misurazione}: \[M=89 + \frac{300* NF -10* NL}{NP} \] \\
+        \begin{itemize}
+        \item NF= Numero delle frasi;
+        \item NL= Numero delle lettere;
+        \item NP= Numero delle parole.\\
+        \end{itemize}
+        \end{itemize}
+        \begin{comment}
+       \item Per lo scopo dei documenti e per la formalità
+richiesta da essi, capiterà spesso che vengano impiegati termini tecnici che non si possono
+sostituire. Anche interrompere la frase a favore di un indice più alto potrebbe spezzarne il
+ragionamento o, peggio, storpiarne il contenuto. Infine, usare frasi troppo dirette potrebbe
+risultare poco professionale ai fini del documento. Perciò, i documenti saranno valutati da
+un essere umano per stabilire se e come il testo potrebbe essere semplificato. I limiti imposti
+da tale indice saranno sufficientemente rilassati per accettare frasi un po’ più articolate.
+Per migliorare l’utilizzo di questo indice non verrà controllato solamente a livello
+\end{comment}
+
+
+ \item \textbf{M.PD.2.LMC}:
+    \begin{itemize}
+        \item \textbf{Nome}: Linee medie di codice per metodo;
+        \item \textbf{Descrizione}: Valore rappresentante, in media, il numero di linee di codice che ogni metodo possiede;
+        \item \textbf{Caratteristica di riferimento}: Manutenibilità-Modificabilità;
+        \item \textbf{Motivo}: Questo valore serve a valutare la complessità del codice scritto; 
+       \item \textbf{Misurazione}: Misurabile con strumenti di analisi statica. \\
+    \end{itemize}
+
+     \item \textbf{M.PD.3.AFS}:
+    \begin{itemize}
+        \item \textbf{Nome}: Adeguatezza delle funzioni sviluppate;
+        \item \textbf{Descrizione}: Metrica interna utilizzata per verificare in anticipo se il software soddisferà i requisiti funzionali;
+        \item \textbf{Caratteristica di riferimento}: Funzionalità-Adeguatezza;
+        \item \textbf{Motivo}: Misurare il livello di adeguatezza delle funzioni sviluppate rispetto alle esigenze specificate; 
+       \item \textbf{Misurazione}:   \[ M=\frac{FA}{FT} \] \\
+       \begin{itemize}
+           \item \textbf{FA}= Numero di funzioni ritenute adeguate allo svolgimento del task specificato;
+           \item \textbf{FT}= Numero totale di funzioni sviluppate.\\
+       \end{itemize}
+    \end{itemize}
+
+  \item \textbf{M.PD.4.AR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Accuratezza della risposta;
+        \item \textbf{Descrizione}: Metrica che consente di misurare se i risultati ottenuti siano coretti, graditi e in linea con le aspettative;
+        \item \textbf{Caratteristica di riferimento}: Funzionalità-Accuratezza;
+        \item \textbf{Motivo}: Misurare il livello di adeguatezza delle risposte ottenute con la applicazione; 
+       \item \textbf{Misurazione}: Il team eseguirà varie strategie indicate in questa pagina web: \url{https://python.langchain.com/docs/guides/evaluation} \textit{(Ultimo accesso: 2024-02-08)}. \\
+       
+    \end{itemize}
+
+
+    \item \textbf{M.PD.5.RD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Rimozione dei difetti;
+        \item \textbf{Descrizione}: Metrica interna di affidabilità che permette di valutare la maturità del prodotto dal punto di vista della riduzione delle possibili cause di malfunzionamenti;
+        \item \textbf{Caratteristica di riferimento}: Affidabilità-Maturità;
+        \item \textbf{Motivo}:Misura l'efficacia della rimozione degli errori rilevati nelle diverse fasi di sviluppo del prodotto; 
+       \item \textbf{Misurazione}:   \[ M=\frac{DC}{DT} \] \\
+       \begin{itemize}
+           \item \textbf{DC}= Numero di difetti corretti;
+           \item \textbf{DT}= Numero totale di difetti rilevati nelle diverse fasi di sviluppo del prodotto (dati ricavati dai modelli statistici creati sulla base dei dati presenti nello storico del progetto).\\
+       \end{itemize}
+    \end{itemize}
+
+    
+    \item \textbf{M.PD.6.LCG}:
+    \begin{itemize}
+        \item \textbf{Nome}: Livello di controllo dei guasti;
+        \item \textbf{Descrizione}: Metrica che aiuta a valutare la capacità del prodotto a mantenere le prestazioni desiderate anche in caso di malfunzionamenti;
+        \item \textbf{Caratteristica di riferimento}: Affidabilità-Tolleranza ai guasti;
+        \item \textbf{Motivo}: Misura il numero di condizioni di errore messe sotto controllo per evitare guasti al prodotto; 
+       \item \textbf{Misurazione}:   \[ M=\frac{E}{TC} \] \\
+       \begin{itemize}
+           \item \textbf{E}= Numero di condizioni di errore gestite correttamente;
+           \item \textbf{TC}= Numero totale di condizioni di errori possibili nel sistema.\\
+       \end{itemize}
+    \end{itemize}
+
+
+
+    \item \textbf{M.PD.7.CD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Completezza descrittiva;
+        \item \textbf{Descrizione}: Metrica che valuta se dei nuovi utenti possono comprendere i seguenti punti:
+        \begin{itemize}
+            \item Se il software è adatto alle loro esigenze; 
+            \item Come il software possa essere utilizzato per particolari task.
+        \end{itemize} 
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Comprensibilità;
+        \item \textbf{Motivo}: Misurare il livello di completezza delle funzionalità descritte nella documentazione del prodotto; 
+       \item \textbf{Misurazione}:   \[ M=\frac{D}{FT} \] \\
+       \begin{itemize}
+           \item \textbf{D}= Numero di funzioni descritte nella documentazione;
+           \item \textbf{FT}= Numero totale di funzioni previste.\\
+       \end{itemize}
+    \end{itemize}
+
+
+
+    \item \textbf{M.PD.8.IM}:
+    \begin{itemize}
+        \item \textbf{Nome}: Impatto delle modifiche;
+        \item \textbf{Descrizione}: Metrica che permette di valutare quanto stabile risulta il prodotto software dopo aver apportato modifiche;
+        \item \textbf{Caratteristica di riferimento}: Manutenibilità-Stabilità;
+        \item \textbf{Motivo}: Misurare l'impatto negativo sulla corretta esecuzione del software procurato dalle modifiche del codice; 
+       \item \textbf{Misurazione}:   \[ M=\frac{E}{MT} \] \\
+       \begin{itemize}
+           \item \textbf{E}= Numero di modifiche che hanno procurato un malfunzionamento del software o hanno influito negativamente sulle prestazioni;
+           \item \textbf{MT}= Numero totale di modifiche eseguite.\\
+       \end{itemize}
+    \end{itemize}
+
+\end{itemize}
+\subsubsubsubsection{Esterne}
+
+\begin{itemize}
+     \item \textbf{M.PD.9.TS}: 
+    \begin{itemize}
+        \item \textbf{Nome}: Percentuale di test superati;
+        \item \textbf{Descrizione}: Valore che sta a indicare la percentuale di test che si concludono con successo;
+        \item \textbf{Caratteristica di riferimento}: Funzionabilità-Accuratezza;
+        \item \textbf{Motivo}: Rappresenta la capacità di un prodotto software di fornire i risultati o gli effetti attesi con il livello di precisione attesa;
+       \item \textbf{Misurazione}: \[M=\frac{N° Test \ superati}{N° Test \ totali} * 100 \] \\
+       \end{itemize}
+
+
+
+    \item \textbf{M.PD.10.CSD}:
+    \begin{itemize}
+        \item \textbf{Nome}: Correttezza dello scambio di dati (Percezione degli utenti);
+        \item \textbf{Descrizione}: Metrica per misurare la mancanza di problemi nelle funzioni e strutture dati richieste per lo scambio di dati e di comandi tra il prodotto ed altre applicazioni con cui quest'ultimo interagisce ed è connesso;
+        \item \textbf{Caratteristica di riferimento}: Funzionabilità-Interoperabilità;
+        \item \textbf{Motivo}: Misura il livello di correttezza dei dati scambiati con altri applicativi così come percepito dagli utenti; 
+       \item \textbf{Misurazione}:   \[M= 1-\frac{SF}{NT} \] \\
+       \begin{itemize}
+           \item \textbf{SF}= Numero di volte in cui il prodotto fallisce nello scambiare dati con altri applicativi;
+           \item \textbf{NT}= Numero totale di volte in cui l'utente cerca di scambiare dati.\\
+       \end{itemize}
+    \end{itemize}
+
+    
+
+     \item \textbf{M.PD.11.AFPH}:
+    \begin{itemize}
+        \item \textbf{Nome}: Accesso fisico alle funzioni da parte di personale portatore di handicap;
+        \item \textbf{Descrizione}: Serve per misurare se gli utenti diversamente abili siano in grado di operare con il prodotto;
+        \item \textbf{Caratteristica di riferimento}: Usabilità-Operabilità;
+        \item \textbf{Motivo}: Misura il numero di funzioni disponibili del prodotto accessibili da parte di portatori di handicap; 
+       \item \textbf{Misurazione}:   \[ M=\frac{N°funzioni \ accessibili}{N°funzioni \ totali} \] \\
+      
+      
+    \end{itemize}
+
+
+ \item \textbf{M.PD.12.TR}:
+    \begin{itemize}
+        \item \textbf{Nome}: Tempo di risposta;
+        \item \textbf{Descrizione}: Fa parte delle metriche esterne di comportamento rispetto al tempo necessario, serve per misurare l'efficienza del prodotto;
+        \item \textbf{Caratteristica di riferimento}: Efficienza-Comportamento rispetto al tempo;
+        \item \textbf{Motivo}: Misura il tempo medio in cui il sistema risponde ad un comando immesso dall'utente; 
+       \item \textbf{Misurazione}:   \[ M=T \] 
+       \begin{itemize}
+           \item \textbf{T}= Tempo che intercorre tra l'immissione del comando da parte dell'operatore e la presentazione della risposta del sistema.\\ 
+       \end{itemize}
+    \end{itemize}
+
+        \item \textbf{M.PD.13.EI}:
+    \begin{itemize}
+        \item \textbf{Nome}: Efficienza dell'installazione;
+        \item \textbf{Descrizione}: Metrica che serve per misurare il lavoro richiesto ad un operatore che debba installare il software in un determinato ambiente;
+        \item \textbf{Caratteristica di riferimento}: Portabilità-Installabilità;
+        \item \textbf{Motivo}: Misura il tempo necessario ad installare e personalizzare il prodotto nel nuovo ambiente; 
+      \item \textbf{Misurazione}:   \[ M=\frac{OI}{OT} \] \\
+       \begin{itemize}
+           \item \textbf{OI}= Numero di ore impiegate per installare e personalizzare il prodotto nel nuovo ambiente;
+           \item \textbf{OT}= Numero di ore previste dal design e dalle specifiche.\\
+       \end{itemize}
+    \end{itemize}
+    
+ \end{itemize}
+
+    
+
+%\subsubsubsubsection{In uso}
+
+   
+       
+
+   
+
+    
+   
+    
+
+
+\subsubsection{Obiettivi di qualità: Struttura}
+Gli obiettivi di qualità, divisi in obiettivi di processo e di prodotto, vengono indicati nel documento (Piano di qualifica v2.0.0(0)). Ognuno di questi è descritto da:
+\begin{itemize}
+    \item \textbf{Metrica}: codice della metrica;
+    \item \textbf{Nome}: nome esteso della metrica;
+    \item \textbf{Valore tollerabile}: valore oltre il quale la metrica è da considerare soddisfatta;
+    \item \textbf{Valore ambito}: valore ideale della metrica.
+\end{itemize}
+
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Google Sheet};
+    \item \textit{Jira}.
+\end{itemize}
 
 \subsection{Verifica}
-Ogni produzione realizzata da SWEetCode viene sottoposta ad una fase di verifica che permette la sua validazione.
-Onde evitare conflitti di interesse, tale compito viene assegnato ad uno o più membri differenti da coloro che hanno conseguito alla realizzazione del prodotto in questione.
+\subsubsection{Scopo}
+Il processo di verifica ha lo scopo di determinare se ciò che viene prodotto è conforme ai requisiti stabiliti e ai vincoli qualitativi specificati nel (Piano di qualifica v2.0.0(0)).
+Lo scopo principale della verifica è garantire la completezza e la correttezza del prodotto, fornendo evidenze oggettive e misurabili.
 
-\subsubsection{Verifica dei documenti}
-Ogni documento prodotto dal team passa per una o più fasi di verifica prima di essere pubblicato ufficialmente nel repository \textit{GitHub}.\\
-Tale fasi vengono realizzate solamente in seguito alla consegna del documento da parte dei responsabili di stesura, i quali ritengono che in quel momento il prodotto da loro realizzato sia completato.\\
-La verifica dei documenti prevede che venga assicurato:
+\subsubsection{Descrizione}
+Ogni produzione realizzata da SWEetCode viene sottoposta ad uno o più fasi di verifica prima di essere pubblicata ufficialmente nel repository \textit{GitHub}.
+Questo processo viene svolto dai verificatori. Onde evitare conflitti di interesse, tale compito viene assegnato ad uno o più membri diversi da coloro che hanno conseguito alla realizzazione del prodotto in questione.
+
+\subsubsection{Analisi statica}
+L'analisi statica è un'attività di verifica che costituisce un'esplorazione dell'oggetto di verifica senza richiedere l'esecuzione di esso. Può essere estesa anche ai documenti testuali.\\
+Due tecniche di analisi statica utilizzate dal team, il walkthrough e l'ispezione, sono descritte di seguito.
+
+\subsubsubsection{Walkthrough} Il walkthrough è un'approfondita procedura collaborativa in cui il verificatore e il realizzatore del prodotto leggono criticamente tutto l'oggetto in esame. In particolare, questa attività è composta dalle seguenti fasi:
 \begin{itemize}
-    \item Il rispetto delle norme tipografiche stabilite nelle \textit{Norme di progetto} del team;
-    \item Il rispetto della struttura definita nelle \textit{Norme di progetto} del team;
-    \item Il rispetto del contenuto, il quale deve essere chiaro, coerente, preciso ed esaustivo;
-    \item Il rispetto della sintassi italiana e della correttezza ortografica dei termini utilizzati.
+    \item \textbf{Pianificazione}: coinvolge sia il verificatore che l'autore. In questa fase vengono definite le modalità, le risorse e le tempistiche entro le quali svolgere l'attività;
+    \item \textbf{Lettura}: il verificatore esamina l'intero prodotto per individuare errori, incongruenze e migliorie;
+    \item \textbf{Discussione}: il verificatore comunica all'autore tutti gli elementi individuati e ritenuti migliorabili; in questa sessione vengono definite anche possibili soluzioni e correzioni;
+    \item \textbf{Correzione dei difetti}: Una volta accordata la modalità e il contenuto delle modifiche, l'autore procede con l'effettiva attuazione delle correzioni.
 \end{itemize}
 
+\subsubsubsection{Ispezione} L'ispezione è una tecnica che utilizza liste di controllo per eseguire verifiche mirate sugli errori più comuni, evitando la lettura dell'intero documento. L'ispezione è composta dalle seguenti fasi:
+\begin{itemize}
+    \item \textbf{Pianificazione}: coinvolge sia il verificatore che l'autore. In questa fase vengono definite le modalità, le risorse e le tempistiche entro le quali svolgere l'attività;
+    \item \textbf{Definizione lista di controllo}: vengono definiti i punti e gli aspetti critici dell'oggetto in esame; queste liste vengono costruite incrementalmente e aggiornate nel momento in cui la frequente occorrenza di certi errori diventa evidente;
+    \item \textbf{Lettura}: il verificatore esamina il prodotto seguendo la lista di controllo per individuare errori, incongruenze e migliorie;
+    \item \textbf{Correzione dei difetti}: L'autore procede con l'attuazione delle correzioni.
+\end{itemize}
 
-% PROCESSI ORGANIZZATIVI
+Data l'iniziale inesperienza del team, per i primi periodi è stato utilizzato l'approccio walkthrough.
+Nel momento in cui le liste di controllo diventeranno sufficientemente ampie per permettere una verifica adeguata, l'ispezione permetterà al team di svolgere questa attività più velocemente, preservando una grande quantità di risorse.\\
+Le liste di controllo sono raccolte nel documento (Piano di qualifica v2.0.0(0)).
+
+\subsubsection{Analisi dinamica}
+L'analisi dinamica è una metodologia di verifica che richiede l'esecuzione effettiva del software al fine di valutarne il comportamento, le performance e la correttezza durante l'esecuzione.
+Questo tipo di analisi deve poter essere automatizzata e ripetibile. Per questo motivo, devono essere stabilite e regolamentate le condizioni dell'ambiente di esecuzione dei test. 
+L'analisi dinamica viene resa possibile dall'implementazione di varie categorie di test, in particolare: di unità, di integrazione, di sistema e di regressione.
+
+\subsubsubsection{Test di unità}
+I Verificatori sono incaricati di formulare i test di unità durante la fase di progettazione di dettaglio, descritta in (\S \nameref{sec:progettazione_di_dettaglio}). Questi test sono progettati in conformità alle specifiche di ciascuna unità software, consentendo l'associazione di più test a una singola unità, qualora necessario, costruendo una suite di test dedicata a quell'unità.
+L'esecuzione dei test di unità potrebbe richiedere l'utilizzo di stub o driver, strumenti che permettono di testare le singole unità simulando alcuni dei loro componenti, nel caso in cui non fossero tutti disponibili per l'esecuzione.
+Tale pratica si rivela essenziale, specialmente nelle fasi iniziali dello sviluppo, quando l'ambiente è ancora piuttosto scarno.
+
+I test di unità possono essere suddivisi in due categorie:
+\begin{itemize}
+    \item \textbf{Funzionali} (o \textbf{black box}): dato un input e un'aspettativa di output, verificano se l'esecuzione di una certa funzionalità produce l'aspettativa dichiarata;
+    \item \textbf{Strutturali} (o \textbf{white box}): verificano la logica interna del codice, analizzando i vari cammini di esecuzione all'interno dell'unità.
+\end{itemize}
+I verificatori utilizzano entrambe queste tipologie di test di unità, sfruttando strumenti di automazione disponibili per le tecnologie adottate. Questo approccio mira a garantire un processo sistematico ed efficiente, assicurando che ciascuna unità software sia accuratamente testata e rispetti le specifiche stabilite durante la progettazione dettagliata.
+
+\subsubsubsection{Test di integrazione}
+I test di integrazione vengono definiti dai verificatori durante la fase di progettazione architetturale. In particolare, si applicano alle componenti individuate con lo scopo di rilevare difetti di progettazione, errori a livello di unit testing, incompatibilità e incongruenza nell'uso delle interfacce o errata integrazione con altre applicazioni. Devono assemblare incrementalmente, ampliando il loro raggio di azione di volta in volta.
+
+Esistono due strategie di integrazione:
+\begin{itemize}
+    \item \textbf{Bottom-up}: integrazione partendo dalle componenti con minor numero di dipendenze d'uso e maggiore utilità interna (molto chiamate ma che chiamano poco). Richiede pochi stub ma ritarda l'emissione di funzionalità visibili all'utente;
+    \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta l'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
+\end{itemize}
+
+\subsubsubsection{Test di sistema}
+I test di sistema mirano a valutare il sistema nel suo complesso per garantire che soddisfi tutti i requisiti delineati nel documento (Analisi dei requisiti v2.0.0(0)). Questa fase di testing viene definita dai verificatori e avviene dopo il completamento dei test di unità e dei test di integrazione e prima del collaudo con il committente.
+Vegnono considerati come test funzionali (o black-box), non richiedono conoscenza della logica e del funzionamento interno del software.
+
+\subsubsubsection{Test di regressione}
+I test di regressione sono un tipo specifico di test che include una selezione dei test già implementati, tra cui test di unità, di integrazione e di sistema, per verificare che le modifiche apportate al software non abbiano introdotto nuovi difetti o non abbiano alterato il comportamento esistente del sistema. In altre parole, i test di regressione mirano a garantire che le modifiche apportate durante lo sviluppo del software non abbiano effetti collaterali negativi su funzionalità precedentemente testate e correttamente funzionanti.
+
+\subsubsection{Test: Notazione}
+I test vengono identificati con la seguente notazione:
+\textbf{T[Tipo].[Codice]}\\
+nella quale:
+\begin{itemize}
+\item \lbrack \textbf{T}] indica la parola "test";
+\item \lbrack \textbf{Tipo}] può essere:
+    \begin{itemize}
+	    \item U (Unità);
+	    \item I (Integrazione);
+	    \item S (Sistema);
+        \item A (Accettazione).
+    \end{itemize}
+\item \lbrack \textbf{Codice}] identifica i test per ogni tipologia. È composto da un unico numero progressivo univoco se il test non ha padre, mentre se si tratta di un sotto-test, segue il formato \textbf{[Codice\_padre].[Numero\_figlio]}; questa struttura è ricorsiva, quindi non pone un limite alla profondità della gerarchia.
+\end{itemize}
+
+\subsubsection{Test: Stato}
+Ogni test è associato a uno stato che indica il risultato di soddisfacimento di esso nell'ultima versione rilasciata del prodotto software. Lo stato può assumere i seguenti valori:
+\begin{itemize}
+    \item I (Indisponibile, test non in funzione);
+    \item S (Superato);
+    \item N (Non superato).
+\end{itemize}
+
+\subsection{Validazione}
+\subsubsection{Scopo}
+Il processo di validazione è finalizzato a determinare se i requisiti stabiliti da contratto all'interno del documento (Analisi dei requisiti v2.0.0(0)) vengono soddisfatti nel 
+prodotto sottoposto a tale processo.
+
+\subsubsection{Implementazione del processo}
+La validazione viene effettuata in presenza dell'azienda proponente.\\
+Precondizione necessaria dell'avvio di questo processo è l'esito positivo dei:
+\begin{itemize}
+    \item Test di unità;
+    \item Test di integrità;
+    \item Test di sistema.
+\end{itemize}
+Lo svolgimento di tale processo coinvolge i seguenti passi:
+\begin{enumerate}
+    \item \textbf{Tracciamento dei requisiti}: il team espone all'azienda proponente il tracciamento dei requisiti realizzato, portando così 
+    l'evidenza della presenza dei requisiti all'interno del prodotto posto a validazione;
+    \item \textbf{Collaudo}: il team, assieme all'azienda proponente, esegue il prodotto. L'esecuzione del prodotto viene accompagnata 
+    dall'esecuzione dei test di accettazione.
+\end{enumerate}
+Se i test di accettazione effettuati durante il collaudo terminano con esito positivo, il prodotto realizzato dal team viene ritenuto validato dall'azienda proponente.
+
+\subsubsection{Test di accettazione}
+I test di accettazione prevedono la simulazione degli scenari principali di utilizzo del prodotto da parte degli utenti.\\ 
+Questi test permettono di testare le principali funzionalità che vengono rese disponsibili dal prodotto sottposto a validazione, portando ad una
+rapida evidenza del soddisfacimento di alcuni dei requisiti richiesti, compatibile coi tempi di un collaudo (la responsabilità di dimostrare la completezza del 
+prodotto nei confronti di tutti requisiti richiesti da contratto viene infatti affidata al tracciamento dei requisiti).
+
+\subsection{Revisione congiunta}
+
+\subsubsection{Scopo}
+La revisione congiunta consiste nel definire le attività per valutare lo stato e i prodotti di un'attività. Questo processo può 
+essere utilizzato da qualsiasi coppia di parti, in cui una parte (la parte che esegue la revisione) valuta un'altra parte (la parte che viene 
+revisionata) in un forum congiunto.
+
+\subsubsection{Implementazione del processo}
+La revisione congiunta avviene tra il team SWEetCode e l'azienda proponente attraverso un incontro accordato da entrambe le parti tramite \textit{Google Calendar},
+tenuto attraverso la piattaforma \textit{Google Meet}.\\
+L'implementazione di tale processo prevede il seguente svolgimento:
+\begin{enumerate}
+    \item Definizione del materiale da sottoporre a revisione;
+    \item Definizione di una data e un orario per svolgere l'incontro tra le due parti;
+    \item Svolgimento dell'incontro tra le parti in cui il team espone i progressi e lo stato del materiale da sottoporre a revisione all'azienda 
+    proponente;
+    \item Documentazione tramite verbale esterno dei risultati della revisione congiunta e degli eventuali problemi rilevati.
+\end{enumerate}
+
+\subsubsection{Revisioni di project management congiunte}
+Le revisioni di project management congiunte pongono a revisione i seguenti materiali:
+\begin{itemize}
+    \item Stato del progetto in relazione alle pianificazioni presenti nel (Piano di progetto v2.0.0(0));
+    \item Scadenze valutate sulla base dello stato del prodotto in relazioni alle date di consegna accordate.
+\end{itemize}
+I fini di tale revisione congiunta consistono nel far progredire le attività secondo quanto pianificato, mantenendo il controllo del progetto e 
+permettendo di cambiare direzione o definire nuove necessità ove si presentasse l'esigenza nel modo più responsivo possibile: attraverso ciò il team
+ritiene di ridurre il rischio di divergere dalle aspettative dell'azienda proponente nei confronti del servizio offerto.
+
+\subsubsection{Revisioni tecniche congiunte}
+Le revisioni tecniche congiunte pongono a revisione i prodotti software e la documentazione, considerando la completezza e la conformità alle specifiche.\\
+Tale tipo di revisione permette di apportare modifiche correttive concordate. Questo tipo di revisione congiunta consente di acquisire feedback 
+correttivi tempestivi, agevolando un rapido aggiustamento delle eventuali lacune o discrepanze. Inoltre, tali revisioni forniscono un importante 
+mezzo per valutare se il team stia procedendo nella direzione corretta, contribuendo così a mantenere il progetto allineato agli obiettivi 
+prefissati.
+
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Google Calendar};
+    \item \textit{Google Meet}.
+\end{itemize}
+
+\subsection{Revisione}
+\subsubsection{Scopo}
+Il processo di revisione è un processo interno al team per determinare la conformità ai requisiti, ai piani e al contratto.
+
+\subsubsection{Implementazione del processo}
+La revisione avviene all'interno del team SWEetCode e prevede il seguente svolgimento:
+\begin{enumerate}
+    \item Definizione del materiale da sottoporre a revisione, con assegnazione di uno o più revisori, attraverso il supporto fornito dall'ITS \textit{Jira};
+    \item Revisione completa da parte dei verificatori una volta ritenuto ultimato il materiale in questione;
+    \item Definizione di una data e un orario per svolgere l'incontro tra i membri del team;
+    \item Svolgimento dell'incontro attraverso la piattaforma \textit{Discord\pg}, in cui i membri che hanno realizzato il materiale da sottoporre a revisione espongono rapidamente 
+    i relativi progressi ed il relativo stato del materiale ai restanti membri del team, seguiti dalle considerazioni effettuate dai revisori;
+    \item Documentazione tramite verbale interno dei risultati della revisione e degli eventuali problemi rilevati.
+\end{enumerate}
+
+\subsubsection{Revisioni di project management}
+Le revisioni di project management pongono a revisione i seguenti materiali:
+\begin{itemize}
+    \item Stato del progetto in relazione alle pianificazioni presenti nel (Piano di progetto v2.0.0(0));
+    \item Scadenze valutate sulla base dello stato del prodotto in relazioni alle date di consegna accordate.
+\end{itemize}
+I fini di tale revisione consistono nel far progredire le attività secondo quanto pianificato, anche in termini di tempi e costi, mantenendo il controllo del progetto e 
+permettendo di cambiare direzione o definire nuove necessità ove si presentasse l'esigenza nel modo più responsivo possibile: attraverso ciò il team
+ritiene di individuare quelle che sono le criticità e i punti di debolezza del way of working adottato, in modo da attuare e, dove possibile, rimpiazzare
+tali aspetti per offrire un servizio di maggior qualità.
+
+\subsubsection{Revisioni tecniche}
+Le revisioni tecniche pongono a revisione i prodotti software e la documentazione, considerando la completezza e la conformità alle specifiche e agli standard.\\
+Tale tipo di revisione permette di apportare modifiche correttive attraverso feedback interni, agevolando un rapido aggiustamento delle eventuali lacune o deviazioni
+dalle aspettative di produzione del team nei confronti del lavoro prodotto. Inoltre, tali revisioni forniscono un importante 
+mezzo per valutare lo stato di avanzamento dei prodotti software e della documentazione, contribuendo così a mantenere il progetto allineato agli obiettivi prefissati.
+
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Discord};
+    \item \textit{Jira}.
+\end{itemize}
+
+\subsection{Risoluzione dei problemi}
+\subsubsection{Scopo}
+Il processo di risoluzione dei problemi analizza e risolve problemi di qualsiasi natura o sorgente, rilevati durante l'esecuzione dei processi primari.
+Il suo obiettivo è fornire un servizio tempestivo e documentato per garantire che tutti i problemi rilevati siano analizzati e risolti, riconoscendo le 
+cause e adottando soluzioni che ne evitano la ricomparsa, qualora fosse possibile.
+
+\subsubsection{Implementazione del processo}
+Nel momento in cui viene rilevato un problema, ogni componente del gruppo è tenuto a segnalarlo tempestivamente, tracciandolo nell'ITS \textit{Jira} 
+come ticket di tipologia Bug e informando le parti coinvolte della sua esistenza attraverso i canali di comunicazione descritti nella sezione 
+\nameref{sec:comunicazione}.\\
+
+Per categorizzare e prioritizzare i problemi, ogni problema viene classificato per categoria e priorità, in modo da facilitare l'analisi e la risoluzione, 
+attraverso i labels e il tag Urgency messi a disposizione dal ticket Bug dell'ITS.\\
+
+Il segnalatore, oltre a tracciare il problema, deve anche fornire una descrizione dettagliata di esso, indicando le condizioni per le quali il problema si 
+verifica e le eventuali cause individuate.\\
+
+Ogni attività di risoluzione dei problemi viene verificata e valutata, per garantire che le loro attuazioni siano state correttamente implementate e non 
+abbiano introdotto altri problemi.
+
+\subsubsection{Risoluzione dei problemi}
+Quando vengono rilevati problemi (inclusi non conformità) in un prodotto software o in un'attività, deve essere redatto un rapporto di problema per 
+descrivere ciascun problema rilevato. Il rapporto di problema deve essere utilizzato come parte del processo a ciclo chiuso descritto sopra: dalla 
+rilevazione del problema, attraverso l'indagine, l'analisi e la risoluzione del problema e della sua causa, fino alla rilevazione delle tendenze 
+attraverso i problemi.
+
+Una volta segnalato un problema, le parti coinvolte devono azionarsi per risolverlo.
+In base alla descrizione fornita dal segnalatore, i risolutori analizzano il problema e cercano una soluzione valida.
+Se ciò non basta, i risolutori sono tenuti ad entrare in contatto con il segnalatore, collaborando e ottenendo altre informazioni utili a riguardo.
+
 \newpage
-\section{Processi organizzativi}
-\subsection{Comunicazione}
-SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gruppo. In particolare, di seguito si trova la modalità di svolgimento per le comunicazioni interne e le applicazioni utilizzate.
-\subsubsection{Comunicazioni interne}
-% \textbf{Comunicazioni sincrone}\\
-\paragraph{Comunicazioni sincrone}Il gruppo ha deciso che gli incontri si svolgeranno  in presenza oppure attraverso la piattaforma \textit{Discord}. Per gli incontri in presenza, essi verranno decisi alcuni giorni prima in modo tale da poter consentire la presenza di tutti i membri del gruppo. Per quanto riguarda \textit{Discord}, invece, si opta per una comunicazione asincrona anche pochi minuti prima del collegamento. In entrambe le situazioni, il gruppo utilizza un approccio libero alla discussione e improntato alla crescita.
 
-% \textbf{Comunicazioni asincrone}\\
-\paragraph{Comunicazioni asincrone}Il gruppo utilizzerà \textit{Whatsapp} e \textit{Notion} per le comunicazioni asincrone. In particolare è stata creata una community su \textit{Whatsapp}, composta da un gruppo principale per comunicazioni informali, una bacheca nella quale verranno inviati i messaggi più importanti dei quali è necessario prendere visione, ed altri canali in cui i componenti del gruppo si organizzano per task collaborativi.
-
-\subsection{GitHub Teams}
-SWEetCode, attraverso un profilo \textit{Organizations}, ha deciso di utilizzare una struttura interna ai membri del gruppo che usufruisce dei \textit{Teams} di \textit{GitHub}: ogni ruolo presente all'interno del progetto porta alla creazione di un \textit{Team} avente il medesimo nome.\\
-I \textit{Teams} presentati sono dunque:
+\subsubsection{Strumenti}
 \begin{itemize}
-    \item Amministratori;
-    \item Analisti;
-    \item Progettisti;
-    \item Programmatori;
-    \item Responsabili;
-    \item Verificatori.
+    \item \textit{Jira}.
 \end{itemize}
-Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei modi, permettendo di assegnare responsabilità e permessi specifici a determinate posizioni piuttosto che ai membri del gruppo. Questa mansione altrimenti risulterebbe dispendiosa e disagevole a causa della rotazione dinamica interna dei ruoli. 
 
+\section{Processi organizzativi}
+
+\subsection{Gestione organizzativa}
+\subsubsection{Scopo}
+Lo scopo di questo processo è esporre le modalità e gli strumenti di coordinamento usati dal gruppo per la comunicazione interna ed esterna e normare l'assegnazione dei ruoli e dei compiti e la gestione dei rischi.
+
+\subsubsection{Ruoli}
+Al fine di ottimizzare la gestione delle diverse attività e compiti da svolgere, il progetto definisce sei distinti ruoli, ciascuno con mansioni e responsabilità specifiche.
+Ogni componente del gruppo dovrà assumere ciascun ruolo per un numero di ore significativo.
+Di seguito vengono elencati i ruoli, seguiti da una breve descrizione.
+
+\subsubsubsection{Responsabile}
+Il responsabile oltre ad essere il punto di riferimento per tutto il gruppo, è anche il punto di riferimento per le comunicazioni con il committente e con l'azienda proponente. Oltre a ciò, il responsabile è la figura all'interno del gruppo che ha il compito di coordinare le azioni dei vari membri del team. Per questo motivo, deve avere competenze tecniche in ogni ambito del progetto.
+Le sue responsabilità riguardano:
+\begin{itemize}
+    \item La pianificazione;
+    \item La gestione dei task e delle risorse;
+    \item Il coordinamento tra gruppo e enti esterni;
+    \item La gestione del dialogo interno;
+    \item La gestione dell'avanzamento del progetto;
+    \item L'approvazione di proposte introdotte da membri del gruppo.
+\end{itemize}
+\subsubsubsection{Amministratore}
+L'amministratore definisce, controlla, e manutiene l'ambiente di sviluppo. Si occupa della gestione della configurazione, del versionamento, delle varie automazioni e della documentazione.
+Ha il compito di:
+\begin{itemize}
+    \item Selezionare e abilitare risorse informatiche a supporto del way of working;
+    \item Gestire errori e segnalazioni di malfunzionamenti di meccanismi nell'infrastruttura.
+\end{itemize}
+\subsubsubsection{Analista}
+Questo ruolo ha la funzione di analizzare il problema e definire i requisiti del prodotto. Necessita di una buona conoscenza del dominio del problema. Raccoglie le sue produzioni nel documento (Analisi dei requisiti v2.0.0(0)).
+Questo ruolo è fondamentale all'inizio, ma la sua utilità cala con l'avanzare del progetto. 
+\subsubsubsection{Progettista}
+Si occupa di determinare le scelte realizzative e le specifiche architetturali del prodotto. Deve avere buone competenze tecniche e tecnologiche. L'utilità di questo ruolo è alta inizialmente, durante il processo di sviluppo, ma tende a calare dalla fase di manutenzione in poi.
+\subsubsubsection{Programmatore}
+Contribuisce alla realizzazione effettiva del prodotto.
+In particolare:
+\begin{itemize}
+    \item Si occupa di codificare ciò che è stato definito dai progettisti;
+    \item Implementa i test;
+    \item Redige il Manuale utente.
+\end{itemize}
+\subsubsubsection{Verificatore}
+Ha il compito di verificare il lavoro svolto dagli altri.
+Ha profonde competenze tecniche ed è presente durante l'intera durata del progetto.
+In particolare verifica che ciò che viene prodotto sia conforme alle norme e alle aspettative di qualità definite dal team.
+
+\subsubsection{Definizione delle attività}
+Ogni membro del team può proporre attività da svolgere durante la fase di pianificazione, ma sarà poi compito del responsabile stabilirne 
+la fattibilità rispetto alle risorse usufruibili all'interno dello sprint.
+\subsubsection{Pianificazione delle attività}
+Le attività, dopo essere state definite, verranno pianificate nel tempo e nelle risorse dal responsabile. Il responsabile valuterà e deciderà quindi:
+\begin{itemize}
+    \item La tempistica oraria necessaria per il completamento dell'attività;
+    \item Il membro che dovrà realizzare l'attività, in base al ruolo e alle risorse disponibili;
+    \item Il verificatore;
+    \item Il rischio associato, attraverso le metriche.
+\end{itemize}
+Dopo di ciò, l'amministratore avrà il compito di inserire la task associata su \textit{Jira} compilando tutti i campi richiesti:
+\begin{itemize}
+    \item Assegnatario;
+    \item Sprint;
+    \item Stima originaria;
+    \item Urgency.
+\end{itemize}
+Tale task dovrà inoltre essere collocato nello spazio temporale del \textit{diagramma di Gantt} utilizzato dal team, sempre presente all'interno dell'ITS \textit{Jira}.\\
+Molte di queste procedure sono documentante più nel dettaglio nella sezione (\S \nameref{sec:configuration_control}).
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Jira}.
+\end{itemize}
+\subsubsection{Esecuzione delle attività}
+L'esecuzione dell'attività avverrà da parte dell'assegnatario, definito dal responsabile. L'esecutore dell'attività dovrà proporre una soluzione 
+effettuando una pull request.
+\subsubsection{Revisione delle attività}
+La revisione dell'attività viene effettuata dal verificatore prima dell'effettiva introduzione delle modifiche nel repository \textit{GitHub}: la pull request sollevata dall'esecutore viene infatti accettata o rifiutata a seconda dell'esito della verifica effettuata.
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{GitHub}.
+\end{itemize}
+\subsubsection{Chiusura delle attività}
+In caso di esito positivo:
+\begin{itemize}
+    \item Viene accettata la pull request;
+    \item Viene chiuso il branch di cui è stato fatto il merge;
+    \item L'attività viene contrassegnata automaticamente come completata, grazie alle automazioni indicate nella sezione 
+    (\S \nameref{sec:configuration_control}).
+\end{itemize}
+Nel caso in cui il verificatore non ritenga corretto o sufficiente il lavoro svolto, o nel caso in cui la verifica automatica abbia esito negativo, 
+il verificatore dovrà indicare tramite review le parti non valide e gli accorgimenti che si potrebbero apportare.
+L'esecutore dell'attività dovrà ripresentare una nuova soluzione seguendo le correzioni indicate dal verificatore.
+
+\subsubsection{Tracciamento orario}
+Ai fini di tener traccia della quantità di tempo utilizzato per svolgere le attività, il team utilizza un \textit{Google Sheet} condiviso.
+Ogni componente del gruppo è tenuto a registrare in questo foglio, dopo ogni sessione lavorativa, il numero di ore effettive della sua durata, oltre al 
+ruolo svolto.
+Questa azione garantisce un calcolo preciso e affidabile dei consuntivi di ogni periodo. 
+
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Google Sheet}.
+\end{itemize}
+
+\subsubsection{Comunicazione}
+\label{sec:comunicazione}
+SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gruppo. In particolare, di seguito vengono esposte le modalità di 
+comunicazione, interna ed esterna, e le applicazioni utilizzate.
+
+\subsubsubsection{Comunicazioni interne}
+
+\subsubsubsubsection{Comunicazioni sincrone}
+Il gruppo ha deciso che gli incontri si svolgeranno  in presenza oppure attraverso la piattaforma \textit{Discord}. Per gli incontri in presenza, 
+essi verranno decisi alcuni giorni prima in modo tale da poter consentire la presenza di tutti i membri del gruppo. Per quanto riguarda \textit{Discord}, 
+invece, si opta per una comunicazione asincrona anche pochi minuti prima del collegamento. In entrambe le situazioni, il gruppo utilizza un approccio 
+libero alla discussione e improntato alla crescita.
+
+\subsubsubsubsection{Comunicazioni asincrone}
+Il gruppo utilizzerà \textit{Whatsapp} e \textit{Notion} per le comunicazioni asincrone. In particolare è stata creata una \textit{community} su 
+\textit{Whatsapp}, composta da un gruppo principale per comunicazioni informali, una bacheca nella quale verranno inviati i messaggi più importanti 
+dei quali è necessario prendere visione, ed altri canali in cui i componenti del gruppo si organizzano per task collaborativi.
+
+\subsubsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Discord};
+    \item \textit{Whatsapp}.
+\end{itemize}
+
+\subsubsubsection{Comunicazioni esterne}
+
+\subsubsubsubsection{Comunicazioni sincrone}
+Con la collaborazione dei referenti della azienda AzzurroDigitale, il gruppo ha concordato ed accettato un calendario di incontri settimanali su 
+piattaforma \textit{Google Meet}. Tali incontri saranno cruciali nella possibilità di discutere con maggiore facilità e immediatezza argomenti complessi 
+ed estesi. Il gruppo si impegna a presenziare in maniera più assidua possibile agli incontri con il proponente e a redarre un verbale al fine di 
+documentare gli stessi.
+
+\subsubsubsubsection{Comunicazioni asincrone}
+Il canale scelto per la comunicazione asincrona concordato con l'azienda è \textit{Slack}. Questo strumento viene usato per brevi comunicazioni e 
+per accordarsi sugli orari degli incontri.
+Per comunicare con soggetti esterni diversi dall'azienda proponente, verrà utilizzata sempre e solo l'indirizzo mail ufficiale del gruppo: 
+\textbf{sweetcode.team@gmail.com}.
+
+\subsubsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Google Gmail};
+    \item \textit{Google Meet};
+    \item \textit{Slack}.
+\end{itemize}
+
+\subsubsubsection{Moderazione}
+La gestione della comunicazione viene affidata al responsabile. In particolare, ha il compito di:
+\begin{itemize}
+    \item Fissare la data, l'orario e il luogo delle riunioni interne;
+    \item Stabilire gli argomenti di discussione e l'ordine del giorno;
+    \item Agire da moderatore della discussione, garantendo pari opportunità di espressione ad ogni componente del gruppo;
+    \item Comunicare con l'esterno, dopo aver preso delle decisioni con il team. 
+\end{itemize}
+
+\subsubsubsection{Norme comportamentali}
+Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'interno del gruppop, ogni componente ha l'obbligo di:
+\begin{itemize}
+    \item Essere puntuale o eventualmente comunicare tempestivamente al responsabile eventuali indisposizioni;
+    \item Partecipare attivamente ad ogni discussione;
+    \item Mantenere un comportamento rispettoso e disciplinato, aperto a discussioni e cambi di posizione.
+\end{itemize}
+
+\subsubsubsection{Gestione dei rischi}
+La definizione e la gestione dei rischi sono attività svolte dal responsabile e dall'amministratore.
+I risultati di queste attività sono incluse nel documento (Piano di progetto v2.0.0(0)).
+Le seguenti sezioni definiscono le modalità tramite le quali questi rischi vengono documentati.
+
+\subsubsubsubsection{Notazione}
+I rischi sono indicati con la notazione seguente:\\
+\textbf{R[Tipo].[Numero]}
+nella quale:
+\begin{itemize}
+\item \textbf{R} sta per \textit{Rischio};
+\item \textbf{Tipo} può assumere i seguenti valori:
+    \begin{itemize}
+	\item \textbf{P} (Personale);
+	\item \textbf{O} (Organizzativo);
+	\item \textbf{T} (Tecnologico).
+    \end{itemize}
+\item \textbf{Numero} è un numero univoco progressivo, correlato ad ogni tipo, che identifica il rischio.
+\end{itemize}
+
+\subsubsubsubsection{Didascalia}
+La definizione dei rischi è dettagliata nel seguente modo:
+\begin{itemize}
+    \item \textbf{Nome}: nome del rischio;
+    \item \textbf{Descrizione}: descrizione del rischio;
+    \item \textbf{Occorrenza}: misura di occorrenza del rischio (Alta, Media, Bassa);
+    \item \textbf{Impatto}: misura di impatto del rischio (Alto, Medio, Basso);
+    \item \textbf{Misure di mitigazione}: descrizione delle misure da adottare in caso di occorrenza della situazione problematica descritta dal rischio.
+\end{itemize}
+
+\subsection{Infrastruttura}
+\subsubsection{Scopo}
+Il processo di infrastruttura ha lo scopo di definire e documentare l'infrastruttura utilizzata dal team e il modo in cui questa viene stabilita e manutenuta.
+
+\subsubsubsection{Implementazione dell'infrastruttura}
+Questa attività definisce e documenta l'infrastruttura e le modalità di installazione e configurazione della stessa.
+Il ruolo che si occupa dello svolgimento di questa attività è l'amministratore.
+
+Dopo una fase di discussione con il team, in cui viene stabilita la configurazione ideale, l'amministratore ha il compito di implementare le scelte infrastrutturali.
+In primo luogo, verifica la fattibilità di esse, considerando i seguenti aspetti:
+\begin{itemize}
+    \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo su ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
+    \item \textbf{Performance}: una modifica dell'infrastruttura deve categoricamente portare ad un miglioramento o al mantenimento delle performance precedenti;
+    \item \textbf{Sicurezza}: le scelte fatte non devono andare a impattare negativamente la sicurezza dell'infrastruttura;
+    \item \textbf{Disponibilità}: la configurazione deve essere disponibile e attuabile per ogni dispositivo utilizzato nel progetto. Onde evitare discrepanze tra infrastrutture implementate, la disponibilità deve essere totale;
+    \item \textbf{Vincoli di spazio}: l'infrastruttura deve rispettare i vincoli di spazio imposti dai dispositivi dei componenti;
+    \item \textbf{Attrezzatura disponibile}: la configurazione scelta deve essere compatibile con le configurazioni hardware a disposizione dei componenti del gruppo;
+    \item \textbf{Costi}: In particolare, vengono preferite soluzioni open-source o gratuite rispetto a opzioni a pagamento, anche se queste dovessero rappresentare la scelta migliore;
+    \item \textbf{Vincoli di tempo}: le fasi di installazione e configurazione dell'infrastruttura devono essere limitate in termini di tempo, evitando di rallentare l'avanzamento del progetto. Per ovviare a ciò, si preferisce posticipare le modifiche migliorative non obbligatorie, destinandole a periodi meno densi.
+\end{itemize}
+
+Se questa fase di verifica risulta soddisfatta, l'amministratore procede nel documentare le procedure necessarie per l'installazione e la configurazione, considerando anche le divergenze che possono nascere dalla diversità di dispositivi utilizzati dai membri.
+
+Queste procedure vengono raccolte in una sezione apposita del workspace \textit{Notion}
+Una volta finita la fase di documentazione, l'amministratore informa i componenti del team, che procederanno nel seguire e attuare i passaggi documentati.
+
+Nell'eventualità in cui alcuni componenti riscontrassero problemi durante le fasi di installazione e configurazione, l'amministratore ha il compito di seguirli passo per passo, individuando e risolvendo i problemi il prima possibile.
+
+Nel caso in cui questi passaggi fossero particolarmente complicati e critici, il responsabile, in accordo con l'amministratore, organizzerà degli incontri in cui verranno spiegate in dettaglio le procedure necessarie.
+
+\subsubsubsection{Manutenzione dell'infrastruttura}
+L'infrastruttura deve essere mantenuta, monitorata e modificata, in modo che continui a soddisfare le aspettative.
+Questa attività viene svolta dall'amministratore.
+Oltre a verificare periodicamente il funzionamento e lo stato dell'infrastruttura, l'amministratore ha il compito di intervenire tempestivamente in presenza di difetti o malfuzionamenti, fornendo una correzione definitiva, o quantomeno temporanea ma risolutiva.
+
+I membri del gruppo sono tenuti a segnalare eventuali guasti, proporre migliorie e rispettare l'infrastruttura, collaborando durante le fasi di configurazione e tenendosi aggiornati riguardo le novità introdotte.
+
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Notion}.
+\end{itemize}
+\subsection{Miglioramento}
+\subsubsection{Scopo}
+Il processo di miglioramento è un processo che stabilisce, misura e controlla il miglioramento per tutto il ciclo di vita del software. 
+
+\subsubsection{Stabilimento del processo}
+Il team stabilisce una serie di processi del ciclo di vita del software sulla base dello \textit{Standard ISO/IEC 12207:1997}: tali processi e la loro applicazione devono essere documentati e, 
+dove possibile, viene istituito un meccanismo di controllo del processo per monitorare, controllare e migliorare il processo in questione.
+
+\subsubsection{Valutazione del processo}
+Il team attraverso revisioni interne, revisioni congiunte e procedure di valutazione del processo, elabora un giudizio: lo storico di tali valutazioni
+viene conservato attraverso la documentazione e attraverso i report offerti da \textit{Jira}, i quali determineranno le esigenze di avanzamento.
+Il team deve quindi pianificare e eseguire revisioni dei processi a intervalli appropriati per garantirne la continuità, adeguatezza ed efficacia alla 
+luce dei risultati della valutazione.
+
+\subsubsection{Miglioramento del processo}
+Il team deve apportare miglioramenti ai suoi processi come determinato necessario a seguito della valutazione e della revisione dei processi.
+La documentazione del processo deve essere aggiornata per riflettere i miglioramenti introdotti, evidenziando i punti di forza e di debolezza introdotti.
+
+\subsection{Formazione}
+\subsubsection{Scopo}
+Il processo di formazione mira a normare le modalità di formazione dei componenti del gruppo per quanto riguarda le tecnologie necessarie per la produzione della documentazione e la realizzazione del prodotto software.
+
+\subsubsection{Piano di formazione}
+Ogni componente del gruppo è libero di formarsi nel modo che ritiene più opportuno.
+Ogni componente del gruppo sostiene il processo di apprendimento 'learning by doing'.
+Il gruppo sostiene che lasciare questa libertà possa ampliare la visione di gruppo riguardo le tecnologie utilizzate, aumentando la consapevolezza e migliorando complessivamente le scelte implementative.
+
+Per alleviare le discrepanze di conoscenza, qualora fosse ritenuto necessario, verranno organizzati dei workshop in cui i membri più esperti informeranno gli altri componenti e chiariranno eventuali loro dubbi.
+Questi scambi verranno opportunamente documentanti tramite la stesura di verbali interni.
+
+\subsubsection{Raccolta materiale di formazione}
+Il materiale di formazione utilizzato dal gruppo viene raccolto in una sezione apposita del workspace \textit{Notion}.
+Queste fonti vengono organizzate per tecnologia e aggiornate di comune accordo.
+
+
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Notion}.
+\end{itemize}
+
+\newpage
 
 % STRUMENTI
 \newpage
@@ -239,24 +1957,60 @@ Lo strumento \textit{Teams} consente di gestire i vari ruoli nel migliore dei mo
 Nella seguente sezione vengono presentati tutti gli strumenti utili al team per lo svolgimento di ogni attività.
 
 \subsection{Adobe Illustrator}
-\href{https://www.adobe.com}{https://www.adobe.com}\\\\
+\href{https://www.adobe.com}{https://www.adobe.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
 Software utilizzato per la creazione dei template ufficiali del team, per la generazione del logo e per la scelta della palette di colori da usare. 
 
 \subsection{Canva}
-\href{https://www.canva.com}{https://www.canva.com}\\\\
-Sito utilizzato per la produzione delle slide per i Diari di Bordo. É stato creato un account condiviso utilizzabile da tutti i membri.
+\href{https://www.canva.com}{https://www.canva.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Piattaforma utilizzata per la produzione delle slide per i diari di bordo. 
+
+\subsection{Diagrams.net}
+\href{https://app.diagrams.net/}{https://app.diagrams.net/} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Applicazione utilizzata per la creazione dei diagrammi UML.
 
 \subsection{Discord}
-\href{https://discord.com}{https://discord.com}\\\\
+\href{https://discord.com}{https://discord.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
 Piattaforma utilizzata per lo svolgimento di riunioni formali ed informali del team, attraverso la creazione di un server apposito con un canale dedicato ai messaggi di testo e diverse sale dedicate alle conversazioni vocali.
 
+\subsection{GitHub}
+\href{https://github.com/}{https://github.com/} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Piattaforma di hosting e collaborazione per lo sviluppo di software che offre strumenti per il controllo di versione, consentendo agli sviluppatori di lavorare insieme, monitorare le modifiche al codice, gestire problemi e pubblicare il proprio lavoro in modo collaborativo.
+
+\subsection{Google Calendar}
+\href{https://calendar.google.com}{https://calendar.google.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Applicazione di calendario basata su cloud sviluppata da Google che consente agli utenti di organizzare gli eventi, le riunioni e le attività quotidiane, sincronizzando automaticamente
+le informazioni su tutti i dispositivi connessi e facilitando la condivisione di calendari con altri utenti.
+
+\subsection{Google Gmail}
+\href{https://mail.google.com}{https://mail.google.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Servizio di posta elettronica sviluppato da Google che offre una piattaforma di email, con funzionalità avanzate di organizzazione.
+
+\subsection{Google Sheet}
+\href{https://docs.google.com/spreadsheets}{https://docs.google.com/spreadsheets} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Applicazione di fogli elettronici basata su cloud sviluppata da Google che consente agli utenti di creare, modificare e condividere fogli di calcolo online, facilitando la 
+collaborazione in tempo reale, offrendo funzionalità avanzate di analisi dati, formule e grafici.
+
+\subsection{Latexmk(XeLatex)}
+\href{https://pypi.org/project/latexmk.py/}{https://pypi.org/project/latexmk.py/ \textit{(Ultimo accesso: 2024-02-08)}}
+Strumento di automazione utilizzato per semplificare il processo di compilazione dei documenti scritti in LaTeX utilizzando il motore di composizione XeLaTeX. Automatizza 
+la sequenza di passaggi necessari per produrre un documento finale, gestendo automaticamente le dipendenze e garantendo che la compilazione avvenga in modo efficiente.
+
+
+\subsection{Jira (di \textit{Atlassian})}
+\href{https://www.atlassian.com/it/software/jira}{https://www.atlassian.com/it/software/jira} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Software utilizzato per l'ITS e gli strumenti di organizzazione del lavoro tra i membri del team.
+
 \subsection{Notion}
-\href{https://www.notion.so/product}{https://www.notion.so/product}\\\\
-Spazio di lavoro utilizzato per l’organizzazione delle prime task divise per membro del gruppo e per tenere traccia delle attività e dei progressi portati avanti da ogni componente. Usato anche per l’assegnazione chiara dei ruoli, come calendario condiviso del gruppo e per il salvataggio link utili in modo da favorire l’accesso in maniera veloce a tutti i documenti ed i siti necessari.
+\href{https://www.notion.so/product}{https://www.notion.so/product} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Spazio di lavoro utilizzato per l'organizzazione delle prime task divise per membro del gruppo e per tenere traccia delle attività e dei progressi portati avanti da ogni componente. Usato anche per l'assegnazione chiara dei ruoli, come calendario condiviso del gruppo e per il salvataggio link utili in modo da favorire l'accesso in maniera veloce a tutti i documenti ed i siti necessari.
 
-\subsection{Overleaf}
-\href{https://www.overleaf.com}{https://www.overleaf.com}\\\\
-Sito utilizzato per la scrittura di tutta la documentazione ufficiale in linguaggio LaTeX, attraverso la creazione di un account condiviso per tutti i membri del team.
+\subsection{Slack}
+\href{https://slack.com}{https://slack.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Piattaforma di messaggistica specializzato nella comunicazione e collaborazione all'interno di team aziendali. Viene utilizzata dal team per le comunicazioni asincrone con il proponente.
 
+\subsection{Whatsapp}
+\href{https://www.whatsapp.com}{https://www.whatsapp.com} \textit{(Ultimo accesso: 2024-02-08)}\\\\
+Applicazione di messaggistica, che rende disponibile le \textit{Community}, una funzionalità dedicata ai gruppi che permette di creare sottogruppi tematici all’interno di un 
+gruppo principale, facilitando la comunicazione e l’organizzazione all'interno di un team.
 
 \end{document}

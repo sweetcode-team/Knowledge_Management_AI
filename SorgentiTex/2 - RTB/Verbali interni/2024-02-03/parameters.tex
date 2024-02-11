@@ -1,0 +1,76 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-02-03}
+\def\oraInizio{17:00}
+\def\oraFine{18:00}
+\def\luogo{Piattaforma Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Bresolin G.} % Cognome N.
+\def\nomeVer{Feltrin E.} % Cognome N.
+\def\nomeSegr{Michelon R.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{firmaBresolin.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Dugo A.,
+Feltrin E.,
+Michelon R.
+}
+
+\def\listaPartEst{
+Azzurro B.,
+Digitale C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Conferma dei ruoli assegnati per il settimo sprint;},
+{Discussione impegni universitari;},
+{Discussione ore responsabile;},
+{Discussione correzzioni suggerite dal prof. Cardin R. al documento Analisi dei requisiti;},
+{Discussione migliorie da introdurre al documento Piano di qualifica;},
+{Pianficazione invio mail di candidatura al colloquio per la seconda fase di revisione RTB;},
+{Discussione progettazione sketch delle interfacce.}
+}
+
+\def\listaDiscussioneInterna {
+{I ruoli che i membri assumono all'inizio del settimo sprint sono i seguenti:
+\begin{itemize}
+\item Amministratore: Michelon R.;
+\item Analista: Dugo A.;
+\item Progettista: Ciriolo I., Campese M.;
+\item Programmatori: Orlandi G.;
+\item Responsabile: Bresolin G.;
+\item Verificatore: Feltrin E.
+\end{itemize}},
+{Il team ha revisionato ulteriormente le correzzioni proposte dal prof. Cardin R. e, a seguito di una riflessione sul come applicare tali suggirimenti, ha assegnato il task a Dugo A.;},
+{Il gruppo ha discusso quali fossero gli impegni universitari rimanenti a causa della sessione invernale e, seppur una parte del team sia ancora occupato per alcuni giorni, la maggioranza si è resa disponibile
+a tornare operativa a regime fin da subito, rendendo la pianificazione elaborata in passato per il presente sprint fattibile;},
+{Il team prende in considerazione la possibilità di ridurre le ore destinate al ruolo di responsabile future in quanto la ridotta pianificazione di ore preventivate per tale ruolo, seppur a parità di task richiesti,
+non ha comportato un problema: partendo da questa riflessione, il gruppo deciderà in fase di stesura della retrospettiva dello sprint se destinare parte delle risorse economiche destinate alle ore da
+responsabile per una pianificazione con più ore per il ruolo di progettista e programmatore, i quali ricopriranno un aspetto fondamentale negli sprint a seguire;},
+{A seguito di una riflessione condivisa tra il gruppo, è emersa la necessità di apportare migliorie al documento (Piano di Qualifica v1.10.4(12)), approfondendo le considerazioni sulle metriche;},
+{Il team si pone l'obiettivo di inviare la mail al prof. Vardanega T. per la candidatura alla seconda fase della revisione RTB entro la fine del presente sprint;},
+{Come richiesto dall'azienda proponente, il gruppo si impegnerà nella produzione degli sketch per le interfacce attraverso \textit{Figma}.}
+}
+
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni{
+{Il team ha deciso di presentare la candidatura al colloquio per la seconda fase di revisione RTB;},
+{Il team ha deciso di applicare le correzioni suggerite dal prof. Cardin R. all'Analisi dei requisiti;},
+{Il team ha deciso di produrre gli sketch richiesti dall'azienda proponente attraverso \textit{Figma}.}
+}

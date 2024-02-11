@@ -19,6 +19,8 @@ SorgentiTex/**/*.pdf
 *.vrb
 *.nav
 *.out
+*.lof
+*.lot
 
 # BibTeX
 *.bbl

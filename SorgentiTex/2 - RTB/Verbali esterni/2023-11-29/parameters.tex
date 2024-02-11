@@ -1,0 +1,84 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-29}
+\def\oraInizio{14:00}
+\def\oraFine{15:00}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Presentazione dei PoC creati dal team con feedback da parte dell'azienda.}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{PoC proposto da Feltrin E.
+}{
+Il sistema presentato dal programmatore Feltrin E. utilizza tecnologie di \textit{OpenAI} per creare gli \textit{embeddings} a partire da documenti forniti dall’utente e il modello \textit{gpt 3.5-turbo} di \textit{OpenAI} per la generazione della risposta alla domanda posta dall’utente.
+Usa inoltre il vector store \textit{Alloy} per il salvataggio dei vettori in locale.\\
+Le tecnologie proposte, in particolare quelle di \textit{OpenAI}, sono soggette a tariffe.
+Durante la codifica di questo PoC, è stato utilizzato il credito iniziale gratuito dell’account di un componente del gruppo. Dopo la presentazione, l’azienda conferma al team che le risposte del sistema sono sufficientemente elaborate e specifiche. Sono infatti in grado di soddisfare le richieste dell’utente, mantenendo inoltre traccia della storia della conversazione e del contesto.
+},
+\domris
+{PoC proposto da Michelon R.
+}{
+Il secondo PoC presentato, a differenza del primo, utilizza esclusivamente tecnologie open source.
+Vengono infatti utilizzati modelli di \textit{embeddings} e \textit{llm} di \textit{HuggingFace}, una piattaforma che raccoglie e fornisce strumenti per lo sviluppo di applicazioni AI-based.
+In particolare vengono presi in considerazione i modelli \textit{sentence-transformers/all-MiniLM-L6-v2} e \textit{google/flan-t5-xxl}.
+Viene inoltre scelto \textit{ChromaDB} come vector store locale.\\
+La scelta delle tecnologie era vincolata dalla richiesta dell’azienda di rendere disponibili opzioni locali per garantire la privacy dei dati dell’utente.
+Visto il ridotto tempo a disposizione, si è optato per un’interfaccia grafica predefinita, fornita dal framework \textit{StreamLit}. Questa scelta ha permesso al team di concentrarsi maggiormente sulle funzionalità più critiche, posticipando l’esplorazione del frontend a PoC successivi.
+Date le limitate capacità computazionali dei dispositivi in cui viene ospitato il sistema, la scelta dei modelli ha influenzato negativamente le performance del sistema. I modelli locali forniscono risposte non sempre pertinenti e ben elaborate.
+}
+}
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Per la successiva riunione l'azienda richiede:
+\begin{itemize}
+\item Refactoring del codice proposto dal team (che per il momento non presenta struttura);
+\item Presenza di un pattern architetturale;
+\item Sostituzione di \textit{Streamlit} con \textit{Angular} e \textit{React} (devono essere testate entrambe le tecnologie);
+\item Aggiornamento documentazione;
+\item Abbellimento interfacce user.
+\end{itemize}
+}
+}

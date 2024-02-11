@@ -1,0 +1,93 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-09}
+\def\oraInizio{17:00}
+\def\oraFine{18:30}
+\def\luogo{Sede di AzzurroDigitale: \\ Via della Croce Rossa, 42 (PD)}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Feltrin E.} % Cognome N.
+\def\nomeVer{Campese M.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{emanuele.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+\textit{AzzurroDigitale:},
+Caliendo G.,
+Davanzo C.,
+Picello M., \\
+\textit{Coding Cowboys:},
+Cecchin A.,
+Dolzan M.,
+Ferraioli F.,
+Giacomuzzo F.,
+Lago L.,
+Menon G.,
+Nordio A.
+}
+
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Visita della sede dell'azienda AzzurroDigitale;},
+{Breve presentazione dell'azienda da parte di Picello C., specialista in People\&Culture, con introduzione ai valori aziendali di AzzurroDigitale;},
+{Possibilità di porre alcune domande generiche sul progetto ai referenti Caliendo G. e Davanzo C., con seguente approfondimento dei vari temi toccati.\\ All'incontro ed alle discussioni hanno partecipato anche i membri del gruppo \textit{Coding Cowboys}.}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Quali riferimenti dei membri del gruppo è preferibile inoltrare all'azienda?
+}
+{Sono necessari gli account che devono avere l'accesso al \textit{repository} \textit{GitHub} fornito dall'azienda, un indirizzo e-mail del team per l'accesso al canale \textit{Slack} fornito dall'azienda ed i singoli indirizzi e-mail dei componenti;
+},
+\domris
+{Quando sarà possibile discutere nello specifico dell'analisi dei requisiti del progetto?
+}
+{L'azienda aveva già in programma un incontro in data 2023-11-15 della durata di 1h per la discussione dei requisiti del progetto con ciascun gruppo preso singolarmente. I gruppi hanno garantito entrambi disponibilità a tali incontri;
+},
+\domris
+{L'azienda in precedenza ha consigliato l'adozione di un framework di tipo \textit{Agile} (nello specifico di \textit{Scrum}) per lo sviluppo del progetto: dal momento che i membri del team non hanno mai avuto la possibilità di sperimentarlo, l'azienda propone qualche consiglio per la sua applicazione?
+}
+{L'azienda ha fornito una spiegazione dei vari ruoli all'interno di un framework \textit{Scrum} generico fornendo al team le basi per iniziare ad apprenderlo ed applicarlo, specificando che si tratta una metodologia complessa che si apprende con maggior successo durante la sua applicazione. Viene sottolineata l'importanza di avere un solido sistema di \textit{backlog} per l'accertamento dei progressi del progetto;
+},
+\domris
+{Quali criteri utilizzerà l'azienda per la valutazione del successo (o meno) del progetto?
+}
+{È stato spiegato che anche questo aspetto del progetto sarà analizzato in futuro con il team stesso, poiché al momento non vi è ancora un'idea precisa;
+},
+\domris
+{Cosa intende di preciso l'azienda riferendosi ad un sistema di \textit{Bug Reporting} (e alla sua relativa documentazione)?
+}
+{L'azienda ha chiarito che la documentazione non è l'interesse principale e che come sistema di \textit{Bug Reporting} è sufficiente servirsi di un\textit{ Issue Tracking System}.
+}
+} 
+
+
+
+
+\def\listaDecisioni {x}

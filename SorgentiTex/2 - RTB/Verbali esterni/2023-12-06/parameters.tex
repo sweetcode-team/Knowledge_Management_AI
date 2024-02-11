@@ -1,0 +1,76 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-12-06}
+\def\oraInizio{15:00}
+\def\oraFine{16:00}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Dugo A.} % Cognome N.
+\def\nomeVer{Bresolin G.} % Cognome N.
+\def\nomeSegr{Dugo A.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{alberto.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Presentazione del PoC definitivo.}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+
+\def\listaDiscussioneEsterna {
+\domris
+{PoC proposto da SWEetCode
+}{
+    Il PoC, creato dai programmatori (Alberto D., Emanuele F., Riccardo M.) nel secondo sprint e presentato da Riccardo M., incorpora le conoscenze acquisite nei PoC precedenti, citati nel verbale esterno (2023-11-29).
+    Il PoC presentato implementa le richieste effettuate dal proponente nella precedente riunione:
+    \begin{itemize}
+        \item Refactoring del codice proposto dal team;
+        \item Presenza di un pattern architetturale;
+        \item Sostituzione di \textit{Streamlit} con \textit{React};
+        \item Ristrutturazione interfaccia utente.
+    \end{itemize} 
+    Il sistema proposto è composto da un frontend sviluppato in \textit{React} e un backend in \textit{Python}. Il dialogo tra queste parti avviene tramite API implementate attraverso il framework \textit{Flask}.
+    A differenza dei PoC presentati precedentemente, viene utilizzato \textit{Pinecone} come database vettoriale, poichè fornisce uno spazio remoto gratuito di archiviazione dei vettori.
+    Il team ha inoltre scelto il servizio \textit{S3} di \textit{Amazon Web Services (AWS)} come soluzione di archiviazione dei documenti PDF caricati dall'utente. Il collegamento tra questo servizio e il backend implementato è stato effettuato tramite l'uso di \textit{Boto3}.
+    Le scelte tecnologiche incluse in questo PoC risultano essere definitive, poiché ritenute dal team valide e solide.
+    I membri dell'azienda proponente, Davanzo C. e Bendotti E., hanno però espresso delle perplessità riguardo le risposte che il chatbot fornisce, non sempre pertinenti e corrette.
+    Anche attraverso prove fatte durante la riunione, il team ha individuato alcune migliorie, che verranno apportate in seguito durante il prossimo sprint.
+    I responsabili Davanzo C. e Bendotti E. hanno quindi approvato il PoC proposto con soddisfazione.
+    }
+}
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {
+{Approvazione del PoC presentato.}
+}

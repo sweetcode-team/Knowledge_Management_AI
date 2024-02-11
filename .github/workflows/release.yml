@@ -8,8 +8,19 @@ on:
 jobs:
   create-release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    
+    if: |
+      github.event_name == 'pull_request' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == true &&
+      (
+        startsWith(github.event.pull_request.title, 'Docs:') ||
+        startsWith(github.event.pull_request.title, 'Feat:') ||
+        startsWith(github.event.pull_request.title, 'Fix:')
+      )
+
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -22,11 +33,6 @@ jobs:
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
         shell: bash
 
-      - name: Get PR title
-        run: |
-          PR_TITLE=$(curl -sSL https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} | jq -r '.title')
-          echo "PR_TITLE=$PR_TITLE" >> $GITHUB_ENV
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -38,24 +44,24 @@ jobs:
 
       - name: Update Version
         run: |
-          NEW_VERS=$(python updateVers.py '${{ env.LATEST_TAG }}' '${{ env.PR_TITLE }}')
-          echo "NEW_VERS=$NEW_VERS" >> $GITHUB_ENV
+          NEW_TAG=$(python updateVers.py '${{ env.LATEST_TAG }}' '${{ env.PR_TITLE }}')
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
         id: create-next-tag
 
       - name: Create Tag
-        if: ${{ env.NEW_VERS }} != ''
+        if: ${{ env.NEW_TAG }} != ''
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git tag -f -a '${{ env.NEW_VERS }}' '${{ github.sha }}' -m 'Creato tag.'
-          git push -f origin '${{ env.NEW_VERS }}'
+          git tag -f -a '${{ env.NEW_TAG }}' '${{ github.sha }}' -m 'Creato tag.'
+          git push -f origin '${{ env.NEW_TAG }}'
 
       - name: Create Release
-        if: ${{ env.NEW_VERS }} != ''
+        if: ${{ env.NEW_TAG }} != ''
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ env.NEW_VERS }}
-          release_name: ${{ env.NEW_VERS }}
+          tag_name: ${{ env.NEW_TAG }}
+          release_name: ${{ env.NEW_TAG }}
           body: ${{ env.PR_TITLE }}
           draft: false
         env:

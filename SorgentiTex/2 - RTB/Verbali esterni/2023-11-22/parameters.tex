@@ -1,0 +1,81 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2023-11-22}
+\def\oraInizio{15:00}
+\def\oraFine{16:00}
+\def\luogo{Piattaforma Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Orlandi G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{Azzurro Digitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.,
+}
+
+% Se nessuna revisione: \def\listaRevisioneAzioni {x}
+\def\listaRevisioneAzioni {
+{Revisione dei Casi d'Uso per l'Analisi dei requisiti discussi precedentemente nella riunione del 2023-11-15.}
+%{Azione 2;},
+%{Azione 3.}
+}
+
+\def\listaOrdineGiorno {
+{Discussione dei documenti Analisi dei requisiti e Software selection (\textit{informale}) inviati all'azienda precedentemente alla riunione;},
+{Definizione dei Casi d'uso necessari per il PoC;},
+{Discussione di pro e contro di varie tecnologie proposte dal team per lo svolgimento del progetto;},
+{Dialogo sui modelli di apprendimento opportuni per lo svolgimento del progetto.}
+}
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Analisi dei requisiti}
+{Successivamente alla presentazione di una prima versione del documento 'Analisi dei requisiti' da parte del team, i rappresentanti dell'azienda chiariscono che invieranno una prima valutazione del documento nei giorni successivi alla riunione;
+},
+\domris
+{Requisiti fondamentali PoC}
+{I rappresentanti dell'azienda hanno fornito una prima descrizione delle caratteristiche che l'azienda si aspetta certamente di trovare all'interno del PoC richiesto per il 2023-12-06. È stata riportata l'esigenza di avere un primo modello di interfaccia chatbot anche molto semplice ed un modello di IA in grado di processare almeno un documento pre-caricato  e di essere addestrato su di esso; il documento potrà essere in formato \textit{PDF} e di poche pagine;
+},
+\domris
+{Software selection: Front-end}
+{Per quanto riguarda questa componente è stato specificato che l'azienda non ha interesse specifico nelle tecnologie utilizzate dal team poiché non si tratta del fulcro del progetto. Dal team sono state proposte le tecnologie di \textit{React} ed \textit{Angular} con relativi punti a favore e contrari e con preferenza verso la prima tra le due. L'azienda lascia al team la decisione finale;
+},
+\domris
+{Software selection: Back-end}
+{Il team per questa componente ha proposto due possibili idee di sviluppo basate sui linguaggi  \textit{Python} e \textit{JavaScript} (tramite utilizzo di \textit{Node.js}). Sono stati discussi i punti a favore e contrari di entrambe le opzioni ed il team ha espresso la sua preferenza per la scelta di \textit{Node.js} poiché andrebbe a mantenere un linguaggio unico tra componenti front-end e back-end nel caso probabile in cui la scelta per il primo ricada su \textit{React}. L'azienda ha invitato il team a riflettere sulla decisione testando in prima persona le tecnologie proposte e a decidere in autonomia;},
+\domris
+{Modelli di apprendimento}
+{L'azienda ha suggerito l'analisi e la sperimentazione di diversi possibili modelli di apprendimento per lo svolgimento del progetto. In tale modo il team potrà acquisire dimestichezza con tecnologie differenti e in un futuro ipotetico si avrà la possibilità di offrire diverse opzioni di modello di apprendimento ad un possibile acquirente dell'applicazione. Per questo motivo verranno inizialmente presi in analisi diversi possibili modelli di apprendimento, per poi sceglierne uno per lo sviluppo vero e proprio. L'azienda ha confermato che creerà un account \textit{OpenAI} con del credito all'interno per permettere al team di procedere con del testing approfondito del modello.}
+}
+
+
+% Se nessuna decisione: \def\listaDecisioni {x}
+\def\listaDecisioni {x}

@@ -1,0 +1,70 @@
+% PACKAGES ========================================================================
+
+\usepackage[italian]{babel}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees, positioning}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{lastpage}
+\usepackage{moresize}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{nicematrix}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{ifthen}
+\usepackage{forloop}
+\hypersetup{
+    colorlinks=true, % Imposta i collegamenti come testo colorato anziché riquadri intorno al testo
+    linkcolor=black,  % Colore dei link alle sezioni
+    filecolor=black, % Colore dei link ai file
+    urlcolor=black, % Colore dei link agli URL
+}
+
+% GRAPHIC STYLE ========================================================================
+
+\definecolor{primarycolor}{RGB}{248, 182, 143}
+\definecolor{secondarycolor}{RGB}{57, 57, 58}
+\definecolor{colorlogo}{RGB}{23, 22, 20}
+\definecolor{lightcol}{RGB}{245,245,245}
+
+\linespread{1.15}
+
+\setmainfont{Poppins}[
+    Path=./Poppins/,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+% \quantities{el1 \\ el2}
+\newcommand{\quantities}[1]{%
+  \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
+}
+\newcommand{\pg}{\textsubscript{|g|}}
+
+\setlist[itemize]{label=\color{primarycolor}\textbullet}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\makeatletter
+\newcommand\subsubsubsection{\@startsection{paragraph}{4}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus .25ex}{\normalfont\normalsize\bfseries}}
+\newcommand\subsubsubsubsection{\@startsection{subparagraph}{5}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus .25ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
+\setlength{\parindent}{0pt}

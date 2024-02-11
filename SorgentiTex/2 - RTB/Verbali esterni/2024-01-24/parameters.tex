@@ -1,0 +1,70 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-01-24}
+\def\oraInizio{17:00}
+\def\oraFine{18:00}
+\def\luogo{Online}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Orlandi G.} % Cognome N.
+\def\nomeVer{Bresolin G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{giacomo.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Davanzo Carlo,
+Bendotti Emilio,
+}
+
+\def\listaRevisioneAzioni {x}
+
+\def\listaOrdineGiorno {
+{Aggiornamento esito presentazione RTB col prof. Cardin R.;},
+{Discussione correzioni proposte dal prof. Cardin R.;},
+{Aggiornamento pianificazione futura}.
+}
+
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Com'è andata la presentazione RTB col prof. Cardin R.?}
+{La presentazione RTB col prof. Cardin R. è da considerarsi positiva e superata, con alcune correzioni da apportare al documento (\S Analisi dei requisiti);},
+\domris
+{Quali sono le principali correzioni da apportare?}
+{Le principali correzioni da apportare riguardano errate classificazioni dei requisiti individuati, ma non sono state individuate gravi lacune;},
+\domris
+{Quali sono i prossimi passi previsti?}
+{Il team, ritrovandoci nel pieno della sessione invernale, contatterà il prof. Vardanega T. per fissare l'ultima revisione della fase RTB una volta terminati gli esami, con data ancora da destinarsi.}
+} 
+
+
+
+
+\def\listaDecisioni {
+{Produzione sketch interfacce da produrre con \textit{Figma} per il prossimo incontro.}
+}

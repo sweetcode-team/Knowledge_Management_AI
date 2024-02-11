@@ -1,9 +1,79 @@
+%Registro in ordine dalla più recente alla meno recente!
 {\renewcommand{\arraystretch}{1.5}
 \section*{Registro delle versioni}
-\begin{tabularx}{\textwidth}{c|c|c|c|X}
-\textbf{Versione} & \textbf{Data} & \quantities{\textbf{Responsabile di}\\\textbf{stesura}}& \textbf{Revisore} & \quantities{\textbf{Dettaglio e}\\\textbf{motivazioni}} \\
-\hline
 
+\begin{xltabular}{\textwidth}{c|c|c|c|X}
+\label{tab:long}
+
+\textbf{Versione} & \textbf{Data} & \quantities{\textbf{Responsabile di}\\\textbf{stesura}}& \textbf{Revisore} & \quantities{\textbf{Dettaglio e}\\\textbf{motivazioni}} \\
+\endfirsthead
+
+\textbf{Versione} & \textbf{Data} & \quantities{\textbf{Responsabile di}\\\textbf{stesura}}& \textbf{Revisore} & \quantities{\textbf{Dettaglio e}\\\textbf{motivazioni}} \\
+\endhead
+
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+
+\endlastfoot
+
+\hline
+v2.0.0(0) & $2024-02-11$ & - & - & Approvazione versione finale RTB.\\
+\hline
+v1.10.4(14) & $2024-02-09$ & \quantities{Campese M.} & Michelon R. & Aggiornamento e correzione sezione Metriche.\\
+\hline
+v1.10.4(13) & $2024-02-09$ & \quantities{Campese M.} & Michelon R. & Modifiche correttive e aggiornamento riferimenti.\\
+\hline
+v1.10.1(25) & $2024-01-14$ & \quantities{Bresolin G.} & Michelon R. & Aggiornamento strumenti.\\
+\hline
+v1.10.1(16) & $2024-01-04$ & \quantities{Michelon R.} & Bresolin G. & Introduzione Accertamento della qualità.\\
+\hline
+v1.10.1(15) & $2024-01-04$ & \quantities{Michelon R.} & Bresolin G. & Introduzione Risoluzione dei problemi.\\
+\hline
+v1.10.1(14) & $2024-01-04$ & \quantities{Michelon R.} & Bresolin G. & Introduzione Infrastruttura.\\
+\hline
+v1.10.1(9) & $2024-01-03$ & \quantities{Bresolin G.} & Orlandi G. & Introduzione Miglioramento.\\
+\hline
+v1.10.1(8) & $2024-01-03$ & \quantities{Bresolin G.} & Orlandi G. & Introduzione Revisione.\\
+\hline
+v1.10.0(15) & $2023-12-29$ & \quantities{Bresolin G.} & Orlandi G. & Introduzione Revisione congiunta.\\
+\hline
+v1.10.0(13) & $2023-12-29$ & \quantities{Bresolin G.} & Orlandi G. & Introduzione Validazione.\\
+\hline
+v1.10.0(12) & $2023-12-29$ & \quantities{Michelon R.} & Campese M. & Introduzione Processi organizzativi.\\
+\hline
+v1.10.0(11) & $2023-12-29$ & \quantities{Michelon R.} & Campese M. & Introduzione Verifica.\\
+\hline
+v1.10.0(10) & $2023-12-29$ & \quantities{Michelon R.} & Campese M. & Introduzione Codifica.\\
+\hline
+v1.10.0(9) & $2023-12-29$ & \quantities{Michelon R.} & Campese M. & Introduzione Progettazione.\\
+\hline
+v1.10.0(5) & $2023-12-26$ & \quantities{Bresolin G.} & Michelon R. & Aggiornamento configuration management.\\
+\hline
+v1.10.0(4) & $2023-12-26$ & \quantities{Ciriolo I.} & Bresolin G. & Rimozione sezione Overleaf per cambio strumenti.\\
+\hline
+v1.10.0(3) & $2023-12-21$ & \quantities{Bresolin G.} & Ciriolo I. & Aggiornamento: sviluppo.\\
+\hline
+v1.9.0(9) & $2023-12-18$ & \quantities{Ciriolo I.} & Bresolin G. & Processi primari: Acquisizione.\\
+\hline
+v1.9.0(8) & $2023-12-18$ & \quantities{Ciriolo I.} & Bresolin G. & Processi primari: Fornitura.\\
+\hline
+v1.9.0(7) & $2023-12-18$ & \quantities{Bresolin G.} & Ciriolo I. & Introduzione: applicazione Standard ISO/IEC 12207:1995.\\
+\hline
+v1.9.0(6) & $2023-12-17$ & \quantities{Bresolin G.} & Ciriolo I. & Introduzione: riferimenti normativi e informativi.\\
+\hline
+v1.9.0(5) & $2023-12-14$ & \quantities{Ciriolo I.} & Bresolin G. & Introduzione: glossario.\\
+\hline
+v1.0.0(15) & $2023-12-08$ & \quantities{Bresolin G.} & Orlandi G. & Aggiornamento ITS: passaggio a Jira di Atlassian. Motivazione: GitHub non offre un diagramma di Gantt in grado di stabilire le dipendenze tra i vari tasks; maggior supporto al framework Scrum attraverso le funzionalità presentate.\\
+\hline
+v1.0.0(11) & $2023-12-02$ & \quantities{Ciriolo I.} & Orlandi G. & Processo primario: Sviluppo: attività Analisi dei requisiti.\\
+\hline
+v1.0.0(10) & $2023-11-27$ & \quantities{Campese M.} & Orlandi G. & Ampliamento sezioni  Comunicazioni e Strumenti.\\
+\hline
+v1.0.0(2) & $2023-11-22$ & \quantities{Bresolin G.} & Campese M. & Aggiornamento branch protection rules.\\
+\hline
+v1.0.0(1) & $2023-11-22$ & \quantities{Michelon R.} & Bresolin G. & Aggiunte sezioni automazione release e versionamento documenti.\\
+\hline
+v0.0.1(23) & $2023-11-20$ & Michelon R. & Campese M. & Aggiunta parametrizzazione template documenti.\\
 \hline
 v0.0.1(22) & $2023-11-13$ & Bresolin G. & Campese M. & Aggiornamento struttura di documento: modifica ordine registro delle versioni dalla più recente e aggiunta voce ”motivazioni”; verbali: introduzione \#issue nella tabella delle azioni.\\
 \hline
@@ -21,4 +91,4 @@ v0.0.1(8) & $2023-10-27$ & Bresolin G. & Ciriolo I. & Processo di supporto: docu
 \hline
 v0.0.1(5) & $2023-10-26$ & Campese M. & Orlandi G. &  Introduzione.\\
 
-\end{tabularx}}
+\end{xltabular}}

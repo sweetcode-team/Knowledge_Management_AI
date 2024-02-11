@@ -1,0 +1,1712 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\fancypagestyle{plain}{}
+
+\title{\titolo}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% REGISTRO DELLE VERSIONI
+\include{registroversioni}
+\newpage
+
+% INDICE
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+% INTRODUZIONE
+\section{Introduzione}
+\subsection{Obiettivo del documento}
+L'obiettivo che ci si pone nella realizzazione di questo documento è di definire e descrivere in modo dettagliato i casi d'uso e i requisiti della \textit{web application} di \textit{Knowledge Management AI}, proposta dall'azienda Azzurro Digitale, che verrà sviluppata nel corso del progetto.
+\subsection{Scopo del prodotto}
+Il proponente richiede la creazione di un'applicazione web di \textit{Knowledge Management AI}. Questo sistema permette, attraverso l'interazione con un chatbot basato sull'intelligenza artificiale, di facilitare ai dipendenti l'accesso a informazioni, regolamentazioni e indicazioni aziendali, rendendo più efficiente e veloce la loro consultazione e comprensione.
+
+\subsection{Glossario}
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine definito nel Glossario.
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \textit{(Norme di progetto v2.0.0(0))};
+    \item \textit{Regolamento del progetto didattico}: \\
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/\textasciitilde tullio/IS-1/2023/Dispense/PD2.pdf};
+    \item \textit{Verbali esterni ed interni}.
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+    \begin{itemize}
+        \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+        \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
+        (Ultimo accesso: 2024-02-08).
+    \end{itemize}
+    \item \textit{Dispense sull'Analisi e descrizione delle funzionalità: Use Case e relativi diagrammi (UML):}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2022/Diagrammi\%20Use\%20Case.pdf;}
+    \item \textit{Dispense sull'Analisi e descrizione delle funzionalità: Diagrammi delle Attività (UML):}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20di%20Attivit%C3%A0.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2022/Diagrammi\%20di\%20Attivit\%C3\%A0.pdf;}
+    \item \textit{Dispense su Progettazione e Programmazione: Diagrammi delle Classi:}\\
+    \href{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2023/Diagrammi\%20delle\%20Classi.pdf.}
+    \item \textit{(Glossario v2.0.0(0))}.
+\end{itemize}
+
+% DESCRIZIONE
+\newpage
+\section{Descrizione}
+\subsection{Obiettivi del prodotto}
+Il prodotto deve fornire nuove modalità di formazione e assistenza sul lavoro, superando i limiti di un classico \textit{repository} documentale, in maniera tale da rendere la consultazione della documentazione più fruibile e incentrata sulle informazioni effettive; il sistema deve riuscire a comunicare con gli utenti in modo semplice, permettendo a qualsiasi categoria di utente di ottenere le informazioni richieste, a prescindere dalla loro abilità o qualifica.
+\subsection{Funzioni del prodotto}
+Il software deve essere in grado di ricevere in input documenti, in particolare \textit{PDF} o \textit{Word}, attraverso il quale ricavare le informazioni richieste e fornire una risposta basata sui documenti forniti.\\
+Il sistema funge anche da strumento di consultazione dei documenti caricati dall'utente.
+\subsection{Caratteristiche del prodotto}
+Il sistema deve essere in grado di gestire molteplici chat, mantenendo separati i relativi contesti e storici. 
+Il funzionamento e la correttezza delle risposte formulate del sistema devono essere garantiti a prescindere dalla lingua utilizzata nella richiesta, che sia questa italiano o inglese.\\
+I documenti caricati devono poter rimanere accessibili all'utente, così come lo storico delle chat a cui l'utente ha partecipato.\\
+Se l'utente chiede al sistema informazioni non pertinenti o non presenti nei documenti caricati, il sistema deve essere in grado di riconoscere quando accade e notificare l'utente attraverso una risposta informativa e cortese.
+\subsection{Utenti}
+Il prodotto è rivolto a tutte le aziende, organizzazioni ed enti che necessitano di un modo efficiente e innovativo per organizzare e rendere fruibile il loro patrimonio informativo.\\
+Esiste un'unica tipologia di utenti.\\
+Gli utenti interagiscono con il sistema attraverso un'interfaccia grafica.
+\newpage
+
+% CASI D'USO
+\section{Casi d'uso}
+
+\subsection{Introduzione}
+Questa sezione ha l'obiettivo di presentare i casi d'uso relativi all'applicazione \textit{Knowledge Management AI}. Questi sono stati definiti a seguito dell'analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni caso d'uso possiede un codice e una didascalia, le cui strutture sono descritte in (Norme di progetto v2.0.0(0), \S Analisi dei requisiti).
+
+\subsection{Attori}
+\subsubsection{Attori primari}
+\ucimg{attori_pr}{Attori primari}{0.1}
+L'applicazione \textit{Knowledge Management AI} richiede un singolo attore principale che rappresenta l'utente (ovvero il lavoratore) che interagisce con il sistema.
+\newpage
+\subsection{Elenco dei casi d'uso}
+
+    \uc{Scelta componenti del sistema}{scel_sistema}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item tutte le componenti rese disponibili sono state configurate;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: le varie componenti utilizzate dal sistema sono state scelte;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente sceglie le componenti del sistema tra quelle che vengono rese disponibili.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere le componenti da utilizzare nel sistema.
+    \end{itemize}
+
+    \ucimg{avvio_sist}{Diagramma primo avvio sistema}{0.75}
+    \ucimg{config_utente}{Diagramma configurazione utente}{0.75}
+
+    \attimg{scelt_comp_sist}{Diagramma attività configurazione utente}{0.5}
+    
+    \ucimg{scel_comp}{Diagramma \rifuc{scel_sistema}}{0.75}
+    \subuc{Scelta modello LLM}{scel_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello LLM scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli LLM disponibili;
+                \item l’utente sceglie un modello LLM dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il modello LLM da utilizzare nel sistema.
+    \end{itemize}
+
+    \subuc{Scelta vector database}{scel_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il vector database scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i vector database disponibili;
+                \item l’utente sceglie un vector database dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il vector database da utilizzare nel sistema.
+    \end{itemize}
+
+    \subuc{Scelta modello di embeddings}{scel_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello di embeddings scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli di embeddings disponibili;
+                \item l’utente sceglie un modello di embeddings dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il modello di embeddings da utilizzare nel sistema.
+    \end{itemize}
+
+    \subuc{Scelta sistema di archiviazione dei documenti}{scel_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema è stato avviato per la prima volta;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema di archiviazione dei documenti scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i sistemi di archiviazione dei documenti disponibili;
+                \item l’utente sceglie un sistema di archiviazione dei documenti dalla lista.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole scegliere il sistema di archiviazione dei documenti da utilizzare nel sistema.
+    \end{itemize}
+    
+    \uc{Cambio scelta modello LLM}{camb_scel_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema presenta un modello LLM già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello LLM scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli LLM disponibili;
+                \item l’utente sceglie un modello LLM dalla lista per sostituire il modello LLM precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il modello LLM scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta vector database}{camb_scel_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema presenta un vector database già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il vector database scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i vector database disponibili;
+                \item l’utente sceglie un vector database dalla lista per sostituire il vector database precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il vector database scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta modello di embeddings}{camb_scel_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema presenta un modello di embeddings già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il modello di embeddings scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i modelli di embeddings disponibili;
+                \item l’utente sceglie un modello di embeddings dalla lista per sostituire il modello di embeddings precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il modello di embeddings scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \uc{Cambio scelta sistema di archiviazione dei documenti}{camb_scel_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema presenta un sistema di archiviazione dei documenti già scelto dall'utente;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema di archiviazione dei documenti scelto è ora attivo nel sistema;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza i sistemi di archiviazione dei documenti disponibili;
+                \item l’utente sceglie un sistema di archiviazione dei documenti dalla lista per sostituire il sistema di archiviazione dei documenti precedentemente scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole cambiare il sistema di archiviazione dei documenti scelto da utilizzare nel sistema.
+    \end{itemize}
+
+    \ucimg{vis_comp_disp}{Diagramma visualizzazione componenti disponibili}{0.75}
+    \uc{Visualizzazione lista modelli LLM disponibili}{vis_lista_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei modelli LLM disponibili;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli LLM in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i modelli LLM resi disponibili dall’applicazione web.
+    \end{itemize}
+
+    \ucimg{vis_s_mLLM}{Diagramma \rifuc{vis_lista_LLM}}{0.75}
+    \subuc{Visualizzazione singolo modello LLM in lista}{vis_sing_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli LLM resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un modello LLM in lista;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello LLM in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche modello LLM (\rifuc{vis_car_LLM});
+        \item \textbf{Trigger}: l’utente vuole conoscere un modello LLM in lista.
+    \end{itemize}
+    
+    \uc{Visualizzazione caratteristiche modello LLM}{vis_car_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando le caratteristiche di un modello LLM.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello LLM.
+    \end{itemize}
+    \ucimg{vis_car_LLM}{Diagramma \rifuc{vis_car_LLM}}{0.75}
+
+    \subuc{Visualizzazione nome modello LLM}{vis_nome_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando il nome di un modello LLM.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il nome del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello LLM.
+    \end{itemize}
+
+    \subuc{Visualizzazione organizzazione proprietaria modello LLM}{vis_org_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il modello LLM è stato configurato;
+                \item il sistema sta mostrando l'organizzazione proprietaria del modello LLM.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un modello LLM.
+    \end{itemize}
+
+    \subuc{Visualizzazione descrizione modello LLM}{vis_descr_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando la descrizione del modello LLM.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la descrizione del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un modello LLM.
+    \end{itemize}
+
+    \subuc{Visualizzazione tipologia modello LLM}{vis_tip_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando la tipologia del modello LLM.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la tipologia del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un modello LLM.
+    \end{itemize}
+
+    \subuc{Visualizzazione indicatore costi modello LLM}{vis_costi_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello LLM è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del modello LLM.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del modello LLM;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un modello LLM.
+    \end{itemize}
+
+    \uc{Visualizzazione lista vector database disponibili}{vis_lista_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei vector database disponibili;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli vector database in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i vector database resi disponibili dall’applicazione web.
+    \end{itemize}
+    
+    \ucimg{vis_s_vd}{Diagramma \rifuc{vis_lista_vd}}{0.75}
+    \subuc{Visualizzazione singolo vector database in lista}{vis_sing_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item i vector database resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un vector database in lista;
+        \end{itemize} 
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo vector database in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche vector database (\rifuc{vis_car_vd});
+        \item \textbf{Trigger}: l’utente vuole conoscere un vector database in lista.
+    \end{itemize}
+
+    \uc{Visualizzazione caratteristiche vector database}{vis_car_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un vector database.
+    \end{itemize}
+    \ucimg{vis_car_vd}{Diagramma \rifuc{vis_car_vd}}{0.75}
+
+    \subuc{Visualizzazione nome vector database}{vis_nome_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando il nome del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il nome del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un vector database.
+    \end{itemize}
+
+    \subuc{Visualizzazione organizzazione proprietaria vector database}{vis_org_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un vector database.
+    \end{itemize}
+
+    \subuc{Visualizzazione descrizione vector database}{vis_descr_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando la descrizione del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la descrizione del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un vector database.
+    \end{itemize}
+
+    \subuc{Visualizzazione tipologia vector database}{vis_tip_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando la tipologia del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la tipologia del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un vector database.
+    \end{itemize}
+
+    \subuc{Visualizzazione indicatore costi vector database}{vis_costi_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il vector database è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del vector database;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un vector database.
+    \end{itemize}
+
+    \uc{Visualizzazione lista modelli di embeddings disponibili}{vis_lista_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei modelli di embeddings disponibili.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli modelli di embeddings in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i modelli di embeddings resi disponibili dall’applicazione web.
+    \end{itemize}
+
+    \ucimg{vis_s_emb}{Diagramma \rifuc{vis_lista_emb}}{0.75}
+    \subuc{Visualizzazione singolo modello di embeddings in lista}{vis_sing_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i modelli di embeddings resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un modello di embeddings in lista.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo modello di embeddings in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche modello di embeddings (\rifuc{vis_car_emb});
+        \item \textbf{Trigger}: l’utente vuole conoscere un modello di embeddings in lista.
+    \end{itemize}
+
+    \uc{Visualizzazione caratteristiche modello di embeddings}{vis_car_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del modello di embeddings
+        \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un modello di embeddings.
+    \end{itemize}
+    \ucimg{vis_car_emb}{Diagramma \rifuc{vis_car_emb}}{0.75}
+
+    \subuc{Visualizzazione nome modello di embeddings}{vis_nome_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando il nome del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il nome del modello di embeddings;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un modello di embeddings.
+    \end{itemize}
+
+    \subuc{Visualizzazione organizzazione proprietaria modello di embeddings}{vis_org_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del modello di embeddings;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un modello di embeddings.
+    \end{itemize}
+
+    \subuc{Visualizzazione descrizione modello di embeddings}{vis_descr_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando la descrizione del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la descrizione del modello di embeddings;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un modello di embeddings.
+    \end{itemize}
+
+    \subuc{Visualizzazione tipologia modello di embeddings}{vis_tip_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando la tipologia del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la tipologia del modello di embeddings;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un modello di embeddings.
+    \end{itemize}
+
+    \subuc{Visualizzazione indicatore costi modello di embeddings}{vis_costi_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il modello di embeddings è stato configurato;
+            \item il sistema sta mostrando l'indicatore dei costi del modello di embeddings.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del modello di embeddings;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore dei costi di un modello di embeddings.
+    \end{itemize}
+
+    \uc{Visualizzazione lista sistemi di archiviazione documenti disponibili}{vis_lista_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema sta mostrando la lista dei sistemi di archiviazione resi disponibile.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza i singoli sistemi di archiviazione in lista;
+        \item \textbf{Trigger}: l’utente vuole conoscere i sistemi di archiviazione dei documenti resi disponibili dall’applicazione web.
+    \end{itemize}
+    
+    \ucimg{vis_s_sis}{Diagramma \rifuc{vis_lista_sis}}{0.75}
+    \subuc{Visualizzazione singolo sistema di archiviazione documenti in lista}{vis_sing_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item i sistemi di archiviazione dei documenti resi disponibili sono stati configurati;
+            \item il sistema sta mostrando un sistema di archiviazione documenti in lista;
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del singolo sistema di archiviazione in lista;
+        \item \textbf{Inclusioni}: visualizzazione caratteristiche sistema di archiviazione (\rifuc{vis_car_sis});
+        \item \textbf{Trigger}: l’utente vuole conoscere un sistema di archiviazione in lista.
+    \end{itemize}
+
+    \uc{Visualizzazione caratteristiche sistema di archiviazione}{vis_car_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando le caratteristiche del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le caratteristiche del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare le caratteristiche di un sistema di archiviazione.
+    \end{itemize}
+    \ucimg{vis_car_sis}{Diagramma \rifuc{vis_car_sis}}{0.75}
+
+    \subuc{Visualizzazione nome sistema di archiviazione}{vis_nome_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando il nome del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il nome del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il nome di un sistema di archiviazione.
+    \end{itemize}
+
+    \subuc{Visualizzazione organizzazione proprietaria sistema di archiviazione}{vis_org_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando l'organizzazione proprietaria del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'organizzazione proprietaria del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'organizzazione proprietaria di un sistema di archiviazione.
+    \end{itemize}
+
+    \subuc{Visualizzazione descrizione sistema di archiviazione}{vis_descr_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando la descrizione del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la descrizione del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la descrizione di un sistema di archiviazione.
+    \end{itemize}
+
+    \subuc{Visualizzazione tipologia sistema di archiviazione}{vis_tip_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando la tipologia del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la tipologia del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la tipologia di un sistema di archiviazione.
+    \end{itemize}
+
+    \subuc{Visualizzazione indicatore costi sistema di archiviazione}{vis_costi_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema di archiviazione è stato configurato;
+            \item il sistema sta mostrando l'indicatore costi del sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza l'indicatore dei costi del sistema di archiviazione;
+        \item \textbf{Trigger}: l’utente desidera visualizzare l'indicatore costi di un sistema di archiviazione.
+    \end{itemize}
+
+    \uc{Visualizzazione configurazione attuale utente}{vis_conf}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale dell'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza il modello LLM scelto;
+                \item l’utente visualizza il vector database scelto;
+                \item l’utente visualizza il modello di embeddings scelto;
+                \item l’utente visualizza il sistema di archiviazione documenti scelto.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del sistema.
+    \end{itemize}
+    \ucimg{vis_config_a_utente}{Diagramma \rifuc{vis_conf}}{0.75}
+
+    \subuc{Visualizzazione configurazione attuale modello LLM attuale}{vis_conf_LLM}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del modello LLM scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il modello LLM scelto e le sue caratteristiche;
+        \item \textbf{Inclusioni}: Visualizzazione caratteristiche modello LLM (\rifuc{vis_car_LLM});
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del modello LLM del sistema.
+    \end{itemize}
+
+    \subuc{Visualizzazione configurazione vector database attuale}{vis_conf_vd}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del vector database scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il vector database scelto e le sue caratteristiche;
+        \item \textbf{Inclusioni}: Visualizzazione caratteristiche vector database (\rifuc{vis_car_vd});
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale del vector database del sistema.
+    \end{itemize}
+
+    \subuc{Visualizzazione configurazione modello di embeddings attuale}{vis_conf_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del modello di embeddings scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il modello di embeddings scelto e le sue caratteristiche;
+        \item \textbf{Inclusioni}: Visualizzazione caratteristiche modello di embeddings (\rifuc{vis_car_emb});
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale modello di embeddings del sistema.
+    \end{itemize}
+
+    \subuc{Visualizzazione configurazione sistema di archiviazione documenti}{vis_conf_sis}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item le componenti del sistema sono state scelte dall'utente;
+            \item il sistema sta mostrando la configurazione attuale del sistema di archiviazione documenti scelto dall'utente.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza il sistema di archiviazione documenti scelto e le sue caratteristiche;
+        \item \textbf{Inclusioni}: Visualizzazione caratteristiche sistema di archiviazione (\rifuc{vis_car_sis});
+        \item \textbf{Trigger}: l’utente vuole visualizzare la configurazione attuale sistema di archiviazione del sistema.
+    \end{itemize}
+
+    \uc{Visualizzazione lista documenti caricati}{vis_lista_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+            \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema ha mostrato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Scenario principale}: l'utente visualizza i singoli documenti in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la lista dei documenti caricati all’interno del sistema di archiviazione.
+    \end{itemize}
+    \ucimg{gest_docs}{Diagramma gestione documenti}{1}
+    \ucimg{vis_lista_docs}{Diagramma \rifuc{vis_lista_doc}}{0.75}
+
+    \subuc{Visualizzazione singolo documento in lista}{vis_sing_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista dei documenti caricati.
+            \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l'utente visualizza il titolo del documento;
+                \item l'utente visualizza le dimensioni del documento ;
+                \item l'utente visualizza la data di caricamento del documento;
+                \item l'utente visualizza l'indicatore di occultamento del documento;
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente desidera visualizzare il singolo documento all’interno della lista di documenti caricati.
+    \end{itemize}
+    \ucimg{vis_sing_doc}{Diagramma \rifsubuc{vis_lista_doc}{vis_sing_doc}}{0.8}
+
+    \subsubuc{Visualizzazione titolo singolo documento}{vis_tit_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista dei documenti caricati.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il titolo del singolo documento;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il titolo del singolo documento all’interno della lista di documenti caricati.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione dimensioni singolo documento}{vis_dim_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista dei documenti caricati.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza le dimensioni del singolo documento;
+        \item \textbf{Trigger}: l’utente desidera visualizzare le dimensioni del singolo documento all’interno della lista di documenti caricati.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione data di caricamento singolo documento}{vis_data_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista dei documenti caricati.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la data di caricamento del singolo documento;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la data di caricamento del singolo documento all’interno della lista di documenti caricati.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione indicatore di occultamento singolo documento}{vis_occ_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista dei documenti caricati.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza se il singolo documento è occultato o meno;
+        \item \textbf{Trigger}: l’utente desidera sapere se il singolo documento all’interno della lista di documenti caricati è occultato o meno.
+    \end{itemize}
+    
+    \ucimg{area_staging}{Diagramma area di staging}{0.75}
+    \uc{Caricamento documento in area di staging}{car_staging}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+            \end{itemize}
+        \item \textbf{Postcondizioni}: il documento selezionato dall’utente è presente nell’area di staging;
+        \item \textbf{Scenario principale}: l’utente seleziona o rilascia il documento che vuole caricare nell’area di staging;
+        \item \textbf{Estensioni}: visualizzazione errore caricamento documento con formato errato (\rifuc{vis_err_formato});
+        \item \textbf{Trigger}: l’utente vuole aggiungere un documento nell’area di staging.
+    \end{itemize}
+
+    \uc{Caricamento documenti in area di staging}{car_staging_s}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+            \end{itemize}
+        \item \textbf{Postcondizioni}: i documenti selezionati dall’utente sono presenti nell’area di staging;
+        \item \textbf{Scenario principale}: l’utente seleziona o rilascia i documenti che vuole caricare nell’area di staging;
+        \item \textbf{Estensioni}: visualizzazione errore caricamento documenti con formato errato (\rifuc{vis_err_formato});
+        \item \textbf{Trigger}: l’utente vuole aggiungere un insieme documenti nell’area di staging.
+    \end{itemize}
+
+    \uc{Visualizzazione errore formato errato}{vis_err_formato}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item L’utente ha selezionato o rilasciato almeno un documento che vuole caricare nell’area di staging;
+                \item Il formato di almeno un documento non è supportato.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+            \begin{itemize}
+                \item Viene mostrato un messaggio di errore che specifica l'elenco dei formati non validi che l'utente ha provato a caricare;
+                \item Nell’area di staging vengono caricati solamente i documenti che presentavano un formato valido.
+            \end{itemize}
+        \item \textbf{Scenario principale}: L’utente visualizza il messaggio di errore.
+    \end{itemize}
+
+    \uc{Rimozione documento da area di staging}{rim_staging}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item è presente almeno un documenti valido nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}: il documento è stato rimosso dall’area di staging;
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l’utente seleziona il documento che vuole rimuovere dall’area di staging;
+                \item l’utente rimuove il documento selezionato.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole rimuovere un documento dall’area di staging.
+    \end{itemize}
+
+    \uc{Rimozione documenti da area di staging}{rim_staging_s}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item sono presenti dei documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}: i documenti sono stati rimossi dall’area di staging;
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole rimuovere dall’area di staging;
+                \item l’utente rimuove i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole rimuovere un insieme di documenti dall’area di staging.
+    \end{itemize}
+
+    \ucimg{uploading_docs}{Diagramma uploading nel sistema di archiviazione dei documenti}{0.75}
+    \uc{Upload nuovo documento}{up_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un documento valido nell’area di staging;
+                \item il documento caricato nell'area di staging non è già presente nel sistema;
+                \item è presente un documento valido nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item il documento è stato caricato nello spazio di archiviazione documenti configurato;
+            \item gli embeddings sono stati calcolati e caricati nel vector database configurato;
+            \item il documento caricato viene rimosso dall’area di staging.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento del documento presente nell’area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole inserire un documento all’interno del sistema, rendendolo disponibile sia nel sistema di archiviazione che reperibile dal chatbot.
+    \end{itemize}
+
+    \attimg{up_doc}{Diagramma attività upload nuovo documento}{1}
+
+    \uc{Upload nuovi documenti}{up_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un insieme di documenti valido nell’area di staging;
+                \item i documenti caricati nell'area di staging non sono già presente nel sistema;
+                \item sono presenti un insieme di documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item i documenti sono stati caricati nello spazio di archiviazione documenti configurato;
+            \item gli embeddings sono stati calcolati e caricati nel vector database configurato;
+            \item i documenti caricati vengono rimossi dall’area di staging.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell’area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole inserire un insieme di documenti all’interno del sistema, rendendoli disponibile sia nel sistema di archiviazione che reperibili dal chatbot.
+    \end{itemize}
+
+
+    \uc{Sostituzione documento}{sost_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un documento valido nell’area di staging;
+                \item il documento caricato nell'area di staging presenta lo stesso nome e formato di un documento già presente nel sistema;
+                \item è presente un documento valido nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+            \begin{itemize}
+                \item il documento precedentemente presente nel sistema viene sostituito dal documento caricato dall'area di staging;
+                \item il documento caricato è stato rimosso dall’area di staging.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento del documento presente nell'area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole sostituire un documento già presente all'interno del sistema, rendendolo disponibile la nuova versione sia nel sistema di archiviazione che reperibile dal chatbot.
+    \end{itemize}
+
+    \uc{Sostituzione documenti}{sost_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item l’utente ha caricato un insieme di documenti validi nell’area di staging;
+                \item i documenti caricati nell'area di staging presentano gli stessi nomi e formati di un documento già presente nel sistema;
+                \item è presente un insieme di documenti validi nell’area di staging.
+            \end{itemize}
+        \item \textbf{Postcondizioni}:
+            \begin{itemize}
+                \item i documenti precedentemente presenti nel sistema vengono sostituiti dai documenti caricati dall'area di staging;
+                \item i documenti caricati sono stati rimossi dall’area di staging.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma il caricamento dei documenti presenti nell'area di staging verso il sistema di archiviazione e il vector database;
+        \item \textbf{Trigger}: l’utente vuole sostituire un insieme di documenti già presenti all'interno del sistema, rendendoli disponibili nella nuova versione sia nel sistema di archiviazione che reperibili dal chatbot.
+    \end{itemize}
+    
+
+    \uc{Visualizzazione contenuto documento}{vis_cont_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema è configurato e attivo;
+            \item l’utente ha selezionato un documento presente nel sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il contenuto del documento selezionato;
+        \item \textbf{Scenario principale}: l’utente richiede di visualizzare il contenuto del documento selezionato;
+        \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di un documento.
+    \end{itemize}
+
+    \uc{Eliminazione documento}{elim_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item il documento è stato eliminato dal sistema di archiviazione;
+            \item gli embeddings del documento sono stati eliminati dal vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona il documento che vuole eliminare;
+                \item l’utente richiede di eliminare il documento selezionato.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare un documento.
+    \end{itemize}
+
+    \uc{Eliminazione documenti}{elim_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item i documenti sono stati eliminati dal sistema di archiviazione;
+            \item gli embeddings dei documenti sono stati eliminati dal vector database.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole eliminare;
+                \item l’utente richiede di eliminare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare un insieme di documenti.
+    \end{itemize}
+
+    \uc{Occultamento documento}{occ_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: il documento è stato occultato (visibile all’utente ma non reperibile per la formulazione delle risposte);
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona il documento che vuole occultare;
+                \item l’utente richiede di occultare il documento selezionato.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole occultare un documento.
+    \end{itemize}
+
+    \uc{Occultamento documenti}{occ_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: i documenti sono stati occultati (visibili all’utente ma non reperibili per la formulazione delle risposte);
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole occultare;
+                \item l’utente richiede di occultare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole occultare un insieme di documenti.
+    \end{itemize}
+
+    \uc{Riabilitazione documento}{riab_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: il documento è stato riabilitato ed è di nuovo reperibile per la formulazione delle risposte;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona il documento che vuole riabilitare;
+                \item l’utente richiede di riabilitare il documento selezionato.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole riabilitare un documento.
+    \end{itemize}
+
+    \uc{Riabilitazione documenti}{riab_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione;
+        \item \textbf{Postcondizioni}: i documenti sono stati riabilitati ed sono di nuovo reperibili per la formulazione delle risposte;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona i documenti che vuole riabilitare;
+                \item l’utente richiede di riabilitare i documenti selezionati.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole riabilitare un insieme di documenti.
+    \end{itemize}
+
+    \uc{Ricerca documenti}{ric_doc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista dei documenti caricati;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato i risultati della ricerca eseguita;
+        \item \textbf{Scenario principale}: l’utente richiede al sistema di effettuare una ricerca dei documenti;
+        \item \textbf{Trigger}: l’utente vuole cercare un documento nel sistema di archiviazione.
+    \end{itemize}
+    
+
+    \uc{Visualizzazione lista chat}{vis_lista_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema è configurato e attivo;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema ha mostrato la lista delle chat;
+        \item \textbf{Scenario principale}: l'utente visualizza le singole chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la lista delle chat.
+    \end{itemize}
+    \ucimg{vis_lista_chat}{Diagramma \rifuc{vis_lista_chat}}{0.75}
+    \ucimg{gest_chat}{Diagramma gestione chat}{1}
+
+    \subuc{Visualizzazione singola chat in lista}{vis_sing_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l'utente visualizza il titolo della singola chat in lista;
+            \item l'utente visualizza il timestamp dell'ultimo messaggio della singola chat in lista.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente desidera visualizzare la singola chat all’interno della lista.
+    \end{itemize}
+    \ucimg{vis_sing_chat}{Diagramma \rifsubuc{vis_lista_chat}{vis_sing_chat}}{0.8}
+
+    \subsubuc{Visualizzazione titolo singola chat in lista}{vis_tit_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il titolo della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il titolo della singola chat all’interno della lista.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione timestamp ultimo messaggio singola chat in lista}{vis_timestamp_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza il timestamp dell'ultimo messaggio della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare il timestamp dell'ultimo messaggio della singola chat all’interno della lista.
+    \end{itemize}
+
+    \uc{Creazione nuova chat}{creaz_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item il sistema è configurato e attivo;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema ha creato una nuova chat nel database chat;
+        \item \textbf{Scenario principale}: l’utente richiede di creare una nuova chat;
+        \item \textbf{Estensioni}: Visualizzazione errore chat vuota esistente (\rifuc{vis_err_chat_vuota});
+        \item \textbf{Trigger}: l’utente vuole creare una nuova chat.
+    \end{itemize}
+
+    \uc{Visualizzazione errore chat vuota esistente}{vis_err_chat_vuota}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item L’utente ha richiesto di creare una nuova chat;
+            \item È già presente una chat vuota nel sistema.
+        \end{itemize}
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item il sistema ha mostrato un messaggio di errore che indica la presenza di una chat vuota esistente;
+            \item il sistema evita di creare una nuova chat.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore che indica la presenza di una chat vuota esistente.
+    \end{itemize}
+
+    \uc{Eliminazione chat}{elim_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item è presente almeno una chat nel database delle chat;
+            \item il sistema sta mostrando la lista delle chat esistenti;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: la chat è stata eliminata dal database chat;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona una chat che vuole eliminare;
+            \item l’utente richiede di eliminare la chat selezionata.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare una chat.
+    \end{itemize}
+
+    \uc{Eliminazione multipla chat}{elim_chat_s}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item sono presenti almeno due chat nel database delle chat;
+            \item il sistema sta mostrando la lista delle chat esistenti;
+        \end{itemize}
+        \item \textbf{Postcondizioni}: le chat sono state eliminate dal database chat;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona un insieme di chat che vuole eliminare;
+            \item l’utente richiede di eliminare la chat selezionata.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare una chat.
+    \end{itemize}
+
+    \uc{Rinominazione chat}{rinom_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
+        \item \textbf{Postcondizioni}: la chat è stata rinominata nel database chat;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona la chat che vuole rinominare;
+            \item l’utente richiede di rinominare la chat selezionata.
+        \end{enumerate}
+        \item \textbf{Estensioni}:
+         \begin{enumerate}
+            \item Visualizzazione errore inserimento titolo uguale ad un’altra chat (\rifuc{vis_err_tit_ug});
+            \item Visualizzazione errore inserimento titolo vuoto (\rifuc{vis_err_tit_vuoto}).
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole rinominare una chat.
+    \end{itemize}
+
+    \uc{Visualizzazione errore inserimento titolo uguale ad un’altra chat}{vis_err_tit_ug}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l’utente ha richiesto di rinominare una chat;
+            \item il nuovo titolo inserito dall'utente è uguale a quello di un'altra chat.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item il sistema ha mostrato un messaggio che indica l’errore di inserimento di un titolo uguale ad un’altra chat;
+            \item il titolo della chat rimane invariato.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza un messaggio che indica l’errore di inserimento di un titolo uguale ad un’altra chat.
+    \end{itemize}
+
+    \uc{Visualizzazione errore inserimento titolo vuoto}{vis_err_tit_vuoto}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+        \begin{itemize}
+            \item l’utente ha richiesto di rinominare una chat;
+            \item il nuovo titolo inserito dall'utente è vuoto.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+        \begin{itemize}
+            \item il sistema mostra un messaggio di errore che indica l'inserimento di un titolo vuoto;
+            \item il titolo della chat rimane invariato.
+        \end{itemize}
+        \item \textbf{Scenario principale}: l’utente visualizza un messaggio di errore che indica l’inserimento di un titolo vuoto;
+    \end{itemize}
+
+    \uc{Ricerca chat}{ric_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato i risultati della ricerca eseguita;
+        \item \textbf{Scenario principale}: l’utente richiede al sistema di effettuare una ricerca delle chat e del loro contenuto;
+        \item \textbf{Trigger}: l’utente vuole cercare una chat o il suo contenuto.
+    \end{itemize}
+
+    \uc{Visualizzazione contenuto chat}{vis_cont_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista delle chat esistenti;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il contenuto di una chat;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente richiede l’apertura di una chat;
+                \item l'utente visualizza i singoli messaggi nella chat.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
+    \end{itemize}
+    \ucimg{vis_cont_chat}{Diagramma \rifuc{vis_cont_chat}}{0.75}
+
+    \subuc{Visualizzazione singolo messaggio in chat}{vis_sing_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando il contenuto di una chat;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il singolo messaggio in chat;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente visualizza il contenuto testuale del messaggio in chat;
+                \item l’utente visualizza l'orario di invio/ricezione del messaggio in chat;
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto di una chat.
+    \end{itemize}
+    \ucimg{vis_sing_mess}{Diagramma \rifsubuc{vis_cont_chat}{vis_sing_mess}}{0.8}
+
+    \subsubuc{Visualizzazione contenuto testuale singolo messaggio in chat}{vis_cont_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il contenuto testuale del singolo messaggio in chat;
+        \item \textbf{Scenario principale}: l’utente visualizza il contenuto testuale del messaggio in chat.
+        \item \textbf{Trigger}: l’utente vuole visualizzare il contenuto testuale di un messaggio in una chat.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione orario singolo messaggio in chat}{vis_or_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato l'orario del singolo messaggio in chat;
+        \item \textbf{Scenario principale}: l’utente visualizza l'orario di invio/ricezione del messaggio in chat.
+        \item \textbf{Trigger}: l’utente vuole visualizzare l'orario di una chat.
+    \end{itemize}
+
+    \uc{Visualizzazione documenti pertinenti}{vis_doc_pert}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha inviato almeno un messaggio;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato la lista dei documenti pertinenti alla risposta selezionata;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente seleziona una risposta;
+                \item l’utente richiede di visualizzare i documenti pertinenti alla risposta selezionata.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole visualizzare i documenti pertinenti alla chat selezionata.
+    \end{itemize}
+
+    \uc{Visualizzazione domande suggerite}{vis_dom_sugg}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la chat vuota;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato le domande suggerite;
+        \item \textbf{Scenario principale}: l’utente richiede di visualizzare le domande suggerite;
+        \item \textbf{Trigger}: l’utente vuole visualizzare le domande suggerite in una chat vuota.
+    \end{itemize}
+    \ucimg{gest_dom_sugg}{Diagramma gestione domande suggerite}{0.75}
+
+    \uc{Invio domanda suggerita}{invio_dom_sugg}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando la lista di domande suggerite in una chat vuota;
+        \item \textbf{Postcondizioni}: la domanda scelta è stata inviata;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente sceglie una delle domande suggerite.
+            \item l’utente conferma l'invio della domanda suggerita selezionata.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole inviare una delle domande suggerite in una chat vuota.
+    \end{itemize}
+
+    \uc{Lettura vocale messaggio}{lett_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l’utente ha selezionato una chat; 
+            \item la chat contiene almeno un messaggio.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il sistema ha letto ad alta voce il messaggio selezionato;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona un messaggio da leggere ad alta voce;
+            \item l’utente richiede la lettura del messaggio selezionato.
+        \end{enumerate} 
+        \item \textbf{Trigger}: l’utente desidera ascoltare la lettura di un messaggio.
+    \end{itemize}
+    \ucimg{gest_mess}{Diagramma gestione messaggio}{0.6}
+
+    \uc{Copia messaggio}{copia_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l’utente ha selezionato una chat; 
+            \item la chat contiene almeno un messaggio.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: il messaggio selezionato è stato copiato;
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona un messaggio da copiare;
+            \item l’utente richiede di copiare il messaggio selezionato.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole copiare un messaggio.
+    \end{itemize}
+    \ucimg{gest_mod_voc}{Diagramma gestione modalità vocale}{0.75}
+
+    \uc{Attivazione modalità vocale}{att_mod_voc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+            \begin{itemize}
+                \item l’utente ha selezionato una chat;
+                \item la modalità vocale non è attiva.
+            \end{itemize}
+        \item \textbf{Postcondizioni}: la modalità vocale è attiva;
+        \item \textbf{Scenario principale}: l’utente richiede di attivare la modalità vocale;
+        \item \textbf{Trigger}: l’utente vuole attivare la modalità vocale.
+    \end{itemize}
+    
+    \uc{Disattivazione modalità vocale}{dis_mod_voc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+            \begin{itemize}
+                \item l’utente ha selezionato una chat;
+                \item la modalità vocale è attiva.
+            \end{itemize}
+        \item \textbf{Postcondizioni}: la modalità vocale è disattivata;
+        \item \textbf{Scenario principale}: l’utente richiede di disattivare la modalità vocale;
+        \item \textbf{Trigger}: l’utente vuole disattivare la modalità vocale.
+    \end{itemize}
+    
+    \uc{Invio messaggio}{invio_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: 
+        \begin{itemize}
+            \item l’utente ha selezionato e sta visualizzando una chat;
+            \item l'utente ha inserito un messaggio nella chat.
+        \end{itemize}
+        \item \textbf{Postcondizioni}: 
+            \begin{itemize}
+                \item il messaggio è stato memorizzato nel database chat.
+                \item il sistema elabora una risposta alla domanda inviata.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l’utente conferma l'invio del messaggio inserito nella chat;
+        \item \textbf{Trigger}: l’utente vuole inviare un messaggio.
+    \end{itemize}
+    
+    \attimg{invio_mess}{Diagramma attività dialogo chatbot}{1}
+
+    \uc{Inserimento messaggio}{ins_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
+        \item \textbf{Scenario principale}: l’utente inserisce un messaggio;
+        \item \textbf{Generalizzazioni}:
+            \begin{itemize}
+                \item Inserimento messaggio testuale (\rifsubuc{ins_mess}{ins_mess_test});
+                \item Inserimento messaggio tramite comando vocale (\rifsubuc{ins_mess}{ins_mess_voc});
+            \end{itemize}
+        \item \textbf{Trigger}: l’utente vuole inserire un messaggio in una chat.
+    \end{itemize}
+    
+    \subuc{Inserimento messaggio testuale}{ins_mess_test}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio testuale da inviare nella chat selezionata;
+        \item \textbf{Scenario principale}: l’utente inserisce un messaggio testuale;
+        \item \textbf{Trigger}: l’utente vuole inserire un messaggio testuale in una chat.
+    \end{itemize}
+    
+    \subuc{Inserimento messaggio tramite comando vocale}{ins_mess_voc}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha selezionato e sta visualizzando una chat;
+        \item \textbf{Postcondizioni}: è stato inserito un messaggio da inviare nella chat selezionata;
+        \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item l’utente richiede di inserire un messaggio tramite comando vocale;
+                \item l’utente indica vocalmente il messaggio che vuole inserire nella chat.
+            \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole inserire un messaggio tramite comando vocale.
+    \end{itemize}
+
+
+% REQUISITI
+\newpage
+\section{Requisiti}
+In questa sezione sono presentati i requisiti relativi all’applicazione Knowledge Management AI. Questi sono stati definiti a seguito dell’analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni requisito possiede un codice, la struttura di esso è descritta in (Norme di progetto v2.0.0(0), \S Analisi dei requisiti).
+
+\subsection{Requisiti funzionali}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{|c|X|c|c}
+
+\caption{Tabella dei requisiti funzionali}
+\label{tab:requisiti_funzionali}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endfirsthead
+\caption[]{Tabella dei requisiti funzionali (cont)}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endhead
+\multicolumn{3}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline 
+\endlastfoot
+
+\rf{O} & L'utente deve poter scegliere le componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio dell'applicazione. & \rifuc{scel_sistema} \\
+\hline \subrf{O} & L'utente deve poter scegliere un modello LLM tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_LLM} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_LLM} \\
+\hline \subrf{O} & L'utente deve poter scegliere il vector database tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_vd}\\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo vector database tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_vd} \\
+\hline \subrf{O} & L'utente deve poter scegliere un modello di embeddings tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_emb} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_emb} \\
+\hline \subrf{O} & L'utente deve poter scegliere un sistema di archiviazione documenti tra quelli disponibili al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_sis} \\
+\hline \subsubrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & \rifsubuc{scel_sistema}{scel_sis} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei modelli LLM disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_LLM}\\ \rifuc{vis_lista_LLM}\\ \rifuc{camb_scel_LLM}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli modelli LLM presenti in lista. & \rifsubuc{vis_lista_LLM}{vis_sing_LLM} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei vector database disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_vd}\\ \rifuc{vis_lista_vd}\\ \rifuc{camb_scel_vd}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli vector database presenti in lista. & \rifsubuc{vis_lista_vd}{vis_sing_vd} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei modelli di embeddings disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_emb}\\ \rifuc{vis_lista_emb}\\ \rifuc{camb_scel_emb}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli modelli di embeddings presenti in lista. & \rifsubuc{vis_lista_emb}{vis_sing_emb} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei sistemi di archiviazione disponibili. & \quantities{\rifuc{scel_sistema}\\ \rifsubuc{scel_sistema}{scel_sis}\\ \rifuc{vis_lista_sis}\\ \rifuc{camb_scel_sis}} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli sistemi di archiviazione presenti in lista. & \rifsubuc{vis_lista_sis}{vis_sing_sis} \\
+
+\hline \rf{O} & L'utente deve poter cambiare la scelta del modello LLM. & \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. &  \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un modello LLM. & \rifuc{vis_car_LLM}\\
+\hline \subrf{O} & L'utente deve poter visualizzare il nome di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_nome_LLM}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'organizzazione proprietaria di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_org_LLM}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la descrizione di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_descr_LLM}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la tipologia di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_tip_LLM}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'indicatore di costi di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_costi_LLM}\\
+
+\hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un vector database. & \rifuc{vis_car_vd}\\
+\hline \subrf{O} & L'utente deve poter visualizzare il nome di un vector database. & \rifsubuc{vis_car_vd}{vis_nome_vd}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'organizzazione proprietaria di un vector database. & \rifsubuc{vis_car_vd}{vis_org_vd}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la descrizione di un vector database. & \rifsubuc{vis_car_vd}{vis_descr_vd}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la tipologia di un vector database. & \rifsubuc{vis_car_vd}{vis_tip_vd}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'indicatore di costi di un vector database. & \rifsubuc{vis_car_vd}{vis_costi_vd}\\
+
+\hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un modello di embeddings. & \rifuc{vis_car_emb}\\
+\hline \subrf{O} & L'utente deve poter visualizzare il nome di un modello di embeddings. & \rifsubuc{vis_car_emb}{vis_nome_emb}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'organizzazione proprietaria di un modello di embeddings. & \rifsubuc{vis_car_emb}{vis_org_emb}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la descrizione di un modello di embeddings. & \rifsubuc{vis_car_emb}{vis_descr_emb}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la tipologia di un modello di embeddings. & \rifsubuc{vis_car_emb}{vis_tip_emb}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'indicatore di costi di un modello di embeddings. & \rifsubuc{vis_car_emb}{vis_costi_emb}\\
+
+\hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un sistema di archiviazione. & \rifuc{vis_car_sis}\\
+\hline \subrf{O} & L'utente deve poter visualizzare il nome di un sistema di archiviazione. & \rifsubuc{vis_car_sis}{vis_nome_sis}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'organizzazione proprietaria di un sistema di archiviazione. & \rifsubuc{vis_car_sis}{vis_org_sis}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la descrizione di un sistema di archiviazione. & \rifsubuc{vis_car_sis}{vis_descr_sis}\\
+\hline \subrf{O} & L'utente deve poter visualizzare la tipologia di un sistema di archiviazione. & \rifsubuc{vis_car_sis}{vis_tip_sis}\\
+\hline \subrf{O} & L'utente deve poter visualizzare l'indicatore di costi di un sistema di archiviazione. & \rifsubuc{vis_car_sis}{vis_costi_sis}\\
+
+\hline \rf{O} & L'utente deve poter visualizzare la configurazione attuale del sistema. & \rifuc{vis_conf} \\
+\hline \subrf{O} & L'utente deve poter visualizzare la configurazione attuale del modello LLM. & \rifsubuc{vis_conf}{vis_conf_LLM} \\
+\hline \subrf{O} & L'utente deve poter visualizzare la configurazione attuale del vector database. & \rifsubuc{vis_conf}{vis_conf_vd} \\
+\hline \subrf{O} & L'utente deve poter visualizzare la configurazione attuale del modello di embeddings. & \rifsubuc{vis_conf}{vis_conf_emb} \\
+\hline \subrf{O} & L'utente deve poter visualizzare la configurazione attuale del sistema di archiviazione documenti. & \rifsubuc{vis_conf}{vis_conf_sis} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista dei documenti presenti nel sistema di archiviazione. & \quantities{\rifuc{vis_lista_doc}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli documenti presenti nel sistema di archiviazione. & \rifsubuc{vis_lista_doc}{vis_sing_doc}\\
+\hline \subsubrf{O} & L'utente deve poter visualizzare il titolo di un documento presente nel sistema di archiviazione. & \rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_tit_doc}\\
+\hline \subsubrf{O} & L'utente deve poter visualizzare le dimensioni di un documento presente nel sistema di archiviazione. & \rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_dim_doc} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare la data di caricamento di un documento presente nel sistema di archiviazione. & \rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_data_doc} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare se un documento è stato occultato. & \quantities{\rifsubsubuc{vis_lista_doc}{vis_sing_doc}{vis_occ_doc}\\ Verbale esterno (2023-11-15)} \\
+
+\hline \rf{O} & L'utente deve poter caricare un documento nell'area di staging. & \quantities{\rifuc{car_staging}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un documento di tipo .\textit{PDF}. & \rifuc{car_staging} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un documento di tipo .\textit{docx}. & \rifuc{car_staging} \\
+\hline \rf{O} & L'utente deve poter caricare un insieme di documenti nell'area di staging. & \quantities{\rifuc{car_staging_s}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{PDF}. & \rifuc{car_staging_s} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{docx}. & \rifuc{car_staging_s} \\
+\hline \subrf{O} & L'utente deve poter caricare nell'area di staging un insieme di documenti di tipo .\textit{PDF} e .\textit{docx}. & \rifuc{car_staging_s} \\
+\hline \rf{O} & Il tentativo di caricamento in area di staging di un documento deve fallire se il formato di questo non è supportato. & \rifuc{vis_err_formato} \\
+\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a caricare nell'area di staging un documento con formato non supportato. & \rifuc{vis_err_formato} \\
+\hline \rf{O} & L'utente deve poter rimuovere un documento caricato nell'area di staging. & \rifuc{rim_staging} \\
+\hline \rf{O} & L'utente deve poter rimuovere un insieme di documenti caricati nell'area di staging. & \rifuc{rim_staging_s} \\
+
+\hline \rf{O} & L'utente deve poter fare l'upload nel sistema di archiviazione e nel vector database dei documenti caricati nell'area di staging. & \quantities{ \rifuc{up_doc} \\ \rifuc{up_docs}} \\
+\hline \subrf{O} & L'utente deve poter scegliere se sostituire con il documento caricato un documento con lo stesso nome e formato già presente nel sistema. & \quantities{ \rifuc{up_doc} \\ \rifuc{sost_doc}} \\
+\hline \subrf{O} & L'utente deve poter confermare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{sost_doc} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituire con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{up_doc} \\
+\hline \subrf{O} & L'utente deve poter scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \quantities{ \rifuc{up_docs} \\ \rifuc{sost_docs}} \\
+\hline \subrf{O} & L'utente deve poter confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{sost_docs} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituire con i documento caricato di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & \rifuc{vis_cont_doc} \\
+\hline \rf{O} & L'utente deve poter eliminare un documento presente nel sistema. &  \rifuc{elim_doc} \\
+\hline \rf{O} & L'utente deve poter eliminare un insieme di documenti presenti nel sistema. &  \rifuc{elim_docs} \\
+\hline \subrf{O} & L'utente deve poter selezinare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
+\hline \rf{O} & L'utente deve poter occultare un documento presente nel sistema. & \quantities{\rifuc{occ_doc}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter occultare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per occultarli. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter riabilitare un documento presente nel sistema. & \quantities{\rifuc{riab_doc}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter riabilitare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{riab_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per riabilitarli. & \quantities{\rifuc{riab_docs}\\ Verbale esterno (2023-11-15)} \\
+\hline \rf{O} & L'utente deve poter ricercare un documento presente nel sistema. & \quantities{\rifuc{ric_doc}} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare la lista delle chat presenti nell'applicazione. & \rifuc{vis_lista_chat} \\
+\hline \subrf{O} & L'utente deve poter visualizzare le singole chat presenti in lista. & \rifsubuc{vis_lista_chat}{vis_sing_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare il titolo di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_tit_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare il timestamp dell'ultimo messaggio di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_timestamp_chat} \\
+\hline \rf{O} & L'utente deve poter creare una nuova chat. & \rifuc{creaz_chat} \\
+\hline \rf{O} & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & \rifuc{vis_err_chat_vuota} \\
+\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & \rifuc{vis_err_chat_vuota} \\
+\hline \rf{O} & L'utente deve poter eliminare una chat. & \rifuc{elim_chat} \\
+\hline \rf{O} & L'utente deve poter eliminare un insieme di chat. & \rifuc{elim_chat_s} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di chat per poterle eliminare. & \rifuc{elim_chat_s} \\
+
+\hline \rf{O} & L'utente deve poter rinominare una chat. & \quantities{\rifuc{rinom_chat}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & Il tentativo di rinominazione di una chat deve fallire se il titolo inserito appartiene già ad un'altra chat. & \rifuc{vis_err_tit_ug} \\
+\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un'altra chat. & \rifuc{vis_err_tit_ug} \\
+\hline \rf{O} & Il tentativo di rinominazione di una chat deve fallire se il titolo inserito è vuoto. & \rifuc{vis_err_tit_vuoto} \\
+\hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & \rifuc{vis_err_tit_vuoto} \\
+
+\hline \rf{O} & L'utente deve poter ricercare una chat e il suo contenuto. & \rifuc{ric_chat} \\
+
+\hline \rf{O} & L'utente deve poter visualizzare il contenuto di una chat. & \rifuc{vis_cont_chat} \\
+\hline \subrf{O} & L'utente deve poter visualizzare i singoli messaggi di una chat. & \rifsubuc{vis_cont_chat}{vis_sing_mess} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare il contenuto testuale di un messaggio presente in una chat. & \rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_cont_mess} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare l'orario di un messaggio presente in una chat. & \rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_or_mess} \\
+
+\hline \rf{D} & La risposta fornita dal chatbot deve presentare un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & \rifuc{vis_doc_pert} \\
+
+\hline \rf{D} & L'utente deve poter visualizzare le domande suggerite in una chat vuota. & \rifuc{vis_dom_sugg}\\
+\hline \rf{D} & L'utente deve poter inviare una domanda suggerita in una chat vuota. & \rifuc{invio_dom_sugg}\\
+\hline \subrf{D} & L'utente deve poter selezionare una delle domande suggerite in una chat vuota. & \rifuc{invio_dom_sugg} \\
+\hline \subrf{D} & L'utente deve poter confermare l'invio di una domanda suggerita in una chat vuota. & \rifuc{invio_dom_sugg} \\
+
+\hline \rf{D} & L'utente deve poter ascoltare tramite audio un messaggio. & \quantities{\rifuc{lett_mess}\\ Verbale esterno (2023-11-24)}\\
+\hline \rf{D} & L'utente deve poter copiare un messaggio. & \rifuc{copia_mess} \\
+\hline \rf{OP} & L'utente deve poter attivare la modalità vocale. & \quantities{\rifuc{att_mod_voc}\\ Verbale esterno (2023-11-24)}\\
+\hline \rf{OP} & L'utente deve poter disattivare la modalità vocale. & \quantities{\rifuc{dis_mod_voc}\\ Verbale esterno (2023-11-24)}\\
+
+\hline \rf{O} & L'utente deve poter inserire un messaggio nell'area di testo di una chat. & \rifuc{ins_mess} \\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio testuale nella chat. & \rifsubuc{ins_mess}{ins_mess_test} \\
+\hline \subrf{O} & L'utente deve poter inserire un messaggio in una chat tramite comando vocale nella di una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)}\\
+\hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
+\hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
+\hline \rf{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
+\hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
+\hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
+\hline \rf{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
+\hline \rf{D} & L'eliminazione di un documento dallo spazio di storage deve portare all'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale esterno (2023-11-24)
+
+\end{xltabular}
+
+\subsection{Requisiti di qualità}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{|c|X|c|c}
+
+\caption{Tabella dei requisiti di qualità}
+\label{tab:requisiti_qualita}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endfirsthead
+\caption[]{Tabella dei requisiti di qualità (cont)}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endhead
+\multicolumn{3}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline
+\endlastfoot
+
+\rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto v2.0.0(0)). & Regolamento \\
+\hline \rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica v2.0.0(0)). & Regolamento \\ 
+\end{xltabular}
+
+
+
+
+\subsection{Requisiti di vincolo}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{|c|X|c|c}
+
+\caption{Tabella dei requisiti di vincolo}
+\label{tab:requisiti_vincolo}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endfirsthead
+\caption[]{Tabella dei requisiti di vincolo (cont)}\\
+\hline
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+\endhead
+\multicolumn{3}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\hline
+\endlastfoot
+
+\rv{O} & L'applicazione web deve garantire la presenza di almeno un modello AI locale. & Verbale esterno (2023-11-22) \\
+\hline \rv{O} & Le chat devono essere salvate in automatico in un database. & Verbale esterno (2023-11-24) \\
+\hline \rv{O} & I documenti caricati devono essere memorizzati in un sistema di archiviazione. & Capitolato \\
+\end{xltabular}
+\newpage
+\subsection{Riepilogo}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{X|X|X|X|X}
+
+\caption{Tabella riepilogo dei requisiti}
+\label{tab:riepilogo_requisiti}\\
+\textbf{Tipologia} & \textbf{O} & \textbf{D} & \textbf{OP} & \textbf{Totale}\\
+\hline
+\endfirsthead
+\caption[]{Tabella riepilogo dei requisiti (cont)}\\
+\hline
+\textbf{Tipologia} & \textbf{O} & \textbf{D} & \textbf{OP} & \textbf{Totale}\\
+\hline
+\endhead
+\multicolumn{5}{r}{\footnotesize\textit{Continua nella pagina successiva}}
+\endfoot
+\endlastfoot
+
+Funzionali & 116 & 9 & 4 & 129 \\
+\hline Qualità & 2 & 0 & 0 & 2 \\
+\hline Vincolo & 3 & 0 & 0 & 3 \\
+\hline \textbf{Totale} & 121 & 9 & 4 & \textbf{134} \\
+
+\end{xltabular}
+
+
+\end{document}

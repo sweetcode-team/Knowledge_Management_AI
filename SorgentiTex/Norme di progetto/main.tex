@@ -24,10 +24,15 @@
 
 % INTRODUZIONE
 \section{Introduzione}
-\subsection{Scopo del documento}
-Questo documento si prefigge lo scopo di normare e documentare un corretto \textit{Way of Working\pg} che verrà seguito lungo l'intero svolgimento del progetto.\\
+\subsection{Obiettivo del documento}
+L'obiettivo che ci si pone nella realizzazione di questo documento è di normare e documentare un corretto \textit{Way of Working\pg} che verrà seguito lungo l'intero svolgimento del progetto.\\
 Tutti i membri del team sono tenuti a visionare tale documento e a seguire le norme contenute in esso. Tali norme permettono di perseguire e migliorare la coerenza ed omogeneità del lavoro e dei file prodotti.
 Viene inoltre fornito uno storico delle modifiche e delle versioni del documento per seguire un approccio incrementale nella sua redazione, facilitandone i cambiamenti nel corso del tempo.
+
+\subsection{Glossario}
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine definito nel Glossario.
 
 \section{Riferimenti}
     \subsection{Riferimenti normativi}
@@ -35,64 +40,49 @@ Viene inoltre fornito uno storico delle modifiche e delle versioni del documento
         \item \textit{ISO/IEC 12207:1997 Information technology — Software life cycle processes}\\
         \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}\\
         (Ultimo accesso: 2024-02-08);
-        \item \textit{SEMAT}\\
-        \url{https://semat.org/documents/20181/57862/formal-18-10-02.pdf/formal-18-10-02.pdf}\\ 
-        (Ultimo accesso: 2024-02-08);
         \item \textit{Regolamento del progetto didattico}\\
         \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+        \item \textit{SEMAT}\\
+        \url{https://semat.org/documents/20181/57862/formal-18-10-02.pdf/formal-18-10-02.pdf}\\ 
         (Ultimo accesso: 2024-02-08).
     \end{itemize}
     \subsection{Riferimenti informativi}
     \begin{itemize}
-        \item \textit{(Glossario v2.0.0(0))};
-        \item \textit{(Analisi dei requisiti v2.0.0(0))};
-        \item \textit{(Piano di progetto v2.0.0(0))};
-        \item \textit{(Piano di qualifica v2.0.0(0))};
-        \item \textit{(Verbali esterni ed interni)};
-        \item \textit{Capitolato\pg C1}: \textit{Knowledge Management AI\pg}
-            \begin{itemize}
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
-                (Ultimo accesso: 2024-02-08).
-            \end{itemize}
-        \item Slide lezioni \textit{Ingegneria del software\pg} 2023/2024:
-            \begin{itemize}
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T2.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T3.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T4.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T5.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T6.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T7.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T10.pdf}\\
-                (Ultimo accesso: 2024-02-08);
-                \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T11.pdf}\\
-                (Ultimo accesso: 2024-02-08).
-            \end{itemize}
+        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+        \begin{itemize}
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
+            (Ultimo accesso: 2024-02-08).
+        \end{itemize}
+        \item Dispense Ingegneria del software 2023/2024:
+        \begin{itemize}
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T2.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T3.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T4.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T5.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T6.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T7.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T8.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T9.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T10.pdf}\\
+            (Ultimo accesso: 2024-02-08);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T11.pdf}\\
+            (Ultimo accesso: 2024-02-08).
+        \end{itemize}
+        \item \textit{(Glossario v2.0.0(0))}.
     \end{itemize}
 
-\section{Glossario v2.0.0(0)}
-Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un glossario. 
-I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
-All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine del (Glossario v2.0.0(0)).\\
-All'interno di quest'ultimo i termini vengono ordinati in ordine alfabetico e raggruppati per lettera d'inizio del termine.\\
-I documenti corredati di glossario sono:
-\begin{itemize}
-    \item (Analisi dei requisiti v2.0.0(0));
-    \item (Norme di progetto v2.0.0(0));
-    \item (Piano di progetto v2.0.0(0));
-    \item (Piano di qualifica v2.0.0(0)).
-\end{itemize}
+\newpage
 
 % APPLICAZIONE STANDARD
 \section{Applicazione standard ISO/IEC 12207:1997}

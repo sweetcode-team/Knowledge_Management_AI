@@ -14,7 +14,7 @@
         \node [anchor=north east, align=right, xshift=-1.2cm, yshift=18.7cm, text=black] (date) at (current page.south east){\fontsize{24pt}{24pt} \selectfont \data};
 
         % NOME FILE
-        \node [anchor=north east, text width=15cm, align=right, xshift=-1.2cm, yshift=17cm, text=black] (titolo) at (current page.south east){\fontsize{48pt}{48pt}\textbf{\titolo}};
+        \node [anchor=north east, text width=15cm, align=right, xshift=-1cm, yshift=16cm, text=black] (titolo) at (current page.south east){\fontsize{40pt}{40pt}\textbf{\titolo}};
 
         % BOX DATI PARTECIPANTI
         \node[anchor=north east, xshift=-1.2cm, yshift=12cm, minimum width=8cm] (box) at (current page.south east){};
@@ -44,8 +44,9 @@
 
         % FIRMA
         \draw[line width=4pt, lightcol] ([xshift=-1.2cm, yshift=1.8cm]current page.south east) -- ([xshift=-8cm, yshift=1.8cm]current page.south east);
+        \node [xshift=-4.8cm, yshift=2.45cm] (logo) at (current page.south east) {\includegraphics[width=6cm]{img/gianluca.png}};
         \node[anchor=north west, xshift=12.9cm, yshift=1.45cm, align=left] at (current page.south west)
-        {\fontsize{13pt}{13pt}\selectfont L'Amministratore: Michelon R.};
+        {\fontsize{13pt}{13pt}\selectfont Il Responsabile: Bresolin G.};
         
     \end{tikzpicture}
 \end{titlepage}

@@ -1,0 +1,51 @@
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        % TRIANGOLI
+        \draw[fill=secondarycolor, secondarycolor] (current page.north west) -- (current page.south west) -- (8.8, -28);
+        \draw[fill=primarycolor, primarycolor] (-3, 5) -- (4, -13.6) -- (11, 5);
+
+        % LOGO
+        \node [xshift=-5cm, yshift=25cm] (logo) at (current page.south east) {\includegraphics[width=6.5cm]{img/logo.png}};
+
+        % SWEETCODE - DATE
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=20.5cm, text=black] (sweetcode) at (current page.south east) {\fontsize{32pt}{36pt}\selectfont SWEetCode};
+        \draw[line width=4pt, lightcol] ([xshift=-3cm, yshift=-0.37cm]sweetcode.south west) -- ([yshift=-0.37cm]sweetcode.south east);
+        \node [anchor=north east, align=right, xshift=-1.2cm, yshift=18.7cm, text=black] (date) at (current page.south east){\fontsize{24pt}{24pt} \selectfont \data};
+
+        % NOME FILE
+        \node [anchor=north east, text width=15cm, align=right, xshift=-1.2cm, yshift=17cm, text=black] (titolo) at (current page.south east){\fontsize{48pt}{48pt}\textbf{\titolo}};
+
+        % BOX DATI PARTECIPANTI
+        \node[anchor=north east, xshift=-1.2cm, yshift=12cm, minimum width=8cm] (box) at (current page.south east){};
+
+        % COMPONENTI DEL GRUPPO
+        \node[anchor=north west, yshift=-1cm, align=left] (dati1) at (box.north west) {\fontsize{16pt}{16pt}\selectfont \textbf{Componenti del gruppo}};
+        \draw[line width=4pt, lightcol] (dati1.south west) -- ([xshift=8cm]dati1.south west);
+        
+        \node[anchor=north west, align=left] (dati11) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Bresolin G.};
+        \node[anchor=north west, yshift=-0.7cm, align=left] (dati12) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Campese M.};
+        \node[anchor=north west, yshift=-1.4cm, align=left] (dati13) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Ciriolo I.};
+        \node[anchor=north west, yshift=-2.1cm, align=left] (dati14) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Dugo A.};
+        \node[anchor=north west, yshift=-2.8cm, align=left] (dati15) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Feltrin E.};
+        \node[anchor=north west, yshift=-3.5cm, align=left] (dati16) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Michelon R.};
+        \node[anchor=north west, yshift=-4.2cm, align=left] (dati17) at (dati1.south west)
+        {\fontsize{14pt}{14pt}\selectfont Orlandi G.};
+        
+        % UNIPD - SWE
+        \node [xshift=4.4cm, yshift=2.3cm, draw, secondarycolor, text=white] (uni) at (current page.south west) {\fontsize{20pt}{20pt} \selectfont Università di Padova};
+        \node [xshift=0.65cm, yshift=0.7cm, draw, secondarycolor, text=white, below=of uni] (corso) {\fontsize{20pt}{20pt}\selectfont Ingegneria del Software};
+
+        % FIRMA
+        \draw[line width=4pt, lightcol] ([xshift=-1.2cm, yshift=1.8cm]current page.south east) -- ([xshift=-8cm, yshift=1.8cm]current page.south east);
+        \node[anchor=north west, xshift=12.9cm, yshift=1.45cm, align=left] at (current page.south west)
+        {\fontsize{13pt}{13pt}\selectfont L'Amministratore: Michelon R.};
+        
+    \end{tikzpicture}
+\end{titlepage}

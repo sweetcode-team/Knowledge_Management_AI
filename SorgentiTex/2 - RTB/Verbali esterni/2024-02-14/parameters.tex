@@ -1,0 +1,78 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-02-14}
+\def\oraInizio{17:00}
+\def\oraFine{17:30}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Dugo A.} % Cognome N.
+\def\nomeSegr{Bresolin G.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Davanzo C.,
+Bendotti E.
+}
+
+\def\listaRevisioneAzioni {
+{Visualizzazione (per revisione da parte del proponente) ed illustrazione delle interfacce utente (sketch) richieste nella riunione precedente, con relativo feedback positivo.}
+}
+
+\def\listaOrdineGiorno {
+{Aggiornamento rispetto alla precedente riunione;},
+{Pianificazione dello sprint appena iniziato.}
+}
+
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Aggiornamento riguardo esami curricolari}
+{In seguito alla richiesta di aggiornamenti relativi alla sessione di esami corrente, il team comunica che quasi tutti i membri (più della metà) hanno concluso la sessione in modo positivo e che quindi si potranno dedicare in modo completo al progetto didattico;},
+\domris
+{In generale, avete pensato di inserire qualche requisito non obbligatorio in particolare nella fase di MVP?}
+{Nel tempo a disposizione verranno soddisfatti prima i requisiti obbligatori e (solo successivamente) gradualmente anche quelli non obbligatori. L'inserimento vocale dei messaggi è una funzionalità di interesse per il team quindi tale requisito non obbligatorio verrà sicuramente soddisfatto, mentre gli altri verranno stabiliti in base a tempo e risorse;
+},
+\domris
+{Organizzazione degli sprint di lavoro}
+{Si è discusso della possibile sincronizzazione degli sprint di lavoro del team con le riunioni bisettimanali fissate con il proponente. Infatti, programmando le riunioni allo scadere di ogni sprint di lavoro del gruppo sarebbe favorita una comunicazione più aggiornata ed il team avrebbe la possibilità di comunicare eventuali problemi prima di iniziare un nuovo sprint;},
+\domris
+{Pianificazione dello sprint 8}
+{Il team comunica al proponente che prevede che nello sprint 8 saranno svolte le seguenti attività:
+{\begin{itemize}
+    \item Progettazione logica (svolta in modo collaborativo tra i membri, in modo più possibile sincrono);
+    \item Progettazione di dettaglio;
+    \item Inizio della stesura del documento di specifica architetturale.
+\end{itemize}}
+}
+}
+
+\def\listaDecisioni {
+{Verranno mantenuti incontri bisettimanali per l'aggiornamento con il proponente, e gli sprint di lavoro del team verranno coordinati a tali incontri di modo che siano posti alla fine di ogni sprint (di 14 giorni);},
+{il gruppo condividerà a pochi giorni dalla riunione le attività specifiche che verranno svolte nello sprint appena iniziato, tramite canale Slack.}
+}

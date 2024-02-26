@@ -99,11 +99,10 @@ menzionati all'interno di questo documento, accompagnandoli con un riferimento e
 
 \subsubsection{Processi primari}
 Sebbene lo Standard adottato presenti cinque processi primari (\textit{Acquisizione, Fornitura, Sviluppo, Operazione, Manutenzione}),
-all'interno del contesto del progetto universitario in atto, il team non ritiene il processo \textit{Manutenzione} pertinente e, pertanto, 
-si è deciso di escluderlo dalla presentazione nel documento.\\
+all'interno del contesto del progetto universitario in atto, il team non ritiene i processi \textit{Manutenzione} e \textit{Acquisizione} ( quest'ultimo di competenza del committente) pertinenti; pertanto, si è deciso di escluderli dalla presentazione nel documento.\\
 I processi primari presentati nel presente documento sono:
 \begin{itemize}
-    \item \textbf{Acquisizione}: definisce le attività dell'acquirente, l'organizzazione che acquisisce un prodotto software;
+    %\item \textbf{Acquisizione}: definisce le attività dell'acquirente, l'organizzazione che acquisisce un prodotto software;
     \item \textbf{Fornitura}: definisce le attività del fornitore, l'organizzazione che fornisce il prodotto software all'acquirente;
     \item \textbf{Sviluppo}: definisce le attività dello sviluppatore, l'organizzazione che definisce e sviluppa il prodotto software.
 \end{itemize}
@@ -133,11 +132,20 @@ I processi organizzativi presentati nel presento documento sono:
     \item \textbf{Miglioramento}: definisce le attività che il team esegue per stabilire, misurare, controllare e migliorare i processi del ciclo di vita;
     \item \textbf{Formazione}: definisce le attività atte a provvedere una adeguata formazione del team.
 \end{itemize}
+\subsubsection{Ruoli}
+I ruoli definiti all'interno di questo progetto didattico universitario sono:
+\begin{itemize}
+    \item \textbf{Docente del corso}: \textit{committente\pg};
+    \item \textbf{Azienda proponente}: cliente e mentore;
+    \item \textbf{Gruppo di lavoro}: fornitore. 
+\end{itemize}
 
 % PROCESSI PRIMARI
 \newpage
 \section{Processi primari}
 
+    
+\begin{comment}
 \subsection{Acquisizione}
 \subsubsection{Scopo}
 Il processo di acquisizione è finalizzato alla gestione dell'acquisizione del prodotto software realizzato dal gruppo di lavoro.
@@ -145,6 +153,8 @@ Il processo di acquisizione è finalizzato alla gestione dell'acquisizione del p
 \subsubsection{Implentazione del processo}
 Le modalità del processo di acquisizione per il progetto sono state fissate dal docente e sono reperibili all'interno della sezione 
 (\S Riferimenti), in (\S Riferimenti normativi), in (\S Regolamento del progetto didattico).\\
+
+
 Le fasi del processo di acquisizione stabilite sono le seguenti:
 \begin{enumerate}
     \item Definizione della necessità di acquisizione di un prodotto software da parte dell'azienda \textit{proponente\pg};
@@ -163,12 +173,7 @@ Le fasi del processo di acquisizione stabilite sono le seguenti:
     \item Presentazione della candidatura per la revisione \textit{Product Baseline\pg} da parte del gruppo di lavoro;
     \item Revisione \textit{Product Baseline} sottoposta dai docenti del corso Vardanega T. e Cardin R. in due parti, con conseguente valutazione.
 \end{enumerate}
-I ruoli definiti all'interno di questo progetto didattico universitario sono:
-\begin{itemize}
-    \item \textbf{Docente del corso}: \textit{committente\pg};
-    \item \textbf{Azienda proponente}: cliente e mentore;
-    \item \textbf{Gruppo di lavoro}: fornitore. 
-\end{itemize}
+
 Le stime dei tempi di consegna e del prezzo vengono effettuate dal gruppo di lavoro durante la fase di presentazione della candidatura d'appalto.\\
 La definizione del prezzo durante la fase di candidatura costituisce il limite superiore invalicabile durante lo svolgimento del progetto ed
 è derivante dai costi (stabiliti dal docente del corso) di ciascun ruolo ricopribile all'interno del gruppo di lavoro.\\
@@ -179,7 +184,7 @@ Per assicurare invecece una gestione efficace e attenuare i rischi legati all'ac
     \item svolgere attività di diario di bordo con il docente del corso;
     \item svolgere revisioni congiunte con l'azienda proponente, trattate nel paragrafo (\S Processi di supporto, Revisioni congiunte).
 \end{itemize}
-
+\end{comment}
 \subsection{Fornitura}
 \subsubsection{Scopo}
 Il processo di fornitura descrive le attività svolte dal fornitore e coinvolge pianificazione, acquisizione e gestione delle risorse 
@@ -224,6 +229,9 @@ Il suo contenuto comprende:
     \item Preventivo e consuntivo;
     \item Retrospettiva.
 \end{itemize}
+\subsubsubsection{Linee guida stesura preventivo di periodo}:
+\subsubsubsection{Linee guida stesura consuntivo di periodo}:
+
 \subsubsection{Piano di Qualifica }
 Il (Piano di qualifica v2.0.0(0)) definisce le strategie, gli obiettivi e le attività per garantire la qualità del prodotto finale. Vengono definite in 
 tale documento le metriche di valutazione e validazione del progetto e la specifica degli obiettivi di qualità del prodotto finale. 
@@ -381,7 +389,7 @@ da \textit{SEMAT}: tale pianificazione viene però piegata alle esigenze e alla 
 
 \subsubsection{Progettazione}
 \subsubsubsection{Scopo}
-L'attività di progettazione ha lo scopo di fissare un'archiettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
+L'attività di progettazione ha lo scopo di fissare un'architettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
 La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
 
 I progettisti del team avranno l'obbligo di considerare le seguenti proprietà durante l'attività di progettazione:
@@ -396,21 +404,25 @@ I progettisti del team avranno l'obbligo di considerare le seguenti proprietà d
     \item \textbf{Semplicità}: ogni parte contiene lo stretto necessario;
     \item \textbf{Incapsulazione}: nasconde l'interno delle componenti architetturali all'esterno;
     \item \textbf{Coesione}: parti che agiscono sulle stesse unità di dati sono raccolte nello stesso componente;
-    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse;
+    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse.
 \end{itemize}
 
 \subsubsubsection{Scelte tecnologiche e PoC}
-La scelta delle tecnologie viene effettuata dal responsabile e dagli amministratori.
-Considerando i requisiti prodotti dall'attività di analisi dei requisiti, vengono analizzate le caratteristiche, i pro e i contro delle opzioni tecnologiche disponibili, trovando una soluzione possibile.
-Questa soluzione viene validata dai progettisti e dai \textit{programmatori\pg} tramite la realizzazione di un Proof of Concept, il cui scopo è:
 \begin{itemize}
-    \item Dimostrare la fattibilità del progetto;
-    \item Dimostrare che le scelte tecnologiche fatte sono adeguate e compatibili;
-    \item Avere feedback concreto e veloce da parte dell'azienda proponente;
-    \item Eslorare concretamente le tecnologie scelte.
+    \item Responsabile e amministratori effettuano le scelte tecnologiche;
+    \item Vengono analizzate le caratteristiche, i pro e i contro delle opzioni tecnologiche disponibili, trovando una soluzione e considerando i requisiti prodotti dall'analisi dei requisiti;
+    \item Progettisti e \textit{programmatori\pg} validano la soluzione tramite realizzazione di un Proof of Concept, il cui scopo è:
+    \begin{itemize}
+        \item Dimostrare la fattibilità del progetto;
+        \item Dimostrare che le scelte tecnologiche fatte sono adeguate e compatibili;
+        \item Avere feedback concreto e veloce da parte dell'azienda proponente;
+        \item Eslorare concretamente le tecnologie scelte.
+    \end{itemize}
+    \item Progettisti e programmatori si assumono il compito di realizzare più PoC, qualora fosse necessario un confronto concreto tra tecnologie; successivamente amministratori e responsabile sceglieranno la soluzione migliore a fronte di questi.
 \end{itemize}
 
-Qualora fosse necessario un confronto concreto tra tecnologie, i progettisti e i programmatori si assumono il compito di realizzare più PoC, confrontando poi i risultati finali con amministratori e responsabile, che sceglieranno la soluzione migliore a fronte di questi.
+
+
 
 \subsubsubsection{Fasi di progettazione}
 Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
@@ -735,13 +747,17 @@ relativamente alla stesura di documenti relativi al progetto.
         (nel caso in cui essa sia stata stabilita).
     \end{itemize}    
     
-    \subsubsubsection{Posta elettronica}La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
+    \subsubsubsection{Posta elettronica} La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
     Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
     \begin{itemize}
         \item \textbf{Oggetto}: campo da riempire obbligatoriamente in maniera breve e concisa;
         \item \textbf{Firma}: ogni mail viene conclusa con la firma digitale del gruppo collocata automaticamente;
-        \item \textbf{Forma}: le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio. La lunghezza del 
-        testo della mail non deve essere eccessivo, onde evitare la perdita di visibilità di informazioni preziose; qualora fosse necessario un testo complesso e denso di informazioni, ci si deve servire dell'uso di paragrafi ed elenchi per strutturarlo;
+        \item \textbf{Forma}:
+        \begin{itemize}
+            \item Le informazioni e le richieste più importanti vanno posizionate all'inizio del messaggio;
+            \item La lunghezza del testo non deve essere eccessivo (onde evitare la perdita di visibilità di informazioni preziose);
+            \item Ci si deve servire dell'uso di paragrafi ed elenchi per strutturare il testo, qualora fosse complesso e denso di informazioni.
+        \end{itemize} 
         \item \textbf{Stile}: è buona norma seguire lo stile del mittente. La mail sarà dotata di formule di saluto iniziale e finale quali 
         ad esempio: "\textit{Gentile..}", "\textit{Spettabile..}", "\textit{Cordiali saluti}" e "\textit{Distinti saluti}".
     \end{itemize}
@@ -1477,32 +1493,49 @@ Questo tipo di analisi deve poter essere automatizzata e ripetibile. Per questo 
 L'analisi dinamica viene resa possibile dall'implementazione di varie categorie di test, in particolare: di unità, di integrazione, di sistema e di regressione.
 
 \subsubsubsection{Test di unità}
-I Verificatori sono incaricati di formulare i test di unità durante la fase di progettazione di dettaglio, descritta in (\S \nameref{sec:progettazione_di_dettaglio}). Questi test sono progettati in conformità alle specifiche di ciascuna unità software, consentendo l'associazione di più test a una singola unità, qualora necessario, costruendo una suite di test dedicata a quell'unità.
-L'esecuzione dei test di unità potrebbe richiedere l'utilizzo di stub o driver, strumenti che permettono di testare le singole unità simulando alcuni dei loro componenti, nel caso in cui non fossero tutti disponibili per l'esecuzione.
-Tale pratica si rivela essenziale, specialmente nelle fasi iniziali dello sviluppo, quando l'ambiente è ancora piuttosto scarno.
-
-I test di unità possono essere suddivisi in due categorie:
 \begin{itemize}
-    \item \textbf{Funzionali} (o \textbf{black box}): dato un input e un'aspettativa di output, verificano se l'esecuzione di una certa funzionalità produce l'aspettativa dichiarata;
-    \item \textbf{Strutturali} (o \textbf{white box}): verificano la logica interna del codice, analizzando i vari cammini di esecuzione all'interno dell'unità.
+    \item \textbf{Stesura}: i Verificatori sono incaricati di formulare i test di unità durante la fase di progettazione di dettaglio, descritta in (\S \nameref{sec:progettazione_di_dettaglio});
+    \item \textbf{Descrizione}: questi test sono progettati in conformità alle specifiche di ciascuna unità software, consentendo l'associazione di più test a una singola unità, qualora necessario, costruendo una suite di test dedicata a quell'unità.
+    La loro esecuzione potrebbe richiedere l'utilizzo di stub o driver, strumenti che permettono di testare le singole unità simulando alcuni dei loro componenti, nel caso in cui non fossero tutti disponibili per l'esecuzione (pratica essenziale, specialmente quando l'ambiente è ancora piuttosto scarno);
+    \item \textbf{Categorie}: i test di unità possono essere suddivisi in due categorie:
+    \begin{itemize}
+        \item \textbf{Funzionali} (o \textbf{black box}): dato un input e un'aspettativa di output, verificano se l'esecuzione di una certa funzionalità produce l'aspettativa dichiarata;
+        \item \textbf{Strutturali} (o \textbf{white box}): verificano la logica interna del codice, analizzando i vari cammini di esecuzione all'interno dell'unità.
+    \end{itemize}
+    I verificatori utilizzano entrambe queste tipologie di test di unità, sfruttando strumenti di automazione disponibili per le tecnologie adottate. 
 \end{itemize}
-I verificatori utilizzano entrambe queste tipologie di test di unità, sfruttando strumenti di automazione disponibili per le tecnologie adottate. Questo approccio mira a garantire un processo sistematico ed efficiente, assicurando che ciascuna unità software sia accuratamente testata e rispetti le specifiche stabilite durante la progettazione dettagliata.
+
+
+
+
+%Questo approccio mira a garantire un processo sistematico ed efficiente, assicurando che ciascuna unità software sia accuratamente testata e rispetti le specifiche stabilite durante la progettazione dettagliata.
 
 \subsubsubsection{Test di integrazione}
-I test di integrazione vengono definiti dai verificatori durante la fase di progettazione architetturale. In particolare, si applicano alle componenti individuate con lo scopo di rilevare difetti di progettazione, errori a livello di unit testing, incompatibilità e incongruenza nell'uso delle interfacce o errata integrazione con altre applicazioni. Devono assemblare incrementalmente, ampliando il loro raggio di azione di volta in volta.
-
-Esistono due strategie di integrazione:
 \begin{itemize}
-    \item \textbf{Bottom-up}: integrazione partendo dalle componenti con minor numero di dipendenze d'uso e maggiore utilità interna (molto chiamate ma che chiamano poco). Richiede pochi stub ma ritarda l'emissione di funzionalità visibili all'utente;
-    \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta l'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
+    \item \textbf{Stesura}: i test di integrazione vengono definiti dai verificatori durante la fase di progettazione architetturale;
+    \item \textbf{Descrizione}: si applicano alle componenti individuate con lo scopo di rilevare difetti di progettazione, errori a livello di unit testing, incompatibilità e incongruenza nell'uso delle interfacce o errata integrazione con altre applicazioni. Devono assemblare incrementalmente, ampliando il loro raggio di azione di volta in volta;
+    \item \textbf{Categorie}: esistono due strategie di integrazione:
+    \begin{itemize}
+        \item \textbf{Bottom-up}: integrazione partendo dalle componenti con minor numero di dipendenze d'uso e maggiore utilità interna (molto chiamate ma che chiamano poco). Richiede pochi stub ma ritarda l'emissione di funzionalità visibili all'utente;
+        \item \textbf{Top-down}: integrazione partendo dalle componenti con maggior numero di dipendenze d'uso e maggior utilità esterna (poco chiamate ma che chiamano molto). Comporta l'uso di molti stub ma integra prima le funzionalità più visibili all'utente.
+    \end{itemize}
 \end{itemize}
 
+
 \subsubsubsection{Test di sistema}
-I test di sistema mirano a valutare il sistema nel suo complesso per garantire che soddisfi tutti i requisiti delineati nel documento (Analisi dei requisiti v2.0.0(0)). Questa fase di testing viene definita dai verificatori e avviene dopo il completamento dei test di unità e dei test di integrazione e prima del collaudo con il committente.
-Vegnono considerati come test funzionali (o black-box), non richiedono conoscenza della logica e del funzionamento interno del software.
+\begin{itemize}
+    \item \textbf{Stesura}: questa fase di testing viene definita dai verificatori e avviene dopo il completamento dei test di unità e dei test di integrazione e prima del collaudo con il committente;
+    \item \textbf{Descrizione}: i test di sistema mirano a valutare il sistema nel suo complesso per garantire che soddisfi tutti i requisiti delineati nel documento (Analisi dei requisiti v2.0.0(0)). Vegnono considerati come test funzionali (o black-box), non richiedono conoscenza della logica e del funzionamento interno del software.
+\end{itemize}
+
 
 \subsubsubsection{Test di regressione}
-I test di regressione sono un tipo specifico di test che include una selezione dei test già implementati, tra cui test di unità, di integrazione e di sistema, per verificare che le modifiche apportate al software non abbiano introdotto nuovi difetti o non abbiano alterato il comportamento esistente del sistema. In altre parole, i test di regressione mirano a garantire che le modifiche apportate durante lo sviluppo del software non abbiano effetti collaterali negativi su funzionalità precedentemente testate e correttamente funzionanti.
+\begin{itemize}
+    \item \textbf{Stesura}: questa fase di testing viene definita dai verificatori e avviene dopo il completamento dei test di unità, dei test di integrazione, dei test di sistema e prima del collaudo con il committente;
+    \item \textbf{Descrizione}: i test di regressione sono un tipo specifico di test che include una selezione dei test già implementati (di unità, di integrazione e di sistema), per verificare che le modifiche apportate al software non abbiano introdotto nuovi difetti o non abbiano alterato il comportamento esistente del sistema. In altre parole, essi mirano a garantire che le modifiche apportate durante lo sviluppo del software non abbiano effetti collaterali negativi su funzionalità precedentemente testate e correttamente funzionanti.
+\end{itemize}
+
+
 
 \subsubsection{Test: Notazione}
 I test vengono identificati con la seguente notazione:
@@ -1551,10 +1584,14 @@ Lo svolgimento di tale processo coinvolge i seguenti passi:
 Se i test di accettazione effettuati durante il collaudo terminano con esito positivo, il prodotto realizzato dal team viene ritenuto validato dall'azienda proponente.
 
 \subsubsection{Test di accettazione}
-I test di accettazione prevedono la simulazione degli scenari principali di utilizzo del prodotto da parte degli utenti.\\ 
-Questi test permettono di testare le principali funzionalità che vengono rese disponsibili dal prodotto sottposto a validazione, portando ad una
-rapida evidenza del soddisfacimento di alcuni dei requisiti richiesti, compatibile coi tempi di un collaudo (la responsabilità di dimostrare la completezza del 
-prodotto nei confronti di tutti requisiti richiesti da contratto viene infatti affidata al tracciamento dei requisiti).
+\begin{itemize}
+    \item \textbf{Stesura}: questi test vengono definiti in concomitanza con l'analisi dei requisiti;
+    \item \textbf{Descrizione}: i test di accettazione prevedono la simulazione degli scenari principali di utilizzo del prodotto da parte degli utenti.\\ 
+    Questi test permettono di testare le principali funzionalità che vengono rese disponsibili dal prodotto sottposto a validazione, portando ad una
+    rapida evidenza del soddisfacimento di alcuni dei requisiti richiesti, compatibile coi tempi di un collaudo (la responsabilità di dimostrare la completezza del 
+    prodotto nei confronti di tutti requisiti richiesti da contratto viene infatti affidata al tracciamento dei requisiti).
+    
+\end{itemize}
 
 \subsection{Revisione congiunta}
 
@@ -1643,35 +1680,26 @@ Il suo obiettivo è fornire un servizio tempestivo e documentato per garantire c
 cause e adottando soluzioni che ne evitano la ricomparsa, qualora fosse possibile.
 
 \subsubsection{Implementazione del processo}
-Nel momento in cui viene rilevato un problema, ogni componente del gruppo è tenuto a segnalarlo tempestivamente, tracciandolo nell'ITS \textit{Jira} 
-come ticket di tipologia Bug e informando le parti coinvolte della sua esistenza attraverso i canali di comunicazione descritti nella sezione 
-\nameref{sec:comunicazione}.\\
-
-Per categorizzare e prioritizzare i problemi, ogni problema viene classificato per categoria e priorità, in modo da facilitare l'analisi e la risoluzione, 
-attraverso i labels e il tag Urgency messi a disposizione dal ticket Bug dell'ITS.\\
-
-Il segnalatore, oltre a tracciare il problema, deve anche fornire una descrizione dettagliata di esso, indicando le condizioni per le quali il problema si 
-verifica e le eventuali cause individuate.\\
-
-Ogni attività di risoluzione dei problemi viene verificata e valutata, per garantire che le loro attuazioni siano state correttamente implementate e non 
-abbiano introdotto altri problemi.
-
-\subsubsection{Risoluzione dei problemi}
-Quando vengono rilevati problemi (inclusi non conformità) in un prodotto software o in un'attività, deve essere redatto un rapporto di problema per 
-descrivere ciascun problema rilevato. Il rapporto di problema deve essere utilizzato come parte del processo a ciclo chiuso descritto sopra: dalla 
-rilevazione del problema, attraverso l'indagine, l'analisi e la risoluzione del problema e della sua causa, fino alla rilevazione delle tendenze 
-attraverso i problemi.
-
-Una volta segnalato un problema, le parti coinvolte devono azionarsi per risolverlo.
-In base alla descrizione fornita dal segnalatore, i risolutori analizzano il problema e cercano una soluzione valida.
-Se ciò non basta, i risolutori sono tenuti ad entrare in contatto con il segnalatore, collaborando e ottenendo altre informazioni utili a riguardo.
-
-\newpage
+\begin{enumerate}
+    \item Nel momento in cui viene rilevato un problema in un prodotto software o in un'attività, ogni componente del gruppo è tenuto a segnalarlo tempestivamente, tracciandolo nell'ITS \textit{Jira} 
+    come ticket di tipologia Bug e informando le parti coinvolte della sua esistenza attraverso i canali di comunicazione descritti nella sezione \nameref{sec:comunicazione};
+    \item Chi ha rilevato il bug redige un rapporto di problema per descrivere ciascun problema rilevato (inclusi non conformità);
+    \item Il rapporto di problema deve essere utilizzato come parte del processo a ciclo chiuso: rilevazione del problema -> indagine e analisi -> risoluzione del problema e della sua causa -> rilevazione delle tendenze dei problemi:
+    \begin{itemize}
+        \item Per categorizzare e prioritizzare i problemi, ogni problema viene classificato per \textbf{categoria} e \textbf{priorità}, in modo da facilitare l'analisi e la risoluzione, attraverso i labels e il tag \textbf{Urgency} messi a disposizione dal ticket Bug dell'ITS;
+        \item Il segnalatore, oltre a tracciare il problema, deve anche fornire una descrizione dettagliata dello stesso, indicando le \textbf{condizioni} per le quali il problema si verifica e le eventuali \textbf{cause} individuate.
+    \end{itemize}
+    \item Una volta segnalato un problema, le parti coinvolte devono azionarsi per risolverlo: in base alla descrizione fornita dal segnalatore, i risolutori analizzano il problema e cercano una soluzione valida;
+    \item Se ciò non basta, i risolutori sono tenuti ad entrare in contatto con il segnalatore, collaborando e ottenendo altre informazioni utili a riguardo;
+    \item Ogni attività di risoluzione dei problemi viene verificata e valutata, per garantire che le loro attuazioni siano state correttamente implementate e non abbiano introdotto altri problemi.
+    
+\end{enumerate}
 
 \subsubsection{Strumenti}
 \begin{itemize}
     \item \textit{Jira}.
 \end{itemize}
+\newpage
 
 \section{Processi organizzativi}
 
@@ -1761,15 +1789,17 @@ In caso di esito positivo:
     \item L'attività viene contrassegnata automaticamente come completata, grazie alle automazioni indicate nella sezione 
     (\S \nameref{sec:configuration_control}).
 \end{itemize}
-Nel caso in cui il verificatore non ritenga corretto o sufficiente il lavoro svolto, o nel caso in cui la verifica automatica abbia esito negativo, 
-il verificatore dovrà indicare tramite review le parti non valide e gli accorgimenti che si potrebbero apportare.
+Nel caso in cui il verificatore non ritenga corretto o sufficiente il lavoro svolto, o nel caso in cui la verifica automatica abbia esito negativo, il verificatore dovrà indicare tramite review le parti non valide e gli accorgimenti che si potrebbero apportare.
 L'esecutore dell'attività dovrà ripresentare una nuova soluzione seguendo le correzioni indicate dal verificatore.
 
 \subsubsection{Tracciamento orario}
-Ai fini di tener traccia della quantità di tempo utilizzato per svolgere le attività, il team utilizza un \textit{Google Sheet} condiviso.
-Ogni componente del gruppo è tenuto a registrare in questo foglio, dopo ogni sessione lavorativa, il numero di ore effettive della sua durata, oltre al 
-ruolo svolto.
-Questa azione garantisce un calcolo preciso e affidabile dei consuntivi di ogni periodo. 
+\begin{itemize}
+    \item Il team utilizza un \textit{Google Sheet} condiviso ai fini di tener traccia della quantità di tempo utilizzato per svolgere le attività;
+    \item Ogni componente del gruppo è tenuto a registrare in questo foglio, dopo ogni sessione lavorativa, il numero di ore effettive della sua durata, oltre al 
+    ruolo svolto.
+    %Questa azione garantisce un calcolo preciso e affidabile dei consuntivi di ogni periodo. 
+\end{itemize}
+ 
 
 \subsubsubsection{Strumenti}
 \begin{itemize}
@@ -1778,21 +1808,30 @@ Questa azione garantisce un calcolo preciso e affidabile dei consuntivi di ogni 
 
 \subsubsection{Comunicazione}
 \label{sec:comunicazione}
-SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gruppo. In particolare, di seguito vengono esposte le modalità di 
-comunicazione, interna ed esterna, e le applicazioni utilizzate.
+SWEetCode ha deciso di mantenere una comunicazione frequente tra i membri del gruppo. In particolare, di seguito vengono esposte le modalità di comunicazione, interna ed esterna, e le applicazioni utilizzate.
 
 \subsubsubsection{Comunicazioni interne}
 
 \subsubsubsubsection{Comunicazioni sincrone}
-Il gruppo ha deciso che gli incontri si svolgeranno  in presenza oppure attraverso la piattaforma \textit{Discord}. Per gli incontri in presenza, 
-essi verranno decisi alcuni giorni prima in modo tale da poter consentire la presenza di tutti i membri del gruppo. Per quanto riguarda \textit{Discord}, 
-invece, si opta per una comunicazione asincrona anche pochi minuti prima del collegamento. In entrambe le situazioni, il gruppo utilizza un approccio 
-libero alla discussione e improntato alla crescita.
+Il gruppo ha deciso che gli incontri si svolgeranno in presenza oppure attraverso la piattaforma \textit{Discord}.
+\begin{itemize}
+    \item \textbf{Incontri in presenza}: verranno decisi alcuni giorni prima in modo tale da poter consentire la presenza di tutti i membri del gruppo;
+    \item \textbf{\textit{Discord}}: su questa piattaforma si opta per una comunicazione asincrona anche pochi minuti prima del collegamento.
+\end{itemize}
+ 
+ In entrambe le situazioni, il gruppo utilizza un approccio libero alla discussione e improntato alla crescita.
 
 \subsubsubsubsection{Comunicazioni asincrone}
-Il gruppo utilizzerà \textit{Whatsapp} e \textit{Notion} per le comunicazioni asincrone. In particolare è stata creata una \textit{community} su 
-\textit{Whatsapp}, composta da un gruppo principale per comunicazioni informali, una bacheca nella quale verranno inviati i messaggi più importanti 
-dei quali è necessario prendere visione, ed altri canali in cui i componenti del gruppo si organizzano per task collaborativi.
+Il gruppo utilizzerà \textit{Whatsapp} e \textit{Notion} per le comunicazioni asincrone:
+ \begin{itemize}
+    \item \textbf{\textit{Whatsapp}}: in una \textit{community} sono stati creati:
+    \begin{itemize}
+        \item Un gruppo principale per comunicazioni informali;
+        \item Una bacheca nella quale verranno inviati i messaggi più importanti dei quali è necessario prendere visione;
+        \item Altri canali in cui i componenti del gruppo si organizzano per task collaborativi.
+    \end{itemize}
+ \end{itemize}
+
 
 \subsubsubsubsection{Strumenti}
 \begin{itemize}
@@ -1803,16 +1842,28 @@ dei quali è necessario prendere visione, ed altri canali in cui i componenti de
 \subsubsubsection{Comunicazioni esterne}
 
 \subsubsubsubsection{Comunicazioni sincrone}
-Con la collaborazione dei referenti della azienda AzzurroDigitale, il gruppo ha concordato ed accettato un calendario di incontri settimanali su 
-piattaforma \textit{Google Meet}. Tali incontri saranno cruciali nella possibilità di discutere con maggiore facilità e immediatezza argomenti complessi 
-ed estesi. Il gruppo si impegna a presenziare in maniera più assidua possibile agli incontri con il proponente e a redarre un verbale al fine di 
-documentare gli stessi.
+\begin{itemize}
+   
+
+\item \textbf{Incontri da remoto}: tali incontri sono cruciali per discutere con maggiore facilità e immediatezza argomenti complessi 
+ed estesi:
+\begin{itemize}
+    \item Il gruppo ha concordato ed accettato, con l'azienda proponente, un calendario di incontri settimanali o bisettimanali su 
+    piattaforma \textit{Google Meet};
+    \item  Il gruppo si impegna a presenziare in maniera più assidua possibile agli incontri con il proponente e a redarre un verbale al fine di documentare gli stessi.
+\end{itemize}
+\end{itemize}
+  
 
 \subsubsubsubsection{Comunicazioni asincrone}
-Il canale scelto per la comunicazione asincrona concordato con l'azienda è \textit{Slack}. Questo strumento viene usato per brevi comunicazioni e 
-per accordarsi sugli orari degli incontri.
-Per comunicare con soggetti esterni diversi dall'azienda proponente, verrà utilizzata sempre e solo l'indirizzo mail ufficiale del gruppo: 
-\textbf{sweetcode.team@gmail.com}.
+Per le comunicazioni asincrone con il proponente/soggetti esterni vengono utilizzati:
+\begin{itemize}
+    \item \textbf{\textit{Slack}}: canale scelto e concordato con l'azienda; usato per brevi comunicazioni e per accordarsi sugli orari degli incontri;
+    \item \textbf{Posta elettronica}: per comunicare con soggetti esterni diversi dall'azienda proponente, verrà utilizzata sempre e solo l'indirizzo mail ufficiale del gruppo: 
+    \textbf{sweetcode.team@gmail.com}.
+    
+\end{itemize}
+
 
 \subsubsubsubsection{Strumenti}
 \begin{itemize}
@@ -1831,7 +1882,7 @@ La gestione della comunicazione viene affidata al responsabile. In particolare, 
 \end{itemize}
 
 \subsubsubsection{Norme comportamentali}
-Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'interno del gruppop, ogni componente ha l'obbligo di:
+Al fine di garantire il rispetto delle norme e mantenere rapporti sereni all'interno del gruppo, ogni componente ha l'obbligo di:
 \begin{itemize}
     \item Essere puntuale o eventualmente comunicare tempestivamente al responsabile eventuali indisposizioni;
     \item Partecipare attivamente ad ogni discussione;
@@ -1874,46 +1925,49 @@ Il processo di infrastruttura ha lo scopo di definire e documentare l'infrastrut
 
 \subsubsubsection{Implementazione dell'infrastruttura}
 Questa attività definisce e documenta l'infrastruttura e le modalità di installazione e configurazione della stessa.
-Il ruolo che si occupa dello svolgimento di questa attività è l'amministratore.
+Il ruolo che si occupa dello svolgimento di questa attività è l'amministratore; egli ha ha il compito di implementare le scelte infrastrutturali.
+\begin{enumerate}
+    \item L'amministratore procede con la verifica della fattibilità delle scelte considerando i seguenti aspetti:
+    \begin{itemize}
+        \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo su ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
+        \item \textbf{Performance}: una modifica dell'infrastruttura deve categoricamente portare ad un miglioramento o al mantenimento delle performance precedenti;
+        \item \textbf{Sicurezza}: le scelte fatte non devono andare a impattare negativamente la sicurezza dell'infrastruttura;
+        \item \textbf{Disponibilità}: la configurazione deve essere disponibile e attuabile per ogni dispositivo utilizzato nel progetto. Onde evitare discrepanze tra infrastrutture implementate, la disponibilità deve essere totale;
+        \item \textbf{Vincoli di spazio}: l'infrastruttura deve rispettare i vincoli di spazio imposti dai dispositivi dei componenti;
+        \item \textbf{Attrezzatura disponibile}: la configurazione scelta deve essere compatibile con le configurazioni hardware a disposizione dei componenti del gruppo;
+        \item \textbf{Costi}: In particolare, vengono preferite soluzioni open-source o gratuite rispetto a opzioni a pagamento, anche se queste dovessero rappresentare la scelta migliore;
+        \item \textbf{Vincoli di tempo}: le fasi di installazione e configurazione dell'infrastruttura devono essere limitate in termini di tempo, evitando di rallentare l'avanzamento del progetto. Per ovviare a ciò, si preferisce posticipare le modifiche migliorative non obbligatorie, destinandole a periodi meno densi.
+    \end{itemize}
+    \item Se questa fase di verifica risulta soddisfatta, l'amministratore procede nel documentare le procedure necessarie per l'installazione e la configurazione, considerando anche le divergenze che possono nascere dalla diversità di dispositivi utilizzati dai membri; queste vengono raccolte in una sezione apposita del workspace \textit{Notion};
+    \item Una volta finita la fase di documentazione, l'amministratore informa i componenti del team, che procederanno nel seguire e attuare i passaggi documentati;
+    \item Nell'eventualità in cui alcuni componenti riscontrassero problemi durante le fasi di installazione e configurazione, l'amministratore ha il compito di seguirli passo per passo, individuando e risolvendo i problemi il prima possibile:
+    \begin{itemize}
+        \item Nel caso in cui questi passaggi fossero particolarmente complicati e critici, il responsabile, in accordo con l'amministratore, organizzerà degli incontri in cui verranno spiegate in dettaglio le procedure necessarie.
+    \end{itemize}
+    
+\end{enumerate}
 
-Dopo una fase di discussione con il team, in cui viene stabilita la configurazione ideale, l'amministratore ha il compito di implementare le scelte infrastrutturali.
-In primo luogo, verifica la fattibilità di esse, considerando i seguenti aspetti:
-\begin{itemize}
-    \item \textbf{Funzionalità}: le scelte fatte devono essere sempre migliorative, aggiungendo o migliorando funzionalità. Il team deve ragionare a fondo su ogni scelta, cercando di evitare l'introduzione di malfunzionamenti o comportamenti indesiderati;
-    \item \textbf{Performance}: una modifica dell'infrastruttura deve categoricamente portare ad un miglioramento o al mantenimento delle performance precedenti;
-    \item \textbf{Sicurezza}: le scelte fatte non devono andare a impattare negativamente la sicurezza dell'infrastruttura;
-    \item \textbf{Disponibilità}: la configurazione deve essere disponibile e attuabile per ogni dispositivo utilizzato nel progetto. Onde evitare discrepanze tra infrastrutture implementate, la disponibilità deve essere totale;
-    \item \textbf{Vincoli di spazio}: l'infrastruttura deve rispettare i vincoli di spazio imposti dai dispositivi dei componenti;
-    \item \textbf{Attrezzatura disponibile}: la configurazione scelta deve essere compatibile con le configurazioni hardware a disposizione dei componenti del gruppo;
-    \item \textbf{Costi}: In particolare, vengono preferite soluzioni open-source o gratuite rispetto a opzioni a pagamento, anche se queste dovessero rappresentare la scelta migliore;
-    \item \textbf{Vincoli di tempo}: le fasi di installazione e configurazione dell'infrastruttura devono essere limitate in termini di tempo, evitando di rallentare l'avanzamento del progetto. Per ovviare a ciò, si preferisce posticipare le modifiche migliorative non obbligatorie, destinandole a periodi meno densi.
-\end{itemize}
 
-Se questa fase di verifica risulta soddisfatta, l'amministratore procede nel documentare le procedure necessarie per l'installazione e la configurazione, considerando anche le divergenze che possono nascere dalla diversità di dispositivi utilizzati dai membri.
-
-Queste procedure vengono raccolte in una sezione apposita del workspace \textit{Notion}
-Una volta finita la fase di documentazione, l'amministratore informa i componenti del team, che procederanno nel seguire e attuare i passaggi documentati.
-
-Nell'eventualità in cui alcuni componenti riscontrassero problemi durante le fasi di installazione e configurazione, l'amministratore ha il compito di seguirli passo per passo, individuando e risolvendo i problemi il prima possibile.
-
-Nel caso in cui questi passaggi fossero particolarmente complicati e critici, il responsabile, in accordo con l'amministratore, organizzerà degli incontri in cui verranno spiegate in dettaglio le procedure necessarie.
+%Dopo una fase di discussione con il team, in cui viene stabilita la configurazione ideale, 
 
 \subsubsubsection{Manutenzione dell'infrastruttura}
-L'infrastruttura deve essere mantenuta, monitorata e modificata, in modo che continui a soddisfare le aspettative.
-Questa attività viene svolta dall'amministratore.
-Oltre a verificare periodicamente il funzionamento e lo stato dell'infrastruttura, l'amministratore ha il compito di intervenire tempestivamente in presenza di difetti o malfuzionamenti, fornendo una correzione definitiva, o quantomeno temporanea ma risolutiva.
-
-I membri del gruppo sono tenuti a segnalare eventuali guasti, proporre migliorie e rispettare l'infrastruttura, collaborando durante le fasi di configurazione e tenendosi aggiornati riguardo le novità introdotte.
+\begin{itemize}
+    \item L'infrastruttura deve essere mantenuta, monitorata e modificata dall'amministratore, in modo che continui a soddisfare le aspettative;
+    \item Il funzionamento e lo stato dell'infrastruttura vanno verificati periodicamente;
+    \item L'amministratore ha il compito di intervenire tempestivamente in presenza di difetti o malfuzionamenti, fornendo una correzione definitiva, o quantomeno temporanea ma risolutiva;
+    \item I membri del gruppo sono tenuti a segnalare eventuali guasti, proporre migliorie e rispettare l'infrastruttura, collaborando durante le fasi di configurazione e tenendosi aggiornati riguardo le novità introdotte.
+\end{itemize}
 
 \subsubsubsection{Strumenti}
 \begin{itemize}
     \item \textit{Notion}.
 \end{itemize}
+
 \subsection{Miglioramento}
 \subsubsection{Scopo}
 Il processo di miglioramento è un processo che stabilisce, misura e controlla il miglioramento per tutto il ciclo di vita del software. 
 
-\subsubsection{Stabilimento del processo}
+\subsubsection{Determinazione del processo}
 Il team stabilisce una serie di processi del ciclo di vita del software sulla base dello \textit{Standard ISO/IEC 12207:1997}: tali processi e la loro applicazione devono essere documentati e, 
 dove possibile, viene istituito un meccanismo di controllo del processo per monitorare, controllare e migliorare il processo in questione.
 
@@ -1932,12 +1986,15 @@ La documentazione del processo deve essere aggiornata per riflettere i miglioram
 Il processo di formazione mira a normare le modalità di formazione dei componenti del gruppo per quanto riguarda le tecnologie necessarie per la produzione della documentazione e la realizzazione del prodotto software.
 
 \subsubsection{Piano di formazione}
-Ogni componente del gruppo è libero di formarsi nel modo che ritiene più opportuno.
-Ogni componente del gruppo sostiene il processo di apprendimento 'learning by doing'.
-Il gruppo sostiene che lasciare questa libertà possa ampliare la visione di gruppo riguardo le tecnologie utilizzate, aumentando la consapevolezza e migliorando complessivamente le scelte implementative.
+\begin{itemize}
+    \item Ogni componente del gruppo è libero di formarsi nel modo che ritiene più opportuno;
+    \item Ogni componente del gruppo sostiene il processo di apprendimento 'learning by doing';
+    \item Il gruppo sostiene che lasciare questa libertà possa ampliare la visione di gruppo riguardo le tecnologie utilizzate, aumentando la consapevolezza e migliorando complessivamente le scelte implementative;
+    \item Verranno organizzati dei workshop (successivamente documentati) in cui i membri più esperti informeranno gli altri componenti e chiariranno eventuali dubbi per alleviare discrepanze di conoscenza.
 
-Per alleviare le discrepanze di conoscenza, qualora fosse ritenuto necessario, verranno organizzati dei workshop in cui i membri più esperti informeranno gli altri componenti e chiariranno eventuali loro dubbi.
-Questi scambi verranno opportunamente documentanti tramite la stesura di verbali interni.
+\end{itemize}
+
+
 
 \subsubsection{Raccolta materiale di formazione}
 Il materiale di formazione utilizzato dal gruppo viene raccolto in una sezione apposita del workspace \textit{Notion}.

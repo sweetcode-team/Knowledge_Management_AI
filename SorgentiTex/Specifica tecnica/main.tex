@@ -1,0 +1,478 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\usepackage{comment}
+
+\title{\titolo}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% REGISTRO DELLE VERSIONI
+\include{registroversioni}
+\newpage
+
+% INDICE
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+
+% INTRODUZIONE
+\section{Introduzione}
+\subsection{Obiettivo del documento}
+L'obiettivo che ci si pone nella realizzazione di questo documento è descrivere le scelte tecnologiche e l'architettura del prodotto \textit{Knowledge Managment AI}. Verrà seguito un approccio top-down, partendo dall'architettura del sistema passando poi all'architettura delle componenti ed infine alla progettazione di dettaglio.
+
+\subsection{Glossario}
+Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
+I termini ambigui o tecnici-specifici presenti nello stesso, vengono identificati nei corrispondenti documenti con un pedice |g| e con una scrittura in corsivo.
+All'interno dei documenti viene identificata con tale scrittura solo e soltanto la prima occorrenza presente nel testo di un termine definito nel Glossario.
+
+\subsection{Riferimenti}
+   \subsubsection{Riferimenti normativi}
+   \begin{itemize}
+    \item \textit{(Norme di progetto v2.0.0(0))};
+    \item \textit{Regolamento del progetto didattico}: \\
+        \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
+        (Ultimo accesso: 2024-02-26);
+    \item \textit{Standard ISO/IEC 9126}:\\
+        \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}\\
+        (Ultimo accesso: 2024-02-26).
+    \end{itemize}
+    
+    \subsubsection{Riferimenti informativi}
+    \begin{itemize}
+        \item \textit{(Analisi dei requisiti v2.0.0(0))};
+        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+        \begin{itemize}
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+            \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1p.pdf}\\
+            (Ultimo accesso: 2024-02-26).
+        \end{itemize}
+        \item \textit{Dispense su Dependency Injection}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Architetturali%20-%20Dependency%20Injection.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su OOP}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2023/Object-Oriented%20Progamming%20Principles%20Revised.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su Diagrammi delle classi}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su Pattern architetturali}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2022/Software%20Architecture%20Patterns.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su Pattern creazionali}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Creazionali.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su Pattern strutturali}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Strutturali.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense su Principi SOLID}: \\
+            \url{https://www.math.unipd.it/~rcardin/swea/2021/SOLID%20Principles%20of%20Object-Oriented%20Design_4x4.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense sulla Progettazione software (argomento T6)}: \\
+            \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T6.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Dispense sulla Qualità del software (argomento T7)}: \\
+            \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T7.pdf}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Repository su Architettura esagonale}: \\
+            \url{https://github.com/rcardin/hexagonal}\\
+            (Ultimo accesso: 2024-02-26);
+            \url{https://github.com/rcardin/hexagonal-java/}\\
+            (Ultimo accesso: 2024-02-26);
+        \item \textit{Repository Ingegneria del software professor Cardin}: \\
+            \url{https://github.com/rcardin/swe-imdb}\\
+            (Ultimo accesso: 2024-02-26);
+        \item Riferimenti a scelte tecnologiche:
+        \begin{itemize}
+            \item \textit{AWS S3}: \\
+                \url{https://aws.amazon.com/it/s3/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{ChromaDB}: \\
+                \url{https://www.trychroma.com/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Docker}: \\
+                \url{https://www.docker.com/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Flask}: \\
+                \url{https://flask.palletsprojects.com/en/3.0.x/}\\
+            (Ultimo accesso: 2024-02-26);
+            \item \textit{HuggingFace}: \\
+                \url{https://huggingface.co/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Langchain}: \\
+                \url{https://python.langchain.com/docs/get_started/introduction}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Next.js}: \\
+                \url{https://nextjs.org/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{OpenAI}: \\
+                \url{https://openai.com/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Pinecone}: \\
+                \url{https://www.pinecone.io/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Postgres}: \\
+                \url{https://www.postgresql.org/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Python}: \\
+                \url{https://www.python.org/}\\
+                (Ultimo accesso: 2024-02-26);
+            \item \textit{Typescript}: \\
+                \url{https://www.typescriptlang.org/}\\
+                (Ultimo accesso: 2024-02-26);
+        \end{itemize}
+        \item \textit{(Glossario v2.0.0(0))};
+        \item \textit{(Piano di progetto v2.0.0(0))};
+        \item \textit{(Piano di qualifica v2.0.0(0))};
+        \item \textit{Verbali esterni ed interni}.
+    \end{itemize}
+
+
+\newpage
+\section{Tecnologie utilizzate}
+In questa sezione vengono elencate e descritte le tecnologie utilizzate nello sviluppo, illustrando le motivazioni a sostegno di ogni scelta e le alternative scartate.
+
+\subsection{Flask}
+Flask è un micro framework per applicazioni web. È stato scelto per la sua leggerezza e la sua flessibilità, rispetto ad altri framework come Django che potrebbero risultare troppo pesanti per le esigenze del progetto.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Leggerezza:} Flask è noto per la sua leggerezza, il che significa che ha poche dipendenze. Questo lo rende perfetto per progetti più piccoli dove non è necessario un carico pesante di funzionalità;
+\item \textbf{Flessibilità:} Flask offre una grande flessibilità, permettendo agli sviluppatori di strutturare le loro applicazioni come preferiscono;
+\item \textbf{Facilità d'uso:} Flask è facile da usare e da imparare, rendendolo ideale per i principianti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Manca di alcune funzionalità out-of-the-box:} Flask è un microframework, il che significa che potrebbe non avere tutte le funzionalità che potrebbero essere necessarie per un'applicazione più complessa;
+\item \textbf{Potrebbe richiedere più tempo per sviluppare applicazioni complesse:} A causa della sua natura minimalista, gli sviluppatori potrebbero dover scrivere più codice per realizzare funzionalità che in altri framework potrebbero essere disponibili out-of-the-box.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsubsection{Python}
+Python è un linguaggio di programmazione ad alto livello, interpretato, interattivo, orientato agli oggetti e di script. È progettato per essere altamente leggibile. Rispetto ad altri linguaggi come Java o C++, Python offre una sintassi più semplice e pulita, rendendo il codice più leggibile e mantenibile.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Facilità d'uso:} Python ha una sintassi molto pulita e facile da leggere, il che rende il linguaggio molto facile da imparare per i nuovi programmatori;
+\item \textbf{Versatilità:} Python può essere utilizzato per una vasta gamma di applicazioni, tra cui sviluppo web, data analysis, machine learning, intelligenza artificiale, creazione di GUI e scripting di sistema;
+\item \textbf{Grande comunità:} Python ha una grande comunità di sviluppatori che contribuiscono attivamente alla sua manutenzione e miglioramento. Ciò significa che ci sono molte risorse disponibili per l'apprendimento e la risoluzione dei problemi.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Velocità:} Python non è il linguaggio più veloce a causa della sua natura interpretata e può non essere la scelta migliore per le applicazioni che richiedono prestazioni elevate.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsection{Next.js}
+Next.js è un framework per applicazioni web basato su React. È stato scelto per la sua efficienza e per le sue funzionalità di rendering lato server. Rispetto ad altri framework come Angular, Next.js offre una maggiore efficienza e facilità d'uso, rendendolo ideale per questo progetto.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Efficienza:} Next.js è noto per la sua efficienza, il che significa che le applicazioni create con Next.js sono veloci e performanti;
+\item \textbf{Rendering lato server:} Next.js offre funzionalità di rendering lato server, il che significa che può migliorare le prestazioni dell'applicazione e l'ottimizzazione dei motori di ricerca;
+\item \textbf{Facilità d'uso:} Next.js è facile da usare e da imparare, specialmente per coloro che sono già familiari con React.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Overhead:} Next.js può aggiungere un certo overhead a un'applicazione a causa delle sue funzionalità aggiuntive, il che può non essere necessario per le applicazioni più semplici;
+\item \textbf{Complessità:} A causa delle sue funzionalità aggiuntive, Next.js può essere più complesso da configurare e gestire rispetto a React da solo.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsubsection{Typescript}
+Typescript è un super-set di JavaScript che aggiunge tipi statici e oggetti orientati alla programmazione. È stato scelto per la sua affidabilità e robustezza. Rispetto a JavaScript, TypeScript offre un controllo dei tipi più rigoroso, il che può aiutare a prevenire errori di runtime.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Affidabilità:} Typescript offre un controllo dei tipi a tempo di compilazione, il che significa che gli errori possono essere rilevati e corretti prima dell'esecuzione;
+\item \textbf{Robustezza:} Typescript supporta le funzionalità di programmazione orientata agli oggetti, il che può rendere il codice più robusto e facile da gestire;
+\item \textbf{Interoperabilità:} Typescript è un super-set di JavaScript, il che significa che qualsiasi codice JavaScript valido può essere utilizzato in Typescript.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Curva di apprendimento:} Typescript può essere più difficile da imparare rispetto a JavaScript a causa delle sue funzionalità aggiuntive.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsection{Docker}
+Docker è una piattaforma open source che automatizza la distribuzione, la scalabilità e l'isolamento delle applicazioni utilizzando la virtualizzazione a livello di sistema operativo. È stato scelto per la sua efficienza e portabilità. Rispetto ad altre soluzioni come Vagrant, Docker offre una maggiore efficienza e facilità d'uso.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Efficienza:} Docker consente di eseguire più applicazioni in modo isolato sulla stessa infrastruttura hardware, migliorando l'efficienza e riducendo i costi;
+\item \textbf{Portabilità:} Con Docker, le applicazioni e le loro dipendenze possono essere confezionate come un'unità portatile chiamata container, che può essere eseguita su qualsiasi macchina che supporti Docker;
+\item \textbf{Isolamento:} Docker isola le applicazioni in container separati, il che significa che ogni applicazione può avere le proprie dipendenze e non interferire con le altre applicazioni.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Complessità:} Docker può aggiungere una certa complessità a un progetto a causa della necessità di gestire i container e le loro dipendenze;
+\item \textbf{Curva di apprendimento:} Docker ha una curva di apprendimento ripida e può richiedere un certo tempo per essere padroneggiato.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsection{Langchain}
+Langchain è un framework che facilita l'interazione tra modelli di apprendimento automatico e risorse esterne come database o altri servizi web. È stato scelto per la sua comodità e flessibilità. Rispetto ad altri framework come TensorFlow o PyTorch, Langchain offre una maggiore facilità d'uso e una migliore integrazione con le risorse esterne.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Comodità:} Langchain semplifica l'interazione tra modelli di apprendimento automatico e risorse esterne, fornendo moduli e integrazioni;
+\item \textbf{Flessibilità:} Langchain supporta una varietà di modelli di apprendimento automatico e risorse esterne, rendendolo adatto a una vasta gamma di applicazioni;
+\item \textbf{Facilità d'uso:} Langchain è facile da usare e da imparare, rendendolo ideale per i principianti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Limitazioni:} Non tutte le funzionalità sono disponibili in tutte le lingue supportate da Langchain;
+\item \textbf{Documentazione:} La documentazione di Langchain potrebbe non essere così completa o aggiornata come quella di altri framework.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsubsection{Pinecone}
+Pinecone è un database di vettori che consente di effettuare ricerche di similarità su larga scala. È stato scelto per la sua efficienza e precisione. Rispetto ad altri database di vettori come Faiss o Annoy, Pinecone offre una maggiore efficienza e una migliore precisione nelle ricerche di similarità.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Efficienza:} Pinecone è progettato per effettuare ricerche di similarità su larga scala in modo efficiente;
+\item \textbf{Precisione:} Pinecone offre un'alta precisione nelle ricerche di similarità, il che lo rende ideale per applicazioni che richiedono un alto grado di precisione;
+\item \textbf{Facilità d'uso:} Pinecone è facile da usare e da imparare, rendendolo ideale per i principianti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Costo:} Pinecone può essere costoso da utilizzare per applicazioni su larga scala;
+\item \textbf{Limitazioni:} Pinecone potrebbe non supportare tutte le funzionalità di ricerca di similarità che potrebbero essere necessarie per alcune applicazioni.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsubsection{ChromaDB}
+ChromaDB è un database di vettori locale open-source. È stato scelto per la sua integrazione con Langchain e la sua popolarità tra i database di vettori locali. Rispetto ad altri database di vettori locali come Faiss o Annoy, ChromaDB offre una migliore integrazione con Langchain e una maggiore popolarità.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Integrazione:} ChromaDB è ben integrato con Langchain, il che facilita l'interazione tra i due;
+\item \textbf{Popolarità:} ChromaDB è il database di vettori locale open-source più popolare, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili;
+\item \textbf{Facilità d'uso:} ChromaDB è facile da usare e da imparare, rendendolo ideale per i principianti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Limitazioni:} Non tutte le funzionalità sono disponibili in tutte le lingue supportate da ChromaDB;
+\item \textbf{Documentazione:} La documentazione di ChromaDB potrebbe non essere così completa o aggiornata come quella di altri database.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsubsection{OpenAI}
+OpenAI è una piattaforma di apprendimento automatico che offre una varietà di modelli, tra cui GPT-3 e GPT-4. La scelta di utilizzare OpenAI sia per il Large Language Model (LLM) che per gli embeddings è motivata dalla sua reputazione consolidata nel campo dell'apprendimento automatico e dalla sua completa integrazione con Langchain. Rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, l’utilizzo dei modelli pre-addestrati di OpenAI offre una maggiore facilità d’uso.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Popolarità:} OpenAI è molto conosciuto nel campo dell'apprendimento automatico, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili;
+\item \textbf{Integrazione:} OpenAI ha un'integrazione completa con Langchain, il che facilita l'interazione tra i due;
+\item \textbf{Flessibilità:} OpenAI offre la possibilità di scegliere tra diversi modelli semplicemente cambiando un parametro, a seconda delle esigenze e della disponibilità dell'utente finale.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Costo:} L'utilizzo di OpenAI può essere costoso, soprattutto per le applicazioni su larga scala;
+\item \textbf{Limitazioni:} Non tutte le funzionalità sono disponibili in tutti i modelli offerti da OpenAI.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione modello LLM scelto:} \textbf{DA METTERE}. \\
+% \textbf{Versione modello di embeddings scelto:} \textbf{DA METTERE}.
+
+\subsubsection{HuggingFace}
+HuggingFace è una piattaforma di apprendimento automatico che offre migliaia di modelli open-source, tra cui modelli di linguaggio e modelli di embeddings. La decisione di utilizzare HuggingFace sia per il Large Language Model (LLM) che per gli embeddings è motivata dalla sua flessibilità e dalla possibilità di scaricare i modelli localmente per l’esecuzione offline. Questo offre una maggiore flessibilità rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, che può richiedere risorse computazionali significative e competenze specialistiche.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Flessibilità:} HuggingFace offre una vasta gamma di modelli, il che significa che è possibile scegliere il modello più adatto alle proprie esigenze;
+\item \textbf{Località:} HuggingFace offre la possibilità di scaricare i modelli in locale, il che significa che possono essere eseguiti sulle proprie macchine senza la necessità di una connessione internet;
+\item \textbf{Facilità d'uso:} HuggingFace è facile da usare e da imparare, rendendolo ideale per i principianti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Risorse:} L'esecuzione dei modelli in locale può richiedere molte risorse hardware, il che può non essere ideale per tutte le macchine;
+\item \textbf{Complessità:} A causa della vasta gamma di modelli disponibili, può essere difficile scegliere il modello più adatto alle proprie esigenze.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione modello LLM scelto:} \textbf{DA METTERE}. \\
+% \textbf{Versione modello di embeddings scelto:} \textbf{DA METTERE}.
+
+\subsection{AWS S3}
+Amazon S3 (Simple Storage Service) è un servizio di storage di oggetti offerto da Amazon Web Services. È stato scelto per la sua scalabilità, affidabilità, e sicurezza. Rispetto ad altre soluzioni di storage come Google Cloud Storage o Azure Blob Storage, AWS S3 offre una maggiore scalabilità e una migliore integrazione con altri servizi AWS.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Scalabilità:} Amazon S3 può memorizzare qualsiasi quantità di dati e servire qualsiasi livello di traffico richiesto;
+\item \textbf{Affidabilità:} Amazon S3 offre una durabilità dell'11 9's, il che significa che i dati sono estremamente sicuri;
+\item \textbf{Sicurezza:} Amazon S3 offre potenti funzionalità per proteggere i dati, tra cui controllo degli accessi, crittografia in transito e a riposo, e altro ancora.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Costo:} Il costo di Amazon S3 può aumentare rapidamente con l'aumentare dell'uso;
+\item \textbf{Complessità:} Amazon S3 ha molte funzionalità e opzioni, il che può renderlo complesso da configurare e gestire.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\subsection{Postgres}
+Postgres, o PostgreSQL, è un potente sistema di gestione di database relazionali ad oggetti open source. È stato scelto per la sua robustezza, affidabilità e flessibilità. Rispetto ad altri DBMS come MySQL o SQLite, Postgres offre una maggiore robustezza e una migliore supporto per le funzionalità di programmazione orientata agli oggetti.
+
+\begin{itemize}
+\item \textbf{Vantaggi:}
+\begin{itemize}
+\item \textbf{Robustezza:} Postgres supporta una vasta gamma di tipi di dati nativi, operatori e funzioni, tra cui JSON, XML e array;
+\item \textbf{Affidabilità:} Postgres è noto per la sua affidabilità e integrità dei dati. Offre transazioni atomiche, commit multi-versione (MVCC), punti di controllo, logging di scrittura anticipata (WAL) e una serie di meccanismi di replica;
+\item \textbf{Flessibilità:} Postgres è estensibile, il che significa che gli sviluppatori possono definire i propri tipi di dati, operatori e funzioni. Inoltre, può essere utilizzato sia come un database SQL tradizionale che come una soluzione NoSQL per la memorizzazione di documenti.
+\end{itemize}
+\item \textbf{Svantaggi:}
+\begin{itemize}
+\item \textbf{Complessità:} A causa della sua vasta gamma di funzionalità, Postgres può essere più complesso da configurare e gestire rispetto ad altri sistemi di gestione di database;
+\item \textbf{Prestazioni:} Sebbene Postgres sia altamente ottimizzato, le sue prestazioni potrebbero non essere all'altezza di altri database per alcune applicazioni, in particolare quelle che richiedono letture ad alta velocità di grandi quantità di dati.
+\end{itemize}
+\end{itemize}
+% \textbf{Versione scelta:} \textbf{DA METTERE}.
+
+\newpage
+\section{Architettura di sistema}
+\subsection{Modello architetturale}
+Il sistema è progettato seguendo l'\textbf{architettura esagonale}, un modello architetturale che mira a creare una separazione netta tra la business logic dell'applicazione e i servizi esterni, le fonti di dati e le interfacce utente con cui interagisce.
+Questa struttura organizzativa posiziona il nucleo al centro, circondato da "porte" che fungono da interfaccia tra il nucleo e il mondo esterno.
+
+Il \textbf{nucleo} dell'applicazione è il fulcro del sistema, contenente la logica di dominio e le regole di business. La sua progettazione mira a evitare riferimenti diretti a dettagli tecnologici specifici, promuovendo l'indipendenza dal contesto esterno.
+
+Le \textbf{porte} costituiscono il confine tra il nucleo dell'applicazione e il mondo esterno, consentendo una comunicazione strutturata. Esistono due tipi principali di porte:
+\begin{itemize}
+    \item Inbound Port (o \textbf{Use Case}): consentono al nucleo di essere invocato da componenti esterni attraverso un'interfaccia definita. Rappresentano i punti di accesso al nucleo e isolano la logica di dominio da implementazioni specifiche;
+    \item Outbound Port: consentono al nucleo di accedere a funzionalità esterne, come l'interazione con librerie esterne o sistemi di persistenza. Forniscono un'astrazione che preserva l'indipendenza del nucleo da dettagli tecnologici specifici.  
+\end{itemize}
+
+I \textbf{services} implementano le inbound port dell'applicazione e fanno parte della business logic. La loro implementazione è concentrata sulla logica di dominio, senza preoccuparsi degli aspetti tecnologici specifici.
+
+Gli \textbf{adapters} costituiscono il livello più esterno dell'applicazione. Esistono due tipi di adapters:
+\begin{itemize}
+    \item Input Adapters (o \textbf{Controllers}): sono responsabili di invocare operazioni sulle porte in ingresso. Traducono le azioni provenienti dall'esterno in chiamate alle porte in ingresso del nucleo, facilitando la traduzione delle richieste esterne in operazioni comprensibili per il nucleo;
+    \item Output Adapters: gestiscono le porte in uscita, traducendo le azioni del nucleo in operazioni comprensibili per il mondo esterno.
+\end{itemize}
+
+\subsection{Descrizione delle componenti}
+L'architettura generale del sistema è composta da due componenti: frontend e backend.
+
+\subsubsection{Frontend}
+Il frontend si occupa di fornire un'interfaccia grafica all'utente per dialogare con il sistema. Inoltra le richieste dell'utente al backend e mostra i risultati ottenuti.
+%TODO: approfondire
+
+\subsubsection{Backend}
+Il backend si occupa di elaborare le richieste degli utenti, interagendo con i sistemi di persistenza e i servizi esterni.
+In particolare, il backend dialoga con il sistema di archiviazione documenti, il vector store, il database delle chat e con i modelli di intelligenza artificiale necessari per il corretto funzionamento dell'applicazione.
+%TODO: approfondire
+
+\subsection{Assemblaggio delle componenti}
+Le componenti sono assemblate insieme utilizzando Docker Compose. In particolare sono prodotti i
+seguenti container Docker:
+
+\begin{itemize}
+    \item \textbf{db}: espone l'istanza del database chat nella porta 3000, abilitando il dialogo con il backend;
+    \item \textbf{backend}: espone la componente backend nella porta 4000, dando al frontend la possibilità di chiamare le API offerte;
+    \item \textbf{frontend}: espone il frontend dell'applicazione web nella porta 80, dando la possibilità all'utente di connettersi e interagire con il sistema.
+\end{itemize}
+
+\subsection{Struttura del sistema}
+
+\subsubsection{Frontend}
+La struttura organizzativa del frontend segue la struttura standard definita dal framework Next.js.
+% TODO: approfondire
+
+\subsubsection{Backend}
+La struttura organizzativa del backend segue la seguente struttura:
+\code{
+\begin{tabbing}
+    /backend\=\\
+    \> /adapter\=\\
+    \> \> /in\=\\
+    \> \> \> /web -- controllers\\
+    \> \> /out -- implementazioni di Outbound Port\\
+    \> /application\\
+    \> \> /port\\
+    \> \> \> /in -- Inbound Ports (Use Cases)\\
+    \> \> \> /out -- Outbound Ports\\
+    \> \> \> /service -- implementazioni di Inbound Port\\
+    \> /domain -- classi di business
+\end{tabbing}
+}
+Questa struttura riflette il modello architetturale scelto, facilitando il passaggio da progettazione a codifica.
+
+\newpage
+\section{Architettura delle componenti} % architettura interna di ciascuna componente
+\subsection{Frontend}
+% - X ogni componente frontend:
+    % - definizione e utilità
+    % - route API
+    % - elementi grafici (anche a seguito di azioni)
+    % - tracciamento requisiti soddisfatti
+% - Requisiti implementativi
+
+    %- X ogni sottocomponente della componente:
+    %     - nome: definizione e utilità (componente che serve a ...)
+
+\subsection{Backend}
+% - X ogni componente backend:
+    % - definizione e utilità
+    % - route API
+    % - metodo HTTP
+    % - parametri richiesta HTTP
+    % - tabella possibili risposte (status code, condizione, tipo di ritorno(header o body))
+    % - tracciamento requisiti soddisfatti
+    
+    % - X ogni sottocomponente della componente:
+    %     - nome: definizione e utilità (interfaccia/classe che serve a ...)
+    %     - se sono classi, indicare "interfacce implementate" e/o "classi astratte estese"
+
+\subsection{Database}
+    % definisco ogni tabella e la descrivo
+    % diagramma ER del db
+    % script di creazione db
+
+\subsection{Libreria per la persistenza}  
+    % diagramma delle classi
+    % x ogni entità ci sarà una classe:
+    %     - annotazioni (non ci sono in py, non penso di metterle)
+    %     - attributi privati
+    %     - costruttori
+
+\newpage
+\section{Progettazione di dettaglio}
+    % Per ogni componente:
+    %    - diagramma di dettaglio
+    %    Indicare per ogni sottocomponente:
+    %        - attributi (nome: tipo)
+    %        - metodi (firma, descrizione)
+    % - interfacce implementate
+
+\end{document}

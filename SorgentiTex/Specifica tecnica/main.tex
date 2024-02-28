@@ -149,17 +149,21 @@ Flask è un micro framework per applicazioni web. È stato scelto per la sua leg
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Leggerezza:} Flask è noto per la sua leggerezza, il che significa che ha poche dipendenze. Questo lo rende perfetto per progetti più piccoli dove non è necessario un carico pesante di funzionalità;
-\item \textbf{Flessibilità:} Flask offre una grande flessibilità, permettendo agli sviluppatori di strutturare le loro applicazioni come preferiscono;
-\item \textbf{Facilità d'uso:} Flask è facile da usare e da imparare, rendendolo ideale per i principianti.
+\item \textbf{Leggerezza:} Flask è noto per la sua leggerezza, il che significa che ha poche dipendenze. Questo lo rende perfetto per progetti più piccoli dove non è necessario un carico pesante di funzionalità, a differenza di Django che include molte funzionalità out-of-the-box che potrebbero non essere necessarie;
+\item \textbf{Flessibilità:} Flask offre una grande flessibilità, permettendo agli sviluppatori di strutturare le loro applicazioni come preferiscono, a differenza di Django che segue un approccio più rigido e strutturato;
+\item \textbf{Facilità d'uso:} Flask è facile da usare e da imparare, rendendolo ideale per i principianti;
+\item \textbf{Meno overhead rispetto a Django:} A causa della sua leggerezza e flessibilità, Flask può avere meno overhead rispetto a un framework più pesante come Django;
+\item \textbf{Maggiore controllo rispetto a Django:} Flask offre agli sviluppatori un maggiore controllo sulle funzionalità delle loro applicazioni, a differenza di Django che fornisce molte funzionalità predefinite che potrebbero non essere necessarie o desiderate.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
 \item \textbf{Manca di alcune funzionalità out-of-the-box:} Flask è un microframework, il che significa che potrebbe non avere tutte le funzionalità che potrebbero essere necessarie per un'applicazione più complessa;
-\item \textbf{Potrebbe richiedere più tempo per sviluppare applicazioni complesse:} A causa della sua natura minimalista, gli sviluppatori potrebbero dover scrivere più codice per realizzare funzionalità che in altri framework potrebbero essere disponibili out-of-the-box.
+\item \textbf{Potrebbe richiedere più tempo per sviluppare applicazioni complesse:} A causa della sua natura minimalista, gli sviluppatori potrebbero dover scrivere più codice per realizzare funzionalità che in altri framework potrebbero essere disponibili out-of-the-box;
+\item \textbf{Richiede più configurazione rispetto a Django:} Flask richiede più configurazione rispetto ad altri framework come Django, che hanno più funzionalità integrate;
+\item \textbf{Supporto della comunità più piccolo rispetto a Django:} Anche se Flask ha una comunità attiva, non è grande come quella di Django. Questo potrebbe significare meno risorse di apprendimento e supporto disponibili.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Flask 3.0.2.
 
 \subsubsection{Python}
 Python è un linguaggio di programmazione ad alto livello, interpretato, interattivo, orientato agli oggetti e di script. È progettato per essere altamente leggibile. Rispetto ad altri linguaggi come Java o C++, Python offre una sintassi più semplice e pulita, rendendo il codice più leggibile e mantenibile.
@@ -169,14 +173,18 @@ Python è un linguaggio di programmazione ad alto livello, interpretato, interat
 \begin{itemize}
 \item \textbf{Facilità d'uso:} Python ha una sintassi molto pulita e facile da leggere, il che rende il linguaggio molto facile da imparare per i nuovi programmatori;
 \item \textbf{Versatilità:} Python può essere utilizzato per una vasta gamma di applicazioni, tra cui sviluppo web, data analysis, machine learning, intelligenza artificiale, creazione di GUI e scripting di sistema;
-\item \textbf{Grande comunità:} Python ha una grande comunità di sviluppatori che contribuiscono attivamente alla sua manutenzione e miglioramento. Ciò significa che ci sono molte risorse disponibili per l'apprendimento e la risoluzione dei problemi.
+\item \textbf{Grande comunità:} Python ha una grande comunità di sviluppatori che contribuiscono attivamente alla sua manutenzione e miglioramento. Ciò significa che ci sono molte risorse disponibili per l'apprendimento e la risoluzione dei problemi;
+\item \textbf{Librerie ricche rispetto a Java o C++:} Python ha una vasta gamma di librerie e framework, che possono aiutare a semplificare lo sviluppo e a ridurre il tempo di sviluppo, a differenza di altri linguaggi come Java o C++ che potrebbero non avere una gamma così ampia di librerie disponibili;
+\item \textbf{Sintassi più semplice rispetto a Java o C++:} Python ha una sintassi più semplice e pulita, il che rende il codice più leggibile e mantenibile rispetto a linguaggi come Java o C++.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Velocità:} Python non è il linguaggio più veloce a causa della sua natura interpretata e può non essere la scelta migliore per le applicazioni che richiedono prestazioni elevate.
+\item \textbf{Velocità:} Python non è il linguaggio più veloce a causa della sua natura interpretata e può non essere la scelta migliore per le applicazioni che richiedono prestazioni elevate;
+\item \textbf{Gestione della memoria:} Python utilizza un garbage collector per la gestione della memoria, che può non essere efficiente come la gestione manuale della memoria in linguaggi come C++;
+\item \textbf{Non è fortemente tipizzato:} A differenza di linguaggi come Java o C++, Python non è un linguaggio fortemente tipizzato. Questo può portare a errori di runtime che sarebbero stati catturati al momento della compilazione in un linguaggio fortemente tipizzato.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Python 3.9.
 
 \subsection{Next.js}
 Next.js è un framework per applicazioni web basato su React. È stato scelto per la sua efficienza e per le sue funzionalità di rendering lato server. Rispetto ad altri framework come Angular, Next.js offre una maggiore efficienza e facilità d'uso, rendendolo ideale per questo progetto.
@@ -184,17 +192,19 @@ Next.js è un framework per applicazioni web basato su React. È stato scelto pe
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Efficienza:} Next.js è noto per la sua efficienza, il che significa che le applicazioni create con Next.js sono veloci e performanti;
+\item \textbf{Efficienza rispetto ad Angular:} Next.js è noto per la sua efficienza, il che significa che le applicazioni create con Next.js sono veloci e performanti, a differenza di Angular che può essere più pesante e meno efficiente;
 \item \textbf{Rendering lato server:} Next.js offre funzionalità di rendering lato server, il che significa che può migliorare le prestazioni dell'applicazione e l'ottimizzazione dei motori di ricerca;
-\item \textbf{Facilità d'uso:} Next.js è facile da usare e da imparare, specialmente per coloro che sono già familiari con React.
+\item \textbf{Facilità d'uso rispetto ad Angular:} Next.js è facile da usare e da imparare, specialmente per coloro che sono già familiari con React, a differenza di Angular che può avere una curva di apprendimento più ripida;
+\item \textbf{Supporto per TypeScript:} A differenza di molti altri framework, Next.js offre un supporto integrato per TypeScript, il che può migliorare l'affidabilità e la robustezza del codice.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Overhead:} Next.js può aggiungere un certo overhead a un'applicazione a causa delle sue funzionalità aggiuntive, il che può non essere necessario per le applicazioni più semplici;
-\item \textbf{Complessità:} A causa delle sue funzionalità aggiuntive, Next.js può essere più complesso da configurare e gestire rispetto a React da solo.
+\item \textbf{Overhead rispetto a React da solo:} Next.js può aggiungere un certo overhead a un'applicazione a causa delle sue funzionalità aggiuntive, il che può non essere necessario per le applicazioni più semplici;
+\item \textbf{Complessità:} A causa delle sue funzionalità aggiuntive, Next.js può essere più complesso da configurare e gestire rispetto a React da solo;
+\item \textbf{Richiede più risorse rispetto a React da solo:} A causa delle sue funzionalità aggiuntive, Next.js può richiedere più risorse di sistema rispetto a React da solo.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Next.js 14.1.
 
 \subsubsection{Typescript}
 Typescript è un super-set di JavaScript che aggiunge tipi statici e oggetti orientati alla programmazione. È stato scelto per la sua affidabilità e robustezza. Rispetto a JavaScript, TypeScript offre un controllo dei tipi più rigoroso, il che può aiutare a prevenire errori di runtime.
@@ -202,16 +212,18 @@ Typescript è un super-set di JavaScript che aggiunge tipi statici e oggetti ori
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Affidabilità:} Typescript offre un controllo dei tipi a tempo di compilazione, il che significa che gli errori possono essere rilevati e corretti prima dell'esecuzione;
+\item \textbf{Affidabilità rispetto a JavaScript:} Typescript offre un controllo dei tipi a tempo di compilazione, il che significa che gli errori possono essere rilevati e corretti prima dell'esecuzione, a differenza di JavaScript che è un linguaggio interpretato e gli errori possono essere rilevati solo a runtime;
 \item \textbf{Robustezza:} Typescript supporta le funzionalità di programmazione orientata agli oggetti, il che può rendere il codice più robusto e facile da gestire;
-\item \textbf{Interoperabilità:} Typescript è un super-set di JavaScript, il che significa che qualsiasi codice JavaScript valido può essere utilizzato in Typescript.
+\item \textbf{Interoperabilità:} Typescript è un super-set di JavaScript, il che significa che qualsiasi codice JavaScript valido può essere utilizzato in Typescript;
+\item \textbf{Supporto per le annotazioni di tipo:} A differenza di JavaScript, TypeScript supporta le annotazioni di tipo, il che può migliorare la leggibilità del codice e facilitare la manutenzione.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Curva di apprendimento:} Typescript può essere più difficile da imparare rispetto a JavaScript a causa delle sue funzionalità aggiuntive.
+\item \textbf{Curva di apprendimento rispetto a JavaScript:} Typescript può essere più difficile da imparare rispetto a JavaScript a causa delle sue funzionalità aggiuntive;
+\item \textbf{Compilazione:} A differenza di JavaScript, TypeScript deve essere compilato in JavaScript prima di poter essere eseguito, il che può aggiungere un passaggio aggiuntivo nel processo di sviluppo.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Typescript 5.3.3.
 
 \subsection{Docker}
 Docker è una piattaforma open source che automatizza la distribuzione, la scalabilità e l'isolamento delle applicazioni utilizzando la virtualizzazione a livello di sistema operativo. È stato scelto per la sua efficienza e portabilità. Rispetto ad altre soluzioni come Vagrant, Docker offre una maggiore efficienza e facilità d'uso.
@@ -219,17 +231,19 @@ Docker è una piattaforma open source che automatizza la distribuzione, la scala
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Efficienza:} Docker consente di eseguire più applicazioni in modo isolato sulla stessa infrastruttura hardware, migliorando l'efficienza e riducendo i costi;
+\item \textbf{Efficienza rispetto a Vagrant:} Docker consente di eseguire più applicazioni in modo isolato sulla stessa infrastruttura hardware, migliorando l'efficienza e riducendo i costi, a differenza di Vagrant che può richiedere più risorse di sistema;
 \item \textbf{Portabilità:} Con Docker, le applicazioni e le loro dipendenze possono essere confezionate come un'unità portatile chiamata container, che può essere eseguita su qualsiasi macchina che supporti Docker;
-\item \textbf{Isolamento:} Docker isola le applicazioni in container separati, il che significa che ogni applicazione può avere le proprie dipendenze e non interferire con le altre applicazioni.
+\item \textbf{Isolamento:} Docker isola le applicazioni in container separati, il che significa che ogni applicazione può avere le proprie dipendenze e non interferire con le altre applicazioni;
+\item \textbf{Supporto per la CI/CD:} Docker può essere facilmente integrato in pipeline di integrazione continua e distribuzione continua (CI/CD), il che può semplificare il processo di sviluppo e distribuzione.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Complessità:} Docker può aggiungere una certa complessità a un progetto a causa della necessità di gestire i container e le loro dipendenze;
-\item \textbf{Curva di apprendimento:} Docker ha una curva di apprendimento ripida e può richiedere un certo tempo per essere padroneggiato.
+\item \textbf{Complessità rispetto a Vagrant:} Docker può aggiungere una certa complessità a un progetto a causa della necessità di gestire i container e le loro dipendenze, a differenza di Vagrant che può essere più semplice da configurare e gestire;
+\item \textbf{Curva di apprendimento:} Docker ha una curva di apprendimento ripida e può richiedere un certo tempo per essere padroneggiato;
+\item \textbf{Compatibilità:} Non tutti i sistemi operativi supportano Docker nativamente, il che può limitare la sua utilità in alcuni ambienti.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Docker Desktop 4.28.0.
 
 \subsection{Langchain}
 Langchain è un framework che facilita l'interazione tra modelli di apprendimento automatico e risorse esterne come database o altri servizi web. È stato scelto per la sua comodità e flessibilità. Rispetto ad altri framework come TensorFlow o PyTorch, Langchain offre una maggiore facilità d'uso e una migliore integrazione con le risorse esterne.
@@ -237,9 +251,10 @@ Langchain è un framework che facilita l'interazione tra modelli di apprendiment
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Comodità:} Langchain semplifica l'interazione tra modelli di apprendimento automatico e risorse esterne, fornendo moduli e integrazioni;
+\item \textbf{Comodità rispetto a TensorFlow o PyTorch:} Langchain semplifica l'interazione tra modelli di apprendimento automatico e risorse esterne, fornendo moduli e integrazioni, a differenza di TensorFlow o PyTorch che potrebbero richiedere più codice e sforzo per integrare con risorse esterne;
 \item \textbf{Flessibilità:} Langchain supporta una varietà di modelli di apprendimento automatico e risorse esterne, rendendolo adatto a una vasta gamma di applicazioni;
-\item \textbf{Facilità d'uso:} Langchain è facile da usare e da imparare, rendendolo ideale per i principianti.
+\item \textbf{Facilità d'uso rispetto a TensorFlow o PyTorch:} Langchain è facile da usare e da imparare, rendendolo ideale per i principianti, a differenza di TensorFlow o PyTorch che possono avere una curva di apprendimento più ripida;
+\item \textbf{Supporto per una varietà di risorse esterne:} A differenza di molti altri framework, Langchain offre un supporto integrato per una varietà di risorse esterne, il che può semplificare lo sviluppo e l'integrazione.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
@@ -247,7 +262,7 @@ Langchain è un framework che facilita l'interazione tra modelli di apprendiment
 \item \textbf{Documentazione:} La documentazione di Langchain potrebbe non essere così completa o aggiornata come quella di altri framework.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Langchain 0.1.9.
 
 \subsubsection{Pinecone}
 Pinecone è un database di vettori che consente di effettuare ricerche di similarità su larga scala. È stato scelto per la sua efficienza e precisione. Rispetto ad altri database di vettori come Faiss o Annoy, Pinecone offre una maggiore efficienza e una migliore precisione nelle ricerche di similarità.
@@ -255,17 +270,18 @@ Pinecone è un database di vettori che consente di effettuare ricerche di simila
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Efficienza:} Pinecone è progettato per effettuare ricerche di similarità su larga scala in modo efficiente;
-\item \textbf{Precisione:} Pinecone offre un'alta precisione nelle ricerche di similarità, il che lo rende ideale per applicazioni che richiedono un alto grado di precisione;
-\item \textbf{Facilità d'uso:} Pinecone è facile da usare e da imparare, rendendolo ideale per i principianti.
+\item \textbf{Efficienza rispetto a Faiss o Annoy:} Pinecone è progettato per effettuare ricerche di similarità su larga scala in modo efficiente, a differenza di Faiss o Annoy che potrebbero non essere ottimizzati per ricerche su larga scala;
+\item \textbf{Precisione rispetto a Faiss o Annoy:} Pinecone offre un'alta precisione nelle ricerche di similarità, il che lo rende ideale per applicazioni che richiedono un alto grado di precisione, a differenza di Faiss o Annoy che potrebbero non offrire la stessa precisione;
+\item \textbf{Facilità d'uso:} Pinecone è facile da usare e da imparare, rendendolo ideale per i principianti;
+\item \textbf{Scalabilità:} A differenza di molti altri database di vettori, Pinecone è progettato per scalare con le esigenze dell'applicazione, il che può semplificare la gestione delle risorse.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Costo:} Pinecone può essere costoso da utilizzare per applicazioni su larga scala;
+\item \textbf{Costo rispetto a Faiss o Annoy:} Pinecone può essere costoso da utilizzare per applicazioni su larga scala, a differenza di Faiss o Annoy che sono open source e gratuiti da utilizzare;
 \item \textbf{Limitazioni:} Pinecone potrebbe non supportare tutte le funzionalità di ricerca di similarità che potrebbero essere necessarie per alcune applicazioni.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Pinecone Client 3.1.0.
 
 \subsubsection{ChromaDB}
 ChromaDB è un database di vettori locale open-source. È stato scelto per la sua integrazione con Langchain e la sua popolarità tra i database di vettori locali. Rispetto ad altri database di vettori locali come Faiss o Annoy, ChromaDB offre una migliore integrazione con Langchain e una maggiore popolarità.
@@ -273,9 +289,10 @@ ChromaDB è un database di vettori locale open-source. È stato scelto per la su
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Integrazione:} ChromaDB è ben integrato con Langchain, il che facilita l'interazione tra i due;
-\item \textbf{Popolarità:} ChromaDB è il database di vettori locale open-source più popolare, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili;
-\item \textbf{Facilità d'uso:} ChromaDB è facile da usare e da imparare, rendendolo ideale per i principianti.
+\item \textbf{Integrazione con Langchain rispetto a Faiss o Annoy:} ChromaDB è ben integrato con Langchain, il che facilita l'interazione tra i due, a differenza di Faiss o Annoy che potrebbero richiedere più codice e sforzo per integrare con Langchain;
+\item \textbf{Popolarità rispetto a Faiss o Annoy:} ChromaDB è il database di vettori locale open-source più popolare, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili, a differenza di Faiss o Annoy che potrebbero non avere una comunità di sviluppatori così grande;
+\item \textbf{Facilità d'uso:} ChromaDB è facile da usare e da imparare, rendendolo ideale per i principianti;
+\item \textbf{Supporto per una varietà di tipi di dati:} A differenza di molti altri database di vettori, ChromaDB supporta una varietà di tipi di dati, il che può semplificare la gestione dei dati.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
@@ -283,7 +300,7 @@ ChromaDB è un database di vettori locale open-source. È stato scelto per la su
 \item \textbf{Documentazione:} La documentazione di ChromaDB potrebbe non essere così completa o aggiornata come quella di altri database.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} ChromaDB 0.4.24.
 
 \subsubsection{OpenAI}
 OpenAI è una piattaforma di apprendimento automatico che offre una varietà di modelli, tra cui GPT-3 e GPT-4. La scelta di utilizzare OpenAI sia per il Large Language Model (LLM) che per gli embeddings è motivata dalla sua reputazione consolidata nel campo dell'apprendimento automatico e dalla sua completa integrazione con Langchain. Rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, l’utilizzo dei modelli pre-addestrati di OpenAI offre una maggiore facilità d’uso.
@@ -291,18 +308,18 @@ OpenAI è una piattaforma di apprendimento automatico che offre una varietà di 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Popolarità:} OpenAI è molto conosciuto nel campo dell'apprendimento automatico, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili;
-\item \textbf{Integrazione:} OpenAI ha un'integrazione completa con Langchain, il che facilita l'interazione tra i due;
+\item \textbf{Popolarità rispetto a TensorFlow o PyTorch:} OpenAI è molto conosciuto nel campo dell'apprendimento automatico, il che significa che ha una grande comunità di sviluppatori e molte risorse disponibili, a differenza di TensorFlow o PyTorch che potrebbero non avere una comunità di sviluppatori così grande;
+\item \textbf{Integrazione:} OpenAI ha un'integrazione completa con Langchain, il che facilita l'interazione tra i due, a differenza di TensorFlow o PyTorch che potrebbero richiedere più codice e sforzo per integrare con Langchain;
 \item \textbf{Flessibilità:} OpenAI offre la possibilità di scegliere tra diversi modelli semplicemente cambiando un parametro, a seconda delle esigenze e della disponibilità dell'utente finale.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Costo:} L'utilizzo di OpenAI può essere costoso, soprattutto per le applicazioni su larga scala;
+\item \textbf{Costo:} L'utilizzo di OpenAI può essere costoso, soprattutto per le applicazioni su larga scala, a differenza di TensorFlow o PyTorch che sono open source e gratuiti da utilizzare;
 \item \textbf{Limitazioni:} Non tutte le funzionalità sono disponibili in tutti i modelli offerti da OpenAI.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione modello LLM scelto:} \textbf{DA METTERE}. \\
-% \textbf{Versione modello di embeddings scelto:} \textbf{DA METTERE}.
+\textbf{Versione modello LLM scelto:} gpt-3.5-turbo-instruct. \\
+\textbf{Versione modello di embeddings scelto:} text-embedding-3-small.
 
 \subsubsection{HuggingFace}
 HuggingFace è una piattaforma di apprendimento automatico che offre migliaia di modelli open-source, tra cui modelli di linguaggio e modelli di embeddings. La decisione di utilizzare HuggingFace sia per il Large Language Model (LLM) che per gli embeddings è motivata dalla sua flessibilità e dalla possibilità di scaricare i modelli localmente per l’esecuzione offline. Questo offre una maggiore flessibilità rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, che può richiedere risorse computazionali significative e competenze specialistiche.
@@ -310,18 +327,18 @@ HuggingFace è una piattaforma di apprendimento automatico che offre migliaia di
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Flessibilità:} HuggingFace offre una vasta gamma di modelli, il che significa che è possibile scegliere il modello più adatto alle proprie esigenze;
+\item \textbf{Flessibilità:} HuggingFace offre una vasta gamma di modelli, il che significa che è possibile scegliere il modello più adatto alle proprie esigenze, a differenza di TensorFlow o PyTorch che potrebbero richiedere la configurazione e l'addestramento di modelli personalizzati;
 \item \textbf{Località:} HuggingFace offre la possibilità di scaricare i modelli in locale, il che significa che possono essere eseguiti sulle proprie macchine senza la necessità di una connessione internet;
-\item \textbf{Facilità d'uso:} HuggingFace è facile da usare e da imparare, rendendolo ideale per i principianti.
+\item \textbf{Facilità d'uso rispetto a TensorFlow o PyTorch:} HuggingFace è facile da usare e da imparare, rendendolo ideale per i principianti, a differenza di TensorFlow o PyTorch che possono avere una curva di apprendimento più ripida.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Risorse:} L'esecuzione dei modelli in locale può richiedere molte risorse hardware, il che può non essere ideale per tutte le macchine;
+\item \textbf{Risorse rispetto a TensorFlow o PyTorch:} L'esecuzione dei modelli in locale può richiedere molte risorse hardware, il che può non essere ideale per tutte le macchine, a differenza di TensorFlow o PyTorch che possono essere ottimizzati per l'esecuzione su hardware specifico;
 \item \textbf{Complessità:} A causa della vasta gamma di modelli disponibili, può essere difficile scegliere il modello più adatto alle proprie esigenze.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione modello LLM scelto:} \textbf{DA METTERE}. \\
-% \textbf{Versione modello di embeddings scelto:} \textbf{DA METTERE}.
+\textbf{Versione modello LLM scelto:} meta-llama/Llama-2-7b-chat-hf. \\
+\textbf{Versione modello di embeddings scelto:} sentence-transformers/all-mpnet-base-v2.
 
 \subsection{AWS S3}
 Amazon S3 (Simple Storage Service) è un servizio di storage di oggetti offerto da Amazon Web Services. È stato scelto per la sua scalabilità, affidabilità, e sicurezza. Rispetto ad altre soluzioni di storage come Google Cloud Storage o Azure Blob Storage, AWS S3 offre una maggiore scalabilità e una migliore integrazione con altri servizi AWS.
@@ -329,17 +346,17 @@ Amazon S3 (Simple Storage Service) è un servizio di storage di oggetti offerto 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Scalabilità:} Amazon S3 può memorizzare qualsiasi quantità di dati e servire qualsiasi livello di traffico richiesto;
-\item \textbf{Affidabilità:} Amazon S3 offre una durabilità dell'11 9's, il che significa che i dati sono estremamente sicuri;
-\item \textbf{Sicurezza:} Amazon S3 offre potenti funzionalità per proteggere i dati, tra cui controllo degli accessi, crittografia in transito e a riposo, e altro ancora.
+\item \textbf{Scalabilità rispetto a Google Cloud Storage o Azure Blob Storage:} Amazon S3 può memorizzare qualsiasi quantità di dati e servire qualsiasi livello di traffico richiesto, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero avere limiti sulla quantità di dati o sul traffico;
+\item \textbf{Affidabilità:} Amazon S3 offre una durabilità dell'11 9's, il che significa che i dati sono estremamente sicuri, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero non offrire lo stesso livello di durabilità;
+\item \textbf{Sicurezza rispetto a Google Cloud Storage o Azure Blob Storage:} Amazon S3 offre potenti funzionalità per proteggere i dati, tra cui controllo degli accessi, crittografia in transito e a riposo, e altro ancora, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero non offrire le stesse funzionalità di sicurezza.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Costo:} Il costo di Amazon S3 può aumentare rapidamente con l'aumentare dell'uso;
-\item \textbf{Complessità:} Amazon S3 ha molte funzionalità e opzioni, il che può renderlo complesso da configurare e gestire.
+\item \textbf{Costo rispetto a Google Cloud Storage o Azure Blob Storage:} Il costo di Amazon S3 può aumentare rapidamente con l'aumentare dell'uso, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero avere costi più prevedibili;
+\item \textbf{Complessità:} Amazon S3 ha molte funzionalità e opzioni, il che può renderlo complesso da configurare e gestire, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero essere più semplici da configurare e gestire.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} Amazon Simple Storage Service (Amazon S3).
 
 \subsection{Postgres}
 Postgres, o PostgreSQL, è un potente sistema di gestione di database relazionali ad oggetti open source. È stato scelto per la sua robustezza, affidabilità e flessibilità. Rispetto ad altri DBMS come MySQL o SQLite, Postgres offre una maggiore robustezza e una migliore supporto per le funzionalità di programmazione orientata agli oggetti.
@@ -347,17 +364,17 @@ Postgres, o PostgreSQL, è un potente sistema di gestione di database relazional
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Robustezza:} Postgres supporta una vasta gamma di tipi di dati nativi, operatori e funzioni, tra cui JSON, XML e array;
-\item \textbf{Affidabilità:} Postgres è noto per la sua affidabilità e integrità dei dati. Offre transazioni atomiche, commit multi-versione (MVCC), punti di controllo, logging di scrittura anticipata (WAL) e una serie di meccanismi di replica;
-\item \textbf{Flessibilità:} Postgres è estensibile, il che significa che gli sviluppatori possono definire i propri tipi di dati, operatori e funzioni. Inoltre, può essere utilizzato sia come un database SQL tradizionale che come una soluzione NoSQL per la memorizzazione di documenti.
+\item \textbf{Robustezza rispetto a MySQL o SQLite:} Postgres supporta una vasta gamma di tipi di dati nativi, operatori e funzioni, tra cui JSON, XML e array, a differenza di MySQL o SQLite che potrebbero non supportare tutti questi tipi di dati;
+\item \textbf{Affidabilità:} Postgres è noto per la sua affidabilità e integrità dei dati. Offre transazioni atomiche, commit multi-versione (MVCC), punti di controllo, logging di scrittura anticipata (WAL) e una serie di meccanismi di replica, a differenza di MySQL o SQLite che potrebbero non offrire tutte queste funzionalità;
+\item \textbf{Flessibilità rispetto a MySQL o SQLite:} Postgres è estensibile, il che significa che gli sviluppatori possono definire i propri tipi di dati, operatori e funzioni. Inoltre, può essere utilizzato sia come un database SQL tradizionale che come una soluzione NoSQL per la memorizzazione di documenti, a differenza di MySQL o SQLite che potrebbero non offrire la stessa flessibilità.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
-\item \textbf{Complessità:} A causa della sua vasta gamma di funzionalità, Postgres può essere più complesso da configurare e gestire rispetto ad altri sistemi di gestione di database;
+\item \textbf{Complessità rispetto a MySQL o SQLite:} A causa della sua vasta gamma di funzionalità, Postgres può essere più complesso da configurare e gestire rispetto ad altri sistemi di gestione di database come MySQL o SQLite;
 \item \textbf{Prestazioni:} Sebbene Postgres sia altamente ottimizzato, le sue prestazioni potrebbero non essere all'altezza di altri database per alcune applicazioni, in particolare quelle che richiedono letture ad alta velocità di grandi quantità di dati.
 \end{itemize}
 \end{itemize}
-% \textbf{Versione scelta:} \textbf{DA METTERE}.
+\textbf{Versione scelta:} PostgreSQL 16.2.
 
 \newpage
 \section{Architettura di sistema}

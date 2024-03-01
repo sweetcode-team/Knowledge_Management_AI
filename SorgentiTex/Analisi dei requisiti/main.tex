@@ -1523,12 +1523,12 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 
 \hline \rf{O} & L'utente deve poter cambiare la scelta del modello LLM. & \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
 \hline \subrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. &  \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
-\hline \subrf{O} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
-\hline \subrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
-\hline \subrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
 
 \hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un modello LLM. & \rifuc{vis_car_LLM}\\
 \hline \subrf{O} & L'utente deve poter visualizzare il nome di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_nome_LLM}\\
@@ -1648,6 +1648,7 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
+\hline \rf{O} & Per ogni messaggio, deve essere reso noto il mittente. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_mitt_chat} \\
 \hline \rf{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
 \hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
 \hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
@@ -1729,10 +1730,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 118 & 9 & 4 & 131 \\
+Funzionali & 113 & 9 & 10 & 132 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 123 & 9 & 4 & \textbf{136} \\
+\hline \textbf{Totale} & 118 & 9 & 10 & \textbf{137} \\
 
 \end{xltabular}
 

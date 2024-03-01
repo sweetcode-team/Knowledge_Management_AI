@@ -1126,6 +1126,31 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente desidera visualizzare il timestamp dell'ultimo messaggio della singola chat all’interno della lista.
     \end{itemize}
 
+    \subsubuc{Visualizzazione preview ultimo messaggio di una chat in lista}{vis_prev_msg_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la preview dell'ultimo messaggio della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la preview dell'ultimo messaggio della singola chat all’interno della lista.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione preview ultimo mittente di una chat in lista}{vis_prev_mitt_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la preview dell'ultimo mittente della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la preview dell'ultimo mittente della singola chat all’interno della lista.
+    \end{itemize}
+
+
     \uc{Creazione nuova chat}{creaz_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1582,6 +1607,9 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subrf{O} & L'utente deve poter visualizzare le singole chat presenti in lista. & \rifsubuc{vis_lista_chat}{vis_sing_chat} \\
 \hline \subsubrf{O} & L'utente deve poter visualizzare il titolo di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_tit_chat} \\
 \hline \subsubrf{O} & L'utente deve poter visualizzare il timestamp dell'ultimo messaggio di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_timestamp_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare una preview dell'ultimo messaggio di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_msg_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare una preview dell'ultimo mittente di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_mitt_chat} \\
+
 \hline \rf{O} & L'utente deve poter creare una nuova chat. & \rifuc{creaz_chat} \\
 \hline \rf{O} & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & \rifuc{vis_err_chat_vuota} \\
@@ -1701,10 +1729,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 116 & 9 & 4 & 129 \\
+Funzionali & 118 & 9 & 4 & 131 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 121 & 9 & 4 & \textbf{134} \\
+\hline \textbf{Totale} & 123 & 9 & 4 & \textbf{136} \\
 
 \end{xltabular}
 

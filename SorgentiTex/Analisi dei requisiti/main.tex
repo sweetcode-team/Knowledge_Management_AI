@@ -1319,6 +1319,16 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole visualizzare l'orario di una chat.
     \end{itemize}
 
+    \subsubuc{Visualizzazione mittente singolo messaggio in chat}{vis_mitt_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il mittente del singolo messaggio in chat;
+        \item \textbf{Scenario principale}: l’utente visualizza il mittente del messaggio in chat.
+        \item \textbf{Trigger}: l’utente vuole visualizzare il mittente di un messaggio in una chat.
+    \end{itemize}
+
+
     \uc{Visualizzazione documenti pertinenti}{vis_doc_pert}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1648,7 +1658,7 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
-\hline \rf{O} & Per ogni messaggio, deve essere reso noto il mittente. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_mitt_chat} \\
+\hline \rf{O} & Per ogni messaggio, deve essere reso noto il mittente. & \rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_mitt_mess} \\
 \hline \rf{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
 \hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
 \hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\

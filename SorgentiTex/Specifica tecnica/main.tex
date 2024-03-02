@@ -1550,4 +1550,138 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
             \item \code{sender: string}.
         \end{itemize}
     \end{itemize}
+
+    \subsection{ConcealDocuments}
+    \subsubsection{Diagramma delle classi}
+    \subsubsection{Lista delle sottocomponenti}
+    
+    \subsubsubsection{ConcealDocumentsController}
+    \label{ConcealDocumentsControllerDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{useCase: ConcealDocumentsUseCase}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{concealDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+            Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare l'occultamento dei documenti a ConcealDocumentsUseCase;
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ConcealDocumentsUseCase}
+    \label{ConcealDocumentsUseCaseDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+            Metodo astratto per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ConcealDocumentsService}
+    \label{ConcealDocumentsServiceDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{outPort: ConcealDocumentsPort}.  
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+            Implementazione del metodo astratto di ConcealDocumentsUseCase per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ConcealDocumentsPort}
+    \label{ConcealDocumentsPortDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+            Metodo astratto per occultare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ConcealDocumentsVectorStore}
+    \label{ConcealDocumentsVectorStoreDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item 
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+            Implementazione del metodo astratto di ConcealDocumentsPort per occultare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{VectorStoreManager}
+    \label{VectorStoreManagerDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+            Metodo astratto per ottenere gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
+            \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Metodo astratto per eliminare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Metodo astratto per occultare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Metodo astratto per abilitare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Metodo astratto per effettuare l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{VectorStorePineconeManager}
+    \label{VectorStorePineconeManagerDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per ottenere da Pinecone gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
+            \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per eliminare da Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per occultare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per abilitare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per effettuare in Pinecone l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{VectorStoreChromaDBManager}
+    \label{VectorStoreChromaDBManagerDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per ottenere da ChromaDB gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
+            \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per eliminare da ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per occultare in ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per abilitare in ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+            \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+            Implementazione del metodo astratto di VectorStoreManager per effettuare in ChromaDB l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{VectorStoreDocumentOperationResponse}
+    \label{VectorStoreDocumentOperationResponseDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{documentId: string};
+            \item \code{responseStatus: boolean};
+            \item \code{responseMessage: string}.
+        \end{itemize}
+    \end{itemize}
+    
+    
+
 \end{document}

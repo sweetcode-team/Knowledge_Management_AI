@@ -2257,5 +2257,116 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
+\subsection{GetChatMessages}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{GetChatMessagesController}
+\label{GetChatMessagesControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: GetChatMessagesUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:int): Chat}\\
+        Metodo che ritorna una Chat tramite useCase a partire da un intero rappresentante l'id della chat. 
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{GetChatMessagesUseCase}
+\label{GetChatMessagesUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Metodo astratto per ottenere una Chat a partire da un ChatId.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetChatMessagesService}
+\label{GetChatMessagesServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetChatMessagesPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Implementazione del metodo astratto di GetChatMessagesUseCase per ottenere una Chat a partire da un ChatId.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{Chat}
+\label{ChatDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{info: ChatInfo};
+        \item \code{messages: List<Message>}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatInfo}
+\label{ChatInfoDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{chatId: ChatId}
+        \item \code{title: string};
+        \item \code{timestamp: timestamp}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{Message}
+Vedi \vedi{MessageDettaglio}.
+
+\subsubsubsection{MessageSender}
+Vedi \vedi{MessageSenderDettaglio}.
+
+\subsubsubsection{GetChatMessagesPort}
+\label{GetChatMessagesPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Metodo astratto per ottenere una Chat a partire da un ChatId.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetChatMessagesPostgres}
+\label{GetChatMessagesPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresORM: PostgresORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Implementazione del metodo astratto di GetChatMessagesPort per ottenere una Chat a partire da un ChatId;
+        \item \code{toChatFrom(in postgresChat:PostgresChat): Chat}\\
+        Metodo che trasforma un oggetto di persistence PostgresChat in un oggetto di business Chat;
+        \item \code{toMessageFrom(in postgresMessage:PostgresMessage): Message}\\
+        Metodo che trasforma un oggetto di persistence PostgresMessage in un oggetto di business Message.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresChat}
+Vedi \vedi{PostgresChatDettaglio}.
+
+\subsubsubsection{PostgresMessage}
+Vedi \vedi{PostgresMessageDettaglio}.
+
+\subsubsubsection{PostgresORM}
+Vedi \vedi{PostgresORMDettaglio}.
 
 \end{document}

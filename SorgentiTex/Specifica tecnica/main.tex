@@ -1550,7 +1550,9 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
             \item \code{sender: string}.
         \end{itemize}
     \end{itemize}
-
+    
+    % \subsection{ChangeConfiguration}%TODO
+    
     \subsection{ConcealDocuments}
     \subsubsection{Diagramma delle classi}
     \subsubsection{Lista delle sottocomponenti}
@@ -1767,6 +1769,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \subsubsubsection{PostgresORM}
     Vedi \vedi{PostgresORMDettaglio}.
     
+    
 \subsection{DeleteDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
@@ -1939,6 +1942,7 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
 
 \subsection{EmbedDocuments}
 \subsubsection{Diagramma delle classi}
@@ -2179,6 +2183,7 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
+
 \subsection{EnableDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
@@ -2256,6 +2261,7 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
 
 \subsection{GetChatMessages}
 \subsubsection{Diagramma delle classi}
@@ -2368,5 +2374,119 @@ Vedi \vedi{PostgresMessageDettaglio}.
 
 \subsubsubsection{PostgresORM}
 Vedi \vedi{PostgresORMDettaglio}.
+
+\subsection{GetChats}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{ChatFilter}
+\label{ChatFilterDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{filter: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetChatsController}
+\label{GetChatsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: GetChatsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(searchFilter: string): List<ChatPreview>}\\
+        Metodo che ritorna una lista di ChatPreview tramite useCase, eventualmente filtrando la ricerca tramite searchFilter. 
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatFilter}
+Vedi \vedi{ChatFilterDettaglio}.
+
+\subsubsubsection{GetChatsUseCase}
+\label{GetChatsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Metodo astratto per ottenere una lista di ChatPreview, filtrando eventualmente la ricerca tramite chatFilter.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetChatsService}
+\label{GetChatsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetChatsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Implementazione del metodo astratto di GetChatsUseCase per ottenere una lista di ChatPreview tramite outPort, filtrando eventualmente la ricerca tramite chatFilter.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatPreview}
+\label{ChatPreviewDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{info: ChatInfo};
+        \item \code{lastMessageSnippet: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatInfo}
+Vedi \vedi{ChatInfoDettaglio}.
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{GetChatsPort}
+\label{GetChatsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Metodo astratto per ottenere una lista di ChatPreview, filtrando eventualmente la ricerca tramite chatFilter.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetChatsPostgres}
+\label{GetChatsPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresORM: PostgresORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Implementazione del metodo astratto di GetChatPort per ottenere una lista di ChatPreview tramite postgresORM, filtrando eventualmente la ricerca tramite chatFilter;
+        \item \code{getChatPreviewFrom(chat:PostgresChatPreview):}\\ \code{ ChatPreview}
+        Metodo per ottenere una ChatPreview a partire da una PostgresChatPreview.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresChatPreview}
+\label{PostgresChatPreviewDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: int}
+        \item \code{title: string};
+        \item \code{timestamp: timestamp};
+        \item \code{lastMessageSnippet: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresORM}
+Vedi \vedi{PostgresORMDettaglio}.
+
+% \subsection{GetConfiguration}%TODO
+
 
 \end{document}

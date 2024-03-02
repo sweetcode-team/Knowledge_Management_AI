@@ -631,6 +631,62 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
     \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}.
 \end{itemize}
 
+\subsubsection{DeleteDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di eliminare una lista di documenti e i loro rispettivi embeddings.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /deleteDocuments;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da eliminare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili DeleteDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili DeleteDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Eliminazione avvenuta con successo. & - \\
+\hline
+500 & Eliminazione fallita. & Errore nell'eliminazione dei documenti.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item TODO.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{DeleteDocumentsController}\textbf{DeleteDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case DeleteDocumentsUseCase a partire da una lista di stringhe che rappresentano gli id dei documenti da eliminare;
+    \item \label{DeleteDocumentsUseCase}\textbf{DeleteDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per eliminare i documenti;
+    \item \label{DeleteDocumentsService}\textbf{DeleteDocumentsService}: classe service che implementa lo use case DeleteDocumentsUseCase;
+    \item \label{DeleteDocuments}\textbf{DeleteDocuments}: classe che si occupa di inoltrare la richiesta di eliminare una lista di documenti nella porta esterna DeleteDocumentsPort diretta verso il sistema di archiviazione;
+    \item \label{DeleteDocumentsEmbeddings}\textbf{DeleteDocumentsEmbeddings}: classe che si occupa di eliminare gli embeddings di una lista di documenti nella porta esterna DeleteEmbeddingsPort diretta verso il vector store;
+    \item \label{DeleteDocumentsPort}\textbf{DeleteDocumentsPort}: interfaccia che rappresenta la porta in uscita per eliminare una lista di documenti dal sistema di archiviazione;
+    \item \label{DeleteEmbeddingsPort}\textbf{DeleteEmbeddingsPort}: interfaccia che rappresenta la porta in uscita per eliminare gli embeddings di una lista di documenti dal vector store;
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
+    \item \label{DeleteDocumentsAWSS3}\textbf{DeleteDocumentsAWSS3}: classe adapter che implementa la porta DeleteDocumentsPort, adattando la chiamata di DeleteDocuments a AWSS3Manager;
+    \item \label{AWSS3Manager}\textbf{AWSS3Manager}: classe che si occupa di effettuare le operazioni sul bucket di Amazon S3 configurato, cioè il sistema di archiviazione documenti dell'applicazione;
+    \item \label{AWSDocumentOperationResponse}\textbf{AWSDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un AWS S3 riguardo un documento;
+    \item \label{DeleteEmbeddingsVectorStore}\textbf{DeleteEmbeddingsVectorStore}: classe adapter che implementa la porta DeleteEmbeddingsPort, adattando la chiamata di DeleteDocumentsEmbeddings a VectorStoreManager;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+\end{itemize}
+
+
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo
     % diagramma ER del db

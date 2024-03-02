@@ -584,6 +584,52 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
     \item \label{VectorStoreDocumentOperationResponse}\textbf{VectorStoreDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un vector store riguardo un documento.
 \end{itemize}
 
+\subsubsection{DeleteChats}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di eliminare una lista di chat, aggiornando di conseguenza il database utilizzato per la storicizzazione delle chat.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /deleteChats;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "chatIds": lista di Id utilizzati per identificare univocamente le chat.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili DeleteChats}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili DeleteChats (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Eliminazione avvenuta con successo. & - \\
+\hline
+500 & Eliminazione fallita. & Errore nella eliminazione della chat. \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.33
+        \item RF.O.34
+        \item RF.O.34.1
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{DeleteChatsController}\textbf{DeleteChatsController}: classe controller che si occupa del passaggio allo use case CreateChatUseCase di interi rappresentanti gli id di una lista di chat per eseguire la loro eliminazione;
+    \item \label{DeleteChatsUseCase}\textbf{DeleteChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'eliminazione di una lista di chat;
+    \item \label{DeleteChatsService}\textbf{DeleteChatsService}: classe service che implementa lo use case DeleteChatsUseCase;
+    \item \label{DeleteChatsPort}\textbf{DeleteChatsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'eliminazione di una lista di chat verso il database per la storicizzazione delle chat;
+    \item \label{DeleteChatsPostgres}\textbf{DeleteChatsPostgres}: classe che implementa la porta DeleteChatPort, adattando la chiamata di DeleteChatsService a PostgresORM;
+    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}.
+\end{itemize}
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

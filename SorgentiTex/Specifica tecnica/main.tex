@@ -952,6 +952,103 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \item \label{PostgresChatPreview}\textbf{PostgresChatPreview}: classe di persistence che rappresenta la preview di una chat.
 \end{itemize}
 
+\begin{comment}
+\subsubsection{GetConfiguration}
+    \subsubsubsection{Descrizione}
+    Questa componente ha il compito di ricavare la configurazione del sistema.
+    È costituita da:
+    \begin{itemize}
+        \item \textbf{Route API}: /getConfiguration;
+        \item \textbf{Metodo}: GET;
+        \item \textbf{Lista parametri HTTP}: -
+    \end{itemize}
+    \subsubsubsection{Esiti possibili}
+    \begin{xltabular}{\textwidth}{c|X|X}
+    \caption{Esiti possibili GetConfiguration}\\
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+    \endfirsthead
+    \caption[]{Esiti possibili GetConfiguration (cont)}\\
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+    \endhead
+    \multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+    \endfoot
+    \endlastfoot
+    \hline
+    200 & Configurazione ricavata con successo. & - \\
+    \hline
+    500 & Ricavo configurazione fallito. & Errore nel ricavo della configurazione. \\
+    \end{xltabular}
+    
+    \subsubsubsection{Tracciamento dei requisiti}
+    \begin{itemize}
+            \item TODO.
+    \end{itemize}
+    
+    \subsubsubsection{Lista sottocomponenti}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{comment}
+
+\subsubsection{GetDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di ricavare la lista di tutti i documenti presenti nel sistema e di rispondere a ricerche basate sull'id dei documenti.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /getDocuments;
+    \item \textbf{Metodo}: GET;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "searchFilter": stringa che rappresenta il filtro opzionale da applicare alla ricerca dei documenti.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili GetDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili GetDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Ricerca avvenuta con successo. & - \\
+\hline
+500 & Ricerca fallita. & Errore nella ricerca dei documenti.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item TODO.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{DocumentMetadata}\textbf{DocumentMetadata}: classe di business che rappresenta i metadati di un documento;
+    \item \label{DocumentType}\textbf{DocumentType}: enumeration che rappresenta i valori che può assumere il tipo di un documento;
+    \item \label{DocumentId}\textbf{DocumentId}: classe di business che rappresenta l'id di un documento;
+    \item \label{DocumentStatus}\textbf{DocumentStatus}: classe di business che rappresenta lo status di un documento;
+    \item \label{Status}\textbf{Status}: enumeration che rappresenta i valori che può assumere lo status di un documento;
+    \item \label{LightDocument}\textbf{LightDocument}: classe di business che fornisce una rappresentazione leggera dei documenti, esculdendo il contenuto;
+    \item \label{DocumentFilter}\textbf{DocumentFilter}: classe di business che rappresenta il filtro applicabile alla ricerca di documenti;
+    \item \label{GetDocumentsController}\textbf{GetDocumentsController}: classe controller che si occupa del passaggio di un oggetto DocumentFilter allo use case GetDocumentsUseCase a partire da una stringa che rappresenta il filtro della ricerca;
+    \item \label{GetDocumentsUseCase}\textbf{GetDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per ricercare dei documenti;
+    \item \label{GetDocumentsFacadeService}\textbf{GetDocumentsFacadeService}: classe service che implementa lo use case GetDocumentsUseCase.
+    \item \label{GetDocumentsMetadata}\textbf{GetDocumentsMetadata}: classe che si occupa di ricavare i metadati di una lista di documenti nella porta esterna GetDocumentsMetadataPort diretta verso il sistema di archiviazione documenti a partire da un filtro di ricerca;
+    \item \label{GetDocumentsStatus}\textbf{GetDocumentsStatus}: classe che si occupa di inoltrare la richiesta di recuperare gli status di una lista di documenti nella porta esterna GetDocumentsStatusPort diretta verso il vector store;
+    \item \label{GetDocumentsMetadataPort}\textbf{GetDocumentsMetadataPort}: interfaccia che rappresenta la porta in uscita per ricavare i metadati di una lista di documenti dal sistema di archiviazione a partire da un filtro di ricerca;
+    \item \label{GetDocumentsStatusVectorStore}\textbf{GetDocumentsStatusVectorStore}: classe adapter che implementa la porta GetDocumentsStatusPort, adattando la chiamata di GetDocumentsStatus a VectorStoreManager;
+    \item \label{GetDocumentsListAWSS3}\textbf{GetDocumentsListAWSS3}: classe adapter che implementa la porta GetDocumentsMetadataPort, adattando la chiamata di GetDocumentsMetadata a AWSS3Manager;
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \label{AWSDocumentMetadata}\textbf{AWSDocumentMetadata}: classe che rappresenta i metadati di un documento ricavato da AWS;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager}.
+\end{itemize}
+
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo
     % diagramma ER del db

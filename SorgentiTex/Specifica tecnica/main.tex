@@ -1767,5 +1767,178 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \subsubsubsection{PostgresORM}
     Vedi \vedi{PostgresORMDettaglio}.
     
-    
+\subsection{DeleteDocuments}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{DeleteDocumentsController}
+\label{DeleteDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: DeleteDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che si occupa di trasformare la lista di stringhe in lista di DocumentId e inoltrare la richiesta di eliminazione dei documenti a DeleteDocumentsUseCase.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsUseCase}
+\label{DeleteDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per eliminare una lista di documenti a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsService}
+\label{DeleteDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{deleteDocuments: DeleteDocuments};
+        \item \code{deleteDocumentsEmbeddings: DeleteDocumentsEmbeddings}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteDocumentsUseCase per eliminare una lista di documenti e i loro embeddings a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocuments}
+\label{DeleteDocumentsDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DeleteDocumentsPort}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsEmbeddings}
+\label{DeleteDocumentsEmbeddingsDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DeleteEmbeddingsPort}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocumentsEmbeddings(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo per eliminare gli embeddings di una lista di documenti tramite outPort dal vector store a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsPort}
+\label{DeleteDocumentsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per eliminare una lista di documenti dal sistema di embeddings a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteEmbeddingsPort}
+\label{DeleteEmbeddingsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocumentsEmbeddings(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per eliminare gli embeddings di una lista di documenti dal vector store a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentOperationResponse}
+\label{DocumentOperationResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentId: DocumentId};
+        \item \code{status: boolean};
+        \item \code{message: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsAWSS3}
+\label{DeleteDocumentsAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item awsS3Manager: AWSS3Manager.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteDocumentsPort per eliminare una lista di documenti da AWS S3 a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AWSS3Manager}
+\label{AWSS3ManagerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{boto3: boto3.session.Session};
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentById(documentId:string): AWSDocument}\\
+        Metodo per ottenere un AWSDocument a partire da una stringa corrispondente al documentId del documento tramite boto3;
+        \item \code{deleteDocuments(documentsId:List<string>):}\\ \code{ List<AWSDocumentOperationResponse>}\\
+        Metodo per eliminare un documento a partire da una stringa corrispondente al documentId del documento tramite boto3, ritornando un AWSDocumentOperationResponse;
+        \item \code{getDocumentsMetadata(documentFilter:string): List<AWSDocumentMetadata>}\\
+        Metodo per ottenere una lista di AWSDocumentMetaData a partire da una eventuale filtro stringa tramite boto3; 
+        \item \code{uploadDocuments(documents:List<AWSDocument>, forceUpload:boolean):}\\ \code{ List<AWSDocumentOperationResponse>} \\ 
+        Metodo per caricare una lista di AWSDocument tramite boto3, con flag forceUpload per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando una lista di AWSDocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AWSDocumentOperationResponse}
+\label{AWSDocumentOperationResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentId: string};
+        \item \code{status: boolean};
+        \item \code{message: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteEmbeddingsVectorStore}
+\label{DeleteEmbeddingsVectorStoreDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item vectorStoreManager: VectorStoreManager.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocumentsEmbeddings(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteEmbeddingsPort per eliminare gli embeddings di una lista di documenti dal vector store a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentOperationResponse}
+Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
+
 \end{document}

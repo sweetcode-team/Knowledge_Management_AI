@@ -1269,4 +1269,285 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     %        - metodi (firma, descrizione)
     % - interfacce implementate
 
+    \subsection{AskChatbot}
+    \subsubsection{Diagramma delle classi}
+    \subsubsection{Lista delle sottocomponenti}
+    
+    \subsubsubsection{AskChatbotController}
+    \label{AskChatbotControllerDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{useCase: AskChatbotUseCase}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{askChatbot(message:string, ChatId:int): Message}\\
+            Metodo che ritorna un Message rappresentante la risposta da parte del chatbot ad un messaggio dell'utente sotto forma di string, appartenente alla chat identificata dall'intero chatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat;
+            \item \code{toMessageFrom(message: string): Message}\\
+            Metodo che trasforma una stringa un Message;
+            \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+            Metodo che trasforma un intero in un ChatId.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ChatId}
+    \label{ChatIdDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{id: int}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{Message}
+    \label{MessageDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{content: string};
+            \item \code{timestamp: timestamp};
+            \item \code{relevantDocument: List<string>};
+            \item \code{sender: MessageSender}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{MessageSender (Enumeration)}
+    \label{MessageSenderDettaglio}
+    \begin{itemize}
+        \item \textbf{Valori}:
+        \begin{itemize}
+            \item \code{Chatbot};
+            \item \code{User};
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{AskChatbotUseCase}
+    \label{AskChatbotUseCaseDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
+            Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{AskChatbotService}
+    \label{AskChatbotServiceDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{outPort: GetChatMessagesPort}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
+            Implementazione del metodo astratto di AskChatbotUseCase per ottenere tramite outPort una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{AskChatbotPort}
+    \label{AskChatbotPortDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{askChatbot(message: Message, chatId: ChatId): Message}\\
+            Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{AskChatbotLangchain}
+    \label{AskChatbotLangchainDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{chatbot: ChatbotLangchain};
+            \item \code{chatHistoryManager: ChatHistoryManager};
+            \item \code{postgresORM: PostgresORM}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
+            Implementazione del metodo astratto di AskChatbotPort per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat tramite postgresORM;
+            \item \code{toMessageFrom(message: BaseMessage): Message}\\
+            Metodo per ottenere un Message a partire da un BaseMessage;
+            \item \code{toBaseMessageFrom(message: Message): BaseMessage}\\
+            Metodo per ottenere un BaseMessage a partire da un Message;
+            \item \code{createChat(): ChatId}\\
+            Metodo per creare una chat tramite postgresORM, ritornando il suo ChatId;
+            \item \code{createMemory(chatId:ChatId): langchain.Memory}\\
+            Metodo per ottenere una langchain.Memory a partire da un ChatId tramite chatHistoryManager.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ChatbotLangchain}
+    \label{ChatbotLangchainDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{chain: langchain.Chain}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{ask(userMessage:BaseMessage, memory:langchain.Memory): langchain.BaseMessage}\\
+            Metodo per ottenere una risposta di tipo langchain.BaseMessage dal chatbot tramite chain ad un userMessage di tipo BaseMessage, richiedendo inoltre il contesto della chat attraverso la memory di tipo langchain.Memory.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{LangchainLLM}
+    \label{LangchainLLMDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{llm: langchain.BaseLanguageModel}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{OpenAILLM}
+    \label{OpenAILLMDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{llm: langchain.BaseLanguageModel}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{HugginFaceLLM}
+    \label{HugginFaceLLMDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{llm: langchain.BaseLanguageModel}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{LangchainVectorStore}
+    \label{LangchainVectorStoreDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{vectorStore: langchain.VectorStore}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getRetriever(): BaseRetriever}\\
+            Metodo astratto per ottenere un langchain.BaseRetriever.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{PineconeVectorStore}
+    \label{PineconeVectorStoreDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{vectorStore: langchain.VectorStore}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getRetriever(): BaseRetriever}\\
+            Implementazione del metodo astratto di LangchainVectorStore per ottenere un langchain.BaseRetriever da un vector store Pinecone.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ChromaDBVectorStore}
+    \label{ChromaDBVectorStoreDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{vectorStore: langchain.VectorStore}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getRetriever(): BaseRetriever}\\
+            Implementazione del metodo astratto di LangchainVectorStore per ottenere un langchain.BaseRetriever da un vector store ChromaDB.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{LangchainEmbeddingModel}
+    \label{LangchainEmbeddingModelDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{embeddingModel: Embeddings}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{embedDocument(documentChunks: List<string>): List<List<float>>}\\
+            Metodo astratto per generare gli embeddings di un insieme di chunks sotto forma di lista di stringhe: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{OpenAIEmbeddingModel}
+    \label{OpenAIEmbeddingModelDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
+            Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings OpenAI: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{HuggingFaceEmbeddingModel}
+    \label{HuggingFaceEmbeddingModelDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
+            Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings di HuggingFace: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ChatHistoryManager}
+    \label{ChatHistoryManagerDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getChatHistory(chatId:ChatId): langchain.PostgresChatMessageHistory}\\
+            Metodo per ottenere una langchain.PostgresChatMessageHistory rappresentante il contesto di una chat identificata da un ChatId;
+            \item \code{saveMessage(message: langchain.BaseMessage, memory:langchain.Memory): void}\\
+            Metodo per salvare un messaggio di tipo lanchain.BaseMessage in una memory di tipo lanchain.Memory rappresentante il contesto di una chat. 
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{PostgresORM}
+    \label{PostgresORMDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{getChats(chatFilter:string): List<PostgresChatPreview>}\\
+            Metodo per ottenere una lista di PostgresChatPreview dal database Postgres utilizzato per la storicizzazione delle chat, eventualmente filtrando la ricerca attraverso chatFilter;
+            \item \code{getChatMessages(chatId:int): PostgresChat}\\
+            Metodo per ottenere una PostgresChat dal database Postgres utilizzato per la storicizzazione delle chat a partire da un intero rappresentante l'id della chat;
+            \item \code{renameChat(chatId:int, title:string): boolean}\\
+            Metodo per rinominare con title una chat identificata tramite chatId sul database Postgres utilizzato per la storicizzazione delle chat. L'esito dell'operazione viene comunicato ritornando un boolean;  
+            \item \code{deleteChats(chatId:int): boolean}\\
+            Metodo per eliminare una PostgresChat sul database Postgres utilizzato per la storicizazzione delle chat. L'esito dell'operazione viene comunicato ritornando un boolean;        
+            \item \code{createChat(): PostgresChat}\\
+            Metodo per creare una nuova PostgresChat sul database Postgres utilizzato per la storicizzazione della chat. L'istanza della chat creata viene ritornata dal metodo.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{PostgresChat}
+    \label{PostgresChatDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{id: int}
+            \item \code{title: string};
+            \item \code{timestamp: timestamp};
+            \item \code{messages: List<PostgresMessage>}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{PostgresMessage}
+    \label{PostgresMessageDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{content: string};
+            \item \code{timestamp: timestamp};
+            \item \code{relevantDocument: List<string>};
+            \item \code{sender: string}.
+        \end{itemize}
+    \end{itemize}
 \end{document}

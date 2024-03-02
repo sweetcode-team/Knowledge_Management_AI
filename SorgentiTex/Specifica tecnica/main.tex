@@ -2179,5 +2179,83 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
+\subsection{EnableDocuments}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{EnableDocumentsController}
+\label{EnableDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: EnableDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare la riabilitazione dei documenti a EnableDocumentsUseCase;
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EnableDocumentsUseCase}
+\label{EnableDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per riabilitare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EnableDocumentsService}
+\label{EnableDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: EnableDocumentsPort}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EnableDocumentsUseCase per riabilitare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EnableDocumentsPort}
+\label{EnableDocumentsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per riabilitare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EnableDocumentsVectorStore}
+\label{EnableDocumentsVectorStoreDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{vectorStoreManager: VectorStoreManager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EnableDocumentsPort per riabilitare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentOperationResponse}
+Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
 
 \end{document}

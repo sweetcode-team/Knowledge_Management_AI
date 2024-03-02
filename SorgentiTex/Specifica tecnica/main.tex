@@ -1184,6 +1184,68 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
 \end{itemize}
 
+\subsubsection{ViewDocumentContent}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di recuperare tutte le informazioni di un documento, compreso il suo contenuto.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /viewDocumentContent;
+    \item \textbf{Metodo}: GET;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documentId": una stringa che rappresenta l'id del documento da recuperare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili ViewDocumentContent}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili ViewDocumentContent (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Documento recuperato con successo. & - \\
+\hline
+500 & Recupero documento fallito. & Errore nel recupero del documento.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item TODO.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    \item \textbf{Status}: vedi \vedi{Status};
+    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
+    \item \textbf{Document}: vedi \vedi{Document};
+    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument};
+    \item \label{GetDocumentController}\textbf{GetDocumentController}: classe controller che si occupa del passaggio di un DocumentId allo use case GetDocumentUseCase a partire da una stringa che rappresenta l'id del documento da recuperare;
+    \item \label{GetDocumentUseCase}\textbf{GetDocumentUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per recuperare un documento;
+    \item \label{GetDocumentFacadeService}\textbf{GetDocumentFacadeService}: classe service che implementa lo use case GetDocumentUseCase;
+    \item \textbf{GetDocuments}: vedi \vedi{GetDocuments};
+    \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
+    \item \textbf{GetDocumentsPort}: vedi \vedi{GetDocumentsPort};
+    \item \label{GetDocumentsStatusPort}\textbf{GetDocumentsStatusPort}: interfaccia che rappresenta la porta in uscita per recuperare gli status di una lista di documenti dal vector store;
+    \item \textbf{GetDocumentsAWSS3}: vedi \vedi{GetDocumentsAWSS3};
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
+    \item \textbf{GetDocumentsStatusVectorStore}: vedi \vedi{GetDocumentsStatusVectorStore};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+\end{itemize}
+
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

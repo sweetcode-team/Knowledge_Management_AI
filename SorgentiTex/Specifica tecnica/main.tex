@@ -753,6 +753,56 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \end{itemize}
 
 
+\subsubsection{EnableDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di riabilitare gli embeddings dei documenti indicati dall'utente.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /enableDocuments;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da riabilitare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili EnableDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili EnableDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Riabilitazione avvenuta con successo. & - \\
+\hline
+500 & Riabilitazione fallita. & Errore nella riabilitazione dei documenti.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.25;
+    \item RF.O.26.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{EnableDocumentsController}\textbf{EnableDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case EnableDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti da riabilitare;
+    \item \label{EnableDocumentsUseCase}\textbf{EnableDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la riabilitazione dei documenti;
+    \item \label{EnableDocumentsService}\textbf{EnableDocumentsService}: classe service che implementa lo use case EnableDocumentsUseCase;
+    \item \label{EnableDocumentsPort}\textbf{EnableDocumentsPort}: interfaccia che rappresenta la porta in uscita per effettuare la riabilitazione dei documenti nel vector store;
+    \item \label{EnableDocumentsVectorStore}\textbf{EnableDocumentsVectorStore}: classe adapter che implementa la porta EnableDocumentsPort, adattando la chiamata di EnableDocumentsService a VectorStoreManager;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+\end{itemize}
+
+
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo
     % diagramma ER del db

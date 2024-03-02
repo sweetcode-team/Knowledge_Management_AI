@@ -1683,5 +1683,89 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
     
     
-
+    \subsection{DeleteChats}
+    \subsubsection{Diagramma delle classi}
+    \subsubsection{Lista delle sottocomponenti}
+    
+    \subsubsubsection{ChatId}
+    Vedi \vedi{ChatIdDettaglio}.
+    
+    \subsubsubsection{DeleteChatsController}
+    \label{DeleteChatsControllerDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{useCase: DeleteChatsUseCase}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{deleteChats(chatIdList:List<int>):}\\ \code {List<ChatOperationResponse>}\\
+            Metodo che elimina tramite useCase una lista di chat identificate da una lista di interi, ritornando una lista di ChatOperationResponse;
+            \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+            Metodo che crea e ritorna un ChatId a partire da un intero. 
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{DeleteChatsUseCase}
+    \label{DeleteChatsUseCaseDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
+            Metodo astratto per che eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{DeleteChatsService}
+    \label{DeleteChatsServiceDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{outPort: DeleteChatsPort}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+            Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{DeleteChatsPort}
+    \label{DeleteChatsPortDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+            Metodo astratto per per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{DeleteChatsPostgres}
+    \label{DeleteChatsPostgresDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{postgresORM: PostgresORM}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+            Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{ChatOperationResponse}
+    \label{ChatOperationResponseDettaglio}
+    \begin{itemize}
+        \item \textbf{Attributi}:
+        \begin{itemize}
+            \item \code{chatId: ChatId};
+            \item \code{response: boolean}.
+        \end{itemize}
+    \end{itemize}
+    
+    \subsubsubsection{PostgresORM}
+    Vedi \vedi{PostgresORMDettaglio}.
+    
+    
 \end{document}

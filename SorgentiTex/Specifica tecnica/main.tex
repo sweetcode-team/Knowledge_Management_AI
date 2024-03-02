@@ -2787,4 +2787,260 @@ Vedi \vedi{ChatIdDettaglio}.
 Vedi \vedi{PostgresORMDettaglio}.
 
 
+\subsection{UploadDocuments}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{NewDocument}
+\label{NewDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentId: string};
+        \item \code{type: string};
+        \item \code{size: float}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{Document}
+\label{DocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{plainDocument: PlainDocument};
+        \item \code{status: DocumentStatus}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PlainDocument}
+\label{PlainDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{metadata: DocumentMetadata};
+        \item \code{content: DocumentContent}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentMetadata}
+Vedi \vedi{DocumentMetadataDettaglio}.
+
+\subsubsubsection{DocumentType (Enumeration)}
+Vedi \vedi{DocumentTypeDettaglio}.
+
+\subsubsubsection{DocumentStatus}
+Vedi \vedi{DocumentStatusDettaglio}.
+
+\subsubsubsection{Status (Enumeration)}
+Vedi \vedi{StatusDettaglio}.
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
+\subsubsubsection{DocumentContent}
+\label{DocumentContentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{content: bytes}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{UploadDocumentsController}
+\label{UploadDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: UploadDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(newDocuments:List<NewDocument>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che effettua l'upload di una lista di NewDocument tramite useCase, ritornando una lista di DocumentOperationResponse;
+        \item \code{toDocument(document:NewDocument): Document}\\
+        Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
+    \end{itemize}
+\end{itemize}
+
+\begin{comment} % TODO: capire cosa fare con substitute (route a parte o unirla a upload)
+\subsubsubsection{SubstituteDocumentController}
+\label{SubstituteDocumentControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: UploadDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{substituteDocuments(newDocumentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che effettua la sostituzione di una lista di NewDocument tramite useCase, ritornando una lista di DocumentOperationResponse;
+        \item \code{getTempDocument(documentId:string): Document}\\
+        Metodo che recupera un documento caricato precedentemente dall'utente, a partire dal suo id, trasformandolo in oggetto Document della business logic.
+    \end{itemize}
+\end{itemize}
+\end{comment}
+
+\subsubsubsection{UploadDocumentsUseCase}
+\label{UploadDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
+        Metodo astratto per caricare una lista di Document nel sistema, con possibilità di forzare un caricamento di un documento già presente tramite una flag, ritornando una lista di DocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{UploadDocumentsService}
+\label{UploadDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentUploader: DocumentUploader};
+        \item \code{embeddingsUploader: EmbeddingsUploader}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di UploadDocumentsUseCase, per il caricamento di una lista di Documents tramite documentUploader nel sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, occupandosi inoltre della generazione e caricamento dei relativi embeddings dei documenti tramite embeddingsUploader in un vector store, ritornando una lista di DocumentOperationResponse che tenga conto di entrambe le risposte delle due sotto-operazioni precedentemente descritte ed eseguite.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentUploader}
+\label{DocumentUploaderDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DocumentUploaderPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\ 
+        Metodo per effettuare il caricamento di una lista di Document tramite outPort sul sistema di archiviazione, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsUploader}
+Vedi \vedi{EmbeddingsUploaderDettaglio}.
+
+\subsubsubsection{DocumentUploaderPort}
+\label{DocumentUploaderPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per effettuare il caricamento di una lista di Document in un sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsUploaderPort}
+Vedi \vedi{EmbeddingsUploaderPortDettaglio}.
+
+\subsubsubsection{DocumentUploaderAWSS3}
+\label{DocumentUploaderAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{awsS3Manager: AWSS3Manager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DocumentUploaderPort per il caricamento di una lista di Document nel sistema di archiviazione tramite awsS3Manager, con flag per  forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse;
+        \item \code{toAWSDocumentFrom(document:Document): AWSDocument}\\
+        Metodo che trasforma un Document in un AWSDocument.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AWSDocument}
+Vedi \vedi{AWSDocumentDettaglio}.
+
+\subsubsubsection{AWSDocumentOperationResponse}
+Vedi \vedi{AWSDocumentOperationResponseDettaglio}.
+
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+\subsubsubsection{EmbeddingsUploaderFacadeLangchain}
+\label{EmbeddingsUploaderFacadeLangchainDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentToText: DocumentToText};
+        \item \code{chunkerizer: Chunkerizer};
+        \item \code{embeddingsCreator: EmbeddingsCreator};
+        \item \code{embeddingsUploaderVectorStore: EmbeddingsUploaderVectorStore}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadEmbeddings(documents:List<Document>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EmbeddingsUploaderPort per la generazione e il caricamento di embeddings di una lista di Document nel vector store tramite l'utilizzo di un pattern facade, ritornando infine una lista di DocumentOperationResponse.\\
+        Le operazioni all'interno della facade vengono svolte nel seguente ordine:
+        \begin{enumerate}
+            \item Estrazione del testo dai documenti tramite documentToText;
+            \item Suddivisione in chunks del testo estratto dai documenti tramite chunkerizer;
+            \item Generazione degli embeddings a partire dai chunks tramite embeddingsCreator;
+            \item Caricamento degli embeddings creati nel vector store tramite embeddingsUploaderVectorStore.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
+
+\subsubsubsection{LangchainDocument}
+Vedi \vedi{LangchainDocumentDettaglio}.
+
+\subsubsubsection{DocumentToText}
+Vedi \vedi{DocumentToTextDettaglio}.
+
+\subsubsubsection{TextExtractor}
+Vedi \vedi{TextExtractorDettaglio}.
+
+\subsubsubsection{PDFTextExtractor}
+Vedi \vedi{PDFTextExtractorDettaglio}.
+
+\subsubsubsection{DOCXTextExtractor}
+Vedi \vedi{DOCXTextExtractorDettaglio}.
+
+\subsubsubsection{Chunkerizer}
+Vedi \vedi{ChunkerizerDettaglio}.
+
+\subsubsubsection{EmbeddingsCreator}
+Vedi \vedi{EmbeddingsCreatorDettaglio}.
+
+\subsubsubsection{LangchainEmbeddingModel}
+Vedi \vedi {LangchainEmbeddingModelDettaglio}.
+
+\subsubsubsection{OpenAIEmbeddingModel}
+Vedi \vedi{OpenAIEmbeddingModelDettaglio}.
+
+\subsubsubsection{HuggingFaceEmbeddingModel}
+Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
+
+\subsubsubsection{EmbeddingsUploaderVectorStore}
+Vedi \vedi{EmbeddingsUploaderVectorStoreDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentStatusResponse}
+\label{VectorStoreDocumentStatusResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: string};
+        \item \code{documentStatus: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentOperationResponse}
+Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
+
 \end{document}

@@ -1940,5 +1940,244 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 \subsubsubsection{VectorStoreDocumentOperationResponse}
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
+\subsection{EmbedDocuments}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{EmbedDocumentsController}
+\label{EmbedDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: EmbedDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare la generazione degli embeddings dei documenti a EmbedDocumentsUseCase;
+        \item \code{toDocument(document:NewDocument): Document}\\
+        Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbedDocumentsUseCase}
+\label{EmbedDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per generare gli embeddings di una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbedDocumentsService}
+\label{EmbedDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{getDocuments: GetDocuments};
+        \item \code{embeddingsUploader: EmbeddingsUploader}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EmbedDocumentsUseCase, per il recupero dei documenti e il loro contenuto attraverso getDocuments, e la generazione degli embeddings della lista dei documenti recuperati tramite embeddingsUploader. Ritorna una lista di DocumentOperationResponse, indicando per ogni documento l'esito della generazione degli embeddings.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocuments}
+\label{GetDocumentsDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetDocumentsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocuments(documentIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
+        Metodo per recuperare una lista di Document tramite outPort dal sistema di archiviazione documenti a partire da una lista di id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsUploader}
+\label{EmbeddingsUploaderDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: EmbeddingsUploaderPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadEmbeddings(documents:List<Document>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo per effettuare la generazione e il caricamento degli embeddings di una lista di Document tramite outPort in un vector store, ritornando infine una lista di DocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsPort}
+\label{GetDocumentsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocuments(documentIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
+        Metodo astratto per recuperare una lista di documenti dal sistema di archiviazione a partire dal loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsUploaderPort}
+\label{EmbeddingsUploaderPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadEmbeddings(documents:List<Document>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per effettuare la generazione e il caricamento degli embeddings di una lista di Document in un vector store.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsAWSS3}
+\label{GetDocumentsAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{awsS3Manager: AWSS3Manager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocuments(documentIds:List<DocumentId>): List<PlainDocument>}\\
+        Implementazione del metodo astratto di GetDocumentsPort per recuperare una lista di documenti dal sistema di archiviazione a partire dal loro id;
+        \item \code{toPlainDocumentFrom(document:AWSDocument): PlainDocument}\\
+        Metodo che trasforma un AWSDocument in un Document della business logic.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+\subsubsubsection{AWSDocument}
+\label{AWSDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: string};
+        \item \code{content: bytes};
+        \item \code{type: string};
+        \item \code{size: float};
+        \item \code{uploadTime: timestamp}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsUploaderPort}
+Vedi \vedi{EmbeddingsUploaderPortDettaglio}.
+
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
+
+\subsubsubsection{LangchainDocument}
+\label{LangchainDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentId: string};
+        \item \code{text: List<langchain.Document>};
+        \item \code{embeddings: List<List<float>>}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentToText}
+\label{DocumentToTextDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:Document): List<langchain.Document>}\\
+        Metodo per estrarre il testo sotto forma di langchain.Document a partire da un Document;
+        \item \code{getTextExtractorFrom(documentType:string): TextExtractor}\\
+        Metodo per ottenere un TextExtractor a partire dal tipo del documento, indicato sotto forma di stringa.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{TextExtractor}
+\label{TextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Metodo astratto per estrarre il testo sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PDFTextExtractor}
+\label{PDFTextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un PDF sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DOCXTextExtractor}
+\label{DOCXTextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un DOCX sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{Chunkerizer}
+\label{ChunkerizerDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{createChunks(documents:List<langchain.Document>):}\\ \code{List<langchain.Document>}\\
+        Metodo per suddividere in chunks una lista di langchain.Document, ritornandoli attraverso una lista di langchain.Document.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsCreator}
+\label{EmbeddingsCreatorDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocument(documents:List<langchain.Document>): List<List<float>>}\\
+        Metodo per generare una lista di embeddings a partire da una lista di langchain.Document: per ogni chunk di langchain.Document presente nella lista viene generata una lista di float che rappresenta gli embeddings corrispondenti.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{LangchainEmbeddingModel}
+Vedi \vedi {LangchainEmbeddingModelDettaglio}.
+
+\subsubsubsection{OpenAIEmbeddingModel}
+Vedi \vedi{OpenAIEmbeddingModelDettaglio}.
+
+\subsubsubsection{HuggingFaceEmbeddingModel}
+Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
+
+\subsubsubsection{EmbeddingsUploaderVectorStore}
+\label{EmbeddingsUploaderVectorStoreDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{vectorStoreManager: VectorStoreManager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadEmbeddings(documents:List<LangchainDocument>):}\\\code{List<VectorStoreDocumentOperationResponse>}\\
+        Metodo per effettuare l'upload di una lista di LangchainDocument nel vector store tramite vectorStoreManager, ritornando una lista di VectorStoreDocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentOperationResponse}
+Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
 
 \end{document}

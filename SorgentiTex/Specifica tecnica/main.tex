@@ -686,6 +686,72 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
     \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
 \end{itemize}
 
+\subsubsection{EmbedDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di generare e memorizzare gli embeddings dei documenti indicati dall'utente.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /embedDocuments;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti di cui generare gli embeddings.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili EmbedDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili EmbedDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Generazione embeddings avvenuta con successo. & - \\
+\hline
+500 & Generazione embeddings fallita. & Errore nella generazione degli embeddings.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item TODO.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{EmbedDocumentsController}\textbf{EmbedDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case EmbedDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti di cui generare gli embeddings;
+    \item \label{EmbedDocumentsUseCase}\textbf{EmbedDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per generare gli embeddings dei documenti;
+    \item \label{EmbedDocumentsService}\textbf{EmbedDocumentsService}: classe service che implementa lo use case EmbedDocumentsUseCase;
+    \item \label{GetDocuments}\textbf{GetDocuments}: classe che si occupa di inoltrare la richiesta di recuperare i documenti nella porta esterna diretta verso il sistema di archiviazione;
+    \item \label{EmbeddingsUploader}\textbf{EmbeddingsUploader}: classe che si occupa di effettuare la chiamata dell'upload degli embeddings nella porta esterna diretta verso il vector store;
+    \item \label{GetDocumentsPort}\textbf{GetDocumentsPort}: interfaccia che rappresenta la porta in uscita per recuperare i documenti dal sistema di archiviazione;
+    \item \label{EmbeddingsUploaderPort}\textbf{EmbeddingsUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload degli embeddings verso i vector store;
+    \item \label{GetDocumentsAWSS3}\textbf{GetDocumentsAWSS3}: classe adapter che implementa la porta GetDocumentsPort, adattando la chiamata di GetDocuments a AWSS3Manager;
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \label{AWSDocument}\textbf{AWSDocument}: classe che rappresenta i documenti gestibili da AWSS3Manager;
+    \item \label{DocumentOperationResponse}\textbf{DocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un documento;
+    \item \label{LangchainDocument}\textbf{LangchainDocument}: classe che rappresenta un documento e i suoi embeddings;
+    \item \label{EmbeddingsUploaderFacadeLangchain}\textbf{EmbeddingsUploaderFacadeLangchain}: classe adapter che implementa la porta EmbeddingsUploaderPort, adattando la chiamata di EmbeddingsUploader alla sequenza di operazioni necessarie per il calcolo degli embeddings e il loro upload nel vector store;
+    \item \label{DocumentToText}\textbf{DocumentToText}: classe che si occupa di convertire documenti;
+    \item \label{TextExtractor}\textbf{TextExtractor}: interfaccia che espone il metodo astratto di estrazione di testo da un documento;
+    \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti PDF;
+    \item \label{DOCXTextExtractor}\textbf{DOCXTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti docx;
+    \item \label{Chunkerizer}\textbf{Chunkerizer}: classe che crea chunks a partire da testo;
+    \item \label{EmbeddingsCreator}\textbf{EmbeddingsCreator}: classe che dialoga con il modello di embeddings per creare gli embeddings a partire dai chunk forniti in input;
+    \item \textbf{LangchainEmbeddingModel}: vedi \vedi{LangchainEmbeddingModel};
+    \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
+    \item \textbf{HuggingFaceEmbeddingModel}: classe che implementa LangchainEmbeddingModel offrendo la possibilità di creare embeddings attraverso un embedding model di HuggingFace;
+    \item \label{EmbeddingsUploaderVectorStore}\textbf{EmbeddingsUploaderVectorStore}: classe che offre un metodo per eseguire l'upload degli embeddings nel vector store;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+\end{itemize}
+
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

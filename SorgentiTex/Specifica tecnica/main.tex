@@ -2712,4 +2712,79 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
+\subsection{RenameChat}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{RenameChatController}
+\label{RenameChatControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: DeleteChatsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:int, title:string): boolean}\\
+        Metodo che rinomina tramite useCase una chat identificate da un intero, ritornando un boolean rappresentante l'esito dell'operazione;
+        \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+        Metodo che crea e ritorna un ChatId a partire da un intero. 
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RenameChatUseCase}
+\label{RenameChatUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
+        Metodo astratto per che rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RenameChatService}
+\label{RenameChatServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DeleteChatsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
+        Implementazione del metodo astratto di RenameChatUseCase per rinominare con title tramite outPort una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RenameChatPort}
+\label{RenameChatPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
+        Metodo astratto per rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RenameChatPostgres}
+\label{RenameChatPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresORM: PostgresORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
+        Implementazione del metodo astratto di RenameChatPort per rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresORM}
+Vedi \vedi{PostgresORMDettaglio}.
+
+
 \end{document}

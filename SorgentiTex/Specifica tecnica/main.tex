@@ -535,6 +535,55 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     \item \label{PostgresMessage}\textbf{PostgresMessage}: classe di persistence che rappresenta un messaggio.
 \end{itemize}
 
+\subsubsection{ConcealDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di occultare gli embeddings dei documenti indicati dall'utente.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /concealDocuments;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da occultare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili ConcealDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili ConcealDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Occultamento avvenuto con successo. & - \\
+\hline
+500 & Occultamento fallito. & Errore nell'occultamento dei documenti.
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.25;
+    \item RF.O.26.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{ConcealDocumentsController}\textbf{ConcealDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case ConcealDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti da occultare;
+    \item \label{ConcealDocumentsUseCase}\textbf{ConcealDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'occultamento dei documenti;
+    \item \label{ConcealDocumentsService}\textbf{ConcealDocumentsService}: classe service che implementa lo use case ConcealDocumentsUseCase;
+    \item \label{ConcealDocumentsPort}\textbf{ConcealDocumentsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'occultamento dei documenti nel vector store;
+    \item \label{ConcealDocumentsVectorStore}\textbf{ConcealDocumentsVectorStore}: classe adapter che implementa la porta ConcealDocumentsPort, adattando la chiamata di ConcealDocumentsService a VectorStoreManager;
+    \item \label{VectorStoreManager}\textbf{VectorStoreManager}: interfaccia che rende disponibile metodi per dialogare con i vector store;
+    \item \label{VectorStorePineconeManager}\textbf{VectorStorePineconeManager}: classe che implementa VectorStoreManager, offrendo la possibilità di dialogare con il vector store Pinecone;
+    \item \label{VectorStoreChromaDBManager}\textbf{VectorStoreChromaDBManager}: classe che implementa VectorStoreManager,  offrendo la possibilità di dialogare con il vector store Chroma;
+    \item \label{VectorStoreDocumentOperationResponse}\textbf{VectorStoreDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un vector store riguardo un documento.
+\end{itemize}
+
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

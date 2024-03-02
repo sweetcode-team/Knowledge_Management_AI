@@ -535,6 +535,47 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     \item \label{PostgresMessage}\textbf{PostgresMessage}: classe di persistence che rappresenta un messaggio.
 \end{itemize}
 
+\begin{comment}
+\subsubsection{ChangeConfiguration} %TODO
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di cambiare la configurazione del sistema.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /changeConfiguration;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "LLMModel": stringa che rappresenta il modello LLM da configurare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili ChangeConfiguration}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili ChangeConfiguration (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Configurazione avvenuta con successo. & - \\
+\hline
+500 & Configurazione fallita. & Errore nella configurazione. \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item TODO.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{comment}
+
 \subsubsection{ConcealDocuments}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di occultare gli embeddings dei documenti indicati dall'utente.
@@ -856,6 +897,60 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
     \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage};
 \end{itemize}
 
+\subsubsection{GetChats}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di ottenere una lista di preview di chat, eventualmente filtrando la ricerca.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /getChats;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "filter": filtro da applicare per la ricerca tra le chat.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili GetChats}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili GetChats (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Ricerca avvenuta con successo. & - \\
+\hline
+500 & Ricerca fallita. & Errore nella ricerca della chat. \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.30;
+        \item RF.O.30.1;
+        \item RF.O.30.1.1;
+        \item RF.O.30.1.2;
+        \item RF.O.30.1.3;
+        \item RF.O.30.1.4;
+        \item RF.O.38.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{GetChatsController}\textbf{GetChatsController}: classe controller che si occupa del richiedere le preview delle chat allo use case GetChatsUseCase, con eventuale passaggio di un filtro per eseguire una ricerca;
+    \item \label{ChatFilter}\textbf{ChatFilter}: classe di business che rappresenta il filtro utilizzato nella ricerca;
+    \item \label{GetChatsUseCase}\textbf{GetChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere le chat, eventualmente filtrate;
+    \item \label{GetChatsService}\textbf{GetChatsService}: classe service che implementa lo use case GetChatsUseCase;
+    \item \label{ChatPreview}\textbf{ChatPreview}: classe di business che rappresenta la preview di una chat;
+    \item \textbf{ChatInfo}: vedi \vedi{ChatInfo};
+    \item \textbf{ChatId}: vedi \vedi{ChatId};
+    \item \label{GetChatsPort}\textbf{GetChatsPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta delle chat eventualmente filtrate verso il database per la storicizzazione delle chat;
+    \item \label{GetChatsPostgres}\textbf{GetChatsPostgres}: classe che implementa la porta GetChatsPort, adattando la chiamata di GetChatsService a PostgresORM;
+    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}; 
+    \item \label{PostgresChatPreview}\textbf{PostgresChatPreview}: classe di persistence che rappresenta la preview di una chat.
+\end{itemize}
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

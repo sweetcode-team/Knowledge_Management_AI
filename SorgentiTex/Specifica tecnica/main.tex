@@ -1049,6 +1049,57 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager}.
 \end{itemize}
 
+
+\subsubsection{RenameChat}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di rinominare una chat, aggiornando di conseguenza il database utilizzato per la storicizzazione delle chat.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /renameChat;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "chatI": l'Id utilizzato per identificare univocamente una chat;
+        \item "title": nuovo titolo da assegnare alla chat.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili RenameChat}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili RenameChat (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+500 & Rinomina fallita. & Errore nella rinomina della chat. \\
+\hline
+500 & Rinomina fallita. & Errore nella rinomina della chat: titolo vuoto.\\
+\hline
+500 & Rinomina fallita. & Errore nella rinomina della chat: titolo già utilizzato per un'altra chat.\\ 
+%RICCARDO chiedo
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.35
+        \item RF.O.36  %e non 36.1
+        \item RF.O.37  %uguale
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{RenameChatController}\textbf{RenameChatController}: classe controller che si occupa del passaggio allo use case CreateChatUseCase di un intero rappresentante l'id di una chat e un titolo per eseguire la sua rinomina;
+    \item \label{RenameChatUseCase}\textbf{RenameChatUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la rinomina di una chat;
+    \item \label{RenameChatService}\textbf{RenameChatService}: classe service che implementa lo use case RenameChatUseCase;
+    \item \label{RenameChatPort}\textbf{RenameChatPort}: interfaccia che rappresenta la porta in uscita per effettuare la rinomina di una chat verso il database per la storicizzazione delle chat;
+    \item \label{RenameChatPostgres}\textbf{RenameChatPostgres}: classe che implementa la porta RenameChatPort, adattando la chiamata di RenameChatService a PostgresORM;
+    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}. 
+\end{itemize}
+
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo
     % diagramma ER del db

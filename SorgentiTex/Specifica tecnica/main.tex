@@ -802,6 +802,60 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
     \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
 \end{itemize}
 
+\subsubsection{GetChatMessages}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di ottenere una chat completa, ovvero che comprende sia le sue informazioni che i suoi messaggi.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /getChatMessages;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "chatId": id della chat da recuperare.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili GetChatMessages}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili GetChatMessages (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Chat recuperata con succcesso. & - \\
+\hline
+500 & Recupero della Chat fallito. & Errore nella recupero della chat. \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.39;
+        \item RF.O.39.1;
+        \item RF.O.39.1.1;
+        \item RF.O.39.1.2.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{GetChatMessagesController}\textbf{GetChatMessagesController}: classe controller che si occupa del richiedere una chat allo use case GetChatMessagesUseCase;
+    \item \textbf{ChatId}: vedi \vedi{ChatId};
+    \item \label{GetChatMessagesUseCase}\textbf{GetChatMessagesUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere una chat;
+    \item \label{GetChatMessagesService}\textbf{GetChatMessagesService}: classe service che implementa lo use case GetChatMessagesUseCase;
+    \item \label{Chat}\textbf{Chat}: classe di business che rappresenta una chat completa;
+    \item \label{ChatInfo}\textbf{ChatInfo}: classe di business che rappresenta le informazioni di una chat;
+    \item \textbf{Message}: vedi \vedi{Message};
+    \item \textbf{MessageSender}: vedi \vedi{MessageSender};
+    \item \label{GetChatMessagesPort}\textbf{GetChatMessagesPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una chat verso il database per la storicizzazione delle chat;
+    \item \label{GetChatMessagesPostgres}\textbf{GetChatMessagesPostgres}: classe che implementa la porta GetChatMessagesPort, adattando la chiamata di GetChatMessagesService a PostgresORM;
+    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM};
+    \item \textbf{PostgresChat}: vedi \vedi{PostgresChat};
+    \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage};
+\end{itemize}
+
 
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo

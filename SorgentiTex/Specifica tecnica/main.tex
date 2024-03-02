@@ -1100,6 +1100,91 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
     \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}. 
 \end{itemize}
 
+
+\subsubsection{UploadDocuments}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di memorizzare i documenti inseriti dall'utente nel sistema di archiviazione e calcolare gli embeddings, memorizzandoli nel vector store configurato.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /uploadDocuments;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item "documents": una lista di documenti.
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili UploadDocuments}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili UploadDocuments (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Upload avvenuto con successo. & - \\
+\hline
+500 & Upload fallito. & Errore nell'upload dei documenti. \\
+\hline
+500 & Upload fallito. & Errore nel calcolo degli embeddings dei documenti. \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.21;
+    \item RF.O.21.1;
+    \item RF.O.21.3;
+    \item RF.O.21.4;
+    \item RF.O.21.6.
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{NewDocument}\textbf{NewDocument}: classe di presentation che contiene le informazioni relative ai documenti appena inseriti dall'utente, presenti nella richiesta HTTP;
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    \item \textbf{Status}: vedi \vedi{Status};
+    \item \label{DocumentContent}\textbf{DocumentContent}: classe di business che rappresenta il contenuto di un documento;
+    \item \label{Document}\textbf{Document}: classe di business che rappresenta i documenti completi;
+    \item \label{PlainDocument}\textbf{PlainDocument}: classe di business che rappresenta i documenti, compresi i metadati e il contenuto;
+    \item \label{UploadDocumentsController}\textbf{UploadDocumentsController}: classe controller che si occupa del passaggio di Documents allo use case UploadDocumentsUseCase a partire da NewDocuments;
+    \item \label{UploadDocumentsUseCase}\textbf{UploadDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'upload dei documenti;
+    \item \label{UploadDocumentsService}\textbf{UploadDocumentsService}: classe service che implementa lo use case UploadDocumentsUseCase;
+    \item \label{DocumentUploader}\textbf{DocumentUploader}: classe che si occupa di effettuare la chiamata dell'upload dei documenti nella porta esterna diretta verso il sistema di archiviazione documenti;
+    \item \textbf{EmbeddingsUploader}: vedi \vedi{EmbeddingsUploader};
+    \item \label{DocumentUploaderPort}\textbf{DocumentUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload dei documenti verso il sistema di archiviazione doucumenti;
+    \item \textbf{EmbeddingsUploaderPort}: vedi \vedi{EmbeddingsUploaderPort};
+    \item \label{DocumentUploaderAWSS3}\textbf{DocumentUploaderAWSS3}: classe adapter che implementa la porta DocumentUploaderPort, adattando la chiamata di DocumentUploader a AWSS3Manager;
+    \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
+    \item \textbf{AWSDocumentOperationResponse}: vedi \vedi{AWSDocumentOperationResponse};
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
+    \item \textbf{EmbeddingsUploaderFacadeLangchain}: vedi \vedi{EmbeddingsUploaderFacadeLangchain};
+    \item \textbf{LangchainDocument}: vedi \vedi{LangchainDocument};
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \textbf{DocumentToText}: vedi \vedi{DocumentToText};
+    \item \textbf{TextExtractor}: vedi \vedi{TextExtractor};
+    \item \textbf{PDFTextExtractor}: vedi \vedi{PDFTextExtractor};
+    \item \textbf{DOCXTextExtractor}: vedi \vedi{DOCXTextExtractor};
+    \item \textbf{Chunkerizer}: vedi \vedi{Chunkerizer};
+    \item \textbf{EmbeddingsCreator}: vedi \vedi{EmbeddingsCreator};
+    \item \textbf{LangchainEmbeddingModel}: vedi \vedi{LangchainEmbeddingModel};
+    \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
+    \item \textbf{HuggingFaceEmbeddingModel}: vedi \vedi{HuggingFaceEmbeddingModel};
+    \item \textbf{EmbeddingsUploaderVectorStore}: vedi \vedi{EmbeddingsUploaderVectorStore};
+    \item \label{VectorStoreDocumentStatusResponse}\textbf{VectorStoreDocumentStatusResponse}: classe che rappresenta la risposta generata da un vector store, contenente lo status del documento richiesto;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+\end{itemize}
+
+
 \subsection{Database} %TODO
     % definisco ogni tabella e la descrivo
     % diagramma ER del db

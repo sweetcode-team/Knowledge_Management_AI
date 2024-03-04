@@ -8,6 +8,7 @@ langchain
 openai
 pypdf
 PyPDF2
+pytest
 python-dotenv
 pinecone-client
 psycopg2-binary

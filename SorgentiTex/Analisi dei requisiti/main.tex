@@ -991,6 +991,60 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole eliminare un documento.
     \end{itemize}
+    \ucimg{elim_docu_sing}{Diagramma \rifuc{elim_doc}}{0.8}
+
+    \subuc{Eliminazione fallita}{elim_fallita}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione del documento sul sistema di archiviazione è fallita;
+        \item \textbf{Postcondizioni}: il sistema ha generato un errore di eliminazione fallita.
+        \item \textbf{Scenario principale}: il sistema genera un errore di eliminazione fallita quando l'eliminazione del documento sul sistema di archiviazione fallisce.
+        \item \textbf{Trigger}: l'eliminazione del documento sul sistema di archiviazione fallisce.
+    \end{itemize}
+    \ucimg{elim_fall_sing}{Diagramma \rifsubuc{elim_doc}{elim_fallita}}{0.8}
+
+    \subsubuc{Visualizzazione errore eliminazione fallita}{vis_elim_fallita}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'eliminazione del documento sul sistema di archiviazione è fallita;
+        \item \textbf{Postcondizioni}: l'utente ha visualizzato un errore di eliminazione fallita.
+        \item \textbf{Scenario principale}: l'utente visualizza un errore di eliminazione fallita quando l'eliminazione del documento sul sistema di archiviazione fallisce.
+        \item \textbf{Trigger}: l'utente vuole visualizzare l'errore di eliminazione fallita.
+    \end{itemize}
+
+    \subuc{Eliminazione embeddings}{elim_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione del documento sul sistema di archiviazione ha avuto successo;
+        \item \textbf{Postcondizioni}: gli embeddings del documento sono stati eliminati.
+        \item \textbf{Scenario principale}: il sistema elimina gli embeddings del documento quando l'eliminazione del documento sul sistema di archiviazione ha avuto successo.
+        \item \textbf{Trigger}: l'eliminazione del documento sul sistema di archiviazione ha avuto successo.
+    \end{itemize}
+
+    \subuc{Documento in stato NotEmbedded}{elim_emb_fallita_notemb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione degli embeddings del documento è fallita;
+        \item \textbf{Postcondizioni}: il documento è stato messo nello stato NotEmbedded.
+        \item \textbf{Scenario principale}: il sistema mette il documento nello stato NotEmbedded quando l'eliminazione degli embeddings del documento fallisce.
+        \item \textbf{Trigger}: l'eliminazione degli embeddings del documento fallisce.
+    \end{itemize}
+
+    \subuc{Eliminazione documento NotEmbedded}{elim_doc_notemb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione nello stato NotEmbedded;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item il documento nello stato NotEmbedded è stato eliminato dal sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona il documento nello stato NotEmbedded che vuole eliminare;
+            \item l’utente richiede di eliminare il documento selezionato.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare un documento nello stato NotEmbedded.
+    \end{itemize}
 
     \uc{Eliminazione documenti}{elim_docs}
     \begin{itemize}
@@ -1007,6 +1061,60 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
                 \item l’utente richiede di eliminare i documenti selezionati.
             \end{enumerate}
         \item \textbf{Trigger}: l’utente vuole eliminare un insieme di documenti.
+    \end{itemize}
+    \ucimg{elim_docs_plur}{Diagramma \rifuc{elim_docs}}{0.8}
+
+    \subuc{Eliminazione fallita documenti}{elim_fallita_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione dei documenti sul sistema di archiviazione è fallita;
+        \item \textbf{Postcondizioni}: il sistema ha generato un errore di eliminazione fallita documenti.
+        \item \textbf{Scenario principale}: il sistema genera un errore di eliminazione fallita quando l'eliminazione dei documenti sul sistema di archiviazione fallisce.
+        \item \textbf{Trigger}: l'eliminazione dei documenti sul sistema di archiviazione fallisce.
+    \end{itemize}
+    \ucimg{elim_fall_plur}{Diagramma \rifsubuc{elim_docs}{elim_fallita_docs}}{0.8} 
+
+    \subsubuc{Visualizzazione errore eliminazione fallita documenti}{vis_elim_fallita_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'eliminazione dei documenti sul sistema di archiviazione è fallita;
+        \item \textbf{Postcondizioni}: l'utente ha visualizzato un errore di eliminazione fallita documenti.
+        \item \textbf{Scenario principale}: l'utente visualizza un errore di eliminazione fallita quando l'eliminazione dei documenti sul sistema di archiviazione fallisce.
+        \item \textbf{Trigger}: l'utente vuole visualizzare l'errore di eliminazione fallita.
+    \end{itemize}
+
+    \subuc{Eliminazione embeddings documenti}{elim_emb_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione dei documenti sul sistema di archiviazione ha avuto successo;
+        \item \textbf{Postcondizioni}: gli embeddings dei documenti sono stati eliminati.
+        \item \textbf{Scenario principale}: il sistema elimina gli embeddings dei documenti quando l'eliminazione dei documenti sul sistema di archiviazione ha avuto successo.
+        \item \textbf{Trigger}: l'eliminazione dei documenti sul sistema di archiviazione ha avuto successo.
+    \end{itemize}
+
+    \subuc{Documenti in stato NotEmbedded}{elim_emb_fallita_notemb_docs}
+    \begin{itemize}
+        \item \textbf{Attore principale}: sistema;
+        \item \textbf{Precondizioni}: l'eliminazione degli embeddings dei documenti è fallita;
+        \item \textbf{Postcondizioni}: i documenti sono stati messi nello stato NotEmbedded.
+        \item \textbf{Scenario principale}: il sistema mette i documenti nello stato NotEmbedded quando l'eliminazione degli embeddings dei documenti fallisce.
+        \item \textbf{Trigger}: l'eliminazione degli embeddings dei documenti fallisce.
+    \end{itemize}
+
+    \subuc{Eliminazione documenti NotEmbedded}{elim_docs_notemb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente ha visualizzato la lista dei documenti presenti nel sistema di archiviazione nello stato NotEmbedded;
+        \item \textbf{Postcondizioni}:
+        \begin{itemize}
+            \item i documenti nello stato NotEmbedded sono stati eliminati dal sistema di archiviazione.
+        \end{itemize}
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item l’utente seleziona i documenti nello stato NotEmbedded che vuole eliminare;
+            \item l’utente richiede di eliminare i documenti selezionati.
+        \end{enumerate}
+        \item \textbf{Trigger}: l’utente vuole eliminare un insieme di documenti nello stato NotEmbedded.
     \end{itemize}
 
     \uc{Occultamento documento}{occ_doc}
@@ -1603,8 +1711,24 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 
 \hline \rf{O} & L'utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & \rifuc{vis_cont_doc} \\
 \hline \rf{O} & L'utente deve poter eliminare un documento presente nel sistema. &  \rifuc{elim_doc} \\
+
+\hline \rf{O} & L'eliminazione di un documento deve avvenire prima sul sistema di archiviazione. & \rifuc{elim_doc} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifsubuc{elim_doc}{elim_fallita} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se l'eliminazione di un documento sul sistema di archiviazione fallisce. & \rifsubsubuc{elim_doc}{elim_fallita}{vis_elim_fallita} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione ha successo, gli embeddings vengono eliminati. & \rifsubuc{elim_doc}{elim_emb} \\
+\hline \subrf{O} & Se l'eliminazione degli embeddings fallisce, il documento viene messo nello stato NotEmbedded. & \rifsubuc{elim_doc}{elim_emb_fallita_notemb} \\
+\hline \subrf{O} & L'utente deve poter richiedere l'eliminazione di un documento nello stato NotEmbedded nel sistema di archiviazione. & \rifsubuc{elim_doc}{elim_doc_notemb} \\
+
+\hline \rf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
 \hline \rf{O} & L'utente deve poter eliminare un insieme di documenti presenti nel sistema. &  \rifuc{elim_docs} \\
-\hline \subrf{O} & L'utente deve poter selezinare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
+
+\hline \rf{O} & L'eliminazione di un insieme di documenti deve avvenire prima sul sistema di archiviazione. & \rifuc{elim_docs} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifsubuc{elim_docs}{elim_fallita_docs} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se l'eliminazione di un insieme di documenti sul sistema di archiviazione fallisce. & \rifsubsubuc{elim_docs}{elim_fallita_docs}{vis_elim_fallita_docs} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione ha successo, gli embeddings vengono eliminati. & \rifsubuc{elim_docs}{elim_emb_docs} \\
+\hline \subrf{O} & Se l'eliminazione degli embeddings fallisce, i documenti vengono messi nello stato NotEmbedded. & \rifsubuc{elim_docs}{elim_emb_fallita_notemb} \\
+\hline \subrf{O} & L'utente deve poter richiedere l'eliminazione di un insieme di documenti nello stato NotEmbedded nel sistema di archiviazione. & \rifsubuc{elim_docs}{elim_docs_notemb} \\
+
 \hline \rf{O} & L'utente deve poter occultare un documento presente nel sistema. & \quantities{\rifuc{occ_doc}\\ Verbale esterno (2023-11-15)} \\
 \hline \rf{O} & L'utente deve poter occultare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
 \hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per occultarli. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
@@ -1740,10 +1864,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 113 & 9 & 10 & 132 \\
+Funzionali & 125 & 9 & 10 & 144 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 118 & 9 & 10 & \textbf{137} \\
+\hline \textbf{Totale} & 130 & 9 & 10 & \textbf{149} \\
 
 \end{xltabular}
 

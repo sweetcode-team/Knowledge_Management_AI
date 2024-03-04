@@ -1,24 +1,19 @@
 .DS_Store
-frontend/.DS_Store
-backend/.DS_Store
+src/.DS_Store
+src/frontend/.DS_Store
+src/backend/.DS_Store
 
 .idea/
-frontend/.idea/
-backend/.idea/
+src/.idea/
+src/.idea/
+src/frontend/.idea/
+src/backend/.idea/
 
 .vscode/
-frontend/.vscode/
-backend/.vscode/
+src/.vscode/
+src/frontend/.vscode/
+src/backend/.vscode/
 
-frontend/node_modules/
-frontend/jspm_packages/
-
-frontend/.env
-backend/venv/
-backend/.env
-backend/config.py
-
-backend/__pycache__/
-backend/modules/__pycache__/
+src/backend/__pycache__/
 
 secrets

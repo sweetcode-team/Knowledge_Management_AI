@@ -25,7 +25,7 @@ services:
       - aws_secret_access_key
       - huggingface_key
       - openai_key
-      - pinecone_api_key
+      - pinecone_api
       - pinecone_environment
       - pinecone_index_name
     build:

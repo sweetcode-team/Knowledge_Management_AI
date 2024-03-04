@@ -1,0 +1,16 @@
+boto3
+Flask
+flask_cors
+Flask-SQLAlchemy
+huggingface-hub
+InstructorEmbedding
+langchain
+openai
+pypdf
+PyPDF2
+python-dotenv
+pinecone-client
+psycopg2-binary
+# sentence-transformers
+tiktoken
+# torch

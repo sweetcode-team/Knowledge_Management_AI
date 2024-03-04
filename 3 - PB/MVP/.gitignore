@@ -20,3 +20,5 @@ backend/config.py
 
 backend/__pycache__/
 backend/modules/__pycache__/
+
+secrets

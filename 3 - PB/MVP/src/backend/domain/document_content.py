@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
+"""The content of a document."""
+
 @dataclass
 class DocumentContent:
-    """The content of a document."""
     content: bytes

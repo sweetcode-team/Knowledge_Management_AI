@@ -16,4 +16,4 @@ src/backend/.vscode/
 
 src/backend/__pycache__/
 
-secrets
+src/secrets

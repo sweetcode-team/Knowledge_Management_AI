@@ -12,15 +12,9 @@ Methods:
     uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]: 
         Uploads a list of embeddings to the system.
 """
-
-
-class Configuration:
-    pass
-
-
 class EmbeddingsUploader:
     def __init__(self, outPort:EmbeddingsUploaderPort):
         self.outPort = outPort
 
-    def uploadEmbeddings(self, documents:List[Document], configuration:Configuration) -> List[DocumentOperationResponse]:
-        pass
+    def uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]:
+        return self.outPort.uploadEmbeddings(documents)

@@ -1,9 +1,7 @@
 from typing import List
 
-from adapter.out.persistence.AWS_document import AWSDocument
 from adapter.out.persistence.AWS_manager import AWSS3Manager
 from application.port.out.delete_documents_port import DeleteDocumentsPort
-from domain.document import Document
 from domain.document_id import DocumentId
 from domain.document_operation_response import DocumentOperationResponse
 

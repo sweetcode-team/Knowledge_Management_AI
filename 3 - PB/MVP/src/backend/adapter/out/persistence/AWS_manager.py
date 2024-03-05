@@ -26,8 +26,8 @@ class AWSS3Manager:
         with open('/run/secrets/aws_secret_access_key', 'r') as file:
             aws_secret_access_key = file.read()
         with open('/run/secrets/aws_bucket_name', 'r') as file:
-            aws_bucket_name = file.read()
-        self.aws_bucket_name = aws_bucket_name
+            awsBucketName = file.read()
+        self.awsBucketName = awsBucketName
         self.s3 = boto3.client(
             's3',
             aws_access_key_id=aws_access_key_id,
@@ -54,13 +54,13 @@ class AWSS3Manager:
         for document in awsDocuments:
             if not forceUpload:
                 try:
-                    self.s3.head_object(Bucket=self.aws_bucket_name, Key=document.id)
+                    self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
                     message = "Document already exists"
                     AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
                     continue
                 except:
                     pass
-            aws = self.s3.put_object(Bucket=self.aws_bucket_name, Key=document.id, Body=document.content, ContentType=document.type)
+            aws = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type)
             #TODO status da cambiare, se funziona true, altrimenti false
             message = "Document uploaded successfully"
             AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
@@ -71,7 +71,7 @@ class AWSS3Manager:
         for documentId in documentsIds:
             status = True
             try:
-                self.s3.delete_object(Bucket=self.aws_bucket_name, Key=documentId)
+                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
                 message = "Document correctly deleted"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
             except:

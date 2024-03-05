@@ -7,7 +7,7 @@ from adapter.out.persistence.vector_store_manager import VectorStoreManager
 from adapter.out.persistence.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 
 class VectorStorePineconeManager(VectorStoreManager):
-   def __init__(self, pinecone_api, index_name, index_dimension, pinecone_environment):        
+    def __init__(self, pinecone_api, index_name, index_dimension, pinecone_environment):
         with open('/run/secrets/pinecone_api', 'r') as file:
             pineconeApi = file.read()
         with open('/run/secrets/pinecone_enviroment', 'r') as file:
@@ -16,18 +16,16 @@ class VectorStorePineconeManager(VectorStoreManager):
         self.pinecone = pinecone.init(
             api_key=pineconeApi, 
             enviroment=pineconeEnvironment)
-        
-    #def getDocumentsStatus(documentsIds: List[str]): List[VectorStoreDocumentStatusResponse]
-        #TODO
-    
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        self.pinecone
+        pass
     
     def concealDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        #TODO
+        pass
     
     def enableDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        #TODO
-     
-    # def uploadEmbeddings(documentEmbeddings:)
-        #TODO
+        pass
+
+    def uploadEmbeddings(documentEmbeddings: List[tuple[str, List[float], dict[str, any]]]) -> List[VectorStoreDocumentOperationResponse]:
+        pass
+    # def getDocumentsStatus(documentsIds: List[str]): List[VectorStoreDocumentStatusResponse]
+    # TODO

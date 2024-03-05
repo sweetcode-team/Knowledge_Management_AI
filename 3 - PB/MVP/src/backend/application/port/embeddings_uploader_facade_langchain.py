@@ -1,31 +1,36 @@
 from typing import List
 
-from document_to_text import DocumentToText
-from document import Document
-from document_operation_response import DocumentOperationResponse
-from langchain_documents import LangchainDocument
-import chunkerizer
+from domain.document import Document
+from domain.document_operation_response import DocumentOperationResponse
+from application.port.out.embeddings_uploader_port import EmbeddingsUploaderPort
+from adapter.out.persistence.langchain_documents import LangchainDocument
+from application.port.chunkerizer import Chunkerizer
 
-class EmbeddingsUploaderFacadeLangchain:
-    def __init__(self, documentToText : DocumentToText, chunkerizer : Chunkerizer, embeddingsCreator, embeddingsUploaderVectorStore):
-        self.documentToText = documentToText
+
+class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
+    def __init__(self, chunkerizer: Chunkerizer, embeddingsCreator, embeddingsUploaderVectorStore):
         self.chunkerizer = chunkerizer
         self.embeddingsCreator = embeddingsCreator
         self.embeddingsUploaderVectorStore = embeddingsUploaderVectorStore
 
-    def uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]:
-        langchainDocuments = []
-        #DocumentToText extractor;  Convert documents to LangchainDocument
+    def uploadEmbeddings(self, documents: List[Document]) -> List[DocumentOperationResponse]:
+        documentsChunks = []
+        # DocumentToText extractor;  Convert documents to LangchainDocument
         for document in documents:
-            langchainDocument = self.documentToText.extractText(document)
-            langchainDocuments.append(langchainDocument)
+            documentChunks = self.chunkerizer.extractText(document)
+            documentsChunks.append(documentChunks)
 
-        #Chunkerizer;  Create chunks
-        chunks = self.chunkerizer.createChunks(langchainDocuments)
-        #EmbeddingsCreator;  Create embeddings
-        embeddings = self.embeddingsCreator.create(chunks)
+        # EmbeddingsCreator;  Create embeddings
+        documentsEmbeddings = []
+        for documentChunks in documentsChunks:
+            documentEmbeddings = self.embeddingsCreator.embedDocument(documentChunks)
+            documentsEmbeddings.append(documentEmbeddings)
+
+
+
         langchainDocuments = [LangchainDocument(documentId=document.plainDocument.metadata.id.id,
-                           text=document.plainDocument.content.content,
-                           embeddings = embeddings) for document in documents]
-        #EmbeddingsUploaderVectorStore;  Upload embeddings
-        return self.embeddingsUploaderVectorStore.uploadEmbeddings(langchainDocuments)
+                                                chunks=documentChunks,
+                                                embeddings=documentEmbeddings) for document, documentChunks, documentEmbeddings in
+                              zip(documents, documentsChunks, documentsEmbeddings)]
+        return
+        #return self.embeddingsUploaderVectorStore.uploadEmbeddings(langchainDocuments)

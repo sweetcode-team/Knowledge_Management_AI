@@ -28,6 +28,6 @@ class VectorStorePineconeManager(VectorStoreManager):
     
     def enableDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         #TODO
-    
+     
     # def uploadEmbeddings(documentEmbeddings:)
         #TODO

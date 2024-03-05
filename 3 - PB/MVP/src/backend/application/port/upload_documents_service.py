@@ -31,8 +31,13 @@ class UploadDocumentsService(UploadDocumentsUseCase):
     def uploadDocuments(self, documents: List[Document], forceUpload: bool = False) -> List[DocumentOperationResponse]:
         documentOperationResponseList = self.documentsUploader.uploadDocuments(documents, forceUpload)
         succesfulDocuments = [document for document, documentOperationResponse in zip(documents, documentOperationResponseList) if documentOperationResponse.ok()]
-        self.embeddingsUploader.uploadEmbeddings(succesfulDocuments)
-        return documentOperationResponseList
+
+        embeddingsOperationResponseList = self.embeddingsUploader.uploadEmbeddings(documents)
+        succesfulEmbeddings = [document for document, embeddingsOperationResponse in
+                              zip(documents, embeddingsOperationResponseList) if embeddingsOperationResponse.ok()]
+        
+
+        return succesfulEmbeddings
     
         # documentOperationResponses = self.documentsUploader.uploadDocuments(documents, forceUpload)
         # finalOperationResponses = []       

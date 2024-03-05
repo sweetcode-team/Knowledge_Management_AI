@@ -18,5 +18,6 @@ class DocumentOperationResponse:
         self.documentId = documentId
         self.status = status
         self.message = message
+        
     def ok(self) -> bool:
         return self.status

@@ -66,8 +66,19 @@ class AWSS3Manager:
             AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
         return AWSDocumentOperationResponseList
 
-    #def deleteDocuments(self, ListOfDocumentId: List[str]) -> List[AWSDocumentOperationResponse]:
-    #    return AWSDocumentOperationResponse(self.s3.delete_objects(Bucket=self.bucket_name, Key=ListOfDocumentId))
+    def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
+        AWSDocumentOperationResponseList = []
+        for documentId in documentsIds:
+            status = True
+            try:
+                self.s3.delete_object(Bucket=self.aws_bucket_name, Key=documentId)
+                message = "Document correctly deleted"
+                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
+            except:
+                status = False
+                message = "An error occured while deleting the document"
+                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
+        return AWSDocumentOperationResponseList               
 
     #def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
     #    return self.s3.list_objects(Bucket=self.bucket_name, Prefix=documentFilter)

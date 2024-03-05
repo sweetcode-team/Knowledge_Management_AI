@@ -37,7 +37,7 @@ class DocumentsUploaderAWSS3(DocumentUploaderPort):
         #return DocumentOperationResponse therefore we adaptee the response
         documentOperationResponseList = []
         for awsDocumentOperationResponse in awsDocumentOperationResponseList:
-            documentOperationResponseList.append(DocumentOperationResponse(DocumentId(awsDocumentOperationResponse.documentId), awsDocumentOperationResponse.status, awsDocumentOperationResponse.message))
+            documentOperationResponseList.append(awsDocumentOperationResponse.toDocumentOperationResponse())
         return documentOperationResponseList
 
     """

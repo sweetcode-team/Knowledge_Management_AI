@@ -13,4 +13,4 @@ def test_ok_method_false():
 
     response = DocumentOperationResponse(documentId=document_id, status=False, message="Failure")
 
-    assert response.ok() == True
+    assert response.ok() == False

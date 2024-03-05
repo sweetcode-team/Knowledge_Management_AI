@@ -66,9 +66,9 @@ class AWSS3Manager:
             AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
         return AWSDocumentOperationResponseList
 
-    def deleteDocuments(self, ListOfDocumentId: List[str]) -> List[AWSDocumentOperationResponse]:
+    def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponseList = []
-        for documentId in ListOfDocumentId:
+        for documentId in documentsIds:
             status = True
             try:
                 self.s3.delete_object(Bucket=self.aws_bucket_name, Key=documentId)

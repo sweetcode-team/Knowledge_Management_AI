@@ -1,9 +1,26 @@
 from typing import List
-import os
+from langchain_core.documents.base import Document as LangchainCoreDocuments
+from domain.document import Document
+from adapter.out.persistence.DOCX_text_extractor import DOCXTextExtractor
+from application.port.text_extractor import TextExtractor
+from adapter.out.persistence.PDF_text_extractor import PDFTextExtractor
 
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_core.documents import Document
+
 class Chunkerizer:
-    def createChunks(self, langchainDocuments: List[Document]) -> List[Document]:
-        text_splitter = CharacterTextSplitter(chunk_size=os.environ["CHUNK_SIZE"], chunk_overlap=os.environ["CHUNK_OVERLAP"])
-        return text_splitter.split_documents(langchainDocuments)
+    def __init__(self):
+        pass
+
+    def extractText(self, document : Document) -> List[LangchainCoreDocuments]:
+        text_extractor = Chunkerizer.getTextExtractorFrom(document.plainDocument.metadata.type.name)
+        documentChunks = text_extractor.extractText(document.plainDocument.content)
+        for documentChunk in documentChunks:
+            documentChunk.metadata["source"] = document.plainDocument.metadata.id.id
+            documentChunk.metadata["status"] = document.documentStatus.status.name
+        return documentChunks
+
+    @staticmethod
+    def getTextExtractorFrom(documentype: str) -> TextExtractor:
+        if documentype == "PDF":
+            return PDFTextExtractor()
+        elif documentype == "DOCX":
+            return DOCXTextExtractor()

@@ -1,15 +1,16 @@
 from typing import List
 
-from document_content import DocumentContent
-from PyPDF2 import PdfFileReader
+from domain.document_content import DocumentContent
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents.base import Document
-
-from text_extractor import TextExtractor
-
+from application.port.text_extractor import TextExtractor
+import tempfile
 
 class PDFTextExtractor(TextExtractor):
-    def extractText(document:DocumentContent) -> List[Document]:
-        reader = PdfFileReader(document.content)
-        documentOfLangchain = [Document(reader.pages[page].extract_text(), type="PDF") for page in range(len(reader.pages))]
-        return documentOfLangchain
+    def extractText(self, documentContent:DocumentContent) -> List[Document]:
+        with tempfile.NamedTemporaryFile(delete=False) as tempFile:
+            tempFile.write(documentContent.content)
+        pdf = PyPDFLoader(tempFile.name)
+        documents = pdf.load_and_split()
+        return documents
 

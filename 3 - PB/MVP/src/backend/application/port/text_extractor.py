@@ -1,9 +1,8 @@
 from typing import List
 
-from document_content import DocumentContent
-from langchain_documents import LangchainDocument
-
+from domain.document_content import DocumentContent
+from langchain_core import documents as LangchainCoreDocuments
 
 class TextExtractor:
-    def extractText(document:DocumentContent) -> List[LangchainDocument]:
+    def extractText(self, document: DocumentContent) -> List[LangchainCoreDocuments]:
         pass

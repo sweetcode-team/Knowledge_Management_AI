@@ -15,5 +15,5 @@ class VectorStoreManager:
     def enableDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         pass
     
-    # def uploadEmbeddings(documentEmbeddings:)
-    #     pass
+    def uploadEmbeddings(documentEmbeddings:List[ tuple [str, List[float], dict[str, any] ] ] ) -> List[VectorStoreDocumentOperationResponse]:
+         pass

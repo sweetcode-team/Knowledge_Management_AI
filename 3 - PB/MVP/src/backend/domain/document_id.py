@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+"""The unique identifier of a document."""
 
-@dataclass
 class DocumentId:
-    """The unique identifier of a document."""
     id: str
+    def __init__(self, id: str):
+        self.id = id

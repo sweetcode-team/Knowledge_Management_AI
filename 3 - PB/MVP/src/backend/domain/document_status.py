@@ -1,15 +1,17 @@
 from dataclasses import dataclass
 from enum import Enum
 
+"""The status of a document."""
+
+
 @dataclass
 class Status(Enum):
-    """The status of a document."""
     CONCEALED = 1
     ENABLED = 2
     NOT_EMBEDDED = 3
     PRE_LOADING = 4
 
+"""The status of a document."""
 @dataclass
 class DocumentStatus:
-    """The status of a document."""
     status: Status

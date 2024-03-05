@@ -34,7 +34,7 @@ jobs:
       with:
         files: results/test-results.json
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PYTHON_TEST_TOKEN }}
         body: |
           Total tests: ${{ steps.test.outputs.total_tests }}
           Failed tests: ${{ steps.test.outputs.failed_tests }}

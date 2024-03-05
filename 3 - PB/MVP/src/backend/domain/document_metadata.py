@@ -1,17 +1,19 @@
 from dataclasses import dataclass
-from domain.document_id import DocumentId
 from datetime import datetime
 from enum import Enum
 
+from domain.document_id import DocumentId
+
+"""The type of a document."""
 @dataclass
 class DocumentType(Enum):
-    """The type of a document."""
     PDF = 1
     DOCX = 2
 
+
+"""The metadata of a document."""
 @dataclass
 class DocumentMetadata:
-    """The metadata of a document."""
     id: DocumentId
     type: DocumentType
     size: float

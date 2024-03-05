@@ -1,0 +1,49 @@
+name: Run Python Tests
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker-compose -f '3 - PB/MVP/src/compose.yml'
+
+    - name: Run tests and update results
+      run: |
+        docker run app pytest MVP/tests --junitxml=results/test-results.xml
+        total_tests=$(cat results/test-results.xml | grep -oP '(?<=tests=")[^"]*' | awk '{sum+=$1} END {print sum}')
+        failed_tests=$(cat results/test-results.xml | grep -oP '(?<=failures=")[^"]*' | awk '{sum+=$1} END {print sum}')
+        echo "{\"total_tests\":$total_tests,\"failed_tests\":$failed_tests}" > results/test-results.json
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: results/test-results.json
+
+    - name: Set pull request status
+      if: always()
+      uses: softprops/action-gh-release@v1
+      with:
+        files: results/test-results.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          Total tests: ${{ steps.test.outputs.total_tests }}
+          Failed tests: ${{ steps.test.outputs.failed_tests }}
+        draft: false
+        prerelease: false
+        tag: ${{ github.sha }}
+
+    - name: Prevent merge on test failure 
+      if: failure()
+      run: |
+        echo "Almeno un test ha fallito. Non è consentito effettuare il merge della pull request."
+        exit 1

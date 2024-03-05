@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 
 from adapter._in.web.new_document import NewDocument
@@ -37,7 +37,7 @@ class UploadDocumentsController:
                     DocumentId(newDocument.documentId),
                     documentType,
                     newDocument.size,
-                    datetime.now()    
+                    datetime.now(timezone.utc)
                 ),
                 DocumentContent(newDocument.content)
             )

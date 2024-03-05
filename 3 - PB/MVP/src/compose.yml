@@ -39,7 +39,7 @@ services:
       - TMP_STORAGE_FOLDER=tmp
       - CHUNK_SIZE=512
       - CHUNK_OVERLAP=128
-      - RETRIEVER_CHUNKS_NUM = 4
+      - RETRIEVER_CHUNKS_NUM=4
       - AWS_REGION_NAME=eu-west-1
     volumes:
       - ./backend:/app

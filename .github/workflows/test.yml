@@ -2,12 +2,15 @@ name: Run Python Tests
 
 on:
   pull_request:
+    types:
+      - opened
     branches:
       - PB
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.event.pull_request.title, 'Docs:') }}
     defaults:
       run:
         working-directory: '3 - PB/MVP'

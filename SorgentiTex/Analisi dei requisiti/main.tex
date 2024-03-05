@@ -1482,6 +1482,7 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio tramite comando vocale.
     \end{itemize}
 
+    \ucimg{gest_rigen_emb}{Diagramma gestione rigenerazione embeddings}{0.8}
     \uc{Rigenerazione embeddings}{rig_emb}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1493,6 +1494,19 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
                 \item il sistema rigenera gli embeddings del documento in stato notEmbedded.
             \end{enumerate}
         \item \textbf{Trigger}: l'utente vuole rigenerare gli embeddings di un documento.
+    \end{itemize}
+
+    \uc{Rigenerazione embeddings multipli}{rig_emb_mult}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'utente ha accesso ai documenti in stato notEmbedded;           
+        \item \textbf{Postcondizioni}: gli embeddings dei documenti in stato notEmbedded sono stati rigenerati;     
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l'utente richiede di rigenerare gli embeddings dei documeniti;
+                \item il sistema rigenera gli embeddings dei documenti in stato notEmbedded.
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente vuole rigenerare gli embeddings dei documenti.
     \end{itemize}
 
 
@@ -1691,7 +1705,6 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
 \hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
 \hline \rf{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
-\hline \rf{D} & L'eliminazione di un documento dallo spazio di storage deve portare all'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale esterno (2023-11-24) \\
 \hline \rf{O} & L'utente deve poter rigenerare gli embeddings dei documenti in stato notEmbedded.  & \rifuc{rig_emb} 
 
 \end{xltabular}
@@ -1769,10 +1782,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 124 & 9 & 10 & 143 \\
+Funzionali & 124 & 8 & 10 & 142 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 129 & 9 & 10 & \textbf{148} \\
+\hline \textbf{Totale} & 129 & 8 & 10 & \textbf{147} \\
 
 \end{xltabular}
 

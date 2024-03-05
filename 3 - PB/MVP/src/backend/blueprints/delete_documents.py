@@ -6,10 +6,10 @@ from application.port.delete_documents_AWSS3 import DeleteDocumentsAWSS3
 from application.port.delete_documents_service import DeleteDocumentsService
 from flask import request, Blueprint, jsonify
 
-uploadDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
+deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
-    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager()))) #, DeleteEmbeddings()))
+    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager())))) #, DeleteEmbeddings()))
     documentOperationResponses = controller.uploadDocuments(request.files.getlist(), False)
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

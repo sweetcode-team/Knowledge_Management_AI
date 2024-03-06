@@ -10,6 +10,7 @@ from application.port.chunkerizer import Chunkerizer
 from application.port.chunkerizer import Chunkerizer
 from application.port.embeddings_creator import EmbeddingsCreator
 from application.port.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
+from application.port.huggingface_embedding_model import HuggingFaceEmbeddingModel
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 """
@@ -35,6 +36,6 @@ def uploadDocuments():
         ) for uploadedDocument in request.files.getlist('file')
     ]
     controller = UploadDocumentsController(UploadDocumentsService(DocumentsUploader(DocumentsUploaderAWSS3(AWSS3Manager())),
-                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(), EmbeddingsUploaderVectorStore()))))
+                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore()))))
     documentOperationResponses = controller.uploadDocuments(newDocuments, False)
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

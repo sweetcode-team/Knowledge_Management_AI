@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt ./
 
+ENV PYTHONDONTWRITEBYTECODE=1
+
 RUN pip install -r requirements.txt
 
 COPY . .

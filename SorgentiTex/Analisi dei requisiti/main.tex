@@ -1627,7 +1627,20 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subrf{O} & L'utente deve poter annullare la sostituire con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{up_doc} \\
 \hline \subrf{O} & L'utente deve poter scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \quantities{ \rifuc{up_docs} \\ \rifuc{sost_docs}} \\
 \hline \subrf{O} & L'utente deve poter confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{sost_docs} \\
-\hline \subrf{O} & L'utente deve poter annullare la sostituire con i documento caricato di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
+
+\hline \rf{O} & Il caricamento di un documento deve avvenire prima sul sistema di archiviazione. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{up_doc} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se il caricamento di un documento sul sistema di archiviazione fallisce. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione ha successo, gli embeddings vengono generati e caricati. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se la generazione ed il caricamento degli embeddings fallisce, il documento viene messo nello stato notEmbedded. & \rifuc{up_doc} \\
+
+\hline \rf{O} & Il caricamento di un insieme di documenti deve avvenire prima sul sistema di archiviazione. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{up_docs} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se il caricamento di un insieme di documenti sul sistema di archiviazione fallisce. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione ha successo, gli embeddings vengono generati e caricati. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se la generazione ed il caricamento degli embeddings fallisce, i documenti vengono messi nello stato notEmbedded. & \rifuc{up_docs} \\
+
 
 \hline \rf{O} & L'utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & \rifuc{vis_cont_doc} \\
 \hline \rf{O} & L'utente deve poter eliminare un documento presente nel sistema. &  \rifuc{elim_doc} \\
@@ -1782,10 +1795,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 124 & 8 & 10 & 142 \\
+Funzionali & 134 & 8 & 10 & 152 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 129 & 8 & 10 & \textbf{147} \\
+\hline \textbf{Totale} & 139 & 8 & 10 & \textbf{157} \\
 
 \end{xltabular}
 

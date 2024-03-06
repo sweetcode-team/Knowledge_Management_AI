@@ -3,15 +3,15 @@ from typing import List
 
 from adapter._in.web.new_document import NewDocument
 from application.port._in.upload_documents_use_case import UploadDocumentsUseCase
-from domain.document import Document
-from domain.document_content import DocumentContent
-from domain.document_id import DocumentId
-from domain.document_metadata import DocumentMetadata
-from domain.document_metadata import DocumentType
-from domain.document_operation_response import DocumentOperationResponse
-from domain.document_status import DocumentStatus
-from domain.document_status import Status
-from domain.plain_document import PlainDocument
+from domain.document.document import Document
+from domain.document.document_content import DocumentContent
+from domain.document.document_id import DocumentId
+from domain.document.document_metadata import DocumentMetadata
+from domain.document.document_metadata import DocumentType
+from domain.document.document_operation_response import DocumentOperationResponse
+from domain.document.document_status import DocumentStatus
+from domain.document.document_status import Status
+from domain.document.plain_document import PlainDocument
 
 """
 This class is the controller for the upload documents use case. It receives the new documents and converts them to the domain model.

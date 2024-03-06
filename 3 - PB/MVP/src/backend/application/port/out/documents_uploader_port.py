@@ -4,6 +4,6 @@ from domain.document.document import Document
 from domain.document.document_operation_response import DocumentOperationResponse
 
 
-class EmbeddingsUploaderPort:
-    def uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]:
+class DocumentsUploaderPort:
+    def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
         pass

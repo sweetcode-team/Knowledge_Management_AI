@@ -1,5 +1,5 @@
-from domain.document_operation_response import DocumentOperationResponse
-from domain.document_id import DocumentId
+from domain.document.document_operation_response import DocumentOperationResponse
+from domain.document.document_id import DocumentId
 
 def test_ok_method_true():
     document_id = DocumentId("example_id")

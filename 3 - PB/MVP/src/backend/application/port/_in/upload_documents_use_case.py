@@ -1,7 +1,7 @@
 from typing import List
 
-from domain.document import Document
-from domain.document_operation_response import DocumentOperationResponse
+from domain.document.document import Document
+from domain.document.document_operation_response import DocumentOperationResponse
 
 """
     This interface is responsible for uploading documents to the AWS S3 bucket.

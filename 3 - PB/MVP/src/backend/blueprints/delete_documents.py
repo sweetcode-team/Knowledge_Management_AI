@@ -1,12 +1,13 @@
 from flask import request, Blueprint, jsonify
 from adapter._in.web.delete_documents_controller import DeleteDocumentsController
-from adapter.out.persistence.AWS_manager import AWSS3Manager
-from application.port.delete_documents import DeleteDocuments 
-from application.port.delete_documents_AWSS3 import DeleteDocumentsAWSS3
-from application.port.delete_documents_embeddings import DeleteDocumentsEmbeddings
-from application.port.delete_documents_service import DeleteDocumentsService
-from application.port.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
-from adapter.out.vector_store_pinecone_manager import VectorStorePineconeManager
+from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
+from application.port.service.delete_documents import DeleteDocuments 
+from adapter.out.delete_documents.delete_documents_AWSS3 import DeleteDocumentsAWSS3
+from application.port.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
+from application.port.service.delete_documents_service import DeleteDocumentsService
+from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
+from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
+from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
 
 deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 

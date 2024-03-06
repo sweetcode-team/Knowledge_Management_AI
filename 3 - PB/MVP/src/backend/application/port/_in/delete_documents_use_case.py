@@ -1,6 +1,6 @@
 from typing import List
-from domain.document_id import DocumentId
-from domain.document_operation_response import DocumentOperationResponse
+from domain.document.document_id import DocumentId
+from domain.document.document_operation_response import DocumentOperationResponse
 
 class DeleteDocumentsUseCase:
     

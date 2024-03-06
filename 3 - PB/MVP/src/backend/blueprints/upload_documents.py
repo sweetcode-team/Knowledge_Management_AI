@@ -2,10 +2,10 @@ from flask import request, Blueprint, jsonify
 from adapter._in.web.new_document import NewDocument
 from adapter._in.web.upload_documents_controller import UploadDocumentsController
 from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
-from application.port.service.documents_uploader import DocumentsUploader
+from application.service.documents_uploader import DocumentsUploader
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
-from application.port.service.upload_documents_service import UploadDocumentsService
-from application.port.service.embeddings_uploader import EmbeddingsUploader
+from application.service.upload_documents_service import UploadDocumentsService
+from application.service.embeddings_uploader import EmbeddingsUploader
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
 from adapter.out.upload_documents.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain

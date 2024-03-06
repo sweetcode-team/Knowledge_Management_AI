@@ -1,19 +1,20 @@
-from typing import List
+from typing import List, Tuple
 
 from adapter.out.persistence.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
+from langchain_core.documents.base import Document as LangchainCoreDocument
 
 class VectorStoreManager:
-    #def getDocumentsStatus(documentsIds: List[str]): List[VectorStoreDocumentStatusResponse]
-    #    pass
+    # def getDocumentsStatus(documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
+    #     pass
     
-    def deleteDocumentsEmbeddings(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
+    def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         pass
     
-    def concealDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
+    def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         pass
     
-    def enableDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
+    def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         pass
     
-    def uploadEmbeddings(documentEmbeddings:List[ tuple [str, List[float], dict[str, any] ] ] ) -> List[VectorStoreDocumentOperationResponse]:
-         pass
+    def uploadEmbeddings(self, documentsId: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
+        pass 

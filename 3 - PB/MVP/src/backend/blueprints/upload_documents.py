@@ -12,20 +12,41 @@ from adapter.out.upload_documents.embeddings_uploader_facade_langchain import Em
 from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
 from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
+from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
+    # TODO: Add validation for the request
     newDocuments = [
         NewDocument(
             documentId = uploadedDocument.filename,
             type = "PDF" if uploadedDocument.content_type == "application/pdf" else "DOCX",
             size = uploadedDocument.content_length,
             content = uploadedDocument.read()
-        ) for uploadedDocument in request.files.getlist('file')
+        ) for uploadedDocument in request.files.getlist('documents')
     ]
-    controller = UploadDocumentsController(UploadDocumentsService(DocumentsUploader(DocumentsUploaderAWSS3(AWSS3Manager())),
-                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore(VectorStoreChromaDBManager())))))
+
+    controller = UploadDocumentsController(
+        UploadDocumentsService(
+            DocumentsUploader(
+                DocumentsUploaderAWSS3(
+                    AWSS3Manager()
+                )
+            ),
+            EmbeddingsUploader(
+                EmbeddingsUploaderFacadeLangchain(
+                    Chunkerizer(),
+                    EmbeddingsCreator(
+                        HuggingFaceEmbeddingModel()
+                    ),
+                    EmbeddingsUploaderVectorStore(
+                        VectorStorePineconeManager()
+                    )
+                )
+            )
+        )
+    )
     documentOperationResponses = controller.uploadDocuments(newDocuments, False)
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

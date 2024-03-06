@@ -71,14 +71,14 @@ class AWSS3Manager:
         for documentId in documentsIds:
             status = True
             try:
-                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
+                # self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId) TODO
                 message = "Document correctly deleted"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
             except:
                 status = False
                 message = "An error occured while deleting the document"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
-        return AWSDocumentOperationResponseList               
+        return AWSDocumentOperationResponseList
 
     #def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
     #    return self.s3.list_objects(Bucket=self.bucket_name, Prefix=documentFilter)

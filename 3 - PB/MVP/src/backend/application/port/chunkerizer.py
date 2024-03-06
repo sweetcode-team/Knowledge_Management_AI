@@ -1,10 +1,9 @@
 from typing import List
 from langchain_core.documents.base import Document as LangchainCoreDocuments
 from domain.document import Document
-from adapter.out.persistence.DOCX_text_extractor import DOCXTextExtractor
 from application.port.text_extractor import TextExtractor
+from adapter.out.persistence.DOCX_text_extractor import DOCXTextExtractor
 from adapter.out.persistence.PDF_text_extractor import PDFTextExtractor
-
 
 class Chunkerizer:
     def __init__(self):
@@ -19,8 +18,8 @@ class Chunkerizer:
         return documentChunks
 
     @staticmethod
-    def getTextExtractorFrom(documentype: str) -> TextExtractor:
-        if documentype == "PDF":
+    def getTextExtractorFrom(documentType: str) -> TextExtractor:
+        if documentType == "PDF":
             return PDFTextExtractor()
-        elif documentype == "DOCX":
+        elif documentType == "DOCX":
             return DOCXTextExtractor()

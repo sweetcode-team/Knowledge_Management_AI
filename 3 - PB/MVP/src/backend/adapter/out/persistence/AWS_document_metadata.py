@@ -1,9 +1,12 @@
+from dataclasses import dataclass
 from datetime import datetime
+
 """
 This class is used to store the metadata of a document stored in AWS S3.
 """
+@dataclass
 class AWSDocumentMetadata:
-    def __init__(self, id: str, size: float, uploadTime: datetime):
-        self.id = id
-        self.size = size
-        self.uploadTime = uploadTime
+    id: str
+    size: float
+    uploadTime: datetime
+        

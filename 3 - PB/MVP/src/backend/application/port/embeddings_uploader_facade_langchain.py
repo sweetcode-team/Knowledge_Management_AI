@@ -8,10 +8,10 @@ from adapter.out.persistence.langchain_document import LangchainDocument
 from application.port.chunkerizer import Chunkerizer
 from adapter.out.persistence.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 from application.port.embeddings_creator import EmbeddingsCreator
-
+from application.port.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 
 class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
-    def __init__(self, chunkerizer: Chunkerizer, embeddingsCreator: EmbeddingsCreator, embeddingsUploaderVectorStore):
+    def __init__(self, chunkerizer: Chunkerizer, embeddingsCreator: EmbeddingsCreator, embeddingsUploaderVectorStore: EmbeddingsUploaderVectorStore):
         self.chunkerizer = chunkerizer
         self.embeddingsCreator = embeddingsCreator
         self.embeddingsUploaderVectorStore = embeddingsUploaderVectorStore

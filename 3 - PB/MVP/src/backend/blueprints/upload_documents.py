@@ -7,23 +7,13 @@ from application.port.upload_documents_service import UploadDocumentsService
 from flask import request, Blueprint, jsonify
 from application.port.embeddings_uploader import EmbeddingsUploader
 from application.port.chunkerizer import Chunkerizer
-from application.port.chunkerizer import Chunkerizer
 from application.port.embeddings_creator import EmbeddingsCreator
 from application.port.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
+from application.port.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 from application.port.huggingface_embedding_model import HuggingFaceEmbeddingModel
+from adapter.out.vector_store_pinecone_manager import VectorStorePineconeManager
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
-"""
-    This class is responsible for managing the upload of documents.
-    Methods:
-        uploadDocuments() -> List[DocumentOperationResponse]:
-            Upload the documents to the S3 bucket.
-"""
-
-
-class EmbeddingsUploaderVectorStore:
-    pass
-
 
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
@@ -36,6 +26,6 @@ def uploadDocuments():
         ) for uploadedDocument in request.files.getlist('file')
     ]
     controller = UploadDocumentsController(UploadDocumentsService(DocumentsUploader(DocumentsUploaderAWSS3(AWSS3Manager())),
-                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore()))))
+                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore(VectorStorePineconeManager())))))
     documentOperationResponses = controller.uploadDocuments(newDocuments, False)
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

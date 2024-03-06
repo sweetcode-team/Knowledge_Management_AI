@@ -87,5 +87,5 @@ class VectorStorePineconeManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
      
-    # def uploadEmbeddings(self, documentEmbeddings:)
+    # def uploadEmbeddings(self, documentsEmbeddings:)
         #TODO

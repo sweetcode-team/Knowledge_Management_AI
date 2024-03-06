@@ -4,10 +4,9 @@ from dataclasses import dataclass
 
 @dataclass
 class VectorStoreDocumentOperationResponse:
-    def __init__(self, documentId: str, status: bool, message: str):
-        self.documentId = documentId
-        self.status = status
-        self.message = message
+    documentId: str
+    status: bool
+    message: str
         
     def toDocumentOperationResponse(self) -> DocumentOperationResponse:
         return DocumentOperationResponse(DocumentId(self.documentId), self.status, self.message)        

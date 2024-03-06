@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-
 from domain.document_id import DocumentId
 
 """
@@ -14,10 +13,9 @@ from domain.document_id import DocumentId
 """
 @dataclass
 class DocumentOperationResponse:
-    def __init__(self, documentId: DocumentId, status: bool, message: str):
-        self.documentId = documentId
-        self.status = status
-        self.message = message
+    documentId: DocumentId
+    status: bool
+    message: str
         
     def ok(self) -> bool:
         return self.status

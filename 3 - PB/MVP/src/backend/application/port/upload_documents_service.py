@@ -21,7 +21,7 @@ class UploadDocumentsService(UploadDocumentsUseCase):
     def __init__(self, documentsUploader: DocumentsUploader, embeddingsUploader: EmbeddingsUploader):
         self.documentsUploader = documentsUploader
         self.embeddingsUploader = embeddingsUploader
-    """
+        """
         Args:
             documents: List of Document objects to be uploaded
             forceUpload: Boolean to force the upload of the documents

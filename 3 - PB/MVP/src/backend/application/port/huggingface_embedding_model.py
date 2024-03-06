@@ -1,10 +1,10 @@
 from typing import List
 
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
-from langchain_embedding_model import LangChainEmbeddingModel
+from langchain_embedding_model import LangchainEmbeddingModel
 
 
-class HuggingFaceEmbeddingModel(LangChainEmbeddingModel):
+class HuggingFaceEmbeddingModel(LangchainEmbeddingModel):
     def __init__(self):
         with open('/run/secrets/aws_access_key_id', 'r') as file:
             self.huggingFaceKey = file.read()

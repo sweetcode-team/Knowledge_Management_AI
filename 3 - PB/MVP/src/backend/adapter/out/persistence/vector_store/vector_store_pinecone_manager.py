@@ -1,7 +1,6 @@
 from typing import List
 
-import pinecone
-from langchain.vectorstores import Pinecone
+from pinecone import Pinecone
 
 from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
 from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
@@ -11,25 +10,26 @@ class VectorStorePineconeManager(VectorStoreManager):
     def __init__(self):
         with open('/run/secrets/pinecone_api', 'r') as file:
             pineconeApi = file.read()
-        with open('/run/secrets/pinecone_enviroment', 'r') as file:
+        with open('/run/secrets/pinecone_environment', 'r') as file:
             pineconeEnvironment = file.read()
         with open('/run/secrets/pinecone_index_name', 'r') as file:
             pineconeIndexName = file.read()
 
-        self.pinecone = pinecone.init(
+        self.pinecone = Pinecone(
             api_key=pineconeApi, 
             enviroment=pineconeEnvironment)
         self.index = self.pinecone.Index(pineconeIndexName)
 
-    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
+    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]: #CONTROLLARE
         vectorStoreDocumentStatusResponses = []
         for documentId in documentsIds:
             query_response = self.index.query(
                 top_k=1,
+                vector=[0.0 for _ in range(768)],
                 include_values=False,
                 include_metadata=True,
                 filter={
-                    "name": {"$eq": documentId}
+                    "source": {"$eq": documentId}
                 }
             )
             vectorStoreDocumentStatusResponses.append(
@@ -44,23 +44,37 @@ class VectorStorePineconeManager(VectorStoreManager):
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
-            deleteResponse = self.index.delete(
-                    filter={
-                        "name": {"$eq": documentId}
-                    }
-                )
+            query_response=self.index.query(
+                                top_k=10000,
+                                vector=[0.0 for _ in range(768)],
+                                include_values=False,
+                                include_metadata=False,
+                                filter={
+                                    "source": {"$eq": documentId}
+                                }
+                            )
+            ids= [match.get('id', '') for match in query_response.get('matches', [{}])] 
+            deleteResponse = self.index.delete(ids=ids)
             if deleteResponse:
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message')}"))
             else:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
+               vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
         
         return vectorStoreDocumentOperationResponses
-
-    
-    def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
+  
+    def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: #CONTROLLARE
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
-            documentEmbeddings = self.index.list(prefix=documentId)
+            query_response=self.index.query(
+                                top_k=10000,
+                                vector=[0.0 for _ in range(768)],
+                                include_values=False,
+                                include_metadata=False,
+                                filter={
+                                    "source": {"$eq": documentId}
+                                }
+                            )
+            documentEmbeddings= [match.get('id', '') for match in query_response.get('matches', [{}])] 
             concealResponse = self.index.update(
                     ids=documentEmbeddings,
                     set_metadata={"status": "CONCEALED"}
@@ -72,10 +86,19 @@ class VectorStorePineconeManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
     
-    def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
+    def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: #CONTROLLARE
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
-            documentEmbeddings = self.index.list(prefix=documentId)
+            query_response=self.index.query(
+                                top_k=10000,
+                                vector=[0.0 for _ in range(768)],
+                                include_values=False,
+                                include_metadata=False,
+                                filter={ 
+                                    "source": {"$eq": documentId}
+                                }
+                            )
+            documentEmbeddings= [match.get('id', '') for match in query_response.get('matches', [{}])] 
             enableResponse = self.index.update(
                     ids=documentEmbeddings,
                     set_metadata={"status": "ENABLED"}
@@ -87,5 +110,5 @@ class VectorStorePineconeManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
      
-    # def uploadEmbeddings(self, documentsEmbeddings:)
+    # def uploadEmbeddings(self, documentsEmbeddings:) #CONTROLLARE
         #TODO

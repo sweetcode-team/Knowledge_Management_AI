@@ -8,12 +8,13 @@ from application.service.delete_documents_service import DeleteDocumentsService
 from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
 from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
 from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
+from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
 
 deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
-    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager()))), DeleteDocumentsEmbeddings(DeleteEmbeddingsVectorStore(VectorStorePineconeManager())))
+    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager())), DeleteDocumentsEmbeddings(DeleteEmbeddingsVectorStore(VectorStorePineconeManager()))))
     documentOperationResponses = controller.deleteDocuments(request.json.get('ids'))
      
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

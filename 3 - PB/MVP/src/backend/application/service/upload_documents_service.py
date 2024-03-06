@@ -1,8 +1,8 @@
 from typing import List
 
 from application.port._in.upload_documents_use_case import UploadDocumentsUseCase
-from application.port.service.documents_uploader import DocumentsUploader
-from application.port.service.embeddings_uploader import EmbeddingsUploader
+from application.service.documents_uploader import DocumentsUploader
+from application.service.embeddings_uploader import EmbeddingsUploader
 from domain.document.document import Document
 from domain.document.document_operation_response import DocumentOperationResponse
 

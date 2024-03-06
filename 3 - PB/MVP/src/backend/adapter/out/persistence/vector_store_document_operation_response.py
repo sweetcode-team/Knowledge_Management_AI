@@ -1,6 +1,8 @@
 from domain.document_operation_response import DocumentOperationResponse
 from domain.document_id import DocumentId
+from dataclasses import dataclass
 
+@dataclass
 class VectorStoreDocumentOperationResponse:
     def __init__(self, documentId: str, status: bool, message: str):
         self.documentId = documentId

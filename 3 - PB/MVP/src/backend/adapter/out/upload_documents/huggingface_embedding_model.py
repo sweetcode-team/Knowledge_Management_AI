@@ -1,13 +1,13 @@
 from typing import List
 
-from langchain_community.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
 
 
 class HuggingFaceEmbeddingModel(LangchainEmbeddingModel):
-    def __init__(self):
-        with open('/run/secrets/aws_access_key_id', 'r') as file:
-            self.huggingFaceKey = file.read()
 
     def embedDocument(self, documentChunks: List[str]) -> List[List[float]]:
-        return HuggingFaceInstructEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2").embed_documents(documentChunks)
+        with open('/run/secrets/huggingface_key', 'r') as file:
+            huggingFaceKey = file.read()
+
+        return HuggingFaceInferenceAPIEmbeddings(api_key=huggingFaceKey, model_name="sentence-transformers/all-mpnet-base-v2").embed_documents(documentChunks)

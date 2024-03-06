@@ -34,14 +34,14 @@ class VectorStoreChromaDBManager(VectorStoreManager):
      
     def uploadEmbeddings(self, documentsId: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
-        for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings): 
+        for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page'), "source": chunk.metadata.get('source')} for chunk in documentChunks]
+            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
             try:
                 self.collection.add(
-                        embeddings= documentEmbeddings,
-                        metadatas= metadatas,
-                        ids= ids
+                        embeddings = documentEmbeddings,
+                        metadatas = metadatas,
+                        ids = ids
                     )
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con succcesso."))
             except:

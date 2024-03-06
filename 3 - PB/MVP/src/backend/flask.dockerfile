@@ -6,6 +6,8 @@ COPY requirements.txt ./
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
+RUN apt-get update --fix-missing && apt-get install -y --fix-missing build-essential
+
 RUN pip install -r requirements.txt
 
 COPY . .

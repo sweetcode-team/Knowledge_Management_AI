@@ -11,7 +11,7 @@ from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
 from adapter.out.upload_documents.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
 from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
-from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
+from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
@@ -26,6 +26,6 @@ def uploadDocuments():
         ) for uploadedDocument in request.files.getlist('file')
     ]
     controller = UploadDocumentsController(UploadDocumentsService(DocumentsUploader(DocumentsUploaderAWSS3(AWSS3Manager())),
-                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore(VectorStorePineconeManager())))))
+                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore(VectorStoreChromaDBManager())))))
     documentOperationResponses = controller.uploadDocuments(newDocuments, False)
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

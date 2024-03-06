@@ -31,7 +31,7 @@ class UploadDocumentsController:
     def toDocument(self, newDocument: NewDocument) -> Document:
         documentType = DocumentType.PDF if newDocument.type.upper() == "PDF" else DocumentType.DOCX
         return Document(
-            DocumentStatus(Status.PRE_LOADING),
+            DocumentStatus(Status.ENABLED),
             PlainDocument(
                 DocumentMetadata(
                     DocumentId(newDocument.documentId),

@@ -1,10 +1,13 @@
 boto3
+chromadb
 Flask
 flask_cors
 Flask-SQLAlchemy
 huggingface-hub
 InstructorEmbedding
 langchain
+langchain_community
+langchain_core
 openai
 pypdf
 PyPDF2

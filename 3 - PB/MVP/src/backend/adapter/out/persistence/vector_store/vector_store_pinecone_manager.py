@@ -1,7 +1,6 @@
 from typing import List
 
-import pinecone
-from langchain.vectorstores import Pinecone
+from pinecone import Pinecone
 
 from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
 from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
@@ -11,14 +10,14 @@ class VectorStorePineconeManager(VectorStoreManager):
     def __init__(self):
         with open('/run/secrets/pinecone_api', 'r') as file:
             pineconeApi = file.read()
-        with open('/run/secrets/pinecone_enviroment', 'r') as file:
+        with open('/run/secrets/pinecone_environment', 'r') as file:
             pineconeEnvironment = file.read()
         with open('/run/secrets/pinecone_index_name', 'r') as file:
             pineconeIndexName = file.read()
 
-        self.pinecone = pinecone.init(
+        self.pinecone = Pinecone(
             api_key=pineconeApi, 
-            enviroment=pineconeEnvironment)
+            environment=pineconeEnvironment)
         self.index = self.pinecone.Index(pineconeIndexName)
 
     def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:

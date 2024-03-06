@@ -7,4 +7,4 @@ class EmbeddingsCreator:
         self.langchain_embeddings_model = langchain_embeddings_model
         
     def embedDocument(self, documents: List[LangchainCoreDocuments]) -> List[List[float]]:
-        return self.langchain_embeddings_model.embedDocument(documents.get("page_content"))
+        return self.langchain_embeddings_model.embedDocument([document.page_content for document in documents])

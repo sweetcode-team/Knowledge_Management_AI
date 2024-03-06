@@ -2,8 +2,8 @@ from application.port._in.delete_documents_use_case import DeleteDocumentsUseCas
 from domain.document.document_id import DocumentId
 from typing import List
 from domain.document.document_operation_response import DocumentOperationResponse
-from application.port.service.delete_documents import DeleteDocuments
-from application.port.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
+from application.service.delete_documents import DeleteDocuments
+from application.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
 
 
 class DeleteDocumentsService(DeleteDocumentsUseCase):

@@ -52,15 +52,15 @@ class AWSS3Manager:
         AWSDocumentOperationResponseList = []
         status = True
         for document in awsDocuments:
-            if not forceUpload:
-                try:
-                    self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
-                    message = "Document already exists"
-                    AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
-                    continue
-                except:
-                    pass
-            aws = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type)
+            # if not forceUpload:
+            #     try:
+            #         self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
+            #         message = "Document already exists"
+            #         AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
+            #         continue
+            #     except:
+            #         pass
+            # aws = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type) # TODO
             #TODO status da cambiare, se funziona true, altrimenti false
             message = "Document uploaded successfully"
             AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
@@ -71,14 +71,14 @@ class AWSS3Manager:
         for documentId in documentsIds:
             status = True
             try:
-                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
+                # self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId) TODO
                 message = "Document correctly deleted"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
             except:
                 status = False
                 message = "An error occured while deleting the document"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
-        return AWSDocumentOperationResponseList               
+        return AWSDocumentOperationResponseList
 
     #def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
     #    return self.s3.list_objects(Bucket=self.bucket_name, Prefix=documentFilter)

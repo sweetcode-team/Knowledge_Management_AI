@@ -85,13 +85,14 @@ class VectorStorePineconeManager(VectorStoreManager):
                                         "source": {"$eq": documentId}
                                     }
                                 )
-                documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])] 
-                concealResponse = self.index.update(
-                        ids = documentEmbeddings,
-                        set_metadata = {"status": "CONCEALED"}
-                    )
+                documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])]
+                for documentEmbedding in documentEmbeddings:
+                    concealResponse = self.index.update(
+                            id = documentEmbedding,
+                            set_metadata = {"status": "CONCEALED"}
+                        )
                 if concealResponse:
-                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nell'occultamento degli embeddings.")}"))
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nell'occultamento degl documento.")}"))
                 else:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
             except PineconeApiException as e:
@@ -113,12 +114,13 @@ class VectorStorePineconeManager(VectorStoreManager):
                                     }
                                 )
                 documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])] 
-                enableResponse = self.index.update(
-                        ids = documentEmbeddings,
-                        set_metadata = {"status": "ENABLED"}
-                    )
-                if enableResponse:
-                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{enableResponse.get('message', "Errore nella riabilitazione del documento.")}"))
+                for documentEmbedding in documentEmbeddings:
+                    concealResponse = self.index.update(
+                            id = documentEmbedding,
+                            set_metadata = {"status": "CONCEALED"}
+                        )
+                if concealResponse:
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nella riabilitazione del documento.")}"))
                 else:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
             except PineconeApiException as e:

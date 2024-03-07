@@ -35,7 +35,8 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Occultazione embeddings avvenuta con successo."))
             except:
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Occultazione embeddings fallita."))
-                continue         
+                continue 
+        return vectorStoreDocumentOperationResponses        
     
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []

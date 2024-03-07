@@ -20,7 +20,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 self.collection.delete(where = {"source": documentId})
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Eliminazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'eliminazione degli embeddings."))
                 continue
         return vectorStoreDocumentOperationResponses
    
@@ -32,28 +32,43 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 self.collection.update(
                     ids=embeddingsIds,
                     metadatas={"status": "CONCEALED"})
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Occultazione embeddings avvenuta con successo."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Occultazione embeddings fallita."))
-                continue         
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'occultamento del documento."))
+                continue 
+        return vectorStoreDocumentOperationResponses        
     
-    def enableDocuments(documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        pass
-     
-    def uploadEmbeddings(self, documentsId: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
+    def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
-        for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
-            ids = [f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page', 'NULL'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+
+        for documentId in documentsIds:
+            try:
+                embeddingsIds=(self.collection.get(where = {"source" : documentId})).get("ids", None)
+                self.collection.update(
+                    ids=embeddingsIds,
+                    metadatas={"status": "ENABLED"})
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
+            except:
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nella riabilitazione del documento."))
+                continue
+        return vectorStoreDocumentOperationResponses   
+     
+    def uploadEmbeddings(self, documentsIds: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
+        vectorStoreDocumentOperationResponses = []
+        for documentId, documentChunks, documentEmbeddings in zip(documentsIds, documentsChunks, documentsEmbeddings): 
+            ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
+            metadatas = [{"page": chunk.metadata.get('page', 'NULL'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+
             try:
                 self.collection.add(
                         embeddings = documentEmbeddings,
+                        documents = [chunk.page_content for chunk in documentChunks], 
                         metadatas = metadatas,
                         ids = ids
                     )
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Creazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nel caricamento degli embeddings."))
                 continue
         return vectorStoreDocumentOperationResponses
             

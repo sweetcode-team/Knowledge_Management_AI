@@ -3,6 +3,7 @@ from typing import List
 import boto3
 from adapter.out.persistence.aws.AWS_document import AWSDocument
 from adapter.out.persistence.aws.AWS_document_operation_response import AWSDocumentOperationResponse
+from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
 
 """
     This class is responsible for managing the AWS S3 bucket.
@@ -35,12 +36,15 @@ class AWSS3Manager:
             region_name="eu-west-1"
         )
     def getDocumentById(self, documentId):
-        aws = self.s3.get_object(Bucket=self.bucket_name, Key=documentId)
-        id = aws.get('Key')
-        content = aws.get('Body').read()
-        type = aws.get('ContentType')
-        size = aws.get('ContentLength')
-        uploadTime = aws.get('LastModified')
+        try:
+            aws = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
+            id = aws.get('Key')
+            content = aws.get('Body').read()
+            type = aws.get('ContentType')
+            size = aws.get('ContentLength')
+            uploadTime = aws.get('LastModified')
+        except:
+            return None
         return AWSDocument(
             id,
             content,
@@ -48,6 +52,7 @@ class AWSS3Manager:
             size,
             uploadTime
         )
+
     def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload:bool) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponseList = []
         status = True
@@ -80,5 +85,20 @@ class AWSS3Manager:
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
         return AWSDocumentOperationResponseList
 
-    #def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
-    #    return self.s3.list_objects(Bucket=self.bucket_name, Prefix=documentFilter)
+    def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
+        awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
+                                                      Prefix=documentFilter)
+        contents =awsDocumentMetadata.get('Contents')
+        for content in contents:
+            print(content,flush=True)
+            awsMetadata = AWSDocumentMetadata(content.get('Key'),
+                                            contents.get('Size'),
+                                            contents.get('LastModified'))
+        return awsMetadata
+        #for documentFilter in documentsFilter:
+        #    awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
+                   #                                         Prefix=documentFilter)
+        #    awsDocumentsMetadata = awsDocumentsMetadata.append(AWSDocumentMetadata(documentFilter,
+        #                    awsDocumentMetadata.get('ContentLength'),
+        #                    awsDocumentMetadata.get('LastModified')))
+        #return awsDocumentMetadata

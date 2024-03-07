@@ -2,25 +2,19 @@ import os
 from flask import request, Blueprint, jsonify, abort
 from adapter._in.web.new_document import NewDocument
 from adapter._in.web.upload_documents_controller import UploadDocumentsController
-from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
 from application.service.documents_uploader import DocumentsUploader
-from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
-from application.service.upload_documents_service import UploadDocumentsService
 from application.service.embeddings_uploader import EmbeddingsUploader
-from adapter.out.upload_documents.chunkerizer import Chunkerizer
-from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
-from adapter.out.upload_documents.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
-from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
-from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
-from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
-from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
+from application.service.upload_documents_service import UploadDocumentsService
+
 from werkzeug.utils import secure_filename
+from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
+
+from adapter.out.configuration_manager import ConfigurationManager
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
-    # TODO: Add validation for the request
     newDocuments = []
 
     for uploadedDocument in request.files.getlist('documents'):
@@ -42,24 +36,12 @@ def uploadDocuments():
         else:
             abort(400, "L'upload di documenti senza titolo non è supportato.")
 
+    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
+
     controller = UploadDocumentsController(
-        UploadDocumentsService(
-            DocumentsUploader(
-                DocumentsUploaderAWSS3(
-                    AWSS3Manager()
-                )
-            ),
-            EmbeddingsUploader(
-                EmbeddingsUploaderFacadeLangchain(
-                    Chunkerizer(),
-                    EmbeddingsCreator(
-                        HuggingFaceEmbeddingModel()
-                    ),
-                    EmbeddingsUploaderVectorStore(
-                        VectorStoreChromaDBManager()
-                    )
-                )
-            )
+        upload_documents_use_case=UploadDocumentsService(
+            DocumentsUploader(configurationManager.getDocumentsUploaderPort()),
+            EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort())
         )
     )
     documentOperationResponses = controller.uploadDocuments(newDocuments, False)

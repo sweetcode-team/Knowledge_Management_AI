@@ -8,5 +8,6 @@ class EmbeddingsUploaderVectorStore:
         self.vectorStoreManager = vectorStoreManager
 
     def uploadEmbeddings(self, documents: List[LangchainDocument]) -> List[VectorStoreDocumentOperationResponse]:
-        return self.vectorStoreManager.uploadEmbeddings([(document.metadata["source"], document.embedding, document.metadata) for document in documents])
+        documentsId, documentsChunks, documentsEmbeddings = zip(*[(document.documentId, document.chunks, document.embeddings) for document in documents])
+        return self.vectorStoreManager.uploadEmbeddings(documentsId, documentsChunks, documentsEmbeddings)
     

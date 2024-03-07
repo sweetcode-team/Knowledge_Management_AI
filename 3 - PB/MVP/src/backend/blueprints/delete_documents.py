@@ -6,7 +6,6 @@ from adapter.out.delete_documents.delete_documents_AWSS3 import DeleteDocumentsA
 from application.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
 from application.service.delete_documents_service import DeleteDocumentsService
 from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
-from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
 from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
 from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
 

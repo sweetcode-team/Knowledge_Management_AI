@@ -39,14 +39,3 @@ class UploadDocumentsService(UploadDocumentsUseCase):
                  finalOperationResponses.append(documentOperationResponse)
 
         return finalOperationResponses
-    
-        # documentOperationResponses = self.documentsUploader.uploadDocuments(documents, forceUpload)
-        # finalOperationResponses = []       
-        # for document, documentOperationResponse in zip(documents, documentOperationResponses):
-        #     if documentOperationResponse.ok():
-        #         embeddingsOperationResponse = self.embeddingsUploader.uploadEmbeddings([document])
-        #         finalOperationResponses.append(embeddingsOperationResponse[0])
-        #     else:
-        #         finalOperationResponses.append(documentOperationResponse)
-
-        # return finalOperationResponses

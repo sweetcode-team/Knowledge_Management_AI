@@ -1,5 +1,6 @@
 boto3
 chromadb
+docx2txt
 Flask
 flask_cors
 Flask-SQLAlchemy

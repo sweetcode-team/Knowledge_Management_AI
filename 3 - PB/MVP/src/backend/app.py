@@ -5,6 +5,7 @@ from blueprints.upload_documents import uploadDocumentsBlueprint
 from blueprints.delete_documents import deleteDocumentsBlueprint
 
 app = Flask(__name__)
+
 CORS(app)
 
 app.register_blueprint(uploadDocumentsBlueprint)

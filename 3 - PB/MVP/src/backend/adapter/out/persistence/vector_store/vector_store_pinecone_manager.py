@@ -85,11 +85,13 @@ class VectorStorePineconeManager(VectorStoreManager):
                                         "source": {"$eq": documentId}
                                     }
                                 )
-                documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])] 
-                concealResponse = self.index.update(
-                        ids = documentEmbeddings,
-                        set_metadata = {"status": "CONCEALED"}
-                    )
+                documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])]
+                
+                for documentEmbedding in documentEmbeddings:
+                    concealResponse = self.index.update(
+                            id = documentEmbedding,
+                            set_metadata = {"status": "CONCEALED"}
+                        )
                 if concealResponse:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nell'occultamento degli embeddings.")}"))
                 else:

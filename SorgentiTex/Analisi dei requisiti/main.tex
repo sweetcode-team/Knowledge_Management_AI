@@ -1679,7 +1679,9 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{O} & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \rf{O} & L'utente deve poter eliminare una chat. & \rifuc{elim_chat} \\
+\hline \subrf{O} & Se l'eliminazione di una chat fallisce, l'utente deve visualizzare un messaggio di errore. & \rifuc{elim_chat} \\
 \hline \rf{O} & L'utente deve poter eliminare un insieme di chat. & \rifuc{elim_chat_s} \\
+\hline \subrf{O} & Se l'eliminazione di un insieme di chat fallisce, l'utente deve visualizzare un messaggio di errore. & \rifuc{elim_chat_s} \\
 \hline \subrf{O} & L'utente deve poter selezionare un insieme di chat per poterle eliminare. & \rifuc{elim_chat_s} \\
 
 \hline \rf{O} & L'utente deve poter rinominare una chat. & \quantities{\rifuc{rinom_chat}\\ Verbale esterno (2023-11-24)} \\
@@ -1718,7 +1720,9 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
 \hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
 \hline \rf{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
-\hline \rf{O} & L'utente deve poter rigenerare gli embeddings dei documenti in stato notEmbedded.  & \rifuc{rig_emb} 
+\hline \rf{O} & L'utente deve poter rigenerare gli embeddings dei documenti in stato notEmbedded.  & \rifuc{rig_emb} \\
+\hline \rf{O} & Un messaggio viene salvato sul database solo se ha una risposta dal chatbot.  & \rifsubuc{vis_cont_chat}{vis_sing_mess} \\
+\hline \rf{O} & Una chat viene creata in modo consistente nel database solamente dopo un messaggio da parte dell'utente e della relativa risposta da parte del chatbot.  & \rifsubuc{vis_cont_chat}{vis_sing_mess}
 
 \end{xltabular}
 
@@ -1795,10 +1799,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 134 & 8 & 10 & 152 \\
+Funzionali & 138 & 8 & 10 & 156 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 139 & 8 & 10 & \textbf{157} \\
+\hline \textbf{Totale} & 143 & 8 & 10 & \textbf{161} \\
 
 \end{xltabular}
 

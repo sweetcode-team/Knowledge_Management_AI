@@ -37,5 +37,4 @@ class UploadDocumentsService(UploadDocumentsUseCase):
                    finalOperationResponses.append(embeddingsOperationResponse[0])
             else:
                  finalOperationResponses.append(documentOperationResponse)
-
         return finalOperationResponses

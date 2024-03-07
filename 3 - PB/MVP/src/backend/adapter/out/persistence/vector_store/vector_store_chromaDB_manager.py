@@ -45,7 +45,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         vectorStoreDocumentOperationResponses = []
         for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page', "NULL"), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
             try:
                 self.collection.add(
                         embeddings = documentEmbeddings,

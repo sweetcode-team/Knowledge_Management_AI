@@ -56,7 +56,7 @@ def uploadDocuments():
                         HuggingFaceEmbeddingModel()
                     ),
                     EmbeddingsUploaderVectorStore(
-                        VectorStoreChromaDBManager()
+                        VectorStorePineconeManager()
                     )
                 )
             )

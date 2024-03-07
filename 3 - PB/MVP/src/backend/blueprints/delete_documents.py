@@ -14,7 +14,7 @@ deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
-    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager())), DeleteDocumentsEmbeddings(DeleteEmbeddingsVectorStore(VectorStorePineconeManager()))))
+    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager())), DeleteDocumentsEmbeddings(DeleteEmbeddingsVectorStore(VectorStoreChromaDBManager()))))
     documentOperationResponses = controller.deleteDocuments(request.json.get('ids'))
      
     return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

@@ -435,6 +435,58 @@ da \textit{SEMAT}: tale pianificazione viene però piegata alle esigenze e alla 
 L'attività di progettazione ha lo scopo di fissare un'architettura del prodotto che soddisfi i requisiti determinati dall'attività di analisi, prima di passare alla codifica.
 La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
 
+\subsubsubsection{Documentazione}
+L'attività di progettazione produce il documento (Specifica tecnica (v2.0.0(36))). Questo documento serve a descrivere l'architettura del prodotto e a guidare in modo chiaro e privo di ambiguità il lavoro dei programmatori attraverso la progettazione di dettaglio.
+Il documento tratta delle seguenti tematiche:
+\begin{itemize}
+    \item \textbf{Scelte tecnologiche}: analisi delle tecnologie e delle librerie selezionate e delle motivazioni a supporto di queste scelte;
+    \item \textbf{Architettura di sistema}: descrizione del modello architetturale e organizzazione delle componenti al suo interno;
+    \item \textbf{Architettura delle componenti}: esposizione dell'organizzazione delle componenti ed enunciazione delle loro sottocomponenti;
+    \item \textbf{Progettazione di dettaglio}: specifica dettagliata di ogni unità.
+\end{itemize}
+
+
+
+\subsubsubsection{Linee guida progettazione delle componenti}
+\begin{itemize}
+    \item Ogni componente deve essere descritta come segue:
+    \begin{enumerate}
+        \item Descrizione concisa delle sue funzionalità;
+        \item Caratteristiche:
+        \begin{itemize}
+            \item \textbf{Route API};
+            \item \textbf{Metodo} (tipo);
+            \item \textbf{Lista parametri HTTP}.
+        \end{itemize}
+        \item Possibili esiti della sua esecuzione descritti con:
+        \begin{itemize}
+            \item Codice;
+            \item Descrizione;
+            \item Risposta (messaggio da esibire nel caso di quel particolare esito). 
+        \end{itemize}
+        \item Riferimenti che permettano di fare tracciamento dei requisiti che soddisfa;
+        \item Enunciazione completa delle sue sottocomponenti e del loro scopo.
+    \end{enumerate} 
+\end{itemize}
+\subsubsubsection{Linee guida progettazione di dettaglio}
+Il documento Specifica tecnica (v2.0.0(36)) nella sezione (\S Progettazione di dettaglio) analizza in maniera precisa e chiara i moduli, raggruppandoli per appartenenza alle componenti del sistema.\\
+Per ogni componente viene allegato un \textit{Diagramma delle classi}.
+Per ogni classe vengono elencate le proprietà che le caratterizzano, tra le quali:
+\begin{itemize}
+    \item \textbf{Tipo}: specifica per esempio se la classe è astratta o concreta;
+    \item \textbf{Attributi}: elenca gli attributi propri della classe;
+    \item \textbf{Metodi}: ogni metodo viene identificato dalla firma e da una descrizione in cui viene eventualmente indicato se è astratto;
+    \item \textbf{Valori}: campo che caratterizza le enumerazioni;
+    \item \textbf{Altro}: campo che specifica se la classe implementa un'interfaccia o deriva da una classe.
+\end{itemize}
+\paragraph{Convenzioni nella progettazione di dettaglio}
+\begin{itemize}
+    \item Firma del metodo: \\
+     \code{nomeMetodo(parametro: tipoParametro, parametro1: tipoParametro1): TipoDiRitorno}.
+\end{itemize}
+
+\paragraph{Pattern}
+
 I progettisti del team avranno l'obbligo di considerare le seguenti proprietà durante l'attività di progettazione:
 \begin{itemize}
     \item \textbf{Sufficienza}: in grado di soddisfare tutti i requisiti;
@@ -487,11 +539,11 @@ In particolare, i progettisti devono:
 \label{sec:progettazione_di_dettaglio}
 La progettazione di dettaglio consiste nel suddividere il sistema affinché ogni singola parte abbia una complessità tale da poter essere codificata da un unico individuo, in modo rapido, fattibile e verificabile.
 
-I progettisti hanno il dovere di fermarsi quando la decomposizione diventa controproduttiva, cioè nel momento in cui il costo di coordinamento tra le parti decomposte è maggiore del beneficio prodotto decomponendo.
+%I progettisti hanno il dovere di fermarsi quando la decomposizione diventa controproduttiva, cioè nel momento in cui il costo di coordinamento tra le parti decomposte è maggiore del beneficio prodotto decomponendo.
 
 La progettazione di dettaglio agisce sulle unità architetturali, cioè unità funzionali ben definite, la cui codifica può essere assegnata ad un unico programmatore.
 Ogni unità architetturale è formata da uno o più moduli, e più unità architetturali formano un componente, che è l'oggetto dell'architettura logica.
-L'architettura di dettaglio guida la codifica e l'integrazione e semplifica il tracciamento dei requisiti.
+%L'architettura di dettaglio guida la codifica e l'integrazione e semplifica il tracciamento dei requisiti.
 
 Durante la progettazione di dettaglio, i progettisti hanno il compito di:
 \begin{itemize}
@@ -501,13 +553,14 @@ Durante la progettazione di dettaglio, i progettisti hanno il compito di:
     \item Definire la specifica dei test di integrazione, collaborando con i verificatori.
 \end{itemize}
 
-\subsubsubsection{Specifica architetturale}
-La progettazione deve essere ben documentata, affinché la codifica e la verifica del software possano essere svolte in modo autonomo e disciplinato.
+\subsubsubsection{Diagrammi}
+I diagrammi delle classiriportati all'interno del documento (Specifica tecnica (v2.0.0(36))) devono seguire la notazione e le specifiche indicate da \textit{UML v2.5}.
 
-Ogni parte individuata deve essere dotata di una specifica chiara e coesa, realizzabile entro i costi e le risorse disponibili.
+\subsubsubsection{Strumenti}
+\begin{itemize}
+    \item \textit{Diagrams.net}.
+\end{itemize}
 
-Queste specifiche sono raccolte nel documento (Specifica architetturale), che verrà prodotto dopo il superamento della fase di revisione \textit{RTB\pg}.
-Le modalità di stesura e l'organizzazione di questo documento verranno indicate in parallelo alla sua creazione.
 
 \subsubsection{Codifica}
 \subsubsubsection{Scopo}
@@ -700,7 +753,7 @@ software. Tutti i documenti da redigere vengono presentati nella tabella che seg
     \textbf{Nome del documento} & \textbf{Scopo}  & \textbf{Redattore} &  \textbf{Destinatari} & \textbf{Consegne previste} \\
     
     \hline
-    Analisi dei requisiti & Definizione requisiti utente & Analista & Azienda proponente, Docenti & RTB, \textit{PB\pg}\\
+    Analisi dei requisiti & Definizione requisiti utente & Analista & Azienda proponente, Docenti & \textit{RTB\pg}, \textit{PB\pg}\\
     \hline
     Norme di progetto & Definizione regolamento normativo per il team & Responsabile, Amministratore & Docenti & RTB, PB\\
     \hline

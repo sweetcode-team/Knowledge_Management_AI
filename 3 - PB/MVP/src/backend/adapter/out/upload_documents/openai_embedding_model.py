@@ -4,7 +4,7 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from adapter.out.upload_documents.huggingface_embedding_model import LangchainEmbeddingModel
 
 
-class OpenAiEmbeddingModel(LangchainEmbeddingModel):
+class OpenAIEmbeddingModel(LangchainEmbeddingModel):
     def embedDocument(self, documentChunks: List[str]) -> List[List[float]]:
         with open('/run/secrets/openai_key', 'r') as file:
             openaikey = file.read()

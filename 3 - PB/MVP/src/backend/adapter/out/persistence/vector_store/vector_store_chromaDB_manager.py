@@ -40,6 +40,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
     
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
+
         for documentId in documentsIds:
             try:
                 embeddingsIds=(self.collection.get(where = {"source" : documentId})).get("ids", None)
@@ -56,7 +57,8 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         vectorStoreDocumentOperationResponses = []
         for documentId, documentChunks, documentEmbeddings in zip(documentsIds, documentsChunks, documentsEmbeddings): 
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"page": chunk.metadata.get('page'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+            metadatas = [{"page": chunk.metadata.get('page', 'NULL'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+
             try:
                 self.collection.add(
                         embeddings = documentEmbeddings,
@@ -64,7 +66,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                         metadatas = metadatas,
                         ids = ids
                     )
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con succcesso."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con successo."))
             except:
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nel caricamento degli embeddings."))
                 continue

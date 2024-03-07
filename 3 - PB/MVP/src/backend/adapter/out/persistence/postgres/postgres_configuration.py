@@ -1,9 +1,10 @@
-from typing import Dict
 from dataclasses import dataclass
+from adapter.out.persistence.postgres.configuration_models import VectorStoreConfiguration, EmbeddingModelConfiguration, LLMModelConfiguration, DocumentStoreConfiguration
 
 @dataclass
 class PostgresConfiguration:
-    vectorStore: Dict[str, str]
-    embeddingModel: Dict[str, str]
-    llmModel: Dict[str, str]
-    documentStore: Dict[str, str]
+    id: int
+    documentStore: VectorStoreConfiguration
+    vectorStore: EmbeddingModelConfiguration
+    embeddingsModel: LLMModelConfiguration
+    llmModel: DocumentStoreConfiguration

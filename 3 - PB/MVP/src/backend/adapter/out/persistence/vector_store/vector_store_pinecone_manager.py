@@ -149,6 +149,7 @@ class VectorStorePineconeManager(VectorStoreManager):
         for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
             metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page',-1), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+
             try:
                 uploadResponse = self.index.upsert(
                         vectors = [

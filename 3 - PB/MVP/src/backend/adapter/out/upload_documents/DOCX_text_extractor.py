@@ -17,6 +17,5 @@ class DOCXTextExtractor(TextExtractor):
             tempFile.write(documentContent.content)
         docx = Docx2txtLoader(tempFile.name)
         documents = docx.load()
-        print(documents[0], flush=True)
         text_splitter = RecursiveCharacterTextSplitter(chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP")))
         return text_splitter.split_documents(documents)

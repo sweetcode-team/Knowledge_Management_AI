@@ -26,7 +26,6 @@ class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
         for documentChunks in documentsChunks:
             documentEmbeddings = self.embeddingsCreator.embedDocument(documentChunks)
             documentsEmbeddings.append(documentEmbeddings)
-
         langchainDocuments = [LangchainDocument(documentId=document.plainDocument.metadata.id.id,
                                                 chunks=documentChunks,
                                                 embeddings=documentEmbeddings) for document, documentChunks, documentEmbeddings in

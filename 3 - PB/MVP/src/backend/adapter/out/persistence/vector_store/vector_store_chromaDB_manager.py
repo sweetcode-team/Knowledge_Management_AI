@@ -20,7 +20,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 self.collection.delete(where = {"source": documentId})
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Eliminazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'eliminazione degli embeddings."))
                 continue
         return vectorStoreDocumentOperationResponses
    
@@ -32,9 +32,9 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 self.collection.update(
                     ids=embeddingsIds,
                     metadatas={"status": "CONCEALED"})
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Occultazione embeddings avvenuta con successo."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Occultazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'occultamento del documento."))
                 continue 
         return vectorStoreDocumentOperationResponses        
     
@@ -46,9 +46,9 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 self.collection.update(
                     ids=embeddingsIds,
                     metadatas={"status": "ENABLED"})
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Riabilitazione embeddings avvenuta con successo."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Riabilitazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nella riabilitazione del documento."))
                 continue
         return vectorStoreDocumentOperationResponses   
      
@@ -66,7 +66,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                     )
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con succcesso."))
             except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Creazione embeddings fallita."))
+                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nel caricamento degli embeddings."))
                 continue
         return vectorStoreDocumentOperationResponses
             

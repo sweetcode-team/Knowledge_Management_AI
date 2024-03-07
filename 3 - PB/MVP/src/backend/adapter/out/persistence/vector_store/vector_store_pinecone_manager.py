@@ -75,6 +75,7 @@ class VectorStorePineconeManager(VectorStoreManager):
     def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: #CONTROLLARE
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
+            messageError = ""
             try:
                 queryResponse = self.index.query(
                                     top_k = 10000,
@@ -86,13 +87,20 @@ class VectorStorePineconeManager(VectorStoreManager):
                                     }
                                 )
                 documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])]
+                concealDocumentResponse = []
                 for documentEmbedding in documentEmbeddings:
                     concealResponse = self.index.update(
                             id = documentEmbedding,
                             set_metadata = {"status": "CONCEALED"}
                         )
-                if concealResponse:
-                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nell'occultamento degl documento.")}"))
+                    if concealResponse:
+                        concealDocumentResponse.append(True)
+                        messageError.append(concealResponse.get('message', "Errore nell'occultamento del documento."))
+                    else:
+                        concealDocumentResponse.append(False)
+                if any(concealDocumentResponse):
+                    concatenated_messages = "\n".join(messageError)
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concatenated_messages}"))
                 else:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
             except PineconeApiException as e:
@@ -103,6 +111,7 @@ class VectorStorePineconeManager(VectorStoreManager):
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: #CONTROLLARE
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
+            messageError = ""
             try:
                 queryResponse = self.index.query(
                                     top_k = 10000,
@@ -114,13 +123,20 @@ class VectorStorePineconeManager(VectorStoreManager):
                                     }
                                 )
                 documentEmbeddings = [match.get('id', '') for match in queryResponse.get('matches', [{}])] 
+                concealDocumentResponse = []
                 for documentEmbedding in documentEmbeddings:
                     concealResponse = self.index.update(
                             id = documentEmbedding,
-                            set_metadata = {"status": "CONCEALED"}
+                            set_metadata = {"status": "ENABLED"}
                         )
-                if concealResponse:
-                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concealResponse.get('message', "Errore nella riabilitazione del documento.")}"))
+                    if concealResponse:
+                        concealDocumentResponse.append(True)
+                        messageError.append(concealResponse.get('message', "Errore nella riabilitazione del documento."))
+                    else:
+                        concealDocumentResponse.append(False)
+                if any(concealDocumentResponse):
+                    concatenated_messages = "\n".join(messageError)
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{concatenated_messages}"))
                 else:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
             except PineconeApiException as e:
@@ -132,7 +148,7 @@ class VectorStorePineconeManager(VectorStoreManager):
         vectorStoreDocumentOperationResponses = []
         for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page'), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page',-1), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
             try:
                 uploadResponse = self.index.upsert(
                         vectors = [

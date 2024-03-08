@@ -6,7 +6,7 @@ from adapter.out.persistence.vector_store.vector_store_document_status_response 
 from langchain_core.documents.base import Document as LangchainCoreDocument
 
 class VectorStoreManager:
-    def getDocumentsStatus(documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
+    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
         pass
     
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:

@@ -1,15 +1,15 @@
 import os
 from flask import request, Blueprint, jsonify, abort
+from werkzeug.utils import secure_filename
 from adapter._in.web.new_document import NewDocument
 from adapter._in.web.upload_documents_controller import UploadDocumentsController
+from application.service.upload_documents_service import UploadDocumentsService
 from application.service.documents_uploader import DocumentsUploader
 from application.service.embeddings_uploader import EmbeddingsUploader
-from application.service.upload_documents_service import UploadDocumentsService
 
-from werkzeug.utils import secure_filename
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-
 from adapter.out.configuration_manager import ConfigurationManager
+
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 

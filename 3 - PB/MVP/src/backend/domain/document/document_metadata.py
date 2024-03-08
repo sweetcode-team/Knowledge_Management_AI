@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
@@ -18,3 +19,4 @@ class DocumentMetadata:
     type: DocumentType
     size: float
     uploadTime: datetime
+

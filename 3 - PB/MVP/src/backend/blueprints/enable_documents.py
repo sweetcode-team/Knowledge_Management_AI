@@ -1,6 +1,5 @@
 from flask import request, Blueprint, jsonify
 from adapter._in.web.enable_documents_controller import EnableDocumentsController
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
 from adapter.out.enable_documents.enable_documents_vector_store import EnableDocumentsVectorStore
 from application.service.enable_documents_service import EnableDocumentsService
 from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
@@ -13,7 +12,10 @@ def enableDocuments():
     controller = EnableDocumentsController(
         EnableDocumentsService(
             EnableDocumentsVectorStore(
-                VectorStoreChromaDBManager())))
+                VectorStorePineconeManager())))
     documentOperationResponses = controller.enableDocuments(request.json.get('ids'))
      
-    return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])
+    return jsonify([{"id": documentOperationResponse.documentId.id, 
+                     "status": documentOperationResponse.status, 
+                     "message": documentOperationResponse.message} 
+                    for documentOperationResponse in documentOperationResponses])

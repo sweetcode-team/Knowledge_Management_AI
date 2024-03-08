@@ -10,7 +10,7 @@ class EnableDocumentsVectorStore(EnableDocumentsPort):
         self.vectorStoreManager = vectorStoreManager
         
     def enableDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        #adaptee because vectorStoreManager needs a ListOfString
+        #adaptee because vectorStoreManager needs a List of string
         documentsIdsString = [documentId.id for documentId in documentsIds]
         vectorStoreDocumentOperationResponseList = self.vectorStoreManager.enableDocuments(documentsIdsString)
         #return DocumentOperationResponse therefore we adaptee the response

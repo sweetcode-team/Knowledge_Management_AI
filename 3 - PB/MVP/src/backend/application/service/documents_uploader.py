@@ -12,7 +12,7 @@ Methods:
 
 class DocumentsUploader:
     def __init__(self, documentUploaderPort: DocumentsUploaderPort):
-        self.documentUploaderPort = documentUploaderPort
+        self.outPort = documentUploaderPort
 
     def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
-        return self.documentUploaderPort.uploadDocuments(documents, forceUpload)
+        return self.outPort.uploadDocuments(documents, forceUpload)

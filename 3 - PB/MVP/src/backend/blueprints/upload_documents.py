@@ -39,7 +39,7 @@ def uploadDocuments():
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
     controller = UploadDocumentsController(
-        upload_documents_use_case=UploadDocumentsService(
+        uploadDocumentsUseCase = UploadDocumentsService(
             DocumentsUploader(configurationManager.getDocumentsUploaderPort()),
             EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort())
         )

@@ -9,6 +9,7 @@ from adapter.out.persistence.postgres.postgres_configuration_orm import init_db
 from blueprints.get_documents import getDocumentsBlueprint
 from blueprints.conceal_documents import concealDocumentsBlueprint
 from blueprints.enable_documents import enableDocumentsBlueprint
+from blueprints.embed_documents import embedDocumentsBlueprint
 
 app = Flask(__name__)
 CORS(app)
@@ -24,3 +25,4 @@ app.register_blueprint(deleteDocumentsBlueprint)
 app.register_blueprint(getDocumentsBlueprint)
 app.register_blueprint(concealDocumentsBlueprint)
 app.register_blueprint(enableDocumentsBlueprint)
+app.register_blueprint(embedDocumentsBlueprint)

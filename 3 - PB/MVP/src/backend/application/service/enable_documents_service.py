@@ -6,7 +6,7 @@ from application.port.out.enable_documents_port import EnableDocumentsPort
 
 class EnableDocumentsService(EnableDocumentsUseCase):
     def __init__(self, enableDocumentsPort: EnableDocumentsPort):
-        self.outport = enableDocumentsPort
+        self.outPort = enableDocumentsPort
         
     def enableDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        return self.outport.enableDocuments(documentsIds)    
+        return self.outPort.enableDocuments(documentsIds)    

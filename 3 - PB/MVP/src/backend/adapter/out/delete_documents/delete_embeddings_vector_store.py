@@ -10,7 +10,7 @@ class DeleteEmbeddingsVectorStore(DeleteEmbeddingsPort):
         self.vectorStoreManager = vectorStoreManager
         
     def deleteDocumentsEmbeddings(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        #adaptee because vectorStoreManager needs a ListOfString
+        #adaptee because vectorStoreManager needs a List of string
         documentsIdsString = [documentId.id for documentId in documentsIds]
         VectoreStoreDocumentOperationResponseList = self.vectorStoreManager.deleteDocumentsEmbeddings(documentsIdsString)
         #return vectorStoreDocumentOperationResponse therefore we adapt the response

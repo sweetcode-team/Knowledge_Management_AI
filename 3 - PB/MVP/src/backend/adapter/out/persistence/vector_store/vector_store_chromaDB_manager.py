@@ -14,12 +14,11 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         vectorStoreDocumentStatusResponses = []
         for documentId in documentsIds:
             try:
-                vector = self.collection.get(where={"source": documentId})
-                print(vector, flush=True)
-                vectorStoreDocumentStatusResponses.append(VectorStoreDocumentOperationResponse(documentId, status=vector.get("status", "provaTrue")))
+                metadatas = self.collection.get(where={"source": documentId}).get('metadatas', None)
+                vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, status=metadatas[0]["status"]))
             except:
                 vectorStoreDocumentStatusResponses.append(
-                    VectorStoreDocumentStatusResponse(documentId, status="provaFalse"))
+                    VectorStoreDocumentStatusResponse(documentId, status=""))
                 continue
         return vectorStoreDocumentStatusResponses
     

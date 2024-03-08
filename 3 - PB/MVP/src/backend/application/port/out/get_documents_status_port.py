@@ -5,5 +5,5 @@ from domain.document.document_status import DocumentStatus
 
 
 class GetDocumentsStatusPort:
-    def getDocumentsStatus(self, documentsId: List[DocumentId])-> Dict[DocumentId, DocumentStatus]:
+    def getDocumentsStatus(self, documentsId: List[DocumentId])-> List[DocumentStatus]:
         pass

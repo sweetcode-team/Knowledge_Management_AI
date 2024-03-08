@@ -9,5 +9,5 @@ class GetDocumentsStatus:
     def __init__(self, outPort: GetDocumentsStatusPort):
         self.outPort = outPort
 
-    def getDocumentsStatus(self, documentsIds: List[DocumentId]) -> Dict[DocumentId, DocumentStatus]:
+    def getDocumentsStatus(self, documentsIds: List[DocumentId]) -> List[DocumentStatus]:
         return self.outPort.getDocumentsStatus(documentsIds)

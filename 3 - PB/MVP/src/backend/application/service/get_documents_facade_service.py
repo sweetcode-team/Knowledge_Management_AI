@@ -14,6 +14,13 @@ class GetDocumentsFacadeService(GetDocumentsUseCase):
 
     def getDocuments(self, documentFilter: DocumentFilter) -> List[LightDocument]:
         documentsMetadataList = self.getDocumentsMetadatas.getDocumentsMetadata(documentFilter)
+
         documentsId = [document.id for document in documentsMetadataList]
-        documentsFilter = self.getDocumentsStatus.getDocumentsStatus(documentsId)
-        return documentsFilter
+        documentsStatusList = self.getDocumentsStatus.getDocumentsStatus(documentsId)
+        if len(documentsMetadataList) != len(documentsStatusList):
+            raise Exception("The number of documents metadata is different from the number of documents status")
+        listOfLightDocument = []
+        for documentMetadata, documentStatus in zip(documentsMetadataList, documentsStatusList):
+            lightdocs = LightDocument(metadata=documentMetadata, status=documentStatus)
+            listOfLightDocument.append(lightdocs)
+        return listOfLightDocument

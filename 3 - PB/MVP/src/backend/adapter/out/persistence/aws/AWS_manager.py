@@ -88,12 +88,12 @@ class AWSS3Manager:
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
         awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
                                                       Prefix=documentFilter)
-        contents =awsDocumentMetadata.get('Contents')
+        contents = awsDocumentMetadata.get('Contents')
         for content in contents:
             print(content,flush=True)
             awsMetadata = AWSDocumentMetadata(content.get('Key'),
-                                            contents.get('Size'),
-                                            contents.get('LastModified'))
+                                            content.get('Size'),
+                                            content.get('LastModified'))
         return awsMetadata
         #for documentFilter in documentsFilter:
         #    awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,

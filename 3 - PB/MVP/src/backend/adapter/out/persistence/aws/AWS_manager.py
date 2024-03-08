@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 import boto3
@@ -76,7 +77,7 @@ class AWSS3Manager:
         for documentId in documentsIds:
             status = True
             try:
-                # self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId) TODO
+                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
                 message = "Document correctly deleted"
                 AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
             except:
@@ -86,19 +87,13 @@ class AWSS3Manager:
         return AWSDocumentOperationResponseList
 
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
+        result = []
         awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
                                                       Prefix=documentFilter)
         contents = awsDocumentMetadata.get('Contents')
         for content in contents:
-            print(content,flush=True)
             awsMetadata = AWSDocumentMetadata(content.get('Key'),
                                             content.get('Size'),
                                             content.get('LastModified'))
-        return awsMetadata
-        #for documentFilter in documentsFilter:
-        #    awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
-                   #                                         Prefix=documentFilter)
-        #    awsDocumentsMetadata = awsDocumentsMetadata.append(AWSDocumentMetadata(documentFilter,
-        #                    awsDocumentMetadata.get('ContentLength'),
-        #                    awsDocumentMetadata.get('LastModified')))
-        #return awsDocumentMetadata
+            result.append(awsMetadata)
+        return result

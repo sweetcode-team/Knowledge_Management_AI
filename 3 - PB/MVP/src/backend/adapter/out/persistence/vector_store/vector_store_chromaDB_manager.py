@@ -10,8 +10,17 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         cromadb = chromadb.PersistentClient(path="db")
         self.collection = cromadb.get_or_create_collection("kmai-collection")
 
-    def getDocumentsStatus(documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
-        pass
+    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
+        vectorStoreDocumentStatusResponses = []
+        for documentId in documentsIds:
+            try:
+                metadatas = self.collection.get(where={"source": documentId}).get('metadatas', None)
+                vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, status=metadatas[0]["status"]))
+            except:
+                vectorStoreDocumentStatusResponses.append(
+                    VectorStoreDocumentStatusResponse(documentId, status=""))
+                continue
+        return vectorStoreDocumentStatusResponses
     
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []

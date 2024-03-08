@@ -17,13 +17,6 @@ class GetDocumentsListAWSS3(GetDocumentsMetadataPort):
         listOfDocumentsMetadata = []
         documentsMetadatas = self.awsS3Manager.getDocumentsMetadata(documentFilter.searchFilter)
         for documentMetadata in documentsMetadatas:
-            documentM = GetDocumentsListAWSS3.toDocumentMetadataFrom(documentMetadata)
+            documentM = documentMetadata.toDocumentMetadataFrom()
             listOfDocumentsMetadata.append(documentM)
         return listOfDocumentsMetadata
-
-    @staticmethod
-    def toDocumentMetadataFrom(document: AWSDocumentMetadata) -> DocumentMetadata:
-        return DocumentMetadata(id = DocumentId(document.id),
-                                 type=DocumentType.PDF if os.path.splitext(document.id)[1].upper() == ".PDF" else DocumentType.DOCX,
-                                 size=document.size,
-                                 uploadTime=document.uploadTime)

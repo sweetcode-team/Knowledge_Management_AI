@@ -50,6 +50,6 @@ class DocumentsUploaderAWSS3(DocumentsUploaderPort):
         #TODO guardare type cosa ritorna e se è corretto
         return AWSDocument(id=document.plainDocument.metadata.id.id,
                            content=document.plainDocument.content.content,
-                           type=str(document.plainDocument.metadata.type),
+                           type=document.plainDocument.metadata.type.name,
                            size=document.plainDocument.metadata.size,
                            uploadTime=document.plainDocument.metadata.uploadTime)

@@ -5,6 +5,8 @@ import boto3
 from adapter.out.persistence.aws.AWS_document import AWSDocument
 from adapter.out.persistence.aws.AWS_document_operation_response import AWSDocumentOperationResponse
 from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
+from domain.document.document_id import DocumentId
+from domain.document.document_metadata import DocumentMetadata, DocumentType
 
 """
     This class is responsible for managing the AWS S3 bucket.
@@ -101,3 +103,11 @@ class AWSS3Manager:
                                             content.get('LastModified'))
             result.append(awsMetadata)
         return result
+
+    def getDocumentContent(self, documentId: str) -> AWSDocument:
+        documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
+        return AWSDocument(documentId,
+                            documentContentResponse.get('Body').read(),
+                            documentContentResponse.get('ContentType'),
+                            documentContentResponse.get('ContentLength'),
+                            documentContentResponse.get('LastModified'))

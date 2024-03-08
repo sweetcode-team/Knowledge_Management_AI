@@ -8,6 +8,7 @@ from application.port.out.conceal_documents_port import ConcealDocumentsPort
 from application.port.out.enable_documents_port import EnableDocumentsPort
 from application.port.out.get_documents_metadata_port import GetDocumentsMetadataPort
 from application.port.out.get_documents_status_port import GetDocumentsStatusPort
+from application.port.out.get_document_content_port import GetDocumentContentsPort
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.persistence.postgres.configuration_models import DocumentStoreType, VectorStoreType, LLMModelType, EmbeddingModelType
@@ -28,6 +29,7 @@ from adapter.out.get_documents.get_documents_list_awss3 import GetDocumentsListA
 from adapter.out.get_documents.get_documents_status_vector_store import GetDocumentsStatusVectorStore
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
+from adapter.out.get_documents.get_document_content_awss3 import GetDocumentContentsAWSS3
 
 
 class ConfigurationException(Exception):
@@ -41,8 +43,8 @@ class ConfigurationManager:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == DocumentStoreType.AWS:
             configuredDocumentStore = DocumentsUploaderAWSS3(
-                        AWSS3Manager()
-                    )
+                    AWSS3Manager()
+                )
         else:
             raise ConfigurationException('Document store non configurato.')
         
@@ -86,8 +88,8 @@ class ConfigurationManager:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == DocumentStoreType.AWS:
             configuredDocumentStore = GetDocumentsListAWSS3(
-                        AWSS3Manager()
-                    )
+                    AWSS3Manager()
+                )
         else:
             raise ConfigurationException('Document store non configurato.')
         
@@ -97,8 +99,8 @@ class ConfigurationManager:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == DocumentStoreType.AWS:
             configuredDocumentStore = DeleteDocumentsAWSS3(
-                        AWSS3Manager()
-                    )
+                    AWSS3Manager()
+                )
         else:
             raise ConfigurationException('Document store non configurato.')
         
@@ -137,8 +139,16 @@ class ConfigurationManager:
         
         return EnableDocumentsVectorStore(configuredVectorStore)
 
-    # def getGetDocumentsContentPort(self) -> GetDocumentsContentPort:
-    #    pass
+    def getGetDocumentsContentPort(self) -> GetDocumentContentsPort:
+        configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
+        if configuration.documentStore == DocumentStoreType.AWS:
+            configuredDocumentStore = GetDocumentContentsAWSS3(
+                    AWSS3Manager()
+                )
+        else:
+            raise ConfigurationException('Document store non configurato.')
+
+        return configuredDocumentStore
 
     # def getAskChatbotPort(self) -> AskChatbotPort:
     #     pass

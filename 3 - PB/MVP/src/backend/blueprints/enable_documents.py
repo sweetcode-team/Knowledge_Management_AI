@@ -12,6 +12,9 @@ def enableDocuments():
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
     controller = EnableDocumentsController(EnableDocumentsService(configurationManager.getEnableDocumentsPort()))
+
     documentOperationResponses = controller.enableDocuments(request.json.get('ids'))
-    
-    return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])
+    return jsonify([{
+            "id": documentOperationResponse.documentId.id,
+            "status": documentOperationResponse.status,
+            "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

@@ -5,5 +5,6 @@ from domain.configuration.configuration_response import ConfigurationResponse
 class GetConfigurationService(GetConfigurationUseCase):
     def __init__(self, outPort: GetConfigurationPort):
         self.outPort = outPort
+        
     def getConfigurations(self) -> ConfigurationResponse:
         pass

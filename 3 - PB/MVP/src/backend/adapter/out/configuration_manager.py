@@ -7,6 +7,7 @@ from application.port.out.delete_embeddings_port import DeleteEmbeddingsPort
 from application.port.out.conceal_documents_port import ConcealDocumentsPort
 from application.port.out.enable_documents_port import EnableDocumentsPort
 from application.port.out.get_documents_metadata_port import GetDocumentsMetadataPort
+from application.port.out.get_documents_status_port import GetDocumentsStatusPort
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.persistence.postgres.configuration_models import DocumentStoreType, VectorStoreType, LLMModelType, EmbeddingModelType
@@ -24,6 +25,7 @@ from adapter.out.upload_documents.embeddings_uploader_facade_langchain import Em
 from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 from adapter.out.enable_documents.enable_documents_vector_store import EnableDocumentsVectorStore
 from adapter.out.get_documents.get_documents_list_awss3 import GetDocumentsListAWSS3
+from adapter.out.get_documents.get_documents_status_vector_store import GetDocumentsStatusVectorStore
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
 
@@ -68,13 +70,22 @@ class ConfigurationManager:
                     EmbeddingsUploaderVectorStore(configuredVectorStore)
                 )
 
-    # def getGetDocumentsStatusPort(self) -> GetDocumentsStatusPort:
-    #    pass
+    def getGetDocumentsStatusPort(self) -> GetDocumentsStatusPort:
+        configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
+        if configuration.vectorStore == VectorStoreType.PINECONE:
+            configuredVectorStore = VectorStorePineconeManager()
+        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+            configuredVectorStore = VectorStoreChromaDBManager()
+        else:
+            raise ConfigurationException('Vector store non configurato.')
+        
+        return GetDocumentsStatusVectorStore(configuredVectorStore)
+
 
     def getGetDocumentsMetadataPort(self) -> GetDocumentsMetadataPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == DocumentStoreType.AWS:
-            configuredDocumentStore = DeleteDocumentsAWSS3(
+            configuredDocumentStore = GetDocumentsListAWSS3(
                         AWSS3Manager()
                     )
         else:
@@ -126,8 +137,8 @@ class ConfigurationManager:
         
         return EnableDocumentsVectorStore(configuredVectorStore)
 
-    # def getGetDocumentPort(self) -> GetDocumentPort:
-    #     pass
+    # def getGetDocumentsContentPort(self) -> GetDocumentsContentPort:
+    #    pass
 
     # def getAskChatbotPort(self) -> AskChatbotPort:
     #     pass

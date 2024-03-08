@@ -114,4 +114,3 @@ class Configuration(Base):
     
     def __repr__(self):
         return f'({self.userId}, {self.vectorStore}, {self.embeddingsModel}, {self.LLMModel}, {self.documentStore})'
-

@@ -2,11 +2,9 @@ import os
 from typing import List
 import tempfile
 
-from langchain_core.documents.base import Document
 from domain.document.document_content import DocumentContent
 from adapter.out.upload_documents.text_extractor import TextExtractor
 from langchain_core.documents.base import Document as LangchainCoreDocuments
-from adapter.out.upload_documents.text_extractor import TextExtractor
 from langchain_community.document_loaders.word_document import Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 

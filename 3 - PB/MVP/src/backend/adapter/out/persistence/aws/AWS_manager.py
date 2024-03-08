@@ -36,6 +36,7 @@ class AWSS3Manager:
             aws_secret_access_key=aws_secret_access_key,
             region_name="eu-west-1"
         )
+
     def getDocumentById(self, documentId):
         try:
             aws = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
@@ -56,34 +57,37 @@ class AWSS3Manager:
 
     def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload:bool) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponseList = []
-        status = True
         for document in awsDocuments:
-            # if not forceUpload:
-            #     try:
-            #         self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
-            #         message = "Document already exists"
-            #         AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
-            #         continue
-            #     except:
-            #         pass
-            # aws = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type) # TODO
-            #TODO status da cambiare, se funziona true, altrimenti false
-            message = "Document uploaded successfully"
-            AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
+            if not forceUpload:
+                try:
+                    self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
+                    AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, False, "Il documento è già presente nel sistema."))
+                except:
+                    try:
+                        operationResponse = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type)
+                        if 200 <= operationResponse.get('ResponseMetadata', {}).get('HTTPStatusCode', 0) <= 299:
+                            AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, True, "Caricamento del documento avvenuto con successo."))
+                        else:
+                            AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, False, "Errore durante il caricamento del documento."))
+                    except:
+                        AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, False, "Errore durante il caricamento del documento."))
+
         return AWSDocumentOperationResponseList
 
     def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponseList = []
         for documentId in documentsIds:
-            status = True
             try:
-                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
-                message = "Document correctly deleted"
-                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
+                self.s3.head_object(Bucket=self.awsBucketName, Key=documentId)
+                operationResponse = self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
+                if 200 <= operationResponse.get('ResponseMetadata', {}).get('HTTPStatusCode', 0) <= 299:
+                    AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, True, "Eliminazione del documento avvenuta con successo."))
+                else:
+                    AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, False, "Errore durante l'eliminazione del documento."))
+            except self.s3.exceptions.NoSuchKey:
+                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, False, "Il documento non è presente nel sistema."))
             except:
-                status = False
-                message = "An error occured while deleting the document"
-                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
+                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, False, "Errore durante l'eliminazione del documento."))
         return AWSDocumentOperationResponseList
 
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:

@@ -16,6 +16,7 @@ def init_db():
 
     if db_session.query(Configuration).filter(Configuration.userId == 1).first() is None:
         db_session.add(Configuration(userId=1, vectorStore=VectorStoreType.CHROMA_DB, embeddingsModel=EmbeddingModelType.HUGGINGFACE, LLMModel=LLMModelType.HUGGINGFACE, documentStore=DocumentStoreType.AWS))
+        db_session.commit()
 
 class PostgresConfigurationORM:
     

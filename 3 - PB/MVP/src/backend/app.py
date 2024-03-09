@@ -1,5 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
+
+from api_exceptions import APIBadRequest
 
 from blueprints.get_document_content import getDocumentContentBlueprint
 from blueprints.upload_documents import uploadDocumentsBlueprint
@@ -26,3 +28,7 @@ app.register_blueprint(getDocumentsBlueprint)
 app.register_blueprint(concealDocumentsBlueprint)
 app.register_blueprint(enableDocumentsBlueprint)
 app.register_blueprint(getDocumentContentBlueprint)
+
+@app.errorhandler(APIBadRequest)
+def handle_api_error(error):
+    return jsonify(error.message), error.status_code

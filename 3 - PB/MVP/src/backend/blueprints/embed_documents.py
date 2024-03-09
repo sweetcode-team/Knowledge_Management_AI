@@ -6,11 +6,17 @@ from application.service.embeddings_uploader import EmbeddingsUploader
 from application.service.get_documents_status import GetDocumentsStatus
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
+from api_exceptions import InsufficientParameters
 
 embedDocumentsBlueprint = Blueprint('embed_documents', __name__)
 
 @embedDocumentsBlueprint.route('/embedDocuments', methods=['POST'])
 def embedDocuments():
+    requestedIds = request.json.get('documentIds')
+    
+    if requestedIds is None:
+        raise InsufficientParameters()
+    
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
     
     controller = EmbedDocumentsController(
@@ -19,7 +25,8 @@ def embedDocuments():
             EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort()),
             GetDocumentsStatus(configurationManager.getGetDocumentsStatusPort())))
     
-    documentOperationResponses = controller.embedDocuments(request.json.get('ids'))
+    
+    documentOperationResponses = controller.embedDocuments(requestedIds)
      
     return jsonify([{"id": documentOperationResponse.documentId.id, 
                      "status": documentOperationResponse.status, 

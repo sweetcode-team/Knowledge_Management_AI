@@ -1,5 +1,4 @@
-from flask import request, Blueprint, jsonify
-
+from flask import Blueprint, jsonify
 from adapter._in.web.get_document_content_controller import GetDocumentContentController
 from application.service.get_documents_content_facade_service import GetDocumentsContentFacadeService
 from application.service.get_documents_status import GetDocumentsStatus
@@ -7,12 +6,15 @@ from application.service.get_documents_content import GetDocumentsContent
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
+from api_exceptions import InsufficientParameters
 
 getDocumentContentBlueprint = Blueprint("getDocumentContent", __name__)
 
-
-@getDocumentContentBlueprint.route("/getDocumentContent", methods=['POST'])
-def getDocumentsContent():
+@getDocumentContentBlueprint.route("/getDocumentContent/<int:documentId>", methods=['GET'])
+def getDocumentsContent(documentId):
+    if documentId is None:
+        raise InsufficientParameters()
+    
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
     controller = GetDocumentContentController(
@@ -22,13 +24,11 @@ def getDocumentsContent():
         )
     )
     
-    requestedId = request.json.get('id')
-    if requestedId is None:
-        return jsonify({}, 400)
+    retrievedDocument = controller.getDocumentContent(documentId)
     
-    retrievedDocument = controller.getDocumentContent(requestedId)
-    if retrievedDocument is None:
-        return jsonify({}, 404)
+    if retrievedDocument is None or retrievedDocument.plainDocument is None:
+        return jsonify({}), 404
+    
     return jsonify({
         "id": retrievedDocument.plainDocument.metadata.id.id,
         "content": retrievedDocument.plainDocument.content.content.hex(),

@@ -1,13 +1,12 @@
-from application.port._in.get_document_content_use_case import GetDocumentContentUseCase
+from application.port._in.get_documents_content_use_case import GetDocumentsContentUseCase
 from domain.document.document import Document
 from domain.document.document_id import DocumentId
 
 
 class GetDocumentContentController:
-    def __init__(self, getDocumentContentUseCase: GetDocumentContentUseCase):
+    def __init__(self, getDocumentContentUseCase: GetDocumentsContentUseCase):
         self.useCase = getDocumentContentUseCase
 
     def getDocumentContent(self, documentId: str) -> Document:
-        prova = self.useCase.getDocumentContent(DocumentId(documentId))
-        print(prova, flush=True)
-        return prova[0]
+        document = self.useCase.getDocumentsContent([DocumentId(documentId)])
+        return document[0]

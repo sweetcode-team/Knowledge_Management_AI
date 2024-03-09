@@ -8,7 +8,7 @@ from application.port.out.conceal_documents_port import ConcealDocumentsPort
 from application.port.out.enable_documents_port import EnableDocumentsPort
 from application.port.out.get_documents_metadata_port import GetDocumentsMetadataPort
 from application.port.out.get_documents_status_port import GetDocumentsStatusPort
-from application.port.out.get_document_content_port import GetDocumentContentsPort
+from application.port.out.get_documents_content_port import GetDocumentsContentPort
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.persistence.postgres.configuration_models import DocumentStoreType, VectorStoreType, LLMModelType, EmbeddingModelType
@@ -29,7 +29,7 @@ from adapter.out.get_documents.get_documents_list_awss3 import GetDocumentsListA
 from adapter.out.get_documents.get_documents_status_vector_store import GetDocumentsStatusVectorStore
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
-from adapter.out.get_documents.get_document_content_awss3 import GetDocumentContentsAWSS3
+from adapter.out.get_documents.get_documents_content_awss3 import GetDocumentsContentAWSS3
 
 
 class ConfigurationException(Exception):
@@ -139,10 +139,10 @@ class ConfigurationManager:
         
         return EnableDocumentsVectorStore(configuredVectorStore)
 
-    def getGetDocumentsContentPort(self) -> GetDocumentContentsPort:
+    def getGetDocumentsContentPort(self) -> GetDocumentsContentPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == DocumentStoreType.AWS:
-            configuredDocumentStore = GetDocumentContentsAWSS3(
+            configuredDocumentStore = GetDocumentsContentAWSS3(
                     AWSS3Manager()
                 )
         else:

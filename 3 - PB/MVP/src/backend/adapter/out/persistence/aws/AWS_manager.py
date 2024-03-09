@@ -104,11 +104,14 @@ class AWSS3Manager:
         return awsDocumentsMetadata
 
     def getDocumentContent(self, documentId: str) -> AWSDocument:
-        documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
-        return AWSDocument(
-            documentId,
-            documentContentResponse.get('Body').read(),
-            documentContentResponse.get('ContentType'),
-            documentContentResponse.get('ContentLength'),
-            documentContentResponse.get('LastModified')
-        )
+        try:
+            documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
+            return AWSDocument(
+                documentId,
+                documentContentResponse.get('Body').read(),
+                documentContentResponse.get('ContentType'),
+                documentContentResponse.get('ContentLength'),
+                documentContentResponse.get('LastModified')
+            )
+        except self.s3.exceptions.NoSuchKey:
+            return None

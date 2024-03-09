@@ -4,6 +4,6 @@ from domain.document.document_id import DocumentId
 from domain.document.plain_document import PlainDocument
 
 
-class GetDocumentContentsPort:
-    def getDocumentsContent(self, document_id: List[DocumentId]) -> List[PlainDocument]:
+class GetDocumentsContentPort:
+    def getDocumentsContent(self, documentIds: List[DocumentId]) -> List[PlainDocument]:
         pass

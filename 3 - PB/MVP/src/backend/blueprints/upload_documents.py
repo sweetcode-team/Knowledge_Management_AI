@@ -1,7 +1,7 @@
 import os
 from flask import request, Blueprint, jsonify
 from werkzeug.utils import secure_filename
-from adapter._in.web.new_document import NewDocument
+from adapter._in.web.presentation_domain.new_document import NewDocument
 from adapter._in.web.upload_documents_controller import UploadDocumentsController
 from application.service.upload_documents_service import UploadDocumentsService
 from application.service.documents_uploader import DocumentsUploader

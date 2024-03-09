@@ -15,9 +15,9 @@ def embedDocuments():
     
     controller = EmbedDocumentsController(
         embedDocumentsUseCase = EmbedDocumentsService(
-            GetDocumentsContent(configurationManager.getDocumentsContentPort()),
+            GetDocumentsContent(configurationManager.getGetDocumentsContentPort()),
             EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort()),
-            GetDocumentsStatus(configurationManager.getDocumentsStatusPort())))
+            GetDocumentsStatus(configurationManager.getGetDocumentsStatusPort())))
     
     documentOperationResponses = controller.embedDocuments(request.json.get('ids'))
      

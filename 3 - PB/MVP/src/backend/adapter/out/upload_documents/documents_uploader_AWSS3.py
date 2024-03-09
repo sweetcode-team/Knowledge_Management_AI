@@ -19,6 +19,7 @@ Methods:
 class DocumentsUploaderAWSS3(DocumentsUploaderPort):
     def __init__(self, awss3manager: AWSS3Manager):
         self.awss3manager = awss3manager
+    
     """
         Uploads a list of documents to the AWS S3 bucket.
     Args:
@@ -29,15 +30,11 @@ class DocumentsUploaderAWSS3(DocumentsUploaderPort):
     Returns:
         List[DocumentOperationResponse]: A list of document operation responses.
     """
-    def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
-        #adaptee because awss3manager needs a ListOfAWSDocument
+    def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
         awsDocuments = [self.toAWSDocumentFrom(document) for document in documents]
-        awsDocumentOperationResponseList = self.awss3manager.uploadDocuments(awsDocuments, forceUpload)
-        #return DocumentOperationResponse therefore we adaptee the response
-        documentOperationResponseList = []
-        for awsDocumentOperationResponse in awsDocumentOperationResponseList:
-            documentOperationResponseList.append(awsDocumentOperationResponse.toDocumentOperationResponse())
-        return documentOperationResponseList
+        awsDocumentOperationResponses = self.awss3manager.uploadDocuments(awsDocuments, forceUpload)
+        documentOperationResponses = [awsDocumentOperationResponse.toDocumentOperationResponse() for awsDocumentOperationResponse in awsDocumentOperationResponses]
+        return documentOperationResponses
 
     """
         Converts a document to an AWS document.
@@ -47,9 +44,10 @@ class DocumentsUploaderAWSS3(DocumentsUploaderPort):
         AWSDocument: The AWS document.
     """
     def toAWSDocumentFrom(self, document: Document) -> AWSDocument:
-        #TODO guardare type cosa ritorna e se è corretto
-        return AWSDocument(id=document.plainDocument.metadata.id.id,
-                           content=document.plainDocument.content.content,
-                           type=str(document.plainDocument.metadata.type),
-                           size=document.plainDocument.metadata.size,
-                           uploadTime=document.plainDocument.metadata.uploadTime)
+        return AWSDocument(
+            id=document.plainDocument.metadata.id.id,
+            content=document.plainDocument.content.content,
+            type=document.plainDocument.metadata.type.name,
+            size=document.plainDocument.metadata.size,
+            uploadTime=document.plainDocument.metadata.uploadTime
+        )

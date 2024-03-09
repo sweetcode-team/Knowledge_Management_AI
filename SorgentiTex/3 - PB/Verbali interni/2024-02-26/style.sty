@@ -1,0 +1,168 @@
+% PACKAGES ========================================================================
+
+\usepackage[italian]{babel}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees, positioning}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{lastpage}
+\usepackage{moresize}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{nicematrix}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{ifthen}
+\usepackage{forloop}
+
+% GRAPHIC STYLE ========================================================================
+
+\definecolor{primarycolor}{RGB}{248, 182, 143}
+\definecolor{secondarycolor}{RGB}{57, 57, 58}
+\definecolor{colorlogo}{RGB}{23, 22, 20}
+\definecolor{lightcol}{RGB}{245,245,245}
+
+\setlength{\parindent}{0mm}
+\linespread{1.15}
+
+\setmainfont{Poppins}[
+    Path=./Poppins/,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+% \quantities{el1 \\ el2}
+\newcommand{\quantities}[1]{%
+  \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
+}
+
+\setlist[itemize]{label=\color{primarycolor}\textbullet}
+
+\setlength{\parindent}{0pt}
+
+% NEW COMMANDS ========================================================================
+
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\newcommand{\titlebox}[3]
+{\fcolorbox{#1}{#2}{\begin{minipage}[c][4.5cm][c]{\linewidth}%
+\begin{center}\large\color{white} #3 %
+\end{center}\end{minipage}\\[14pt]
+\vspace{-12pt}
+}
+}
+
+\newcommand{\bigfont}[1]{%
+{\bf\huge\uppercase{#1} } \\[4pt]%
+\rule{0.1\textwidth}{1.25pt} \\[4pt]%
+}
+
+\newcommand{\titletext}[1]{%
+#1 \\[4pt] %
+\rule{0.1\textwidth}{1.25pt} \\[4pt]%
+}
+
+\newcommand{\heading}[1] {
+	\vspace{15pt}
+	{\bf\LARGE\color{secondarycolor}\uppercase{#1}}\\[-4pt]
+	{\color{primarycolor}\rule{0.1\textwidth}{2pt}}\vspace{2pt}
+}
+
+\newcommand{\intestazione} {
+    \heading{Intestazione}
+    
+    \textbf{Data} \\
+    \data\\
+    
+    \textbf{Ora Inizio} \\
+    \oraInizio\\
+    
+    \textbf{Ora Fine} \\
+    \oraFine\\
+    
+    \textbf{Luogo} \\
+    \luogo
+}
+
+\newcommand{\partecipanti}{
+    \heading{Partecipanti}
+    
+    \textbf{Interni} \\
+    \foreach \item in \listaPartInt{
+        \item\\
+    }
+    
+    \ifthenelse{\equal{\tipoVerb}{Esterno}}{
+        \textbf{Esterni} \\
+        \foreach \item in \listaPartEst{
+            \item\\
+        }
+    }
+}
+
+\newcommand{\revisioneAzioni}{
+    \heading{Revisione delle Azioni}
+    \ifthenelse{\equal{\listaRevisioneAzioni}{x}}{
+    
+        Non vi è stata alcuna revisione delle azioni.
+    }{
+    \begin{enumerate}
+        \foreach \azione in \listaRevisioneAzioni{
+            \item \azione
+        }
+    \end{enumerate}
+    }
+}
+
+\newcommand{\ordineGiorno}{
+    \heading{Ordine del Giorno}
+    \begin{enumerate}
+        \foreach \azione in \listaOrdineGiorno{
+            \item \azione
+        }
+    \end{enumerate}
+}
+
+\newcommand{\discussione}{
+    \begin{enumerate}
+    \ifthenelse{\equal{\tipoVerb}{Esterno}}{
+            \foreach \d in \listaDiscussioneEsterna{
+                \item \d
+            }
+        }{
+            \foreach \d in \listaDiscussioneInterna{
+                \item \d
+            }
+        }
+    \end{enumerate}
+}
+
+\newcommand{\decisioni}{
+    \ifthenelse{\equal{\listaDecisioni}{x}}{
+        Non è stata presa alcuna decisione.
+    }{
+        \begin{enumerate}
+            \foreach \d in \listaDecisioni{
+                \item \d
+            }
+        \end{enumerate}
+    }
+}

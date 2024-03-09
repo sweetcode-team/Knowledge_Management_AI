@@ -14,5 +14,5 @@ from domain.document.document_operation_response import DocumentOperationRespons
             Upload the documents to the AWS S3 bucket.
 """
 class UploadDocumentsUseCase:
-    def uploadDocuments(self, documents: List[Document], forceUpload: bool = False) -> List[DocumentOperationResponse]:
+    def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
         pass

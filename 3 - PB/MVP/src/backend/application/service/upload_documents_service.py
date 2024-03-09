@@ -28,13 +28,13 @@ class UploadDocumentsService(UploadDocumentsUseCase):
         Returns:
             List of DocumentOperationResponse objects
         """
-    def uploadDocuments(self, documents: List[Document], forceUpload: bool = False) -> List[DocumentOperationResponse]:
+    def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
         documentOperationResponses = self.documentsUploader.uploadDocuments(documents, forceUpload)
         finalOperationResponses = []
         for document, documentOperationResponse in zip(documents, documentOperationResponses):
             if documentOperationResponse.ok():
-                   embeddingsOperationResponse = self.embeddingsUploader.uploadEmbeddings([document])
-                   finalOperationResponses.append(embeddingsOperationResponse[0])
+                embeddingsOperationResponse = self.embeddingsUploader.uploadEmbeddings([document])
+                finalOperationResponses.append(embeddingsOperationResponse[0])
             else:
-                 finalOperationResponses.append(documentOperationResponse)
+                finalOperationResponses.append(documentOperationResponse)
         return finalOperationResponses

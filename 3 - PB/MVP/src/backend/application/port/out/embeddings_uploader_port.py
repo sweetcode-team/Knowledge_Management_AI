@@ -5,5 +5,5 @@ from domain.document.document_operation_response import DocumentOperationRespons
 
 
 class EmbeddingsUploaderPort:
-    def uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]:
+    def uploadEmbeddings(self, documents: List[Document]) -> List[DocumentOperationResponse]:
         pass

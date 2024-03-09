@@ -17,11 +17,12 @@ class VectorStorePineconeManager(VectorStoreManager):
 
         self.pinecone = Pinecone(
             api_key=pineconeApi, 
-            environment=pineconeEnvironment)
+            environment=pineconeEnvironment
+        )
         self.index = self.pinecone.Index(pineconeIndexName)
         self.dimension = self.pinecone.describe_index(pineconeIndexName).get('dimension', 768)
 
-    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]: 
+    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
         vectorStoreDocumentStatusResponses = []
         for documentId in documentsIds:
             try:
@@ -34,14 +35,18 @@ class VectorStorePineconeManager(VectorStoreManager):
                         "source": {"$eq": documentId}
                     }
                 )
-                vectorStoreDocumentStatusResponses.append(
-                    VectorStoreDocumentStatusResponse(
-                        documentId,
-                        queryResponse.get('matches', [{}])[0].get('metadata', {}).get('status', 'NOT_EMBEDDED')
-                    )
-                )
+                documentStatus = {documentEmbeddingsMatch.get('metadata', {}).get('status', None) for documentEmbeddingsMatch in queryResponse.get('matches', [])}
+                documentStatus.discard(None)
+                
+                if len(documentStatus) == 0:
+                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, 'NOT_EMBEDDED'))
+                elif len(documentStatus) == 1:
+                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, documentStatus.pop()))
+                else:
+                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, 'INCONSISTENT'))
             except PineconeApiException:
                 vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, None))
+                continue
 
         return vectorStoreDocumentStatusResponses
 
@@ -59,9 +64,11 @@ class VectorStorePineconeManager(VectorStoreManager):
                                         "source": {"$eq": documentId}
                                     }
                                 )
-                ids = [match.get('id', '') for match in queryResponse.get('matches', [{}])]
-                if ids:
-                    deleteResponse = self.index.delete(ids=ids)
+                ids = {match.get('id', '') for match in queryResponse.get('matches', [])}
+                ids.discard('')
+                
+                if len(ids) > 0:
+                    deleteResponse = self.index.delete(ids=list(ids))
                     if deleteResponse:
                         vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message', "Errore nell'eliminazione degli embeddings.")}"))
                     else:
@@ -144,15 +151,23 @@ class VectorStorePineconeManager(VectorStoreManager):
         vectorStoreDocumentOperationResponses = []
         for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
             ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            metadatas = [{"text": chunk.page_content, "page": chunk.metadata.get('page',-1), "source": chunk.metadata.get('source'), "status": chunk.metadata.get('status')} for chunk in documentChunks]
+            
+            metadatas = [
+                {
+                    "text": documentChunk.page_content,
+                    "page": documentChunk.metadata.get('page',-1),
+                    "source": documentChunk.metadata.get('source', documentId),
+                    "status": documentChunk.metadata.get('status', 'ENABLED')
+                } for documentChunk in documentChunks
+            ]
 
             try:
                 uploadResponse = self.index.upsert(
                         vectors = [
                             {
                                 "id": id,
-                                "values": documentEmbedding,
-                                "metadata": metadata
+                                "metadata": metadata,
+                                "values": documentEmbedding
                             } for id, metadata, documentEmbedding in zip(ids, metadatas, documentEmbeddings)
                         ]
                     )

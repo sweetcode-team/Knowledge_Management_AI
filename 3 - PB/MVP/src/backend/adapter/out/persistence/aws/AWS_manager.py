@@ -5,6 +5,8 @@ import boto3
 from adapter.out.persistence.aws.AWS_document import AWSDocument
 from adapter.out.persistence.aws.AWS_document_operation_response import AWSDocumentOperationResponse
 from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
+from domain.document.document_id import DocumentId
+from domain.document.document_metadata import DocumentMetadata, DocumentType
 
 """
     This class is responsible for managing the AWS S3 bucket.
@@ -36,7 +38,8 @@ class AWSS3Manager:
             aws_secret_access_key=aws_secret_access_key,
             region_name="eu-west-1"
         )
-    def getDocumentById(self, documentId):
+
+    def getDocumentById(self, documentId: str) -> AWSDocument:
         try:
             aws = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
             id = aws.get('Key')
@@ -54,46 +57,61 @@ class AWSS3Manager:
             uploadTime
         )
 
-    def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload:bool) -> List[AWSDocumentOperationResponse]:
-        AWSDocumentOperationResponseList = []
-        status = True
+    def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload: bool) -> List[AWSDocumentOperationResponse]:
+        AWSDocumentOperationResponses = []
+
         for document in awsDocuments:
-            # if not forceUpload:
-            #     try:
-            #         self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
-            #         message = "Document already exists"
-            #         AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
-            #         continue
-            #     except:
-            #         pass
-            # aws = self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type) # TODO
-            #TODO status da cambiare, se funziona true, altrimenti false
-            message = "Document uploaded successfully"
-            AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(document.id, status, message))
-        return AWSDocumentOperationResponseList
+            try:
+                if not forceUpload:
+                    self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, False, "Il documento e' gia' presente nel sistema."))
+                else:
+                    self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type)
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, True, "Caricamento del documento avvenuto con successo."))
+            except Exception as e:
+                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, False, f"Errore durante il caricamento del documento: {e}"))
+                continue
+
+        return AWSDocumentOperationResponses
 
     def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
-        AWSDocumentOperationResponseList = []
+        AWSDocumentOperationResponses = []
+
         for documentId in documentsIds:
-            status = True
             try:
-                # self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId) TODO
-                message = "Document correctly deleted"
-                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
-            except:
-                status = False
-                message = "An error occured while deleting the document"
-                AWSDocumentOperationResponseList.append(AWSDocumentOperationResponse(documentId, status, message))
-        return AWSDocumentOperationResponseList
+                self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
+                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, True, "Eliminazione del documento avvenuta con successo."))
+            except self.s3.exceptions.NoSuchKey: #TODO: Non fa partire l'eccezione se il documento non esiste
+                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, "Il documento non è presente nel sistema."))
+            except Exception as e:
+                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, f"Errore durante l'eliminazione del documento: {e}"))
+                continue
+
+        return AWSDocumentOperationResponses
 
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
-        result = []
-        awsDocumentMetadata = self.s3.list_objects_v2(Bucket=self.awsBucketName,
-                                                      Prefix=documentFilter)
-        contents = awsDocumentMetadata.get('Contents')
+        awsDocumentsMetadata = []
+        documentMetadataResponse = self.s3.list_objects_v2(Bucket=self.awsBucketName, Prefix=documentFilter)
+        contents = documentMetadataResponse.get('Contents', [])
         for content in contents:
-            awsMetadata = AWSDocumentMetadata(content.get('Key'),
-                                            content.get('Size'),
-                                            content.get('LastModified'))
-            result.append(awsMetadata)
-        return result
+            awsDocumentsMetadata.append(
+                AWSDocumentMetadata(
+                    content.get('Key'),
+                    content.get('Size'),
+                    content.get('LastModified')
+                )
+            )
+        return awsDocumentsMetadata
+
+    def getDocumentContent(self, documentId: str) -> AWSDocument:
+        try:
+            documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
+            return AWSDocument(
+                documentId,
+                documentContentResponse.get('Body').read(),
+                documentContentResponse.get('ContentType'),
+                documentContentResponse.get('ContentLength'),
+                documentContentResponse.get('LastModified')
+            )
+        except self.s3.exceptions.NoSuchKey:
+            return None

@@ -5,5 +5,5 @@ from domain.document.document_operation_response import DocumentOperationRespons
 
 
 class DocumentsUploaderPort:
-    def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
+    def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
         pass

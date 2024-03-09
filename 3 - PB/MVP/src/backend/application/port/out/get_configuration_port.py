@@ -1,6 +1,5 @@
-from domain.configuration.configuration_response import ConfigurationResponse
-
+from domain.configuration.configuration import Configuration
 
 class GetConfigurationPort:
-    def getConfiguration(self) -> ConfigurationResponse:
+    def getConfiguration(self) -> Configuration:
         pass

@@ -25,17 +25,17 @@ class VectorStoreConfiguration(Base):
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
-    costIndication = Column('costIndication', String)
+    costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: VectorStoreType, organization: str, description: str, type: str, costIndication: str):
+    def __init__(self, name: VectorStoreType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
         self.type = type
-        self.costIndication = costIndication
+        self.costIndicator = costIndicator
 
     def __repr__(self):
-        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndication})'
+        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
 
 class EmbeddingModelConfiguration(Base):
     __tablename__ = 'embeddingModelConfiguration'
@@ -43,17 +43,17 @@ class EmbeddingModelConfiguration(Base):
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
-    costIndication = Column('costIndication', String)
+    costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: EmbeddingModelType, organization: str, description: str, type: str, costIndication: str):
+    def __init__(self, name: EmbeddingModelType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
         self.type = type
-        self.costIndication = costIndication
+        self.costIndicator = costIndicator
 
     def __repr__(self):
-        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndication})'
+        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
 
 class LLMModelConfiguration(Base):
     __tablename__ = 'LLMModelConfiguration'
@@ -61,17 +61,17 @@ class LLMModelConfiguration(Base):
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
-    costIndication = Column('costIndication', String)
+    costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: LLMModelType, organization: str, description: str, type: str, costIndication: str):
+    def __init__(self, name: LLMModelType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
         self.type = type
-        self.costIndication = costIndication
+        self.costIndicator = costIndicator
 
     def __repr__(self):
-        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndication})'
+        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
 
 class DocumentStoreConfiguration(Base):
     __tablename__ = 'documentStoreConfiguration'
@@ -79,38 +79,38 @@ class DocumentStoreConfiguration(Base):
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
-    costIndication = Column('costIndication', String)
+    costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: DocumentStoreType, organization: str, description: str, type: str, costIndication: str):
+    def __init__(self, name: DocumentStoreType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
         self.type = type
-        self.costIndication = costIndication
+        self.costIndicator = costIndicator
 
     def __repr__(self):
-        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndication})'
+        return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
 
 
 class Configuration(Base):
     __tablename__ = 'configuration'
     userId = Column('userId', Integer, primary_key=True)
     vectorStore = Column('vectorStore', SQLEnum(VectorStoreType), ForeignKey('vectorStoreConfiguration.name'))
-    embeddingsModel = Column('embeddingsModel', SQLEnum(EmbeddingModelType), ForeignKey('embeddingModelConfiguration.name'))
+    embeddingModel = Column('embeddingModel', SQLEnum(EmbeddingModelType), ForeignKey('embeddingModelConfiguration.name'))
     LLMModel = Column('LLMModel', SQLEnum(LLMModelType), ForeignKey('LLMModelConfiguration.name'))
     documentStore = Column('documentStore', SQLEnum(DocumentStoreType), ForeignKey('documentStoreConfiguration.name'))
 
     vectorStoreConstraint = relationship(VectorStoreConfiguration, foreign_keys=[vectorStore])
-    embeddingsModelConstraint = relationship(EmbeddingModelConfiguration, foreign_keys=[embeddingsModel])
+    embeddingModelConstraint = relationship(EmbeddingModelConfiguration, foreign_keys=[embeddingModel])
     LLMModelConstraint = relationship(LLMModelConfiguration, foreign_keys=[LLMModel])
     documentStoreConstraint = relationship(DocumentStoreConfiguration, foreign_keys=[documentStore])
 
-    def __init__(self, userId: int, vectorStore: VectorStoreType, embeddingsModel: EmbeddingModelType, LLMModel: LLMModelType, documentStore: DocumentStoreType):
+    def __init__(self, userId: int, vectorStore: VectorStoreType, embeddingModel: EmbeddingModelType, LLMModel: LLMModelType, documentStore: DocumentStoreType):
         self.userId = userId
         self.vectorStore = vectorStore
-        self.embeddingsModel = embeddingsModel
+        self.embeddingModel = embeddingModel
         self.LLMModel = LLMModel
         self.documentStore = documentStore
     
     def __repr__(self):
-        return f'({self.userId}, {self.vectorStore}, {self.embeddingsModel}, {self.LLMModel}, {self.documentStore})'
+        return f'({self.userId}, {self.vectorStore}, {self.embeddingModel}, {self.LLMModel}, {self.documentStore})'

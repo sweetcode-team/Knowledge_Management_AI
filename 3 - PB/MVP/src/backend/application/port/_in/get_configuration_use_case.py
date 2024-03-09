@@ -1,5 +1,5 @@
-from domain.configuration.configuration_response import ConfigurationResponse
+from domain.configuration.configuration import Configuration
 
 class GetConfigurationUseCase:
-    def getConfigurations(self) -> ConfigurationResponse:
+    def getConfiguration(self) -> Configuration:
         pass

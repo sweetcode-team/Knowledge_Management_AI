@@ -15,7 +15,15 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     if db_session.query(Configuration).filter(Configuration.userId == 1).first() is None:
-        db_session.add(Configuration(userId=1, vectorStore=VectorStoreType.CHROMA_DB, embeddingsModel=EmbeddingModelType.HUGGINGFACE, LLMModel=LLMModelType.HUGGINGFACE, documentStore=DocumentStoreType.AWS))
+        db_session.add(VectorStoreConfiguration(name=VectorStoreType.CHROMA_DB, organization='Chroma', description='Chroma DB is an open-source vector store.', type='Open-source', costIndicator='Free'))
+        db_session.add(VectorStoreConfiguration(name=VectorStoreType.PINECONE, organization='Pinecone', description='Pinecone is a vector database for building real-time applications.', type='On cloud', costIndicator='Paid'))
+        db_session.add(EmbeddingModelConfiguration(name=EmbeddingModelType.HUGGINGFACE, organization='Hugging Face', description='Hugging Face is a company that provides a large number of pre-trained models for natural language processing.', type='Local', costIndicator='Free'))
+        db_session.add(EmbeddingModelConfiguration(name=EmbeddingModelType.OPENAI, organization='OpenAI', description='OpenAI is an artificial intelligence research laboratory.', type='Commercial', costIndicator='Paid'))
+        db_session.add(LLMModelConfiguration(name=LLMModelType.HUGGINGFACE, organization='Hugging Face', description='Hugging Face is a company that provides a large number of pre-trained models for natural language processing.', type='Local', costIndicator='Free'))
+        db_session.add(LLMModelConfiguration(name=LLMModelType.OPENAI, organization='OpenAI', description='OpenAI is an artificial intelligence research laboratory.', type='Commercial', costIndicator='Paid'))
+        db_session.add(DocumentStoreConfiguration(name=DocumentStoreType.AWS, organization='Amazon', description='Amazon Web Services is a subsidiary of Amazon providing on-demand cloud computing platforms and APIs to individuals.', type='On cloud', costIndicator='Paid'))
+        db_session.commit()
+        db_session.add(Configuration(userId=1, vectorStore=VectorStoreType.CHROMA_DB, embeddingModel=EmbeddingModelType.HUGGINGFACE, LLMModel=LLMModelType.HUGGINGFACE, documentStore=DocumentStoreType.AWS))
         db_session.commit()
 
 class PostgresConfigurationORM:
@@ -24,7 +32,7 @@ class PostgresConfigurationORM:
         userConfiguration = db_session.query(Configuration).filter(Configuration.userId == userId).first()
 
         vectorStore = db_session.query(VectorStoreConfiguration).filter(VectorStoreConfiguration.name == userConfiguration.vectorStore).first()
-        embeddingModel = db_session.query(EmbeddingModelConfiguration).filter(EmbeddingModelConfiguration.name == userConfiguration.embeddingsModel).first()
+        embeddingModel = db_session.query(EmbeddingModelConfiguration).filter(EmbeddingModelConfiguration.name == userConfiguration.embeddingModel).first()
         LLMModel = db_session.query(LLMModelConfiguration).filter(LLMModelConfiguration.name == userConfiguration.LLMModel).first()
         documentStore = db_session.query(DocumentStoreConfiguration).filter(DocumentStoreConfiguration.name == userConfiguration.documentStore).first()
 

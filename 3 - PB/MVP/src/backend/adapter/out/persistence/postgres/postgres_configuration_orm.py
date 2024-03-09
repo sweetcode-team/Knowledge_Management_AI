@@ -36,13 +36,19 @@ class PostgresConfigurationORM:
         LLMModel = db_session.query(LLMModelConfiguration).filter(LLMModelConfiguration.name == userConfiguration.LLMModel).first()
         documentStore = db_session.query(DocumentStoreConfiguration).filter(DocumentStoreConfiguration.name == userConfiguration.documentStore).first()
 
-        return PostgresConfiguration(userId, vectorStore, embeddingModel, LLMModel, documentStore)
+        return PostgresConfiguration(userId, vectorStore=vectorStore, embeddingModel=embeddingModel, LLMModel=LLMModel, documentStore=documentStore)
     
     def getConfigurationChoices(self, userId: int) -> Configuration:
         return db_session.query(Configuration).filter(Configuration.userId == userId).first()
 
     def changeLLMModel(self, userId: int, LLMModel: LLMModelType) -> PostgresConfigurationOperationResponse:
-        return db_session.query(Configuration).filter(Configuration.userId == userId).update({Configuration.LLMModel: LLMModel})
+        try:
+            db_session.query(Configuration).filter(Configuration.userId == userId).update({Configuration.LLMModel: LLMModel})
+            db_session.commit()
+            return PostgresConfigurationOperationResponse(True, 'Modello LLM aggiornato con successo')
+        except Exception as e:
+            db_session.rollback()
+            return PostgresConfigurationOperationResponse(False, f'Errore nell\'aggiornamento del modello LLM: {str(e)}')
         
     def getVectorStoreOptions(self) -> List[VectorStoreConfiguration]:
         return db_session.query(VectorStoreConfiguration).all().order_by(VectorStoreConfiguration.name)

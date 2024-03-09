@@ -6,7 +6,6 @@ from domain.document.document_operation_response import DocumentOperationRespons
 from application.port.out.embeddings_uploader_port import EmbeddingsUploaderPort
 from adapter.out.persistence.vector_store.langchain_document import LangchainDocument
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
-from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
 from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 

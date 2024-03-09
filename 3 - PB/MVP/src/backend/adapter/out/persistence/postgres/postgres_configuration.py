@@ -5,10 +5,10 @@ from domain.configuration.configuration import Configuration
 @dataclass
 class PostgresConfiguration:
     id: int
-    documentStore: VectorStoreConfiguration
-    vectorStore: EmbeddingModelConfiguration
-    embeddingModel: LLMModelConfiguration
-    LLMModel: DocumentStoreConfiguration
+    documentStore: DocumentStoreConfiguration
+    vectorStore: VectorStoreConfiguration
+    embeddingModel: EmbeddingModelConfiguration
+    LLMModel: LLMModelConfiguration
     
     def toConfiguration(self):
         return Configuration(

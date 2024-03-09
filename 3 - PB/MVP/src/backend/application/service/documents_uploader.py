@@ -11,8 +11,8 @@ Methods:
         Uploads a list of documents to the system.
 """
 class DocumentsUploader:
-    def __init__(self, outPort: DocumentsUploaderPort):
-        self.outPort = outPort
+    def __init__(self, documentUploaderPort: DocumentsUploaderPort):
+        self.outPort = documentUploaderPort
 
-    def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
+    def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
         return self.outPort.uploadDocuments(documents, forceUpload)

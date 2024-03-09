@@ -16,7 +16,6 @@ class AWSDocumentMetadata:
         
     def toDocumentMetadataFrom(self) -> DocumentMetadata:
         return DocumentMetadata(id=DocumentId(self.id),
-                                type=DocumentType.PDF if os.path.splitext(self.id)[
-                                                             1].upper() == ".PDF" else DocumentType.DOCX,
+                                type=DocumentType.PDF if os.path.splitext(self.id)[1].upper() == ".PDF" else DocumentType.DOCX,
                                 size=self.size,
                                 uploadTime=self.uploadTime)

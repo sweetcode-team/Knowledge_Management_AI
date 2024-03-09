@@ -1,0 +1,77 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-02-26}
+\def\oraInizio{11:30}
+\def\oraFine{12:30}
+\def\luogo{Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Michelon R.} % Cognome N.
+\def\nomeSegr{Dugo A.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Davanzo C.,
+Bendotti E.
+}
+
+\def\listaRevisioneAzioni 
+{Revisione della progettazione logica e di dettaglio svolte durante lo sprint.}
+
+
+\def\listaOrdineGiorno {
+{Stilare la retrospettiva dello sprint concluso in data odierna;},
+{Formulare alcuni quesiti da porre ad Azzurrodigitale emersi durante la fase di progettazione;},
+{Formulare alcuni quesiti da porre al professor Cardin R. emersi durante la fase di progettazione;},
+{Assegnazione di task per lo sprint appena iniziato.}
+}
+
+
+\def\listaDiscussioneInterna {
+{Il team sta attualmente esplorando come permettere modifiche alla configurazione del modello LLM, inclusi il vectordatabase e il modello di embeddings.
+\\Ciò significherebbe dare all’utente (l’operaio) la libertà di modificare sia il modello di embeddings che il vectorstore.
+Tuttavia, ci sono alcune questioni importanti che il team deve porre all’azienda: \\
+Ogni volta che si modifica il modello di embedding, è necessario rigenerare il vectorstore. Questo perché ogni modello di embedding produce embeddings di dimensioni diverse, il che comporterebbe la perdita di tutti gli embeddings generati in precedenza. 
+Una domanda importante da porre all'azienda è se lasciare all’utente la libertà di scelta.\\
+Una soluzione potrebbe essere quella di affidare la gestione della configurazione a un utente esperto, come l’operatore responsabile dell’installazione e della manutenzione del software.\\ 
+Per quanto riguarda la modifica del vectorstore, il team dovrebbe considerare la possibilità di migrare gli embeddings. Tuttavia, questa non è un’operazione economica né veloce. Anche in questo caso, il team ritiene che la decisione dovrebbe essere presa dall’operatore esperto.
+Queste domande saranno un punto di discussione per il prossimo incontro interno con l’azienda;},
+{Il team ha inoltre affrontato l'upload e l'eliminazione di uno o più documenti, essendo questa fase composta da due sottofasi: \\
+\begin{itemize}
+    \item Caricamento o eliminazione documento/i su AWS3;
+    \item Caricamento/eliminazione embeddings sul vector store.
+\end{itemize}
+},
+{Inoltre il team ha trattato una domanda emersa da porre al professor Cardin tramite mail, la domanda riguarda l'utilizzo dei manager per gestire l'interazione con strumenti esterni al nostro applicativo.}
+}
+
+
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+}
+
+\def\listaDecisioni {
+{Il team ha deciso di mandare una mail al professor Cardin per risolvere il dubbio relativo ai manager;},
+{Il team si informerà e parlerà con l'azienda per risolvere i dubbi emersi.}
+}

@@ -6,4 +6,4 @@ __pycache__
 secrets
 __init__.py
 *.pyc
-db
+chroma_db

@@ -5,9 +5,15 @@ from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbe
 
 
 class HuggingFaceEmbeddingModel(LangchainEmbeddingModel):
-
-    def embedDocument(self, documentChunks: List[str]) -> List[List[float]]:
+    def __init__(self):
         with open('/run/secrets/huggingface_key', 'r') as file:
             huggingFaceKey = file.read()
-
-        return HuggingFaceInferenceAPIEmbeddings(api_key=huggingFaceKey, model_name="sentence-transformers/all-mpnet-base-v2").embed_documents(documentChunks)
+            
+        self.model = HuggingFaceInferenceAPIEmbeddings(api_key=huggingFaceKey, model_name="sentence-transformers/all-mpnet-base-v2")
+        self.embeddingsDimension = 768
+    
+    def embedDocument(self, documentChunks: List[str]) -> List[List[float]]:
+        try:
+            return self.model.embed_documents(documentChunks)
+        except Exception as e:
+            return []

@@ -10,12 +10,15 @@ class Chunkerizer:
         pass
 
     def extractText(self, document : Document) -> List[LangchainCoreDocuments]:
-        text_extractor = Chunkerizer.getTextExtractorFrom(document.plainDocument.metadata.type.name)
-        documentChunks = text_extractor.extractText(document.plainDocument.content)
-        for documentChunk in documentChunks:
-            documentChunk.metadata["source"] = document.plainDocument.metadata.id.id
-            documentChunk.metadata["status"] = document.documentStatus.status.name
-        return documentChunks
+        textExtractor = Chunkerizer.getTextExtractorFrom(document.plainDocument.metadata.type.name)
+        if textExtractor is not None:
+            documentChunks = textExtractor.extractText(document.plainDocument.content)
+            for documentChunk in documentChunks:
+                documentChunk.metadata["source"] = document.plainDocument.metadata.id.id
+                documentChunk.metadata["status"] = document.documentStatus.status.name
+            return documentChunks
+        else:
+            return []
 
     @staticmethod
     def getTextExtractorFrom(documentType: str) -> TextExtractor:
@@ -23,3 +26,5 @@ class Chunkerizer:
             return PDFTextExtractor()
         elif documentType == "DOCX":
             return DOCXTextExtractor()
+        else:
+            return	None

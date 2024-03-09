@@ -9,8 +9,8 @@ from domain.document.document_status import Status
 from domain.document.document import Document
 
 class EmbedDocumentsService(EmbedDocumentsUseCase):
-    def __init__(self, getDocuments: GetDocumentsContent, embeddingsUploader: EmbeddingsUploader, getDocumentStatus: GetDocumentsStatus):
-        self.getDocumentsContent = getDocuments
+    def __init__(self, getDocumentsContent: GetDocumentsContent, embeddingsUploader: EmbeddingsUploader, getDocumentStatus: GetDocumentsStatus):
+        self.getDocumentsContent = getDocumentsContent
         self.embeddingsUploader = embeddingsUploader
         self.getDocumentStatus = getDocumentStatus
 
@@ -22,7 +22,7 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
                 verifiedDocumentsIds.append(documentId)
                 verifiedDocumentsStatus.append(documentStatus)
         
-        plainDocuments = self.getDocumentsContent.getDocuments(verifiedDocumentsIds)
+        plainDocuments = self.getDocumentsContent.getDocumentsContent(verifiedDocumentsIds)
         
         documents = []
         for plainDocument, documentStatus in zip(plainDocuments, verifiedDocumentsStatus):

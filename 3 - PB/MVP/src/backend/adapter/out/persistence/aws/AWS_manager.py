@@ -106,6 +106,7 @@ class AWSS3Manager:
     def getDocumentContent(self, documentId: str) -> AWSDocument:
         try:
             documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
+            print(f"DOCUMENT TYPE: {documentContentResponse.get('ContentType')}", flush=True)
             return AWSDocument(
                 documentId,
                 documentContentResponse.get('Body').read(),

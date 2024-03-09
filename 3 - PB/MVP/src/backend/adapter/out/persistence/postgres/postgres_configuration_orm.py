@@ -15,6 +15,13 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     if db_session.query(Configuration).filter(Configuration.userId == 1).first() is None:
+        # db_session.add(VectorStoreConfiguration(name=VectorStoreType.CHROMA_DB, organization='Chroma', description='Chroma DB', type='DB', costIndication='Free'))
+        # db_session.add(VectorStoreConfiguration(name=VectorStoreType.PINECONE, organization='Pinecone', description='Pinecone', type='DB', costIndication='Free'))
+        # db_session.add(EmbeddingModelConfiguration(name=EmbeddingModelType.HUGGINGFACE, organization='Huggingface', description='Huggingface', type='Model', costIndication='Free'))
+        # db_session.add(EmbeddingModelConfiguration(name=EmbeddingModelType.OPENAI, organization='OpenAI', description='OpenAI', type='Model', costIndication='Free'))
+        # db_session.add(LLMModelConfiguration(name=LLMModelType.HUGGINGFACE, organization='Huggingface', description='Huggingface', type='Model', costIndication='Free'))
+        # db_session.add(LLMModelConfiguration(name=LLMModelType.OPENAI, organization='OpenAI', description='OpenAI', type='Model', costIndication='Free'))
+        # db_session.add(DocumentStoreConfiguration(name=DocumentStoreType.AWS, organization='AWS', description='AWS', type='DB', costIndication='Free'))
         db_session.add(Configuration(userId=1, vectorStore=VectorStoreType.CHROMA_DB, embeddingsModel=EmbeddingModelType.HUGGINGFACE, LLMModel=LLMModelType.HUGGINGFACE, documentStore=DocumentStoreType.AWS))
         db_session.commit()
 
@@ -34,7 +41,11 @@ class PostgresConfigurationORM:
         return db_session.query(Configuration).filter(Configuration.userId == userId).first()
 
     def changeLLMModel(self, userId: int, LLMModel: LLMModelType) -> PostgresConfigurationOperationResponse:
-        return db_session.query(Configuration).filter(Configuration.userId == userId).update({Configuration.LLMModel: LLMModel})
+        result = db_session.query(Configuration).filter(Configuration.userId == userId).update({Configuration.LLMModel: LLMModel})
+        if result == 0:
+            return PostgresConfigurationOperationResponse(False, 'Errore nell\'aggiornamento del modello LLM')
+        else:
+            return PostgresConfigurationOperationResponse(True, 'Modello LLM aggiornato con successo')
         
     def getVectorStoreOptions(self) -> List[VectorStoreConfiguration]:
         return db_session.query(VectorStoreConfiguration).all().order_by(VectorStoreConfiguration.name)

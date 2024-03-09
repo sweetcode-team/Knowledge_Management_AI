@@ -5,7 +5,7 @@ from domain.document.document_id import DocumentId
 
 class DeleteDocumentsEmbeddings:
     def __init__(self, deleteEmbeddingsPort: DeleteEmbeddingsPort):
-        self.outport = deleteEmbeddingsPort
+        self.outPort = deleteEmbeddingsPort
     
     def deleteDocumentsEmbeddings(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        return self.outport.deleteDocumentsEmbeddings(documentsIds)
+        return self.outPort.deleteDocumentsEmbeddings(documentsIds)

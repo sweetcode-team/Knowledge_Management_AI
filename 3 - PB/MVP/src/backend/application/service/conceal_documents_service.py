@@ -6,8 +6,8 @@ from application.port.out.conceal_documents_port import ConcealDocumentsPort
 
 class ConcealDocumentsService(ConcealDocumentsUseCase):
     def __init__(self, concealDocumentsPort: ConcealDocumentsPort):
-        self.outport = concealDocumentsPort
+        self.outPort = concealDocumentsPort
            
     def concealDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        return self.outport.concealDocuments(documentsIds)
+        return self.outPort.concealDocuments(documentsIds)
     

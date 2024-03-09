@@ -8,7 +8,7 @@ from domain.document.light_document import LightDocument
 
 class GetDocumentsController:
     def __init__(self, getDocumentsUseCase: GetDocumentsUseCase):
-        self.getDocumentsUseCase = getDocumentsUseCase
+        self.useCase = getDocumentsUseCase
 
     def getDocuments(self, searchFilter: str) -> List[LightDocument]:
-        return self.getDocumentsUseCase.getDocuments(DocumentFilter(searchFilter))
+        return self.useCase.getDocuments(DocumentFilter(searchFilter))

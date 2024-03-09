@@ -4,7 +4,7 @@ from domain.document.document_operation_response import DocumentOperationRespons
 from domain.document.document_id import DocumentId
 
 class EnableDocumentsController:
-    def __init__(self, enableDocumentsUseCase: EnableDocumentsUseCase): 
+    def __init__(self, enableDocumentsUseCase: EnableDocumentsUseCase):
         self.useCase = enableDocumentsUseCase
         
     def enableDocuments(self, documentsIds: List[str]) -> List[DocumentOperationResponse]:        

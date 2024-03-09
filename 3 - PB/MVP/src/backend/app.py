@@ -9,14 +9,13 @@ from blueprints.delete_documents import deleteDocumentsBlueprint
 from adapter.out.persistence.postgres.postgres_configuration_orm import db_session
 from adapter.out.persistence.postgres.postgres_configuration_orm import init_db
     
-from blueprints.get_documents import getDocumentsBlueprint
-from blueprints.conceal_documents import concealDocumentsBlueprint
-from blueprints.enable_documents import enableDocumentsBlueprint
-<<<<<<< HEAD
 from blueprints.change_configuration import changeConfigurationBlueprint
-=======
+from blueprints.conceal_documents import concealDocumentsBlueprint
 from blueprints.embed_documents import embedDocumentsBlueprint
->>>>>>> 42b16f7ab38898b419e4df6940969965164accd5
+from blueprints.enable_documents import enableDocumentsBlueprint
+from blueprints.get_configuration import getConfigurationBlueprint
+from blueprints.get_documents import getDocumentsBlueprint
+
 
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +33,7 @@ app.register_blueprint(concealDocumentsBlueprint)
 app.register_blueprint(enableDocumentsBlueprint)
 app.register_blueprint(embedDocumentsBlueprint)
 app.register_blueprint(getDocumentContentBlueprint)
+app.register_blueprint(getConfigurationBlueprint)
 app.register_blueprint(changeConfigurationBlueprint)
 
 @app.errorhandler(APIBadRequest)

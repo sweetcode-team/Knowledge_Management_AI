@@ -59,16 +59,16 @@ class ConfigurationManager:
         else:
             raise ConfigurationException('Vector store non configurato.')
 
-        if configuration.embeddingsModel == EmbeddingModelType.HUGGINGFACE:
-            configuredEmbeddingsModel = HuggingFaceEmbeddingModel()
-        elif configuration.embeddingsModel == EmbeddingModelType.OPENAI:
-            configuredEmbeddingsModel = OpenAIEmbeddingModel()
+        if configuration.embeddingModel == EmbeddingModelType.HUGGINGFACE:
+            configuredEmbeddingModel = HuggingFaceEmbeddingModel()
+        elif configuration.embeddingModel == EmbeddingModelType.OPENAI:
+            configuredEmbeddingModel = OpenAIEmbeddingModel()
         else:
             raise ConfigurationException('Embeddings model non configurato.')
         
         return EmbeddingsUploaderFacadeLangchain(
                     Chunkerizer(),
-                    EmbeddingsCreator(configuredEmbeddingsModel),
+                    EmbeddingsCreator(configuredEmbeddingModel),
                     EmbeddingsUploaderVectorStore(configuredVectorStore)
                 )
 

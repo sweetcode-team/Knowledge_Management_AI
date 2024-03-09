@@ -11,6 +11,7 @@ from api_exceptions import InsufficientParameters
 
 getDocumentsBlueprint = Blueprint("getDocuments", __name__)
 
+@getDocumentsBlueprint.route('/getDocuments', defaults={'filter': ''}, methods=['GET'])
 @getDocumentsBlueprint.route("/getDocuments/<filter>", methods=['GET'])
 def getDocuments(filter):
     if filter is None:
@@ -27,7 +28,7 @@ def getDocuments(filter):
     
     documents = controller.getDocuments(filter)
     
-    if documents is None:
+    if len(documents) == 0:
         return jsonify([]), 404
     
     return jsonify([{

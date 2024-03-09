@@ -1,7 +1,7 @@
 import os
 from typing import List
 
-from adapter.out.persistence.aws import AWS_manager
+from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
 from domain.document.document_filter import DocumentFilter
 from domain.document.document_id import DocumentId
 from domain.document.document_metadata import DocumentMetadata, DocumentType
@@ -10,10 +10,10 @@ from application.port.out.get_documents_metadata_port import GetDocumentsMetadat
 
 
 class GetDocumentsListAWSS3(GetDocumentsMetadataPort):
-    def __init__(self, awsS3Manager: AWS_manager):
+    def __init__(self, awsS3Manager: AWSS3Manager):
         self.awsS3Manager = awsS3Manager
 
-    def get_documents_metadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
+    def getDocumentsMetadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
         listOfDocumentsMetadata = []
         documentsMetadatas = self.awsS3Manager.getDocumentsMetadata(documentFilter.searchFilter)
         for documentMetadata in documentsMetadatas:

@@ -9,6 +9,7 @@ class ConcealDocumentsVectorStore(ConcealDocumentsPort):
         self.vectorStoreManager = vectorStoreManager
 
     def concealDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
+        #adaptee because vectorStoreManger needs a List of string
         documentsIdsString = [documentId.id for documentId in documentsIds]
         vectorStoreDocumentOperationResponseList = self.vectorStoreManager.concealDocuments(documentsIdsString)
         #return DocumentOperationResponse therefore we adaptee the response

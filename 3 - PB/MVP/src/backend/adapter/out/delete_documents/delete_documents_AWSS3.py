@@ -11,7 +11,7 @@ class DeleteDocumentsAWSS3(DeleteDocumentsPort):
         
         
     def deleteDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        #adaptee because awss3manager needs a ListOfString
+        #adaptee because awss3manager needs a List of string
         documentsIdsString = [documentId.id for documentId in documentsIds]
         awsDocumentOperationResponseList = self.awss3manager.deleteDocuments(documentsIdsString)
         #return DocumentOperationResponse therefore we adaptee the response

@@ -95,15 +95,15 @@ class DocumentStoreConfiguration(Base):
 class Configuration(Base):
     __tablename__ = 'configuration'
     userId = Column('userId', Integer, primary_key=True)
-    vectorStore = Column('vectorStore', SQLEnum(VectorStoreType), ForeignKey('vectorStoreConfiguration.name'))
-    embeddingsModel = Column('embeddingsModel', SQLEnum(EmbeddingModelType), ForeignKey('embeddingModelConfiguration.name'))
-    LLMModel = Column('LLMModel', SQLEnum(LLMModelType), ForeignKey('LLMModelConfiguration.name'))
-    documentStore = Column('documentStore', SQLEnum(DocumentStoreType), ForeignKey('documentStoreConfiguration.name'))
+    vectorStore = Column('vectorStore', SQLEnum(VectorStoreType))#, ForeignKey('vectorStoreConfiguration.name'))
+    embeddingsModel = Column('embeddingsModel', SQLEnum(EmbeddingModelType))#, ForeignKey('embeddingModelConfiguration.name'))
+    LLMModel = Column('LLMModel', SQLEnum(LLMModelType))#, ForeignKey('LLMModelConfiguration.name'))
+    documentStore = Column('documentStore', SQLEnum(DocumentStoreType))#, ForeignKey('documentStoreConfiguration.name'))
 
-    vectorStoreConstraint = relationship(VectorStoreConfiguration, foreign_keys=[vectorStore])
-    embeddingsModelConstraint = relationship(EmbeddingModelConfiguration, foreign_keys=[embeddingsModel])
-    LLMModelConstraint = relationship(LLMModelConfiguration, foreign_keys=[LLMModel])
-    documentStoreConstraint = relationship(DocumentStoreConfiguration, foreign_keys=[documentStore])
+    # vectorStoreConstraint = relationship(VectorStoreConfiguration, foreign_keys=[vectorStore])
+    # embeddingsModelConstraint = relationship(EmbeddingModelConfiguration, foreign_keys=[embeddingsModel])
+    # LLMModelConstraint = relationship(LLMModelConfiguration, foreign_keys=[LLMModel])
+    # documentStoreConstraint = relationship(DocumentStoreConfiguration, foreign_keys=[documentStore])
 
     def __init__(self, userId: int, vectorStore: VectorStoreType, embeddingsModel: EmbeddingModelType, LLMModel: LLMModelType, documentStore: DocumentStoreType):
         self.userId = userId

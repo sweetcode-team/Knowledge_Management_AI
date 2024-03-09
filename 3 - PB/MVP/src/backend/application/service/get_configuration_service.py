@@ -3,8 +3,8 @@ from application.port.out.get_configuration_port import GetConfigurationPort
 from domain.configuration.configuration_response import ConfigurationResponse
 
 class GetConfigurationService(GetConfigurationUseCase):
-    def __init__(self, outPort: GetConfigurationPort):
-        self.outPort = outPort
+    def __init__(self, getConfigurationPort: GetConfigurationPort):
+        self.outPort = getConfigurationPort
         
     def getConfigurations(self) -> ConfigurationResponse:
         pass

@@ -9,7 +9,6 @@ from langchain_community.document_loaders.word_document import Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 class DOCXTextExtractor(TextExtractor):
-    #TODO: Implement this method
     def extractText(self, documentContent:DocumentContent) -> List[LangchainCoreDocuments]:
         with tempfile.NamedTemporaryFile(delete=False) as tempFile:
             tempFile.write(documentContent.content)

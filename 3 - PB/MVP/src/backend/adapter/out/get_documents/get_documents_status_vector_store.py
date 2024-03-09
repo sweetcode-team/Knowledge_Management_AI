@@ -11,17 +11,14 @@ class GetDocumentsStatusVectorStore(GetDocumentsStatusPort):
         self.vectorStoreManager = vectorStoreManager
 
     def getDocumentsStatus(self, documentsIds: List[DocumentId]) -> List[DocumentStatus]:
-        listOfDocumentId = []
-        listOfDocumentStatus = []
-        for documentId in documentsIds:
-            listOfDocumentId.append(documentId.id)
-        vectors = self.vectorStoreManager.getDocumentsStatus(listOfDocumentId)
+        documentsStatus = []
+        vectors = self.vectorStoreManager.getDocumentsStatus(documentId.id for documentId in documentsIds)
         for vector in vectors:
             if vector.status.upper() == "CONCEALED":
                 documentStatus = DocumentStatus(status=Status.CONCEALED)
             elif vector.status.upper() == "ENABLED":
                 documentStatus = DocumentStatus(Status.ENABLED)
             else: documentStatus = DocumentStatus(Status.NOT_EMBEDDED)
-            listOfDocumentStatus.append(documentStatus)
-        return listOfDocumentStatus
+            documentsStatus.append(documentStatus)
+        return documentsStatus
 

@@ -16,10 +16,10 @@ It also receives the force upload parameter and sends the documents to the use c
             Receives the new documents and force upload parameter and sends them to the use case.
 """
 class UploadDocumentsController:
-    def __init__(self, upload_documents_use_case: UploadDocumentsUseCase):
-        self.upload_documents_use_case = upload_documents_use_case
+    def __init__(self, useCase: UploadDocumentsUseCase):
+        self.useCase = useCase
 
     def uploadDocuments(self, newDocuments: List[NewDocument], forceUpload: bool = False) -> List[DocumentOperationResponse]:
         documents = [newDocument.toDocument() for newDocument in newDocuments]
-        return self.upload_documents_use_case.uploadDocuments(documents, forceUpload)
+        return self.useCase.uploadDocuments(documents, forceUpload)
     

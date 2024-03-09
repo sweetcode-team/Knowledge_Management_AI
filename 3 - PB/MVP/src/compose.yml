@@ -23,6 +23,7 @@ services:
       - aws_access_key_id
       - aws_bucket_name
       - aws_secret_access_key
+      - chromadb_collection
       - huggingface_key
       - openai_key
       - pinecone_api
@@ -37,12 +38,12 @@ services:
       - FLASK_DEBUG=true
       - DATABASE_URL=postgresql://postgres:postgres@database:5432/postgres
       - TMP_STORAGE_FOLDER=tmp
+      - CHROMA_DB_PATH=chroma_db
       - CHUNK_SIZE=512
       - CHUNK_OVERLAP=128
       - RETRIEVER_CHUNKS_NUM=4
       - AWS_REGION_NAME=eu-west-1
       - MAX_FILE_SIZE=10485760
-      - UPLOAD_EXTENSIONS=.pdf,.docx
       - USER_ID=1
     volumes:
       - ./backend:/app
@@ -69,6 +70,8 @@ secrets:
     file: ./secrets/aws_bucket_name.txt
   aws_secret_access_key:
     file: ./secrets/aws_secret_access_key.txt
+  chromadb_collection:
+    file: ./secrets/chromadb_collection.txt
   huggingface_key:
     file: ./secrets/huggingface_key.txt
   openai_key:

@@ -26,10 +26,21 @@ class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
         for documentChunks in documentsChunks:
             documentEmbeddings = self.embeddingsCreator.embedDocument(documentChunks)
             documentsEmbeddings.append(documentEmbeddings)
-        langchainDocuments = [LangchainDocument(documentId=document.plainDocument.metadata.id.id,
-                                                chunks=documentChunks,
-                                                embeddings=documentEmbeddings) for document, documentChunks, documentEmbeddings in
-                              zip(documents, documentsChunks, documentsEmbeddings)]
         
-        vectorStoreDocumentOperationResponses = self.embeddingsUploaderVectorStore.uploadEmbeddings(langchainDocuments)
-        return [DocumentOperationResponse(DocumentId(vectorStoreDocumentOperationResponse.documentId), vectorStoreDocumentOperationResponse.status, vectorStoreDocumentOperationResponse.message) for vectorStoreDocumentOperationResponse in vectorStoreDocumentOperationResponses]
+        vectorStoreDocumentOperationResponses = self.embeddingsUploaderVectorStore.uploadEmbeddings(
+            [
+                LangchainDocument(
+                    documentId=document.plainDocument.metadata.id.id,
+                    chunks=documentChunks,
+                    embeddings=documentEmbeddings
+                ) for document, documentChunks, documentEmbeddings in zip(documents, documentsChunks, documentsEmbeddings)
+            ]
+        )
+
+        return [
+            DocumentOperationResponse(
+                DocumentId(vectorStoreDocumentOperationResponse.documentId),
+                vectorStoreDocumentOperationResponse.status,
+                vectorStoreDocumentOperationResponse.message
+            ) for vectorStoreDocumentOperationResponse in vectorStoreDocumentOperationResponses
+        ]

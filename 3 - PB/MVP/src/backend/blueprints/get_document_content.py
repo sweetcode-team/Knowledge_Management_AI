@@ -24,7 +24,7 @@ def getDocumentsContent():
         )
     )
     
-    documentOperationResponses = controller.getDocumentContent(request.json.get('filter'))
+    documentOperationResponses = controller.getDocumentContent(request.json.get('id'))
     return jsonify([{"id": documentOperationResponses.plainDocument.metadata.id.id,
                     "content": documentOperationResponses.plainDocument.content.content.hex(),
                     "type": documentOperationResponses.plainDocument.metadata.type.name,

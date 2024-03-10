@@ -12,7 +12,7 @@ deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
-    requestedIds = request.json.get('documentIds')
+    requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:
         raise InsufficientParameters()
     

@@ -2,32 +2,37 @@ from sqlalchemy import Column, Integer, String, Enum as SQLEnum, ForeignKey
 from enum import Enum
 from sqlalchemy.orm import declarative_base, relationship
 
+from domain.configuration.document_store_configuration import DocumentStoreConfiguration
+from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration
+from domain.configuration.llm_model_configuration import LLMModelConfiguration
+from domain.configuration.vector_store_configuration import VectorStoreConfiguration
+
 Base = declarative_base()
 
-class DocumentStoreType(Enum):
+class PostgresDocumentStoreType(Enum):
     AWS = 1
 
-class VectorStoreType(Enum):
+class PostgresVectorStoreType(Enum):
     PINECONE = 1
     CHROMA_DB = 2
 
-class LLMModelType(Enum):
+class PostgresLLMModelType(Enum):
     OPENAI = 1
     HUGGINGFACE = 2
 
-class EmbeddingModelType(Enum):
+class PostgresEmbeddingModelType(Enum):
     OPENAI = 1
     HUGGINGFACE = 2
 
-class VectorStoreConfiguration(Base):
+class PostgresVectorStoreConfiguration(Base):
     __tablename__ = 'vectorStoreConfiguration'
-    name = Column('name', SQLEnum(VectorStoreType), primary_key=True)
+    name = Column('name', SQLEnum(PostgresVectorStoreType), primary_key=True)
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
     costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: VectorStoreType, organization: str, description: str, type: str, costIndicator: str):
+    def __init__(self, name: PostgresVectorStoreType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
@@ -36,16 +41,25 @@ class VectorStoreConfiguration(Base):
 
     def __repr__(self):
         return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
+    
+    def toVectorStoreConfiguration(self):
+        return VectorStoreConfiguration(
+            self.name,
+            self.organization,
+            self.description,
+            self.type,
+            self.costIndicator
+        )
 
-class EmbeddingModelConfiguration(Base):
+class PostgresEmbeddingModelConfiguration(Base):
     __tablename__ = 'embeddingModelConfiguration'
-    name = Column('name', SQLEnum(EmbeddingModelType), primary_key=True)
+    name = Column('name', SQLEnum(PostgresEmbeddingModelType), primary_key=True)
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
     costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: EmbeddingModelType, organization: str, description: str, type: str, costIndicator: str):
+    def __init__(self, name: PostgresEmbeddingModelType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
@@ -54,16 +68,25 @@ class EmbeddingModelConfiguration(Base):
 
     def __repr__(self):
         return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
+    
+    def toEmbeddingModelConfiguration(self):
+        return EmbeddingModelConfiguration(
+            self.name,
+            self.organization,
+            self.description,
+            self.type,
+            self.costIndicator
+        )
 
-class LLMModelConfiguration(Base):
+class PostgresLLMModelConfiguration(Base):
     __tablename__ = 'LLMModelConfiguration'
-    name = Column('name', SQLEnum(LLMModelType), primary_key=True)
+    name = Column('name', SQLEnum(PostgresLLMModelType), primary_key=True)
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
     costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: LLMModelType, organization: str, description: str, type: str, costIndicator: str):
+    def __init__(self, name: PostgresLLMModelType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
@@ -72,16 +95,25 @@ class LLMModelConfiguration(Base):
 
     def __repr__(self):
         return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
+    
+    def toLLMModelConfiguration(self):
+        return LLMModelConfiguration(
+            self.name,
+            self.organization,
+            self.description,
+            self.type,
+            self.costIndicator
+        )
 
-class DocumentStoreConfiguration(Base):
+class PostgresDocumentStoreConfiguration(Base):
     __tablename__ = 'documentStoreConfiguration'
-    name = Column('name', SQLEnum(DocumentStoreType), primary_key=True)
+    name = Column('name', SQLEnum(PostgresDocumentStoreType), primary_key=True)
     organization = Column('organization', String)
     description = Column('description', String)
     type = Column('type', String)
     costIndicator = Column('costIndicator', String)
 
-    def __init__(self, name: DocumentStoreType, organization: str, description: str, type: str, costIndicator: str):
+    def __init__(self, name: PostgresDocumentStoreType, organization: str, description: str, type: str, costIndicator: str):
         self.name = name
         self.organization = organization
         self.description = description
@@ -90,22 +122,31 @@ class DocumentStoreConfiguration(Base):
 
     def __repr__(self):
         return f'({self.name}, {self.organization}, {self.description}, {self.type}, {self.costIndicator})'
+    
+    def toDocumentStoreConfiguration(self):
+        return DocumentStoreConfiguration(
+            self.name,
+            self.organization,
+            self.description,
+            self.type,
+            self.costIndicator
+        )
 
 
-class Configuration(Base):
+class PostgresConfigurationChoice(Base):
     __tablename__ = 'configuration'
     userId = Column('userId', Integer, primary_key=True)
-    vectorStore = Column('vectorStore', SQLEnum(VectorStoreType), ForeignKey('vectorStoreConfiguration.name'))
-    embeddingModel = Column('embeddingModel', SQLEnum(EmbeddingModelType), ForeignKey('embeddingModelConfiguration.name'))
-    LLMModel = Column('LLMModel', SQLEnum(LLMModelType), ForeignKey('LLMModelConfiguration.name'))
-    documentStore = Column('documentStore', SQLEnum(DocumentStoreType), ForeignKey('documentStoreConfiguration.name'))
+    vectorStore = Column('vectorStore', SQLEnum(PostgresVectorStoreType), ForeignKey('vectorStoreConfiguration.name'))
+    embeddingModel = Column('embeddingModel', SQLEnum(PostgresEmbeddingModelType), ForeignKey('embeddingModelConfiguration.name'))
+    LLMModel = Column('LLMModel', SQLEnum(PostgresLLMModelType), ForeignKey('LLMModelConfiguration.name'))
+    documentStore = Column('documentStore', SQLEnum(PostgresDocumentStoreType), ForeignKey('documentStoreConfiguration.name'))
 
-    vectorStoreConstraint = relationship(VectorStoreConfiguration, foreign_keys=[vectorStore])
-    embeddingModelConstraint = relationship(EmbeddingModelConfiguration, foreign_keys=[embeddingModel])
-    LLMModelConstraint = relationship(LLMModelConfiguration, foreign_keys=[LLMModel])
-    documentStoreConstraint = relationship(DocumentStoreConfiguration, foreign_keys=[documentStore])
+    vectorStoreConstraint = relationship(PostgresVectorStoreConfiguration, foreign_keys=[vectorStore])
+    embeddingModelConstraint = relationship(PostgresEmbeddingModelConfiguration, foreign_keys=[embeddingModel])
+    LLMModelConstraint = relationship(PostgresLLMModelConfiguration, foreign_keys=[LLMModel])
+    documentStoreConstraint = relationship(PostgresDocumentStoreConfiguration, foreign_keys=[documentStore])
 
-    def __init__(self, userId: int, vectorStore: VectorStoreType, embeddingModel: EmbeddingModelType, LLMModel: LLMModelType, documentStore: DocumentStoreType):
+    def __init__(self, userId: int, vectorStore: PostgresVectorStoreType, embeddingModel: PostgresEmbeddingModelType, LLMModel: PostgresLLMModelType, documentStore: PostgresDocumentStoreType):
         self.userId = userId
         self.vectorStore = vectorStore
         self.embeddingModel = embeddingModel

@@ -12,7 +12,7 @@ embedDocumentsBlueprint = Blueprint('embed_documents', __name__)
 
 @embedDocumentsBlueprint.route('/embedDocuments', methods=['POST'])
 def embedDocuments():
-    requestedIds = request.json.get('documentIds')
+    requestedIds = request.json.getlist('documentIds')
     
     if requestedIds is None:
         raise InsufficientParameters()

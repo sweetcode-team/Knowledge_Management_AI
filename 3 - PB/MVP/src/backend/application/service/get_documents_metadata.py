@@ -10,4 +10,4 @@ class GetDocumentsMetadata:
         self.outPort = outPort
 
     def getDocumentsMetadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
-        return self.outPort.get_documents_metadata(documentFilter)
+        return self.outPort.getDocumentsMetadata(documentFilter)

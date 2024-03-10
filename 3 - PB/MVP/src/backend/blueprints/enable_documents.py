@@ -10,7 +10,7 @@ enableDocumentsBlueprint = Blueprint("enableDocuments", __name__)
 
 @enableDocumentsBlueprint.route("/enableDocuments", methods=['POST'])
 def enableDocuments():
-    requestedIds = request.form.get('documentIds')
+    requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:
         raise InsufficientParameters()
     

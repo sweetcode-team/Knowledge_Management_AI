@@ -1,39 +1,39 @@
 from dataclasses import dataclass
-from adapter.out.persistence.postgres.configuration_models import VectorStoreConfiguration, EmbeddingModelConfiguration, LLMModelConfiguration, DocumentStoreConfiguration
+from adapter.out.persistence.postgres.configuration_models import PostgresVectorStoreConfiguration, PostgresEmbeddingModelConfiguration, PostgresLLMModelConfiguration, PostgresDocumentStoreConfiguration
 from domain.configuration.configuration import Configuration
 
 @dataclass
 class PostgresConfiguration:
     id: int
-    documentStore: DocumentStoreConfiguration
-    vectorStore: VectorStoreConfiguration
-    embeddingModel: EmbeddingModelConfiguration
-    LLMModel: LLMModelConfiguration
+    documentStore: PostgresDocumentStoreConfiguration
+    vectorStore: PostgresVectorStoreConfiguration
+    embeddingModel: PostgresEmbeddingModelConfiguration
+    LLMModel: PostgresLLMModelConfiguration
     
     def toConfiguration(self):
         return Configuration(
-            vectorStore=VectorStoreConfiguration(
+            vectorStore=PostgresVectorStoreConfiguration(
                 self.vectorStore.name,
                 self.vectorStore.organization,
                 self.vectorStore.description,
                 self.vectorStore.type,
                 self.vectorStore.costIndicator
             ),
-            documentStore=DocumentStoreConfiguration(
+            documentStore=PostgresDocumentStoreConfiguration(
                 self.documentStore.name,
                 self.documentStore.organization,
                 self.documentStore.description,
                 self.documentStore.type,
                 self.documentStore.costIndicator
             ),
-            embeddingModel=EmbeddingModelConfiguration(
+            embeddingModel=PostgresEmbeddingModelConfiguration(
                 self.embeddingModel.name,
                 self.embeddingModel.organization,
                 self.embeddingModel.description,
                 self.embeddingModel.type,
                 self.embeddingModel.costIndicator
             ),
-            LLMModel=LLMModelConfiguration(
+            LLMModel=PostgresLLMModelConfiguration(
                 self.LLMModel.name,
                 self.LLMModel.organization,
                 self.LLMModel.description,

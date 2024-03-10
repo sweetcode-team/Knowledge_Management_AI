@@ -11,7 +11,7 @@ from application.port.out.get_documents_status_port import GetDocumentsStatusPor
 from application.port.out.get_documents_content_port import GetDocumentsContentPort
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-from adapter.out.persistence.postgres.configuration_models import DocumentStoreType, VectorStoreType, LLMModelType, EmbeddingModelType
+from adapter.out.persistence.postgres.configuration_models import PostgresDocumentStoreType, PostgresVectorStoreType, PostgresLLMModelType, PostgresEmbeddingModelType
 from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
 from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
 from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
@@ -41,7 +41,7 @@ class ConfigurationManager:
 
     def getDocumentsUploaderPort(self) -> DocumentsUploaderPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.documentStore == DocumentStoreType.AWS:
+        if configuration.documentStore == PostgresDocumentStoreType.AWS:
             configuredDocumentStore = DocumentsUploaderAWSS3(
                     AWSS3Manager()
                 )
@@ -52,16 +52,16 @@ class ConfigurationManager:
 
     def getEmbeddingsUploaderPort(self) -> EmbeddingsUploaderPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.vectorStore == VectorStoreType.PINECONE:
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
             configuredVectorStore = VectorStorePineconeManager()
-        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
 
-        if configuration.embeddingModel == EmbeddingModelType.HUGGINGFACE:
+        if configuration.embeddingModel == PostgresEmbeddingModelType.HUGGINGFACE:
             configuredEmbeddingModel = HuggingFaceEmbeddingModel()
-        elif configuration.embeddingModel == EmbeddingModelType.OPENAI:
+        elif configuration.embeddingModel == PostgresEmbeddingModelType.OPENAI:
             configuredEmbeddingModel = OpenAIEmbeddingModel()
         else:
             raise ConfigurationException('Embeddings model non configurato.')
@@ -74,9 +74,9 @@ class ConfigurationManager:
 
     def getGetDocumentsStatusPort(self) -> GetDocumentsStatusPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.vectorStore == VectorStoreType.PINECONE:
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
             configuredVectorStore = VectorStorePineconeManager()
-        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
@@ -86,7 +86,7 @@ class ConfigurationManager:
 
     def getGetDocumentsMetadataPort(self) -> GetDocumentsMetadataPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.documentStore == DocumentStoreType.AWS:
+        if configuration.documentStore == PostgresDocumentStoreType.AWS:
             configuredDocumentStore = GetDocumentsListAWSS3(
                     AWSS3Manager()
                 )
@@ -97,7 +97,7 @@ class ConfigurationManager:
 
     def getDeleteDocumentsPort(self) -> DeleteDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.documentStore == DocumentStoreType.AWS:
+        if configuration.documentStore == PostgresDocumentStoreType.AWS:
             configuredDocumentStore = DeleteDocumentsAWSS3(
                     AWSS3Manager()
                 )
@@ -108,9 +108,9 @@ class ConfigurationManager:
 
     def getDeleteEmbeddingsPort(self) -> DeleteEmbeddingsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.vectorStore == VectorStoreType.PINECONE:
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
             configuredVectorStore = VectorStorePineconeManager()
-        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
@@ -119,9 +119,9 @@ class ConfigurationManager:
 
     def getConcealDocumentsPort(self) -> ConcealDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.vectorStore == VectorStoreType.PINECONE:
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
             configuredVectorStore = VectorStorePineconeManager()
-        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
@@ -130,9 +130,9 @@ class ConfigurationManager:
 
     def getEnableDocumentsPort(self) -> EnableDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.vectorStore == VectorStoreType.PINECONE:
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
             configuredVectorStore = VectorStorePineconeManager()
-        elif configuration.vectorStore == VectorStoreType.CHROMA_DB:
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
@@ -141,7 +141,7 @@ class ConfigurationManager:
 
     def getGetDocumentsContentPort(self) -> GetDocumentsContentPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
-        if configuration.documentStore == DocumentStoreType.AWS:
+        if configuration.documentStore == PostgresDocumentStoreType.AWS:
             configuredDocumentStore = GetDocumentsContentAWSS3(
                     AWSS3Manager()
                 )

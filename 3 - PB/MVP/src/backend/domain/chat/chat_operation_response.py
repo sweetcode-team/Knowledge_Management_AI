@@ -1,9 +1,10 @@
 from dataclasses import dataclass
-from domain.chat.message import Message
+
 from domain.chat.chat_id import ChatId
+from domain.chat.message import Message
 
 @dataclass
-class MessageResponse:
+class ChatOperationResponse:
     status: bool
-    messageResponse: Message
+    message: Message
     chatId: ChatId

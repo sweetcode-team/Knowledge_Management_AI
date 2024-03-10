@@ -18,7 +18,7 @@ def changeConfiguration():
     configurationOperationResponse = controller.changeLLMModel(LLMModelChoice)
     
     if configurationOperationResponse is None:
-        return jsonify({"status": False, "message": "Errore nell'aggiornamento del modello LLM"})
+        return jsonify({"status": False, "message": "Errore nell'aggiornamento del modello LLM."}), 500
     
     return jsonify({
         "status": configurationOperationResponse.status,

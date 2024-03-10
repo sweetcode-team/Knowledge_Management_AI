@@ -9,6 +9,7 @@ from application.port.out.enable_documents_port import EnableDocumentsPort
 from application.port.out.get_documents_metadata_port import GetDocumentsMetadataPort
 from application.port.out.get_documents_status_port import GetDocumentsStatusPort
 from application.port.out.get_documents_content_port import GetDocumentsContentPort
+from application.port.out.ask_chatbot_port import AskChatbotPort
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.persistence.postgres.configuration_models import PostgresDocumentStoreType, PostgresVectorStoreType, PostgresLLMModelType, PostgresEmbeddingModelType
@@ -30,6 +31,7 @@ from adapter.out.get_documents.get_documents_status_vector_store import GetDocum
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
 from adapter.out.get_documents.get_documents_content_awss3 import GetDocumentsContentAWSS3
+from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
 
 
 class ConfigurationException(Exception):
@@ -150,5 +152,6 @@ class ConfigurationManager:
 
         return configuredDocumentStore
 
-    # def getAskChatbotPort(self) -> AskChatbotPort:
-    #     pass
+    def getAskChatbotPort(self) -> AskChatbotPort:
+        #TODO
+        return AskChatbotLangchain()

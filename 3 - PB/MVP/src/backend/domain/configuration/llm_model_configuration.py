@@ -8,9 +8,8 @@ class LLMModelType(Enum):
 
 @dataclass
 class LLMModelConfiguration:
-    def __init__(self, name:LLMModelType, organization:str, description:str, type:str, costIndicator:str):
-        self.name = name
-        self.organization = organization
-        self.description = description
-        self.type = type
-        self.costIndicator = costIndicator
+    name: LLMModelType
+    organization: str
+    description: str
+    type: str
+    costIndicator: str

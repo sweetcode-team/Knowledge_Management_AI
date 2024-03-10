@@ -6,8 +6,7 @@ from domain.configuration.vector_store_configuration import VectorStoreConfigura
 
 @dataclass
 class Configuration:
-    def __init__(self, vectorStore: VectorStoreConfiguration, embeddingModel: EmbeddingModelConfiguration, LLMModel: LLMModelConfiguration, documentStore: DocumentStoreConfiguration):
-        self.vectorStore = vectorStore
-        self.embeddingModel = embeddingModel
-        self.LLMModel = LLMModel
-        self.documentStore = documentStore
+    vectorStore: VectorStoreConfiguration
+    embeddingModel: EmbeddingModelConfiguration
+    LLMModel: LLMModelConfiguration
+    documentStore: DocumentStoreConfiguration

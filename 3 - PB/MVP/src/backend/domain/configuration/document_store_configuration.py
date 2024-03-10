@@ -7,9 +7,8 @@ class DocumentStoreType(Enum):
 
 @dataclass
 class DocumentStoreConfiguration:
-    def __init__(self, name: DocumentStoreType, organization:str, description:str, type:str, costIndicator:str):
-        self.name = name
-        self.organization = organization
-        self.description = description
-        self.type = type
-        self.costIndicator = costIndicator
+    name: DocumentStoreType
+    organization: str
+    description: str
+    type: str
+    costIndicator: str

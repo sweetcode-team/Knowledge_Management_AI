@@ -8,9 +8,8 @@ class EmbeddingModelType(Enum):
 
 @dataclass
 class EmbeddingModelConfiguration:
-    def __init__(self, name:EmbeddingModelType, organization:str, description:str, type:str, costIndicator:str):
-        self.name = name
-        self.organization = organization
-        self.description = description
-        self.type = type
-        self.costIndicator = costIndicator
+    name: EmbeddingModelType
+    organization: str
+    description: str
+    type: str
+    costIndicator: str

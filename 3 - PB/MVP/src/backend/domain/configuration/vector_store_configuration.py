@@ -8,9 +8,8 @@ class VectorStoreType(Enum):
 
 @dataclass
 class VectorStoreConfiguration:
-    def __init__(self, name:VectorStoreType, organization:str, description:str, type:str, costIndicator:str):
-        self.name = name
-        self.organization = organization
-        self.description = description
-        self.type = type
-        self.costIndicator = costIndicator
+    name: VectorStoreType
+    organization: str
+    description: str
+    type: str
+    costIndicator: str

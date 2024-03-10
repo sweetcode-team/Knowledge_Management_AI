@@ -6,12 +6,12 @@ from dataclasses import dataclass
 
 @dataclass
 class MessageSender(Enum):
-    CHATBOT = 1
-    USER = 2
+    USER = 1
+    CHATBOT = 2
 
 @dataclass
 class Message:
     content: str
     timestamp: datetime
-    relevantDocument: List[DocumentId]
-    sender: MessageSender    
+    relevantDocuments: List[DocumentId]
+    sender: MessageSender

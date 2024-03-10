@@ -12,8 +12,7 @@ embedDocumentsBlueprint = Blueprint('embed_documents', __name__)
 
 @embedDocumentsBlueprint.route('/embedDocuments', methods=['POST'])
 def embedDocuments():
-    requestedIds = request.json.getlist('documentIds')
-    
+    requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:
         raise InsufficientParameters()
     
@@ -23,10 +22,14 @@ def embedDocuments():
         embedDocumentsUseCase = EmbedDocumentsService(
             GetDocumentsContent(configurationManager.getGetDocumentsContentPort()),
             EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort()),
-            GetDocumentsStatus(configurationManager.getGetDocumentsStatusPort())))
-    
+            GetDocumentsStatus(configurationManager.getGetDocumentsStatusPort())
+        )
+    )
     
     documentOperationResponses = controller.embedDocuments(requestedIds)
+    
+    if len(documentOperationResponses) == 0:
+        return jsonify("Errore nella generazione degli embeddings dei documenti."), 500
      
     return jsonify([{"id": documentOperationResponse.documentId.id, 
                      "status": documentOperationResponse.status, 

@@ -18,7 +18,12 @@ def deleteDocuments():
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
-    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(configurationManager.getDeleteDocumentsPort()), DeleteDocumentsEmbeddings(configurationManager.getDeleteEmbeddingsPort())))
+    controller = DeleteDocumentsController(
+        DeleteDocumentsService(
+            DeleteDocuments(configurationManager.getDeleteDocumentsPort()),
+            DeleteDocumentsEmbeddings(configurationManager.getDeleteEmbeddingsPort())
+        )
+    )
     
     documentOperationResponses = controller.deleteDocuments(requestedIds)
      

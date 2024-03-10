@@ -10,7 +10,7 @@ from api_exceptions import InsufficientParameters
 
 getDocumentContentBlueprint = Blueprint("getDocumentContent", __name__)
 
-@getDocumentContentBlueprint.route("/getDocumentContent/<int:documentId>", methods=['GET'])
+@getDocumentContentBlueprint.route("/getDocumentContent/<documentId>", methods=['GET'])
 def getDocumentsContent(documentId):
     if documentId is None:
         raise InsufficientParameters()

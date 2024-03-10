@@ -10,15 +10,20 @@ concealDocumentsBlueprint = Blueprint("concealDocuments", __name__)
 
 @concealDocumentsBlueprint.route("/concealDocuments", methods=['POST'])
 def concealDocuments():
-    requestedIds = request.form.get('documentIds')
+    requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:
         raise InsufficientParameters()
+    
+    print(requestedIds, flush=True)
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
     
     controller = ConcealDocumentsController(ConcealDocumentsService(configurationManager.getConcealDocumentsPort()))
     
-    documentOperationResponses = controller.concealDocuments(requestedIds)
+    if requestedIds == 1:
+        documentOperationResponses = controller.concealDocuments([requestedIds])
+    else:
+        documentOperationResponses = controller.concealDocuments(requestedIds)
     
     if len(documentOperationResponses) == 0:
         return jsonify("Errore nell'occultamento dei documenti."), 500

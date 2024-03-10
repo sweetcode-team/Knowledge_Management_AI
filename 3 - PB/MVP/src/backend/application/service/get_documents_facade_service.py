@@ -18,7 +18,7 @@ class GetDocumentsFacadeService(GetDocumentsUseCase):
         documentsId = [document.id for document in documentsMetadataList]
         documentsStatusList = self.getDocumentsStatus.getDocumentsStatus(documentsId)
         if len(documentsMetadataList) != len(documentsStatusList):
-            raise Exception("The number of documents metadata is different from the number of documents status")
+            raise Exception("Il numero di documenti e di status non corrisponde.")
         listOfLightDocument = []
         for documentMetadata, documentStatus in zip(documentsMetadataList, documentsStatusList):
             lightdocs = LightDocument(metadata=documentMetadata, status=documentStatus)

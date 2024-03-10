@@ -5,5 +5,5 @@ from domain.document.document_metadata import DocumentMetadata
 
 
 class GetDocumentsMetadataPort:
-    def get_documents_metadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
+    def getDocumentsMetadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
         pass

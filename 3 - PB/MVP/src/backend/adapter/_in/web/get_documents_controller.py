@@ -11,4 +11,8 @@ class GetDocumentsController:
         self.useCase = getDocumentsUseCase
 
     def getDocuments(self, searchFilter: str) -> List[LightDocument]:
-        return self.useCase.getDocuments(DocumentFilter(searchFilter))
+        try:
+            return self.useCase.getDocuments(DocumentFilter(searchFilter))
+        # TODO: Catch specific exceptions (custom exception per Exception("Il numero di documenti e di status non corrisponde.") in GetDocumentsFacadeService)
+        except Exception as e:
+            return []

@@ -1,5 +1,9 @@
 import os
 
+from langchain.chains import ConversationalRetrievalChain
+from langchain_community.llms import HuggingFaceEndpoint
+from langchain_openai import OpenAI
+
 from application.port.out.documents_uploader_port import DocumentsUploaderPort
 from application.port.out.embeddings_uploader_port import EmbeddingsUploaderPort
 from application.port.out.delete_documents_port import DeleteDocumentsPort
@@ -32,6 +36,7 @@ from adapter.out.upload_documents.chunkerizer import Chunkerizer
 from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
 from adapter.out.get_documents.get_documents_content_awss3 import GetDocumentsContentAWSS3
 from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
+from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
 
 
 class ConfigurationException(Exception):
@@ -153,5 +158,34 @@ class ConfigurationManager:
         return configuredDocumentStore
 
     def getAskChatbotPort(self) -> AskChatbotPort:
-        #TODO
-        return AskChatbotLangchain()
+        configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
+        if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
+            configuredVectorStore = VectorStorePineconeManager()
+        elif configuration.vectorStore == PostgresVectorStoreType.CHROMA_DB:
+            configuredVectorStore = VectorStoreChromaDBManager()
+        else:
+            raise ConfigurationException('Vector store non configurato.')
+        if configuration.embeddingModel == PostgresEmbeddingModelType.HUGGINGFACE:
+            configuredEmbeddingModel = HuggingFaceEmbeddingModel()
+        elif configuration.embeddingModel == PostgresEmbeddingModelType.OPENAI:
+            configuredEmbeddingModel = OpenAIEmbeddingModel()
+        else:
+            raise ConfigurationException('Embeddings model non configurato.')
+        if configuration.LLMModel == PostgresLLMModelType.HUGGINGFACE:
+            with open('/run/secrets/openai_key', 'r') as file:
+                openai_key = file.read()
+            configuredLLMModel = OpenAI(openai_api_key= openai_key, model_name="gpt-3.5-turbo-instruct", temperature=0.3)
+        elif configuration.LLMModel == PostgresLLMModelType.OPENAI:
+            with open('/run/secrets/huggingface_key', 'r') as file:
+                hugging_face = file.read()
+            configuredLLMModel = HuggingFaceEndpoint(repo_id="google/flan-5-large", temperature=0.3, token=hugging_face)
+        else:
+            raise ConfigurationException('LLM model non configurato.')
+
+
+        chain = ConversationalRetrievalChain.from_llm(
+            llm=configuredLLMModel,
+            retriever=configuredVectorStore.getRetriever(configuredEmbeddingModel),
+            return_source_documents=True
+        )
+        return AskChatbotLangchain(chain=chain, chatHistoryManager=ChatHistoryManager())

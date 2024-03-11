@@ -9,13 +9,17 @@ InstructorEmbedding
 langchain
 langchain_community
 langchain_core
+langchain-openai
 openai
 pypdf
 PyPDF2
 pytest
 python-dotenv
 pinecone-client
-psycopg2-binary
+#psycopg2-binary
+#psycopg
+#psycopg-c
+#pytest-mock
 # sentence-transformers
 tiktoken
 # torch

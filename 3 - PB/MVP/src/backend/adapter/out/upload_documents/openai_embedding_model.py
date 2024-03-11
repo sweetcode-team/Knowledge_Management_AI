@@ -1,6 +1,6 @@
 from typing import List
 
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
 
 
@@ -17,3 +17,5 @@ class OpenAIEmbeddingModel(LangchainEmbeddingModel):
             return self.model.embed_documents(documentChunks)
         except Exception as e:
             return []
+    def getEmbedQueryFunction(self):
+        return self.model.embed_query

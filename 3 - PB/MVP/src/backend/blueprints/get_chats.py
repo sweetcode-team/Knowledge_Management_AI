@@ -33,6 +33,7 @@ def getDocuments(filter):
         return jsonify([]), 404
 
     return jsonify([{
-        "title": chat.chatInfo.title,
-        "time": chat.chatInfo.timestamp,
-        "snippet": chat.lastMessageSnippet} for chat in chats])
+        "title": chat.title,
+        "lastMessage": { "content": chat.lastMessage.content,
+                         "sender":chat.lastMessage.sender.name,
+                         "time": chat.lastMessage.timestamp}} for chat in chats])

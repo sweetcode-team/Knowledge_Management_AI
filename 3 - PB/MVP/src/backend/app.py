@@ -3,6 +3,8 @@ from flask_cors import CORS
 
 from api_exceptions import APIBadRequest
 from api_exceptions import APIElaborationException
+from blueprints.get_chat_messages import getChatMessagesBlueprint
+from blueprints.get_chats import getChatsBlueprint
 
 from blueprints.get_document_content import getDocumentContentBlueprint
 from blueprints.upload_documents import uploadDocumentsBlueprint
@@ -17,6 +19,8 @@ from blueprints.get_configuration import getConfigurationBlueprint
 from blueprints.get_documents import getDocumentsBlueprint
 from blueprints.get_configuration_options import getConfigurationOptionsBlueprint
 from blueprints.ask_chatbot import askChatbotBlueprint
+from blueprints.delete_chats import deleteChatsBlueprint
+from blueprints.rename_chat import renameChatBlueprint
 
 app = Flask(__name__)
 CORS(app)
@@ -38,6 +42,10 @@ app.register_blueprint(getConfigurationBlueprint)
 app.register_blueprint(changeConfigurationBlueprint)
 app.register_blueprint(getConfigurationOptionsBlueprint)
 app.register_blueprint(askChatbotBlueprint)
+app.register_blueprint(getChatsBlueprint)
+app.register_blueprint(getChatMessagesBlueprint)
+app.register_blueprint(deleteChatsBlueprint)
+app.register_blueprint(renameChatBlueprint)
 
 @app.errorhandler(APIBadRequest)
 def handle_api_error(error):

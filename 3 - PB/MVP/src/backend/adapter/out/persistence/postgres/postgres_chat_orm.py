@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 from adapter.out.persistence.postgres.chat_models import Chat, ChatMessage
 
@@ -53,3 +54,20 @@ class PostgresChatORM:
         # except Exception as e:
         #     return PostgresChatOperationResponse(False, f"Errore nella rinominazione della chat: {str(e)}", None)
         return PostgresChatOperationResponse(True, "Chat rinominata correttamente.", chatId)
+    def getChats(self, chatFilter:str) -> List[PostgresChatPreview]:
+        #try:
+        #     listOfPostgresChatPreview = db_session.query(chatFilter).filter(chatFilter).all()
+        #except Exception as e:
+        #    return #todo da capire come fare
+        return [PostgresChatPreview(1, "titolo",
+                                    PostgresMessage("content",datetime(2020,2,12), ["relevant docs"], PostgresMessageSenderType.USER)),
+                PostgresChatPreview(1, "titolo2",
+                                    PostgresMessage("content2",datetime(2020,2,12), ["relevant docs"], PostgresMessageSenderType.USER))]
+    def getChatMessages(self, chatId: int) -> PostgresChat:
+        #try:
+        #     listOfPostgresMessage = db_session.query(PostgresMessage).filter(PostgresMessage.chatId == chatId).all()
+        #except Exception as e:
+        #    return #todo da capire come fare
+        return PostgresChat(1, "titolo", datetime(2020,12,3),
+                                              [PostgresMessage("content", datetime(2020,12,3), ["relevantDocs"], PostgresMessageSenderType.USER),
+                                                        PostgresMessage("content2", datetime(2020,12,3), ["relevantDocs2"], PostgresMessageSenderType.CHATBOT)])

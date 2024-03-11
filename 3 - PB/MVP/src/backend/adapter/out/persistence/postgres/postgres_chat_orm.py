@@ -1,6 +1,11 @@
 from typing import List
-from adapter.out.persistence.postgres.postgres_message import PostgresMessage
+from adapter.out.persistence.postgres.chat_models import Chat, ChatMessage
+
+from adapter.out.persistence.postgres.database import db_session
+
 from adapter.out.persistence.postgres.postgres_chat_operation_response import PostgresChatOperationResponse
+from adapter.out.persistence.postgres.postgres_message import PostgresMessage
+
 
 class PostgresChatORM:
     def __init__(self) -> None:

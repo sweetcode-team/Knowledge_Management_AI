@@ -2,12 +2,12 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 from api_exceptions import APIBadRequest
+from api_exceptions import APIElaborationException
 
 from blueprints.get_document_content import getDocumentContentBlueprint
 from blueprints.upload_documents import uploadDocumentsBlueprint
 from blueprints.delete_documents import deleteDocumentsBlueprint
-from adapter.out.persistence.postgres.postgres_configuration_orm import db_session
-from adapter.out.persistence.postgres.postgres_configuration_orm import init_db
+from adapter.out.persistence.postgres.database import init_db, db_session
     
 from blueprints.change_configuration import changeConfigurationBlueprint
 from blueprints.conceal_documents import concealDocumentsBlueprint
@@ -41,4 +41,8 @@ app.register_blueprint(askChatbotBlueprint)
 
 @app.errorhandler(APIBadRequest)
 def handle_api_error(error):
+    return jsonify(error.message), error.status_code
+
+@app.errorhandler(APIElaborationException)
+def handle_api_elaboration_error(error):
     return jsonify(error.message), error.status_code

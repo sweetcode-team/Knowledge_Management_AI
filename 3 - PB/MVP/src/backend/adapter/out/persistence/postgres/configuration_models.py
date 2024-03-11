@@ -1,13 +1,13 @@
 from sqlalchemy import Column, Integer, String, Enum as SQLEnum, ForeignKey
 from enum import Enum
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 
 from domain.configuration.document_store_configuration import DocumentStoreConfiguration
 from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration
 from domain.configuration.llm_model_configuration import LLMModelConfiguration
 from domain.configuration.vector_store_configuration import VectorStoreConfiguration
 
-Base = declarative_base()
+from adapter.out.persistence.postgres.database import Base
 
 class PostgresDocumentStoreType(Enum):
     AWS = 1

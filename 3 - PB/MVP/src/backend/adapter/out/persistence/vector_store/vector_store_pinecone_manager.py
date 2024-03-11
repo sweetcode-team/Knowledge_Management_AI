@@ -1,10 +1,15 @@
 from typing import List
+
+from langchain_core.retrievers import BaseRetriever
 from pinecone import Pinecone
 from pinecone import PineconeApiException
 from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
 from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 from adapter.out.persistence.vector_store.vector_store_document_status_response import VectorStoreDocumentStatusResponse
 from langchain_core.documents.base import Document as LangchainCoreDocument
+from langchain_community.vectorstores import Pinecone as PineconeLangchain
+from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
+
 
 class VectorStorePineconeManager(VectorStoreManager):
     def __init__(self):
@@ -180,4 +185,6 @@ class VectorStorePineconeManager(VectorStoreManager):
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"Errore nel caricamento degli embeddings: {e}"))
             
         return vectorStoreDocumentOperationResponses
-        
+
+    def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
+        return PineconeLangchain(self.index, embeddingModel.getEmbedQueryFunction(), "text").as_retriever()

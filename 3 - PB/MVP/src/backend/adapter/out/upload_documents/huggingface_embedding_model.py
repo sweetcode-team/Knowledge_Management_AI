@@ -17,3 +17,5 @@ class HuggingFaceEmbeddingModel(LangchainEmbeddingModel):
             return self.model.embed_documents(documentChunks)
         except Exception as e:
             return []
+    def getEmbedQueryFunction(self):
+        return self.model.embed_query

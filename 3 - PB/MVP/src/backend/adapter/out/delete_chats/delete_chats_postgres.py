@@ -3,7 +3,6 @@ from domain.chat.chat_operation_response import ChatOperationResponse
 from domain.chat.chat_id import ChatId
 from application.port.out.delete_chats_port import DeleteChatsPort
 from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
-from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatOperationResponse
 
 class DeleteChatsPostgres(DeleteChatsPort):
     def __init__(self, postgresChatORM: PostgresChatORM):

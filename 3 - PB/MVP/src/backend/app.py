@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 from api_exceptions import APIBadRequest
+from blueprints.get_chat_messages import getChatMessagesBlueprint
+from blueprints.get_chats import getChatsBlueprint
 
 from blueprints.get_document_content import getDocumentContentBlueprint
 from blueprints.upload_documents import uploadDocumentsBlueprint
@@ -40,6 +42,8 @@ app.register_blueprint(getConfigurationBlueprint)
 app.register_blueprint(changeConfigurationBlueprint)
 app.register_blueprint(getConfigurationOptionsBlueprint)
 app.register_blueprint(askChatbotBlueprint)
+app.register_blueprint(getChatsBlueprint)
+app.register_blueprint(getChatMessagesBlueprint)
 app.register_blueprint(deleteChatsBlueprint)
 app.register_blueprint(renameChatBlueprint)
 

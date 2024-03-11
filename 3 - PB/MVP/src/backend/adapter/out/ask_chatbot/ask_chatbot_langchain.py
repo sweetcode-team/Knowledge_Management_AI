@@ -1,3 +1,6 @@
+from langchain.chains import ConversationalRetrievalChain
+from langchain.chains.base import Chain
+
 from domain.chat.message_response import MessageResponse
 from domain.chat.message import Message
 from domain.chat.chat_id import ChatId
@@ -8,10 +11,25 @@ from application.port.out.ask_chatbot_port import AskChatbotPort
 
 from datetime import datetime, timezone
 
+from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
+from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
+
+
 class AskChatbotLangchain(AskChatbotPort):
+    def __init__(self, chain: Chain, chatHistoryManager: ChatHistoryManager):
+        self.chain = chain
+        self.chatHistoryManager = chatHistoryManager
     def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
+        embeddingModel = LangchainEmbeddingModel()
+        if chatId is not None:
+            self.chain.memory = self.chatHistoryManager.getChatHistory(chatId)
+        answer = self.chain.run(message.content)
+        print(answer, flush=True)
         return MessageResponse(
             True,
-            Message(content="I'm a chatbot, this is my response.", timestamp=datetime.now(timezone.utc), relevantDocuments=[DocumentId("DocumentoRilevante.pdf")], sender=MessageSender.CHATBOT),
+            Message(content=answer,
+                    timestamp=datetime.now(timezone.utc),
+                    relevantDocuments=[DocumentId("DocumentoRilevante.pdf")],
+                    sender=MessageSender.CHATBOT),
             chatId
         )

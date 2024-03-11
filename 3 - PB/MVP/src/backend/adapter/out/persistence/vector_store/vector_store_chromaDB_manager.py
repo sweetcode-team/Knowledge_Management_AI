@@ -1,17 +1,22 @@
 import os
 from typing import List
 import chromadb
+from langchain_core.retrievers import BaseRetriever
+
 from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
 from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 from adapter.out.persistence.vector_store.vector_store_document_status_response import VectorStoreDocumentStatusResponse
 from langchain_core.documents.base import Document as LangchainCoreDocument
+from langchain_community.vectorstores import Chroma
+from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
+
 
 class VectorStoreChromaDBManager(VectorStoreManager):
     def __init__(self):
-        cromadb = chromadb.PersistentClient(path=os.environ.get("CHROMA_DB_PATH"))
+        self.chromadb = chromadb.PersistentClient(path=os.environ.get("CHROMA_DB_PATH"))
         with open('/run/secrets/chromadb_collection', 'r') as file:
             chromadbCollection = file.read()
-        self.collection = cromadb.get_or_create_collection(chromadbCollection)
+        self.collection = self.chromadb.get_or_create_collection(chromadbCollection)
 
     def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
         vectorStoreDocumentStatusResponses = []
@@ -106,4 +111,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nel caricamento degli embeddings."))
                 continue
         return vectorStoreDocumentOperationResponses
-            
+
+
+    def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
+        return Chroma(client=self.chromadb, collection_name = self.collection.name, embedding_function=embeddingModel.getEmbedQueryFunction()).as_retriever()

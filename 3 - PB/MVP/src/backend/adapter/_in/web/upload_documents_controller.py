@@ -9,17 +9,20 @@ This class is the controller for the upload documents use case. It receives the 
 It also receives the force upload parameter and sends the documents to the use case.
     Attributes:
         useCase (UploadDocumentsUseCase): The use case for uploading documents.
-    Methods:
-        toDocument(self, newDocument: NewDocument) -> Document: 
-            Converts a new document to a document domain model.
-        uploadDocuments(self, newDocuments: List[NewDocument], forceUpload: bool = False) -> List[DocumentOperationResponse]:
-            Receives the new documents and force upload parameter and sends them to the use case.
 """
 class UploadDocumentsController:
     def __init__(self, uploadDocumentsUseCase: UploadDocumentsUseCase):
         self.useCase = uploadDocumentsUseCase
 
     def uploadDocuments(self, newDocuments: List[NewDocument], forceUpload: bool = False) -> List[DocumentOperationResponse]:
+        """
+        Receives the new documents and the force upload parameter and sends them to the use case.
+        Args:
+            newDocuments (List[NewDocument]): The new documents.
+            forceUpload (bool): The force upload parameter.
+        Returns:
+            List[DocumentOperationResponse]: the response of the operation.
+        """
         documents = [newDocument.toDocument() for newDocument in newDocuments]
         return self.useCase.uploadDocuments(documents, forceUpload)
     

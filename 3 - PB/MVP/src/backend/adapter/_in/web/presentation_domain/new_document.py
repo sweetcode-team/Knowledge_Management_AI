@@ -13,6 +13,11 @@ from domain.document.plain_document import PlainDocument
 
 """
 This module contains the NewDocument dataclass, which represents a new document to be uploaded to the system.
+Attributes:
+    documentId (str): The document's id.
+    type (str): The document's type.
+    size (float): The document's size.
+    content (bytes): The document's content.
 """
 @dataclass
 class NewDocument:
@@ -22,6 +27,11 @@ class NewDocument:
     content: bytes
 
     def toDocument(self) -> Document:
+        """
+        Converts the NewDocument to a Document.
+        Returns:
+            Document: The Document object.
+        """
         documentType = DocumentType.PDF if self.type.upper() == "PDF" else DocumentType.DOCX
         return Document(
             DocumentStatus(Status.ENABLED),

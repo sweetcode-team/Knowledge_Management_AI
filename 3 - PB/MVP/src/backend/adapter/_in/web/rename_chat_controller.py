@@ -20,4 +20,4 @@ class RenameChatController:
         Returns:
             ChatOperationResponse: the response of the operation.
         """
-        self.useCase.renameChat(ChatId(chatId), title)
+        return self.useCase.renameChat(ChatId(chatId), title)

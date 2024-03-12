@@ -9,5 +9,5 @@ class DeleteChatsPostgres(DeleteChatsPort):
         self.postgresORM = postgresChatORM
         
     def deleteChats(self, chatsIdsList: List[ChatId]) -> List[ChatOperationResponse]:
-        postgresOpearationResponseList = self.postgresORM.deleteChats([chatId.id for chatId in chatsIdsList])
-        return [postgresChatOpearationResponse.toChatOperationResponse() for postgresChatOpearationResponse in postgresOpearationResponseList]
+        postgresOperationResponseList = self.postgresORM.deleteChats([chatId.id for chatId in chatsIdsList])
+        return [postgresChatOperationResponse.toChatOperationResponse() for postgresChatOperationResponse in postgresOperationResponseList]

@@ -1,13 +1,13 @@
 from sqlalchemy import Column, Integer, String, Enum as SQLEnum, ForeignKey
 from enum import Enum
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 
 from domain.configuration.document_store_configuration import DocumentStoreConfiguration
 from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration
 from domain.configuration.llm_model_configuration import LLMModelConfiguration
 from domain.configuration.vector_store_configuration import VectorStoreConfiguration
 
-Base = declarative_base()
+from adapter.out.persistence.postgres.database import Base, db_session
 
 class PostgresDocumentStoreType(Enum):
     AWS = 1
@@ -155,3 +155,18 @@ class PostgresConfigurationChoice(Base):
     
     def __repr__(self):
         return f'({self.userId}, {self.vectorStore}, {self.embeddingModel}, {self.LLMModel}, {self.documentStore})'
+
+def initConfiguration():
+    Base.metadata.create_all(bind=db_session.bind)
+    
+    if db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == 1).first() is None:
+        db_session.add(PostgresVectorStoreConfiguration(name=PostgresVectorStoreType.CHROMA_DB, organization='Chroma', description='Chroma DB is an open-source vector store.', type='Open-source', costIndicator='Free'))
+        db_session.add(PostgresVectorStoreConfiguration(name=PostgresVectorStoreType.PINECONE, organization='Pinecone', description='Pinecone is a vector database for building real-time applications.', type='On cloud', costIndicator='Paid'))
+        db_session.add(PostgresEmbeddingModelConfiguration(name=PostgresEmbeddingModelType.HUGGINGFACE, organization='Hugging Face', description='Hugging Face is a company that provides a large number of pre-trained models for natural language processing.', type='Local', costIndicator='Free'))
+        db_session.add(PostgresEmbeddingModelConfiguration(name=PostgresEmbeddingModelType.OPENAI, organization='OpenAI', description='OpenAI is an artificial intelligence research laboratory.', type='Commercial', costIndicator='Paid'))
+        db_session.add(PostgresLLMModelConfiguration(name=PostgresLLMModelType.HUGGINGFACE, organization='Hugging Face', description='Hugging Face is a company that provides a large number of pre-trained models for natural language processing.', type='Local', costIndicator='Free'))
+        db_session.add(PostgresLLMModelConfiguration(name=PostgresLLMModelType.OPENAI, organization='OpenAI', description='OpenAI is an artificial intelligence research laboratory.', type='Commercial', costIndicator='Paid'))
+        db_session.add(PostgresDocumentStoreConfiguration(name=PostgresDocumentStoreType.AWS, organization='Amazon', description='Amazon Web Services is a subsidiary of Amazon providing on-demand cloud computing platforms and APIs to individuals.', type='On cloud', costIndicator='Paid'))
+        db_session.commit()
+        db_session.add(PostgresConfigurationChoice(userId=1, vectorStore=PostgresVectorStoreType.CHROMA_DB, embeddingModel=PostgresEmbeddingModelType.HUGGINGFACE, LLMModel=PostgresLLMModelType.HUGGINGFACE, documentStore=PostgresDocumentStoreType.AWS))
+        db_session.commit()

@@ -10,3 +10,8 @@ class DocumentNotSupported(APIBadRequest):
 class InsufficientParameters(APIBadRequest):
     def __init__(self, message="Parametri insufficienti o errati."):
         super().__init__(message, status_code=400)
+
+class APIElaborationException(Exception):
+    def __init__(self, message):
+        self.message = message
+        self.status_code = 500

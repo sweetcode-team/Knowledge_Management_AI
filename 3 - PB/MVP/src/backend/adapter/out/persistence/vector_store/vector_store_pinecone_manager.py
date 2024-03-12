@@ -187,4 +187,4 @@ class VectorStorePineconeManager(VectorStoreManager):
         return vectorStoreDocumentOperationResponses
 
     def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
-        return PineconeLangchain(self.index, embeddingModel.getEmbedQueryFunction(), "text").as_retriever()
+        return PineconeLangchain(self.index, embeddingModel.getEmbeddingFunction(), "text").as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.5})

@@ -165,23 +165,24 @@ class ConfigurationManager:
             configuredVectorStore = VectorStoreChromaDBManager()
         else:
             raise ConfigurationException('Vector store non configurato.')
+        
         if configuration.embeddingModel == PostgresEmbeddingModelType.HUGGINGFACE:
             configuredEmbeddingModel = HuggingFaceEmbeddingModel()
         elif configuration.embeddingModel == PostgresEmbeddingModelType.OPENAI:
             configuredEmbeddingModel = OpenAIEmbeddingModel()
         else:
-            raise ConfigurationException('Embeddings model non configurato.')
-        if configuration.LLMModel == PostgresLLMModelType.HUGGINGFACE:
+            raise ConfigurationException('Embedding model non configurato.')
+        
+        if configuration.LLMModel == PostgresLLMModelType.OPENAI:
             with open('/run/secrets/openai_key', 'r') as file:
                 openai_key = file.read()
-            configuredLLMModel = OpenAI(openai_api_key= openai_key, model_name="gpt-3.5-turbo-instruct", temperature=0.3)
-        elif configuration.LLMModel == PostgresLLMModelType.OPENAI:
+            configuredLLMModel = OpenAI(openai_api_key=openai_key, model_name="gpt-3.5-turbo-instruct", temperature=0.01,)
+        elif configuration.LLMModel == PostgresLLMModelType.HUGGINGFACE:
             with open('/run/secrets/huggingface_key', 'r') as file:
                 hugging_face = file.read()
-            configuredLLMModel = HuggingFaceEndpoint(repo_id="google/flan-5-large", temperature=0.3, token=hugging_face)
+            configuredLLMModel = HuggingFaceEndpoint(repo_id="mistralai/Mistral-7B-v0.1", temperature=0.01, huggingfacehub_api_token=hugging_face)
         else:
             raise ConfigurationException('LLM model non configurato.')
-
 
         chain = ConversationalRetrievalChain.from_llm(
             llm=configuredLLMModel,

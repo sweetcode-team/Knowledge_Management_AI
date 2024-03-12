@@ -23,5 +23,5 @@ class PostgresMessage:
         return Message(self.content,
                        self.timestamp,
                        [DocumentId(relevantDocument) for relevantDocument in self.relevantDocuments],
-                        MessageSender.USER if self.sender == PostgresMessageSenderType.USER else MessageSender.CHATBOT
+                        MessageSender.USER if self.sender.value == PostgresMessageSenderType.USER.value else MessageSender.CHATBOT
                        )

@@ -10,12 +10,10 @@ from adapter.out.get_chat_messages.get_chat_messages_postgres import GetChatMess
 
 getChatMessagesBlueprint = Blueprint("getChatMessages", __name__)
 
-@getChatMessagesBlueprint.route('/getChatMessages', defaults={'chatId': ''}, methods=['GET'])
+@getChatMessagesBlueprint.route('/getChatMessages/<int:chatId>', methods=['GET'])
 def getChatMessages(chatId):
     if chatId is None:
         raise InsufficientParameters()
-
-    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
     controller = GetChatMessagesController(
         GetChatMessagesService(
@@ -30,6 +28,6 @@ def getChatMessages(chatId):
         "title": chatMessages.title,
         "id": chatMessages.chatId.id,
         "messages": [{"content": chatMessage.content,
-                     "time": chatMessage.timestamp,
+                     "timestamp": chatMessage.timestamp,
                      "sender": chatMessage.sender.name} for chatMessage in chatMessages.messages]
     })

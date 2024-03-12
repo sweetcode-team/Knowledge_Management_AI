@@ -14,8 +14,7 @@ def test_askChatbot_with_existent_chat(mocker):
     askChatbotController = AskChatbotController(useCaseMock)
     
     with    unittest.mock.patch('adapter._in.web.ask_chatbot_controller.ChatId') as MockChatId, \
-            unittest.mock.patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage:
-        
+            unittest.mock.patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage:  
         MockChatId.return_value = ChatId(1)
         MockMessage.return_value = Message("response", unittest.mock.ANY, None, MessageSender.CHATBOT)
     
@@ -28,8 +27,8 @@ def test_askChatbot_with_existent_chat(mocker):
             None,
             MessageSender.USER
         )
-    
-        assert isinstance(response, MessageResponse)
+
+    assert isinstance(response, MessageResponse)
     
 def test_askChatbot_without_chat(mocker):
     useCaseMock = mocker.Mock()

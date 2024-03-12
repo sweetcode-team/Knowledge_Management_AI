@@ -5,6 +5,8 @@ from application.service.delete_chats_service import DeleteChatsService
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
 from api_exceptions import InsufficientParameters
+from adapter.out.delete_chats.delete_chats_postgres import DeleteChatsPostgres
+from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 
 deleteChatsBlueprint = Blueprint("deleteChats", __name__)
 
@@ -14,10 +16,11 @@ def deleteChats():
     if requestedIds is None:
         raise InsufficientParameters()
     
-    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
-
     controller = DeleteChatsController(
-        DeleteChatsService(configurationManager.getDeleteChatsPort()))
+        DeleteChatsService(
+            DeleteChatsPostgres(PostgresChatORM())
+        )
+    )
     
     chatOperationResponses = controller.deleteChats(requestedIds)
      

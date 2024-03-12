@@ -13,9 +13,8 @@ class PostgresPersistChat(PersistChatPort):
         self.postgresChatORM = postgresChatORM
     
     def persistChat(self, messages: List[Message], chatId: ChatId) -> ChatOperationResponse:
-        for message in messages:
-            print(self.toPostgresMessageFrom(message).sender.name, flush=True)
         postgresChatOperationResponse = self.postgresChatORM.persistChat([self.toPostgresMessageFrom(message) for message in messages], chatId)
+        print(postgresChatOperationResponse, flush=True)
         return postgresChatOperationResponse.toChatOperationResponse()
     
     def toPostgresMessageFrom(self, message: Message) -> PostgresMessage:
@@ -23,5 +22,5 @@ class PostgresPersistChat(PersistChatPort):
             content=message.content,
             timestamp=message.timestamp,
             relevantDocuments=[relevantDocumentId.id for relevantDocumentId in message.relevantDocuments] if message.relevantDocuments else None,
-            sender=PostgresMessageSenderType.USER if message.sender.value == MessageSender.USER.value else PostgresMessageSenderType.CHATBOT
+            sender=PostgresMessageSenderType.human if message.sender.value == MessageSender.USER.value else PostgresMessageSenderType.ai
         )

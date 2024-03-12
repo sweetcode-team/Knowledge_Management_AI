@@ -39,7 +39,7 @@ class PostgresChatORM:
     
     def saveMessages(self, messages: List[PostgresMessage], chatId: int) -> PostgresChatOperationResponse:
         try:
-            newMessages = [MessageStore(chatId, {"data": {"type": message.sender.name, "content": message.content, "timestamp": message.timestamp.isoformat()}}) for message in messages]
+            newMessages = [MessageStore(chatId, {"type": message.sender.name, "data": {"content": message.content, "timestamp": message.timestamp.isoformat()}}) for message in messages]
             db_session.add_all(newMessages)
             db_session.commit()
             newMessageIds = [newMessage.id for newMessage in newMessages]
@@ -83,7 +83,7 @@ class PostgresChatORM:
                         lastMessage.message["data"]["content"],
                         datetime.fromisoformat(lastMessage.message["data"]["timestamp"]),
                         [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == lastMessage.id).all()],
-                        PostgresMessageSenderType[lastMessage.message["data"]["type"]]))
+                        PostgresMessageSenderType[lastMessage.message["type"]]))
                     )
                 else:
                     chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
@@ -99,7 +99,7 @@ class PostgresChatORM:
                 message.message["data"]["content"],
                 datetime.fromisoformat(message.message["data"]["timestamp"]),
                 [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == message.id).all()],
-                PostgresMessageSenderType[message.message["data"]["type"]]) for message in messages]
+                PostgresMessageSenderType[message.message["type"]]) for message in messages]
             
             return PostgresChat(chat.id, chat.title, postgresMessages)
         except Exception as e:

@@ -21,4 +21,4 @@ class EmbedDocumentsController:
         Returns:
             List[DocumentOperationResponse]: the response of the operation.
         """
-        return self.useCase.embedDocuemnts([DocumentId(documentId) for documentId in documentsIds])
+        return self.useCase.embedDocuments([DocumentId(documentId) for documentId in documentsIds])

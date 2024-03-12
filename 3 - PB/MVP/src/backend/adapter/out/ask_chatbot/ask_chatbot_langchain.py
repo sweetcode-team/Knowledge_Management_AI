@@ -19,17 +19,18 @@ class AskChatbotLangchain(AskChatbotPort):
     def __init__(self, chain: Chain, chatHistoryManager: ChatHistoryManager):
         self.chain = chain
         self.chatHistoryManager = chatHistoryManager
+    
     def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
-        embeddingModel = LangchainEmbeddingModel()
         if chatId is not None:
             self.chain.memory = self.chatHistoryManager.getChatHistory(chatId)
-        answer = self.chain.run(message.content)
-        print(answer, flush=True)
+        answer = self.chain.invoke({"question": message.content, "chat_history": ""})
+
         return MessageResponse(
             True,
-            Message(content=answer,
-                    timestamp=datetime.now(timezone.utc),
-                    relevantDocuments=[DocumentId("DocumentoRilevante.pdf")],
-                    sender=MessageSender.CHATBOT),
-            chatId
+            Message(
+                answer["answer"],
+                datetime.now(timezone.utc),
+                list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
+                MessageSender.CHATBOT
+            ), chatId
         )

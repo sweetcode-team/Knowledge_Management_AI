@@ -14,12 +14,11 @@ openai
 pypdf
 PyPDF2
 pytest
+pytest-mock
 python-dotenv
 pinecone-client
-#psycopg2-binary
-#psycopg
-#psycopg-c
-#pytest-mock
+psycopg
+psycopg2-binary
 # sentence-transformers
 tiktoken
 # torch

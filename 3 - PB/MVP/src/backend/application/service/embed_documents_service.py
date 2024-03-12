@@ -14,7 +14,7 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
         self.embeddingsUploader = embeddingsUploader
         self.getDocumentStatus = getDocumentStatus
 
-    def embedDocuemnts(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
+    def embedDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
         verifiedDocumentsIds =[]
         verifiedDocumentsStatus = []
         for documentId, documentStatus in zip(documentsIds, self.getDocumentStatus.getDocumentsStatus(documentsIds)):

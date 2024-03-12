@@ -9,4 +9,4 @@ class DeleteChatsService(DeleteChatsUseCase):
         self.outPort = deleteChatsPort
         
     def deleteChats(self, chatsIdsList: List[ChatId]) -> List[ChatOperationResponse]:
-        self.outPort.deleteChats(chatsIdsList)
+        return self.outPort.deleteChats(chatsIdsList)

@@ -9,8 +9,8 @@ from domain.document.document_id import DocumentId
 
 @dataclass
 class PostgresMessageSenderType(Enum):
-    USER = 1
-    CHATBOT = 2
+    human = 1
+    ai = 2
 
 @dataclass
 class PostgresMessage:
@@ -20,8 +20,9 @@ class PostgresMessage:
     sender: PostgresMessageSenderType
 
     def toMessage(self) -> Message:
-        return Message(self.content,
-                       self.timestamp,
-                       [DocumentId(relevantDocument) for relevantDocument in self.relevantDocuments],
-                        MessageSender.USER if self.sender.value == PostgresMessageSenderType.USER.value else MessageSender.CHATBOT
-                       )
+        return Message(
+            self.content,
+            self.timestamp,
+            [DocumentId(relevantDocument) for relevantDocument in self.relevantDocuments],
+            MessageSender.USER if self.sender.value == PostgresMessageSenderType.human.value else MessageSender.CHATBOT
+        )

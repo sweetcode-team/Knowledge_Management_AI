@@ -37,6 +37,7 @@ def AskChatbot():
         "chatbotResponse": {
             "message": chatbotResponse.messageResponse.content,
             "timestamp": chatbotResponse.messageResponse.timestamp,
-            "relevantDocuments": [relevantDocument.id for relevantDocument in chatbotResponse.messageResponse.relevantDocuments]
-        }, 
+            "relevantDocuments": [relevantDocument.id for relevantDocument in chatbotResponse.messageResponse.relevantDocuments],
+            "sender": chatbotResponse.messageResponse.sender.name
+        },
         "chatId": chatbotResponse.chatId.id})

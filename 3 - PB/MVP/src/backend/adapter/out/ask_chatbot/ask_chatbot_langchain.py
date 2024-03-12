@@ -23,7 +23,10 @@ class AskChatbotLangchain(AskChatbotPort):
     def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
         if chatId is not None:
             self.chain.memory = self.chatHistoryManager.getChatHistory(chatId)
-        answer = self.chain.invoke({"question": message.content, "chat_history": ""})
+            print(self.chatHistoryManager.getChatHistory(chatId.id).messages, flush=True)
+            answer = self.chain.invoke({"question": message.content})
+        else:
+            answer = self.chain.invoke({"question": message.content, "chat_history": ""})
 
         return MessageResponse(
             True,

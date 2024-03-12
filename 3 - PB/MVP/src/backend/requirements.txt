@@ -17,7 +17,7 @@ pytest
 pytest-mock
 python-dotenv
 pinecone-client
-psycopg
+psycopg[binary,pool]
 psycopg2-binary
 # sentence-transformers
 tiktoken

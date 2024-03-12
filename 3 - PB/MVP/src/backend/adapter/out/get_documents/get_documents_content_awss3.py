@@ -20,11 +20,12 @@ class GetDocumentsContentAWSS3(GetDocumentsContentPort):
         for documentId in documentIds:
             retrievedDocument = self.awsS3Manager.getDocumentContent(documentId.id)
             documents.append(retrievedDocument)
+        
         plainDocuments = [
             PlainDocument(
                 DocumentMetadata(
-                    id= DocumentId(document.id),
-                    type=DocumentType.PDF if document.type.split('/')[1].upper() == "PDF" else DocumentType.DOCX,
+                    id=DocumentId(document.id),
+                    type=DocumentType.PDF if document.type.split('.')[1].upper() == "PDF" else DocumentType.DOCX,
                     size=document.size,
                     uploadTime=document.uploadTime
                 ),

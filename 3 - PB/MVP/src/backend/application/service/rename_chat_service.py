@@ -8,4 +8,4 @@ class RenameChatService(RenameChatUseCase):
         self.outPort = renameChatPort
         
     def renameChat(self, chatId: ChatId, title: str) -> ChatOperationResponse:
-        self.outPort.renameChat(chatId, title)
+        return self.outPort.renameChat(chatId, title)

@@ -37,5 +37,5 @@ def deleteChats():
     
     return jsonify([{
         "chatId": chatOperationResponse.chatId.id,
-        "status": chatOperationResponse.status,
+        "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message} for chatOperationResponse in chatOperationResponses])

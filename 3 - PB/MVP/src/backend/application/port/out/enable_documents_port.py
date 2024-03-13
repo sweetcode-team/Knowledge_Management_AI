@@ -5,5 +5,5 @@ from domain.document.document_operation_response import DocumentOperationRespons
 
 
 class EnableDocumentsPort:
-    def enable_documents(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
+    def enableDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
         pass

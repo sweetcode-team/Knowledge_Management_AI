@@ -14,14 +14,16 @@ class GetDocumentsFacadeService(GetDocumentsUseCase):
         self.getDocumentsStatus = getDocumentsStatus
 
     def getDocuments(self, documentFilter: DocumentFilter) -> List[LightDocument]:
-        documentsMetadataList = self.getDocumentsMetadatas.getDocumentsMetadata(documentFilter)
+        documentsMetadata = self.getDocumentsMetadatas.getDocumentsMetadata(documentFilter)
 
-        documentsId = [document.id for document in documentsMetadataList]
-        documentsStatusList = self.getDocumentsStatus.getDocumentsStatus(documentsId)
-        if len(documentsMetadataList) != len(documentsStatusList):
-            raise ElaborationException("Il numero di documenti e di status non corrisponde.")
-        listOfLightDocument = []
-        for documentMetadata, documentStatus in zip(documentsMetadataList, documentsStatusList):
-            lightdocs = LightDocument(metadata=documentMetadata, status=documentStatus)
-            listOfLightDocument.append(lightdocs)
-        return listOfLightDocument
+        documentsId = [document.id for document in documentsMetadata]
+        documentsStatus = self.getDocumentsStatus.getDocumentsStatus(documentsId)
+        
+        if len(documentsMetadata) != len(documentsStatus):
+            raise ElaborationException("Errore nel recupero dei documenti.")
+        
+        lightDocuments = []
+        for documentMetadata, documentStatus in zip(documentsMetadata, documentsStatus):
+            lightDocument = LightDocument(metadata=documentMetadata, status=documentStatus)
+            lightDocuments.append(lightDocument)
+        return lightDocuments

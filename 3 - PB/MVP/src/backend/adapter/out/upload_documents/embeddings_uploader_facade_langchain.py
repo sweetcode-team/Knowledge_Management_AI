@@ -39,7 +39,7 @@ class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
         return [
             DocumentOperationResponse(
                 DocumentId(vectorStoreDocumentOperationResponse.documentId),
-                vectorStoreDocumentOperationResponse.status,
+                vectorStoreDocumentOperationResponse.ok(),
                 vectorStoreDocumentOperationResponse.message
             ) for vectorStoreDocumentOperationResponse in vectorStoreDocumentOperationResponses
         ]

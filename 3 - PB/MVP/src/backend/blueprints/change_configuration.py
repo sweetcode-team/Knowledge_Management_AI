@@ -24,5 +24,5 @@ def changeConfiguration():
         raise APIElaborationException("Errore nell'aggiornamento del modello LLM.")
     
     return jsonify({
-        "status": configurationOperationResponse.status,
+        "status": configurationOperationResponse.ok(),
         "message": configurationOperationResponse.message})

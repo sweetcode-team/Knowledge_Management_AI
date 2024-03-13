@@ -6,6 +6,8 @@ from application.service.embeddings_uploader import EmbeddingsUploader
 from domain.document.document import Document
 from domain.document.document_operation_response import DocumentOperationResponse
 
+from domain.exception.exception import ElaborationException
+
 """
     UploadDocumentsService class
     This class implements the UploadDocumentsUseCase interface
@@ -16,7 +18,6 @@ from domain.document.document_operation_response import DocumentOperationRespons
     Methods:
         uploadDocuments: Uploads the documents and embeddings to the storage
 """
-
 class UploadDocumentsService(UploadDocumentsUseCase):
     def __init__(self, documentsUploader: DocumentsUploader, embeddingsUploader: EmbeddingsUploader):
         self.documentsUploader = documentsUploader
@@ -28,8 +29,13 @@ class UploadDocumentsService(UploadDocumentsUseCase):
         Returns:
             List of DocumentOperationResponse objects
         """
+        
     def uploadDocuments(self, documents: List[Document], forceUpload: bool) -> List[DocumentOperationResponse]:
         documentOperationResponses = self.documentsUploader.uploadDocuments(documents, forceUpload)
+        
+        if len(documents) != len(documentOperationResponses):
+            raise ElaborationException("Errore nell'elaborazione delle operazioni di upload dei documenti.")
+        
         finalOperationResponses = []
         for document, documentOperationResponse in zip(documents, documentOperationResponses):
             if documentOperationResponse.ok():
@@ -37,4 +43,8 @@ class UploadDocumentsService(UploadDocumentsUseCase):
                 finalOperationResponses.append(embeddingsOperationResponse[0])
             else:
                 finalOperationResponses.append(documentOperationResponse)
+                
+        if len(documents) != len(finalOperationResponses):
+            raise ElaborationException("Errore nell'elaborazione delle operazioni di upload dei documenti.")
+        
         return finalOperationResponses

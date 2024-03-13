@@ -7,6 +7,7 @@ class Status(Enum):
     CONCEALED = 1
     ENABLED = 2
     NOT_EMBEDDED = 3
+    INCONSISTENT = 4
 
 """The status of a document."""
 @dataclass

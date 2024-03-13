@@ -4,6 +4,9 @@ from adapter._in.web.presentation_domain.new_document import NewDocument
 from application.port._in.upload_documents_use_case import UploadDocumentsUseCase
 from domain.document.document_operation_response import DocumentOperationResponse
 
+from domain.exception.exception import ElaborationException
+from api_exceptions import APIElaborationException
+
 """
 This class is the controller for the upload documents use case. It receives the new documents and converts them to the domain model.
 It also receives the force upload parameter and sends the documents to the use case.
@@ -23,6 +26,9 @@ class UploadDocumentsController:
         Returns:
             List[DocumentOperationResponse]: the response of the operation.
         """
-        documents = [newDocument.toDocument() for newDocument in newDocuments]
-        return self.useCase.uploadDocuments(documents, forceUpload)
+        try:
+            documents = [newDocument.toDocument() for newDocument in newDocuments]
+            return self.useCase.uploadDocuments(documents, forceUpload)
+        except ElaborationException as e:
+            raise APIElaborationException(str(e))
     

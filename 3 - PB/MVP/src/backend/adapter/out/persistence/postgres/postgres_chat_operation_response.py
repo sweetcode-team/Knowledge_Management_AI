@@ -10,3 +10,6 @@ class PostgresChatOperationResponse:
     
     def toChatOperationResponse(self):
         return ChatOperationResponse(status=self.status, message=self.message, chatId=ChatId(self.chatId))
+    
+    def ok(self) -> bool:
+        return self.status

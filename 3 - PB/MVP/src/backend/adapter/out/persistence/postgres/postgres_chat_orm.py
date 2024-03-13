@@ -21,7 +21,7 @@ class PostgresChatORM:
         
         if chatId is None:
             newChatResponse = self.createChat()
-            if not newChatResponse.status:
+            if not newChatResponse.ok():
                 return newChatResponse
             return self.saveMessages(messages, newChatResponse.chatId)
         else:

@@ -7,3 +7,6 @@ class MessageResponse:
     chatId: ChatId
     status: bool
     messageResponse: Message
+    
+    def ok(self) -> bool:
+        return self.status

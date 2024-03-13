@@ -9,4 +9,4 @@ class EmbedDocumentsController:
         self.useCase = embedDocumentsUseCase
 
     def embedDocuments(self, documentsIds: List[str]) -> List[DocumentOperationResponse]:
-        return self.useCase.embedDocuemnts([DocumentId(documentId) for documentId in documentsIds])
+        return self.useCase.embedDocuments([DocumentId(documentId) for documentId in documentsIds])

@@ -9,4 +9,4 @@ class GetDocumentContentController:
 
     def getDocumentContent(self, documentId: str) -> Document:
         document = self.useCase.getDocumentsContent([DocumentId(documentId)])
-        return document[0]
+        return document[0] if document is not None else None

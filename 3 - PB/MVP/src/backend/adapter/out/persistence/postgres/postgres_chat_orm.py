@@ -58,17 +58,19 @@ class PostgresChatORM:
         try:
             db_session.query(Chat).filter(Chat.id.in_(chatIds)).delete(synchronize_session=False)
             db_session.commit()
-            #TODO: eliminare anche i messaggi e i documenti associati
-            #TODO: vedere se è stata eliminata effettivamente la chat
             return [PostgresChatOperationResponse(True, "Chat eliminata correttamente.", chatId) for chatId in chatIds]
         except Exception as e:
             return [PostgresChatOperationResponse(False, f"Errore nella eliminazione della chat: {str(e)}", chatId) for chatId in chatIds]
     
     def renameChat(self, chatId: int, newName: str) -> PostgresChatOperationResponse:
         try:
-            db_session.query(Chat).filter(Chat.id == chatId).update({"title": newName})
+            affectedRows = db_session.query(Chat).filter(Chat.id == chatId).update({"title": newName})
             db_session.commit()
-            return PostgresChatOperationResponse(True, "Chat rinominata correttamente.", chatId)
+            
+            if affectedRows > 0:
+                return PostgresChatOperationResponse(True, "Chat rinominata correttamente.", chatId)
+            else:
+                return PostgresChatOperationResponse(False, "Nessuna chat trovata con l'ID specificato.", chatId)
         except Exception as e:
             return PostgresChatOperationResponse(False, f"Errore nella rinomina della chat: {str(e)}", chatId)
     
@@ -95,11 +97,13 @@ class PostgresChatORM:
         try:
             chat = db_session.query(Chat).filter(Chat.id == chatId).first()
             messages = db_session.query(MessageStore).filter(MessageStore.sessionId == chatId).all()
-            postgresMessages = [PostgresMessage(
-                message.message["data"]["content"],
-                datetime.fromisoformat(message.message["data"]["timestamp"]),
-                [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == message.id).all()],
-                PostgresMessageSenderType[message.message["type"]]) for message in messages]
+            postgresMessages = [
+                PostgresMessage(
+                    message.message["data"]["content"],
+                    datetime.fromisoformat(message.message["data"]["timestamp"]),
+                    [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == message.id).all()],
+                    PostgresMessageSenderType[message.message["type"]]
+                ) for message in messages]
             
             return PostgresChat(chat.id, chat.title, postgresMessages)
         except Exception as e:

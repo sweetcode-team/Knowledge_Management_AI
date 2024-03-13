@@ -12,4 +12,4 @@ class AWSDocumentOperationResponse:
     message: str
         
     def toDocumentOperationResponse(self) -> DocumentOperationResponse:
-        return DocumentOperationResponse(DocumentId(self.documentId), self.status, self.message)        
+        return DocumentOperationResponse(DocumentId(self.documentId), self.status, self.message)

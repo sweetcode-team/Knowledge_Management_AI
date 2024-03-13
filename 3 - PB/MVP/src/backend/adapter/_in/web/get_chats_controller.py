@@ -10,6 +10,6 @@ class GetChatsController:
     def __init__(self, getChatsUseCase:GetChatsUseCase):
         self.useCase = getChatsUseCase
 
-    def getChats(self, searchFilter:str)-> List[ChatPreview]:
+    def getChats(self, searchFilter: str)-> List[ChatPreview]:
         filter = ChatFilter(searchFilter)
         return self.useCase.getChats(filter)

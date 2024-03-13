@@ -18,9 +18,9 @@ class AskChatbotService(AskChatbotUseCase):
             chatOperationResponse = self.persistChatOutPort.persistChat([message, messageResponse.messageResponse], chatId)
             
             return MessageResponse(
-                chatOperationResponse.status,
-                messageResponse.messageResponse if messageResponse.messageResponse else None,
-                chatOperationResponse.chatId
+                status=chatOperationResponse.status,
+                messageResponse=messageResponse.messageResponse if messageResponse.messageResponse else None,
+                chatId=chatOperationResponse.chatId
             )
         
         return messageResponse

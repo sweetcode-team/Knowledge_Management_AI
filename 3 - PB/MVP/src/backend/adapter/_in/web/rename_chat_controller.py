@@ -7,4 +7,4 @@ class RenameChatController:
         self.useCase = renameChatUseCase
         
     def renameChat(self, chatId: int, title: str) -> ChatOperationResponse:
-        self.useCase.renameChat(ChatId(chatId), title)
+        return self.useCase.renameChat(ChatId(chatId), title)

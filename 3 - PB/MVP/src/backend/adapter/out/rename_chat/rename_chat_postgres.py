@@ -8,5 +8,5 @@ class RenameChatPostgres(RenameChatPort):
         self.outPort = postgresChatORM
         
     def renameChat(self, chatId: ChatId, title: str) -> ChatOperationResponse:
-        postgresChatOperationResponse = self.outPort.renameChat(chatId, title)
+        postgresChatOperationResponse = self.outPort.renameChat(chatId.id, title)
         return postgresChatOperationResponse.toChatOperationResponse()

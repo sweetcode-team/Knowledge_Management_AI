@@ -5,6 +5,7 @@ from domain.document.document_filter import DocumentFilter
 from domain.document.light_document import LightDocument
 from application.service.get_documents_status import GetDocumentsStatus
 from application.service.get_documents_metadata import GetDocumentsMetadata
+from domain.exception.exception import ElaborationException
 
 
 class GetDocumentsFacadeService(GetDocumentsUseCase):
@@ -18,7 +19,7 @@ class GetDocumentsFacadeService(GetDocumentsUseCase):
         documentsId = [document.id for document in documentsMetadataList]
         documentsStatusList = self.getDocumentsStatus.getDocumentsStatus(documentsId)
         if len(documentsMetadataList) != len(documentsStatusList):
-            raise Exception("Il numero di documenti e di status non corrisponde.")
+            raise ElaborationException("Il numero di documenti e di status non corrisponde.")
         listOfLightDocument = []
         for documentMetadata, documentStatus in zip(documentsMetadataList, documentsStatusList):
             lightdocs = LightDocument(metadata=documentMetadata, status=documentStatus)

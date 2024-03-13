@@ -9,4 +9,3 @@ class ChangeConfigurationService(ChangeConfigurationUseCase):
            
     def changeLLMModel(self, LLModel:LLMModelType ) -> ConfigurationOperationResponse:
         return self.outport.changeLLMModel(LLModel)
-    

@@ -1,5 +1,6 @@
-from langchain.chains import ConversationalRetrievalChain
 from langchain.chains.base import Chain
+from langchain.memory import ConversationBufferWindowMemory
+from langchain_core.messages import get_buffer_string
 
 from domain.chat.message_response import MessageResponse
 from domain.chat.message import Message
@@ -22,18 +23,22 @@ class AskChatbotLangchain(AskChatbotPort):
     
     def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
         if chatId is not None:
-            self.chain.memory = self.chatHistoryManager.getChatHistory(chatId)
-            print(self.chatHistoryManager.getChatHistory(chatId.id).messages, flush=True)
-            answer = self.chain.invoke({"question": message.content})
+            chatHistory = self.chatHistoryManager.getChatHistory(chatId.id)
+            if len(chatHistory.messages) == 0:
+                return MessageResponse(status=False, messageResponse=None, chatId=chatId)
+            else:
+                #TODO: Controllare se 6 messaggi sono sufficienti
+                answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
         else:
-            answer = self.chain.invoke({"question": message.content, "chat_history": ""})
+            answer = self.chain.invoke({"question": message.content, "chat_history": []})
 
         return MessageResponse(
-            True,
-            Message(
+            status=True,
+            messageResponse=Message(
                 answer["answer"],
                 datetime.now(timezone.utc),
                 list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
                 MessageSender.CHATBOT
-            ), chatId
+            ),
+            chatId=chatId
         )

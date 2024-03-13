@@ -6,7 +6,7 @@ from application.service.get_documents_content import GetDocumentsContent
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
-from api_exceptions import InsufficientParameters
+from api_exceptions import InsufficientParameters, APIBadRequest, APIElaborationException
 
 getDocumentContentBlueprint = Blueprint("getDocumentContent", __name__)
 
@@ -14,6 +14,8 @@ getDocumentContentBlueprint = Blueprint("getDocumentContent", __name__)
 def getDocumentsContent(documentId):
     if documentId is None:
         raise InsufficientParameters()
+    if documentId.strip() == "":
+        raise APIBadRequest(f"Id di documento '{documentId}' non valido.")
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
@@ -24,7 +26,7 @@ def getDocumentsContent(documentId):
         )
     )
     
-    retrievedDocument = controller.getDocumentContent(documentId)
+    retrievedDocument = controller.getDocumentContent(documentId.strip())
     
     if retrievedDocument is None or retrievedDocument.plainDocument is None:
         return jsonify({}), 404

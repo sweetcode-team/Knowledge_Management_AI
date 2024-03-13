@@ -4,6 +4,9 @@ from domain.chat.chat_id import ChatId
 
 @dataclass
 class MessageResponse:
+    chatId: ChatId
     status: bool
     messageResponse: Message
-    chatId: ChatId
+    
+    def ok(self) -> bool:
+        return self.status

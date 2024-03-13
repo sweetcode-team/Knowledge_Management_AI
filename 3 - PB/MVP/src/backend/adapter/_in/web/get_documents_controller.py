@@ -26,4 +26,4 @@ class GetDocumentsController:
         try:
             return self.useCase.getDocuments(DocumentFilter(searchFilter))
         except ElaborationException as e:
-            raise APIElaborationException(e.message)
+            raise APIElaborationException(str(e))

@@ -10,15 +10,17 @@ from application.service.embeddings_uploader import EmbeddingsUploader
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
 
-from api_exceptions import DocumentNotSupported
-from api_exceptions import InsufficientParameters
+from api_exceptions import InsufficientParameters, DocumentNotSupported, APIElaborationException
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
+    forceUpload = request.form.get('forceUpload')
+    if forceUpload is None:
+        forceUpload = False
+    
     newDocuments = []
-
     for uploadedDocument in request.files.getlist('documents'):
         secureFilename = secure_filename(uploadedDocument.filename)
         if secureFilename == '':
@@ -48,13 +50,12 @@ def uploadDocuments():
         )
     )
     
-    # TODO: forceUpload = False qui, in Substitute mettere True
-    documentOperationResponses = controller.uploadDocuments(newDocuments, False)
+    documentOperationResponses = controller.uploadDocuments(newDocuments, forceUpload)
     
     if len(documentOperationResponses) == 0:
-        return jsonify("Errore nell'upload dei documenti."), 500
+        raise APIElaborationException("Errore nell'upload dei documenti.")
         
     return jsonify([{
         "id": documentOperationResponse.documentId.id,
-        "status": documentOperationResponse.status,
+        "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

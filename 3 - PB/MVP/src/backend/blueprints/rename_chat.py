@@ -2,32 +2,38 @@ from flask import request, Blueprint, jsonify
 from adapter._in.web.rename_chat_controller import RenameChatController
 from application.service.rename_chat_service import RenameChatService
 
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-from adapter.out.configuration_manager import ConfigurationManager
-from api_exceptions import InsufficientParameters, APIBadRequest
+from adapter.out.rename_chat.rename_chat_postgres import RenameChatPostgres
+from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
+
+from api_exceptions import InsufficientParameters, APIBadRequest, APIElaborationException
 
 renameChatBlueprint = Blueprint("renameChat", __name__)
 
 @renameChatBlueprint.route("/renameChat", methods=['POST'])
 def renameChat():
-    requestedId = request.form.getlist('chatId')
-    requestedTitle = request.form.getlist('title')
-    if requestedId is None:
+    requestedId = request.form.get('chatId')
+    requestedTitle = request.form.get('title').strip()
+    if requestedId is None or requestedTitle is None:
         raise InsufficientParameters()
-    if requestedTitle is None:
+    if requestedId.strip() == "" or not requestedId.isdigit() or int(requestedId) < 0:
+        raise APIBadRequest(f"Chat id '{requestedId}' non valido.")
+    if requestedTitle.strip() == '':
         raise APIBadRequest("Il titolo della chat non può essere vuoto.", 400)
-    
-    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
     controller = RenameChatController(
-        RenameChatService(configurationManager.getRenameChatPort()))
+        RenameChatService(
+            RenameChatPostgres(
+                PostgresChatORM()
+            )
+        )
+    )
     
-    chatOperationResponse = controller.renameChat(requestedId, requestedTitle)
+    chatOperationResponse = controller.renameChat(chatId=int(requestedId), title=requestedTitle.strip())
      
-    if len(chatOperationResponse) == 0:
-        return jsonify("Errore nella rinomina della chat."), 500
+    if chatOperationResponse is None:
+        raise APIElaborationException("Errore nella rinomina della chat.")
     
     return jsonify({
-        "id": chatOperationResponse.chatId.id,
-        "status": chatOperationResponse.status,
+        "chatId": chatOperationResponse.chatId.id,
+        "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message})

@@ -13,8 +13,7 @@ class PostgresPersistChat(PersistChatPort):
         self.postgresChatORM = postgresChatORM
     
     def persistChat(self, messages: List[Message], chatId: ChatId) -> ChatOperationResponse:
-        postgresChatOperationResponse = self.postgresChatORM.persistChat([self.toPostgresMessageFrom(message) for message in messages], chatId)
-        print(postgresChatOperationResponse, flush=True)
+        postgresChatOperationResponse = self.postgresChatORM.persistChat([self.toPostgresMessageFrom(message) for message in messages], chatId.id if chatId else None)
         return postgresChatOperationResponse.toChatOperationResponse()
     
     def toPostgresMessageFrom(self, message: Message) -> PostgresMessage:

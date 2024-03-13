@@ -12,10 +12,11 @@ This class is used to store the metadata of a document stored in AWS S3.
 class AWSDocumentMetadata:
     id: str
     size: float
+    type: str
     uploadTime: datetime
         
     def toDocumentMetadataFrom(self) -> DocumentMetadata:
         return DocumentMetadata(id=DocumentId(self.id),
-                                type=DocumentType.PDF if os.path.splitext(self.id)[1].upper() == ".PDF" else DocumentType.DOCX,
+                                type=DocumentType.PDF if self.type == "PDF" else DocumentType.DOCX,
                                 size=self.size,
                                 uploadTime=self.uploadTime)

@@ -8,6 +8,8 @@ from application.service.get_documents_status import GetDocumentsStatus
 from domain.document.document_status import Status
 from domain.document.document import Document
 
+from domain.exception.exception import ElaborationException
+
 class EmbedDocumentsService(EmbedDocumentsUseCase):
     def __init__(self, getDocumentsContent: GetDocumentsContent, embeddingsUploader: EmbeddingsUploader, getDocumentStatus: GetDocumentsStatus):
         self.getDocumentsContent = getDocumentsContent
@@ -17,15 +19,26 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
     def embedDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
         verifiedDocumentsIds =[]
         verifiedDocumentsStatus = []
-        for documentId, documentStatus in zip(documentsIds, self.getDocumentStatus.getDocumentsStatus(documentsIds)):
-            if documentStatus.status==Status.NOT_EMBEDDED:
+        
+        documentsStatus = self.getDocumentStatus.getDocumentsStatus(documentsIds)
+        
+        if len(documentsIds) != len(documentsStatus) or len(documentsStatus) == 0:
+            raise ElaborationException("Errore nel recupero degli stati dei documenti.")
+        
+        for documentId, documentStatus in zip(documentsIds, documentsStatus):
+            if documentStatus.status == Status.NOT_EMBEDDED:
                 verifiedDocumentsIds.append(documentId)
                 verifiedDocumentsStatus.append(documentStatus)
         
         plainDocuments = self.getDocumentsContent.getDocumentsContent(verifiedDocumentsIds)
         
-        documents = []
-        for plainDocument, documentStatus in zip(plainDocuments, verifiedDocumentsStatus):
-            documents.append(Document(documentStatus, plainDocument))
+        if len(verifiedDocumentsIds) != len(plainDocuments) or len(plainDocuments) == 0:
+            raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")
         
-        return self.embeddingsUploader.uploadEmbeddings(documents)
+        documentsToEmbed = []
+        for plainDocument, documentStatus in zip(plainDocuments, verifiedDocumentsStatus):
+            documentsToEmbed.append(Document(documentStatus, plainDocument)) if plainDocument else None
+        
+        if len(documentsToEmbed) != len(verifiedDocumentsStatus):
+            raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")
+        return self.embeddingsUploader.uploadEmbeddings(documentsToEmbed)

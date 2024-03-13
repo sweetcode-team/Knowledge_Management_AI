@@ -10,9 +10,8 @@ class GetConfigurationPostgres(GetConfigurationPort):
     
     def getConfiguration(self) -> Configuration:
         userId = os.environ.get('USER_ID')
-        
-        postgresConfiguration = self.postgresConfigurationORM.getConfiguration(userId=userId)
-        
-        if postgresConfiguration is None:
+        try:
+            postgresConfiguration = self.postgresConfigurationORM.getConfiguration(userId=userId)
+            return postgresConfiguration.toConfiguration()
+        except Exception as e:
             return None
-        return postgresConfiguration.toConfiguration()

@@ -1,7 +1,7 @@
 from flask import request, Blueprint, jsonify
 from adapter._in.web.change_configuration_controller import ChangeConfigurationController
 from application.service.change_configuration_service import ChangeConfigurationService
-from api_exceptions import InsufficientParameters
+from api_exceptions import InsufficientParameters, APIElaborationException, APIBadRequest
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.change_configuration.change_configuration_postgres import ChangeConfigurationPostgres
 
@@ -12,14 +12,17 @@ def changeConfiguration():
     LLMModelChoice = request.form.get('LLMModel')
     if LLMModelChoice is None:
         raise InsufficientParameters()
-       
+    if LLMModelChoice.strip() == "":
+        raise APIBadRequest(f"Modello LLM '{LLMModelChoice}' non valido.")
+    validLLMModelChoice = LLMModelChoice.strip().upper()
+    
     controller = ChangeConfigurationController(ChangeConfigurationService(ChangeConfigurationPostgres(PostgresConfigurationORM())))
     
-    configurationOperationResponse = controller.changeLLMModel(LLMModelChoice)
+    configurationOperationResponse = controller.changeLLMModel(validLLMModelChoice)
     
     if configurationOperationResponse is None:
-        return jsonify({"status": False, "message": "Errore nell'aggiornamento del modello LLM."}), 500
+        raise APIElaborationException("Errore nell'aggiornamento del modello LLM.")
     
     return jsonify({
-        "status": configurationOperationResponse.status,
+        "status": configurationOperationResponse.ok(),
         "message": configurationOperationResponse.message})

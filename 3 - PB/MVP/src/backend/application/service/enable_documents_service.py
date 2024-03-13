@@ -9,4 +9,4 @@ class EnableDocumentsService(EnableDocumentsUseCase):
         self.outPort = enableDocumentsPort
         
     def enableDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        return self.outPort.enableDocuments(documentsIds)    
+        return self.outPort.enableDocuments(documentsIds)

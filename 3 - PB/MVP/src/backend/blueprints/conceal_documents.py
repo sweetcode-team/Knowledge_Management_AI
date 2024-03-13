@@ -4,7 +4,7 @@ from application.service.conceal_documents_service import ConcealDocumentsServic
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
-from api_exceptions import InsufficientParameters
+from api_exceptions import APIBadRequest, InsufficientParameters, APIElaborationException
 
 concealDocumentsBlueprint = Blueprint("concealDocuments", __name__)
 
@@ -13,22 +13,25 @@ def concealDocuments():
     requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:
         raise InsufficientParameters()
-    
-    print(requestedIds, flush=True)
+    if len(requestedIds) == 0:
+        raise APIBadRequest("Nessun id di documento specificato.")
+    validDocumentIds = []
+    for requestedId in requestedIds:
+        if requestedId.strip() == "":
+            raise APIBadRequest(f"Id di documento '{requestedId}' non valido.")
+        else:
+            validDocumentIds.append(requestedId.strip())
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
     
     controller = ConcealDocumentsController(ConcealDocumentsService(configurationManager.getConcealDocumentsPort()))
     
-    if requestedIds == 1:
-        documentOperationResponses = controller.concealDocuments([requestedIds])
-    else:
-        documentOperationResponses = controller.concealDocuments(requestedIds)
+    documentOperationResponses = controller.concealDocuments(validDocumentIds)
     
     if len(documentOperationResponses) == 0:
-        return jsonify("Errore nell'occultamento dei documenti."), 500
+        raise APIElaborationException("Errore nell'occultamento dei documenti.")
     
     return jsonify([{
         "id": documentOperationResponse.documentId.id,
-        "status": documentOperationResponse.status,
+        "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

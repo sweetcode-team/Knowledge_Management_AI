@@ -11,7 +11,6 @@ getConfigurationOptionsBlueprint = Blueprint("getConfigurationOptions", __name__
 
 @getConfigurationOptionsBlueprint.route('/getConfigurationOptions', methods=['GET'])
 def getConfigurationOptions():
-    
     controller = GetConfigurationOptionsController(
         GetConfigurationOptionsService(
             GetConfigurationOptionsPostgres(PostgresConfigurationORM())

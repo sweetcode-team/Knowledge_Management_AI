@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify
-import json
 
 from adapter._in.web.get_configuration_controller import GetConfigurationController
 from application.service.get_configuration_service import GetConfigurationService
@@ -7,11 +6,12 @@ from application.service.get_configuration_service import GetConfigurationServic
 from adapter.out.get_configuration.get_configuration_postgres import GetConfigurationPostgres
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 
+from api_exceptions import APIElaborationException
+
 getConfigurationBlueprint = Blueprint("getConfiguration", __name__)
 
 @getConfigurationBlueprint.route('/getConfiguration', methods=['GET'])
 def getConfiguration():
-    
     controller = GetConfigurationController(
         GetConfigurationService(
             GetConfigurationPostgres(PostgresConfigurationORM())
@@ -21,7 +21,10 @@ def getConfiguration():
     configuration = controller.getConfiguration()
     
     if configuration is None:
-        return jsonify({}), 404
+        raise APIElaborationException("Errore nel recupero della configurazione.")
+    
+    if configuration.documentStore is None or configuration.vectorStore is None or configuration.embeddingModel is None or configuration.LLMModel is None:
+        return "Configurazione inesistente.", 404
 
     return jsonify({
         "vectorStore": {

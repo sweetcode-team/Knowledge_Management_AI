@@ -8,7 +8,6 @@ class GetChatMessagesPostgres(GetChatMessagesPort):
     def __init__(self, postgresORM: PostgresChatORM):
         self.postgresORM = postgresORM
 
-    def getChatMessages(self, chatId:ChatId)->Chat:
+    def getChatMessages(self, chatId: ChatId) -> Chat:
         chatMessages =  self.postgresORM.getChatMessages(chatId.id)
-        chat = chatMessages.toChat()
-        return chat
+        return chatMessages.toChat() if chatMessages is not None else None

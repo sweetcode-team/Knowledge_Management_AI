@@ -1,6 +1,7 @@
+from dataclasses import dataclass
 from datetime import datetime
 
+@dataclass
 class ChatInfo:
-    def __init__(self, title: str, timestamp: datetime):
-        self.title = title
-        self.timestamp = timestamp
+    title: str
+    timestamp: datetime

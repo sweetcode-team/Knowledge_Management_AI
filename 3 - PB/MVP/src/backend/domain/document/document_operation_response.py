@@ -19,3 +19,6 @@ class DocumentOperationResponse:
         
     def ok(self) -> bool:
         return self.status
+    
+    def ok(self) -> bool:
+        return self.status

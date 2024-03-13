@@ -14,13 +14,13 @@ class AskChatbotService(AskChatbotUseCase):
     def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
         messageResponse = self.askChatbotOutPort.askChatbot(message, chatId)
                 
-        if messageResponse and messageResponse.status:
+        if messageResponse and messageResponse.ok():
             chatOperationResponse = self.persistChatOutPort.persistChat([message, messageResponse.messageResponse], chatId)
             
             return MessageResponse(
-                chatOperationResponse.status,
-                messageResponse.messageResponse if messageResponse.messageResponse else None,
-                chatOperationResponse.chatId
+                status=chatOperationResponse.ok(),
+                messageResponse=messageResponse.messageResponse if messageResponse.messageResponse else None,
+                chatId=chatOperationResponse.chatId
             )
         
         return messageResponse

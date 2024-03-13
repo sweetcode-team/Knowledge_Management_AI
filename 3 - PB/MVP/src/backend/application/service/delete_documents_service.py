@@ -5,6 +5,7 @@ from domain.document.document_operation_response import DocumentOperationRespons
 from application.service.delete_documents import DeleteDocuments
 from application.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
 
+from domain.exception.exception import ElaborationException
 
 class DeleteDocumentsService(DeleteDocumentsUseCase):
     def __init__(self, deleteDocuments: DeleteDocuments, deleteDocumentsEmbeddings: DeleteDocumentsEmbeddings):
@@ -15,10 +16,13 @@ class DeleteDocumentsService(DeleteDocumentsUseCase):
         documentOperationResponses = self.deleteDocumentsEmbeddings.deleteDocumentsEmbeddings(documentsIds)
         
         finalOperationResponses = []
+        
+        if len(documentsIds) != len(documentOperationResponses):
+            raise ElaborationException("Errore nell'elaborazione delle operazioni di cancellazione dei documenti.")
 
         for documentId, documentOperationResponse in zip(documentsIds, documentOperationResponses):
             if documentOperationResponse.ok():
                 deleteDocumentOperationResponse = self.documentsDeleter.deleteDocuments([documentId])
-                finalOperationResponses=finalOperationResponses+deleteDocumentOperationResponse
+                finalOperationResponses = finalOperationResponses + deleteDocumentOperationResponse
 
         return finalOperationResponses

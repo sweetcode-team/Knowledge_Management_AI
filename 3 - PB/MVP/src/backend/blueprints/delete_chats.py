@@ -2,9 +2,7 @@ from flask import request, Blueprint, jsonify
 from adapter._in.web.delete_chats_controller import DeleteChatsController
 from application.service.delete_chats_service import DeleteChatsService
 
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-from adapter.out.configuration_manager import ConfigurationManager
-from api_exceptions import InsufficientParameters
+from api_exceptions import APIBadRequest, InsufficientParameters, APIElaborationException
 from adapter.out.delete_chats.delete_chats_postgres import DeleteChatsPostgres
 from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 
@@ -15,19 +13,29 @@ def deleteChats():
     requestedIds = request.form.getlist('chatIds')
     if requestedIds is None:
         raise InsufficientParameters()
+    if len(requestedIds) == 0:
+        raise APIBadRequest("Nessun chat id specificato.")
+    validChatIds = []
+    for requestedId in requestedIds:
+        if requestedId == "" or not requestedId.isdigit() or int(requestedId) < 0:
+            raise APIBadRequest(f"Chat id '{requestedId}' non valido.")
+        else:
+            validChatIds.append(int(requestedId))
     
     controller = DeleteChatsController(
         DeleteChatsService(
-            DeleteChatsPostgres(PostgresChatORM())
+            DeleteChatsPostgres(
+                PostgresChatORM()
+            )
         )
     )
     
-    chatOperationResponses = controller.deleteChats(requestedIds)
+    chatOperationResponses = controller.deleteChats(validChatIds)
      
     if len(chatOperationResponses) == 0:
-        return jsonify("Errore nell'eliminazione delle chats."), 500
+        raise APIElaborationException("Errore nell'eliminazione delle chat.")
     
     return jsonify([{
-        "id": chatOperationResponse.chatId.id,
-        "status": chatOperationResponse.status,
+        "chatId": chatOperationResponse.chatId.id,
+        "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message} for chatOperationResponse in chatOperationResponses])

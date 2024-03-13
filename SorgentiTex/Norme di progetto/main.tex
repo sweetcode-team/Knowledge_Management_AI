@@ -857,9 +857,13 @@ relativamente alla stesura di documenti relativi al progetto.
     \subsubsubsection{Parametrizzazione template} Per facilitare e velocizzare la procedura di inserimento dei dati all'interno dei documenti prodotti con 
     il linguaggio di marcatura \textit{Latex}, il gruppo ha deciso di creare dei template parametrizzati, sfruttando l'uso di comandi già 
     presenti nel linguaggio, come \textit{$\backslash$def} e \textit{$\backslash$newcommand}, e l'uso di librerie esterne, come 
-    \textit{ifthen} e \textit{forloop}.
-    Considerando i valori dei parametri, durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico, assumendo 
-    l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi. L'adozione di 
+    \textit{ifthen} e \textit{forloop}. in questo modo la procedura di inserimento dei dati nei documenti avviene come segue:
+    \begin{itemize}
+        \item Il membro del gruppo che intende operare la modifica di un documento effettua la modifica locale del suo template (nel caso dei verbali) o del documento stesso (nel caso degli altri documenti);
+        \item Durante la fase di compilazione la struttura dei documenti si adatterà in modo dinamico (considerando i valori dei parametri), assumendo 
+        l'aspetto del tipo di documento indicato, ad esempio verbale interno, esterno o altri tipi di documenti più discorsivi.
+    \end{itemize}
+    L'adozione di 
     questa pratica permette al team di mantenere coerenti struttura, formato del contenuto e presentazione, aumentando il throughput e 
     consentendo ai componenti del gruppo di concentrarsi più sul contenuto che sulla sua visualizzazione.
     
@@ -880,7 +884,7 @@ relativamente alla stesura di documenti relativi al progetto.
     \end{itemize}
     
     \subsubsubsection{Struttura di documento}
-    Tutti i documenti prodotti da SWEetCode presentano una struttura comune:
+    Tutti i documenti prodotti da SWEetCode presentano una struttura comune, alla quale ogni membro si deve attenere durante le procedure di stesura e modifica della documentazione. Le procedure devono attenersi  alla seguente struttura:
     \begin{itemize}
         \item \textbf{Pagina di copertina}: descritta nella sezione Template precedente;
         \item \textbf{Registro delle versioni}: presente in tutti i documenti ad eccezione dei verbali. Questo registro utilizzato per 
@@ -915,7 +919,7 @@ relativamente alla stesura di documenti relativi al progetto.
         (nel caso in cui essa sia stata stabilita).
     \end{itemize}    
     
-    \subsubsubsection{Posta elettronica} La posta elettronica rappresenta uno strumento fondamentale di comunicazione asincrona con proponenti e committente.\\ 
+    \subsubsubsection{Posta elettronica} La posta elettronica rappresenta uno strumento fondamentale per le procedure di comunicazione asincrona con proponenti e committente.\\ 
     Per uniformare lo stile delle mail, vengono descritti di seguito delle norme a cui attenersi nella loro stesura:
     \begin{itemize}
         \item \textbf{Oggetto}: campo da riempire obbligatoriamente in maniera breve e concisa;
@@ -977,45 +981,83 @@ relativamente alla stesura di documenti relativi al progetto.
 
 \subsubsection{Produzione}
 \label{sec:ciclo_vita}
-La produzione di ogni documento redatto da SWEetCode presenta le seguenti fasi:
+La produzione di ogni documento redatto da SWEetCode presenta le seguenti attività (numerate), eseguite in ordine cronologico (ogni attività viene a sua volta suddivisa in procedure minori):
 \begin{enumerate}
-    \item \textbf{Assegnazione}: Il documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori.
-    Una volta presa la decisione per i precedenti ruoli viene aperto su \textit{Jira} un task a loro associato, relativo alla  realizzazione del documento, il quale viene immediatamente inserito all'interno di una epic e di una versione;
+    \item \textbf{Assegnazione}: Attività svolta dal team ed articolata come segue:
+    \begin{itemize}
+        \item Il documento viene assegnato ad uno o più responsabili di stesura affiancati a loro volta da uno o più revisori;
+        \item I responsabili di stesura discutono e decidono chi dovrà svolgere ogni parte del lavoro;
+        \item Viene aperto su \textit{Jira} un task associato ad ogni parte della realizzazione del documento;
+        \item Il task appena creato viene immediatamente inserito all'interno di una epic e di una versione.
+    \end{itemize}
     \item \textbf{Stesura}: La stesura viene realizzata dal segretario di riunione (nel caso in cui il documento in questione sia un verbale 
-    interno o esterno) o dai responsabili di stesura.
-    La produzione della documentazione in formato \textit{Latex} viene gestita tramite la condivisione dei sorgenti attraverso \textit{GitHub}. 
-    Una volta che la stesura viene ritenuta stabile, tramite l'automazione descritta in (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}), viene creata una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} su \textit{GitHub};
-    \item \textbf{Verifica e Validazione}: La fase di verifica viene realizzata dal revisore del documento: in questo stadio il documento viene 
-    sottoposto ad un controllo di contenuto e sintassi, tenendo conto delle linee guida definite dal team nelle (Norme di progetto v2.0.0(0), \S \nameref{sec:documents}). 
-    Se il documento è di tipo esterno, una volta passata la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, 
-    per essere sottoposto ad una sua ulteriore verifica e validazione.
-    In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla 
-    fase precedente, in modo da produrre una documentazione che tiene conto delle correzioni e precisazioni presentate dal revisore e/o 
-    dall'eventuale parte esterna;
+    interno o esterno) o dai responsabili di stesura ed è operata come segue:
+    \begin{itemize}
+        \item La produzione della documentazione in formato \textit{Latex} viene gestita tramite la condivisione dei sorgenti attraverso \textit{GitHub}, quindi è buona pratica che ogni membro ne possieda a priori la versione aggiornata. Se così non fosse, il responsabile di stesura aggiorna in locale la versione della documentazione, mediante un'istruzione \textit{git pull};
+        \item Il responsabile di stesura scarica il template necessario alla stesura del documento;
+        \item Il responsabile di stesura opera la stesura del documento;
+        \item Una volta che la stesura viene ritenuta stabile (dal responsabile di stesura), tramite l'automazione descritta in (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}), crea una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} su \textit{GitHub}.
+    \end{itemize}
+
+    \item \textbf{Verifica e Validazione}: La fase di verifica viene realizzata dal revisore del documento e funziona come segue:
+    \begin{itemize}
+        \item Il documento viene 
+        sottoposto ad un controllo di contenuto e sintassi da parte del verificatore, che tiene conto delle linee guida definite dal team nelle (Norme di progetto v2.0.0(0), \S \nameref{sec:documents});
+        \item Se il documento è di tipo esterno, una volta passata la verifica da parte del revisore, l'atto viene condiviso con l'ente terzo in causa, 
+        per essere sottoposto ad una sua ulteriore verifica e validazione.
+        \item In caso di esito positivo la \textit{pull request} viene risolta mentre, in caso di esito negativo, essa viene rifiutata e si ritorna alla 
+        fase precedente, in modo da produrre una documentazione che tiene conto delle correzioni e precisazioni presentate dal revisore e/o 
+        dall'eventuale parte esterna.
+    \end{itemize}
+     
     \item \textbf{Pubblicazione}: La pubblicazione costituisce l'ultima fase del ciclo di vita del documento e avviene solamente nel caso in cui 
-    la fase di verifica abbia avuto un riscontro positivo: una volta risolta la \textit{pull request} il documento troverà infatti collocazione 
-    all'interno del repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
-    del team su \textit{GitHub}. In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
+    la fase di verifica abbia avuto un riscontro positivo, ed avviene come segue:
+    \begin{itemize}
+        \item Una volta risolta la \textit{pull request} il documento troverà collocazione 
+        all'interno del repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+        del team su \textit{GitHub}.
+    \end{itemize}
+     In questo modo il repository contiene solamente documenti verificati ed eventualmente validati.
 \end{enumerate}
 
 \subsubsection{Manutenzione}
-Il processo di manutenzione della documentazione è fondamentale per garantire che la stessa rimanga accurata, aggiornata ed utile nel corso del ciclo di vita del progetto. Tale processo è integrato in modo continuo in base ai progressi svolti. Il team segue le seguenti fasi per il processo di manutenzione:
+Il processo di manutenzione della documentazione è fondamentale per garantire che la stessa rimanga accurata, aggiornata ed utile nel corso del ciclo di vita del progetto. Tale processo è integrato in modo continuo in base ai progressi svolti. Il team segue le seguenti attività (suddivise in procedure) per il processo di manutenzione:
 \begin{itemize}
-    \item \textbf{Identificazione della necessità della modifica}: Monitoraggio continuo delle esigenze di modifica della documentazione e 
-    comunicazione al team della necessità di una possibile modifica;
-    \item \textbf{Valutazione dell'impatto}: Discussione tra i membri che ricoprono i ruoli interessati alla modifica per valutarne l'impatto 
-    sulla documentazione già esistente. Tale discussione coinvolge tutto il team se necssario;
-    \item \textbf{Aggiornamento della documentazione}: Modifica e aggiornamento del documento interessato secondo le esigenze identificate, e 
-    verifica dell'accuratezza delle informazioni e dell'allineamento con le modifiche del progetto relative;
-    \item \textbf{Push della modifica}: Una volta che la stesura della modifica viene ritenuta stabile, tramite l'automazione descritta in 
-    (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}),
-    viene creata una pull request nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
-    su \textit{GitHub} per la nuova versione del documento da parte di chi ha operato la modifica;
-    \item \textbf{Verifica e validazione}: A seguito della creazione della pull request, le modifiche apportate ai documenti sono sottoposte a
-    verifica eseguita da parte del verificatore. Se tale operazione ha esito positivo, se necessario, il documento viene posto ad ulteriore validazione con l'ente esterno in questione.
-    Se sia la verifica che la eventuale validazione hanno avuto esito positivo, le modifiche vengono pubblicate attraverso l'accettazione della 
-    pull request da parte del revisore, in caso invece di esito negativo in anche una delle due operazioni, la pull request viene rifiutata e colui 
-    che aveva realizzato le modifiche è responsabile di applicare le correzzioni emerse, ripetendo i passi precedentemente descritti.
+    \item \textbf{Identificazione della necessità della modifica}:
+    \begin{itemize}
+        \item Monitoraggio continuo delle esigenze di modifica della documentazione (ogni membro opera il monitoraggio relativo ai documenti assegnati al ruolo che ricopre per ogni sprint);
+        \item Comunicazione al team della necessità di una possibile modifica.
+    \end{itemize} 
+   
+    \item \textbf{Valutazione dell'impatto}: 
+    \begin{itemize}
+        \item Discussione tra i membri che ricoprono i ruoli interessati alla modifica per valutarne l'impatto 
+        sulla documentazione già esistente;
+        \item Nel caso si tratti di documenti molto onerosi o in caso di conflitti tra i membri che ricoprono i ruoli interessati, la dicussione viene estesa a tutto il team.
+    \end{itemize}
+    \item \textbf{Aggiornamento della documentazione}: 
+    \begin{itemize}
+        \item Modifica e aggiornamento del documento interessato secondo le esigenze identificate;
+        \item Verifica dell'accuratezza delle informazioni e dell'allineamento con le modifiche del progetto relative.
+    \end{itemize}
+    \item \textbf{Push della modifica}: 
+    \begin{itemize}
+        \item Per procedere, la stesura della modifica deve venire ritenuta stabile, tramite l'automazione descritta in 
+        (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs});
+        \item Viene creata una \textit{pull request} nel repository \href{https://github.com/sweetcode-team/Knowledge_Management_AI}{\textcolor{black}{\textit{Knowledge\_Management\_AI}}} 
+        su \textit{GitHub} per la nuova versione del documento da parte di chi ha operato la modifica.
+    \end{itemize}
+    
+    \item \textbf{Verifica e validazione}: 
+    \begin{itemize}
+        \item A seguito della creazione della \textit{pull request}, le modifiche apportate ai documenti sono sottoposte a
+        verifica eseguita da parte del verificatore;
+        \item Se tale operazione ha esito positivo, se necessario, il documento viene posto ad ulteriore validazione con l'ente esterno in questione;
+        \item Se sia la verifica che la eventuale validazione hanno avuto esito positivo, le modifiche vengono pubblicate attraverso l'accettazione della 
+        \textit{pull request} da parte del revisore;
+        \item In caso invece di esito negativo in anche solo una delle due operazioni, la \textit{pull request} viene rifiutata e colui che aveva realizzato le modifiche è responsabile di applicare le correzioni emerse, ripetendo i passi precedentemente descritti.
+    \end{itemize} 
+    
 \end{itemize}
 
 \subsubsection{Strumenti}
@@ -1097,30 +1139,39 @@ Ciascun \textit{Sprint} è caratterizzato da una data di inizio ed una di fine e
 
 \subsubsubsubsection{Timeline}
 \textit{Jira} mette a disposizione come strumento una \textit{timeline} realizzata attraverso un \textit{diagramma di Gantt\pg} all'interno del quale si possono inserire i \textit{ticket}
-creati associati ad una \textit{epic}.\\
-Ciascun \textit{ticket} può dunque essere disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
-all'interno del quale portare a termine il compito associato. Tra i vari \textit{ticket} è inoltre possibile creare collegamenti che rappresentano graficamente 
-le dipendenze presenti tra essi.\\
-Ogni \textit{versione} viene rappresentata all'interno della \textit{timeline} da una linea verticale posta in corrispondenza della data di scadenza
-della versione stessa.\\
-Nella parte superiore della \textit{timeline} sono inoltre visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi.\\
-Internamente alla \textit{timeline} è inoltre resa disponibile una ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
-permettendo di effettuare una istantanea.
+creati associati ad una \textit{epic}, ed il team la utilizza procedendo come segue:
+\begin{itemize}
+    \item Ciascun \textit{ticket} viene disposto in uno spazio temporale, facendo riferimento ad una data di inizio ed una di fine, costituendo il periodo
+    all'interno del quale portare a termine il compito associato;
+    \item Tra i vari \textit{ticket}, se necessario, vengono creati dei collegamenti che rappresentano graficamente 
+    le dipendenze presenti tra essi;
+    \item Ogni \textit{versione} viene rappresentata all'interno della \textit{timeline} da una linea verticale posta in corrispondenza della data di scadenza
+    della versione stessa;
+    \item Nella parte superiore della \textit{timeline} sono visualizzati i vari \textit{Sprint} presenti all'interno dell'ITS, visualizzando in opaco quelli chiusi;
+    \item Internamente alla \textit{timeline} è resa disponibile un'ulteriore funzionalità di filtraggio dei \textit{ticket} visualizzati in base alle \textit{versioni} e/o alle \textit{epic},
+    che permette di effettuare un'istantanea.
+\end{itemize}
 
-\subsubsubsubsection{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza.
-Il team ha deciso di introdurre un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS}: ogni volta che un membro del team 
-effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto v2.0.0(0), \nameref{sec:automazione_docs})
-presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}".\\
-A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
-allo stato \textit{Completato}.
+\subsubsubsubsection{Automazione chiusura ticket} \textit{Jira} mette a disposizione una funzionalità di creazione di automazioni (chiamate \textit{Trigger}) configurabili dell'utente, permettendo di adattare al meglio ciascuna esigenza. Il team la sfrutta come segue:
+\begin{itemize}
+    \item Si introduce un'automazione di chiusura automatica dei ticket presenti all'interno dell'\textit{ITS};
+    \item Ogni volta che un membro del team 
+    effettua un commit nel repository finalizzato alla chiusura di un \textit{ticket}, il contenuto di tale commit, grazie all'esecuzione di uno script Python creato dal team (Norme di progetto v2.0.0(0), \nameref{sec:automazione_docs})
+    presenterà al suo interno l'operazione "\textit{SWE-\#id\_ticket}";
+    \item A seguito dell'approvazione della pull request da parte del verificatore, il \textit{ticket} associato a quel particolare \textit{ID} passerà in automatico
+    allo stato \textit{Completato}.
+\end{itemize}
 
 \subsubsubsection{Pull requests} 
 \label{sec:pull_request}
 A seguito dell'adozione dei \textit{GitHub Teams}, SWEetCode propone l'utilizzo delle pull requests per permettere un rilascio controllato che permetta di analizzare 
-e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.\\
-Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e,
+e valutare le richieste di modifica effettuate: l'unico \textit{Team} dotato dei permessi necessari all'approvazione di una pull request sono i \textit{Verificatori}.
+\begin{itemize}
+    \item Una volta proposta la pull request il verificatore attuale del progetto, membro del \textit{Team Verificatori}, dovrà effettuare una verifica sulle modifiche proposte e,
 a seguito delle sue valutazioni, dovrà decidere se declinare o accettare la pull request, con conseguente merge nel branch all'interno del quale la pull request è stata 
 sollevata in caso di esito positivo.
+\end{itemize}
+
 Tali responsabilità vengono definite tramite l'utilizzo di \textit{Branch Protection Rules} offerte da \textit{GitHub}.
 L'identificazione attraverso un titolo fornito da colui che solleva la pull request e la registrazione delle richieste di modifica e del loro esito è una conseguenza
 dell'applicazione della pratica delle pull request offerta da \textit{GitHub}.
@@ -1168,7 +1219,7 @@ requisiti.
 \subsubsubsection{Tracciamento dei requisiti}
 Per raggiungere l'obiettivo precedentemente citato, il team SWEetCode ha deciso di effettuare un tracciamento dei requisiti all'interno del prodotto software,
 in modo da portare nel concreto l'evidenza della correlazione tra requisiti e codice.\\
-Per effettuare il tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
+Per effettuare tale tracciamento il team apporta un commento, contenente l'identificativo del requisito, antecedente alla parte di codice che porta al soddisfacimento
 del requisito menzionato.
 
 \subsubsection{Release management}
@@ -1177,13 +1228,13 @@ L'attività di release management si occupa di effettuare un rilascio controllat
 
 \subsubsubsection{Automazione release}
 L'automazione del \textit{versionamento\pg} consente di rilasciare nuove release in modo automatico, seguendo le regole di
-cambio versione indicate in (Norme di progetto v2.0.0(0), \S \nameref{sec:version}). Attraverso l'uso delle \textit{GitHub Actions\pg}, l'accettazione di una pull request, 
-eseguita seguendo le norme indicate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione.
-Il tipo di cambio versione viene indicato dal prefisso del titolo della Pull Request.
-
+cambio versione indicate in (Norme di progetto v2.0.0(0), \S \nameref{sec:version}) e avviene procedendo come segue:
+\begin{itemize}
+    \item Attraverso l'uso di \textit{GitHub Actions\pg}, l'accettazione di una pull request, 
+    eseguita seguendo le norme indicate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:pull_request}), è immediatamente seguita dalla pubblicazione della nuova versione (il tipo di cambio versione viene indicato dal prefisso del titolo della pull request).
+\end{itemize}
 Questa automazione si integra in modo efficace con quella citata nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:automazione_docs}).
 Ciò che separa l'esecuzione consecutiva delle due automazioni è la creazione della pull request e la sua accettazione.
-
 La richiesta dell'intervento umano, in questo caso, non è un fattore limitante, ma rappresenta due ulteriori fasi di
 verifica, che garantiscono la pulizia del repository remota e la correttezza del suo contenuto.
 
@@ -1191,13 +1242,14 @@ verifica, che garantiscono la pulizia del repository remota e la correttezza del
 \label{sec:automazione_docs}
 L'aggiornamento del registro delle versioni, la creazione dei \textit{PDF\pg} e la pubblicazione delle modifiche nel repository remoto avvengono in modo consecutivo e automatico grazie all'esecuzione di uno script Python creato dal team.
 Questo script richiede inizialmente l'inserimento di alcuni input riguardanti le modifiche, compresa l'eventuale chiusura del \textit{ticket} soddisfatto, e dopo una fase di elaborazione
-in cui aggiorna il registro delle versioni e crea il PDF usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.
-
-Il componente del gruppo che ha eseguito lo script dovrà semplicemente recarsi nel
-sito web del repository su GitHub e creare la Pull Request.
-Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica v2.0.0(0)) e
-secondo le modalità citate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:ciclo_vita}).
-
+in cui aggiorna il registro delle versioni e crea il PDF usando il programma \textit{Latexmk}, esegue il push in remoto dei cambiamenti introdotti in locale.\\
+La procedura per l'aggiornamento è la seguente:
+\begin{itemize}
+    \item Il componente del gruppo che carica o modifica un documento esegue il push in locale di tale documento, comilando lo script Python del team;
+    \item Il componente del gruppo che ha eseguito lo script deve recarsi nel sito web del repository su GitHub e creare la Pull Request;
+    \item Questa verrà successivamente analizzata e accettata o rifiutata in base ai criteri descritti nel (Piano di qualifica v2.0.0(0)) e
+    secondo le modalità citate nel paragrafo (Norme di progetto v2.0.0(0), \S \nameref{sec:ciclo_vita}).
+\end{itemize}
 L'utilizzo di questa automazione permette di ridurre gli errori legati all'aggiornamento e alla pubblicazione di nuove
 versioni dei documenti, e riduce notevolmente il carico di lavoro assegnato ai componenti del gruppo, limitando
 volutamente le loro azioni alla sola modifica del contenuto della documentazione.
@@ -1874,8 +1926,7 @@ Molte di queste procedure sono documentante più nel dettaglio nella sezione (\S
     \item \textit{Jira}.
 \end{itemize}
 \subsubsection{Esecuzione delle attività}
-L'esecuzione dell'attività avverrà da parte dell'assegnatario, definito dal responsabile. L'esecutore dell'attività dovrà proporre una soluzione 
-effettuando una pull request.
+L'esecuzione dell'attività avverrà da parte dell'assegnatario, definito dal responsabile. Tale esecuzione dovrà essere obbligatoriamente conforme alla documentazione associata, la cui stesura deve essere antecedente all'esecuzione dell'attività. L'esecutore dell'attività dovrà proporre una soluzione effettuando una pull request.
 \subsubsection{Revisione delle attività}
 La revisione dell'attività viene effettuata dal verificatore prima dell'effettiva introduzione delle modifiche nel repository \textit{GitHub}: la pull request sollevata dall'esecutore viene infatti accettata o rifiutata a seconda dell'esito della verifica effettuata.
 \subsubsubsection{Strumenti}
@@ -1894,6 +1945,7 @@ Nel caso in cui il verificatore non ritenga corretto o sufficiente il lavoro svo
 L'esecutore dell'attività dovrà ripresentare una nuova soluzione seguendo le correzioni indicate dal verificatore.
 
 \subsubsection{Tracciamento orario}
+Avviene secondo le seguenti modalità:
 \begin{itemize}
     \item Il team utilizza un \textit{Google Sheet} condiviso ai fini di tener traccia della quantità di tempo utilizzato per svolgere le attività;
     \item Ogni componente del gruppo è tenuto a registrare in questo foglio, dopo ogni sessione lavorativa, il numero di ore effettive della sua durata, oltre al 
@@ -2073,15 +2125,19 @@ Il team stabilisce una serie di processi del ciclo di vita del software sulla ba
 dove possibile, viene istituito un meccanismo di controllo del processo per monitorare, controllare e migliorare il processo in questione.
 
 \subsubsection{Valutazione del processo}
-Il team attraverso revisioni interne, revisioni congiunte e procedure di valutazione del processo, elabora un giudizio: lo storico di tali valutazioni
-viene conservato attraverso la documentazione e attraverso i report offerti da \textit{Jira}, i quali determineranno le esigenze di avanzamento.
-Il team deve quindi pianificare e eseguire revisioni dei processi a intervalli appropriati per garantirne la continuità, adeguatezza ed efficacia alla 
-luce dei risultati della valutazione.
+L'attività di valutazione del processo avviene attraverso le procedure seguenti:
+\begin{itemize}
+    \item Il team attraverso revisioni interne, revisioni congiunte e procedure di valutazione del processo, elabora un giudizio;
+    \item Lo storico di tali valutazioni viene conservato attraverso la documentazione e attraverso i report offerti da \textit{Jira}, i quali determinano le esigenze di avanzamento;
+    \item Il team deve quindi pianificare ed eseguire revisioni dei processi secondo intervalli appropriati per garantirne continuità, adeguatezza ed efficacia alla 
+    luce dei risultati della valutazione.
+\end{itemize}
 
 \subsubsection{Miglioramento del processo}
-Il team deve apportare miglioramenti ai suoi processi come determinato necessario a seguito della valutazione e della revisione dei processi.
-La documentazione del processo deve essere aggiornata per riflettere i miglioramenti introdotti, evidenziando i punti di forza e di debolezza introdotti.
-
+Il team deve apportare miglioramenti ai suoi processi come determinato necessario a seguito della valutazione e della revisione dei processi, procedendo come segue:
+\begin{itemize}
+    \item La documentazione del processo viene aggiornata per riflettere i miglioramenti introdotti, evidenziando i punti di forza e di debolezza introdotti.
+\end{itemize}
 \subsection{Formazione}
 \subsubsection{Scopo}
 Il processo di formazione mira a normare le modalità di formazione dei componenti del gruppo per quanto riguarda le tecnologie necessarie per la produzione della documentazione e la realizzazione del prodotto software.

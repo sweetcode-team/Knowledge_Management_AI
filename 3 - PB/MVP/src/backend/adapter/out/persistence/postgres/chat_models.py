@@ -10,7 +10,7 @@ class Chat(Base):
     messages_cascade = relationship(
         'MessageStore',
         back_populates="messages_cascade_rel",
-        cascade="all, delete",
+        cascade="all, delete, delete-orphan",
         passive_deletes=True
     )
 
@@ -23,14 +23,14 @@ class Chat(Base):
 class MessageStore(Base):
     __tablename__ = 'message_store'
     id = Column('id', Integer, primary_key=True, autoincrement=True)
-    sessionId = Column('session_id', Integer, ForeignKey('chat.id'))
+    sessionId = Column('session_id', Integer, ForeignKey('chat.id', ondelete='CASCADE'))
     message = Column('message', JSON)
 
     messages_cascade_rel = relationship("Chat", back_populates="messages_cascade")
     relevant_documents_cascade = relationship(
         'MessageRelevantDocuments',
         back_populates="relevant_documents_cascade_rel",
-        cascade="all, delete",
+        cascade="all, delete, delete-orphan",
         passive_deletes=True
     )
 
@@ -43,7 +43,7 @@ class MessageStore(Base):
 
 class MessageRelevantDocuments(Base):
     __tablename__ = 'message_relevant_documents'
-    id = Column('id', Integer, ForeignKey('message_store.id'), primary_key=True)
+    id = Column('id', Integer, ForeignKey('message_store.id', ondelete='CASCADE'), primary_key=True)
     documentId = Column('document_id', Text, primary_key=True)
     
     relevant_documents_cascade_rel = relationship("MessageStore", back_populates="relevant_documents_cascade")

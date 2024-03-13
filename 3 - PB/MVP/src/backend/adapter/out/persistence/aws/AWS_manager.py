@@ -1,12 +1,11 @@
-import os
 from typing import List
 
 import boto3
 from adapter.out.persistence.aws.AWS_document import AWSDocument
 from adapter.out.persistence.aws.AWS_document_operation_response import AWSDocumentOperationResponse
 from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentMetadata, DocumentType
+
+from botocore.exceptions import ClientError
 
 """
     This class is responsible for managing the AWS S3 bucket.
@@ -47,31 +46,45 @@ class AWSS3Manager:
             type = aws.get('ContentType')
             size = aws.get('ContentLength')
             uploadTime = aws.get('LastModified')
-        except:
+        except Exception as e:
             return None
         return AWSDocument(
-            id,
-            content,
-            type,
-            size,
-            uploadTime
+            id=id,
+            content=content,
+            type=type,
+            size=size,
+            uploadTime=uploadTime
         )
 
     def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload: bool) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponses = []
 
-        for document in awsDocuments:
-            try:
-                if not forceUpload:
-                    self.s3.head_object(Bucket=self.awsBucketName, Key=document.id)
-                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, False, "Il documento e' gia' presente nel sistema."))
-                else:
-                    self.s3.put_object(Bucket=self.awsBucketName, Key=document.id, Body=document.content, ContentType=document.type)
-                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, True, "Caricamento del documento avvenuto con successo."))
-            except Exception as e:
-                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(document.id, False, f"Errore durante il caricamento del documento: {e}"))
-                continue
-
+        if not forceUpload:
+            for awsDocument in awsDocuments:
+                try:
+                    self.s3.head_object(Bucket=self.awsBucketName, Key=awsDocument.id)
+                    # The document is already present in the system, so it cannot be uploaded.
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(awsDocument.id, False, "Il documento è già presente nel sistema."))
+                except Exception as e:
+                    # The document is not present in the system, so it can be uploaded.
+                    try:
+                        self.s3.put_object(Bucket=self.awsBucketName, Key=awsDocument.id, Body=awsDocument.content, ContentType=awsDocument.type)
+                        AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(awsDocument.id, True, "Caricamento del documento avvenuto con successo."))
+                    except Exception as e:
+                        # An error occurred during the put_object operation.
+                        AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(awsDocument.id, False, f"Errore durante il caricamento del documento: {e}"))
+                    continue
+        else:
+            # The forceUpload flag is set to True, so the documents can be uploaded without checking if they are already present in the system.
+            for awsDocument in awsDocuments:
+                try:
+                    self.s3.put_object(Bucket=self.awsBucketName, Key=awsDocument.id, Body=awsDocument.content, ContentType=awsDocument.type)
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(awsDocument.id, True, "Caricamento del documento avvenuto con successo."))
+                except Exception as e:
+                    # An error occurred during the put_object operation.
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(awsDocument.id, False, f"Errore durante il caricamento del documento: {e}"))
+                    continue
+            
         return AWSDocumentOperationResponses
 
     def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
@@ -81,10 +94,11 @@ class AWSS3Manager:
             try:
                 self.s3.delete_object(Bucket=self.awsBucketName, Key=documentId)
                 AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, True, "Eliminazione del documento avvenuta con successo."))
-            except self.s3.exceptions.NoSuchKey: #TODO: Non fa partire l'eccezione se il documento non esiste
-                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, "Il documento non è presente nel sistema."))
-            except Exception as e:
-                AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, f"Errore durante l'eliminazione del documento: {e}"))
+            except ClientError as e:
+                if e.response['Error']['Code'] == 'NoSuchKey':
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, "Il documento non è presente nel sistema."))
+                else:
+                    AWSDocumentOperationResponses.append(AWSDocumentOperationResponse(documentId, False, f"Errore durante l'eliminazione del documento: {e}"))
                 continue
 
         return AWSDocumentOperationResponses
@@ -96,9 +110,10 @@ class AWSS3Manager:
         for content in contents:
             awsDocumentsMetadata.append(
                 AWSDocumentMetadata(
-                    content.get('Key'),
-                    content.get('Size'),
-                    content.get('LastModified')
+                    id=content.get('Key'),
+                    size=content.get('Size'),
+                    uploadTime=content.get('LastModified'),
+                    type=content.get('ContentType')
                 )
             )
         return awsDocumentsMetadata
@@ -107,11 +122,11 @@ class AWSS3Manager:
         try:
             documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
             return AWSDocument(
-                documentId,
-                documentContentResponse.get('Body').read(),
-                documentContentResponse.get('ContentType'),
-                documentContentResponse.get('ContentLength'),
-                documentContentResponse.get('LastModified')
+                id=documentId,
+                content=documentContentResponse.get('Body').read(),
+                type=documentContentResponse.get('ContentType'),
+                size=documentContentResponse.get('ContentLength'),
+                uploadTime=documentContentResponse.get('LastModified')
             )
-        except self.s3.exceptions.NoSuchKey:
+        except Exception as e:
             return None

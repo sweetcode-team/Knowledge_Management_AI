@@ -7,7 +7,7 @@ from application.service.get_documents_status import GetDocumentsStatus
 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.configuration_manager import ConfigurationManager
-from api_exceptions import InsufficientParameters
+from api_exceptions import InsufficientParameters, APIBadRequest
 
 getDocumentsBlueprint = Blueprint("getDocuments", __name__)
 
@@ -16,6 +16,7 @@ getDocumentsBlueprint = Blueprint("getDocuments", __name__)
 def getDocuments(filter):
     if filter is None:
         raise InsufficientParameters()
+    validFilter = filter.strip()
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
 
@@ -26,7 +27,7 @@ def getDocuments(filter):
         )
     )
     
-    documents = controller.getDocuments(filter)
+    documents = controller.getDocuments(validFilter)
     
     if len(documents) == 0:
         return jsonify([]), 404

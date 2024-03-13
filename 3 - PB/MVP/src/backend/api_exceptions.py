@@ -1,7 +1,10 @@
 class APIBadRequest(Exception):
-    def __init__(self, message, status_code):
+    def __init__(self, message, status_code=None):
         self.message = message
-        self.status_code = status_code
+        if status_code is None:
+            self.status_code = 400
+        else:
+            self.status_code = status_code
 
 class DocumentNotSupported(APIBadRequest):
     def __init__(self, message="Documento non supportato."):

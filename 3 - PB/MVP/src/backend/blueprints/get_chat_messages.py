@@ -13,7 +13,7 @@ getChatMessagesBlueprint = Blueprint("getChatMessages", __name__)
 def getChatMessages(chatId):
     if chatId is None:
         raise InsufficientParameters()
-    if not chatId.isdigit() or int(chatId) < 0:
+    if int(chatId) < 0:
         raise APIBadRequest(f"Chat id '{chatId}' non valido.")
 
     controller = GetChatMessagesController(

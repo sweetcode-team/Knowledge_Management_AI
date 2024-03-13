@@ -19,8 +19,9 @@ def askChatbot():
         raise InsufficientParameters()
     if userMessage.strip() == "":
         raise APIBadRequest(f"Filtro '{userMessage}' non valido.")
-    if not chatId.isdigit() or int(chatId) < 0:
+    if chatId is not None and (not chatId.isdigit() or int(chatId) < 0):
         raise APIBadRequest(f"Chat id '{chatId}' non valido.")
+    validChatId = chatId if chatId is not None else None
     
     configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
     
@@ -31,7 +32,7 @@ def askChatbot():
         )
     )
     
-    chatbotResponse = controller.askChatbot(userMessage.strip(), int(chatId))
+    chatbotResponse = controller.askChatbot(userMessage.strip(), validChatId)
     
     if chatbotResponse is None:
         raise APIElaborationException("Errore nella generazione della risposta.")

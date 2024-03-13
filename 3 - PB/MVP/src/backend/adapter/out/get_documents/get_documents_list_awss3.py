@@ -15,5 +15,5 @@ class GetDocumentsListAWSS3(GetDocumentsMetadataPort):
         documentsMetadatas = []
         documentsMetadata = self.awsS3Manager.getDocumentsMetadata(documentFilter.searchFilter)
         for documentMetadata in documentsMetadata:
-            documentsMetadata.append(documentMetadata.toDocumentMetadataFrom())
+            documentsMetadatas.append(documentMetadata.toDocumentMetadataFrom())
         return documentsMetadatas

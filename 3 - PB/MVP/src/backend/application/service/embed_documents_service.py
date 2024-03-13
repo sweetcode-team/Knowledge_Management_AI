@@ -22,7 +22,7 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
         
         documentsStatus = self.getDocumentStatus.getDocumentsStatus(documentsIds)
         
-        if len(documentsIds) != len(documentsStatus):
+        if len(documentsIds) != len(documentsStatus) or len(documentsStatus) == 0:
             raise ElaborationException("Errore nel recupero degli stati dei documenti.")
         
         for documentId, documentStatus in zip(documentsIds, documentsStatus):
@@ -32,11 +32,13 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
         
         plainDocuments = self.getDocumentsContent.getDocumentsContent(verifiedDocumentsIds)
         
-        if len(verifiedDocumentsIds) != len(plainDocuments):
+        if len(verifiedDocumentsIds) != len(plainDocuments) or len(plainDocuments) == 0:
             raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")
         
         documentsToEmbed = []
         for plainDocument, documentStatus in zip(plainDocuments, verifiedDocumentsStatus):
-            documentsToEmbed.append(Document(documentStatus, plainDocument))
+            documentsToEmbed.append(Document(documentStatus, plainDocument)) if plainDocument else None
         
+        if len(documentsToEmbed) != len(verifiedDocumentsStatus):
+            raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")
         return self.embeddingsUploader.uploadEmbeddings(documentsToEmbed)

@@ -33,5 +33,5 @@ def concealDocuments():
     
     return jsonify([{
         "id": documentOperationResponse.documentId.id,
-        "status": documentOperationResponse.status,
+        "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

@@ -4,6 +4,9 @@ from application.port._in.embed_documents_use_case import EmbedDocumentsUseCase
 from domain.document.document_operation_response import DocumentOperationResponse
 from domain.document.document_id import DocumentId
 
+from domain.exception.exception import ElaborationException
+from api_exceptions import APIElaborationException
+
 """
 This class is the controller for the use case EmbedDocumentsUseCase. It receives the documents' ids and returns a list of DocumentOperationResponse.
 Attributes:
@@ -21,4 +24,7 @@ class EmbedDocumentsController:
         Returns:
             List[DocumentOperationResponse]: the response of the operation.
         """
-        return self.useCase.embedDocuments([DocumentId(documentId) for documentId in documentsIds])
+        try:
+            return self.useCase.embedDocuments([DocumentId(documentId) for documentId in documentsIds])
+        except ElaborationException as e:
+            raise APIElaborationException(str(e))

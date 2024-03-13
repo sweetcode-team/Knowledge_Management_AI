@@ -37,7 +37,7 @@ def askChatbot():
         raise APIElaborationException("Errore nella generazione della risposta.")
     
     return jsonify({
-        "status": chatbotResponse.status,
+        "status": chatbotResponse.ok(),
         "chatbotResponse": {
             "message": chatbotResponse.messageResponse.content,
             "timestamp": chatbotResponse.messageResponse.timestamp,

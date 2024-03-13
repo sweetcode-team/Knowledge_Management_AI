@@ -35,5 +35,5 @@ def renameChat():
     
     return jsonify({
         "chatId": chatOperationResponse.chatId.id,
-        "status": chatOperationResponse.status,
+        "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message})

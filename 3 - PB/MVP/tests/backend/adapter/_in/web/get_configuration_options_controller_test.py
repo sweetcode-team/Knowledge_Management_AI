@@ -1,6 +1,6 @@
 import unittest
 
-from _in.web.get_configuration_options_controller import GetConfigurationOptionsController
+from adapter._in.web.get_configuration_options_controller import GetConfigurationOptionsController
 from domain.configuration.configuration_options import ConfigurationOptions
 from domain.configuration.document_store_configuration import DocumentStoreType, DocumentStoreConfiguration
 from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration, EmbeddingModelType

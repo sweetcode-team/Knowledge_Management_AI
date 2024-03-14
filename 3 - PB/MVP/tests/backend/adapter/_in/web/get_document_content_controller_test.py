@@ -15,7 +15,6 @@ def test_get_document_content_with_id(mocker):
     plainDocument = PlainDocument(DocumentMetadata(DocumentId("Prova.pdf"), DocumentType.PDF, 12, unittest.mock.ANY),
                                   DocumentContent(b'content')
                                  )
-    #getDocumentsContent è quello che simula la chiamata dello use case
     useCaseMock.getDocumentsContent.return_value = [Document(documentStatus, plainDocument)]
 
     with unittest.mock.patch('adapter._in.web.get_document_content_controller.DocumentId') as mockDocumentId:

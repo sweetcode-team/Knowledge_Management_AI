@@ -1,39 +1,33 @@
-from langchain.chains import ConversationalRetrievalChain
-from langchain.chains.base import Chain
-
+import unittest.mock
+from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
+from domain.chat.message import Message, MessageSender
 from domain.chat.message_response import MessageResponse
-from domain.chat.message import Message
 from domain.chat.chat_id import ChatId
-from domain.chat.message import MessageSender
-from domain.document.document_id import DocumentId
 
-from application.port.out.ask_chatbot_port import AskChatbotPort
-
-from datetime import datetime, timezone
-
-from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
-from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
-
-
-class AskChatbotLangchain(AskChatbotPort):
-    def __init__(self, chain: Chain, chatHistoryManager: ChatHistoryManager):
-        self.chain = chain
-        self.chatHistoryManager = chatHistoryManager
-    
-    def askChatbot(self, message: Message, chatId: ChatId) -> MessageResponse:
-        if chatId is not None:
-            self.chain.memory = self.chatHistoryManager.getChatHistory(chatId)
-            print(self.chatHistoryManager.getChatHistory(chatId.id).messages, flush=True)
-            answer = self.chain.invoke({"question": message.content})
-        else:
-            answer = self.chain.invoke({"question": message.content, "chat_history": ""})
-
-        return MessageResponse(
-            True,
-            Message(
-                answer["answer"],
-                datetime.now(timezone.utc),
-                list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
-                MessageSender.CHATBOT
-            ), chatId
-        )
+        
+def test_askChatbot():
+    with    unittest.mock.patch('adapter.out.ask_chatbot.ask_chatbot_langchain.Chain') as chainMock, \
+            unittest.mock.patch('adapter.out.ask_chatbot.ask_chatbot_langchain.MessageResponse') as messageResponseMock, \
+            unittest.mock.patch('adapter.out.ask_chatbot.ask_chatbot_langchain.Message') as messageMock, \
+            unittest.mock.patch('adapter.out.ask_chatbot.ask_chatbot_langchain.ChatHistoryManager') as chatHistoryManagerMock:
+            postgresChatMessageHistoryMock = MagicMock()
+            
+            chatHistoryManagerMock.getChatHistory.return_value = postgresChatMessageHistoryMock
+            chainMock.invoke.return_value = {"answer": "test", "source_documents": []}
+            postgresChatMessageHistoryMock.messages = ['message1', 'message2']
+            messageMock.return_value = Message("test", unittest.mock.ANY, [], MessageSender.CHATBOT)
+            messageResponseMock.return_value = MessageResponse(status=True, messageResponse= messageMock.return_value, chatId=ChatId(1))
+            
+            askChatbotLangchain = AskChatbotLangchain(chainMock, chatHistoryManagerMock)
+            
+            response = askChatbotLangchain.askChatbot(Message("message", unittest.mock.ANY, [], MessageSender.USER), ChatId(1))
+            
+            chatHistoryManagerMock.getChatHistory.assert_called_with(1)
+            chainMock.invoke.assert_called_with({"question": "message", "chat_history": 'message1message2'})
+            messageMock.assert_called_with("test", unittest.mock.ANY, [], MessageSender.CHATBOT)
+            messageResponseMock.assert_called_with(
+                status=True, 
+                messageResponse= messageMock.return_value,
+                chatId= ChatId(1))
+            
+            assert response == messageResponseMock.return_value

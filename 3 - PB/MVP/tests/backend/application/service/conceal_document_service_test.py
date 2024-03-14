@@ -15,7 +15,7 @@ def test_concealDocumentsTrue():
         
         assert isinstance(response[0], DocumentOperationResponse)
         
-def test_concealDocumentsFalse():
+def test_concealDocumentsFail():
     with unittest.mock.patch('application.service.conceal_documents_service.ConcealDocumentsPort') as concealDocumentsPortMock:
         concealDocumentsPortMock.concealDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), False, "Document not concealed successfully")]
     

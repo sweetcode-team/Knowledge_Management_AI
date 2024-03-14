@@ -15,7 +15,7 @@ def test_deleteDocumentsEmbeddingsTrue():
         
         assert isinstance(response, list)
         
-def test_deleteDocumentsEmbeddingsFalse():
+def test_deleteDocumentsEmbeddingsFail():
     with unittest.mock.patch('application.service.delete_documents_embeddings.DeleteEmbeddingsPort') as deleteEmbeddingsPortMock:
         deleteEmbeddingsPortMock.deleteDocumentsEmbeddings.return_value = [DocumentOperationResponse(DocumentId("1"), False, "Embedding not deleted successfully")]
     

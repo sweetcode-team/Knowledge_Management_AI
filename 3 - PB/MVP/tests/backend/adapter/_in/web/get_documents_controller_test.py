@@ -37,7 +37,7 @@ def test_get_document_content_withException(mocker):
         mockDocumentFilter.return_value = DocumentId("1")
         getDocumentsController = GetDocumentsController(useCaseMock)
         try:
-            response = getDocumentsController.getDocuments("1")
+            getDocumentsController.getDocuments("1")
             assert False
         except APIElaborationException as e:
             assert True

@@ -15,7 +15,7 @@ def test_deleteChatTrue():
         
         assert isinstance(response, ChatOperationResponse)
         
-def test_deleteChatFalse():
+def test_deleteChatFail():
     with unittest.mock.patch('application.service.delete_chats_service.DeleteChatsPort') as deleteChatsPortMock:
         deleteChatsPortMock.deleteChats.return_value = ChatOperationResponse(ChatId("1"), False, "Chat not deleted successfully")
     

@@ -15,7 +15,7 @@ def test_changeConfigurationTrue():
         
         assert isinstance(response, ConfigurationOperationResponse)
         
-def test_changeConfigurationFalse():
+def test_changeConfigurationFail():
     with unittest.mock.patch('application.service.change_configuration_service.ChangeConfigurationPort') as changeConfigurationPortMock:
         changeConfigurationPortMock.changeLLMModel.return_value = ConfigurationOperationResponse(False, "Model changed successfully")
     

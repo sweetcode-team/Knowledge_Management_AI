@@ -11,6 +11,12 @@ from adapter.out.ask_chatbot.postgres_persist_chat import PostgresPersistChat
 
 askChatbotBlueprint = Blueprint("askChatbot", __name__)
 
+"""
+This method is the endpoint for the askChatbot API.
+Returns:
+    jsonify: The response of the API.
+"""
+
 @askChatbotBlueprint.route("/askChatbot", methods=['POST'])
 def askChatbot():
     userMessage = request.form.get('message')

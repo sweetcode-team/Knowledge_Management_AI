@@ -14,6 +14,11 @@ from api_exceptions import InsufficientParameters, DocumentNotSupported, APIElab
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
+"""
+This method is the endpoint for the uploadDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
     forceUpload = request.form.get('forceUpload')

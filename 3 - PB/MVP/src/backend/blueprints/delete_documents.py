@@ -10,6 +10,11 @@ from api_exceptions import InsufficientParameters, APIBadRequest, APIElaboration
 
 deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
+"""
+This method is the endpoint for the deleteDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
     requestedIds = request.form.getlist('documentIds')

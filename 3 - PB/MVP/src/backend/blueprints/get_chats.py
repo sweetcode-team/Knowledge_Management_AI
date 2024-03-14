@@ -9,7 +9,11 @@ from application.service.get_chats_service import GetChatsService
 
 getChatsBlueprint = Blueprint("getChats", __name__)
 
-
+"""
+This method is the endpoint for the getChats API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getChatsBlueprint.route('/getChats', defaults={'filter': ''}, methods=['GET'])
 @getChatsBlueprint.route("/getChats/<filter>", methods=['GET'])
 def getDocuments(filter):

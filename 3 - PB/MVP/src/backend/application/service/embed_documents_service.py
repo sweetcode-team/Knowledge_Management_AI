@@ -9,13 +9,27 @@ from domain.document.document_status import Status
 from domain.document.document import Document
 
 from domain.exception.exception import ElaborationException
-
+"""
+This class is the implementation of the EmbedDocumentsUseCase interface.
+    Attributes:
+        getDocumentsContent (GetDocumentsContent): The port to use to get the documents content.
+        embeddingsUploader (EmbeddingsUploader): The port to use to upload the documents embeddings.
+        getDocumentStatus (GetDocumentsStatus): The port to use to get the documents status.
+"""
 class EmbedDocumentsService(EmbedDocumentsUseCase):
     def __init__(self, getDocumentsContent: GetDocumentsContent, embeddingsUploader: EmbeddingsUploader, getDocumentStatus: GetDocumentsStatus):
         self.getDocumentsContent = getDocumentsContent
         self.embeddingsUploader = embeddingsUploader
         self.getDocumentStatus = getDocumentStatus
 
+    
+    """
+    Embeds the documents and returns the response.
+    Args:
+        documentsIds (List[DocumentId]): The documents to embed.
+    Returns:
+        List[DocumentOperationResponse]: The response of the operation.
+    """ 
     def embedDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
         verifiedDocumentsIds =[]
         verifiedDocumentsStatus = []

@@ -13,6 +13,14 @@ Methods:
 class DocumentsUploader:
     def __init__(self, documentUploaderPort: DocumentsUploaderPort):
         self.outPort = documentUploaderPort
-
+    
+    """
+    Uploads a list of documents to the system.
+    Args:
+        documents (List[Document]): The documents to upload.
+        forceUpload (bool): Whether to force the upload of the documents.
+    Returns:
+        List[DocumentOperationResponse]: The response of the operation.
+    """ 
     def uploadDocuments(self, documents:List[Document], forceUpload:bool) -> List[DocumentOperationResponse]:
         return self.outPort.uploadDocuments(documents, forceUpload)

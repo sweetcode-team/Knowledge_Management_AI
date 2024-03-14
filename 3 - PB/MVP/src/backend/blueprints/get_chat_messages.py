@@ -9,6 +9,11 @@ from adapter.out.get_chat_messages.get_chat_messages_postgres import GetChatMess
 
 getChatMessagesBlueprint = Blueprint("getChatMessages", __name__)
 
+"""
+This method is the endpoint for the getChatMessages API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getChatMessagesBlueprint.route('/getChatMessages/<int:chatId>', methods=['GET'])
 def getChatMessages(chatId):
     if chatId is None:

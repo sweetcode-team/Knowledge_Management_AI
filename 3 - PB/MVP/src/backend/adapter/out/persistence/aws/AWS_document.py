@@ -17,6 +17,11 @@ class AWSDocument:
     size: float
     uploadTime: datetime
     
+    """
+    Converts the AWSDocument to a PlainDocument.
+    Returns:
+        PlainDocument: The PlainDocument converted from the AWSDocument.
+    """
     def toPlainDocument(self) -> PlainDocument:
         return PlainDocument(
             metadata=DocumentMetadata(

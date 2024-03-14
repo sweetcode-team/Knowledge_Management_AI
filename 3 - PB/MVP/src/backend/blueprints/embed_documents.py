@@ -10,6 +10,11 @@ from api_exceptions import InsufficientParameters, APIBadRequest, APIElaboration
 
 embedDocumentsBlueprint = Blueprint('embed_documents', __name__)
 
+"""
+This method is the endpoint for the embedDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @embedDocumentsBlueprint.route('/embedDocuments', methods=['POST'])
 def embedDocuments():
     requestedIds = request.form.getlist('documentIds')

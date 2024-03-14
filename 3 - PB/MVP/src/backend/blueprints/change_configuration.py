@@ -6,7 +6,11 @@ from adapter.out.persistence.postgres.postgres_configuration_orm import Postgres
 from adapter.out.change_configuration.change_configuration_postgres import ChangeConfigurationPostgres
 
 changeConfigurationBlueprint = Blueprint("changeConfiguration", __name__)
-
+"""
+This method is the endpoint for the changeConfiguration API.
+Returns:
+    jsonify: The response of the API.
+"""
 @changeConfigurationBlueprint.route("/changeConfiguration", methods=['POST'])
 def changeConfiguration():
     LLMModelChoice = request.form.get('LLMModel')

@@ -10,13 +10,26 @@ from langchain_core.documents.base import Document as LangchainCoreDocument
 from langchain_community.vectorstores import Chroma
 from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
 
-
+"""
+This class is the implementation of the VectorStoreManager interface. It uses the ChromaDB to manage the documents embeddings.
+    Attributes:
+        chromadb (chromadb.PersistentClient): The ChromaDB to use to manage the documents embeddings.
+        collection (chromadb.Collection): The collection of the ChromaDB to use to manage the documents embeddings.
+"""
 class VectorStoreChromaDBManager(VectorStoreManager):
     def __init__(self):
         self.chromadb = chromadb.PersistentClient(path=os.environ.get("CHROMA_DB_PATH"))
         with open('/run/secrets/chromadb_collection', 'r') as file:
             chromadbCollection = file.read()
         self.collection = self.chromadb.get_or_create_collection(chromadbCollection)
+
+    """
+    Gets the status of the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to get the status.
+    Returns:
+        List[VectorStoreDocumentStatusResponse]: The response of the operation.
+    """
 
     def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
         vectorStoreDocumentStatusResponses = []
@@ -38,7 +51,13 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 continue
         
         return vectorStoreDocumentStatusResponses
-    
+    """
+    Deletes the documents embeddings and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to delete the embeddings.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
@@ -51,6 +70,13 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
    
+    """
+    Conceals the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to conceal.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.  
+    """
     def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         
@@ -67,7 +93,13 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 continue
         
         return vectorStoreDocumentOperationResponses        
-    
+    """
+    Disables the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to disable.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
 
@@ -84,7 +116,15 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 continue
             
         return vectorStoreDocumentOperationResponses   
-     
+    """
+    Uploads the documents embeddings and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to upload the embeddings.
+        documentsChunks (List[List[LangchainCoreDocument]]): The documents chunks to upload the embeddings.
+        documentsEmbeddings (List[List[List[float]]]): The documents embeddings to upload.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """ 
     def uploadEmbeddings(self, documentsIds: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         
@@ -112,6 +152,13 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 continue
         return vectorStoreDocumentOperationResponses
 
-
+    """
+    Changes the vector store and returns the response.
+    Args:
+        userId (int): The id of the user.
+        vectorStore (str): The vector store to change.
+    Returns:
+        VectorStoreDocumentOperationResponse: The response of the operation.
+    """
     def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
         return Chroma(client=self.chromadb, collection_name = self.collection.name, embedding_function=embeddingModel.getEmbeddingFunction()).as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.5})

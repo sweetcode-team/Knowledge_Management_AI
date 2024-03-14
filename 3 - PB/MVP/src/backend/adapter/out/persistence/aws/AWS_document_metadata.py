@@ -15,6 +15,11 @@ class AWSDocumentMetadata:
     type: str
     uploadTime: datetime
         
+    """
+    Converts the AWSDocumentMetadata to a DocumentMetadata.
+    Returns:
+        DocumentMetadata: The DocumentMetadata converted from the AWSDocumentMetadata.
+    """    
     def toDocumentMetadataFrom(self) -> DocumentMetadata:
         return DocumentMetadata(id=DocumentId(self.id),
                                 type=DocumentType.PDF if self.type == "PDF" else DocumentType.DOCX,

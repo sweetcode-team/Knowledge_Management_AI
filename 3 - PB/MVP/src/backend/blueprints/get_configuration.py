@@ -9,7 +9,11 @@ from adapter.out.persistence.postgres.postgres_configuration_orm import Postgres
 from api_exceptions import APIElaborationException
 
 getConfigurationBlueprint = Blueprint("getConfiguration", __name__)
-
+"""
+This method is the endpoint for the getConfiguration API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getConfigurationBlueprint.route('/getConfiguration', methods=['GET'])
 def getConfiguration():
     controller = GetConfigurationController(

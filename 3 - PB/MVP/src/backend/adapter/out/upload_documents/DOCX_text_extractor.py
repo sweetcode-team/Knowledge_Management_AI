@@ -8,7 +8,18 @@ from langchain_core.documents.base import Document as LangchainCoreDocuments
 from langchain_community.document_loaders.word_document import Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+"""
+This class is used to extract the text from the DOCX documents.
+"""
 class DOCXTextExtractor(TextExtractor):
+       
+    """
+    Extracts the text from the document and returns the chunks.
+    Args:
+        documentContent (DocumentContent): The document to extract the text.
+    Returns:
+    List[LangchainCoreDocuments]: The chunks of the document.
+    """ 
     def extractText(self, documentContent:DocumentContent) -> List[LangchainCoreDocuments]:
         with tempfile.NamedTemporaryFile(delete=False) as tempFile:
             tempFile.write(documentContent.content)

@@ -7,12 +7,25 @@ from application.service.get_documents_status import GetDocumentsStatus
 from application.service.get_documents_metadata import GetDocumentsMetadata
 from domain.exception.exception import ElaborationException
 
-
+"""
+    A service that gets the documents.
+Methods:    
+    getDocuments(self, documentFilter:DocumentFilter) -> List[LightDocument]:
+        Gets the documents.
+"""
 class GetDocumentsFacadeService(GetDocumentsUseCase):
     def __init__(self, getDocumentsMetadatas: GetDocumentsMetadata, getDocumentsStatus: GetDocumentsStatus):
         self.getDocumentsMetadatas = getDocumentsMetadatas
         self.getDocumentsStatus = getDocumentsStatus
 
+    
+    """
+    Gets the documents.
+    Args:
+        documentFilter (DocumentFilter): The filter to use to get the documents.
+    Returns:
+        List[LightDocument]: The documents.
+    """ 
     def getDocuments(self, documentFilter: DocumentFilter) -> List[LightDocument]:
         documentsMetadata = self.getDocumentsMetadatas.getDocumentsMetadata(documentFilter)
 

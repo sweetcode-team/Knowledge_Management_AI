@@ -38,6 +38,13 @@ class AWSS3Manager:
             region_name="eu-west-1"
         )
 
+    """
+    Get the document from the S3 bucket by its ID.
+    Args:
+        documentId (str): The ID of the document to get.
+    Returns:
+        AWSDocument: The document from the S3 bucket.
+    """
     def getDocumentById(self, documentId: str) -> AWSDocument:
         try:
             aws = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)
@@ -56,6 +63,14 @@ class AWSS3Manager:
             uploadTime=uploadTime
         )
 
+    """
+    Upload the documents to the S3 bucket.
+    Args:
+        awsDocuments (List[AWSDocument]): The documents to upload.
+        forceUpload (bool): The flag to force the upload of the documents.
+    Returns:
+        List[AWSDocumentOperationResponse]: The response of the upload operation.
+    """
     def uploadDocuments(self, awsDocuments: List[AWSDocument], forceUpload: bool) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponses = []
 
@@ -87,6 +102,13 @@ class AWSS3Manager:
             
         return AWSDocumentOperationResponses
 
+    """
+    Delete the documents from the S3 bucket.
+    Args:
+        documentsIds (List[str]): The documents to delete.
+    Returns:
+        List[AWSDocumentOperationResponse]: The response of the delete operation.
+    """
     def deleteDocuments(self, documentsIds: List[str]) -> List[AWSDocumentOperationResponse]:
         AWSDocumentOperationResponses = []
 
@@ -103,6 +125,13 @@ class AWSS3Manager:
 
         return AWSDocumentOperationResponses
 
+    """
+    Get the metadata of the documents from the S3 bucket.
+    Args:
+        documentFilter (str): The filter to apply to the documents.
+    Returns:
+        List[AWSDocumentMetadata]: The metadata of the documents from the S3 bucket.
+    """
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
         awsDocumentsMetadata = []
         documentMetadataResponse = self.s3.list_objects_v2(Bucket=self.awsBucketName, Prefix=documentFilter)
@@ -118,6 +147,13 @@ class AWSS3Manager:
             )
         return awsDocumentsMetadata
 
+    """
+    Get the document content from the S3 bucket by its ID.
+    Args:
+        documentId (str): The ID of the document to get the content.
+    Returns:
+        AWSDocument: The document content from the S3 bucket.
+    """
     def getDocumentContent(self, documentId: str) -> AWSDocument:
         try:
             documentContentResponse = self.s3.get_object(Bucket=self.awsBucketName, Key=documentId)

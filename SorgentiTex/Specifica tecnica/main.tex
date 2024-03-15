@@ -29,7 +29,7 @@
 % INTRODUZIONE
 \section{Introduzione}
 \subsection{Obiettivo del documento}
-L'obiettivo che ci si pone nella realizzazione di questo documento è descrivere le scelte tecnologiche e l'architettura del prodotto \textit{Knowledge Managment AI}. Verrà seguito un approccio top-down, partendo dall'architettura del sistema passando poi all'architettura delle componenti ed infine alla progettazione di dettaglio.
+L'obiettivo che ci si pone nella realizzazione di questo documento è descrivere le scelte tecnologiche e l'architettura del prodotto \textit{Knowledge Management AI}. Verrà seguito un approccio top-down, partendo dall'architettura del sistema passando poi all'architettura delle componenti ed infine alla progettazione di dettaglio.
 
 \subsection{Glossario}
 Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
@@ -432,14 +432,15 @@ La struttura organizzativa del backend segue la seguente struttura:
 \begin{tabbing}
     /backend\=\\
     \> /adapter\=\\
-    \> \> /in\=\\
-    \> \> \> /web -- controllers\\
+    \> \> /in\= \\
+    \> \> \> /web-- controllers\\
     \> \> /out -- implementazioni di Outbound Port\\
     \> /application\\
     \> \> /port\\
     \> \> \> /in -- Inbound Ports (Use Cases)\\
     \> \> \> /out -- Outbound Ports\\
-    \> \> \> /service -- implementazioni di Inbound Port\\
+    \> \> /service -- implementazioni di Inbound Port\\
+    \> /blueprints\\
     \> /domain -- classi di business
 \end{tabbing}
 }
@@ -512,27 +513,37 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{AskChatbotController}\textbf{AskChatbotController}: classe controller che si occupa del richiedere una risposta al chatbot ad un messaggio appartente ad una chat allo use case AskChatbotUseCase;
-    \item \label{Message}\textbf{Message}: classe di business che rappresenta un messaggio di una chat;
-    \item \label{MessageSender}\textbf{MessageSender}: classe di business che rappresenta il mittente di un messaggio;
-    \item \label{AskChatbotUseCase}\textbf{AskChatbotUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere una risposta al chatbot ad un messaggio appartente ad una chat;
-    \item \label{AskChatbotService}\textbf{AskChatbotService}: classe service che implementa lo use case AskChatbotUseCase;
-    \item \label{ChatId}\textbf{ChatId}: classe di business che rappresenta l'id di una chat utilizzato nella ricerca;
-    \item \label{AskChatbotPort}\textbf{AskChatbotPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una risposta al chatbot ad un messaggio appartente ad una chat, con storicizzazione all'interno del database delle chat;
     \item \label{AskChatbotLangchain}\textbf{AskChatbotLangchain}: classe che implementa la porta AskChatbotPort, adattando la chiamata di AskChatbotService a classi offerte dal framework Langchain;
+    \item \label{AskChatbotPort}\textbf{AskChatbotPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una risposta al chatbot ad un messaggio appartente ad una chat;%, con storicizzazione all'interno del database delle chat;
+    \item \label{AskChatbotService}\textbf{AskChatbotService}: classe service che implementa lo use case AskChatbotUseCase;
+    \item \label{AskChatbotUseCase}\textbf{AskChatbotUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere una risposta al chatbot ad un messaggio appartente ad una chat;
+    %\item \label{ChatbotLangchain}\textbf{ChatbotLangchain}: classe che permette di interagire con un oggetto langchain.Chain;
     \item \label{ChatHistoryManager}\textbf{ChatHistoryManager}: classe per interagire con le chat come oggetti lanchain.Memory;
-    \item \label{ChatbotLangchain}\textbf{ChatbotLangchain}: classe che permette di interagire con un oggetto langchain.Chain;
-    \item \label{LangchainLLM}\textbf{LangchainLLM}: classe astratta che permette di interagire con un oggetto langchain.BaseLanguageModel;
-    \item \label{OpenAILLM}\textbf{OpenAILLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di OpenAI;
-    \item \label{HugginFaceLLM}\textbf{HugginFaceLLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di HugginFace;
-    \item \label{LangchainVectorStore}\textbf{LangchainVectorStore}: classe astratta che permette di interagire con un oggetto langchain.VectorStore;
-    \item \label{PineconeVectorStore}\textbf{PineconeVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store Pinecone;
-    \item \label{ChromaDBVectorStore}\textbf{ChromaDBVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store ChromaDB;
-    \item \label{LangchainEmbeddingModel}\textbf{LangchainEmbeddingModel}: classe astratta che permette di interagire con un oggetto langhchain.Embeddings;
-    \item \label{OpenAIEmbeddingModel}\textbf{OpenAIEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di OpenAI;
-    \item \label{HuggingFaceEmbeddingModel}\textbf{HuggingFaceEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di HugginFace;
-    \item \label{PostgresORM}\textbf{PostgresORM}: classe che si occupa di effettuare le operazioni su Postgres configurato, cioè il sistema di storicizzazione delle chat dell'applicazione;
+    \item \label{ChatId}\textbf{ChatId}: classe di business che rappresenta l'id di una chat utilizzato nella ricerca;
+    \item \label{ChatOperationResponse}\textbf{ChatOperationResponse}: classe che contiene l'esito di un'operazione effettuata su una chat;
+    %\item \label{ChromaDBVectorStore}\textbf{ChromaDBVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store ChromaDB;
+    %\item \label{HuggingFaceEmbeddingModel}\textbf{HuggingFaceEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di HugginFace;
+
+    %\item \label{HugginFaceLLM}\textbf{HugginFaceLLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di HugginFace;
+    
+
+    %\item \label{LangchainLLM}\textbf{LangchainLLM}: classe astratta che permette di interagire con un oggetto langchain.BaseLanguageModel;
+    %\item \label{LangchainVectorStore}\textbf{LangchainVectorStore}: classe astratta che permette di interagire con un oggetto langchain.VectorStore;
+    \item \label{Message}\textbf{Message}: classe di business che rappresenta un messaggio di una chat;
+    \item \label{MessageResponse}\textbf{MessageResponse}: classe che rappresenta un messaggio risposta del chatbot;
+    \item \label{MessageSender}\textbf{MessageSender}: classe di business che rappresenta il mittente di un messaggio;
+    
+
+    %\item \label{OpenAILLM}\textbf{OpenAILLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di OpenAI;
+    %\item \label{PineconeVectorStore}\textbf{PineconeVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store Pinecone;
+    \item \label{PersistChatPort}\textbf{PersistChatPort}: interfaccia che rappresenta la porta in uscita verso il database per la storicizzazione delle chat;
     \item \label{PostgresChat}\textbf{PostgresChat}: classe di persistence che rappresenta una chat;
-    \item \label{PostgresMessage}\textbf{PostgresMessage}: classe di persistence che rappresenta un messaggio.
+    \item \label{PostgresChatOperationResponse}\textbf{PostgresChatOperationResponse}: classe che contiene l'esito di un'operazione effettuata su Postgres riguardo una chat;
+    \item \label{PostgresMessage}\textbf{PostgresMessage}: classe di persistence che rappresenta un messaggio;
+    \item \label{PostgresMessageSenderType}\textbf{PostgresMessageSenderType}: enumeration che rappresenta i valori che può assumere il campo sender di un PostgresMessage;
+    \item \label{PostgresPersistChat}\textbf{PostgresPersistChat}: classe adapter che implementa la porta PersistChatPort, adattando la chiamata di persistChat a PostgresChatORM;
+    \item \label{PostgresChatORM}\textbf{PostgresChatORM}: classe che si occupa di effettuare le operazioni su Postgres configurato, cioè il sistema di storicizzazione delle chat dell'applicazione.
+    
 \end{itemize}
 
 \begin{comment}
@@ -615,15 +626,18 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{ConcealDocumentsController}\textbf{ConcealDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case ConcealDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti da occultare;
-    \item \label{ConcealDocumentsUseCase}\textbf{ConcealDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'occultamento dei documenti;
-    \item \label{ConcealDocumentsService}\textbf{ConcealDocumentsService}: classe service che implementa lo use case ConcealDocumentsUseCase;
     \item \label{ConcealDocumentsPort}\textbf{ConcealDocumentsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'occultamento dei documenti nel vector store;
+    \item \label{ConcealDocumentsService}\textbf{ConcealDocumentsService}: classe service che implementa lo use case ConcealDocumentsUseCase;
+    \item \label{ConcealDocumentsUseCase}\textbf{ConcealDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'occultamento dei documenti;
     \item \label{ConcealDocumentsVectorStore}\textbf{ConcealDocumentsVectorStore}: classe adapter che implementa la porta ConcealDocumentsPort, adattando la chiamata di ConcealDocumentsService a VectorStoreManager;
+    \item \label{DocumentId}\textbf{DocumentId}: classe di business che rappresenta l'id di un documento;
+    \item \label{DocumentOperationResponse}\textbf{DocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un documento;
+    \item \label{VectorStoreChromaDBManager}\textbf{VectorStoreChromaDBManager}: classe che implementa VectorStoreManager, offrendo la possibilità di dialogare con il vector store Chroma;
+    \item \label{VectorStoreDocumentOperationResponse} \textbf{VectorStoreDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un vector store riguardo un documento;
     \item \label{VectorStoreManager}\textbf{VectorStoreManager}: interfaccia che rende disponibile metodi per dialogare con i vector store;
-    \item \label{VectorStorePineconeManager}\textbf{VectorStorePineconeManager}: classe che implementa VectorStoreManager, offrendo la possibilità di dialogare con il vector store Pinecone;
-    \item \label{VectorStoreChromaDBManager}\textbf{VectorStoreChromaDBManager}: classe che implementa VectorStoreManager,  offrendo la possibilità di dialogare con il vector store Chroma;
-    \item \label{VectorStoreDocumentOperationResponse}\textbf{VectorStoreDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un vector store riguardo un documento.
+    \item \label{VectorStorePineconeManager}\textbf{VectorStorePineconeManager}: classe che implementa VectorStoreManager, offrendo la possibilità di dialogare con il vector store Pinecone.
 \end{itemize}
+
 
 \subsubsection{DeleteChats}
 \subsubsubsection{Descrizione}
@@ -664,14 +678,19 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
+    \item \textbf{ChatId}: Vedi \vedi{ChatId}
+    \item \textbf{ChatOperationResponse}: vedi \vedi{ChatOperationResponse};
     \item \label{DeleteChatsController}\textbf{DeleteChatsController}: classe controller che si occupa del passaggio allo use case CreateChatUseCase di interi rappresentanti gli id di una lista di chat per eseguire la loro eliminazione;
-    \item \label{DeleteChatsUseCase}\textbf{DeleteChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'eliminazione di una lista di chat;
-    \item \label{DeleteChatsService}\textbf{DeleteChatsService}: classe service che implementa lo use case DeleteChatsUseCase;
     \item \label{DeleteChatsPort}\textbf{DeleteChatsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'eliminazione di una lista di chat verso il database per la storicizzazione delle chat;
-    \item \label{DeleteChatsPostgres}\textbf{DeleteChatsPostgres}: classe che implementa la porta DeleteChatPort, adattando la chiamata di DeleteChatsService a PostgresORM;
-    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}.
-\end{itemize}
+    \item \label{DeleteChatsPostgres}\textbf{DeleteChatsPostgres}: classe che implementa la porta DeleteChatPort, adattando la chiamata di DeleteChatsService a PostgresChatORM;
 
+    \item \label{DeleteChatsService}\textbf{DeleteChatsService}: classe service che implementa lo use case DeleteChatsUseCase;
+
+    \item \label{DeleteChatsUseCase}\textbf{DeleteChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'eliminazione di una lista di chat;
+    \item \textbf{PostgresChatOperationResponse}: vedi \vedi{PostgresChatOperationResponse};
+    \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}.
+\end{itemize}
+ 
 \subsubsection{DeleteDocuments}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di eliminare una lista di documenti e i loro rispettivi embeddings.
@@ -709,22 +728,23 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{DeleteDocumentsController}\textbf{DeleteDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case DeleteDocumentsUseCase a partire da una lista di stringhe che rappresentano gli id dei documenti da eliminare;
-    \item \label{DeleteDocumentsUseCase}\textbf{DeleteDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per eliminare i documenti;
-    \item \label{DeleteDocumentsService}\textbf{DeleteDocumentsService}: classe service che implementa lo use case DeleteDocumentsUseCase;
+    \item \label{AWSDocumentOperationResponse}\textbf{AWSDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un AWS S3 riguardo un documento;
+    \item \label{AWSS3Manager}\textbf{AWSS3Manager}: classe che si occupa di effettuare le operazioni sul bucket di Amazon S3 configurato, cioè il sistema di archiviazione documenti dell'applicazione;
     \item \label{DeleteDocuments}\textbf{DeleteDocuments}: classe che si occupa di inoltrare la richiesta di eliminare una lista di documenti nella porta esterna DeleteDocumentsPort diretta verso il sistema di archiviazione;
+    \item \label{DeleteDocumentsAWSS3}\textbf{DeleteDocumentsAWSS3}: classe adapter che implementa la porta DeleteDocumentsPort, adattando la chiamata di DeleteDocuments a AWSS3Manager;
+    \item \label{DeleteDocumentsController}\textbf{DeleteDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case DeleteDocumentsUseCase a partire da una lista di stringhe che rappresentano gli id dei documenti da eliminare;
     \item \label{DeleteDocumentsEmbeddings}\textbf{DeleteDocumentsEmbeddings}: classe che si occupa di eliminare gli embeddings di una lista di documenti nella porta esterna DeleteEmbeddingsPort diretta verso il vector store;
     \item \label{DeleteDocumentsPort}\textbf{DeleteDocumentsPort}: interfaccia che rappresenta la porta in uscita per eliminare una lista di documenti dal sistema di archiviazione;
+    \item \label{DeleteDocumentsService}\textbf{DeleteDocumentsService}: classe service che implementa lo use case DeleteDocumentsUseCase;
+    \item \label{DeleteDocumentsUseCase}\textbf{DeleteDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per eliminare i documenti;
     \item \label{DeleteEmbeddingsPort}\textbf{DeleteEmbeddingsPort}: interfaccia che rappresenta la porta in uscita per eliminare gli embeddings di una lista di documenti dal vector store;
-    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
-    \item \label{DeleteDocumentsAWSS3}\textbf{DeleteDocumentsAWSS3}: classe adapter che implementa la porta DeleteDocumentsPort, adattando la chiamata di DeleteDocuments a AWSS3Manager;
-    \item \label{AWSS3Manager}\textbf{AWSS3Manager}: classe che si occupa di effettuare le operazioni sul bucket di Amazon S3 configurato, cioè il sistema di archiviazione documenti dell'applicazione;
-    \item \label{AWSDocumentOperationResponse}\textbf{AWSDocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un AWS S3 riguardo un documento;
     \item \label{DeleteEmbeddingsVectorStore}\textbf{DeleteEmbeddingsVectorStore}: classe adapter che implementa la porta DeleteEmbeddingsPort, adattando la chiamata di DeleteDocumentsEmbeddings a VectorStoreManager;
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
 \subsubsection{EmbedDocuments}
@@ -764,33 +784,42 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{EmbedDocumentsController}\textbf{EmbedDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case EmbedDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti di cui generare gli embeddings;
-    \item \label{EmbedDocumentsUseCase}\textbf{EmbedDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per generare gli embeddings dei documenti;
-    \item \label{EmbedDocumentsService}\textbf{EmbedDocumentsService}: classe service che implementa lo use case EmbedDocumentsUseCase;
-    \item \label{GetDocuments}\textbf{GetDocuments}: classe che si occupa di inoltrare la richiesta di recuperare i documenti nella porta esterna diretta verso il sistema di archiviazione;
-    \item \label{EmbeddingsUploader}\textbf{EmbeddingsUploader}: classe che si occupa di effettuare la chiamata dell'upload degli embeddings nella porta esterna diretta verso il vector store;
-    \item \label{GetDocumentsPort}\textbf{GetDocumentsPort}: interfaccia che rappresenta la porta in uscita per recuperare i documenti dal sistema di archiviazione;
-    \item \label{EmbeddingsUploaderPort}\textbf{EmbeddingsUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload degli embeddings verso i vector store;
-    \item \label{GetDocumentsAWSS3}\textbf{GetDocumentsAWSS3}: classe adapter che implementa la porta GetDocumentsPort, adattando la chiamata di GetDocuments a AWSS3Manager;
-    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \label{AWSDocument}\textbf{AWSDocument}: classe che rappresenta i documenti gestibili da AWSS3Manager;
-    \item \label{DocumentOperationResponse}\textbf{DocumentOperationResponse}: classe che contiene l'esito di un'operazione effettuata su un documento;
-    \item \label{LangchainDocument}\textbf{LangchainDocument}: classe che rappresenta un documento e i suoi embeddings;
-    \item \label{EmbeddingsUploaderFacadeLangchain}\textbf{EmbeddingsUploaderFacadeLangchain}: classe adapter che implementa la porta EmbeddingsUploaderPort, adattando la chiamata di EmbeddingsUploader alla sequenza di operazioni necessarie per il calcolo degli embeddings e il loro upload nel vector store;
-    \item \label{DocumentToText}\textbf{DocumentToText}: classe che si occupa di convertire documenti;
-    \item \label{TextExtractor}\textbf{TextExtractor}: interfaccia che espone il metodo astratto di estrazione di testo da un documento;
-    \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti PDF;
-    \item \label{DOCXTextExtractor}\textbf{DOCXTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti docx;
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \label{Chunkerizer}\textbf{Chunkerizer}: classe che crea chunks a partire da testo;
-    \item \label{EmbeddingsCreator}\textbf{EmbeddingsCreator}: classe che dialoga con il modello di embeddings per creare gli embeddings a partire dai chunk forniti in input;
-    \item \textbf{LangchainEmbeddingModel}: vedi \vedi{LangchainEmbeddingModel};
-    \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
-    \item \textbf{HuggingFaceEmbeddingModel}: classe che implementa LangchainEmbeddingModel offrendo la possibilità di creare embeddings attraverso un embedding model di HuggingFace;
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
+    \item \label{DocumentStatus} \textbf{DocumentStatus}: classe di business che rappresenta lo status di un documento;
+    %\item \label{DocumentToText}\textbf{DocumentToText}: classe che si occupa di convertire documenti;
+    \item \label{DOCXTextExtractor}\textbf{DOCXTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti docx;
+    \item  \label{EmbeddingsCreator}\textbf{EmbeddingsCreator}: classe che dialoga con il modello di embeddings per creare gli embeddings a partire dai chunk forniti in input;
+    \item \label{EmbeddingsUploader}\textbf{EmbeddingsUploader}: classe che si occupa di effettuare la chiamata dell'upload degli embeddings nella porta esterna diretta verso il vector store;
+    \item \label{EmbeddingsUploaderFacadeLangchain}\textbf{EmbeddingsUploaderFacadeLangchain}: classe adapter che implementa la porta EmbeddingsUploaderPort, adattando la chiamata di EmbeddingsUploader alla sequenza di operazioni necessarie per il calcolo degli embeddings e il loro upload nel vector store;
+    \item \label{EmbeddingsUploaderPort}\textbf{EmbeddingsUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload degli embeddings verso i vector store;
     \item \label{EmbeddingsUploaderVectorStore}\textbf{EmbeddingsUploaderVectorStore}: classe che offre un metodo per eseguire l'upload degli embeddings nel vector store;
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \label{EmbedDocumentsController}\textbf{EmbedDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case EmbedDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti di cui generare gli embeddings;
+    \item \label{EmbedDocumentsService}\textbf{EmbedDocumentsService}: classe service che implementa lo use case EmbedDocumentsUseCase;
+    \item \label{EmbedDocumentsUseCase}\textbf{EmbedDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per generare gli embeddings dei documenti;    
+    \item \label{GetDocumentsContent}\textbf{GetDocumentsContent}: classe che si occupa di inoltrare la richiesta di recuperare i documenti nella porta esterna diretta verso il sistema di archiviazione;
+    
+    \item \label{GetDocumentsContentAWSS3}\textbf{GetDocumentsContentAWSS3}: classe adapter che implementa la porta GetDocumentsContentPort, adattando la chiamata di GetDocumentsContent a AWSS3Manager;
+    \item \label{GetDocumentsContentPort}\textbf{GetDocumentsContentPort}: interfaccia che rappresenta la porta in uscita per recuperare il contenuto dei documenti dal sistema di archiviazione;
+    \item \label{GetDocumentsStatus}\textbf{GetDocumentsStatus}: classe che si occupa di inoltrare la richiesta di recuperare gli status di una lista di documenti nella porta esterna GetDocumentsStatusPort diretta verso il vector store;
+    \item  \label{GetDocumentsStatusPort}\textbf{GetDocumentsStatusPort}: interfaccia che rappresenta la porta in uscita per recuperare gli status di una lista di documenti dal vector store;
+    
+    \item \label{GetDocumentsStatusVectorStore}\textbf{GetDocumentsStatusVectorStore}: classe adapter che implementa la porta GetDocumentsStatusPort, adattando la chiamata di GetDocumentsStatus a VectorStoreManager;
+    \item \label{HuggingFaceEmbeddingModel}\textbf{HuggingFaceEmbeddingModel}: classe che implementa LangchainEmbeddingModel offrendo la possibilità di creare embeddings attraverso un embedding model di HuggingFace;
+    \item \label{LangchainDocument}\textbf{LangchainDocument}: classe che rappresenta un documento e i suoi embeddings;    
+    \item \label{LangchainEmbeddingModel}\textbf{LangchainEmbeddingModel}: classe astratta che permette di interagire con un oggetto langhchain.Embeddings;
+    \item \label{OpenAIEmbeddingModel}\textbf{OpenAIEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di OpenAI;
+    \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti PDF;
+    \item \label{Status}\textbf{Status}: enumeration che rappresenta i valori che può assumere lo status di un documento;
+    \item \label{TextExtractor}\textbf{TextExtractor}: interfaccia che espone il metodo astratto di estrazione di testo da un documento;   
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse};
+    \item \label{VectorStoreDocumentStatusResponse}\textbf{VectorStoreDocumentStatusResponse}: classe che rappresenta la risposta generata da un vector store, contenente lo status del documento richiesto;
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
 
@@ -832,15 +861,18 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
     \item \label{EnableDocumentsController}\textbf{EnableDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case EnableDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti da riabilitare;
-    \item \label{EnableDocumentsUseCase}\textbf{EnableDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la riabilitazione dei documenti;
-    \item \label{EnableDocumentsService}\textbf{EnableDocumentsService}: classe service che implementa lo use case EnableDocumentsUseCase;
     \item \label{EnableDocumentsPort}\textbf{EnableDocumentsPort}: interfaccia che rappresenta la porta in uscita per effettuare la riabilitazione dei documenti nel vector store;
+    \item \label{EnableDocumentsService}\textbf{EnableDocumentsService}: classe service che implementa lo use case EnableDocumentsUseCase;
+    \item \label{EnableDocumentsUseCase}\textbf{EnableDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la riabilitazione dei documenti;
     \item \label{EnableDocumentsVectorStore}\textbf{EnableDocumentsVectorStore}: classe adapter che implementa la porta EnableDocumentsPort, adattando la chiamata di EnableDocumentsService a VectorStoreManager;
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
+    
 \end{itemize}
 
 \subsubsection{GetChatMessages}
@@ -882,19 +914,20 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{GetChatMessagesController}\textbf{GetChatMessagesController}: classe controller che si occupa del richiedere una chat allo use case GetChatMessagesUseCase;
-    \item \textbf{ChatId}: vedi \vedi{ChatId};
-    \item \label{GetChatMessagesUseCase}\textbf{GetChatMessagesUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere una chat;
-    \item \label{GetChatMessagesService}\textbf{GetChatMessagesService}: classe service che implementa lo use case GetChatMessagesUseCase;
     \item \label{Chat}\textbf{Chat}: classe di business che rappresenta una chat completa;
-    \item \label{ChatInfo}\textbf{ChatInfo}: classe di business che rappresenta le informazioni di una chat;
+    \item \textbf{ChatId}: vedi \vedi{ChatId};
+    %\item \label{ChatInfo}\textbf{ChatInfo}: classe di business che rappresenta le informazioni di una chat;
+    \item \label{GetChatMessagesController}\textbf{GetChatMessagesController}: classe controller che si occupa del richiedere una chat allo use case GetChatMessagesUseCase;
+    \item \label{GetChatMessagesPort}\textbf{GetChatMessagesPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una chat verso il database per la storicizzazione delle chat;
+    \item \label{GetChatMessagesPostgres}\textbf{GetChatMessagesPostgres}: classe che implementa la porta GetChatMessagesPort, adattando la chiamata di GetChatMessagesService a PostgresChatORM;
+    \item \label{GetChatMessagesService}\textbf{GetChatMessagesService}: classe service che implementa lo use case GetChatMessagesUseCase;
+    \item \label{GetChatMessagesUseCase}\textbf{GetChatMessagesUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere una chat;
     \item \textbf{Message}: vedi \vedi{Message};
     \item \textbf{MessageSender}: vedi \vedi{MessageSender};
-    \item \label{GetChatMessagesPort}\textbf{GetChatMessagesPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una chat verso il database per la storicizzazione delle chat;
-    \item \label{GetChatMessagesPostgres}\textbf{GetChatMessagesPostgres}: classe che implementa la porta GetChatMessagesPort, adattando la chiamata di GetChatMessagesService a PostgresORM;
-    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM};
     \item \textbf{PostgresChat}: vedi \vedi{PostgresChat};
+    \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM};
     \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage};
+    \item \textbf{PostgresMessageSenderType}: vedi \vedi{PostgresMessageSenderType}.
 \end{itemize}
 
 \subsubsection{GetChats}
@@ -939,17 +972,20 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{GetChatsController}\textbf{GetChatsController}: classe controller che si occupa del richiedere le preview delle chat allo use case GetChatsUseCase, con eventuale passaggio di un filtro per eseguire una ricerca;
     \item \label{ChatFilter}\textbf{ChatFilter}: classe di business che rappresenta il filtro utilizzato nella ricerca;
-    \item \label{GetChatsUseCase}\textbf{GetChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere le chat, eventualmente filtrate;
-    \item \label{GetChatsService}\textbf{GetChatsService}: classe service che implementa lo use case GetChatsUseCase;
-    \item \label{ChatPreview}\textbf{ChatPreview}: classe di business che rappresenta la preview di una chat;
-    \item \textbf{ChatInfo}: vedi \vedi{ChatInfo};
     \item \textbf{ChatId}: vedi \vedi{ChatId};
+    %\item \textbf{ChatInfo}: vedi \vedi{ChatInfo};
+    \item \label{ChatPreview}\textbf{ChatPreview}: classe di business che rappresenta la preview di una chat;
+    \item \label{GetChatsController}\textbf{GetChatsController}: classe controller che si occupa del richiedere le preview delle chat allo use case GetChatsUseCase, con eventuale passaggio di un filtro per eseguire una ricerca;
     \item \label{GetChatsPort}\textbf{GetChatsPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta delle chat eventualmente filtrate verso il database per la storicizzazione delle chat;
-    \item \label{GetChatsPostgres}\textbf{GetChatsPostgres}: classe che implementa la porta GetChatsPort, adattando la chiamata di GetChatsService a PostgresORM;
-    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}; 
-    \item \label{PostgresChatPreview}\textbf{PostgresChatPreview}: classe di persistence che rappresenta la preview di una chat.
+    \item \label{GetChatsPostgres}\textbf{GetChatsPostgres}: classe che implementa la porta GetChatsPort, adattando la chiamata di GetChatsService a PostgresChatORM;
+    \item \label{GetChatsService}\textbf{GetChatsService}: classe service che implementa lo use case GetChatsUseCase;
+    \item \label{GetChatsUseCase}\textbf{GetChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per richiedere le chat, eventualmente filtrate;
+    \item \textbf{Message}: vedi \vedi{Message};
+    \item \textbf{MessageSender}: vedi \vedi{MessageSender};
+    \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM};
+    \item \label{PostgresChatPreview}\textbf{PostgresChatPreview}: classe di persistence che rappresenta la preview di una chat;
+    \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage}.
 \end{itemize}
 
 \begin{comment}
@@ -1027,26 +1063,31 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{DocumentMetadata}\textbf{DocumentMetadata}: classe di business che rappresenta i metadati di un documento;
-    \item \label{DocumentType}\textbf{DocumentType}: enumeration che rappresenta i valori che può assumere il tipo di un documento;
-    \item \label{DocumentId}\textbf{DocumentId}: classe di business che rappresenta l'id di un documento;
-    \item \label{DocumentStatus}\textbf{DocumentStatus}: classe di business che rappresenta lo status di un documento;
-    \item \label{Status}\textbf{Status}: enumeration che rappresenta i valori che può assumere lo status di un documento;
-    \item \label{LightDocument}\textbf{LightDocument}: classe di business che fornisce una rappresentazione leggera dei documenti, esculdendo il contenuto;
-    \item \label{DocumentFilter}\textbf{DocumentFilter}: classe di business che rappresenta il filtro applicabile alla ricerca di documenti;
-    \item \label{GetDocumentsController}\textbf{GetDocumentsController}: classe controller che si occupa del passaggio di un oggetto DocumentFilter allo use case GetDocumentsUseCase a partire da una stringa che rappresenta il filtro della ricerca;
-    \item \label{GetDocumentsUseCase}\textbf{GetDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per ricercare dei documenti;
-    \item \label{GetDocumentsFacadeService}\textbf{GetDocumentsFacadeService}: classe service che implementa lo use case GetDocumentsUseCase.
-    \item \label{GetDocumentsMetadata}\textbf{GetDocumentsMetadata}: classe che si occupa di ricavare i metadati di una lista di documenti nella porta esterna GetDocumentsMetadataPort diretta verso il sistema di archiviazione documenti a partire da un filtro di ricerca;
-    \item \label{GetDocumentsStatus}\textbf{GetDocumentsStatus}: classe che si occupa di inoltrare la richiesta di recuperare gli status di una lista di documenti nella porta esterna GetDocumentsStatusPort diretta verso il vector store;
-    \item \label{GetDocumentsMetadataPort}\textbf{GetDocumentsMetadataPort}: interfaccia che rappresenta la porta in uscita per ricavare i metadati di una lista di documenti dal sistema di archiviazione a partire da un filtro di ricerca;
-    \item \label{GetDocumentsStatusVectorStore}\textbf{GetDocumentsStatusVectorStore}: classe adapter che implementa la porta GetDocumentsStatusPort, adattando la chiamata di GetDocumentsStatus a VectorStoreManager;
-    \item \label{GetDocumentsListAWSS3}\textbf{GetDocumentsListAWSS3}: classe adapter che implementa la porta GetDocumentsMetadataPort, adattando la chiamata di GetDocumentsMetadata a AWSS3Manager;
-    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \label{AWSDocumentMetadata}\textbf{AWSDocumentMetadata}: classe che rappresenta i metadati di un documento ricavato da AWS;
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \label{DocumentFilter}\textbf{DocumentFilter}: classe di business che rappresenta il filtro applicabile alla ricerca di documenti;
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \label{DocumentMetadata}\textbf{DocumentMetadata}: classe di business che rappresenta i metadati di un documento;
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    \item \label{DocumentType}\textbf{DocumentType}: enumeration che rappresenta i valori che può assumere il tipo di un documento;
+    \item \label{ElaborationException}\textbf{ElaborationException}: classe che rappresenta il messaggio di eccezione;
+     \item \label{GetDocumentsController}\textbf{GetDocumentsController}: classe controller che si occupa del passaggio di un oggetto DocumentFilter allo use case GetDocumentsUseCase a partire da una stringa che rappresenta il filtro della ricerca;
+     \item \label{GetDocumentsFacadeService}\textbf{GetDocumentsFacadeService}: classe service che implementa lo use case GetDocumentsUseCase;
+     \item \label{GetDocumentsListAWSS3}\textbf{GetDocumentsListAWSS3}: classe adapter che implementa la porta GetDocumentsMetadataPort, adattando la chiamata di GetDocumentsMetadata a \\AWSS3Manager;
+     \item \label{GetDocumentsMetadata}\textbf{GetDocumentsMetadata}: classe che si occupa di ricavare i metadati di una lista di documenti nella porta esterna GetDocumentsMetadataPort diretta verso il sistema di archiviazione documenti a partire da un filtro di ricerca;
+     \item \label{GetDocumentsMetadataPort}\textbf{GetDocumentsMetadataPort}: interfaccia che rappresenta la porta in uscita per ricavare i metadati di una lista di documenti dal sistema di archiviazione a partire da un filtro di ricerca;
+     \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
+     \item \textbf{GetDocumentsStatusPort}: vedi \vedi{GetDocumentsStatusPort};
+    \item \textbf{GetDocumentsStatusVectorStore}: \vedi{GetDocumentsStatusVectorStore};
+     \item \label{GetDocumentsUseCase}\textbf{GetDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per ricercare dei documenti;
+     \item \label{LightDocument}\textbf{LightDocument}: classe di business che fornisce una rappresentazione leggera dei documenti, esculdendo il contenuto;
+    \item \textbf{Status}: vedi \vedi{Status};    
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentStatusResponse}: \vedi{VectorStoreDocumentStatusResponse};
     \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
-    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager}.
+    
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
+    
 \end{itemize}
 
 
@@ -1092,12 +1133,15 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{RenameChatController}\textbf{RenameChatController}: classe controller che si occupa del passaggio allo use case CreateChatUseCase di un intero rappresentante l'id di una chat e un titolo per eseguire la sua rinomina;
-    \item \label{RenameChatUseCase}\textbf{RenameChatUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la rinomina di una chat;
-    \item \label{RenameChatService}\textbf{RenameChatService}: classe service che implementa lo use case RenameChatUseCase;
+    \item \textbf{ChatId}: vedi \vedi{ChatId};
+    \item \textbf{ChatOperationResponse}: vedi \vedi{ChatOperationResponse};
+    \item \label{RenameChatController}\textbf{RenameChatController}: classe controller che si occupa di effettuare la rinomina di una chat;%del passaggio allo use case CreateChatUseCase di un intero rappresentante l'id di una chat e un titolo per eseguire la sua rinomina;
     \item \label{RenameChatPort}\textbf{RenameChatPort}: interfaccia che rappresenta la porta in uscita per effettuare la rinomina di una chat verso il database per la storicizzazione delle chat;
-    \item \label{RenameChatPostgres}\textbf{RenameChatPostgres}: classe che implementa la porta RenameChatPort, adattando la chiamata di RenameChatService a PostgresORM;
-    \item \textbf{PostgresORM}: vedi \vedi{PostgresORM}. 
+    \item \label{RenameChatPostgres}\textbf{RenameChatPostgres}: classe che implementa la porta RenameChatPort, adattando la chiamata di RenameChatService a PostgresChatORM;
+    \item \label{RenameChatService}\textbf{RenameChatService}: classe service che implementa lo use case RenameChatUseCase;
+    \item \label{RenameChatUseCase}\textbf{RenameChatUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la rinomina di una chat;
+    \item \textbf{PostgresChatOperationResponse}: vedi \vedi{PostgresChatOperationResponse};
+    \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}. 
 \end{itemize}
 
 
@@ -1144,44 +1188,45 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{NewDocument}\textbf{NewDocument}: classe di presentation che contiene le informazioni relative ai documenti appena inseriti dall'utente, presenti nella richiesta HTTP;
-    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
-    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
-    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
-    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
-    \item \textbf{Status}: vedi \vedi{Status};
-    \item \label{DocumentContent}\textbf{DocumentContent}: classe di business che rappresenta il contenuto di un documento;
-    \item \label{Document}\textbf{Document}: classe di business che rappresenta i documenti completi;
-    \item \label{PlainDocument}\textbf{PlainDocument}: classe di business che rappresenta i documenti, compresi i metadati e il contenuto;
-    \item \label{UploadDocumentsController}\textbf{UploadDocumentsController}: classe controller che si occupa del passaggio di Documents allo use case UploadDocumentsUseCase a partire da NewDocuments;
-    \item \label{UploadDocumentsUseCase}\textbf{UploadDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'upload dei documenti;
-    \item \label{UploadDocumentsService}\textbf{UploadDocumentsService}: classe service che implementa lo use case UploadDocumentsUseCase;
-    \item \label{DocumentUploader}\textbf{DocumentUploader}: classe che si occupa di effettuare la chiamata dell'upload dei documenti nella porta esterna diretta verso il sistema di archiviazione documenti;
-    \item \textbf{EmbeddingsUploader}: vedi \vedi{EmbeddingsUploader};
-    \item \label{DocumentUploaderPort}\textbf{DocumentUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload dei documenti verso il sistema di archiviazione doucumenti;
-    \item \textbf{EmbeddingsUploaderPort}: vedi \vedi{EmbeddingsUploaderPort};
-    \item \label{DocumentUploaderAWSS3}\textbf{DocumentUploaderAWSS3}: classe adapter che implementa la porta DocumentUploaderPort, adattando la chiamata di DocumentUploader a AWSS3Manager;
     \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
     \item \textbf{AWSDocumentOperationResponse}: vedi \vedi{AWSDocumentOperationResponse};
-    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
-    \item \textbf{EmbeddingsUploaderFacadeLangchain}: vedi \vedi{EmbeddingsUploaderFacadeLangchain};
-    \item \textbf{LangchainDocument}: vedi \vedi{LangchainDocument};
     \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
-    \item \textbf{DocumentToText}: vedi \vedi{DocumentToText};
-    \item \textbf{TextExtractor}: vedi \vedi{TextExtractor};
-    \item \textbf{PDFTextExtractor}: vedi \vedi{PDFTextExtractor};
-    \item \textbf{DOCXTextExtractor}: vedi \vedi{DOCXTextExtractor};
     \item \textbf{Chunkerizer}: vedi \vedi{Chunkerizer};
+    \item \label{Document}\textbf{Document}: classe di business che rappresenta i documenti completi;
+    \item \label{DocumentContent}\textbf{DocumentContent}: classe di business che rappresenta il contenuto di un documento;
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};    
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
+    \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    %\item \textbf{DocumentToText}: vedi \vedi{DocumentToText};
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
+    \item \label{DocumentsUploader}\textbf{DocumentUploader}: classe che si occupa di effettuare la chiamata dell'upload dei documenti nella porta esterna diretta verso il sistema di archiviazione documenti;
+    \item \label{DocumentsUploaderAWSS3}\textbf{DocumentUploaderAWSS3}: classe adapter che implementa la porta DocumentUploaderPort, adattando la chiamata di DocumentUploader a AWSS3Manager;
+    \item \label{DocumentsUploaderPort}\textbf{DocumentUploaderPort}: interfaccia che rappresenta la porta in uscita per effettuare l'upload dei documenti verso il sistema di archiviazione documenti;
+    \item \textbf{DOCXTextExtractor}: vedi \vedi{DOCXTextExtractor};
     \item \textbf{EmbeddingsCreator}: vedi \vedi{EmbeddingsCreator};
-    \item \textbf{LangchainEmbeddingModel}: vedi \vedi{LangchainEmbeddingModel};
-    \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
-    \item \textbf{HuggingFaceEmbeddingModel}: vedi \vedi{HuggingFaceEmbeddingModel};
+    \item \textbf{EmbeddingsUploader}: vedi \vedi{EmbeddingsUploader};
+    \item \textbf{EmbeddingsUploaderFacadeLangchain}: vedi \vedi{EmbeddingsUploaderFacadeLangchain};
+    \item \textbf{EmbeddingsUploaderPort}: vedi \vedi{EmbeddingsUploaderPort};
     \item \textbf{EmbeddingsUploaderVectorStore}: vedi \vedi{EmbeddingsUploaderVectorStore};
-    \item \label{VectorStoreDocumentStatusResponse}\textbf{VectorStoreDocumentStatusResponse}: classe che rappresenta la risposta generata da un vector store, contenente lo status del documento richiesto;
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \textbf{HuggingFaceEmbeddingModel}: vedi \vedi{HuggingFaceEmbeddingModel};
+    \item \textbf{LangchainDocument}: vedi \vedi{LangchainDocument};
+    \item \textbf{LangchainEmbeddingModel}: vedi \vedi{LangchainEmbeddingModel};
+    \item \label{NewDocument}\textbf{NewDocument}: classe di presentation che contiene le informazioni relative ai documenti appena inseriti dall'utente, presenti nella richiesta HTTP;
+    \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
+    \item \textbf{PDFTextExtractor}: vedi \vedi{PDFTextExtractor};
+    \item \label{PlainDocument}\textbf{PlainDocument}: classe di business che rappresenta i documenti, compresi i metadati e il contenuto;
+    \item \textbf{Status}: vedi \vedi{Status};
+    \item \textbf{TextExtractor}: vedi \vedi{TextExtractor};
+    \item \label{UploadDocumentsController}\textbf{UploadDocumentsController}: classe controller che si occupa del passaggio di Documents allo use case UploadDocumentsUseCase a partire da NewDocuments;
+    \item \label{UploadDocumentsService}\textbf{UploadDocumentsService}: classe service che implementa lo use case UploadDocumentsUseCase;
+    \item \label{UploadDocumentsUseCase}\textbf{UploadDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'upload dei documenti;
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse};
+    %\item \textbf{VectorStoreDocumentStatusResponse}: \vedi{VectorStoreDocumentStatusResponse};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
+    
 \end{itemize}
 
 \subsubsection{ViewDocumentContent}
@@ -1221,29 +1266,32 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
-    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
-    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
-    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
-    \item \textbf{Status}: vedi \vedi{Status};
-    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
-    \item \textbf{Document}: vedi \vedi{Document};
-    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument};
-    \item \label{GetDocumentController}\textbf{GetDocumentController}: classe controller che si occupa del passaggio di un DocumentId allo use case GetDocumentUseCase a partire da una stringa che rappresenta l'id del documento da recuperare;
-    \item \label{GetDocumentUseCase}\textbf{GetDocumentUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per recuperare un documento;
-    \item \label{GetDocumentFacadeService}\textbf{GetDocumentFacadeService}: classe service che implementa lo use case GetDocumentUseCase;
-    \item \textbf{GetDocuments}: vedi \vedi{GetDocuments};
-    \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
-    \item \textbf{GetDocumentsPort}: vedi \vedi{GetDocumentsPort};
-    \item \label{GetDocumentsStatusPort}\textbf{GetDocumentsStatusPort}: interfaccia che rappresenta la porta in uscita per recuperare gli status di una lista di documenti dal vector store;
-    \item \textbf{GetDocumentsAWSS3}: vedi \vedi{GetDocumentsAWSS3};
-    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \textbf{Document}: vedi \vedi{Document};
+    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
+    \item \label{GetDocumentController}\textbf{GetDocumentController}: classe controller che si occupa del passaggio di un DocumentId allo use case GetDocumentUseCase a partire da una stringa che rappresenta l'id del documento da recuperare;
+    \item \label{GetDocumentFacadeService}\textbf{GetDocumentFacadeService}: classe service che implementa lo use case GetDocumentUseCase;
+    %\item \textbf{GetDocuments}: vedi \vedi{GetDocuments};
+    %\item \textbf{GetDocumentsAWSS3}: vedi \vedi{GetDocumentsAWSS3};
+    \item \textbf{GetDocumentsContent}: vedi \vedi{GetDocumentsContent};
+    \item \textbf{GetDocumentsContentAWSS3}: vedi \vedi{GetDocumentsContentAWSS3};
+    \item \textbf{GetDocumentsContentPort}: vedi \vedi{GetDocumentsContentPort};
+    %\item \textbf{GetDocumentsPort}: vedi \vedi{GetDocumentsPort};
+    \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
+    \item \textbf{GetDocumentsStatusPort}: \vedi{GetDocumentsStatusPort};
     \item \textbf{GetDocumentsStatusVectorStore}: vedi \vedi{GetDocumentsStatusVectorStore};
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager};
+    \item \label{GetDocumentUseCase}\textbf{GetDocumentUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per recuperare un documento;
+    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument};    
+    \item \textbf{Status}: vedi \vedi{Status};
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentOperationResponse}: vedi \vedi{VectorStoreDocumentOperationResponse}.
+    \item \textbf{VectorStoreDocumentStatusResponse}: vedi \vedi{VectorStoreDocumentStatusResponse};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
 
@@ -1282,14 +1330,97 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{askChatbot(message:string, ChatId:int): Message}\\
-        Metodo che ritorna un Message rappresentante la risposta da parte del chatbot ad un messaggio dell'utente sotto forma di string, appartenente alla chat identificata dall'intero chatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat;
-        \item \code{toMessageFrom(message: string): Message}\\
-        Metodo che trasforma una stringa un Message;
-        \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
-        Metodo che trasforma un intero in un ChatId.
+        \item \code{askChatbot(message:string, ChatId:int): MessageResponse}\\
+        Metodo che ritorna un MessageResponse rappresentante la risposta da parte del chatbot ad un messaggio dell'utente sotto forma di string, appartenente alla chat identificata dall'intero chatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat;
+        %\item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+        %Metodo che trasforma un intero in un ChatId;
+        %\item \code{toMessage(message: string): Message}\\
+        %Metodo che trasforma una stringa un Message.
+        
     \end{itemize}
 \end{itemize}
+
+
+\subsubsubsection{AskChatbotLangchain}
+\label{AskChatbotLangchainDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: AskChatbotPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{chain: langchain.Chain};
+        \item \code{chatHistoryManager: ChatHistoryManager}.
+       % \item \code{postgresChatORM: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{askChatbot(message:Message, chatId:ChatId): MessageResponse}\\
+        Implementazione del metodo astratto di AskChatbotPort per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. %Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat tramite postgresChatORM;
+
+        %\item \code{toMessageFrom(message: BaseMessage): Message}\\
+        %Metodo per ottenere un Message a partire da un BaseMessage;
+
+        %\item \code{toBaseMessageFrom(message: Message): BaseMessage}\\
+       % Metodo per ottenere un BaseMessage a partire da un Message;
+
+        %\item \code{createChat(): ChatId}\\
+        %Metodo per creare una chat tramite postgresChatORM, ritornando il suo ChatId;
+
+        %\item \code{createMemory(chatId:ChatId): langchain.Memory}\\
+        %Metodo per ottenere una langchain.Memory a partire da un ChatId tramite chatHistoryManager.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AskChatbotPort}
+\label{AskChatbotPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{askChatbot(message: Message, chatId: ChatId): MessageResponse}\\
+        Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AskChatbotService}
+\label{AskChatbotServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: AskChatbotUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{askChatbotoutPort: AskChatbotPort};
+        \item \code{persistChatOutPort: PersistChatPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{askChatbot(message:Message, chatId:ChatId): MessageResponse}\\
+        Implementazione del metodo astratto di AskChatbotUseCase per ottenere tramite outPort una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AskChatbotUseCase}
+\label{AskChatbotUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{askChatbot(message:Message, chatId:ChatId): MessageResponse}\\
+        Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatHistoryManager}
+\label{ChatHistoryManagerDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatHistory(chatId:int): langchain.PostgresChatMessageHistory}\\
+        Metodo per ottenere una langchain.PostgresChatMessageHistory rappresentante il contesto di una chat identificata da un ChatId;
+        %\item \code{saveMessage(message: langchain.BaseMessage, memory:langchain.Memory): void}\\
+        %Metodo per salvare un messaggio di tipo lanchain.BaseMessage in una memory di tipo lanchain.Memory rappresentante il contesto di una chat. 
+    \end{itemize}
+\end{itemize}
+
+
+
+
 
 \subsubsubsection{ChatId}
 \label{ChatIdDettaglio}
@@ -1300,17 +1431,41 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
 \end{itemize}
 
+
+\subsubsubsection{ChatOperationResponse}
+\label{ChatOperationResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{chatId: ChatId};
+        \item \code{message: string};
+        \item \code{status: boolean}.
+    \end{itemize}
+\end{itemize}
+
 \subsubsubsection{Message}
 \label{MessageDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{content: string};
-        \item \code{timestamp: timestamp};
-        \item \code{relevantDocument: List<string>};
-        \item \code{sender: MessageSender}.
+        \item \code{relevantDocument: List<DocumentId>};
+        \item \code{sender: MessageSender};
+        \item \code{timestamp: timestamp}.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{MessageResponse}
+\label{MessageResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}  
+        \item \code{chatId: ChatId};
+        \item \code{messageResponse: Message};
+        \item \code{status: boolean}.
+    \end{itemize}
+\end{itemize}
+
 
 \subsubsubsection{MessageSender (Enumeration)}
 \label{MessageSenderDettaglio}
@@ -1318,67 +1473,104 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{Valori}:
     \begin{itemize}
         \item \code{Chatbot};
-        \item \code{User};
+        \item \code{User}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{AskChatbotUseCase}
-\label{AskChatbotUseCaseDettaglio}
+\subsubsubsection{PersistChatPort}
+\label{PersistChatPortDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
-        Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
+        \item \code{persistChat( messages:List<Message>, chatId:ChatId): ChatOperationResponse}\\
+        Metodo astratto che prende una lista di Messages e la rende persistente, resituendo un ChatOperationResponse, che rappresenta l'esito della operazione.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{AskChatbotService}
-\label{AskChatbotServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: GetChatMessagesPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
-        Implementazione del metodo astratto di AskChatbotUseCase per ottenere tramite outPort una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AskChatbotPort}
-\label{AskChatbotPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{askChatbot(message: Message, chatId: ChatId): Message}\\
-        Metodo astratto per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AskChatbotLangchain}
-\label{AskChatbotLangchainDettaglio}
+\subsubsubsection{PostgresChat}
+\label{PostgresChatDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{chatbot: ChatbotLangchain};
-        \item \code{chatHistoryManager: ChatHistoryManager};
-        \item \code{postgresORM: PostgresORM}.
+        \item \code{id: int};
+        \item \code{messages: List<PostgresMessage>};
+        %\item \code{timestamp: datetime};
+        \item \code{title: string}.     
+    \end{itemize}    
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toChat():Chat}\\
+        Metodo che ritorna un oggetto Chat.
+    \end{itemize}
+\end{itemize}
+
+
+subsubsubsection{PostgresChatOperationResponse}
+\label{PostgresChatOperationResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{chatId: int};
+        \item \code{message: string};
+        \item \code{status: boolean}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{askChatbot(message:Message, chatId:ChatId): Message}\\
-        Implementazione del metodo astratto di AskChatbotPort per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat tramite postgresORM;
-        \item \code{toMessageFrom(message: BaseMessage): Message}\\
-        Metodo per ottenere un Message a partire da un BaseMessage;
-        \item \code{toBaseMessageFrom(message: Message): BaseMessage}\\
-        Metodo per ottenere un BaseMessage a partire da un Message;
-        \item \code{createChat(): ChatId}\\
-        Metodo per creare una chat tramite postgresORM, ritornando il suo ChatId;
-        \item \code{createMemory(chatId:ChatId): langchain.Memory}\\
-        Metodo per ottenere una langchain.Memory a partire da un ChatId tramite chatHistoryManager.
+        \item \code{toChatOperationResponse():} \code{ChatOperationResponse}\\
+        Metodo che ritorna l'esito dell'operazione effettuata sottoforma di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
+%class PostgresMessageSenderType(Enum):
+  %  human = 1
+  %  ai = 2
+
+\subsubsubsection{PostgresMessage}
+\label{PostgresMessageDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{content: string};
+        \item \code{relevantDocument: List<string>};        
+        \item \code{sender: PostgresMessageSenderType};
+        \item \code{timestamp: timestamp}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toMessage(): Message}\\
+        Metodo che permette di passare da PostgresMessage a un oggetto Message.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresMessageSenderType(Enumeration)}
+\label{PostgresMessageSenderTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{ai};
+        \item \code{human}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresPersistChat}
+\label{PostgresPersistChatDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: PersistChatPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresChatORM: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{persistChat(messages:List<Message>, chatId: ChatId}\\
+        Metodo che implementa il metodo persistChat di PersistChatPort; prende una lista di Messages e la rende persistente, restituendo un ChatOperationResponse, che rappresenta l'esito della operazione.
+        \item \code{toPostgresMessageFrom(message:Message): PostgresMessage}\\
+        Metodo che permette di passare da un oggetto Message ad un oggetto persistente PostgresMessage.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{comment}
+    
 
 \subsubsubsection{ChatbotLangchain}
 \label{ChatbotLangchainDettaglio}
@@ -1463,93 +1655,43 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{LangchainEmbeddingModel}
-\label{LangchainEmbeddingModelDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{embeddingModel: Embeddings}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocument(documentChunks: List<string>): List<List<float>>}\\
-        Metodo astratto per generare gli embeddings di un insieme di chunks sotto forma di lista di stringhe: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{OpenAIEmbeddingModel}
-\label{OpenAIEmbeddingModelDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
-        Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings OpenAI: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{HuggingFaceEmbeddingModel}
-\label{HuggingFaceEmbeddingModelDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
-        Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings di HuggingFace: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings.
-    \end{itemize}
-\end{itemize}
+\end{comment}
 
-\subsubsubsection{ChatHistoryManager}
-\label{ChatHistoryManagerDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getChatHistory(chatId:ChatId): langchain.PostgresChatMessageHistory}\\
-        Metodo per ottenere una langchain.PostgresChatMessageHistory rappresentante il contesto di una chat identificata da un ChatId;
-        \item \code{saveMessage(message: langchain.BaseMessage, memory:langchain.Memory): void}\\
-        Metodo per salvare un messaggio di tipo lanchain.BaseMessage in una memory di tipo lanchain.Memory rappresentante il contesto di una chat. 
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{PostgresORM}
-\label{PostgresORMDettaglio}
+\subsubsubsection{PostgresChatORM}
+\label{PostgresChatORMDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getChats(chatFilter:string): List<PostgresChatPreview>}\\
-        Metodo per ottenere una lista di PostgresChatPreview dal database Postgres utilizzato per la storicizzazione delle chat, eventualmente filtrando la ricerca attraverso chatFilter;
+        \item \code{createChat(): PostgresChatOperationResponse}\\
+        Metodo per creare una nuova PostgresChat sul database Postgres utilizzato per la storicizzazione della chat;
+
+        \item \code{deleteChats(chatIds:List<int>): List<PostgresChatOperationResponse>}\\
+        Metodo per eliminare chat sul database Postgres utilizzato per la storicizazzione delle chat. Ritorna l'esito dell'operazione con una lista di PostgresChatOperationResponse;
+        
         \item \code{getChatMessages(chatId:int): PostgresChat}\\
         Metodo per ottenere una PostgresChat dal database Postgres utilizzato per la storicizzazione delle chat a partire da un intero rappresentante l'id della chat;
-        \item \code{renameChat(chatId:int, title:string): boolean}\\
-        Metodo per rinominare con title una chat identificata tramite chatId sul database Postgres utilizzato per la storicizzazione delle chat. L'esito dell'operazione viene comunicato ritornando un boolean;  
-        \item \code{deleteChats(chatId:int): boolean}\\
-        Metodo per eliminare una PostgresChat sul database Postgres utilizzato per la storicizazzione delle chat. L'esito dell'operazione viene comunicato ritornando un boolean;        
-        \item \code{createChat(): PostgresChat}\\
-        Metodo per creare una nuova PostgresChat sul database Postgres utilizzato per la storicizzazione della chat. L'istanza della chat creata viene ritornata dal metodo.
+
+        \item \code{getChats(chatFilter:string): List<PostgresChatPreview>}\\
+        Metodo per ottenere una lista di PostgresChatPreview dal database Postgres utilizzato per la storicizzazione delle chat, eventualmente filtrando la ricerca attraverso chatFilter;
+
+        \item \code{persistChat(messages:List<PostgresMessage>, chatId:int): PostgresChatOperationResponse}\\
+        Metodo che prende una lista di PostgresMessages e la rende persistente, restituendo un PostgresChatOperationResponse, che rappresenta l'esito della operazione.
+        
+        \item \code{renameChat(chatId:int, title:string): PostgresChatOperationResponse}\\
+        Metodo per rinominare con title una chat identificata tramite chatId sul database Postgres utilizzato per la storicizzazione delle chat. Ritorna l'esito dell'operazione con un PostgresChatOperationResponse;
+        
+        \item \code{saveMessages(messages:List<PostgresMessage>, chatId:int):}\\ \code{PostgresChatOperationResponse}\\
+          
+        
+        
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{PostgresChat}
-\label{PostgresChatDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{id: int}
-        \item \code{title: string};
-        \item \code{timestamp: timestamp};
-        \item \code{messages: List<PostgresMessage>}.
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{PostgresMessage}
-\label{PostgresMessageDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{content: string};
-        \item \code{timestamp: timestamp};
-        \item \code{relevantDocument: List<string>};
-        \item \code{sender: string}.
-    \end{itemize}
-\end{itemize}
+
 
 % \subsection{ChangeConfiguration}%TODO
 
@@ -1571,29 +1713,6 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{ConcealDocumentsUseCase}
-\label{ConcealDocumentsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo astratto per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{ConcealDocumentsService}
-\label{ConcealDocumentsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: ConcealDocumentsPort}.  
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di ConcealDocumentsUseCase per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
-    \end{itemize}
-\end{itemize}
 
 \subsubsubsection{ConcealDocumentsPort}
 \label{ConcealDocumentsPortDettaglio}
@@ -1605,12 +1724,39 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
 \end{itemize}
 
+\subsubsubsection{ConcealDocumentsService}
+\label{ConcealDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: ConcealDocumentsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: ConcealDocumentsPort}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di ConcealDocumentsUseCase per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ConcealDocumentsUseCase}
+\label{ConcealDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{concealDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per occultare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+
 \subsubsubsection{ConcealDocumentsVectorStore}
 \label{ConcealDocumentsVectorStoreDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: ConcealDocumentsPort;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item 
+        \item \code{vectorStoreManager: VectorStoreManager}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -1619,57 +1765,56 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{VectorStoreManager}
-\label{VectorStoreManagerDettaglio}
+\subsubsubsection{DocumentId}
+\label{DocumentIdDettaglio}
 \begin{itemize}
-    \item \textbf{Metodi}:
+    \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
-        Metodo astratto per ottenere gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
-        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Metodo astratto per eliminare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Metodo astratto per occultare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Metodo astratto per abilitare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Metodo astratto per effettuare l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+        \item \code{id: string}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{VectorStorePineconeManager}
-\label{VectorStorePineconeManagerDettaglio}
+\subsubsubsection{DocumentOperationResponse}
+\label{DocumentOperationResponseDettaglio}
 \begin{itemize}
-    \item \textbf{Metodi}:
+    \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per ottenere da Pinecone gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
-        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per eliminare da Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per occultare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per abilitare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per effettuare in Pinecone l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+        \item \code{documentId: DocumentId};
+        \item \code{message: string};
+        \item \code{status: boolean}.
     \end{itemize}
 \end{itemize}
 
 \subsubsubsection{VectorStoreChromaDBManager}
 \label{VectorStoreChromaDBManagerDettaglio}
 \begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+       % \item \code{chromadb: chromadbCollection}; ?
+        \item \code{collection: chromadbCollection}.
+    \end{itemize}
+    \item \textbf{Implementa}: VectorStoreManager;
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per ottenere da ChromaDB gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
-        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per eliminare da ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
         \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
         Implementazione del metodo astratto di VectorStoreManager per occultare in ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per eliminare da ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
         \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
         Implementazione del metodo astratto di VectorStoreManager per abilitare in ChromaDB gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
-        \item \code{uploadEmbeddings(documentEmbeddings:}\\ \code{List<Tuple<string; List<float>; Dict<string; Any>>>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
-        Implementazione del metodo astratto di VectorStoreManager per effettuare in ChromaDB l'upload degli embeddings di un documento a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). Ritorna un VectorStoreDocumentOperationResponse.
+
+        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per ottenere da ChromaDB gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;      
+
+        \item \code{uploadEmbeddings(documentsIds:List<string>, documentsChunks:}\\ 
+        \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
+        \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
+        Implementazione del metodo astratto di VectorStoreManager per effettuare in ChromaDB l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
+        %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store ChromaDB.
     \end{itemize}
 \end{itemize}
 
@@ -1679,10 +1824,82 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{documentId: string};
-        \item \code{responseStatus: boolean};
-        \item \code{responseMessage: string}.
+        \item \code{responseMessage: string};
+        \item \code{responseStatus: boolean}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+       
+       \item \code{toDocumentOperationResponse(): DocumentOperationResponse}\\
+       Metodo che crea e ritorna un DocumentOperationResponse.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{VectorStoreManager}
+\label{VectorStoreManagerDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Metodo astratto per occultare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Metodo astratto per eliminare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Metodo astratto per abilitare gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+        Metodo astratto per ottenere gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
+
+        \item \code{uploadEmbeddings(documentsIds:List<string>, documentsChunks:}\\ 
+        \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
+        \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
+        Metodo astratto per effettuare l'upload degli embeddings di un documento.  Ritorna un VectorStoreDocumentOperationResponse;
+        %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento).
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        Metodo astratto per ottenere un langchain.BaseRetriever.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{VectorStorePineconeManager}
+\label{VectorStorePineconeManagerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        %\item \code{dimension: int};
+        \item \code{index: string};
+        \item \code{pinecone: pinecone.Pinecone}.
+        
+    \end{itemize}
+    \item \textbf{Implementa}: VectorStoreManager;
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{concealDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per occultare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{deleteDocumentsEmbeddings(documentsIds:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per eliminare da Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{enableDocuments(documentsId:List<string>):}\\ \code{List<VectorStoreDocumentOperationResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per abilitare in Pinecone gli embeddings di una lista di documenti a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornando una lista di VectorStoreDocumentOperationResponse;
+
+        \item \code{getDocumentsStatus(documentIds:List<string>):}\\ \code{List<VectorStoreDocumentStatusResponse>}\\
+        Implementazione del metodo astratto di VectorStoreManager per ottenere da Pinecone gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;
+
+        \item \code{uploadEmbeddings(documentsIds:List<string>, documentsChunks:}\\ 
+        \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
+        \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
+        Implementazione del metodo astratto di VectorStoreManager per effettuare in Pinecone l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
+        % a partire da una lista di stringhe (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store Pinecone.
+    \end{itemize}
+\end{itemize}
+
+
+
+
 
 
 \subsection{DeleteChats}
@@ -1691,6 +1908,10 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
 \subsubsubsection{ChatId}
 Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{ChatOperationResponse}
+Vedi \vedi{ChatOperationResponseDettaglio};
+
 
 \subsubsubsection{DeleteChatsController}
 \label{DeleteChatsControllerDettaglio}
@@ -1701,10 +1922,52 @@ Vedi \vedi{ChatIdDettaglio}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{deleteChats(chatIdList:List<int>):}\\ \code {List<ChatOperationResponse>}\\
-        Metodo che elimina tramite useCase una lista di chat identificate da una lista di interi, ritornando una lista di ChatOperationResponse;
-        \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
-        Metodo che crea e ritorna un ChatId a partire da un intero. 
+        \item \code{deleteChats(chatIdsList:List<int>):}\\ \code {List<ChatOperationResponse>}\\
+        Metodo che elimina tramite useCase una lista di chat identificate da una lista di interi, ritornando una lista di ChatOperationResponse.
+        %\item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+        %Metodo che crea e ritorna un ChatId a partire da un intero. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteChatsPort}
+\label{DeleteChatsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Metodo astratto per per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteChatsPostgres}
+\label{DeleteChatsPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DeleteChatsPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresChatORM: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteChatsService}
+\label{DeleteChatsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DeleteChatsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DeleteChatsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
@@ -1713,105 +1976,70 @@ Vedi \vedi{ChatIdDettaglio}.
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
         Metodo astratto per che eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{DeleteChatsService}
-\label{DeleteChatsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: DeleteChatsPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteChatsPort}
-\label{DeleteChatsPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Metodo astratto per per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteChatsPostgres}
-\label{DeleteChatsPostgresDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{postgresORM: PostgresORM}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{ChatOperationResponse}
-\label{ChatOperationResponseDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{chatId: ChatId};
-        \item \code{response: boolean}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{PostgresORM}
-Vedi \vedi{PostgresORMDettaglio}.
 
 
+\subsubsubsection{PostgresChatOperationResponse}
+Vedi \vedi{PostgresChatOperationResponseDettaglio};
+
+
+
+
+
+
+
+
+\subsubsubsection{PostgresChatORM}
+Vedi \vedi{PostgresChatORMDettaglio}.
+
+
+
+
+
+
+
+
+%DELETEDOCS
 \subsection{DeleteDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
 
-\subsubsubsection{DeleteDocumentsController}
-\label{DeleteDocumentsControllerDettaglio}
+
+\subsubsubsection{AWSDocumentOperationResponse}
+\label{AWSDocumentOperationResponseDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{useCase: DeleteDocumentsUseCase}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo che si occupa di trasformare la lista di stringhe in lista di DocumentId e inoltrare la richiesta di eliminazione dei documenti a DeleteDocumentsUseCase.
+        \item \code{documentId: string};
+        \item \code{message: string};
+        \item \code{status: boolean}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{DeleteDocumentsUseCase}
-\label{DeleteDocumentsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo astratto per eliminare una lista di documenti a partire dai loro id.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteDocumentsService}
-\label{DeleteDocumentsServiceDettaglio}
+\subsubsubsection{AWSS3Manager}
+\label{AWSS3ManagerDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{deleteDocuments: DeleteDocuments};
-        \item \code{deleteDocumentsEmbeddings: DeleteDocumentsEmbeddings}. 
+        \item \code{boto3: boto3.session.Session};
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteDocumentsUseCase per eliminare una lista di documenti e i loro embeddings a partire dai loro id.
+        \item \code{deleteDocuments(documentsId:List<string>):}\\ \code{ List<AWSDocumentOperationResponse>}\\
+        Metodo per eliminare un documento a partire da una stringa corrispondente al documentId del documento tramite boto3, ritornando un AWSDocumentOperationResponse;
+        \item \code{getDocumentById(documentId:string): AWSDocument}\\
+        Metodo per ottenere un AWSDocument a partire da una stringa corrispondente al documentId del documento tramite boto3;
+        \item \code{getDocumentsMetadata(documentFilter:string): List<AWSDocumentMetadata>}\\
+        Metodo per ottenere una lista di AWSDocumentMetaData a partire da una eventuale filtro stringa tramite boto3; 
+        \item \code{uploadDocuments(documents:List<AWSDocument>, forceUpload:boolean):}\\ \code{ List<AWSDocumentOperationResponse>} \\ 
+        Metodo per caricare una lista di AWSDocument tramite boto3, con flag forceUpload per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando una lista di AWSDocumentOperationResponse.
     \end{itemize}
 \end{itemize}
+
 
 \subsubsubsection{DeleteDocuments}
 \label{DeleteDocumentsDettaglio}
@@ -1824,6 +2052,36 @@ Vedi \vedi{PostgresORMDettaglio}.
     \begin{itemize}
         \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
         Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteDocumentsAWSS3}
+\label{DeleteDocumentsAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DeleteDocumentsPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item awsS3Manager: AWSS3Manager.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteDocumentsPort per eliminare una lista di documenti da AWS S3 a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteDocumentsController}
+\label{DeleteDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: DeleteDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che si occupa di trasformare la lista di stringhe in lista di DocumentId e inoltrare la richiesta di eliminazione dei documenti a DeleteDocumentsUseCase.
     \end{itemize}
 \end{itemize}
 
@@ -1851,6 +2109,34 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
+\subsubsubsection{DeleteDocumentsService}
+\label{DeleteDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DocumentsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{deleteDocuments: DeleteDocuments};
+        \item \code{deleteDocumentsEmbeddings: DeleteDocumentsEmbeddings}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteDocumentsUseCase per eliminare una lista di documenti e i loro embeddings a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteDocumentsUseCase}
+\label{DeleteDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per eliminare una lista di documenti a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+
 \subsubsubsection{DeleteEmbeddingsPort}
 \label{DeleteEmbeddingsPortDettaglio}
 \begin{itemize}
@@ -1861,65 +2147,10 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{DocumentOperationResponse}
-\label{DocumentOperationResponseDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentId: DocumentId};
-        \item \code{status: boolean};
-        \item \code{message: string}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteDocumentsAWSS3}
-\label{DeleteDocumentsAWSS3Dettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item awsS3Manager: AWSS3Manager.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteDocumentsPort per eliminare una lista di documenti da AWS S3 a partire dai loro id.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AWSS3Manager}
-\label{AWSS3ManagerDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{boto3: boto3.session.Session};
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocumentById(documentId:string): AWSDocument}\\
-        Metodo per ottenere un AWSDocument a partire da una stringa corrispondente al documentId del documento tramite boto3;
-        \item \code{deleteDocuments(documentsId:List<string>):}\\ \code{ List<AWSDocumentOperationResponse>}\\
-        Metodo per eliminare un documento a partire da una stringa corrispondente al documentId del documento tramite boto3, ritornando un AWSDocumentOperationResponse;
-        \item \code{getDocumentsMetadata(documentFilter:string): List<AWSDocumentMetadata>}\\
-        Metodo per ottenere una lista di AWSDocumentMetaData a partire da una eventuale filtro stringa tramite boto3; 
-        \item \code{uploadDocuments(documents:List<AWSDocument>, forceUpload:boolean):}\\ \code{ List<AWSDocumentOperationResponse>} \\ 
-        Metodo per caricare una lista di AWSDocument tramite boto3, con flag forceUpload per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando una lista di AWSDocumentOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AWSDocumentOperationResponse}
-\label{AWSDocumentOperationResponseDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentId: string};
-        \item \code{status: boolean};
-        \item \code{message: string}.
-    \end{itemize}
-\end{itemize}
-
 \subsubsubsection{DeleteEmbeddingsVectorStore}
 \label{DeleteEmbeddingsVectorStoreDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: DeleteEmbeddingsPort;
     \item \textbf{Attributi}:
     \begin{itemize}
         \item vectorStoreManager: VectorStoreManager.
@@ -1931,11 +2162,11 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{VectorStoreManager}
-Vedi \vedi{VectorStoreManagerDettaglio}.
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
 
-\subsubsubsection{VectorStorePineconeManager}
-Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
 
 \subsubsubsection{VectorStoreChromaDBManager}
 Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
@@ -1944,62 +2175,84 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+
+
 \subsection{EmbedDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
 
-\subsubsubsection{EmbedDocumentsController}
-\label{EmbedDocumentsControllerDettaglio}
+\subsubsubsection{AWSDocument}
+\label{AWSDocumentDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{useCase: EmbedDocumentsUseCase}.
+        \item \code{content: bytes};
+        \item \code{id: string};
+        \item \code{size: float};
+        \item \code{type: string};
+        \item \code{uploadTime: timestamp}.
     \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare la generazione degli embeddings dei documenti a EmbedDocumentsUseCase;
-        \item \code{toDocument(document:NewDocument): Document}\\
-        Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
-    \end{itemize}
-\end{itemize}
+\end{itemize}   
 
-\subsubsubsection{EmbedDocumentsUseCase}
-\label{EmbedDocumentsUseCaseDettaglio}
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+\subsubsubsection{Chunkerizer}
+\label{ChunkerizerDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo astratto per generare gli embeddings di una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
-    \end{itemize}
+        \item \code{extractText(document:Document):}\\ \code{List<langchain.Document>}\\
+        Metodo per suddividere in chunks una lista di langchain.Document, ritornandoli attraverso una lista di langchain.Document.
+        
+        \item \code{getTextExtractorFrom(documentType:string):}\\ \code{ TextExtractor}\\
+        Metodo che ritorna il tipo di TextExtractor da usare.
+    \end{itemize}  
 \end{itemize}
 
-\subsubsubsection{EmbedDocumentsService}
-\label{EmbedDocumentsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{getDocuments: GetDocuments};
-        \item \code{embeddingsUploader: EmbeddingsUploader}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocuments(documentIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di EmbedDocumentsUseCase, per il recupero dei documenti e il loro contenuto attraverso getDocuments, e la generazione degli embeddings della lista dei documenti recuperati tramite embeddingsUploader. Ritorna una lista di DocumentOperationResponse, indicando per ogni documento l'esito della generazione degli embeddings.
-    \end{itemize}
-\end{itemize}
+\subsubsubsection{DocumentId}
+Vedi \vedi {DocumentIdDettaglio}.
 
-\subsubsubsection{GetDocuments}
-\label{GetDocumentsDettaglio}
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
+
+\subsubsubsection{DocumentStatus}
+\label{DocumentStatusDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{outPort: GetDocumentsPort}.
+        \item \code{status: Status}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DOCXTextExtractor}
+\label{DOCXTextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: TextExtractor;
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un DOCX sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingsCreator}
+\label{EmbeddingsCreatorDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{langchainEmbeddingModel: LangchainEmbeddingModel}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocuments(documentIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
-        Metodo per recuperare una lista di Document tramite outPort dal sistema di archiviazione documenti a partire da una lista di id.
+        \item \code{embedDocument(documents:List<langchain.Document>): List<List<float>>}\\
+        Metodo per generare una lista di embeddings a partire da una lista di langchain.Document: per ogni chunk di langchain.Document presente nella lista viene generata una lista di float che rappresenta gli embeddings corrispondenti.
     \end{itemize}
 \end{itemize}
 
@@ -2017,13 +2270,27 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocumentsPort}
-\label{GetDocumentsPortDettaglio}
+\subsubsubsection{EmbeddingsUploaderFacadeLangchain}
+\label{EmbeddingsUploaderFacadeLangchainDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: EmbeddingsUploaderPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{chunkerizer: Chunkerizer};
+        \item \code{embeddingsCreator: EmbeddingsCreator};
+        \item \code{embeddingsUploaderVectorStore: EmbeddingsUploaderVectorStore}.
+    \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocuments(documentIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
-        Metodo astratto per recuperare una lista di documenti dal sistema di archiviazione a partire dal loro id.
+        \item \code{uploadEmbeddings(documents:List<Document>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EmbeddingsUploaderPort per la generazione e il caricamento di embeddings di una lista di Document nel vector store tramite l'utilizzo di un pattern facade, ritornando infine una lista di DocumentOperationResponse.\\
+        Le operazioni all'interno della facade vengono svolte nel seguente ordine:
+        \begin{enumerate}
+            \item Estrazione del testo dai documenti tramite documentToText;
+            \item Suddivisione in chunks del testo estratto dai documenti tramite chunkerizer;
+            \item Generazione degli embeddings a partire dai chunks tramite embeddingsCreator;
+            \item Caricamento degli embeddings creati nel vector store tramite embeddingsUploaderVectorStore.
+        \end{enumerate}
     \end{itemize}
 \end{itemize}
 
@@ -2036,126 +2303,6 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
         Metodo astratto per effettuare la generazione e il caricamento degli embeddings di una lista di Document in un vector store.
     \end{itemize}
 \end{itemize}
-
-\subsubsubsection{GetDocumentsAWSS3}
-\label{GetDocumentsAWSS3Dettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{awsS3Manager: AWSS3Manager}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocuments(documentIds:List<DocumentId>): List<PlainDocument>}\\
-        Implementazione del metodo astratto di GetDocumentsPort per recuperare una lista di documenti dal sistema di archiviazione a partire dal loro id;
-        \item \code{toPlainDocumentFrom(document:AWSDocument): PlainDocument}\\
-        Metodo che trasforma un AWSDocument in un Document della business logic.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AWSS3Manager}
-Vedi \vedi{AWSS3ManagerDettaglio}.
-
-\subsubsubsection{AWSDocument}
-\label{AWSDocumentDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{id: string};
-        \item \code{content: bytes};
-        \item \code{type: string};
-        \item \code{size: float};
-        \item \code{uploadTime: timestamp}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{EmbeddingsUploaderPort}
-Vedi \vedi{EmbeddingsUploaderPortDettaglio}.
-
-\subsubsubsection{DocumentOperationResponse}
-Vedi \vedi{DocumentOperationResponseDettaglio}.
-
-\subsubsubsection{LangchainDocument}
-\label{LangchainDocumentDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentId: string};
-        \item \code{text: List<langchain.Document>};
-        \item \code{embeddings: List<List<float>>}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DocumentToText}
-\label{DocumentToTextDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{extractText(document:Document): List<langchain.Document>}\\
-        Metodo per estrarre il testo sotto forma di langchain.Document a partire da un Document;
-        \item \code{getTextExtractorFrom(documentType:string): TextExtractor}\\
-        Metodo per ottenere un TextExtractor a partire dal tipo del documento, indicato sotto forma di stringa.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{TextExtractor}
-\label{TextExtractorDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
-        Metodo astratto per estrarre il testo sotto forma di langchain.Document a partire da un DocumentContent.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{PDFTextExtractor}
-\label{PDFTextExtractorDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
-        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un PDF sotto forma di langchain.Document a partire da un DocumentContent.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DOCXTextExtractor}
-\label{DOCXTextExtractorDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
-        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un DOCX sotto forma di langchain.Document a partire da un DocumentContent.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{Chunkerizer}
-\label{ChunkerizerDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{createChunks(documents:List<langchain.Document>):}\\ \code{List<langchain.Document>}\\
-        Metodo per suddividere in chunks una lista di langchain.Document, ritornandoli attraverso una lista di langchain.Document.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{EmbeddingsCreator}
-\label{EmbeddingsCreatorDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{embedDocument(documents:List<langchain.Document>): List<List<float>>}\\
-        Metodo per generare una lista di embeddings a partire da una lista di langchain.Document: per ogni chunk di langchain.Document presente nella lista viene generata una lista di float che rappresenta gli embeddings corrispondenti.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{LangchainEmbeddingModel}
-Vedi \vedi {LangchainEmbeddingModelDettaglio}.
-
-\subsubsubsection{OpenAIEmbeddingModel}
-Vedi \vedi{OpenAIEmbeddingModelDettaglio}.
-
-\subsubsubsection{HuggingFaceEmbeddingModel}
-Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
 
 \subsubsubsection{EmbeddingsUploaderVectorStore}
 \label{EmbeddingsUploaderVectorStoreDettaglio}
@@ -2171,11 +2318,254 @@ Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{VectorStoreManager}
-Vedi \vedi{VectorStoreManagerDettaglio}.
 
-\subsubsubsection{VectorStorePineconeManager}
-Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+\subsubsubsection{EmbedDocumentsController}
+\label{EmbedDocumentsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: EmbedDocumentsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentsIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare la generazione degli embeddings dei documenti a EmbedDocumentsUseCase.
+        %\item \code{toDocument(document:NewDocument): Document}\\
+        %Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{EmbedDocumentsService}
+\label{EmbedDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: EmbedDocumentsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{embeddingsUploader: EmbeddingsUploader};
+        \item \code{getDocumentsContent: GetDocumentsContent};
+        \item \code{getDocumentsStatus: GetDocumentsStatus}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentsIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EmbedDocumentsUseCase, per il recupero dei documenti e il loro contenuto attraverso getDocuments, e la generazione degli embeddings della lista dei documenti recuperati tramite embeddingsUploader. Ritorna una lista di DocumentOperationResponse, indicando per ogni documento l'esito della generazione degli embeddings.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{EmbedDocumentsUseCase}
+\label{EmbedDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocuments(documentsIds:List<DocumentIds>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per generare gli embeddings di una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetDocumentsContent}
+\label{GetDocumentsContentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetDocumentsContentPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent(documentsIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
+        Metodo per recuperare il contenuto di una lista di Document tramite outPort dal sistema di archiviazione documenti a partire da una lista di id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsContentAWSS3}
+\label{GetDocumentsContentAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DocumentsContentPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{awsS3Manager: AWSS3Manager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent(documentsIds:List<DocumentId>): List<PlainDocument>}\\
+        Implementazione del metodo astratto di GetDocumentsContentPort per recuperare il contenuto di una lista di documenti dal sistema di archiviazione a partire dal loro id;
+        \item \code{toPlainDocumentFrom(document:AWSDocument): PlainDocument}\\
+        Metodo che trasforma un AWSDocument in un Document della business logic.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{GetDocumentsContentPort}
+\label{GetDocumentsContentPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent(documentsIds:List<DocumentId>):}\\ \code{List<PlainDocument>}\\
+        Metodo astratto per recuperare il contenuto di una lista di documenti dal sistema di archiviazione a partire dal loro id.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetDocumentsStatus}
+\label{GetDocumentsStatusDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetDocumentsStatusPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsStatus(documentsIds:List<DocumentId>)}\\ \code{List<DocumentStatus>}\\
+        Metodo per recuperare gli status di una lista di documenti tramite outPort dal vector store a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsStatusPort}
+\label{GetDocumentsStatusPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsStatus(documentsIds:List<DocumentId>):}\\ \code{List<DocumentStatus>}\\
+        Metodo astratto per recuperare gli status di una lista di documenti a partire dal loro id.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetDocumentsStatusVectorStore}
+\label{GetDocumentsStatusVectorStoreDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetDocumentsStatusPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{vectorStoreManager: VectorStoreManager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsStatus(documentsIds:List<DocumentId>):}\\ \code{List<DocumentStatus>}\\
+        Implementazione del metodo astratto di GetDocumentsStatusVectorStore per recuperare gli status di una lista di documenti a partire dal loro id.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{HuggingFaceEmbeddingModel}
+\label{HuggingFaceEmbeddingModelDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: LangchainEmbeddingModel;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{embeddingsDimension: int};
+        \item \code{model: langchain.Embedding}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
+        Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings di HuggingFace: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
+        \item \code{getEmbeddingFunction(): langchain.Embedding}\\
+        Implementazione del metodo astratto per ottenere il model.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{LangchainDocument}
+\label{LangchainDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentId: string};
+        \item \code{embeddings: List<List<float>>};
+        \item \code{text: List<langchain.Document>}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{LangchainEmbeddingModel}
+\label{LangchainEmbeddingModelDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocument(documentChunks: List<string>): List<List<float>>}\\
+        Metodo astratto per generare gli embeddings di un insieme di chunks sotto forma di lista di stringhe: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
+        \item \code{getEmbeddingFunction(): langchain.Embedding}\\
+        Metodo astratto per ottenere il model.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{OpenAIEmbeddingModel}
+\label{OpenAIEmbeddingModelDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: LangchainEmbeddingModel;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{embeddingsDimension: int};
+        \item \code{model: langchain.Embedding}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
+        Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings OpenAI: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
+        \item \code{getEmbeddingFunction(): langchain.Embedding}\\
+        Implementazione del metodo astratto per ottenere il model.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PDFTextExtractor}
+\label{PDFTextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: TextExtractor;
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Implementazione del metodo astratto di TextExtractor per estrarre il testo da un PDF sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{Status (Enumeration)}
+\label{StatusDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{Concealed};
+        \item \code{Enabled};
+        \item \code{Not Embedded}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{TextExtractor}
+\label{TextExtractorDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:DocumentContent): List<langchain.Document>}\\
+        Metodo astratto per estrarre il testo sotto forma di langchain.Document a partire da un DocumentContent.
+    \end{itemize}
+\end{itemize}
+
+\begin{comment}
+    Non usata
+
+\subsubsubsection{DocumentToText}
+\label{DocumentToTextDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{extractText(document:Document): List<langchain.Document>}\\
+        Metodo per estrarre il testo sotto forma di langchain.Document a partire da un Document;
+        \item \code{getTextExtractorFrom(documentType:string): TextExtractor}\\
+        Metodo per ottenere un TextExtractor a partire dal tipo del documento, indicato sotto forma di stringa.
+    \end{itemize}
+\end{itemize}
+\end{comment}
+
+
+
+
+
 
 \subsubsubsection{VectorStoreChromaDBManager}
 Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
@@ -2184,9 +2574,43 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
+\subsubsubsection{VectorStoreDocumentStatusResponse}
+\label{VectorStoreDocumentStatusResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentStatus: string};
+        \item \code{id: string}.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+
+
+
+
+
 \subsection{EnableDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
+
+
+
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
+
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
+
 
 \subsubsubsection{EnableDocumentsController}
 \label{EnableDocumentsControllerDettaglio}
@@ -2197,8 +2621,34 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{enableDocuments(documentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
+        \item \code{enableDocuments(documentsIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
         Metodo che si occupa di trasformare le stringhe di id in DocumentId e inoltrare la riabilitazione dei documenti a EnableDocumentsUseCase;
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{EnableDocumentsPort}
+\label{EnableDocumentsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per riabilitare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EnableDocumentsService}
+\label{EnableDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: EnableDocumentsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: EnableDocumentsPort}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{enableDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di EnableDocumentsUseCase per riabilitare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
     \end{itemize}
 \end{itemize}
 
@@ -2207,48 +2657,33 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        \item \code{enableDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
         Metodo astratto per riabilitare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{EnableDocumentsService}
-\label{EnableDocumentsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: EnableDocumentsPort}.  
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di EnableDocumentsUseCase per riabilitare una lista di documenti a partire dal loro DocumentId. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{EnableDocumentsPort}
-\label{EnableDocumentsPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo astratto per riabilitare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
-    \end{itemize}
-\end{itemize}
 
 \subsubsubsection{EnableDocumentsVectorStore}
 \label{EnableDocumentsVectorStoreDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: EnableDocumentsPort;
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{vectorStoreManager: VectorStoreManager}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{enableDocuments(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
+        \item \code{enableDocuments(documentsIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
         Implementazione del metodo astratto di EnableDocumentsPort per riabilitare una lista di documenti a partire dal loro DocumentId, dialogando con il vector store. Ritorna una lista di DocumentOperationResponse, che indica l'esito dell'operazione per ogni documento.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+
+\subsubsubsection{VectorStoreDocumentOperationResponse}
+Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 \subsubsubsection{VectorStoreManager}
 Vedi \vedi{VectorStoreManagerDettaglio}.
@@ -2256,16 +2691,27 @@ Vedi \vedi{VectorStoreManagerDettaglio}.
 \subsubsubsection{VectorStorePineconeManager}
 Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
-\subsubsubsection{VectorStoreChromaDBManager}
-Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
-
-\subsubsubsection{VectorStoreDocumentOperationResponse}
-Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
 \subsection{GetChatMessages}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
+
+
+
+\subsubsubsection{Chat}
+\label{ChatDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: ChatId};
+        \item \code{messages: List<Message>};
+        \item \code{title: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
 
 \subsubsubsection{GetChatMessagesController}
 \label{GetChatMessagesControllerDettaglio}
@@ -2281,11 +2727,9 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{ChatId}
-Vedi \vedi{ChatIdDettaglio}.
 
-\subsubsubsection{GetChatMessagesUseCase}
-\label{GetChatMessagesUseCaseDettaglio}
+\subsubsubsection{GetChatMessagesPort}
+\label{GetChatMessagesPortDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -2294,9 +2738,34 @@ Vedi \vedi{ChatIdDettaglio}.
     \end{itemize}
 \end{itemize}
 
+
+\subsubsubsection{GetChatMessagesPostgres}
+\label{GetChatMessagesPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresChatORM: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Implementazione del metodo astratto di GetChatMessagesPort per ottenere una Chat a partire da un ChatId.
+        
+        %\item \code{toChatFrom(in postgresChat:PostgresChat): Chat}\\
+        %Metodo che trasforma un oggetto di persistence PostgresChat in un oggetto di business Chat;
+        %\item \code{toMessageFrom(in postgresMessage:PostgresMessage): Message}\\
+        %Metodo che trasforma un oggetto di persistence PostgresMessage in un oggetto di business Message.
+    
+    \end{itemize}
+\end{itemize}
+
+
+
+
 \subsubsubsection{GetChatMessagesService}
 \label{GetChatMessagesServiceDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetChatMessagesUseCase;
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{outPort: GetChatMessagesPort}.
@@ -2308,15 +2777,19 @@ Vedi \vedi{ChatIdDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{Chat}
-\label{ChatDettaglio}
+\subsubsubsection{GetChatMessagesUseCase}
+\label{GetChatMessagesUseCaseDettaglio}
 \begin{itemize}
-    \item \textbf{Attributi}:
+    \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{info: ChatInfo};
-        \item \code{messages: List<Message>}.
+        \item \code{getChatMessages(chatId:ChatId): Chat}\\
+        Metodo astratto per ottenere una Chat a partire da un ChatId.
     \end{itemize}
 \end{itemize}
+
+
+\begin{comment}
+    
 
 \subsubsubsection{ChatInfo}
 \label{ChatInfoDettaglio}
@@ -2329,8 +2802,9 @@ Vedi \vedi{ChatIdDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{ChatId}
-Vedi \vedi{ChatIdDettaglio}.
+\end{comment}
+
+
 
 \subsubsubsection{Message}
 Vedi \vedi{MessageDettaglio}.
@@ -2338,42 +2812,22 @@ Vedi \vedi{MessageDettaglio}.
 \subsubsubsection{MessageSender}
 Vedi \vedi{MessageSenderDettaglio}.
 
-\subsubsubsection{GetChatMessagesPort}
-\label{GetChatMessagesPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getChatMessages(chatId:ChatId): Chat}\\
-        Metodo astratto per ottenere una Chat a partire da un ChatId.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{GetChatMessagesPostgres}
-\label{GetChatMessagesPostgresDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{postgresORM: PostgresORM}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getChatMessages(chatId:ChatId): Chat}\\
-        Implementazione del metodo astratto di GetChatMessagesPort per ottenere una Chat a partire da un ChatId;
-        \item \code{toChatFrom(in postgresChat:PostgresChat): Chat}\\
-        Metodo che trasforma un oggetto di persistence PostgresChat in un oggetto di business Chat;
-        \item \code{toMessageFrom(in postgresMessage:PostgresMessage): Message}\\
-        Metodo che trasforma un oggetto di persistence PostgresMessage in un oggetto di business Message.
-    \end{itemize}
-\end{itemize}
 
 \subsubsubsection{PostgresChat}
 Vedi \vedi{PostgresChatDettaglio}.
 
+\subsubsubsection{PostgresChatORM}
+Vedi \vedi{PostgresChatORMDettaglio}.
+
 \subsubsubsection{PostgresMessage}
 Vedi \vedi{PostgresMessageDettaglio}.
 
-\subsubsubsection{PostgresORM}
-Vedi \vedi{PostgresORMDettaglio}.
+
+
+
+
+
+
 
 \subsection{GetChats}
 \subsubsection{Diagramma delle classi}
@@ -2384,9 +2838,26 @@ Vedi \vedi{PostgresORMDettaglio}.
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{filter: string}.
+        \item \code{searchFilter: string}.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+
+\subsubsubsection{ChatPreview}
+\label{ChatPreviewDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: ChatId};
+        \item \code{title: string};
+        \item \code{lastMessage: Message}.
+    \end{itemize}
+\end{itemize}
+
+
 
 \subsubsubsection{GetChatsController}
 \label{GetChatsControllerDettaglio}
@@ -2402,49 +2873,6 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{ChatFilter}
-Vedi \vedi{ChatFilterDettaglio}.
-
-\subsubsubsection{GetChatsUseCase}
-\label{GetChatsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
-        Metodo astratto per ottenere una lista di ChatPreview, filtrando eventualmente la ricerca tramite chatFilter.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{GetChatsService}
-\label{GetChatsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: GetChatsPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
-        Implementazione del metodo astratto di GetChatsUseCase per ottenere una lista di ChatPreview tramite outPort, filtrando eventualmente la ricerca tramite chatFilter.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{ChatPreview}
-\label{ChatPreviewDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{info: ChatInfo};
-        \item \code{lastMessageSnippet: string}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{ChatInfo}
-Vedi \vedi{ChatInfoDettaglio}.
-
-\subsubsubsection{ChatId}
-Vedi \vedi{ChatIdDettaglio}.
-
 \subsubsubsection{GetChatsPort}
 \label{GetChatsPortDettaglio}
 \begin{itemize}
@@ -2458,18 +2886,58 @@ Vedi \vedi{ChatIdDettaglio}.
 \subsubsubsection{GetChatsPostgres}
 \label{GetChatsPostgresDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetChatsPort;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{postgresORM: PostgresORM}.
+        \item \code{postgresChatORM: PostgresChatORM}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
-        Implementazione del metodo astratto di GetChatPort per ottenere una lista di ChatPreview tramite postgresORM, filtrando eventualmente la ricerca tramite chatFilter;
-        \item \code{getChatPreviewFrom(chat:PostgresChatPreview):}\\ \code{ ChatPreview}
-        Metodo per ottenere una ChatPreview a partire da una PostgresChatPreview.
+        Implementazione del metodo astratto di GetChatPort per ottenere una lista di ChatPreview tramite postgresChatORM, filtrando eventualmente la ricerca tramite chatFilter.
+        
     \end{itemize}
 \end{itemize}
+
+
+\subsubsubsection{GetChatsService}
+\label{GetChatsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetChatsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetChatsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Implementazione del metodo astratto di GetChatsUseCase per ottenere una lista di ChatPreview tramite outPort, filtrando eventualmente la ricerca tramite chatFilter.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetChatsUseCase}
+\label{GetChatsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getChats(chatFilter:ChatFilter): List<ChatPreview>}\\
+        Metodo astratto per ottenere una lista di ChatPreview, filtrando eventualmente la ricerca tramite chatFilter.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{Message}
+Vedi \vedi{MessageDettaglio}.
+
+\subsubsubsection{MessageSender}
+Vedi \vedi{MessageSenderDettaglio}.
+
+
+
+\subsubsubsection{PostgresChatORM}
+Vedi \vedi{PostgresChatORMDettaglio}.
+
 
 \subsubsubsection{PostgresChatPreview}
 \label{PostgresChatPreviewDettaglio}
@@ -2478,21 +2946,69 @@ Vedi \vedi{ChatIdDettaglio}.
     \begin{itemize}
         \item \code{id: int}
         \item \code{title: string};
-        \item \code{timestamp: timestamp};
-        \item \code{lastMessageSnippet: string}.
+       % \item \code{timestamp: timestamp};
+        \item \code{lastMessage: PostgresMessage}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \item \code{getChatPreviewFrom():}\\ \code{ChatPreview}
+        Metodo per ottenere una ChatPreview a partire da una PostgresChatPreview.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{PostgresORM}
-Vedi \vedi{PostgresORMDettaglio}.
+
+\subsubsubsection{PostgresMessage}
+Vedi \vedi{PostgresMessageDettaglio}.
 
 
 % \subsection{GetConfiguration}%TODO
 
 
+
+
+
+
+
+
+
 \subsection{GetDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
+
+
+\subsubsubsection{AWSDocumentMetadata}
+\label{AWSDocumentMetadataDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{id: string};
+        \item \code{size: float};
+        \item \code{type: string};
+        \item \code{uploadTime: timestamp}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toDocumentMetadataFrom():}\\ \code{DocumentMetadata}\\
+        Metodo che trasforma un AWSDocumentMetadata della persistence in un DocumentMetadata della business logic.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+
+\subsubsubsection{DocumentFilter}
+\label{DocumentFilterDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{searchFilter: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
 
 \subsubsubsection{DocumentMetadata}
 \label{DocumentMetadataDettaglio}
@@ -2500,76 +3016,41 @@ Vedi \vedi{PostgresORMDettaglio}.
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{documentId: DocumentId};
-        \item \code{type: DocumentType};
         \item \code{size: float};
+        \item \code{type: DocumentType};
         \item \code{uploadTime: timestamp}.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{DocumentStatus}
+Vedi \vedi{DocumentStatusDettaglio}.
 
 \subsubsubsection{DocumentType (Enumeration)}
 \label{DocumentTypeDettaglio}
 \begin{itemize}
     \item \textbf{Valori}:
     \begin{itemize}
-        \item \code{PDF};
-        \item \code{DOCX}.
+        \item \code{DOCX};
+        \item \code{PDF}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{DocumentStatus}
-\label{DocumentStatusDettaglio}
+\subsubsubsection{ElaborationException}
+\label{ElaborationExceptionDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{status: Status}.
+        \item \code{message: string}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{Status (Enumeration)}
-\label{StatusDettaglio}
-\begin{itemize}
-    \item \textbf{Valori}:
-    \begin{itemize}
-        \item \code{Concealed};
-        \item \code{Enabled};
-        \item \code{Not Embedded}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DocumentId}
-\label{DocumentIdDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{id: string}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{LightDocument}
-\label{LightDocumentDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item metadata: DocumentMetadata;
-        \item status: DocumentStatus.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DocumentFilter}
-\label{DocumentFilterDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item searchFilter: string.
-    \end{itemize}
-\end{itemize}
 
 \subsubsubsection{GetDocumentsController}
 \label{GetDocumentsControllerDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item useCase: GetDocumentsUseCase.
+        \item \code{useCase: GetDocumentsUseCase}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -2578,23 +3059,14 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocumentsUseCase}
-\label{GetDocumentsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocuments(documentFilter:DocumentFilter): List<LightDocument>}\\
-        Metodo astratto per ricercare documenti a partire da un filtro di ricerca.
-    \end{itemize}
-\end{itemize}
-
 \subsubsubsection{GetDocumentsFacadeService}
 \label{GetDocumentsFacadeServiceDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetDocumentsUseCase;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item getDocumentMetadatas: GetDocumentMetadatas;
-        \item getDocumentsStatus: GetDocumentsStatus.
+        \item \code{getDocumentMetadatas: GetDocumentMetadatas};
+        \item \code{getDocumentsStatus: GetDocumentsStatus}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -2609,17 +3081,19 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocumentsStatus}
-\label{GetDocumentsStatusDettaglio}
+\subsubsubsection{GetDocumentsListAWSS3}
+\label{GetDocumentsListAWSS3Dettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetDocumentsMetadataPort;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{outPort: GetDocumentsStatusPort}.
+        \item \code{awsS3Manager: AWSS3Manager}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<DocumentId>)}\\ \code{Map<DocumentId; DocumentStatus>}\\
-        Metodo per recuperare gli status di una lista di documenti tramite outPort dal vector store a partire dai loro id.
+        \item \code{getDocumentsMetadata(documentFilter:DocumentFilter):}\\ \code{List<DocumentMetadata>}\\
+        Implementazione del metodo astratto di GetDocumentsMetadataPort per ricercare documenti tramite outPort nel sistema di archiviazione a partire da un filtro.
+        
     \end{itemize}
 \end{itemize}
 
@@ -2628,22 +3102,12 @@ Vedi \vedi{PostgresORMDettaglio}.
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item outPort: GetDocumentsMetadataPort.
+        \item \code{outPort: GetDocumentsMetadataPort}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{getDocumentsMetadata(documentFilter:DocumentFilter):}\\ \code{List<DocumentMetadata>}\\
         Metodo per ricercare documenti tramite outPort nel sistema di archiviazione a partire da un filtro.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{GetDocumentsStatusPort}
-\label{GetDocumentsStatusPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<DocumentId>):}\\ \code{Map<DocumentId; DocumentStatus>}\\
-        Metodo astratto per recuperare gli status di una lista di documenti a partire dal loro id.
     \end{itemize}
 \end{itemize}
 
@@ -2657,49 +3121,48 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
+
+\subsubsubsection{GetDocumentsStatus}
+Vedi \vedi{GetDocumentsStatusDettaglio}.
+
+\subsubsubsection{GetDocumentsStatusPort}
+Vedi \vedi{GetDocumentsStatusPortDettaglio}.
+
 \subsubsubsection{GetDocumentsStatusVectorStore}
-\label{GetDocumentsStatusVectorStoreDettaglio}
+Vedi \vedi{GetDocumentsStatusVectorStoreDettaglio}.
+
+\subsubsubsection{GetDocumentsUseCase}
+\label{GetDocumentsUseCaseDettaglio}
 \begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{vectorStoreManager: VectorStoreManager}.
-    \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus(documentIds:List<DocumentId>):}\\ \code{Map<DocumentId; DocumentStatus>}\\
-        Implementazione del metodo astratto di GetDocumentsStatusVectorStore per recuperare gli status di una lista di documenti a partire dal loro id.
+        \item \code{getDocuments(documentFilter:DocumentFilter): List<LightDocument>}\\
+        Metodo astratto per ricercare documenti a partire da un filtro di ricerca.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocumentsListAWSS3}
-\label{GetDocumentsListAWSS3Dettaglio}
+
+\subsubsubsection{LightDocument}
+\label{LightDocumentDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item awsS3Manager: AWSS3Manager.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocumentsMetadata(documentFilter:DocumentFilter):}\\ \code{List<DocumentMetadata>}\\
-        Implementazione del metodo astratto di GetDocumentsMetadataPort per ricercare documenti tramite outPort nel sistema di archiviazione a partire da un filtro.
-        \item \code{toDocumentMetadataFrom(document:AWSDocumentMetadata):}\\ \code{DocumentMetadata}\\
-        Metodo che trasforma un AWSDocumentMetadata della persistence in un DocumentMetadata della business logic.
+        \item \code{metadata: DocumentMetadata};
+        \item \code{status: DocumentStatus}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{AWSS3Manager}
-Vedi \vedi{AWSS3ManagerDettaglio}.
 
-\subsubsubsection{AWSDocumentMetadata}
-\label{AWSDocumentMetadataDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item id: string;
-        \item size: float;
-        \item uploadTime: timestamp.
-    \end{itemize}
-\end{itemize}
+\subsubsubsection{Status (Enumeration)}
+Vedi \vedi{StatusDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentStatusResponse}
+Vedi \vedi{VectorStoreDocumentStatusResponseDettaglio}.
+
+
 
 \subsubsubsection{VectorStoreManager}
 Vedi \vedi{VectorStoreManagerDettaglio}.
@@ -2707,11 +3170,9 @@ Vedi \vedi{VectorStoreManagerDettaglio}.
 \subsubsubsection{VectorStorePineconeManager}
 Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
-\subsubsubsection{VectorStoreChromaDBManager}
-Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 
-\subsubsubsection{VectorStoreDocumentOperationResponse}
-Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
+
+
 
 
 \subsection{RenameChat}
@@ -2721,19 +3182,65 @@ Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 \subsubsubsection{ChatId}
 Vedi \vedi{ChatIdDettaglio}.
 
+\subsubsubsection{ChatOperationResponse}
+Vedi \vedi{ChatOperationResponseDettaglio}.
+
 \subsubsubsection{RenameChatController}
 \label{RenameChatControllerDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{useCase: DeleteChatsUseCase}.
+        \item \code{useCase: RenameChatUseCase}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{renameChat(chatId:int, title:string): boolean}\\
-        Metodo che rinomina tramite useCase una chat identificate da un intero, ritornando un boolean rappresentante l'esito dell'operazione;
-        \item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
-        Metodo che crea e ritorna un ChatId a partire da un intero. 
+        \item \code{renameChat(chatId:int, title:string): ChatOperationResponse}\\
+        Metodo che rinomina tramite useCase una chat identificate da un intero, ritornando un ChatOperationResponse.
+        %\item \code{toChatIdFrom(chatIdInt:int): ChatId}\\
+        %Metodo che crea e ritorna un ChatId a partire da un intero. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{RenameChatPort}
+\label{RenameChatPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): ChatOperationResponse}\\
+        Metodo astratto per rinominare con title una chat identificata da un ChatId, ritornando un ChatOperationResponse rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RenameChatPostgres}
+\label{RenameChatPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: RenameChatPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): ChatOperationResponse}\\
+        Implementazione del metodo astratto di RenameChatPort per rinominare con title una chat identificata da un ChatId, ritornando un ChatOperationResponse rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{RenameChatService}
+\label{RenameChatServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: RenameChatUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: RenameChatPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{renameChat(chatId:ChatId, title:string): ChatOperationResponse}\\
+        Implementazione del metodo astratto di RenameChatUseCase per rinominare con title tramite outPort una chat identificata da un ChatId, ritornando un ChatOperationResponse rappresentante l'esito dell'operazione.
     \end{itemize}
 \end{itemize}
 
@@ -2742,67 +3249,46 @@ Vedi \vedi{ChatIdDettaglio}.
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
-        Metodo astratto per che rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
+        \item \code{renameChat(chatId:ChatId, title:string): ChatOperationResponse}\\
+        Metodo astratto per che rinominare con title una chat identificata da un ChatId, ritornando un ChatOperationResponse rappresentante l'esito dell'operazione.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{RenameChatService}
-\label{RenameChatServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: DeleteChatsPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
-        Implementazione del metodo astratto di RenameChatUseCase per rinominare con title tramite outPort una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{RenameChatPort}
-\label{RenameChatPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
-        Metodo astratto per rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
-    \end{itemize}
-\end{itemize}
+\subsubsubsection{PostgresChatOperationResponse}
+Vedi \vedi{PostgresChatOperationResponseDettaglio}.
 
-\subsubsubsection{RenameChatPostgres}
-\label{RenameChatPostgresDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{postgresORM: PostgresORM}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{renameChat(chatId:ChatId, title:string): boolean}\\
-        Implementazione del metodo astratto di RenameChatPort per rinominare con title una chat identificata da un ChatId, ritornando un boolean rappresentante l'esito dell'operazione.
-    \end{itemize}
-\end{itemize}
 
-\subsubsubsection{PostgresORM}
-Vedi \vedi{PostgresORMDettaglio}.
+
+\subsubsubsection{PostgresChatORM}
+Vedi \vedi{PostgresChatORMDettaglio}.
+
+
+
+
+
+
+
 
 
 \subsection{UploadDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
 
-\subsubsubsection{NewDocument}
-\label{NewDocumentDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentId: string};
-        \item \code{type: string};
-        \item \code{size: float}.
-    \end{itemize}
-\end{itemize}
+
+
+
+\subsubsubsection{AWSDocument}
+Vedi \vedi{AWSDocumentDettaglio}.
+
+\subsubsubsection{AWSDocumentOperationResponse}
+Vedi \vedi{AWSDocumentOperationResponseDettaglio}.
+
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+\subsubsubsection{Chunkerizer}
+Vedi \vedi{ChunkerizerDettaglio}.
 
 \subsubsubsection{Document}
 \label{DocumentDettaglio}
@@ -2810,9 +3296,125 @@ Vedi \vedi{PostgresORMDettaglio}.
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{plainDocument: PlainDocument};
-        \item \code{status: DocumentStatus}.
+        \item \code{documentStatus: DocumentStatus}.
     \end{itemize}
 \end{itemize}
+
+\subsubsubsection{DocumentContent}
+\label{DocumentContentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{content: bytes}.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
+\subsubsubsection{DocumentMetadata}
+Vedi \vedi{DocumentMetadataDettaglio}.
+
+\subsubsubsection{DocumentOperationResponse}
+Vedi \vedi{DocumentOperationResponseDettaglio}.
+
+\subsubsubsection{DocumentStatus}
+Vedi \vedi{DocumentStatusDettaglio}.
+
+\subsubsubsection{DocumentType (Enumeration)}
+Vedi \vedi{DocumentTypeDettaglio}.
+
+\subsubsubsection{DocumentsUploader}
+\label{DocumentsUploaderDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DocumentsUploaderPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\ 
+        Metodo per effettuare il caricamento di una lista di Document tramite outPort sul sistema di archiviazione, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentUploaderAWSS3}
+\label{DocumentUploaderAWSS3Dettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DocumentsUploaderPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{awsS3Manager: AWSS3Manager}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di DocumentsUploaderPort per il caricamento di una lista di Document nel sistema di archiviazione tramite awsS3Manager, con flag per  forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse;
+        \item \code{toAWSDocumentFrom(document:Document): AWSDocument}\\
+        Metodo che trasforma un Document in un AWSDocument.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentsUploaderPort}
+\label{DocumentsUploaderPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
+        Metodo astratto per effettuare il caricamento di una lista di Document in un sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DOCXTextExtractor}
+Vedi \vedi{DOCXTextExtractorDettaglio}.
+
+\subsubsubsection{EmbeddingsCreator}
+Vedi \vedi{EmbeddingsCreatorDettaglio}.
+
+
+\subsubsubsection{EmbeddingsUploader}
+Vedi \vedi{EmbeddingsUploaderDettaglio}.
+
+
+\subsubsubsection{EmbeddingsUploaderFacadeLangchain}
+Vedi \vedi{EmbeddingsUploaderFacadeLangchainDettaglio}.
+
+\subsubsubsection{EmbeddingsUploaderPort}
+Vedi \vedi{EmbeddingsUploaderPortDettaglio}.
+
+\subsubsubsection{EmbeddingsUploaderVectorStore}
+Vedi \vedi{EmbeddingsUploaderVectorStoreDettaglio}.
+
+\subsubsubsection{HuggingFaceEmbeddingModel}
+Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
+
+\subsubsubsection{LangchainDocument}
+Vedi \vedi{LangchainDocumentDettaglio}.
+
+\subsubsubsection{LangchainEmbeddingModel}
+Vedi \vedi {LangchainEmbeddingModelDettaglio}.
+
+
+\subsubsubsection{NewDocument}
+\label{NewDocumentDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{content: bytes};
+        \item \code{documentId: string};
+        \item \code{size: float};
+        \item \code{type: string}.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{OpenAIEmbeddingModel}
+Vedi \vedi{OpenAIEmbeddingModelDettaglio}.
+
+\subsubsubsection{PDFTextExtractor}
+Vedi \vedi{PDFTextExtractorDettaglio}.
+
 
 \subsubsubsection{PlainDocument}
 \label{PlainDocumentDettaglio}
@@ -2824,29 +3426,14 @@ Vedi \vedi{PostgresORMDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{DocumentMetadata}
-Vedi \vedi{DocumentMetadataDettaglio}.
-
-\subsubsubsection{DocumentType (Enumeration)}
-Vedi \vedi{DocumentTypeDettaglio}.
-
-\subsubsubsection{DocumentStatus}
-Vedi \vedi{DocumentStatusDettaglio}.
 
 \subsubsubsection{Status (Enumeration)}
 Vedi \vedi{StatusDettaglio}.
 
-\subsubsubsection{DocumentId}
-Vedi \vedi{DocumentIdDettaglio}.
+\subsubsubsection{TextExtractor}
+Vedi \vedi{TextExtractorDettaglio}.
 
-\subsubsubsection{DocumentContent}
-\label{DocumentContentDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{content: bytes}.
-    \end{itemize}
-\end{itemize}
+
 
 \subsubsubsection{UploadDocumentsController}
 \label{UploadDocumentsControllerDettaglio}
@@ -2863,6 +3450,38 @@ Vedi \vedi{DocumentIdDettaglio}.
         Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
     \end{itemize}
 \end{itemize}
+
+
+
+\subsubsubsection{UploadDocumentsService}
+\label{UploadDocumentsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: UploadDocumentsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentUploader: DocumentsUploader};
+        \item \code{embeddingsUploader: EmbeddingsUploader}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
+        Implementazione del metodo astratto di UploadDocumentsUseCase, per il caricamento di una lista di Documents tramite documentsUploader nel sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, occupandosi inoltre della generazione e caricamento dei relativi embeddings dei documenti tramite embeddingsUploader in un vector store, ritornando una lista di DocumentOperationResponse che tenga conto di entrambe le risposte delle due sotto-operazioni precedentemente descritte ed eseguite.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{UploadDocumentsUseCase}
+\label{UploadDocumentsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
+        Metodo astratto per caricare una lista di Document nel sistema, con possibilità di forzare un caricamento di un documento già presente tramite una flag, ritornando una lista di DocumentOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \begin{comment} % TODO: capire cosa fare con substitute (route a parte o unirla a upload)
 \subsubsubsection{SubstituteDocumentController}
@@ -2882,161 +3501,6 @@ Vedi \vedi{DocumentIdDettaglio}.
 \end{itemize}
 \end{comment}
 
-\subsubsubsection{UploadDocumentsUseCase}
-\label{UploadDocumentsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
-        Metodo astratto per caricare una lista di Document nel sistema, con possibilità di forzare un caricamento di un documento già presente tramite una flag, ritornando una lista di DocumentOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{UploadDocumentsService}
-\label{UploadDocumentsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentUploader: DocumentUploader};
-        \item \code{embeddingsUploader: EmbeddingsUploader}.  
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di UploadDocumentsUseCase, per il caricamento di una lista di Documents tramite documentUploader nel sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, occupandosi inoltre della generazione e caricamento dei relativi embeddings dei documenti tramite embeddingsUploader in un vector store, ritornando una lista di DocumentOperationResponse che tenga conto di entrambe le risposte delle due sotto-operazioni precedentemente descritte ed eseguite.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DocumentUploader}
-\label{DocumentUploaderDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: DocumentUploaderPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{ List<DocumentOperationResponse>}\\ 
-        Metodo per effettuare il caricamento di una lista di Document tramite outPort sul sistema di archiviazione, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{EmbeddingsUploader}
-Vedi \vedi{EmbeddingsUploaderDettaglio}.
-
-\subsubsubsection{DocumentUploaderPort}
-\label{DocumentUploaderPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo astratto per effettuare il caricamento di una lista di Document in un sistema di archiviazione documenti, con flag per forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{EmbeddingsUploaderPort}
-Vedi \vedi{EmbeddingsUploaderPortDettaglio}.
-
-\subsubsubsection{DocumentUploaderAWSS3}
-\label{DocumentUploaderAWSS3Dettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{awsS3Manager: AWSS3Manager}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadDocuments(documents:List<Document>, forceUpload:boolean):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di DocumentUploaderPort per il caricamento di una lista di Document nel sistema di archiviazione tramite awsS3Manager, con flag per  forzare il caricamento di documenti già presenti nel sistema attraverso sostituzione, ritornando infine una lista di DocumentOperationResponse;
-        \item \code{toAWSDocumentFrom(document:Document): AWSDocument}\\
-        Metodo che trasforma un Document in un AWSDocument.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{AWSDocument}
-Vedi \vedi{AWSDocumentDettaglio}.
-
-\subsubsubsection{AWSDocumentOperationResponse}
-Vedi \vedi{AWSDocumentOperationResponseDettaglio}.
-
-\subsubsubsection{AWSS3Manager}
-Vedi \vedi{AWSS3ManagerDettaglio}.
-
-\subsubsubsection{EmbeddingsUploaderFacadeLangchain}
-\label{EmbeddingsUploaderFacadeLangchainDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{documentToText: DocumentToText};
-        \item \code{chunkerizer: Chunkerizer};
-        \item \code{embeddingsCreator: EmbeddingsCreator};
-        \item \code{embeddingsUploaderVectorStore: EmbeddingsUploaderVectorStore}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{uploadEmbeddings(documents:List<Document>):}\\ \code{List<DocumentOperationResponse>}\\
-        Implementazione del metodo astratto di EmbeddingsUploaderPort per la generazione e il caricamento di embeddings di una lista di Document nel vector store tramite l'utilizzo di un pattern facade, ritornando infine una lista di DocumentOperationResponse.\\
-        Le operazioni all'interno della facade vengono svolte nel seguente ordine:
-        \begin{enumerate}
-            \item Estrazione del testo dai documenti tramite documentToText;
-            \item Suddivisione in chunks del testo estratto dai documenti tramite chunkerizer;
-            \item Generazione degli embeddings a partire dai chunks tramite embeddingsCreator;
-            \item Caricamento degli embeddings creati nel vector store tramite embeddingsUploaderVectorStore.
-        \end{enumerate}
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DocumentOperationResponse}
-Vedi \vedi{DocumentOperationResponseDettaglio}.
-
-\subsubsubsection{LangchainDocument}
-Vedi \vedi{LangchainDocumentDettaglio}.
-
-\subsubsubsection{DocumentToText}
-Vedi \vedi{DocumentToTextDettaglio}.
-
-\subsubsubsection{TextExtractor}
-Vedi \vedi{TextExtractorDettaglio}.
-
-\subsubsubsection{PDFTextExtractor}
-Vedi \vedi{PDFTextExtractorDettaglio}.
-
-\subsubsubsection{DOCXTextExtractor}
-Vedi \vedi{DOCXTextExtractorDettaglio}.
-
-\subsubsubsection{Chunkerizer}
-Vedi \vedi{ChunkerizerDettaglio}.
-
-\subsubsubsection{EmbeddingsCreator}
-Vedi \vedi{EmbeddingsCreatorDettaglio}.
-
-\subsubsubsection{LangchainEmbeddingModel}
-Vedi \vedi {LangchainEmbeddingModelDettaglio}.
-
-\subsubsubsection{OpenAIEmbeddingModel}
-Vedi \vedi{OpenAIEmbeddingModelDettaglio}.
-
-\subsubsubsection{HuggingFaceEmbeddingModel}
-Vedi \vedi{HuggingFaceEmbeddingModelDettaglio}.
-
-\subsubsubsection{EmbeddingsUploaderVectorStore}
-Vedi \vedi{EmbeddingsUploaderVectorStoreDettaglio}.
-
-\subsubsubsection{VectorStoreDocumentStatusResponse}
-\label{VectorStoreDocumentStatusResponseDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{id: string};
-        \item \code{documentStatus: string}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{VectorStoreManager}
-Vedi \vedi{VectorStoreManagerDettaglio}.
-
-\subsubsubsection{VectorStorePineconeManager}
-Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
 \subsubsubsection{VectorStoreChromaDBManager}
 Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
@@ -3045,34 +3509,46 @@ Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
 Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
+
+
+
+
 
 \subsection{ViewDocumentContent}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
 
-\subsubsubsection{DocumentMetadata}
-Vedi \vedi{DocumentMetadataDettaglio}.
 
-\subsubsubsection{DocumentType (Enumeration)}
-Vedi \vedi{DocumentTypeDettaglio}.
+\subsubsubsection{AWSDocument}
+Vedi \vedi{AWSDocumentDettaglio}.
 
-\subsubsubsection{DocumentId}
-Vedi \vedi{DocumentIdDettaglio}.
-
-\subsubsubsection{DocumentStatus}
-Vedi \vedi{DocumentStatusDettaglio}.
-
-\subsubsubsection{Status (Enumeration)}
-Vedi \vedi{StatusDettaglio}.
-
-\subsubsubsection{DocumentContent}
-Vedi \vedi{DocumentContentDettaglio}.
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
 
 \subsubsubsection{Document}
 Vedi \vedi{DocumentDettaglio}.
 
-\subsubsubsection{PlainDocument}
-Vedi \vedi{PlainDocumentDettaglio}.
+\subsubsubsection{DocumentContent}
+Vedi \vedi{DocumentContentDettaglio}.
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
+\subsubsubsection{DocumentMetadata}
+Vedi \vedi{DocumentMetadataDettaglio}.
+
+\subsubsubsection{DocumentStatus}
+Vedi \vedi{DocumentStatusDettaglio}.
+
+\subsubsubsection{DocumentType (Enumeration)}
+Vedi \vedi{DocumentTypeDettaglio}.
+
 
 \subsubsubsection{GetDocumentController}
 \label{GetDocumentControllerDettaglio}
@@ -3088,23 +3564,14 @@ Vedi \vedi{PlainDocumentDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocumentUseCase}
-\label{GetDocumentUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocument(documentId:DocumentId): Document}\\
-        Metodo astratto per recuperare tutte le informazioni di un documento, compreso il suo contenuto, a partire dal suo id.
-    \end{itemize}
-\end{itemize}
-
 \subsubsubsection{GetDocumentFacadeService}
 \label{GetDocumentFacadeServiceDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetDocumentUseCase;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{getDocumentsStatus: GetDocumentsStatus};
-        \item \code{getDocuments: GetDocuments}.
+        \item \code{getDocumentsContent: GetDocumentsContent};
+        \item \code{getDocumentsStatus: GetDocumentsStatus}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -3118,29 +3585,53 @@ Vedi \vedi{PlainDocumentDettaglio}.
     \end{itemize}
 \end{itemize}
 
-\subsubsubsection{GetDocuments}
-Vedi \vedi {GetDocumentsDettaglio}.
+\subsubsubsection{GetDocumentsContent}
+Vedi \vedi {GetDocumentsContentDettaglio}.
+
+\subsubsubsection{GetDocumentsContentAWSS3}
+Vedi \vedi{GetDocumentsContentAWSS3Dettaglio}.
+
+\subsubsubsection{GetDocumentsContentPort}
+Vedi \vedi{GetDocumentsContentPortDettaglio}.
+
 
 \subsubsubsection{GetDocumentsStatus}
 Vedi \vedi{GetDocumentsStatusDettaglio}.
 
-\subsubsubsection{GetDocumentsPort}
-Vedi \vedi{GetDocumentsPortDettaglio}.
+
 
 \subsubsubsection{GetDocumentsStatusPort}
 Vedi \vedi{GetDocumentsStatusPortDettaglio}.
 
-\subsubsubsection{GetDocumentsAWSS3}
-Vedi \vedi{GetDocumentsAWSS3Dettaglio}.
-
-\subsubsubsection{AWSS3Manager}
-Vedi \vedi{AWSS3ManagerDettaglio}.
-
-\subsubsubsection{AWSDocument}
-Vedi \vedi{AWSDocumentDettaglio}.
 
 \subsubsubsection{GetDocumentsStatusVectorStore}
 Vedi \vedi{GetDocumentsStatusVectorStoreDettaglio}.
+
+
+\subsubsubsection{GetDocumentUseCase}
+\label{GetDocumentUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocument(documentId:DocumentId): Document}\\
+        Metodo astratto per recuperare tutte le informazioni di un documento, compreso il suo contenuto, a partire dal suo id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PlainDocument}
+Vedi \vedi{PlainDocumentDettaglio}.
+
+
+\subsubsubsection{Status (Enumeration)}
+Vedi \vedi{StatusDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentStatusResponse}
+Vedi \vedi{VectorStoreDocumentStatusResponseDettaglio}.
+
+
 
 \subsubsubsection{VectorStoreManager}
 Vedi \vedi{VectorStoreManagerDettaglio}.
@@ -3148,11 +3639,6 @@ Vedi \vedi{VectorStoreManagerDettaglio}.
 \subsubsubsection{VectorStorePineconeManager}
 Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
-\subsubsubsection{VectorStoreChromaDBManager}
-Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
-
-\subsubsubsection{VectorStoreDocumentOperationResponse}
-Vedi \vedi{VectorStoreDocumentOperationResponseDettaglio}.
 
 
 \end{document}

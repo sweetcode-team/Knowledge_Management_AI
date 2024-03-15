@@ -1,24 +1,54 @@
-import os
-from application.port.out.change_configuration_port import ChangeConfigurationPort
+import unittest.mock
+from unittest.mock import MagicMock, patch
+from adapter.out.change_configuration.change_configuration_postgres import ChangeConfigurationPostgres
 from domain.configuration.configuration_operation_response import ConfigurationOperationResponse
 from domain.configuration.llm_model_configuration import LLMModelType
 from adapter.out.persistence.postgres.configuration_models import PostgresLLMModelType
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 
-
-class ChangeConfigurationPostgres(ChangeConfigurationPort):
-    def __init__(self, postgresConfigurationORM: PostgresConfigurationORM):
-        self.postgresConfigurationORM = postgresConfigurationORM    
-
-
-    def changeLLMModel(self, LLModel: LLMModelType) -> ConfigurationOperationResponse:
-        LLMModelChoice = self.toPostgresLLMModelTypeFrom(LLModel)
-        userId = os.environ.get('USER_ID')
+def test_toPostgresLLModelTypeFrom():
+    postgresConfigurationORMMock = MagicMock()
+    changeConfigurationPostgres = ChangeConfigurationPostgres(postgresConfigurationORMMock)
+    
+    postgresLLMModelType = changeConfigurationPostgres.toPostgresLLMModelTypeFrom(LLMModelType.OPENAI)
+    
+    assert isinstance(postgresLLMModelType, PostgresLLMModelType)
+    assert postgresLLMModelType == PostgresLLMModelType.OPENAI        
+    
+def test_changeLLMModelTrue():
+    with    patch('adapter.out.change_configuration.change_configuration_postgres.ConfigurationOperationResponse') as  configurationOperationResponseMock:
+        postgresConfigurationORMMock = MagicMock()
+        postgresConfigurationOperationResponseMock = MagicMock()
         
-        postgresConfigurationOperationResponde = self.postgresConfigurationORM.changeLLMModel(userId, LLMModelChoice)
-        return ConfigurationOperationResponse(postgresConfigurationOperationResponde.status, postgresConfigurationOperationResponde.message)
+        configurationOperationResponseMock.return_value = ConfigurationOperationResponse(True, "Model changed")
+        postgresConfigurationOperationResponseMock.ok.return_value = True
+        postgresConfigurationOperationResponseMock.message = "Model changed"
         
         
-    def toPostgresLLMModelTypeFrom(self, LLMModel: LLMModelType) -> PostgresLLMModelType:
-        return PostgresLLMModelType[LLMModel.name]
+        postgresConfigurationORMMock.changeLLMModel.return_value = postgresConfigurationOperationResponseMock
         
+        changeConfigurationPostgres = ChangeConfigurationPostgres(postgresConfigurationORMMock)
+        
+        response = changeConfigurationPostgres.changeLLMModel(LLMModelType.OPENAI)
+        
+        postgresConfigurationORMMock.changeLLMModel.assert_called_with('0', PostgresLLMModelType.OPENAI)
+        configurationOperationResponseMock.assert_called_with(True, "Model changed")
+        assert isinstance(response, ConfigurationOperationResponse)
+        
+def test_changeLLMModelFail():
+    with   patch('adapter.out.change_configuration.change_configuration_postgres.ConfigurationOperationResponse') as  configurationOperationResponseMock:
+        postgresConfigurationORMMock = MagicMock()
+        postgresConfigurationOperationResponseMock = MagicMock()
+        
+        configurationOperationResponseMock.return_value = ConfigurationOperationResponse(False, "Model not changed")
+        postgresConfigurationOperationResponseMock.ok.return_value = False
+        postgresConfigurationOperationResponseMock.message = "Model not changed"
+        
+        postgresConfigurationORMMock.changeLLMModel.return_value = postgresConfigurationOperationResponseMock
+        
+        changeConfigurationPostgres = ChangeConfigurationPostgres(postgresConfigurationORMMock)
+        
+        response = changeConfigurationPostgres.changeLLMModel(LLMModelType.OPENAI)
+        
+        postgresConfigurationORMMock.changeLLMModel.assert_called_with('0', PostgresLLMModelType.OPENAI)
+        configurationOperationResponseMock.assert_called_with(False, "Model not changed")
+        assert isinstance(response, ConfigurationOperationResponse)

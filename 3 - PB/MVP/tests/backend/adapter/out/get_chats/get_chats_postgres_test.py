@@ -1,18 +1,22 @@
-from typing import List
-
-from application.port.out.get_chats_port import GetChatsPort
-from domain.chat.chat_filter import ChatFilter
+from unittest.mock import MagicMock, ANY
+from adapter.out.get_chats.get_chats_postgres import GetChatsPostgres
+from domain.chat.chat_id import ChatId
 from domain.chat.chat_preview import ChatPreview
-from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
+from domain.chat.message import Message, MessageSender
 
-
-class GetChatsPostgres(GetChatsPort):
-    def __init__(self, postgresORM: PostgresChatORM):
-        self.postgresORM = postgresORM
-    def getChats(self, chatFilter: ChatFilter) -> List[ChatPreview]:
-        chatsPreview = []
-        listOfChatPreview = self.postgresORM.getChats(chatFilter.searchFilter)
-        for chatPreview in listOfChatPreview:
-            previewOfChat = chatPreview.getChatPreview()
-            chatsPreview.append(previewOfChat)
-        return chatsPreview
+def test_getChatsPostgresTrue():
+    postgresORMMock = MagicMock()
+    chatFilterMock = MagicMock()
+    postgresChatPreviewMock = MagicMock()
+    
+    postgresChatPreviewMock.getChatPreview.return_value = ChatPreview(ChatId(1), "TestChat", Message('last message', ANY, [], MessageSender.USER))
+    postgresORMMock.getChats.return_value = [postgresChatPreviewMock]
+    chatFilterMock.searchFilter = "TestFilter"
+    
+    getChatsPostgres = GetChatsPostgres(postgresORMMock)
+    
+    response = getChatsPostgres.getChats(chatFilterMock)
+    
+    postgresORMMock.getChats.assert_called_once_with("TestFilter")
+    assert isinstance(response, list)
+    assert isinstance(response[0], ChatPreview)

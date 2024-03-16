@@ -1,13 +1,16 @@
-from typing import List
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
-from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
-from adapter.out.persistence.vector_store.langchain_document import LangchainDocument
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
 
-class EmbeddingsUploaderVectorStore:
-    def __init__(self, vectorStoreManager: VectorStoreManager):
-        self.vectorStoreManager = vectorStoreManager
-
-    def uploadEmbeddings(self, documents: List[LangchainDocument]) -> List[VectorStoreDocumentOperationResponse]:
-        documentsId, documentsChunks, documentsEmbeddings = zip(*[(document.documentId, document.chunks, document.embeddings) for document in documents])
-        return self.vectorStoreManager.uploadEmbeddings(documentsId, documentsChunks, documentsEmbeddings)
+def test_uploadEmbeddings():
+    vectorStoreManagerMock = MagicMock()
+    langchainDocumentMock = MagicMock()
+    documentChunkMock = MagicMock()
     
+    langchainDocumentMock.documentId = "Prova.pdf"
+    langchainDocumentMock.chunks = [documentChunkMock]
+    langchainDocumentMock.embeddings = [[1.0, 2.0, 3.0]]
+    
+    response = EmbeddingsUploaderVectorStore(vectorStoreManagerMock).uploadEmbeddings([langchainDocumentMock])
+    
+    vectorStoreManagerMock.uploadEmbeddings.assert_called_once_with(("Prova.pdf",), ([documentChunkMock],), ([[1.0, 2.0, 3.0]],))
+    assert response == vectorStoreManagerMock.uploadEmbeddings.return_value

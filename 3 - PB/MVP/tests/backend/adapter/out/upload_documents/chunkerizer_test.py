@@ -1,16 +1,16 @@
 from unittest.mock import MagicMock, patch, ANY
 from adapter.out.upload_documents.chunkerizer import Chunkerizer
-from domain.document.document_status import Status
-from adapter.out.upload_documents.PDF_text_extractor import PDFTextExtractor
         
 def test_extractTextPDF():
     with patch('adapter.out.upload_documents.chunkerizer.PDFTextExtractor') as PDFTextExtractorMock:
         documentMock = MagicMock()
         documentChunkMock = MagicMock()
+        statusMock = MagicMock()
 
+        statusMock.ENABLED.name = "ENABLED"
         documentMock.plainDocument.metadata.type.name = "PDF"
         documentMock.plainDocument.metadata.id.id = "Prova.pdf"
-        documentMock.documentStatus.status = Status.ENABLED
+        documentMock.documentStatus.status = statusMock.ENABLED
 
         PDFTextExtractorMock.return_value = PDFTextExtractorMock
         PDFTextExtractorMock.return_value.extractText.return_value = [documentChunkMock]
@@ -29,10 +29,12 @@ def test_extractTextDOCX():
     with patch('adapter.out.upload_documents.chunkerizer.DOCXTextExtractor') as DOCXTextExtractorMock:
         documentMock = MagicMock()
         documentChunkMock = MagicMock()
+        statusMock = MagicMock()
 
+        statusMock.ENABLED.name = "ENABLED"
         documentMock.plainDocument.metadata.type.name = "DOCX"
         documentMock.plainDocument.metadata.id.id = "Prova.docx"
-        documentMock.documentStatus.status = Status.ENABLED
+        documentMock.documentStatus.status = statusMock.ENABLED
 
         DOCXTextExtractorMock.return_value = DOCXTextExtractorMock
         DOCXTextExtractorMock.return_value.extractText.return_value = [documentChunkMock]

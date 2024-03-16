@@ -1,15 +1,26 @@
-from domain.document.document_operation_response import DocumentOperationResponse
-from domain.document.document_id import DocumentId
-from dataclasses import dataclass
+from unittest.mock import patch
+from adapter.out.persistence.aws.AWS_document_operation_response import AWSDocumentOperationResponse
 
-"""
-This class is used to store the metadata of a document stored in AWS S3.
-"""
-@dataclass
-class AWSDocumentOperationResponse:
-    documentId: str
-    status: bool
-    message: str
+def test_toDocumentOperationResponseTrue():
+    with patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentOperationResponse') as DocumentOperationResponseMock, \
+         patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentId') as DocumentIdMock:
+             
+        documentOperationResponse = AWSDocumentOperationResponse(documentId="test.pdf", status=True, message="test")
         
-    def toDocumentOperationResponse(self) -> DocumentOperationResponse:
-        return DocumentOperationResponse(DocumentId(self.documentId), self.status, self.message)        
+        response = documentOperationResponse.toDocumentOperationResponse()
+        
+        DocumentOperationResponseMock.assert_called_once_with(DocumentIdMock.return_value, True, "test")
+        
+        assert response == DocumentOperationResponseMock.return_value
+        
+def test_toDocumentOperationResponseFail():
+    with    patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentOperationResponse') as DocumentOperationResponseMock, \
+            patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentId') as DocumentIdMock:
+        
+        documentOperationResponse = AWSDocumentOperationResponse(documentId="test.pdf", status=False, message="test")
+        
+        response = documentOperationResponse.toDocumentOperationResponse()
+        
+        DocumentOperationResponseMock.assert_called_once_with(DocumentIdMock.return_value, False, "test")
+        
+        assert response == DocumentOperationResponseMock.return_value        

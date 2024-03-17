@@ -1,0 +1,128 @@
+"use client"
+
+import { DotsHorizontalIcon } from "@radix-ui/react-icons"
+import { Row } from "@tanstack/react-table"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog"
+
+import { documentSchema } from "../data/schema"
+import { statuses, types } from "../data/data"
+
+interface DataTableRowActionsProps<TData> {
+  row: Row<TData>
+}
+
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
+  const document = documentSchema.parse(row.original)
+
+  const handleAction = () => {
+    if (document.status === "concealed") {
+      console.log("Chiamare API Enable su", document.id)
+    } else if (document.status === "enabled") {
+      console.log("Chiamare API Conceal su", document.id)
+    } else {
+      console.log("Chiamare API Embed su", document.id)
+    }
+  }
+
+  const handleDelete = () => {
+    console.log("Chiamare API Deletes su", document.id)
+  }
+
+  const handleViewContent = () => {
+    console.log("Andare in pagina /documents/", document.id)
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+        >
+          <DotsHorizontalIcon className="h-4 w-4" />
+          <span className="sr-only">Open menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-[160px]">
+        <DropdownMenuItem onClick={() => handleViewContent()}>
+          {/* {types.find((type) => type.value === document.type)?.action} */}
+          View details
+        </DropdownMenuItem>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="ghost" size="sm" className="w-full justify-start px-2 py-[6px] h-8">
+              {
+                statuses.find((status) => status.value === document.status)?.action
+              }
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                {
+                  statuses.find((status) => status.value === document.status)?.actionMessage
+                }
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Abort</AlertDialogCancel>
+              <AlertDialogAction className={
+                cn(buttonVariants(),
+                  "mt-2 sm:mt-0")} onClick={() => handleAction()}>
+                {statuses.find((status) => status.value === document.status)?.action}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <DropdownMenuSeparator />
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="ghost" size="sm" className="text-error-foreground hover:bg-error hover:text-error-foreground w-full justify-start px-2 py-[6px] h-8">Delete</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete the selected document.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Abort</AlertDialogCancel>
+              <AlertDialogAction className={
+                cn(buttonVariants({ variant: "destructive" }),
+                  "mt-2 sm:mt-0")} onClick={() => handleDelete()}>Delete</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+

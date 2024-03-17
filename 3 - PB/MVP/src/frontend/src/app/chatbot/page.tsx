@@ -12,6 +12,7 @@ export default function ChatPage() {
     <Chatbot
       defaultLayout={defaultLayout}
       chats={chats}
+      
     />
   )
 }

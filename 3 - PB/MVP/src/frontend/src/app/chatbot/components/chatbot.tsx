@@ -81,6 +81,7 @@ export function Chatbot({
           >
             <ChatDisplay
               chat={chats.find((item) => item.id === chat.selected) || null}
+              
             />
           </ResizablePanel>
         </ResizablePanelGroup>

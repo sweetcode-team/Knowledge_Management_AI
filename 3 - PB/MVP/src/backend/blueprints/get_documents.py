@@ -11,6 +11,11 @@ from api_exceptions import InsufficientParameters, APIBadRequest
 
 getDocumentsBlueprint = Blueprint("getDocuments", __name__)
 
+"""
+This method is the endpoint for the getDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getDocumentsBlueprint.route('/getDocuments', defaults={'filter': ''}, methods=['GET'])
 @getDocumentsBlueprint.route("/getDocuments/<filter>", methods=['GET'])
 def getDocuments(filter):

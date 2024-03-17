@@ -8,6 +8,11 @@ from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 
 deleteChatsBlueprint = Blueprint("deleteChats", __name__)
 
+"""
+This method is the endpoint for the deleteChats API.
+Returns:
+    jsonify: The response of the API.
+"""
 @deleteChatsBlueprint.route("/deleteChats", methods=['POST'])
 def deleteChats():
     requestedIds = request.form.getlist('chatIds')

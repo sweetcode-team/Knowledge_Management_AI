@@ -9,6 +9,13 @@ from api_exceptions import InsufficientParameters, APIBadRequest, APIElaboration
 
 renameChatBlueprint = Blueprint("renameChat", __name__)
 
+"""
+This method is the endpoint for the renameChat API.
+Returns:
+
+    jsonify: The response of the API.
+    
+"""
 @renameChatBlueprint.route("/renameChat", methods=['POST'])
 def renameChat():
     requestedId = request.form.get('chatId')

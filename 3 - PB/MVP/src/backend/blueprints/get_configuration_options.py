@@ -9,6 +9,11 @@ from adapter.out.persistence.postgres.postgres_configuration_orm import Postgres
 
 getConfigurationOptionsBlueprint = Blueprint("getConfigurationOptions", __name__)
 
+"""
+This method is the endpoint for the getConfigurationOptions API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getConfigurationOptionsBlueprint.route('/getConfigurationOptions', methods=['GET'])
 def getConfigurationOptions():
     controller = GetConfigurationOptionsController(

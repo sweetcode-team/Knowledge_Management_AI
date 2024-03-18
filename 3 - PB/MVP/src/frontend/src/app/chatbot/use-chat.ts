@@ -7,7 +7,7 @@ type Config = {
 }
 
 const configAtom = atom<Config>({
-  selected: chats[0].id,
+  selected: null,
 })
 
 export function useChat() {

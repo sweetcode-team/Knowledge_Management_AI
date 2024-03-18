@@ -22,8 +22,6 @@ interface NavProps {
 export function Nav({ links, isCollapsed }: NavProps) {
   const pathname = "/" + usePathname().split("/")[1];
 
-  const label = "Prova"
-
   return (
     <div
       data-collapsed={isCollapsed}
@@ -32,7 +30,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
       <nav className="h-full flex flex-col gap-1.5 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
         {links.map((link, index) =>
           isCollapsed ? (
-            <div className="last:mt-auto mx-auto">
+            <div key={index} className="last:mt-auto mx-auto">
               <Tooltip key={index} delayDuration={0}>
                 <TooltipTrigger asChild>
                   <Link
@@ -50,11 +48,6 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 </TooltipTrigger>
                 <TooltipContent side="right" className="flex items-center gap-4">
                   {link.title}
-                  {/* {label && (
-                  <span className="ml-auto text-muted-foreground">
-                    {label}
-                  </span>
-                )} */}
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -71,17 +64,6 @@ export function Nav({ links, isCollapsed }: NavProps) {
             >
               <link.icon className="mr-2 h-5 w-5" />
               {link.title}
-              {/* {label && (
-                <span
-                  className={cn(
-                    "ml-auto",
-                    pathname === link.path &&
-                    "text-background dark:text-white"
-                  )}
-                >
-                  {label}
-                </span>
-              )} */}
             </Link>
           )
         )}

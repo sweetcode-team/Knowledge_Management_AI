@@ -15,17 +15,17 @@ export function CardsChat() {
   const [messages, setMessages] = React.useState([
     {
       role: "agent",
-      content: <MessageContent text="Hi, how can i help you today?" onButtonClick={showDocument} role = "agent"/>,
+      content: <MessageContent text="Hi, how can i help you today?" onButtonClick={showDocument} role="agent" />,
       timestamp: new Date().toLocaleTimeString(),
     },
     {
       role: "user",
-      content: <MessageContent text="Hey, I'm having trouble with my account." onButtonClick={showDocument} role ="user"/>,
+      content: <MessageContent text="Hey, I'm having trouble with my account." onButtonClick={showDocument} role="user" />,
       timestamp: new Date().toLocaleTimeString(),
     },
     {
       role: "agent",
-      content: <MessageContent text="Hi, how can i help you today?" onButtonClick={showDocument} role = "agent"/>,
+      content: <MessageContent text="Hi, how can i help you today?" onButtonClick={showDocument} role="agent" />,
       timestamp: new Date().toLocaleTimeString(),
     },
   ])
@@ -39,21 +39,21 @@ export function CardsChat() {
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
   const [isPaused, setIsPaused] = React.useState(false);
   const [isMicClicked, setIsMicClicked] = React.useState(false);
-  const recognition = React.useRef<any>(null); 
+  const recognition = React.useRef<any>(null);
 
   const startRecording = () => {
 
-    if(isRecording) {
+    if (isRecording) {
       return
     }
 
-    setIsRecording(true); 
+    setIsRecording(true);
 
     recognition.current = new (window as any).webkitSpeechRecognition();
-    recognition.current.continuous = true; 
-    recognition.current.interimResults = true; 
+    recognition.current.continuous = true;
+    recognition.current.interimResults = true;
     recognition.current.lang = "it-IT";
-  
+
     recognition.current.onresult = (event: any) => {
       let interimTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -73,17 +73,17 @@ export function CardsChat() {
         }
       }
     };
-      
+
     recognition.current.onend = () => {
-      recognition.current.stop(); 
-      setIsRecording(false); 
-    };
-  
-    recognition.current.onerror = (event: any) => {
-      setIsRecording(false); 
+      recognition.current.stop();
+      setIsRecording(false);
     };
 
-    recognition.current.start(); 
+    recognition.current.onerror = (event: any) => {
+      setIsRecording(false);
+    };
+
+    recognition.current.start();
     setIsPaused(false);
     return () => {
       if (recognition.current) {
@@ -91,11 +91,11 @@ export function CardsChat() {
       }
     };
   };
-  
+
   const stopRecording = () => {
     if (recognition) {
       recognition.current.stop();
-      setIsRecording(false); 
+      setIsRecording(false);
       setIsButtonDisabled(true);
 
       setTimeout(() => {
@@ -106,7 +106,7 @@ export function CardsChat() {
     setIsPaused(false);
   };
 
-  
+
   return (
     <>
       <Card>

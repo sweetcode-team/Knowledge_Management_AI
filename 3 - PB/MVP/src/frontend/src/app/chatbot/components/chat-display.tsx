@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Chat } from "@/app/chatbot/data"
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { CardsChat } from "@/app/chatbot/components/chat"
 
 interface ChatDisplayProps {
   chat: Chat | null
@@ -55,7 +56,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
           <div className="flex-1 whitespace-pre-wrap text-sm overflow-auto">
             <ScrollArea className="h-full">
               <div className="p-4">
-                {chat.text}
+                <CardsChat />
               </div>
             </ScrollArea>
           </div>

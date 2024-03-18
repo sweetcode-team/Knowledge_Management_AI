@@ -5,7 +5,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ExpandIcon, FilePlusIcon, MessageSquarePlusIcon } from 'lucide-react';
+import { Chat } from "@/app/chatbot/data"
+import { RecentChats } from "@/app/chatbot/components/recent-chats"
 import Link from 'next/link';
+import { chats } from "@/app/chatbot/data"
 
 export default async function Dashboard() {
 
@@ -45,9 +48,11 @@ export default async function Dashboard() {
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={40} minSize={35}>
-            <div className="p-2">
-              <h3 className="ml-3 font-semibold">Recent chats</h3>
+            <ScrollArea className='h-[50vh] mr-6'>
+            <div className="p-2">              
+             <RecentChats items={chats} />    
             </div>
+            </ScrollArea>
           </ResizablePanel>
         </ResizablePanelGroup>
         <Separator />

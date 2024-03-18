@@ -6,7 +6,9 @@ import { z } from "zod"
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { documentSchema } from "./data/schema"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+import { StagingArea } from "./components/staging-area"
 
 export const metadata: Metadata = {
   title: "KMAI - Document Manager",
@@ -28,10 +30,11 @@ export default async function DocumentManagerPage() {
 
   return (
     <ScrollArea className="h-full">
-      <div className="h-full flex-1 flex-col space-y-2 p-4">
-        <div className="flex items-center justify-between space-y-2">
-          <h3 className="text-xl font-bold tracking-tight">List of documents</h3>
-        </div>
+      <div className="h-full flex-1 flex-col space-y-4 p-4">
+        <h3 className="text-xl font-bold tracking-tight">Staging area</h3>
+        <StagingArea />
+        <Separator />
+        <h3 className="text-xl font-bold tracking-tight">List of documents</h3>
         <DataTable data={documents} columns={columns} />
       </div>
     </ScrollArea>

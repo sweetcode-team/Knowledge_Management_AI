@@ -62,7 +62,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
           <div>
             <Separator className="mt-auto" />
             <form className="p-4">
-              <div className="grid gap-4">
+              <div className="grid gap-4 max-h-full">
                 <div className="flex items-center">
                   <Label
                     htmlFor="mute"

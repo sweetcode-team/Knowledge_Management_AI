@@ -3,7 +3,7 @@
 import React from "react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
-export function DocumentViewer() {
+export default function DocumentViewer() {
     const docs = [
         {
             uri: "", fileType: 'pdf',

@@ -1,12 +1,12 @@
 from unittest.mock import patch, MagicMock
-from adapter.out.upload_documents.huggingface_embedding_model import HuggingfaceEmbeddingModel
+from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
 
 def test_embedDocument():
     with    patch('adapter.out.upload_documents.huggingface_embedding_model.HuggingFaceInferenceAPIEmbeddings') as HuggingFaceInferenceAPIEmbeddingsMock:
         
         HuggingFaceInferenceAPIEmbeddingsMock.return_value.embed_documents.return_value = [1, 2, 3]
         
-        huggingFaceEmbeddingModel = HuggingfaceEmbeddingModel()
+        huggingFaceEmbeddingModel = HuggingFaceEmbeddingModel()
         
         response = huggingFaceEmbeddingModel.embedDocument(['test'])
         

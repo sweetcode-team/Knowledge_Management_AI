@@ -91,7 +91,7 @@ class PostgresChatORM:
                     chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
             return chatPreviews
         except Exception as e:
-            return []
+            return None
     
     def getChatMessages(self, chatId: int) -> PostgresChat:
         try:

@@ -1,14 +1,15 @@
-from datetime import datetime
+from unittest.mock import patch, MagicMock, ANY
+from adapter.out.persistence.postgres.postgres_chat_preview import PostgresChatPreview
 
-from domain.chat.chat_id import ChatId
-from domain.chat.chat_preview import ChatPreview
-from adapter.out.persistence.postgres.postgres_message import PostgresMessage
-
-class PostgresChatPreview:
-    def __init__(self, id: int, title:str, postgresMessage: PostgresMessage):
-        self.id = id
-        self.title = title
-        self.lastMessage = postgresMessage
-
-    def getChatPreview(self) -> ChatPreview:
-        return ChatPreview(id=ChatId(self.id), title=self.title, lastMessage=self.lastMessage.toMessage())
+def test_toChatPreview():
+    with patch('adapter.out.persistence.postgres.postgres_chat_preview.ChatPreview') as chatPreviewMock, \
+        patch('adapter.out.persistence.postgres.postgres_chat_preview.ChatId') as chatIdMock:
+        postgresMessageMock = MagicMock()
+        
+        postgresChatPreview = PostgresChatPreview(1, 'title', postgresMessageMock)
+        
+        response = postgresChatPreview.toChatPreview()
+        
+        chatPreviewMock.assert_called_once_with(id=chatIdMock.return_value, title = 'title', lastMessage = postgresMessageMock.toMessage.return_value)
+        chatIdMock.assert_called_once_with(1)
+        assert response == chatPreviewMock.return_value

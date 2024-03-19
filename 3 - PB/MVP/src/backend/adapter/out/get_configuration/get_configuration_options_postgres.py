@@ -13,8 +13,6 @@ class GetConfigurationOptionsPostgres(GetConfigurationOptionsPort):
         postgresConfigurationLLMModelOptions = self.postgresConfigurationORM.getLLMModelOptions()
         postgresConfigurationDocumentStoreOptions = self.postgresConfigurationORM.getDocumentStoreOptions()
         
-        print(postgresConfigurationDocumentStoreOptions, flush=True)
-        
         return ConfigurationOptions(
             vectorStoreOptions=postgresConfigurationVectorStoreOptions,
             embeddingModelOptions=postgresConfigurationEmbeddingModelOptions,

@@ -41,6 +41,7 @@ class VectorStorePineconeManager(VectorStoreManager):
                     }
                 )
                 documentStatus = {documentEmbeddingsMatch.get('metadata', {}).get('status', None) for documentEmbeddingsMatch in queryResponse.get('matches', [])}
+                print(documentStatus)
                 documentStatus.discard(None)
                 
                 if len(documentStatus) == 0:
@@ -75,7 +76,7 @@ class VectorStorePineconeManager(VectorStoreManager):
                 if len(ids) > 0:
                     deleteResponse = self.index.delete(ids=list(ids))
                     if deleteResponse:
-                        vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message', "Errore nell'eliminazione degli embeddings.")}"))
+                        vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message', 'Errore nella eliminazione degli embeddings.')}"))
                     else:
                         vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
             except PineconeApiException as e:

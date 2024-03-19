@@ -6,13 +6,13 @@ def test_toDocumentMetadataFromPDF():
             patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentId') as DocumentIdMock, \
             patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentType') as DocumentTypeMock:
                 
-        DocumentIdMock.return_value = "test"
+        DocumentIdMock.return_value = "Prova.pdf"
         
-        documentMetadata = AWSDocumentMetadata(id="test", size=1, type = "PDF", uploadTime=ANY)
+        documentMetadata = AWSDocumentMetadata(id="Prova.pdf", size=1, type = "PDF", uploadTime=ANY)
         
         response = documentMetadata.toDocumentMetadataFrom()
         
-        DocumentMetadataMock.assert_called_once_with(id="test", type=DocumentTypeMock.PDF, size=1, uploadTime=ANY)
+        DocumentMetadataMock.assert_called_once_with(id="Prova.pdf", type=DocumentTypeMock.PDF, size=1, uploadTime=ANY)
         
         assert response == DocumentMetadataMock.return_value
         
@@ -21,12 +21,12 @@ def test_toDocumentMetadataFromDOCX():
             patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentId') as DocumentIdMock, \
             patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentType') as DocumentTypeMock:
                 
-        DocumentIdMock.return_value = "test"
+        DocumentIdMock.return_value = "Prova.docx"
         
-        documentMetadata = AWSDocumentMetadata(id="test", size=1, type = "DOCX", uploadTime=ANY)
+        documentMetadata = AWSDocumentMetadata(id="Pova.docx", size=1, type = "DOCX", uploadTime=ANY)
         
         response = documentMetadata.toDocumentMetadataFrom()
         
-        DocumentMetadataMock.assert_called_once_with(id="test", type=DocumentTypeMock.DOCX, size=1, uploadTime=ANY)
+        DocumentMetadataMock.assert_called_once_with(id="Prova.docx", type=DocumentTypeMock.DOCX, size=1, uploadTime=ANY)
         
         assert response == DocumentMetadataMock.return_value

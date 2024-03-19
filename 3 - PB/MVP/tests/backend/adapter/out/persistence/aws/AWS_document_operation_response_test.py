@@ -5,7 +5,7 @@ def test_toDocumentOperationResponseTrue():
     with patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentOperationResponse') as DocumentOperationResponseMock, \
          patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentId') as DocumentIdMock:
              
-        documentOperationResponse = AWSDocumentOperationResponse(documentId="test.pdf", status=True, message="test")
+        documentOperationResponse = AWSDocumentOperationResponse(documentId="Prova.pdf", status=True, message="test")
         
         response = documentOperationResponse.toDocumentOperationResponse()
         
@@ -17,7 +17,7 @@ def test_toDocumentOperationResponseFail():
     with    patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentOperationResponse') as DocumentOperationResponseMock, \
             patch('adapter.out.persistence.aws.AWS_document_operation_response.DocumentId') as DocumentIdMock:
         
-        documentOperationResponse = AWSDocumentOperationResponse(documentId="test.pdf", status=False, message="test")
+        documentOperationResponse = AWSDocumentOperationResponse(documentId="Prova.pdf", status=False, message="test")
         
         response = documentOperationResponse.toDocumentOperationResponse()
         

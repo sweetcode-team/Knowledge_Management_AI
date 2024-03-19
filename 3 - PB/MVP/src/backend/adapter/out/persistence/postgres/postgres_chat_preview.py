@@ -10,5 +10,5 @@ class PostgresChatPreview:
         self.title = title
         self.lastMessage = postgresMessage
 
-    def getChatPreview(self) -> ChatPreview:
+    def toChatPreview(self) -> ChatPreview:
         return ChatPreview(id=ChatId(self.id), title=self.title, lastMessage=self.lastMessage.toMessage())

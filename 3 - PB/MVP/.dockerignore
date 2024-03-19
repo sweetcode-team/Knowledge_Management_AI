@@ -1,0 +1,5 @@
+src/frontend/
+*.pyc
+__pycache__
+.pytest_cache
+blueprints

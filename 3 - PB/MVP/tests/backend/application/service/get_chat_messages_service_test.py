@@ -3,7 +3,7 @@ import unittest.mock
 from domain.chat.chat import Chat
 from domain.chat.chat_id import ChatId
 from domain.chat.message import Message, MessageSender
-from service.get_chat_messages_service import GetChatMessagesService
+from application.service.get_chat_messages_service import GetChatMessagesService
 
 
 def test_getChatMessages():

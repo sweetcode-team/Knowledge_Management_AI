@@ -1,12 +1,6 @@
 "use client"
 import * as React from "react"
 import { ReactNode } from 'react';
-import {
-    FolderOpenIcon,
-    LayoutDashboardIcon,
-    MessageSquareTextIcon,
-    SettingsIcon,
-} from "lucide-react"
 
 import { NAV_ITEMS } from '@/constants/navItems';
 
@@ -18,7 +12,6 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 
 import Header from "@/components/header"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { usePathname } from "next/navigation";
 import { Types } from "@/types/types";
 
@@ -75,43 +68,6 @@ export function ResizableLayout({
                     <Nav
                         isCollapsed={isCollapsed}
                         links={navItems} />
-                    {/* <Nav
-                        isCollapsed={isCollapsed}
-                        links={[
-                            {
-                                title: "Dashboard",
-                                label: "",
-                                href: "/",
-                                icon: LayoutDashboardIcon,
-                            },
-                            {
-                                title: "Chatbot",
-                                label: "",
-                                href: "/chatbot",
-                                icon: MessageSquareTextIcon,
-                            },
-                            {
-                                title: "Documents",
-                                label: "",
-                                href: "/documents",
-                                icon: FolderOpenIcon,
-                            },
-                        ]}
-                    />
-                    <div className="mt-auto">
-                        <Separator />
-                        <Nav
-                            isCollapsed={isCollapsed}
-                            links={[
-                                {
-                                    title: "Settings",
-                                    label: "",
-                                    href: "/settings",
-                                    icon: SettingsIcon,
-                                },
-                            ]}
-                        />
-                    </div> */}
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={defaultLayout[1]}>

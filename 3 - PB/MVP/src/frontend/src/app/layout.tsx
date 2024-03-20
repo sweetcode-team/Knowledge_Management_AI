@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ResizableLayout } from "@/components/resizable-layout"
 
 import { cookies } from "next/headers"
+import { ModeToggle } from "@/components/ui/toggle-mode";
 
 const poppins = Poppins({ weight: "400", subsets: ["devanagari"] });
 
@@ -38,7 +39,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <ModeToggle /> */}
           <ResizableLayout
             navCollapsedSize={4}
             defaultLayout={defaultLayout}

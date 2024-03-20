@@ -44,15 +44,15 @@ class PostgresChatORM:
             db_session.commit()
             newMessageIds = [newMessage.id for newMessage in newMessages]
             
-            messageRelevantDocuments = []
             for i, message in enumerate(messages):
+                messageRelevantDocuments = []
                 if message.relevantDocuments is not None:
                     for document in message.relevantDocuments:
                         messageRelevantDocuments.append(MessageRelevantDocuments(id=newMessageIds[i], documentId=document))
             db_session.add_all(messageRelevantDocuments)
             return PostgresChatOperationResponse(True, "Messaggi salvati correttamente.", chatId)
         except Exception as e:
-            return PostgresChatOperationResponse(False, f"Errore nel salvataggio dei messaggi: {str(e)}", None)
+            return PostgresChatOperationResponse(False, f"Errore nel salvataggio dei messaggi: {str(e)}", chatId)
     
     def deleteChats(self, chatIds: List[int]) -> List[PostgresChatOperationResponse]:
         try:
@@ -87,6 +87,7 @@ class PostgresChatORM:
                         [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == lastMessage.id).all()],
                         PostgresMessageSenderType[lastMessage.message["type"]]))
                     )
+                    print(1)
                 else:
                     chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
             return chatPreviews

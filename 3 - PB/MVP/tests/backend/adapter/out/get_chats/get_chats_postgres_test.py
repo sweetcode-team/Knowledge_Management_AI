@@ -9,14 +9,14 @@ def test_getChatsPostgresTrue():
     chatFilterMock = MagicMock()
     postgresChatPreviewMock = MagicMock()
     
-    postgresChatPreviewMock.getChatPreview.return_value = ChatPreview(ChatId(1), "TestChat", Message('last message', ANY, [], MessageSender.USER))
     postgresORMMock.getChats.return_value = [postgresChatPreviewMock]
+    postgresChatPreviewMock.toChatPreview.return_value = ChatPreview(ChatId(1), "TestChat", Message('last message', ANY, [], MessageSender.USER))
     chatFilterMock.searchFilter = "TestFilter"
     
     getChatsPostgres = GetChatsPostgres(postgresORMMock)
     
     response = getChatsPostgres.getChats(chatFilterMock)
-    
+     
     postgresORMMock.getChats.assert_called_once_with("TestFilter")
     assert isinstance(response, list)
     assert isinstance(response[0], ChatPreview)

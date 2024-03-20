@@ -2,7 +2,7 @@ from typing import List
 
 from langchain_openai import OpenAIEmbeddings
 from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
-
+ 
 
 class OpenAIEmbeddingModel(LangchainEmbeddingModel):
     def __init__(self):
@@ -17,5 +17,6 @@ class OpenAIEmbeddingModel(LangchainEmbeddingModel):
             return self.model.embed_documents(documentChunks)
         except Exception as e:
             return []
+        
     def getEmbeddingFunction(self):
         return self.model

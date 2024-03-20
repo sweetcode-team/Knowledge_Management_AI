@@ -132,7 +132,6 @@ class PostgresDocumentStoreConfiguration(Base):
             self.costIndicator
         )
 
-
 class PostgresConfigurationChoice(Base):
     __tablename__ = 'configuration'
     userId = Column('userId', Integer, primary_key=True)

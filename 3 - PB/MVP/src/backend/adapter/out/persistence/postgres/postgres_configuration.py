@@ -10,7 +10,7 @@ class PostgresConfiguration:
     embeddingModel: PostgresEmbeddingModelConfiguration
     LLMModel: PostgresLLMModelConfiguration
     
-    def toConfiguration(self):
+    def toConfiguration(self) -> Configuration:
         return Configuration(
             vectorStore=PostgresVectorStoreConfiguration(
                 self.vectorStore.name,

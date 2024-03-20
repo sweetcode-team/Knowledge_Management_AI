@@ -14,7 +14,7 @@ from application.port.out.get_documents_metadata_port import GetDocumentsMetadat
 from application.port.out.get_documents_status_port import GetDocumentsStatusPort
 from application.port.out.get_documents_content_port import GetDocumentsContentPort
 from application.port.out.ask_chatbot_port import AskChatbotPort
-
+ 
 from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 from adapter.out.persistence.postgres.configuration_models import PostgresDocumentStoreType, PostgresVectorStoreType, PostgresLLMModelType, PostgresEmbeddingModelType
 from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
@@ -89,7 +89,6 @@ class ConfigurationManager:
             raise ConfigurationException('Vector store non configurato.')
         
         return GetDocumentsStatusVectorStore(configuredVectorStore)
-
 
     def getGetDocumentsMetadataPort(self) -> GetDocumentsMetadataPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))

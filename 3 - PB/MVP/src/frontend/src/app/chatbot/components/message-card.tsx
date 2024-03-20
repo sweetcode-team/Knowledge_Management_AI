@@ -29,11 +29,13 @@ export function MessageCard({ message }: MessageCardProps) {
                             {
                                 message.relevantDocuments.map((document, index) => (
                                     <div key={index} className="flex w-full items-stretch justify-between space-x-2">
-                                        <div className="flex flex-grow items-center rounded-md bg-card px-4 line-clamp-1">
-                                            {document}
+                                        <div className="flex flex-grow shadow-md items-center rounded-md bg-card px-4 min-w-0">
+                                            <p className="truncate">
+                                                {document}
+                                            </p>
                                         </div>
-                                        <Button size="sm" onClick={() => showDocument()} className="bg-card text-primary hover:text-secondary flex items-center justify-center space-x-2">
-                                            <span>Vedi</span>
+                                        <Button size="sm" onClick={() => showDocument()} className="bg-card shadow-md text-primary hover:text-secondary flex items-center justify-center gap-x-2">
+                                            <span className="hidden md:block">Vedi</span>
                                             <ChevronRightIcon className="w-4 h-4" />
                                         </Button>
                                     </div>

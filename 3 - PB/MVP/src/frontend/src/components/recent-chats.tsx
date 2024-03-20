@@ -2,7 +2,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat } from "../data";
+import { Chat } from "../app/chatbot/data";
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -39,12 +39,13 @@ export function RecentChats({ items }: RecentChatsProps) {
 
   return (
     <ScrollArea>
-      <div className="flex flex-col gap-2 p-4 pt-0">
-        {items.map((item) => (
-          <ContextMenu>
+      <div className="flex flex-col gap-2 mx-2">
+        {items.map((item, index) => (
+          <ContextMenu key={index}>
             <ContextMenuTrigger>
-              <button
+              <div
                 key={item.id}
+                tabIndex={0}
                 className={cn(
                   "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
                 )}
@@ -66,7 +67,7 @@ export function RecentChats({ items }: RecentChatsProps) {
                 <div className="line-clamp-2 text-xs text-muted-foreground">
                   {item.messages[item.messages.length - 1].content.substring(0, 300)}
                 </div>
-              </button>
+              </div>
             </ContextMenuTrigger>
             <ContextMenuContent id={item.id}>
               <AlertDialog>

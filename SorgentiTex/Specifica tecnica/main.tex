@@ -546,10 +546,16 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     
 \end{itemize}
 
-\begin{comment}
+
+
+
+
+
+
+
 \subsubsection{ChangeConfiguration} %TODO
 \subsubsubsection{Descrizione}
-Questa componente ha il compito di cambiare la configurazione del sistema.
+Questa componente ha il compito di cambiare la configurazione del modello LLM del sistema.
 È costituita da:
 \begin{itemize}
     \item \textbf{Route API}: /changeConfiguration;
@@ -583,9 +589,18 @@ Questa componente ha il compito di cambiare la configurazione del sistema.
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item 
+    \item \label{ChangeConfigurationController}\textbf{ChangeConfigurationController}: classe controller che si occupa del cambio del modello LLM;
+    \item \label{ChangeConfigurationPort}\textbf{ChangeConfigurationPort}: interfaccia che rappresenta la porta in uscita verso il database, per effettuare il cambio di modello LLM;
+    \item \label{ChangeConfigurationPostgres}\textbf{ChangeConfigurationPostgres}: classe che implementa ChangeConfigurationPort, adattando la chiamata di ChangeConfigurationService a PostgresConfigurationORM;
+    \item \label{ChangeConfigurationService}\textbf{ChangeConfigurationService}: classe service che implementa lo use case ChangeConfigurationUseCase;
+    \item \label{ChangeConfigurationUseCase}\textbf{ChangeConfigurationUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per eseguire il cambio della configurazione del modello LLM;
+    \item \label{ConfigurationOperationResponse}\textbf{ConfigurationOperationResponse}:  classe che contiene l'esito di un'operazione eseguita sulla configurazione del modello LLM;
+    \item \label{PostgresConfigurationOperationResponse}\textbf{PostgresConfigurationOperationResponse}: classe che contiene l'esito di un'operazione effettuata su Postgres riguardo la configurazione del modello LLM;
+    \item \label{PostgresConfigurationORM}\textbf{PostgresConfigurationORM}: classe che si occupa di effettuare le operazioni su Postgres configurato, cioè dove viene storicizzata la configurazione del sistema.
+
+
 \end{itemize}
-\end{comment}
+
 
 \subsubsection{ConcealDocuments}
 \subsubsubsection{Descrizione}
@@ -626,7 +641,7 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{ConcealDocumentsController}\textbf{ConcealDocumentsController}: classe controller che si occupa del passaggio di una lista di DocumentId allo use case ConcealDocumentsUseCase a partire da una lista di stringhe che rappresentano l'id dei documenti da occultare;
-    \item \label{ConcealDocumentsPort}\textbf{ConcealDocumentsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'occultamento dei documenti nel vector store;
+    \item \label{ConcealDocumentsPort}\textbf{ConcealDocumentsPort}: interfaccia che rappresenta la porta per effettuare l'occultamento dei documenti nel vector store;
     \item \label{ConcealDocumentsService}\textbf{ConcealDocumentsService}: classe service che implementa lo use case ConcealDocumentsUseCase;
     \item \label{ConcealDocumentsUseCase}\textbf{ConcealDocumentsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'occultamento dei documenti;
     \item \label{ConcealDocumentsVectorStore}\textbf{ConcealDocumentsVectorStore}: classe adapter che implementa la porta ConcealDocumentsPort, adattando la chiamata di ConcealDocumentsService a VectorStoreManager;
@@ -689,6 +704,72 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
     \item \label{DeleteChatsUseCase}\textbf{DeleteChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'eliminazione di una lista di chat;
     \item \textbf{PostgresChatOperationResponse}: vedi \vedi{PostgresChatOperationResponse};
     \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}.
+\end{itemize}
+ 
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{ConfigurationManager}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di gestire la configurazione del sistema. %TODO
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}:%TODO ;
+    \item \textbf{Metodo}:%TODO ;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item %TODO
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili ConfigurationManager}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili }\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili ConfigurationManager (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+ &  & - \\
+\hline
+ &  & \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item 
+       
+\end{itemize}
+
+\subsubsubsection{Lista sottocomponenti}%descrizioni da chiedere con più dettaglio
+\begin{itemize}
+    \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone metodi per ottenere le porte in uscita delle componenti del sistema;
+    \item \label{PostgresConfiguration}\textbf{PostgresConfiguration}: classe di persistence che rappresenta la configurazione del sistema di userId, vector store, document store, LLM ed embedding model su Postgres;
+    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
+    \item \label{PostgresDocumentStoreConfiguration}\textbf{PostgresDocumentStoreConfiguration}: classe di persistence che rappresenta la configurazione di un document store;
+    \item \label{PostgresDocumentStoreType}\textbf{PostgresDocumentStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresDocumentStoreConfiguration;
+
+    \item \label{PostgresEmbeddingModelConfiguration}\textbf{PostgresEmbeddingModelConfiguration}: classe di persistence che rappresenta la configurazione di un embedding model;
+    \item \label{PostgresEmbeddingModelType}\textbf{PostgresEmbeddingModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresEmbeddingModelConfiguration;
+    \item \label{PostgresLLMModelConfiguration}\textbf{PostgresLLMModelConfiguration}: classe di persistence che rappresenta la configurazione di un modello LLM;
+    \item \label{PostgresLLMModelType}\textbf{PostgresLLMModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresLLMModelConfiguration;
+
+    \item \label{PostgresVectorStoreConfiguration}\textbf{PostgresVectorStoreConfiguration}: classe di persistence che rappresenta la configurazione di un vector store su Postgres;
+    \item \label{PostgresVectorStoreType}\textbf{PostgresVectorStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresVectorStoreConfiguration.
+   
+    
 \end{itemize}
  
 \subsubsection{DeleteDocuments}
@@ -930,6 +1011,17 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
     \item \textbf{PostgresMessageSenderType}: vedi \vedi{PostgresMessageSenderType}.
 \end{itemize}
 
+
+
+
+
+
+    
+    
+    
+   
+    
+
 \subsubsection{GetChats}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di ottenere una lista di preview di chat, eventualmente filtrando la ricerca.
@@ -985,10 +1077,10 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \item \textbf{MessageSender}: vedi \vedi{MessageSender};
     \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM};
     \item \label{PostgresChatPreview}\textbf{PostgresChatPreview}: classe di persistence che rappresenta la preview di una chat;
-    \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage}.
+    \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage};
+    \item \textbf{PostgresMessageSenderType}: vedi \vedi{PostgresMessageSenderType}.
 \end{itemize}
 
-\begin{comment}
 \subsubsection{GetConfiguration}
     \subsubsubsection{Descrizione}
     Questa componente ha il compito di ricavare la configurazione del sistema.
@@ -1020,11 +1112,128 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
             \item TODO.
     \end{itemize}
     
-    \subsubsubsection{Lista sottocomponenti}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+
+    \item \label{Configuration}\textbf{Configuration}: classe che contiene la configurazione e le informazioni riguardo a vector store, document store, LLM ed embedding model;
+  
+    
+    \item \label{DocumentStoreConfiguration}\textbf{DocumentStoreConfiguration}: classe che rappresenta la configurazione di un document store;
+    \item \label{DocumentStoreType}\textbf{DocumentStoreType}:  enumeration che rappresenta i valori che può assumere il campo \code{name} in DocumentStoreConfiguration;
+    \item \label{EmbeddingModelConfiguration}\textbf{EmbeddingModelConfiguration}: classe che rappresenta la configurazione di un modello di embedding;
+    \item \label{EmbeddingModelType}\textbf{EmbeddingModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in EmbeddingModelConfiguration;
+    \item \label{GetConfigurationController}\textbf{GetConfigurationController}: classe che si occupa di ritornare la configurazione di vector store, document store, embedding model e LLM;
+    \item \label{GetConfigurationPort}\textbf{GetConfigurationPort}: interfaccia che rappresenta la porta in uscita per ottenere la configurazione del sistema;
+    \item \label{GetConfigurationPostgres}\textbf{GetConfigurationPostgres}: classe che implementa la porta GetConfigurationPort, adattando la chiamata di GetConfigurationService a PostgresConfigurationORM;
+    \item \label{GetConfigurationService}\textbf{GetConfigurationService}: classe service che implementa lo use case GetConfigurationUseCase;
+    \item \label{GetConfigurationUseCase}\textbf{GetConfigurationUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare il recupero della configurazione; 
+    
+    \item \label{LLMModelConfiguration}\textbf{LLMModelConfiguration}: classe che rappresenta la configurazione di un modello LLM;
+    \item \label{LLMModelType}\textbf{LLMModelType}: enumeration che rappresenta il tipo di valori del campo \code{name} di LLMModelConfiguration;
+    \item \textbf{PostgresConfiguration}: vedi \vedi{PostgresConfiguration};
+    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
+    \item \textbf{PostgresDocumentStoreConfiguration}: vedi \vedi{PostgresDocumentStoreConfiguration};
+    \item \textbf{PostgresDocumentStoreType}: vedi \vedi{PostgresDocumentStoreType};
+
+    \item \textbf{PostgresEmbeddingModelConfiguration}: vedi \vedi{PostgresEmbeddingModelConfiguration};
+    \item \textbf{PostgresEmbeddingModelType}: vedi \vedi{PostgresEmbeddingModelType};
+    
+    \item \textbf{PostgresLLMModelConfiguration}: vedi \vedi{PostgresLLMModelConfiguration};
+    \item \textbf{PostgresLLMModelType}:vedi \vedi{PostgresLLMModelType};
+
+    \item \textbf{PostgresVectorStoreConfiguration}: vedi \vedi{PostgresVectorStoreConfiguration};
+    \item \textbf{PostgresVectorStoreType}: vedi \vedi{PostgresVectorStoreType};
+
+    \item \label{VectorStoreConfiguration}\textbf{VectorStoreConfiguration}: classe che rappresenta la configurazione di un vector store;
+    \item \label{VectorStoreType}\textbf{VectorStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in VectorStoreConfiguration.
+    
+\end{itemize}
+ 
+    
+%GetConfigurationOptions
+
+\subsubsection{GetConfigurationOptions}
+    \subsubsubsection{Descrizione}
+    Questa componente ha il compito di ottenere le possibili opzioni delle configurazioni di modello di embedding, LLM, vector store e document store.
+    È costituita da:
     \begin{itemize}
-        \item 
+        \item \textbf{Route API}: /getConfigurationOptions;
+        \item \textbf{Metodo}: GET;
+        \item \textbf{Lista parametri HTTP}: -
     \end{itemize}
-\end{comment}
+    \subsubsubsection{Esiti possibili}
+    \begin{xltabular}{\textwidth}{c|X|X}
+    \caption{Esiti possibili GetConfigurationOptions}\\
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+    \endfirsthead
+    \caption[]{Esiti possibili GetConfigurationOptions (cont)}\\
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+    \endhead
+    \multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+    \endfoot
+    \endlastfoot
+    \hline
+    200 &  & - \\%todo.
+    \hline
+    500 &  &  \\%todo.
+    \end{xltabular}
+    
+    \subsubsubsection{Tracciamento dei requisiti}
+    \begin{itemize}
+            \item TODO.
+    \end{itemize}
+    
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{ConfigurationOptions}\textbf{ConfigurationOptions}: classe che contiene liste delle possibili configurazioni per vector store, document store, embedding model e LLM;
+    \item \textbf{DocumentStoreConfiguration}: vedi \vedi{DocumentStoreConfiguration};
+    \item \textbf{DocumentStoreType}: vedi \vedi{DocumentStoreType};
+    \item \textbf{EmbeddingModelConfiguration}: vedi \vedi{EmbeddingModelConfiguration};
+    \item \textbf{EmbeddingModelType}: vedi \vedi{EmbeddingModelType};
+    \item \label{GetConfigurationOptions}\textbf{GetConfigurationOptions}: classe che si occupa di ottenere le possibili configurazioni di vector store, document store, embedding model e LLM; 
+    
+     \item \label{GetConfigurationOptionsPort}\textbf{GetConfigurationOptionsPort}: interfaccia che rappresenta la porta in uscita per ottenere le possibili configurazione di vector store, document store, embedding model e LLM;
+    \item \label{GetConfigurationOptionsPostgres}\textbf{GetConfigurationOptionsPostgres}: classe che implementa la porta GetConfigurationOptionsPort, adattando la chiamata di GetConfigurationOptionsService a PostgresConfigurationORM;
+    \item \label{GetConfigurationOptionsService}\textbf{GetConfigurationOptionsService}: classe service che implementa lo use case GetConfigurationOptionsUseCase;
+    \item \label{GetConfigurationOptionsUseCase}\textbf{GetConfigurationOptionsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare il recupero dellopzioni di configurazione per vector store, document store, embedding model e LLM; 
+    \item \textbf{LLMModelConfiguration}: vedi \vedi{LLMModelConfiguration};
+    \item \textbf{LLMModelType}: vedi \vedi{LLMModelType};
+   % \item \textbf{PostgresConfiguration}: vedi \vedi{PostgresConfiguration};
+    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
+    \item \textbf{PostgresDocumentStoreConfiguration}: vedi \vedi{PostgresDocumentStoreConfiguration};
+    \item \textbf{PostgresDocumentStoreType}: vedi \vedi{PostgresDocumentStoreType};
+
+    \item \textbf{PostgresEmbeddingModelConfiguration}: vedi \vedi{PostgresEmbeddingModelConfiguration};
+    \item \textbf{PostgresEmbeddingModelType}: vedi \vedi{PostgresEmbeddingModelType};
+    
+    \item \textbf{PostgresLLMModelConfiguration}: vedi \vedi{PostgresLLMModelConfiguration};
+    \item \textbf{PostgresLLMModelType}: vedi \vedi{PostgresLLMModelType};
+
+    \item \textbf{PostgresVectorStoreConfiguration}: vedi \vedi{PostgresVectorStoreConfiguration};
+    \item \textbf{PostgresVectorStoreType}: vedi \vedi{PostgresVectorStoreType};
+
+    \item \textbf{VectorStoreConfiguration}: vedi \vedi{VectorStoreConfiguration};
+    \item \textbf{VectorStoreType}: vedi \vedi{VectorStoreType}.
+   
+\end{itemize}
+ 
+    
+    
+   
+   
+
+
+
+
+
+
+
+
+
+
+   
 
 \subsubsection{GetDocuments}
 \subsubsubsection{Descrizione}
@@ -1419,9 +1628,6 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \end{itemize}
 
 
-
-
-
 \subsubsubsection{ChatId}
 \label{ChatIdDettaglio}
 \begin{itemize}
@@ -1505,7 +1711,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \end{itemize}
 
 
-subsubsubsection{PostgresChatOperationResponse}
+\subsubsubsection{PostgresChatOperationResponse}
 \label{PostgresChatOperationResponseDettaglio}
 \begin{itemize}
     \item \textbf{Attributi}:
@@ -1561,7 +1767,7 @@ subsubsubsection{PostgresChatOperationResponse}
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{persistChat(messages:List<Message>, chatId: ChatId}\\
+        \item \code{persistChat(messages:List<Message>, chatId: ChatId): ChatOperationResponse}\\
         Metodo che implementa il metodo persistChat di PersistChatPort; prende una lista di Messages e la rende persistente, restituendo un ChatOperationResponse, che rappresenta l'esito della operazione.
         \item \code{toPostgresMessageFrom(message:Message): PostgresMessage}\\
         Metodo che permette di passare da un oggetto Message ad un oggetto persistente PostgresMessage.
@@ -1669,7 +1875,7 @@ subsubsubsection{PostgresChatOperationResponse}
         Metodo per creare una nuova PostgresChat sul database Postgres utilizzato per la storicizzazione della chat;
 
         \item \code{deleteChats(chatIds:List<int>): List<PostgresChatOperationResponse>}\\
-        Metodo per eliminare chat sul database Postgres utilizzato per la storicizazzione delle chat. Ritorna l'esito dell'operazione con una lista di PostgresChatOperationResponse;
+        Metodo per eliminare chat sul database Postgres, utilizzato per la storicizazzione delle chat. Ritorna l'esito dell'operazione con una lista di PostgresChatOperationResponse;
         
         \item \code{getChatMessages(chatId:int): PostgresChat}\\
         Metodo per ottenere una PostgresChat dal database Postgres utilizzato per la storicizzazione delle chat a partire da un intero rappresentante l'id della chat;
@@ -1677,14 +1883,14 @@ subsubsubsection{PostgresChatOperationResponse}
         \item \code{getChats(chatFilter:string): List<PostgresChatPreview>}\\
         Metodo per ottenere una lista di PostgresChatPreview dal database Postgres utilizzato per la storicizzazione delle chat, eventualmente filtrando la ricerca attraverso chatFilter;
 
-        \item \code{persistChat(messages:List<PostgresMessage>, chatId:int): PostgresChatOperationResponse}\\
-        Metodo che prende una lista di PostgresMessages e la rende persistente, restituendo un PostgresChatOperationResponse, che rappresenta l'esito della operazione.
+        \item \code{persistChat(messages:List<PostgresMessage>, chatId:int):}\\ \code{ PostgresChatOperationResponse}\\
+        Metodo che prende una lista di PostgresMessages e la rende persistente utilizzando il metodo saveMessages. Restituisce un PostgresChatOperationResponse, che rappresenta l'esito della operazione.
         
         \item \code{renameChat(chatId:int, title:string): PostgresChatOperationResponse}\\
         Metodo per rinominare con title una chat identificata tramite chatId sul database Postgres utilizzato per la storicizzazione delle chat. Ritorna l'esito dell'operazione con un PostgresChatOperationResponse;
         
         \item \code{saveMessages(messages:List<PostgresMessage>, chatId:int):}\\ \code{PostgresChatOperationResponse}\\
-          
+        Metodo per salvare una lista di PostgresMessages. Restituisce l'esito dell'operazione come PostgresChatOperationResponse.
         
         
     \end{itemize}
@@ -1693,7 +1899,143 @@ subsubsubsection{PostgresChatOperationResponse}
 
 
 
-% \subsection{ChangeConfiguration}%TODO
+ \subsection{ChangeConfiguration}%TODO
+ \subsubsection{Diagramma delle classi}
+ \subsubsection{Lista delle sottocomponenti}
+ 
+
+
+
+
+ \subsubsubsection{ChangeConfigurationController}
+\label{ChangeConfigurationControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: ChangeConfigurationUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{changeLLMModel(LLMModel:string): ConfigurationOperationResponse}\\
+        Metodo che si occupa di effettuare il cambio di configurazione del LLMModel identificato da una stringa e ritorna l'esito della operazione come ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChangeConfigurationPort}
+\label{ChangeConfigurationPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{changeLLMModel(LLMModel:LLMModelType): ConfigurationOperationResponse}\\
+        Metodo astratto che si occupa di effettuare il cambio di configurazione del modello LLM con LLMModelType e ritorna l'esito della operazione come ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ChangeConfigurationPostgres}
+\label{ChangeConfigurationPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: ChangeConfigurationPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresConfigurationORM: PostgresConfigurationORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{changeLLMModel(LLMModel:LLMModelType): ConfigurationOperationResponse}\\
+        Implementazione del metodo astratto di ChangeConfigurationPort per eseguire il cambio di configurazione del LLMModel. Ritorna l'esito della operazione come ConfigurationOperationResponse;
+        \item \code{toPostgresLLMModelTypeFrom(LLMModel:LLMModelType):}\code{ PostgresLLMModelType}\\
+        Metodo che ottiene un PostgresLLMModelType a partire da un LLMModelType.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{ChangeConfigurationService}
+\label{ChangeConfigurationServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: ChangeConfigurationUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: ChangeConfigurationPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{changeLLMModel(LLMModel:LLMModelType): ConfigurationOperationResponse}\\
+        Implementazione del metodo astratto di ChangeConfigurationUseCase per eseguire il cambio di configurazione del LLMModel. Ritorna l'esito della operazione come ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{ChangeConfigurationUseCase}
+\label{ChangeConfigurationUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{changeLLMModel(LLMModel:LLMModelType): ConfigurationOperationResponse}\\
+        Metodo astratto per eseguire il cambio di configurazione del LLMModel. Ritorna l'esito della operazione come ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ConfigurationOperationResponse}
+\label{ConfigurationOperationResponseDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{message: string};
+        \item \code{status: boolean}.
+    \end{itemize}
+    
+    \subsubsubsection{PostgresConfigurationOperationResponse}
+    \label{PostgresConfigurationOperationResponseDettaglio}
+    \begin{itemize}
+        
+        \item \textbf{Attributi}:
+        \begin{itemize}
+        \item \code{message: string};
+        \item \code{status: boolean}.
+        \end{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{toConfigurationOperationResponse(): ConfigurationOperationResponse}\\
+            Metodo per ottenere un ConfigurationOperationResponse a partire dal PostgresChatOperationResponse.
+        \end{itemize}
+        
+    \end{itemize}
+    
+\end{itemize}
+    
+
+    \subsubsubsection{PostgresConfigurationORM}
+    \label{PostgresConfigurationORMDettaglio}
+    \begin{itemize}
+        \item \textbf{Metodi}:
+        \begin{itemize}
+            \item \code{changeLLMModel(userId:int, LLMModel:PostgresLLMModelType):}\\ \code{ PostgresConfigurationOperationResponse}\\
+            Metodo che esegue il cambio di configurazione del LLMModel con un PostgresLLMModelType. Ritorna l'esito della operazione come PostgresConfigurationOperationResponse;
+
+            \item \code{getConfiguration(userId:int): PostgresConfiguration}\\
+            Metodo per ottenere la configurazione del sistema; ricava le configurazioni di userId, vector store, modello di embedding, LLM e metodo di storicizzazione dei documenti. Ritorna un oggetto PostgresConfiguration;
+            \item \code{getConfigurationChoices(userId:int): PostgresConfigurationChoice}\\
+            Metodo che restituisce la scelta di configurazione dell'utente come oggetto PostgresConfigurationChoice;
+
+            \item \code{getDocumentStoreOptions(): List<PostgresDocumentStoreConfiguration>}\\
+            Metodo che restituisce una lista delle possibili alternative di configurazione di storage per i documenti sottoforma di lista di PostgresDocumentStoreConfiguration;
+
+            \item \code{getEmbeddingModelOptions(): List<PostgresEmbeddingModelConfiguration>}\\
+            Metodo che restituisce le possibili scelte di configurazione per il modello di embeddingm sottoforma di una lista di PostgresEmbeddingModelConfiguration;
+
+            \item \code{getLLMModelOptions(): List<PostgresLLMModelConfiguration>}\\
+            Metodo che restituisce le possibili scelte di modelli LLM sottoforma di  lista di PostgresLLMModelConfiguration;
+
+            \item \code{getVectorStoreOptions(): List<PostgresVectorStoreConfiguration>:}\\
+            Metodo che restituisce la lista delle possibili alternative di configurazione di vector store sottoforma di lista di PostgresVectorStoreConfiguration.
+            
+        \end{itemize}
+    \end{itemize}
+
+
+
 
 \subsection{ConcealDocuments}
 \subsubsection{Diagramma delle classi}
@@ -1977,7 +2319,7 @@ Vedi \vedi{ChatOperationResponseDettaglio};
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
-        Metodo astratto per che eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        Metodo astratto per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
@@ -2000,6 +2342,187 @@ Vedi \vedi{PostgresChatORMDettaglio}.
 
 
 
+
+%ConfigurationManager
+\subsection{ConfigurationManager}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+
+\subsubsubsection{ConfigurationManager}
+\label{ConfigurationManagerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{ORM: PostgresConfigurationORM}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsUploaderPort(): DocumentsUploaderPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id
+
+        \item \code{getEmbeddingsUploaderPort(): EmbeddingsUploaderPort}
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getGetDocumentsStatusPort(): GetDocumentsStatusPort}\\        
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getGetDocumentsMetadataPort(): GetDocumentsMetadataPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{dgetDeleteDocumentsPort(): DeleteDocumentsPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getDeleteEmbeddingsPort(): DeleteEmbeddingsPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getConcealDocumentsPort(): ConcealDocumentsPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getEnableDocumentsPort(): EnableDocumentsPort}\\
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getDocumentsContentPort(): GetDocumentsContentPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+
+        \item \code{getAskChatbotPort(): AskChatbotPort}\\ 
+        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{PostgresConfiguration}
+\label{PostgresConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentStore: PostgresDocumentStoreConfiguration};
+        \item \code{embeddingModel: PostgresEmbeddingModelConfiguration};
+        \item \code{id: int};
+        \item \code{LLMModel: PostgresLLMModelConfiguration};
+        \item \code{vectorStore: PostgresVectorStoreConfiguration}. 
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresConfigurationORM}
+Vedi \vedi{PostgresConfigurationORMDettaglio};
+
+
+\subsubsubsection{PostgresDocumentStoreConfiguration}
+\label{PostgresDocumentStoreConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: PostgresDocumentStoreType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toDocumentStoreConfiguration(): DocumentStoreConfiguration}\\ 
+        Metodo che permette di ottenere un DocumentStoreConfiguration a partire dal PostgresDocumentStoreConfiguration.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresDocumentStoreType (Enumeration)}
+\label{PostgresDocumentStoreTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{AWS}. 
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{PostgresEmbeddingModelConfiguration}
+\label{PostgresEmbeddingModelConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: PostgresEmbeddingModelType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toEmbeddingModelConfiguration(): EmbeddingModelConfiguration}\\ 
+        Metodo che permette di ottenere un EmbeddingModelConfiguration a partire dal PostgresEmbeddingModelConfiguration.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresEmbeddingModelType (Enumeration)}
+\label{PostgresEmbeddingModelTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{HUGGINGFACE};
+        \item \code{OPENAI}. 
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{PostgresLLMModelConfiguration}
+\label{PostgresLLMModelConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: PostgresLLMModelType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toLLMModelConfiguration(): LLMModelConfiguration}\\ 
+        Metodo che permette di ottenere un LLMModelConfiguration a partire dal PostgresLLMModelConfiguration.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresLLMModelType (Enumeration)}
+\label{PostgresLLMModelTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{HUGGINGFACE};
+        \item \code{OPENAI}. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{PostgresVectorStoreConfiguration}
+\label{PostgresVectorStoreConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: PostgresVectorStoreType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toVectorStoreConfiguration(): VectorStoreConfiguration}\\ 
+        Metodo che permette di ottenere un VectorStoreConfiguration a partire dal PostgresVectorStoreConfiguration.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PostgresVectorStoreType (Enumeration)}
+\label{PostgresVectorStoreTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{CHROMA DB};
+        \item \code{PINECONE}. 
+    \end{itemize}
+\end{itemize}
 
 
 
@@ -2944,7 +3467,7 @@ Vedi \vedi{PostgresChatORMDettaglio}.
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{id: int}
+        \item \code{id: int};
         \item \code{title: string};
        % \item \code{timestamp: timestamp};
         \item \code{lastMessage: PostgresMessage}.
@@ -2961,9 +3484,377 @@ Vedi \vedi{PostgresChatORMDettaglio}.
 Vedi \vedi{PostgresMessageDettaglio}.
 
 
-% \subsection{GetConfiguration}%TODO
+\subsubsubsection{PostgresMessageSenderType}
+Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
+
+\subsection{GetConfiguration}%TODO
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{Configuration}
+\label{ConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{embeddingModel: EmbeddingModelConfiguration};
+        \item \code{documentStore: DocumentStoreConfiguration};
+        \item \code{LLMModel: LLMModelConfiguration};
+        \item \code{vectorStore: VectorStoreConfiguration}.
+    \end{itemize}
+\end{itemize}
 
 
+
+\subsubsubsection{DocumentStoreConfiguration}
+\label{DocumentStoreConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicatore: string};
+        \item \code{description: string};
+        \item \code{name: DocumentStoreType};
+        \item \code{organization: string};
+        \item \code{type: string}.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DocumentStoreType (Enumeration)}
+\label{DocumentStoreTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{AWS}. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{EmbeddingModelConfiguration}
+\label{EmbeddingModelConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: EmbeddingModelType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingModelType (Enumeration)}
+\label{EmbeddingModelTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{HUGGINGFACE};
+        \item \code{OPENAI}. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationController}
+\label{GetConfigurationControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: GetConfigurationUseCase}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfiguration(): Configuration}\\
+        Metodo che si occupa di ritornare la configurazione di vector store, document store, embedding e LLM model tramite oggetto Configuration.
+    \end{itemize}
+\end{itemize}
+%
+%
+%
+%
+%
+%
+\subsubsubsection{GetConfigurationPort}%TODO
+\label{GetConfigurationPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfiguration(): Configuration}\\
+        Metodo atratto che ritorna la configurazione di vector store, document store, embedding e LLM model tramite oggetto Configuration.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationPostgres}%TODO
+\label{GetConfigurationPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetConfigurationPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresConfigurationORM: PostgresConfigurationORM}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfiguration(): Configuration}\\
+        Implementazione del metodo astratto di GetConfigurationPort per ottenere la configurazione di vector store, document store, embedding e LLM model ritornando un oggetto Configuration.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationService}%TODO
+\label{GetConfigurationServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetConfigurationUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetConfigurationPort}.  
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfiguration(): Configuration}\\
+        Implementazione del metodo astratto di GetConfigurationUseCase per la configurazione di vector store, document store, embedding e LLM model ritornando un oggetto Configuration.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationUseCase}%TODO
+\label{GetConfigurationUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfiguration(): Configuration}\\
+        Metodo atratto che ritorna la configurazione di vector store, document store, embedding e LLM model tramite oggetto Configuration.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{LLMModelConfiguration}
+\label{LLMModelConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: LLMModelType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{LLMModelType (Enumeration)}
+\label{LLMModelTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{HUGGINGFACE};
+        \item \code{OPENAI}. 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{PostgresConfiguration}
+Vedi \vedi{PostgresConfigurationDettaglio}.
+
+\subsubsubsection{PostgresConfigurationORM}
+Vedi \vedi{PostgresConfigurationORMDettaglio}.
+
+\subsubsubsection{PostgresDocumentStoreConfiguration}
+Vedi \vedi{PostgresDocumentStoreConfigurationDettaglio}.
+
+\subsubsubsection{PostgresDocumentStoreType}
+Vedi \vedi{PostgresDocumentStoreTypeDettaglio}.
+
+
+\subsubsubsection{PostgresEmbeddingModelConfiguration}
+Vedi \vedi{PostgresEmbeddingModelConfigurationDettaglio}.
+
+\subsubsubsection{PostgresEmbeddingModelType}
+Vedi \vedi{PostgresEmbeddingModelTypeDettaglio}.
+
+\subsubsubsection{PostgresLLMModelConfiguration}
+Vedi \vedi{PostgresLLMModelConfigurationDettaglio}.
+
+\subsubsubsection{PostgresLLMModelType}
+Vedi \vedi{PostgresLLMModelTypeDettaglio}.
+
+
+\subsubsubsection{PostgresVectorStoreConfiguration}
+Vedi \vedi{PostgresVectorStoreConfigurationDettaglio}.
+
+\subsubsubsection{PostgresVectorStoreType}
+Vedi \vedi{PostgresVectorStoreTypeDettaglio}.
+
+
+\subsubsubsection{VectorStoreConfiguration}
+\label{VectorStoreConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{costIndicator: string};
+        \item \code{description: string};
+        \item \code{name: VectorStoreType};
+        \item \code{organization: string};
+        \item \code{type: string}.  
+    \end{itemize}    
+\end{itemize}
+
+\subsubsubsection{VectorStoreType (Enumeration)}
+\label{VectorStoreTypeDettaglio}
+\begin{itemize}
+    \item \textbf{Valori}:
+    \begin{itemize}
+        \item \code{CHROMA DB};
+        \item \code{PINECONE}. 
+    \end{itemize}
+\end{itemize}
+
+
+%GETCONFIGURATIONOPTIONS
+
+
+\subsection{GetConfigurationOptions}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+
+
+
+\subsubsubsection{ConfigurationOptions}
+\label{ConfigurationOptionsDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{documentStoreOptions: List<DocumentStoreConfiguration>};
+        \item \code{embeddingModelOptions: List<EmbeddingModelConfiguration>};
+        \item \code{LLMModelOptions: List<LLMModelConfiguration>};
+        \item \code{vectorStoreOptions: List<VectorStoreConfiguration>}.  
+    \end{itemize}    
+\end{itemize}
+
+
+\subsubsubsection{DocumentStoreConfiguration}
+Vedi \vedi{DocumentStoreConfigurationDettaglio}.
+
+\subsubsubsection{DocumentStoreType}
+Vedi \vedi{DocumentStoreTypeDettaglio}.
+
+\subsubsubsection{EmbeddingModelConfiguration}
+Vedi \vedi{EmbeddingModelConfigurationDettaglio}.
+
+\subsubsubsection{EmbeddingModelType}
+Vedi \vedi{EmbeddingModelTypeDettaglio}.
+
+
+\subsubsubsection{GetConfigurationOptions}
+\label{GetConfigurationOptionsDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: GetConfigurationOptionsUseCase}.
+    \end{itemize} 
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfigurationOptions(): ConfigurationOptions}\\
+        Metodo che si occupa di ritornare le opzioni disponibili per le configurazioni di vector store, document store, embedding model e LLM model.
+    \end{itemize}   
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationOptionsPort}
+\label{GetConfigurationOptionsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfigurationOptions(): ConfigurationOptions}\\
+        Metodo atratto che si occupa di ritornare le opzioni disponibili per le configurazioni di vector store, document store, embedding model e LLM model.
+    \end{itemize}   
+\end{itemize}
+
+
+
+\subsubsubsection{GetConfigurationOptionsPostgres}
+\label{GetConfigurationOptionsPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetConfigurationOptionsPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresConfigurationORM: PostgresConfigurationORM}.
+    \end{itemize} 
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfigurationOptions(): ConfigurationOptions}\\
+        Implementazione del metodo astratto di GetConfigurationOptionsPort che ritorna le opzioni disponibili per le configurazioni di vector store, document store, embedding model e LLM model.
+    \end{itemize}   
+\end{itemize}
+
+
+\subsubsubsection{GetConfigurationOptionsService}
+\label{GetConfigurationOptionsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetConfigurationOptionsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: GetConfigurationOptionsPort}.
+    \end{itemize} 
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfigurationOptions(): ConfigurationOptions}\\
+        Implementazione del metodo astratto di GetConfigurationOptionsUseCase che ritorna le opzioni disponibili per le configurazioni di vector store, document store, embedding model e LLM model.
+    \end{itemize}   
+\end{itemize}
+
+
+
+\subsubsubsection{GetConfigurationOptionsUseCase}
+\label{GetConfigurationOptionsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getConfigurationOptions(): ConfigurationOptions}\\
+        Metodo astratto per ritornare le opzioni disponibili per le configurazioni di vectore store, document store, embedding model e LLM model.
+    \end{itemize}   
+\end{itemize}
+
+
+
+
+\subsubsubsection{LLMModelConfiguration}
+Vedi \vedi{LLMModelConfigurationDettaglio}
+
+\subsubsubsection{LLMModelType}
+Vedi \vedi{LLMModelTypeDettaglio}.
+
+\subsubsubsection{PostgresConfigurationORM}
+Vedi \vedi{PostgresConfigurationORMDettaglio}.
+
+\subsubsubsection{PostgresDocumentStoreConfiguration}
+Vedi \vedi{PostgresDocumentStoreConfigurationDettaglio}.
+
+\subsubsubsection{PostgresDocumentStoreType}
+Vedi \vedi{PostgresDocumentStoreTypeDettaglio}.
+
+\subsubsubsection{PostgresEmbeddingModelConfiguration}
+Vedi \vedi{PostgresEmbeddingModelConfigurationDettaglio}.
+
+\subsubsubsection{PostgresEmbeddingModelType}
+Vedi \vedi{PostgresEmbeddingModelTypeDettaglio}.
+
+\subsubsubsection{PostgresLLMModelConfiguration}
+Vedi \vedi{PostgresLLMModelConfigurationDettaglio}.
+
+\subsubsubsection{PostgresLLMModelType}
+Vedi \vedi{PostgresLLMModelTypeDettaglio}.
+
+\subsubsubsection{PostgresVectorStoreConfiguration}
+Vedi \vedi{PostgresVectorStoreConfigurationDettaglio}.
+
+\subsubsubsection{PostgresVectorStoreType}
+Vedi \vedi{PostgresVectorStoreTypeDettaglio}.
+
+\subsubsubsection{VectorStoreConfiguration}
+Vedi \vedi{VectorStoreConfigurationDettaglio}.
+
+\subsubsubsection{VectorStoreType}
+Vedi \vedi{VectorStoreTypeDettaglio}.
 
 
 

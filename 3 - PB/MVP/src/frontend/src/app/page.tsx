@@ -6,8 +6,80 @@ import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ExpandIcon, FilePlusIcon, MessageSquarePlusIcon } from 'lucide-react';
 import Link from 'next/link';
+import { ChatContent } from '@/app/chatbot/components/chat-content';
+import { Chat } from '@/app/chatbot/data';
 
 export default async function Dashboard() {
+
+  const lastChat = {
+    id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
+    title: "William Smith",
+    messages: [
+      {
+        role: "user",
+        content: "Hello",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Document1.pdf",
+          "Docx123.docx"
+        ]
+      },
+      {
+        role: "bot",
+        content: "Hello, how can I help you?",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Documenfssf.pdf",
+          "Docx123.docx"
+        ]
+      },
+      {
+        role: "user",
+        content: "I would like to book an appointment",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Document1.pdf",
+          "Docx1gr463.docx"
+        ]
+      },
+      {
+        role: "bot",
+        content: "Sure, when would you like to book the appointment?",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Docxvf3425.docx",
+          "Docccc99.pdf"
+        ]
+      },
+      {
+        role: "user",
+        content: "Tomorrow",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Document1.pdf",
+          "Docx123.docx"
+        ]
+      },
+      {
+        role: "bot",
+        content: "What time?",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Document1.pdf",
+          "Docx123.docx"
+        ]
+      },
+      {
+        role: "user",
+        content: "9am",
+        timestamp: "2023-10-22T09:00:00",
+        relevantDocuments: [
+          "Document1.pdf",
+          "Docx123.docx"
+        ]
+      },
+    ]
+  } as Chat
 
   return (
     <ScrollArea className='h-full'>
@@ -23,11 +95,11 @@ export default async function Dashboard() {
       <div className="">
         <ResizablePanelGroup direction="horizontal" className="min-h-[50vh] max-h-[50vh]">
           <ResizablePanel defaultSize={60} minSize={55}>
-            <div className="px-2 flex justify-between align-top">
-              <h3 className="pt-2 ml-3 font-semibold">Last chat</h3>
-              <ScrollArea className='h-[50vh]'>
-                <div className="flex-1 px-2 text-center">
-
+            <div className="px-2 w-full flex justify-between align-top">
+              <h3 className="pt-2 ml-3 font-semibold text-nowrap">Last chat</h3>
+              <ScrollArea className='w-full h-[50vh]'>
+                <div className="m-auto p-4 pb-0">
+                  <ChatContent messages={lastChat.messages} />
                 </div>
               </ScrollArea>
               <Tooltip>

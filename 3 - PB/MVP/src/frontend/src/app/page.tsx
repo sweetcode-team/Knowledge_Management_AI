@@ -5,11 +5,29 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ExpandIcon, FilePlusIcon, MessageSquarePlusIcon } from 'lucide-react';
+import { Chat } from "@/app/chatbot/data"
+import { RecentChats } from "@/app/chatbot/components/recent-chats"
+import { RecentDocuments } from "@/app/chatbot/components/recent-documents"
 import Link from 'next/link';
-import { ChatContent } from '@/app/chatbot/components/chat-content';
-import { Chat } from '@/app/chatbot/data';
+import { documentSchema } from "@/app/documents/data/schema"
+import { promises as fs } from "fs"
+import { z } from "zod"
+import path from "path"
+import { ChatContent } from './chatbot/components/chat-content';
+
+async function getDocuments() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/app/documents/data/documents.json")
+  )
+
+  const documents = JSON.parse(data.toString())
+
+  return z.array(documentSchema).parse(documents)
+}
+
 
 export default async function Dashboard() {
+  const documents = await getDocuments()
 
   const lastChat = {
     id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
@@ -117,23 +135,29 @@ export default async function Dashboard() {
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={40} minSize={35}>
-            <div className="p-2">
-              <h3 className="ml-3 font-semibold">Recent chats</h3>
-            </div>
+            <ScrollArea className='h-[50vh] mr-6'>
+              <div className="p-2">
+                <h3 className="ml-3 font-semibold  mb-2">Recently visited chats</h3>
+                <RecentChats items={[lastChat]} />
+              </div>
+            </ScrollArea>
           </ResizablePanel>
         </ResizablePanelGroup>
         <Separator />
         <ResizablePanelGroup direction="horizontal" className="min-h-[50vh] max-h-[50vh]">
           <ResizablePanel defaultSize={50} minSize={40}>
             <div className="p-2">
-              <h3 className="ml-3 font-semibold">Recently uploaded documents</h3>
+              <h3 className="ml-3 font-semibold mb-2">Recently uploaded documents</h3>
             </div>
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={50} minSize={40}>
-            <div className="p-2">
-              <h3 className="ml-3 font-semibold">Recently viewed documents</h3>
-            </div>
+            <ScrollArea className='h-[50vh] mr-6'>
+              <div className="p-2">
+                <h3 className="ml-3 font-semibold mb-2">Recently viewed documents</h3>
+                <RecentDocuments items={documents} />
+              </div>
+            </ScrollArea>
           </ResizablePanel>
         </ResizablePanelGroup>
       </div >

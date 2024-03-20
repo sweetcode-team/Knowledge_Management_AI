@@ -1,7 +1,5 @@
 "use client"
-import * as React from "react"
 import {
-  Search,
   MessageSquarePlusIcon,
 } from "lucide-react"
 
@@ -9,11 +7,6 @@ import { ChatDisplay } from "@/app/chatbot/components/chat-display"
 import { ChatList } from "@/app/chatbot/components/chat-list"
 import { Chat } from "@/app/chatbot/data"
 import { Separator } from "@/components/ui/separator"
-import { Input } from "@/components/ui/input"
-import {
-  Tabs,
-  TabsContent
-} from "@/components/ui/tabs"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
@@ -58,7 +51,12 @@ export function Chatbot({
               <h3 className="text-xl font-bold">Chat list</h3>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="info" className="ml-auto" size="icon">
+                  <Button
+                    variant="info"
+                    className="ml-auto"
+                    size="icon"
+                    onClick={() => setChat({ selected: null })}
+                  >
                     <MessageSquarePlusIcon className="h-4 w-4" />
                     <span className="sr-only">New Chat</span>
                   </Button>
@@ -67,12 +65,6 @@ export function Chatbot({
               </Tooltip>
             </div>
             <Separator />
-            <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search" className="pl-8" />
-              </div>
-            </div>
             <ChatList items={chats} />
           </ResizablePanel>
           <ResizableHandle withHandle />
@@ -80,7 +72,7 @@ export function Chatbot({
             defaultSize={defaultLayout[1]}
           >
             <ChatDisplay
-              chat={chats.find((item) => item.id === chat.selected) || null}
+              chat={chats.find((item) => item.id === chat.selected)}
             />
           </ResizablePanel>
         </ResizablePanelGroup>

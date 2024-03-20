@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 
 import { Chatbot } from "@/app/chatbot/components/chatbot"
-import { Chat } from "./data"
+import { Chat, Message } from "./data"
 // import { chats } from "@/app/chatbot/data"
 
 export default function ChatPage() {
@@ -11,25 +11,143 @@ export default function ChatPage() {
 
   const chats: Chat[] = [
     {
-      id: "6c84fb90-12c4-11e1-840d-7b25c5ee775a",
-      name: "William Smith",
-      email: "williamsmith@example.com",
-      subject: "Meeting Tomorrow",
-      text: "Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success.\n\nPlease come prepared with any questions or insights you may have. Looking forward to our meeting!\n\nBest regards, William",
-      date: "2023-10-22T09:00:00",
-      read: true,
-      labels: ["meeting", "work", "important"],
+      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
+      title: "William Smith",
+      messages: [
+        {
+          role: "user",
+          content: "Hello",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "Hello, how can I help you?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Documenfssf.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "user",
+          content: "I would like to book an appointment",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx1gr463.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "Sure, when would you like to book the appointment?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Docxvf3425.docx",
+            "Docccc99.pdf"
+          ]
+        },
+        {
+          role: "user",
+          content: "Tomorrow",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "What time?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "user",
+          content: "9am",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+      ] as Message[],
     },
     {
-      id: "110e8400-e29b-11d4-a716-446655440000",
-      name: "Alice Smith",
-      email: "alicesmith@example.com",
-      subject: "Re: Project Update",
-      text: "Thank you for the project update. It looks great! I've gone through the report, and the progress is impressive. The team has done a fantastic job, and I appreciate the hard work everyone has put in.\n\nI have a few minor suggestions that I'll include in the attached document.\n\nLet's discuss these during our next meeting. Keep up the excellent work!\n\nBest regards, Alice",
-      date: "2023-10-22T10:30:00",
-      read: true,
-      labels: ["work", "important"],
-    },
+      id: "6c84f2562b90-12c4-11eqrhqee1-840d-7b25c5ee775a",
+      title: "Alice Smith",
+      messages: [
+        {
+          role: "user",
+          content: "Hello",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "Hello, how can I help you?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Documenfssf.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "user",
+          content: "I would like to book an appointment",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx1gr463.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "Sure, when would you like to book the appointment?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Docxvf3425.docx",
+            "Docccc99.pdf"
+          ]
+        },
+        {
+          role: "user",
+          content: "Tomorrow",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "bot",
+          content: "What time?",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+        {
+          role: "user",
+          content: "11am",
+          timestamp: "2023-10-22T09:00:00",
+          relevantDocuments: [
+            "Document1.pdf",
+            "Docx123.docx"
+          ]
+        },
+      ] as Message[],
+    }
   ]
 
   return (

@@ -45,8 +45,8 @@ def askChatbot():
     
     return jsonify({
         "status": chatbotResponse.ok(),
-        "chatbotResponse": {
-            "message": chatbotResponse.messageResponse.content,
+        "messageResponse": {
+            "content": chatbotResponse.messageResponse.content,
             "timestamp": chatbotResponse.messageResponse.timestamp,
             "relevantDocuments": [relevantDocument.id for relevantDocument in chatbotResponse.messageResponse.relevantDocuments],
             "sender": chatbotResponse.messageResponse.sender.name

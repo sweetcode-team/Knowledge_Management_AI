@@ -1,7 +1,7 @@
-import { NavItem } from '@/types/navItem';
+import { Types } from '@/types/types';
 import { FolderOpenIcon, LayoutDashboardIcon, MessageSquareTextIcon, SettingsIcon } from 'lucide-react';
 
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS: Types[] = [
   {
     title: "Dashboard",
     path: "/",

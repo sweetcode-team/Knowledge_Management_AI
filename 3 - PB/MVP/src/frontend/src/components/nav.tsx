@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/tooltip"
 
 import { usePathname } from 'next/navigation';
-import { NavItem } from "@/types/navItem"
+import { Types } from "@/types/types"
 
 interface NavProps {
   isCollapsed: boolean
-  links: NavItem[]
+  links: Types[]
 }
 
 export function Nav({ links, isCollapsed }: NavProps) {

@@ -20,7 +20,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 import Header from "@/components/header"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { usePathname } from "next/navigation";
-import { NavItem } from "@/types/navItem";
+import { Types } from "@/types/types";
 
 interface ResizableLayoutProps {
     defaultLayout: number[] | undefined
@@ -39,7 +39,7 @@ export function ResizableLayout({
 
     const pathname = "/" + usePathname().split("/")[1];
 
-    const navItems: NavItem[] = NAV_ITEMS
+    const navItems: Types[] = NAV_ITEMS
 
     const title = navItems.find((item) => item.path === pathname)?.title
 

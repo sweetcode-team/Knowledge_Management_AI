@@ -5,7 +5,7 @@ import {
 
 import { ChatDisplay } from "@/app/chatbot/components/chat-display"
 import { ChatList } from "@/app/chatbot/components/chat-list"
-import { Chat } from "@/app/chatbot/data"
+import { ChatPreview } from "@/types/types"
 import { Separator } from "@/components/ui/separator"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
@@ -19,7 +19,7 @@ import {
 import { useChat } from "../use-chat"
 
 interface ChatbotProps {
-  chats: Chat[]
+  chats: ChatPreview[]
   defaultLayout: number[] | undefined
 }
 
@@ -71,9 +71,7 @@ export function Chatbot({
           <ResizablePanel
             defaultSize={defaultLayout[1]}
           >
-            <ChatDisplay
-              chat={chats.find((item) => item.id === chat.selected)}
-            />
+            <ChatDisplay chatId={chat.selected}/>
           </ResizablePanel>
         </ResizablePanelGroup>
       </TooltipProvider>

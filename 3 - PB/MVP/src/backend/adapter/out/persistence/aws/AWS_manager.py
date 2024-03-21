@@ -134,7 +134,7 @@ class AWSS3Manager:
     """
     def getDocumentsMetadata(self, documentFilter: str) -> List[AWSDocumentMetadata]:
         awsDocumentsMetadata = []
-        documentMetadataResponse = self.s3.list_objects_v2(Bucket=self.awsBucketName, Prefix=documentFilter)
+        documentMetadataResponse = self.s3.list_objects(Bucket=self.awsBucketName, Prefix=documentFilter)
         contents = documentMetadataResponse.get('Contents', [])
         for content in contents:
             awsDocumentsMetadata.append(
@@ -142,7 +142,6 @@ class AWSS3Manager:
                     id=content.get('Key'),
                     size=content.get('Size'),
                     uploadTime=content.get('LastModified'),
-                    type=content.get('ContentType')
                 )
             )
         return awsDocumentsMetadata

@@ -38,7 +38,6 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
         
         if len(documentsIds) != len(documentsStatus) or len(documentsStatus) == 0:
             raise ElaborationException("Errore nel recupero degli stati dei documenti.")
-        
         for documentId, documentStatus in zip(documentsIds, documentsStatus):
             if documentStatus.status == Status.NOT_EMBEDDED:
                 verifiedDocumentsIds.append(documentId)

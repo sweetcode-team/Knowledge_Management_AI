@@ -41,6 +41,7 @@ def getChatMessages(chatId):
             {
                 "content": chatMessage.content,
                 "timestamp": chatMessage.timestamp,
-                "sender": chatMessage.sender.name
+                "sender": chatMessage.sender.name,
+                "relevantDocuments": chatMessage.relevantDocuments
             } for chatMessage in chatMessages.messages]
     })

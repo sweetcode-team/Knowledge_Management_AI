@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
@@ -9,8 +9,7 @@ import { ChatHeader } from "./chat-header"
 import Image from "next/image"
 import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon, XCircleIcon } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
-import { useState, useRef, useEffect } from 'react';
-import { Message } from '../data';
+import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 
 interface ChatDisplayProps {
   chat?: Chat
@@ -143,7 +142,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
           </div>
         ) : (
           <div className="h-full flex flex-col items-center justify-center select-none animate-show-in" >
-            <Image src="sweetcode-logo.svg" width={70} height={70} className="dark:invert" alt="SWEetCode logo" />
+            <SWEetCodeLogo className="w-20 h-20" />
             <h4 className="text-lg font-bold" >Hey, how can I help you?</h4>
           </div>
         )}
@@ -190,7 +189,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
                 }
               </div>
               <Textarea
-                className="flex-1 min-h-28"
+                className="flex-1 min-h-28 max-h-60"
                 placeholder={`Type your message...`}
                 value={input}
                 onChange={(e) => setInput(e.target.value.trimStart())}

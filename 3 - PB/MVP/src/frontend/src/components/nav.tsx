@@ -42,7 +42,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
                     )}
                   >
-                    <link.icon className="h-5 w-5" />
+                    <link.icon className="min-h-5 min-w-5 h-5 w-5" />
                     <span className="sr-only">{link.title}</span>
                   </Link>
                 </TooltipTrigger>
@@ -62,8 +62,12 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 "justify-start last:mt-auto"
               )}
             >
-              <link.icon className="mr-2 h-5 w-5" />
-              {link.title}
+              <link.icon className="mr-2 min-h-5 min-w-5 h-5 w-5" />
+              <div className="flex items-center min-w-0">
+                <p className="truncate">
+                  {link.title}
+                </p>
+              </div>
             </Link>
           )
         )}

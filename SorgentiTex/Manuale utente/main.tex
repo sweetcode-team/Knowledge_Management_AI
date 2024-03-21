@@ -69,111 +69,215 @@ La configurazione permette di selezionare diverse componenti del prodotto al pri
 
 \subsection{Gestione dei documenti}
 In questa sezione si illustrano le possibili azioni operabili sui documenti.
+\subsubsection{Visualizzazione lista dei documenti}
+\begin{itemize}
+    \item \textbf{Visualizzazione lista documenti recenti}: Nella parte inferiore della dashboard è resa disponibile la lista dei documenti più recentemente visualizzati.
+    \begin{itemize}
+        \item Per visualizzare la lista dei documenti più recentemente caricati, selezionare l'opzione 'Recently updated' che figura sotto al titolo della sezione ('Recent documents');
+        \item Per visualizzare la lista dei documenti più recentemente visualizzati, selezionare l'opzione 'Recently viewed' che figura sotto al titolo della sezione ('Recent documents') e alla destra dell'opzione precedentemente descritta.
+    \end{itemize}
+    \item \textbf{Visualizzazione lista di tutti i documenti}: Per visualizzare la lista di tutti i documenti presenti nel sistema di archiviazione è necessario:
+    \begin{itemize}
+        \item Selezionare l'opzione 'Documents' dal menù in alto a sinistra della dashboard;
+        \item Visualizzare la parte inferiore della pagina, sotto il titolo 'List of documents'. Alla destra di ogni documento della lista si visualizzano titolo, dimensioni, stato, tipo e data di caricamento.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Visualizzazione tabella di archiviazione}
+Come accennato in precedenza nella lista dei documenti vengono visualizzate delle informazioni (titolo, dimensioni, stato, tipo e data di caricamento) per ogni documento presente nel sistema di archiviazione.\\ Nel caso in cui si vogliano visualizzare meno informazioni riguardo i documenti, quindi modificare il numero di colonne nella tabella delle informazioni, è necessario:
+\begin{itemize}
+    \item Visualizzare lista dei documenti come indicato in 2.2.1.;
+    \item Fare clic sul bottone 'View' in alto a destra nella lista dei documenti;
+    \item Spuntare dall'elenco che compare automaticamente il titolo delle colonne che si intende rimuovere dalla tabella di visualizzazione della lista (non è possibile rimuovere la colonna del titolo dei documenti), che verranno rimosse in automatico;
+    \item Se successivamente si vuole ripristinare una colonna eliminata, è sufficiente ripetere l'operazione e fare un altro clic sul suo titolo perchè vengano automaticamente ripristinate.
+\end{itemize}
+Se il numero di documenti presenti nel sistema di archiviazione è elevato, la tabella viene rappresentata su più pagine. Per passare da una pagina all'altra è necessario:
+\begin{itemize}
+    \item Scorrere la tabella fino all'ultima riga;
+    \item Selezionare il pulsante raffigurante '>' per andare avanti di una pagina, e quello raffigurante '<' per tornare indietro di una pagina;
+    \item Selezionare il pulsante raffigurante '>>' per visualizzare l'ultima pagina della tabella, e quello raffigurante '<<' per visualizzarne la prima pagina;
+    \item Quando ci si trova nella prima o nell'ultima pagina le azioni per andare avanti (nel caso dell'ultima pagina) o indietro (nel caso della prima pagina) sono bloccate poichè ci si trova già all'estremo.
+\end{itemize}
+È inoltre possibile modificare il numero di righe che si vuole compaiano in ogni pagina della tabella in questo modo:
+\begin{itemize}
+    \item Scorrere la tabella fino all'ultima riga;
+    \item Selezionare il bottone in basso a destra che indica il numero di righe per pagina presenti al momento, al fianco della scritta 'Rows per page';
+    \item Selezionare il numero di righe che si vuole visualizzare dall'elenco che compare automaticamente.
+\end{itemize}
 \subsubsection{Visualizzazione di un documento presente nel sistema di archiviazione}
 Per visualizzare un documento presente nel sistema di archiviazione è necessario:
 \begin{itemize}
-    \item Selezionare dal menù in alto a sinistra nella dashboard la sezione 'File manager';
-    \item Visualizzare la parte inferiore della pagina, sotto il titolo 'Lista dei documenti'. Alla destra di ogni documento della lista si visualizzano titolo, dimensioni, data di caricamento ed eventuale occultamento (stato);
-    \item Selezionare con un clic il documento desiderato dalla lista.
+    \item Visualizzare lista dei documenti come indicato in 2.2.1.;
+    \item Selezionare con due clic il documento desiderato dalla lista.
 \end{itemize}
 \subsubsection{Rimozione dal sistema di archiviazione}
-Per eliminare uno o più documenti presenti nel sistema di archiviazione è necessario:
+Per eliminare un documento dal sistema di archiviazione è necessario:
 \begin{itemize}
-    \item Aprire il documento desiderato secondo i passaggi della sezione 2.2.1 'Visualizzazione di un documento presente nel sistema di archiviazione';
-    \item Fare clic sul bottone 'Elimina documento' a destra del documento.
+    \item Selezionare dal menù in alto a sinistra nella dashboard la sezione 'Documents';
+    \item Visualizzare la parte inferiore della pagina, sotto il titolo 'List of documents', ed individuare il documento che si intende rimuovere dal sistema di archiviazione;
+    \item Premere il pulsante dei tre puntini verticali situato all'estrema destra della riga del rispettivo documento;
+    \item Fare clic sul bottone 'Delete';
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Delete' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+Per eliminare più documenti dal sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Selezionare dal menù in alto a sinistra nella dashboard la sezione 'Documents';
+    \item Visualizzare la parte inferiore della pagina, sotto il titolo 'List of documents', e selezionare spuntando con un clic la casella a sinistra nella riga di ogni documento che si intende rimuovere dal sistema di archiviazione;
+    \item Premere il pulsante rosso con l'icona di un cestino che compare automaticamente alla selezione;
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Delete' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 
-\subsubsection{Caricamento e rimozione dall'area di staging}
+\subsubsection{Caricamento e rimozione dall'area di staging DA MODIFICARE, l'ho fatto solo con figma}
 Per caricare uno o più documenti nell'area di staging è necessario:
 \begin{itemize}
-    \item Selezionare l'opzione 'File manager' nel menù in alto a sinistra della dashboard;
-    \item Selezionare l'apposita icona per il caricamento in alto a destra della pagina, trascinandoci direttamente sopra il documento (o i documenti) da caricare oppure facendo un clic e selezionandoli dalla lista dei documenti personali;
+    \item Cliccare il bottone 'Carica documento' presente in alto a sinistra nella dashboard, che aprirà automaticamente la pagina 'Documents';
+    \item In alternativa, selezionare l'opzione 'Documents' nel menù in alto a sinistra della dashboard;
+    \item Selezionare l'apposita icona per il caricamento in alto a sinistra della pagina, quindi fare clic sul bottone 'Upload documents';
+    \item Trascinare nell'apposito spazio il documento (o i documenti) da caricare oppure fare un clic sull'area e selezionarli dalla lista dei documenti personali;
     \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nel sistema con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
     \item  Verrà successivamente richiesta la conferma della scelta selezionata: per confermarla fare clic su ..., altimenti su ... per annullarla.
     \end{itemize} 
-Per rimuovere uno o più documenti dall'area di staging è necessario ..
+Per rimuovere uno o più documenti dall'area di staging è necessario ....
 
 
 \subsubsection{Upload nel sistema di archiviazione e nel vector database}
 Per poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging è necessario ...
 
 \subsubsection{Occultamento e riabilitazione dal sistema}
-Per occultare uno o più documenti presenti nel sistema di archiviazione è necessario:
+Per occultare un documento presenti nel sistema di archiviazione è necessario:
 \begin{itemize}
-    \item Aprire il documento desiderato secondo i passaggi della sezione 2.2.1 'Visualizzazione di un documento presente nel sistema di archiviazione';
-    \item Fare clic sul bottone verde 'Occulta documento' alla destra del documento.
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare il documento che si desidera riabilitare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
+    \item Selezionare l'opzione 'Enable' dall'elenco che compare automaticamente;
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
-Per riabilitare uno o più documenti occultati è necessario:
+Per riabilitare un documento occultato nel sistema di archiviazione è necessario:
 \begin{itemize}
-    \item Aprire il documento desiderato secondo i passaggi della sezione 2.2.1 'Visualizzazione di un documento presente nel sistema di archiviazione';
-    \item Fare clic sul bottone verde 'Riabilita documento' alla destra del documento.
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare il documento che si desidera occultare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
+\end{itemize}
+Per occultare più documenti presenti nel sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare i documenti che si desidera occultare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da occultare, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Enabled', altrimenti non sarà possibile proseguire;
+    \item Selezionare l'opzione 'Conceal' facendo clic sul bottone bianco che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+Per riabilitare più documenti presenti nel sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare i documenti che si desidera riabilitare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da riabilitare, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Concealed', altrimenti non sarà possibile proseguire;
+    \item Selezionare l'opzione 'Enable' facendo clic sul bottone bianco che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 
 \subsubsection{Ricerca nel sistema}
-Per cercare uno documento presente nel sistema di archiviazione è necessario:
+Per cercare un documento presente nel sistema di archiviazione in base al suo titolo è necessario:
 \begin{itemize}
-    \item Selezionare dal menù in alto a sinistra della dashboard l'opzione 'File manager';
-    \item Fare clic sulla barra di ricerca (con scritto all'interno 'Cerca') situata in alto a destra della sezione 'Lista documenti', nella porzione inferiore della pagina;
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Fare clic sulla barra di ricerca (con scritto all'interno 'Filter by title') situata in alto a sinistra della sezione 'List of documents';
     \item Digitare il titolo del documento ricercato.
 \end{itemize}
-
+Per cercare un documento presente nel sistema di archiviazione in base al suo stato è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Fare clic sul bottone 'Status', affiancato da un'icona raffigurante il simbolo '+', situato a destra della barra di ricerca per titolo, in alto a sinistra nella lista dei documenti;
+    \item Selezionare dall'elenco che compare automaticamente lo stato del documento che si sta cercando, o digitare il nome dello stato desiderato nella barra di ricerca che compare sopra l'elenco.
+\end{itemize}
+Per cercare un documento presente nel sistema di archiviazione in base al suo formato è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Fare clic sul bottone 'Type', affiancato da un'icona raffigurante il simbolo '+', situato a destra della barra di ricerca per titolo e di quella per stato, in alto a sinistra nella lista dei documenti;
+    \item Selezionare dall'elenco che compare automaticamente il formato del documento che si sta cercando, o digitare il nome del formato desiderato nella barra di ricerca che compare sopra l'elenco.
+\end{itemize}
+È inoltre possibile combinare tutte le funzioni di ricerca tra loro, quindi per esempio si può effettuare la ricerca di un documento inserendone titolo, stato e formato ricercati. \\ Per annullare le selezioni dei filtri di ricerca è sufficiente cliccare sul pulsante 'Reset' (affiancato dal simbolo 'X') che compare automaticamente dopo la selezione di un filtro di ricerca, situato a destra del pulsante di ricerca per formato.
 \subsection{Gestione delle chat}
 In questa sezione si illustrano le possibili azioni operabili sulle chat dell'applicazione. 
 \subsubsection{Visualizzazione}
-Per visualizzare la lista delle chat presenti nell’applicazione è sufficiente visualizzare la parte destra della dashboard dell'applicazione, sotto il titolo 'Lista ultime chat', dove è possibile visualizzare le singole chat presenti in lista automaticamente con il rispettivo titolo in ordine cronologico. Vengono visualizzati inoltre il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat.\\ Se si comincia una conversazione con il chatbot o se si seleziona l'opzione 'Chatbot' dal menù in alto a sinistra, la lista delle chat resta comunque disponibile nella parte sinistra della pagina e le sue funzionalità rimangono invariate.
+Le azioni possibili di visualizzazione delle chat sono le seguenti:
+\begin{itemize}
+    \item \textbf{Visualizzazione chat più recente}: È possibile visualizzare la chat più recente nella parte in alto a sinistra della dasboard. Selezionando il pulsante 'Espandi' in alto a destra della chat, sarà disponibile a schermo intero;
+    \item \textbf{Visualizzazione lista chat più recenti}: Per visualizzare le chat più recenti è sufficiente visualizzare la parte destra della dashboard dell'applicazione, sotto il titolo 'Recently visited chats', dove è possibile visualizzare le singole chat presenti in lista automaticamente con il rispettivo titolo in ordine cronologico. Vengono visualizzati inoltre il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat;
+    \item \textbf{Visualizzazione lista chat}: Se si comincia una conversazione con il chatbot o se si seleziona l'opzione 'Chatbot' dal menù in alto a sinistra della dashboard, la lista delle chat dell'applicazione è resa disponibile nella parte sinistra della pagina. Nella lista vengono visualizzati il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat.
+\end{itemize}
+
 \subsubsection{Creazione, eliminazione, rinominazione}
 Per creare una nuova chat è necessario:
 \begin{itemize}
     \item Selezionare il bottone 'Nuova chat' in alto a sinistra nella dashboard;
-    \item In alternativa, selezionare dal menù in alto a sinistra l'opzione 'Chatbot' e selezionare il bottone 'Nuova chat' in alto a sinistra nella pagina che varrà aperta (pagina 'Chatbot').
+    \item In alternativa, selezionare dal menù in alto a sinistra l'opzione 'Chatbot' e selezionare il bottone blu con il simbolo '+' in alto a sinistra nella pagina che varrà aperta (pagina 'Chatbot'), a destra del titolo 'Chat list'.
 \end{itemize}
-Per eliminare una o più chat è necessario:
+Per eliminare una chat è necessario:
 \begin{itemize}
     \item Selezionare dal menù in alto a sinistra della dashboard l'opzione 'Chatbot';
-    \item Selezionare il simbolo dei tre puntini in verticale alla destra della chat che si vuole eliminare dalla lista delle chat (che compare nella parte sinistra della pagina). Se non si trova la chat desiderata, è possibile ricercarla seguendo la sezione 2.3.3 ('Ricerca');
-    \item Selezionare l'opzione 'Elimina chat'.
+    \item Selezionare con un clic la chat che si vuole eliminare dalla lista delle chat sulla sinistra della pagina. Se non si trova, è possibile ricercare la chat desiderata secondo le istruzioni del paragrafo 2.2.3 ('Ricerca');
+    \item Selezionare il pulsante rosso in alto a destra della chat, con raffigurato il simbolo del cestino (che si sarà aperta automaticamente dopo l'azione precedente);
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Delete' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+Per eliminare più chat è necessario:
+\begin{itemize}
+    \item Selezionare dal menù in alto a sinistra della dashboard l'opzione 'Chatbot';
+    \item Selezionare con un clic il bottone alla destra della barra di ricerca appena sotto il titolo 'Chat list', che raffigura il simbolo della selezione;
+    \item Selezionare le chat che si desidera eliminare. Se si sbaglia la selezione, selezionare il bottone che compare in alto a destra raffigurante una freccia che punta all'indietro per annullare la selezione;
+    \item Una volta selezionate le chat da eliminare, premere il pulsante rosso che compare in alto a destra, raffigurante due fogli con il simbolo 'X';
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Delete' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 Per rinominare una chat è necessario:
 \begin{itemize}
     \item Selezionare dal menù in alto a sinistra della dashboard l'opzione 'Chatbot';
-    \item Selezionare il simbolo dei tre puntini in verticale alla destra della chat che si vuole eliminare dalla lista delle chat (che compare nella parte sinistra della pagina). Se non si trova la chat desiderata, è possibile ricercarla seguendo la sezione 2.3.3 ('Ricerca');
-    \item Selezionare l'opzione 'Rinomina chat';
-    \item Inserire il nuovo titolo della chat.
+    \item Selezionare con un clic la chat che si vuole rinominare dalla lista delle chat sulla sinistra della pagina. Se non si trova, è possibile ricercare la chat desiderata secondo le istruzioni del paragrafo 2.2.3 ('Ricerca');
+    \item Selezionare il pulsante in alto a destra della chat, con raffigurato il simbolo di una matita che scive;
+    \item Inserire il nuovo titolo della chat;
+    \item Premere invio.
 \end{itemize}
 
 \subsubsection{Ricerca}
 Per cercare una chat o il contenuto di essa all'interno della lista delle chat è necessario:
 \begin{itemize}
     \item Recarsi nella sezione 'Chatbot' nel menù in alto a sinistra della dashboard;
-    \item Fare clic sull'apposita barra di ricerca con sopra la dicitura 'Cerca una chat' (e con all'interno la dicitura 'Cerca') situata nella parte sinistra della pagina, nella sezione 'Lista chat'.
+    \item Fare clic sull'apposita barra di ricerca con sopra la dicitura 'Cerca una chat' (e con all'interno la dicitura 'Cerca') situata nella parte sinistra della pagina, nella sezione 'Lista chat';
+    \item Digitare il titolo o il contenuto che si desidera cercare;
+    \item Premere invio.
 \end{itemize} 
-\subsubsection{Visualizzazione contenuto e messaggi}
-Per visualizzare il contenuto ed i singoli messaggi di una chat è necessario:
-\begin{itemize}
-    \item Fare clic sulla chat che si intende leggere dalla lista delle chat. È possibile farlo sia dalla dashboard, selezionando la chat dalla lista delle ultime chat in alto a destra, o aprendo la pagina 'Chatbot' dal menù in alto a sinistra della dashboard e selezionandola dalla lista delle chat a sinistra nella pagina.
-\end{itemize}
-La chat desiderata verrà automaticamente aperta per la lettura. Ne vengono quindi visualizzati il contenuto testuale e l'orario dei singoli messaggi (in basso a sinistra rispetto ai messaggi). 
+%\subsubsection{Visualizzazione contenuto e messaggi}
+%Per visualizzare il contenuto ed i singoli messaggi di una chat è necessario:
+%\begin{itemize}
+  %  \item Fare clic sulla chat che si intende leggere dalla lista delle chat. È possibile farlo sia dalla dashboard, selezionando la chat dalla lista delle ultime chat in alto a destra, o aprendo la pagina 'Chatbot' dal menù in alto a sinistra della dashboard e selezionandola dalla lista delle chat a sinistra nella pagina.
+%\end{itemize}
+%La chat desiderata verrà automaticamente aperta per la lettura. Ne vengono quindi visualizzati il contenuto testuale e l'orario dei singoli messaggi (in basso a sinistra rispetto ai messaggi). 
 \subsubsection{Domande suggerite}
 Se la chat è vuota vengono visualizzate (DOVE?) di default delle domande suggerite che possono essere poste al chatbot. Per selezionare una domanda è sufficiente selezionarla con un clic e confermarne l'invio selezionando l'opzione ...
 \subsubsection{Inserimento, invio e copia}
 Per inserire un messaggio nell'area di testo di una chat è necessario:
 \begin{itemize}
-    \item Recarsi nella sezione 'Chatbot' dal menù in alto a destra della dashboard;
-    \item Digitare il testo del messaggio da inserire nell'apposito spazio in basso alla chat;
-    \item Per inserirlo nella chat (quindi per inviarlo) si deve fare clic sul bottone azzurro a destra della casella per l'inserimento testuale.
+    \item Recarsi nella sezione 'Chatbot' dal menù in alto a sinistra nella dashboard;
+    \item Digitare il testo del messaggio da inserire nell'apposito spazio in basso alla chat, nella barra con su scritto 'Type your message...';
+    \item Se si sbaglia ad inserire il testo del messaggio è possibile cancellarlo selezionando il bottone arancione raffigurante una gomma che compare automaticamente a destra della barra di inserimento testuale dopo l'inserimento del primo carattere;
+    \item Una volta scritto un messaggio, per inserirlo nella chat (quindi per inviarlo) si deve fare clic sul bottone a destra della casella per l'inserimento testuale, raffigurante un aeroplanino.
 \end{itemize}
-Per poi copiare un messaggio è necessario fare clic sull'apposita icona con il simbolo di copia posta in alto a sinistra di ogni messaggio della chat.
+Per poi copiare un messaggio è necessario fare clic sull'apposita icona con il simbolo di copia posta in alto al fianco di ogni messaggio della chat.
+\subsubsection{Visualizzazione di documento da chat}
+Quando il chatbot fornisce una risposta contenente uno o più documenti, è possibile visualizzarli facendo clic sul bottone 'Vedi' alla destra del rispettivo documento inviato dal chatbot.
 \subsubsection{Modalità vocale}
 È possibile utilizzare la modalità vocale, quindi inserire un messaggio in una chat tramite comando vocale, in questo modo:
 \begin{itemize}
     \item Recarsi nella pagina 'Chatbot' dal menù in alto a sinistra della dashboard;
     \item Fare clic sul bottone del microfono a sinistra della casella di inserimento testuale;
     \item Scandire ad alta voce il testo del messaggio che si desidera inserire;
-    \item Quando finito, premere nuovamente il bottone del microfono a sinistra della casella di inserimento testuale.
+    \item Selezionando il bottone rosso con il simbolo delle due barre in verticale è possibile mettere in pausa la registrazione per poi riprenderla selezionando il pulsante raffigurante una freccia;
+    \item Quando finito, premere il bottone rosso con il quadrato a sinistra della casella di inserimento testuale;
+    \item Se si desidera eliminare il messaggio selezionare il pulsante rosso raffigurante il cestino;
+    \item Se si desidera inviare il messaggio fare clic sul bottone a destra della casella per l'inserimento testuale, raffigurante un aeroplanino.
 \end{itemize}
 Per ascoltare un messaggio tramite audio è necessario ...
 
-
+\subsection{Altre funzionalità}
+\subsubsection{Cambio del tema di sfondo}
+L'interfaccia dell'applicazione è disponibile in tema chiaro o scuro. Per cambiare tema è necessario:
+\begin{itemize}
+    \item Selezionare con un clic il pulsante in alto a destra raffigurante il simbolo di una luna, presente in tutte le pagine;
+    \item Selezionare il tema desiderato dall'elenco che compare automaticamente.
+\end{itemize}
 
 
 

@@ -11,36 +11,39 @@ import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon, XCi
 import { Toggle } from "@/components/ui/toggle"
 import { useState, useRef, useEffect } from 'react';
 import { Message } from '../data';
+import { set } from "date-fns"
 
 interface ChatDisplayProps {
   chat?: Chat
 }
 
 export function ChatDisplay({ chat }: ChatDisplayProps) {
-  // const [messages, setMessages] = useState(chat?.messages)
   const [input, setInput] = useState("")
   const [isRecording, setIsRecording] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const recognitionRef = useRef<any>(null)
 
-  // useEffect(() => {
-  //   setMessages(chat?.messages)
-  // }, [chat])
 
   const handleMessageSubmit = () => {
     if (input.trim().length === 0) return
-    const timestamp = new Date().toLocaleTimeString();
-    // setMessages([
-    //   ...messages || [],
-    //   {
-    //     role: "user",
-    //     content: input,
-    //     timestamp: timestamp,
-    //   } as Message,
-    // ])
+   
     setInput("")
     setIsRecording(false)
     setIsPaused(false)
+    if (recognitionRef.current) {
+      stopRecording()
+    }
+    
+  }
+  
+  function handleDeleteMessage() {
+   
+    setInput("")
+    setIsRecording(false)
+    setIsPaused(false)
+    if (recognitionRef.current) {
+      stopRecording()
+    }
   }
 
   useEffect(() => {
@@ -128,6 +131,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
     setIsPaused(false)
   }
 
+
   return (
     <div className="flex h-full flex-col">
       <ChatHeader chatTitle={chat?.title} isChatSelected={!!chat} />
@@ -151,7 +155,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
           <Separator className="mt-auto" />
           <form className="p-4" onSubmit={(e) => {
             e.preventDefault()
-            handleMessageSubmit()
+            setInput("")
           }}>
             <div className="flex max-h-full justify-between space-x-2">
               <div className="flex flex-col space-y-2">
@@ -196,6 +200,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
                 onChange={(e) => setInput(e.target.value.trimStart())}
               />
               <div className="flex flex-col space-y-2">
+                
                 <Button
                   type="submit"
                   size="icon"
@@ -212,7 +217,10 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
                   input !== "" ? (
                     <Button
                       variant={"warning"}
-                      onClick={() => setInput("")}
+                      onClick={() => {
+                        handleDeleteMessage()
+                      }      
+                    }
                       size="icon"
                     >
                       <EraserIcon className="w-4 h-4" />

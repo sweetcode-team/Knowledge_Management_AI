@@ -1,14 +1,30 @@
-from application.port.out.get_chat_messages_port import GetChatMessagesPort
-from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
-from domain.chat.chat import Chat
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.get_chat_messages.get_chat_messages_postgres import GetChatMessagesPostgres
 from domain.chat.chat_id import ChatId
+from domain.chat.chat import Chat
+from domain.chat.message import Message, MessageSender
 
-
-class GetChatMessagesPostgres(GetChatMessagesPort):
-    def __init__(self, postgresORM: PostgresChatORM):
-        self.postgresORM = postgresORM
-
-    def getChatMessages(self, chatId:ChatId)->Chat:
-        chatMessages =  self.postgresORM.getChatMessages(chatId.id)
-        chat = chatMessages.toChat()
-        return chat
+def test_getChatMessagesPostgresTrue():
+    postgresORMMock = MagicMock()
+    postgresChatMock = MagicMock()
+    
+    postgresChatMock.toChat.return_value = Chat(ChatId("TestChat"), ChatId(1), [Message('message', ANY, [], MessageSender.USER)])
+    postgresORMMock.getChatMessages.return_value = postgresChatMock
+    
+    getChatMessagesPostgres = GetChatMessagesPostgres(postgresORMMock)
+    
+    response = getChatMessagesPostgres.getChatMessages(ChatId(1))
+    
+    postgresORMMock.getChatMessages.assert_called_once_with(1)
+    assert isinstance(response, Chat)
+    
+def test_getChatMessagesPostgresFail():
+    postgresORMMock = MagicMock()
+    postgresORMMock.getChatMessages.return_value = None
+    
+    getChatMessagesPostgres = GetChatMessagesPostgres(postgresORMMock)
+    
+    response = getChatMessagesPostgres.getChatMessages(ChatId(1))
+    
+    postgresORMMock.getChatMessages.assert_called_once_with(1)
+    assert response is None

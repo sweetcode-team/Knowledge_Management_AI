@@ -1,19 +1,15 @@
-from dataclasses import dataclass
-from datetime import datetime
-from typing import List
+from unittest.mock import patch, MagicMock, ANY
+from adapter.out.persistence.postgres.postgres_chat import PostgresChat
 
-from adapter.out.persistence.postgres.postgres_message import PostgresMessage
-from domain.chat.chat import Chat
-from domain.chat.chat_id import ChatId
-
-@dataclass
-class PostgresChat:
-    id: int
-    title: str
-    messages: List[PostgresMessage]
-    
-    def toChat(self):
-        listOfMessages = []
-        for message in self.messages:
-            listOfMessages.append(message.toMessage())
-        return Chat(title=self.title, chatId= ChatId(self.id), messages=listOfMessages)
+def test_toChat():
+    with patch('adapter.out.persistence.postgres.postgres_chat.Chat') as chatMock, \
+        patch('adapter.out.persistence.postgres.postgres_chat.ChatId') as chatIdMock:
+        postgresMessageMock = MagicMock()
+            
+        postgresChat = PostgresChat(1, 'title', [postgresMessageMock])
+        
+        response = postgresChat.toChat()
+        
+        chatMock.assert_called_once_with(title='title', chatId=chatIdMock.return_value, messages=[postgresMessageMock.toMessage.return_value])
+        chatIdMock.assert_called_once_with(1)
+        assert response == chatMock.return_value

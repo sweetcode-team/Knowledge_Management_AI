@@ -88,7 +88,6 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                     metadatas=[{"status": "CONCEALED"} for _ in range(len(embeddingsIds))])
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
             except Exception as e:
-                print(e, flush=True)
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'occultamento del documento."))
                 continue
         
@@ -111,7 +110,6 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                     metadatas=[{"status": "ENABLED"} for _ in range(len(embeddingsIds))])
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
             except Exception as e:
-                print(e, flush=True)
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nella riabilitazione del documento."))
                 continue
             

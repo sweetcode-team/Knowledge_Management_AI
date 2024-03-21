@@ -1,49 +1,30 @@
-from typing import List
+from unittest.mock import MagicMock, patch
 
 from adapter._in.web.get_chats_controller import GetChatsController
 from domain.chat.chat_filter import ChatFilter
-from domain.chat.chat_preview import ChatPreview
-from domain.chat.message import MessageSender
-from domain.chat.message_response import MessageResponse
-from domain.chat.message import Message
-from domain.chat.chat_id import ChatId
-from domain.document.document_id import DocumentId
-import unittest
 
 
-def test_getChats_with_filter(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.getChats.return_value = [ChatPreview(id = ChatId(1),
-                                                         title = "title",
-                                                         lastMessage = Message("message",
-                                                                               unittest.mock.ANY,
-                                                                               [DocumentId("documentId1"), DocumentId("documentId2")],
-                                                                               MessageSender.USER))]
+def test_getChatsWithFilter():
+    useCaseMock = MagicMock()
 
     getChatsController = GetChatsController(useCaseMock)
-    with    unittest.mock.patch('adapter._in.web.get_chats_controller.ChatFilter') as MockChatFilter:
-
-        MockChatFilter.return_value = ChatFilter("filter")
+    with    patch('adapter._in.web.get_chats_controller.ChatFilter') as MockChatFilter:
+        
         response = getChatsController.getChats("filter")
 
         MockChatFilter.assert_called_once_with("filter")
-        assert isinstance(response[0], ChatPreview)
+        useCaseMock.getChats.assert_called_once_with(MockChatFilter.return_value)
+        assert response == useCaseMock.getChats.return_value    
 
 
-def test_getChats_without_filter(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.getChats.return_value = [ChatPreview(id=ChatId(1),
-                                                     title="title",
-                                                     lastMessage=Message("message",
-                                                                         unittest.mock.ANY,
-                                                                         [DocumentId("documentId1"),
-                                                                          DocumentId("documentId2")],
-                                                                         MessageSender.USER))]
+def test_getChatsWithoutFilter():
+    useCaseMock = MagicMock()
 
     getChatsController = GetChatsController(useCaseMock)
-    with    unittest.mock.patch('adapter._in.web.get_chats_controller.ChatFilter') as MockChatFilter:
-        MockChatFilter.return_value = ChatFilter("")
+    with    patch('adapter._in.web.get_chats_controller.ChatFilter') as MockChatFilter:
+        
         response = getChatsController.getChats("")
 
         MockChatFilter.assert_called_once_with("")
-        assert isinstance(response[0], ChatPreview)
+        useCaseMock.getChats.assert_called_once_with(MockChatFilter.return_value)
+        assert response == useCaseMock.getChats.return_value

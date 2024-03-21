@@ -41,6 +41,29 @@ class PostgresConfigurationORM:
         return db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == userId).first()
 
     """
+    Sets the configuration and returns the response.
+    Args:
+        userId (int): The id of the user.
+        LLMModel (PostgresLLMModelType): The LLM model to set;
+        DocumentStore (PostgresDocumentStoreType): The Document Store to set;
+        VectorStore (PostgresVectorStoreType): The Vector Store to set;
+        EmbeddingModel (PostgresEmbeddingModelType): The Embedding Model to set.
+    Returns:
+        PostgresConfigurationOperationResponse: The response of the operation.
+    """
+    def setConfiguration(self, userId: int, LLMModel: PostgresLLMModelType, DocumentStore: PostgresDocumentStoreType, VectorStore: PostgresVectorStoreType, EmbeddingModel: PostgresEmbeddingModelType) -> PostgresConfigurationOperationResponse:
+        try:
+            existingConfiguration = self.getConfigurationChoices() 
+            if existingConfiguration is None:
+                db_session.add(PostgresConfigurationChoice(userId=userId, LLMModel=LLMModel, documentStore=DocumentStore, vectorStore=VectorStore, embeddingModel=EmbeddingModel))
+                db_session.commit()
+                return PostgresConfigurationOperationResponse(True, 'Configurazione aggiornata con successo')
+            else:
+                raise Exception('Configurazione già impostata.')
+        except Exception as e:
+            db_session.rollback()
+            return PostgresConfigurationOperationResponse(False, f'Errore nell\'aggiornamento della configurazione: {str(e)}')
+    """
     Changes the vector store and returns the response.
     Args:
         userId (int): The id of the user.

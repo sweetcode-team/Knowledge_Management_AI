@@ -97,9 +97,11 @@ class VectorStorePineconeManager(VectorStoreManager):
                 if len(ids) > 0:
                     deleteResponse = self.index.delete(ids=list(ids))
                     if deleteResponse:
-                        vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message', "Errore nell'eliminazione degli embeddings.")}"))
+                        vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{deleteResponse.get('message', 'Errore nella eliminazione degli embeddings.')}"))
                     else:
                         vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
+                else:
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Nessun embedding trovato da eliminare."))
             except PineconeApiException as e:
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"Errore nell'eliminazione degli embeddings: {e}"))
 
@@ -116,7 +118,7 @@ class VectorStorePineconeManager(VectorStoreManager):
     def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: 
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
-            messageError = ""
+            messageError = []
             try:
                 queryResponse = self.index.query(
                                     top_k = 10000,
@@ -158,7 +160,7 @@ class VectorStorePineconeManager(VectorStoreManager):
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: 
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
-            messageError = ""
+            messageError = []
             try:
                 queryResponse = self.index.query(
                                     top_k = 10000,
@@ -225,7 +227,7 @@ class VectorStorePineconeManager(VectorStoreManager):
                     )
 
                 if uploadResponse.get('upserted_count', 0) != len(documentChunks):
-                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{uploadResponse.get('message', "Errore nel caricamento degli embeddings.")}"))
+                    vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"{uploadResponse.get('message', 'Errore nel caricamento degli embeddings.')}"))
                 else:
                     vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con successo."))
             except PineconeApiException as e:
@@ -237,6 +239,7 @@ class VectorStorePineconeManager(VectorStoreManager):
     """
     Gets the retriever.
     Args:
+    LangchainEmbeddingModel: The embedding model to use to get the retriever.
     Returns:
     BaseRetriever: The retriever.
 

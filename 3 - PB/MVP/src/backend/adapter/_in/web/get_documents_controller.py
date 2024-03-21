@@ -19,7 +19,7 @@ class GetDocumentsController:
         """
         Receives the search filter and returns a list of LightDocument.
         Args:
-            searchFilter (str): The search filter.
+            searchFilter (str): The search filter. It can be empty in order to get all the documents.
         Returns:
             List[LightDocument]: the list of LightDocument that match the search filter.
         """

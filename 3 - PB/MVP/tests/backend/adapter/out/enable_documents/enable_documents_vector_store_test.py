@@ -1,20 +1,32 @@
-from typing import List
-
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
-from application.port.out.enable_documents_port import EnableDocumentsPort
+from unittest.mock import MagicMock, patch
+from adapter.out.enable_documents.enable_documents_vector_store import EnableDocumentsVectorStore
 from domain.document.document_id import DocumentId
 from domain.document.document_operation_response import DocumentOperationResponse
 
-class EnableDocumentsVectorStore(EnableDocumentsPort):
-    def __init__(self, vectorStoreManager: VectorStoreManager):
-        self.vectorStoreManager = vectorStoreManager
-        
-    def enableDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        #adaptee because vectorStoreManager needs a List of string
-        documentsIdsString = [documentId.id for documentId in documentsIds]
-        vectorStoreDocumentOperationResponseList = self.vectorStoreManager.enableDocuments(documentsIdsString)
-        #return DocumentOperationResponse therefore we adaptee the response
-        documentOperationResponseList = []
-        for vectorStoreDocumentOperationResponse in vectorStoreDocumentOperationResponseList:
-            documentOperationResponseList.append(vectorStoreDocumentOperationResponse.toDocumentOperationResponse())
-        return documentOperationResponseList
+def test_enableDocumentsTrue():
+    vectorStoreManagerMock = MagicMock()
+    vectorStoreDocumentOperationResponseMock = MagicMock()
+    
+    vectorStoreDocumentOperationResponseMock.toDocumentOperationResponse.return_value = DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document enabled")
+    vectorStoreManagerMock.enableDocuments.return_value = [vectorStoreDocumentOperationResponseMock]
+    enableDocumentsVectorStore = EnableDocumentsVectorStore(vectorStoreManagerMock)
+    
+    response = enableDocumentsVectorStore.enableDocuments([DocumentId("Prova.pdf")])
+   
+    vectorStoreManagerMock.enableDocuments.assert_called_once_with(["Prova.pdf"])
+    assert isinstance(response, list)
+    assert isinstance(response[0], DocumentOperationResponse)
+    
+def test_enableDocumentsFail():
+    vectorStoreManagerMock = MagicMock()
+    vectorStoreDocumentOperationResponseMock = MagicMock()
+    
+    vectorStoreDocumentOperationResponseMock.toDocumentOperationResponse.return_value = DocumentOperationResponse(DocumentId("Prova.pdf"), False, "Document not found")
+    vectorStoreManagerMock.enableDocuments.return_value = [vectorStoreDocumentOperationResponseMock]
+    enableDocumentsVectorStore = EnableDocumentsVectorStore(vectorStoreManagerMock)
+    
+    response = enableDocumentsVectorStore.enableDocuments([DocumentId("Prova.pdf")])
+   
+    vectorStoreManagerMock.enableDocuments.assert_called_once_with(["Prova.pdf"])
+    assert isinstance(response, list)
+    assert isinstance(response[0], DocumentOperationResponse)

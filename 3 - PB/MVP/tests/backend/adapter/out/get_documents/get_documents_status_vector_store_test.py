@@ -1,24 +1,74 @@
-from typing import List, Dict
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.get_documents.get_documents_status_vector_store import GetDocumentsStatusVectorStore
 
-from application.port.out.get_documents_status_port import GetDocumentsStatusPort
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
-from domain.document.document_id import DocumentId
-from domain.document.document_status import DocumentStatus, Status
-
-
-class GetDocumentsStatusVectorStore(GetDocumentsStatusPort):
-    def __init__(self, vectorStoreManager: VectorStoreManager):
-        self.vectorStoreManager = vectorStoreManager
-
-    def getDocumentsStatus(self, documentsIds: List[DocumentId]) -> List[DocumentStatus]:
-        documentsStatus = []
-        vectors = self.vectorStoreManager.getDocumentsStatus(documentId.id for documentId in documentsIds)
-        for vector in vectors:
-            if vector.status.upper() == "CONCEALED":
-                documentStatus = DocumentStatus(status=Status.CONCEALED)
-            elif vector.status.upper() == "ENABLED":
-                documentStatus = DocumentStatus(Status.ENABLED)
-            else: documentStatus = DocumentStatus(Status.NOT_EMBEDDED)
-            documentsStatus.append(documentStatus)
-        return documentsStatus
-
+def test_getDocumentsStatusVectorConcealed():
+    with    patch('adapter.out.get_documents.get_documents_status_vector_store.DocumentStatus') as documentStatusMock, \
+            patch('adapter.out.get_documents.get_documents_status_vector_store.Status') as statusMock:
+        vectorStoreManagerMock = MagicMock()
+        documentIdMock = MagicMock()
+        vectorStoreDocumentStatusResponseMock = MagicMock()
+        
+        vectorStoreManagerMock.getDocumentsStatus.return_value = [vectorStoreDocumentStatusResponseMock]
+        vectorStoreDocumentStatusResponseMock.status = "concealed"
+        
+        getDocumentsStatusVectorResponse = GetDocumentsStatusVectorStore(vectorStoreManagerMock)
+        
+        response = getDocumentsStatusVectorResponse.getDocumentsStatus([documentIdMock])
+        
+        documentStatusMock.assert_called_once_with(status= statusMock.CONCEALED)
+        assert isinstance(response, list)
+        assert response == [documentStatusMock.return_value]
+        
+def test_getDocumentsStatusVectorEnabled():
+    with    patch('adapter.out.get_documents.get_documents_status_vector_store.DocumentStatus') as documentStatusMock, \
+            patch('adapter.out.get_documents.get_documents_status_vector_store.Status') as statusMock:
+        vectorStoreManagerMock = MagicMock()
+        documentIdMock = MagicMock()
+        vectorStoreDocumentStatusResponseMock = MagicMock()
+        
+        vectorStoreManagerMock.getDocumentsStatus.return_value = [vectorStoreDocumentStatusResponseMock]
+        vectorStoreDocumentStatusResponseMock.status = "enabled"
+        
+        getDocumentsStatusVectorResponse = GetDocumentsStatusVectorStore(vectorStoreManagerMock)
+        
+        response = getDocumentsStatusVectorResponse.getDocumentsStatus([documentIdMock])
+        
+        documentStatusMock.assert_called_once_with(statusMock.ENABLED)
+        assert isinstance(response, list)
+        assert response == [documentStatusMock.return_value]
+        
+def test_getDocumentsStatusVectorInconsistent():
+    with    patch('adapter.out.get_documents.get_documents_status_vector_store.DocumentStatus') as documentStatusMock, \
+            patch('adapter.out.get_documents.get_documents_status_vector_store.Status') as statusMock:
+        vectorStoreManagerMock = MagicMock()
+        documentIdMock = MagicMock()
+        vectorStoreDocumentStatusResponseMock = MagicMock()
+        
+        vectorStoreManagerMock.getDocumentsStatus.return_value = [vectorStoreDocumentStatusResponseMock]
+        vectorStoreDocumentStatusResponseMock.status = "inconsistent"
+        
+        getDocumentsStatusVectorResponse = GetDocumentsStatusVectorStore(vectorStoreManagerMock)
+        
+        response = getDocumentsStatusVectorResponse.getDocumentsStatus([documentIdMock])
+        
+        documentStatusMock.assert_called_once_with(statusMock.INCONSISTENT)
+        assert isinstance(response, list)
+        assert response == [documentStatusMock.return_value]
+        
+def test_getDocumentsStatusVectorNotEmbedded():
+    with    patch('adapter.out.get_documents.get_documents_status_vector_store.DocumentStatus') as documentStatusMock, \
+            patch('adapter.out.get_documents.get_documents_status_vector_store.Status') as statusMock:
+        vectorStoreManagerMock = MagicMock()
+        documentIdMock = MagicMock()
+        vectorStoreDocumentStatusResponseMock = MagicMock()
+        
+        vectorStoreManagerMock.getDocumentsStatus.return_value = [vectorStoreDocumentStatusResponseMock]
+        vectorStoreDocumentStatusResponseMock.status = "not embedded"
+        
+        getDocumentsStatusVectorResponse = GetDocumentsStatusVectorStore(vectorStoreManagerMock)
+        
+        response = getDocumentsStatusVectorResponse.getDocumentsStatus([documentIdMock])
+        
+        documentStatusMock.assert_called_once_with(statusMock.NOT_EMBEDDED)
+        assert isinstance(response, list)
+        assert response == [documentStatusMock.return_value]

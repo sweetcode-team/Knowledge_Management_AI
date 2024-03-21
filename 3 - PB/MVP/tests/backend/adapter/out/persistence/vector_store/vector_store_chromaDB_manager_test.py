@@ -1,117 +1,273 @@
-import os
-from typing import List
-import chromadb
-from langchain_core.retrievers import BaseRetriever
+from unittest.mock import patch, MagicMock, mock_open, ANY
+from adapter.out.persistence.vector_store.vector_store_chromaDB_manager import VectorStoreChromaDBManager
 
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
-from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
-from adapter.out.persistence.vector_store.vector_store_document_status_response import VectorStoreDocumentStatusResponse
-from langchain_core.documents.base import Document as LangchainCoreDocument
-from langchain_community.vectorstores import Chroma
-from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
-
-
-class VectorStoreChromaDBManager(VectorStoreManager):
-    def __init__(self):
-        self.chromadb = chromadb.PersistentClient(path=os.environ.get("CHROMA_DB_PATH"))
-        with open('/run/secrets/chromadb_collection', 'r') as file:
-            chromadbCollection = file.read()
-        self.collection = self.chromadb.get_or_create_collection(chromadbCollection)
-
-    def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
-        vectorStoreDocumentStatusResponses = []
-        for documentId in documentsIds:
-            try:
-                chunksMetadata = self.collection.get(where={"source": documentId}, include = ["metadatas"]).get('metadatas', [])
-                
-                documentStatus = {chunkMetadata.get("status", "") for chunkMetadata in chunksMetadata}
-                documentStatus.discard("")
-                
-                if len(documentStatus) == 0:
-                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, 'NOT_EMBEDDED'))
-                elif len(documentStatus) == 1:
-                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, documentStatus.pop()))
-                else:
-                    vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, 'INCONSISTENT'))
-            except:
-                vectorStoreDocumentStatusResponses.append(VectorStoreDocumentStatusResponse(documentId, None))
-                continue
+def test_getDocumentsStatusNotEmbedded():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentStatusResponse') as VectorStoreDocumentStatusResponseMock:
+        chromadbMock = MagicMock()
+        collectionMock = MagicMock()
         
-        return vectorStoreDocumentStatusResponses
-    
-    def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        vectorStoreDocumentOperationResponses = []
-        for documentId in documentsIds:
-            try:
-                self.collection.delete(where = {"source": documentId})
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Eliminazione embeddings avvenuta con successo."))
-            except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'eliminazione degli embeddings."))
-                continue
+        chromadbMock.PersistentClient.return_value = chromadbMock
+        chromadbMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value = {"metadatas": []}
         
-        return vectorStoreDocumentOperationResponses
-   
-    def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        vectorStoreDocumentOperationResponses = []
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
         
-        for documentId in documentsIds:
-            try:
-                embeddingsIds=(self.collection.get(where = {"source" : documentId})).get("ids", None)
-                self.collection.update(
-                    ids=embeddingsIds,
-                    metadatas=[{"status": "CONCEALED"} for _ in range(len(embeddingsIds))])
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento occultato con successo."))
-            except Exception as e:
-                print(e, flush=True)
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nell'occultamento del documento."))
-                continue
+        response = vectorStoreChromaDBManager.getDocumentsStatus(["Prova.pdf"])
         
-        return vectorStoreDocumentOperationResponses        
-    
-    def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
-        vectorStoreDocumentOperationResponses = []
-
-        for documentId in documentsIds:
-            try:
-                embeddingsIds=(self.collection.get(where = {"source" : documentId})).get("ids", None)
-                self.collection.update(
-                    ids=embeddingsIds,
-                    metadatas=[{"status": "ENABLED"} for _ in range(len(embeddingsIds))])
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Documento riabilitato con successo."))
-            except Exception as e:
-                print(e, flush=True)
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nella riabilitazione del documento."))
-                continue
-            
-        return vectorStoreDocumentOperationResponses   
-     
-    def uploadEmbeddings(self, documentsIds: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
-        vectorStoreDocumentOperationResponses = []
+        VectorStoreDocumentStatusResponseMock.assert_called_with("Prova.pdf", 'NOT_EMBEDDED')
+        assert response==[VectorStoreDocumentStatusResponseMock.return_value]
         
-        for documentId, documentChunks, documentEmbeddings in zip(documentsIds, documentsChunks, documentsEmbeddings): 
-            ids=[f"{documentId}@{i}" for i in range(len(documentChunks))]
-            
-            metadatas = [
-                {
-                    "page": chunk.metadata.get('page', 'NULL'),
-                    "source": chunk.metadata.get('source', documentId),
-                    "status": chunk.metadata.get('status', 'ENABLED')
-                } for chunk in documentChunks
-            ]
+def test_getDocumentsStatusEnabled():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentStatusResponse') as VectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value.get.return_value = [{"status": "ENABLED"}]
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.getDocumentsStatus(["Prova.pdf"])
+        
+        VectorStoreDocumentStatusResponseMock.assert_called_with("Prova.pdf", 'ENABLED')
+        assert response==[VectorStoreDocumentStatusResponseMock.return_value]
+        
+def test_getDocumentsStatusConceal():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentStatusResponse') as VectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value.get.return_value = [{"status": "CONCEAL"}]
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.getDocumentsStatus(["Prova.pdf"])
+        
+        VectorStoreDocumentStatusResponseMock.assert_called_with("Prova.pdf", 'CONCEAL')
+        assert response==[VectorStoreDocumentStatusResponseMock.return_value]
 
-            try:
-                self.collection.add(
-                        ids = ids,
-                        embeddings = documentEmbeddings,
-                        documents = [chunk.page_content for chunk in documentChunks], 
-                        metadatas = metadatas
-                    )
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, True, "Creazione embeddings avvenuta con successo."))
-            except:
-                vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, "Errore nel caricamento degli embeddings."))
-                continue
-        return vectorStoreDocumentOperationResponses
-
-
-    def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
-        return Chroma(client=self.chromadb, collection_name = self.collection.name, embedding_function=embeddingModel.getEmbeddingFunction()).as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.5})
+def test_getDocumentsStatusInconsistent():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentStatusResponse') as VectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value.get.return_value = [{"status": "ENABLED"}, {"status": "CONCEAL"}]
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.getDocumentsStatus(["Prova.pdf"])
+        
+        VectorStoreDocumentStatusResponseMock.assert_called_with("Prova.pdf", 'INCONSISTENT')
+        assert response==[VectorStoreDocumentStatusResponseMock.return_value]
+        
+def test_getDocumentsStatusFail():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentStatusResponse') as VectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.side_effect = Exception
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.getDocumentsStatus(["Prova.pdf"])
+        
+        VectorStoreDocumentStatusResponseMock.assert_called_with("Prova.pdf", None)
+        assert response==[VectorStoreDocumentStatusResponseMock.return_value]
+        
+def test_deleteDocumentsEmbeddingsTrue():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.deleteDocumentsEmbeddings(["Prova.pdf"])
+        
+        collectionMock.delete.assert_called_with(where = {"source": "Prova.pdf"})
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", True, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_deleteDocumentsEmbeddingsFail():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.delete.side_effect = Exception()
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.deleteDocumentsEmbeddings(["Prova.pdf"])
+        
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", False, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_concealDocumentsTrue():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value.get.return_value = ["id1", "id2"]
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.concealDocuments(["Prova.pdf"])
+        
+        collectionMock.update.assert_called_with(ids=["id1", "id2"], metadatas=[{"status": "CONCEALED"}, {"status": "CONCEALED"}])
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", True, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_concealDocumentsFail():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.side_effect = Exception
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.concealDocuments(["Prova.pdf"])
+        
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", False, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_enableDocumentsTrue():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.return_value.get.return_value = ["id1", "id2"]
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.enableDocuments(["Prova.pdf"])
+        
+        collectionMock.update.assert_called_with(ids=["id1", "id2"], metadatas=[{"status": "ENABLED"}, {"status": "ENABLED"}])
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", True, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_enableDocumentsFail():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.os') as osMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='chromadb_collection'), create=True), \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as VectorStoreDocumentOperationResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        collectionMock.get.side_effect = Exception
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.enableDocuments(["Prova.pdf"])
+        
+        VectorStoreDocumentOperationResponseMock.assert_called_with("Prova.pdf", False, ANY)
+        assert response==[VectorStoreDocumentOperationResponseMock.return_value]
+        
+def test_uploadEmbeddingsTrue():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='contenuto_file')) as mock_file, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as vectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        langchainCoreDocumentMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        langchainCoreDocumentMock.metadata = {"page" : 1, "source" : "Prova.pdf"}
+        langchainCoreDocumentMock.page_content = "content"
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.uploadEmbeddings(['Prova.pdf'], [[langchainCoreDocumentMock]], [[[1, 2, 3], [4, 5, 6]]])
+        
+        vectorStoreDocumentStatusResponseMock.assert_called_with('Prova.pdf', True, ANY)
+        assert isinstance(response, list)
+        assert response[0] == vectorStoreDocumentStatusResponseMock.return_value
+        
+def test_uploadEmbeddingsFail():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='contenuto_file')) as mock_file, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.VectorStoreDocumentOperationResponse') as vectorStoreDocumentStatusResponseMock:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        langchainCoreDocumentMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        langchainCoreDocumentMock.metadata = {"page" : 1, "source" : "Prova.pdf"}
+        langchainCoreDocumentMock.page_content = "content"
+        collectionMock.add.side_effect = Exception
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.uploadEmbeddings(['Prova.pdf'], [[langchainCoreDocumentMock]], [[[1, 2, 3], [4, 5, 6]]])
+        
+        vectorStoreDocumentStatusResponseMock.assert_called_with('Prova.pdf', False, ANY)
+        assert isinstance(response, list)
+        assert response[0] == vectorStoreDocumentStatusResponseMock.return_value
+        
+def test_getRetrieverTrue():
+    with    patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.Chroma') as chromaMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.chromadb') as chromadbMock, \
+            patch('adapter.out.persistence.vector_store.vector_store_chromaDB_manager.open', mock_open(read_data='contenuto_file')) as mock_file:
+        chromadbReturnMock = MagicMock()
+        collectionMock = MagicMock()
+        langchainEmbeddingModelMock = MagicMock()
+        
+        chromadbMock.PersistentClient.return_value = chromadbReturnMock
+        chromadbReturnMock.get_or_create_collection.return_value = collectionMock
+        
+        vectorStoreChromaDBManager = VectorStoreChromaDBManager()
+        
+        response = vectorStoreChromaDBManager.getRetriever(langchainEmbeddingModelMock)
+        
+        assert response == chromaMock.return_value.as_retriever.return_value

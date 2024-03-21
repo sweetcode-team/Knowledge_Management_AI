@@ -8,8 +8,9 @@ import {ScrollArea} from '@/components/ui/scroll-area';
 import {ChatContent} from "@/app/chatbot/components/chat-content"
 import {ChatHeader} from "./chat-header"
 import Image from "next/image"
-import {EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon} from "lucide-react"
-import {Toggle} from "@/components/ui/toggle"
+import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon, XCircleIcon } from "lucide-react"
+import { Toggle } from "@/components/ui/toggle"
+
 
 interface ChatDisplayProps {
   chatId: Chat["id"]
@@ -204,7 +205,7 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
           <div className="flex-1 whitespace-pre-wrap text-sm overflow-auto">
             <ScrollArea className="h-full">
               <div className="p-4 pb-0">
-                <ChatContent messages={chat.messages} />
+                <ChatContent messages={chat?.messages} />
               </div>
             </ScrollArea>
           </div>
@@ -271,7 +272,7 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
                   <SendIcon
                     className="w-4 h-4"
                     onClick={() => {
-                      responseChatBot();
+                      handleMessageSubmit()
                     }}
                   />
                 </Button>
@@ -295,4 +296,3 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
     </div >
   )
 }
-

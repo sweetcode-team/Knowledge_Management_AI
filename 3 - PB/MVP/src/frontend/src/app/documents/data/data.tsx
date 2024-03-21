@@ -2,7 +2,7 @@ import { EyeOffIcon, ListPlus, FileTextIcon, FileTypeIcon, SigmaIcon } from "luc
 
 export const statuses = [
   {
-    value: "inconsistent",
+    value: "INCONSISTENT",
     label: "Inconsistent",
     style: "warning",
     action: "Embed",
@@ -11,7 +11,7 @@ export const statuses = [
     actionIcon: SigmaIcon
   },
   {
-    value: "concealed",
+    value: "CONCEALED",
     label: "Concealed",
     style: "disabled",
     action: "Enable",
@@ -20,7 +20,7 @@ export const statuses = [
     actionIcon: ListPlus
   },
   {
-    value: "enabled",
+    value: "ENABLED",
     label: "Enabled",
     style: "successful",
     action: "Conceal",
@@ -29,7 +29,7 @@ export const statuses = [
     actionIcon: EyeOffIcon
   },
   {
-    value: "not embedded",
+    value: "NOT_EMBEDDED",
     label: "Not Embedded",
     style: "error",
     action: "Embed",
@@ -41,13 +41,13 @@ export const statuses = [
 
 export const types = [
   {
-    value: "pdf",
+    value: "PDF",
     label: "PDF",
     action: "View content",
     icon: FileTextIcon,
   },
   {
-    value: "docx",
+    value: "DOCX",
     label: "DOCX",
     action: "Download",
     icon: FileTypeIcon,

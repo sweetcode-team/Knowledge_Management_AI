@@ -7,7 +7,7 @@ import {
   type ChangeEvent,
   type DragEvent,
 } from 'react'
-import { FileUpload } from './file-upload'
+import { FileUpload } from './file-table-staging-row'
 import { MAX_FILE_SIZE } from '@/constants/constants'
 import { useToast } from '@/components/ui/use-toast'
 import {cn, validateFileType} from "@/lib/utils";
@@ -84,6 +84,10 @@ export const StagingArea = forwardRef<HTMLInputElement, InputProps>(
 
 
         const noInput = input.length === 0
+        
+        const uploadFiles = () => {
+            
+        }
 
         // handle drag events
         const handleDrag = (e: DragEvent<HTMLFormElement | HTMLDivElement>) => {

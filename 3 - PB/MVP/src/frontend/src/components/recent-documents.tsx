@@ -35,11 +35,33 @@ import {
 import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { StatusBadge } from "./status-badge";
+import {DocumentContent} from "@/types/types";
+import {useEffect, useState} from "react";
 
 interface RecentDocumentsProps {
   items: Document[]
 }
+async function getDocumentContent(id: string): Promise<DocumentContent> {
+  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`, { cache: 'no-store' })
+  return result.json()
+}
+export async function HandleClick(id: string) {
+  const [src, setSrc] = useState('');
+  const documentContent = await getDocumentContent("2024-02-19.pdf");
+  useEffect(() => {
+    const prova = Buffer.from(documentContent.content, 'hex')
+    const blob = new Blob([prova], {type: 'application/pdf'});
+    //Object.assign(prova, {preview:  URL.createObjectURL(blob)});
+    const pdfUrl = URL.createObjectURL(blob);
+    setSrc(pdfUrl);
+  }, [documentContent.content]);
 
+  return (
+      <div>
+        <a href={src} target="_blank"> prova </a>
+      </div>
+  );
+}
 export function RecentDocuments({
   items,
 }: RecentDocumentsProps) {
@@ -58,7 +80,7 @@ export function RecentDocuments({
                 <div className="font-semibold line-clamp-1">{item.id}</div>
                 <div className="flex flex-col md:flex-row w-full items-center justify-between gap-2">
                   {/* <StatusBadge variant={item.status as any} /> */}
-                  <div className="text-xs line-clamp-1">{prettyBytes(item.dimension)} | {item.type.toUpperCase()}</div>
+                  <div className="text-xs line-clamp-1">{prettyBytes(item.size)} | {item.type.toUpperCase()}</div>
                   {
                     item.status &&
                     <StatusBadge
@@ -88,13 +110,13 @@ export function RecentDocuments({
                       </TableRow>
                       <TableRow>
                         <TableCell className="font-bold">Dimension</TableCell>
-                        <TableCell>{prettyBytes(item.dimension)}</TableCell>
+                        <TableCell>{prettyBytes(item.size)}</TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell className="font-bold">Upload time</TableCell>
                         <TableCell>
                           {
-                            formatDate(item.uploadTime, "dd MMM yyyy HH:mm")
+                            formatDate(item.uploadDate, "dd MMM yyyy HH:mm")
                           }
                         </TableCell>
                       </TableRow>
@@ -116,8 +138,8 @@ export function RecentDocuments({
                   </Table>
                 </div>
                 <DrawerFooter>
-                  <Button asChild>
-                    <Link href={`/documents/${item.id}`}>
+                  <Button asChild onClick={() => HandleClick(item.id)}>
+                    <Link href={`/documents/${item.id}`} >
                       View content
                     </Link>
                   </Button>

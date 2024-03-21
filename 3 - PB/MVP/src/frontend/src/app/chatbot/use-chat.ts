@@ -1,6 +1,6 @@
 import { atom, useAtom } from "jotai"
 
-import { Chat, chats } from "@/app/chatbot/data"
+import { Chat } from "@/types/types"
 
 type Config = {
   selected: Chat["id"] | null

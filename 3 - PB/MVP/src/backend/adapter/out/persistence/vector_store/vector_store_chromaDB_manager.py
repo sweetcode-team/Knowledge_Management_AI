@@ -133,7 +133,7 @@ class VectorStoreChromaDBManager(VectorStoreManager):
                 {
                     "page": chunk.metadata.get('page', 'NULL'),
                     "source": chunk.metadata.get('source', documentId),
-                    "status": "ENABLED"
+                    "status": 'ENABLED'
                 } for chunk in documentChunks
             ]
 

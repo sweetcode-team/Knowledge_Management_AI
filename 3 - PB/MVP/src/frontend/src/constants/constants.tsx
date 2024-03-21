@@ -1,5 +1,12 @@
 import { NavItem } from '@/types/navItem';
-import { BotMessageSquareIcon, FolderOpenIcon, GalleryVerticalEndIcon, MessageSquareTextIcon, SettingsIcon } from 'lucide-react';
+import {
+  BotMessageSquareIcon,
+  FolderOpenIcon,
+  GalleryVerticalEndIcon,
+  LayoutDashboardIcon,
+  MessageSquareTextIcon,
+  SettingsIcon
+} from 'lucide-react';
 
 export const NAV_ITEMS: NavItem[] = [
   {

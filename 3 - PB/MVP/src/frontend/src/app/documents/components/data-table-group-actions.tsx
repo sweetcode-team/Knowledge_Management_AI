@@ -8,7 +8,6 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -23,11 +22,67 @@ import {
 
 import { statuses } from "../data/data"
 import { TrashIcon } from "lucide-react"
+import {DocumentMetadata, DocumentOperationResponse} from "@/types/types";
+import {revalidatePath} from "next/cache";
 
-import { Document } from "../data/schema"
 
 interface DataTableGroupActionsProps<TData> {
   table: Table<TData>
+}
+export async function embeddDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+
+  const formData = new URLSearchParams();
+    ids.forEach(id => formData.append('documentIds', id));
+
+  const result = await fetch(`http://localhost:4000/embedDocuments`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  });
+  return result.json()
+}
+export async function concealDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+
+  const formData = new URLSearchParams();
+    ids.forEach(id => formData.append('documentIds', id));
+
+  const result = await fetch(`http://localhost:4000/concealDocuments`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  });
+  return result.json()
+}
+export async function deleteDocument(ids: string[]): Promise<DocumentOperationResponse> {
+  const formData = new URLSearchParams();
+    ids.forEach(id => formData.append('documentIds', id));
+
+    const result = await fetch(`http://localhost:4000/deleteDocuments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+        }
+    )
+    return result.json()
+}
+export async function enableDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+  const formData = new URLSearchParams();
+    ids.forEach(id => formData.append('documentIds', id));
+
+  const result = await fetch(`http://localhost:4000/enableDocuments`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  });
+  return result.json()
 }
 
 export function DataTableGroupActions<TData>({
@@ -35,14 +90,25 @@ export function DataTableGroupActions<TData>({
 }: DataTableGroupActionsProps<TData>) {
 
   const handleAction = () => {
-    console.log("Chiamare API Deletes su", (table.getSelectedRowModel().rows).map((row) => (row.original as Document)))
+    console.log(selectedRowsStatuses)
+    if (selectedRowsStatuses.has("NOT_EMBEDDED")) {
+        const result = embeddDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        result.then((res) => console.log(res))
+    }else if(selectedRowsStatuses.has("ENABLED")){
+        const result = concealDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        result.then((res) => console.log(res))
+    }else if(selectedRowsStatuses.has("CONCEALED")){
+      const result = enableDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        result.then((res) => console.log(res))
+    }
   }
 
   const handleDelete = () => {
-    console.log("Chiamare API Deletes su", (table.getSelectedRowModel().rows).map((row) => (row.original as Document)))
-  }
+    const result = deleteDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+    result.then((res) => console.log(res))
+    }
 
-  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as Document).status))
+  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
 
   const Icon = statuses.find((status) => selectedRowsStatuses.has(status.value))?.actionIcon as React.ComponentType<{ className?: string }>
 

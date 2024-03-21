@@ -1,49 +1,114 @@
 import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
-import { Chat } from "@/app/chatbot/data"
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { ChatContent } from "@/app/chatbot/components/chat-content"
-import { ChatHeader } from "./chat-header"
+import {useEffect, useRef, useState} from "react"
+import {Button} from "@/components/ui/button"
+import {Separator} from "@/components/ui/separator"
+import {Textarea} from "@/components/ui/textarea"
+import {Chat, Message, MessageResponse, MessageSender} from "@/types/types"
+import {ScrollArea} from '@/components/ui/scroll-area';
+import {ChatContent} from "@/app/chatbot/components/chat-content"
+import {ChatHeader} from "./chat-header"
 import Image from "next/image"
 import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon, XCircleIcon } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
-import { useState, useRef, useEffect } from 'react';
-import { Message } from '../data';
-import { set } from "date-fns"
+
 
 interface ChatDisplayProps {
-  chat?: Chat
+  chatId: Chat["id"]
 }
-
-export function ChatDisplay({ chat }: ChatDisplayProps) {
+async function getChatMessages(id: number = -1): Promise<Chat> {
+    const result = await fetch(`http://localhost:4000/getChatMessages/${id}`, { cache: 'no-store' })
+    return result.json()
+}
+async function askChatbot(id: number, message: string): Promise<MessageResponse> {
+    console.log(id, message)
+    if (id === undefined|| message === "") {
+        throw new Error('error non specificato');
+    }
+    const formData = new FormData();
+    formData.append('message', message);
+    console.log(formData.toString())
+    const response = await fetch('http://localhost:4000/askChatbot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+    });
+     // Attendiamo che il corpo della risposta sia disponibile
+    return await response.json(); // Restituiamo i dati JSON ricevuti dalla richiesta
+}
+export function ChatDisplay({ chatId }: ChatDisplayProps) {
   const [input, setInput] = useState("")
   const [isRecording, setIsRecording] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const recognitionRef = useRef<any>(null)
 
+  const [chat, setChat] = useState<Chat | null>(null);
+  useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+              if (chatId){
+                const chat = await getChatMessages(chatId);
+                console.log(chat)
+                setChat(chat);
+              }
+            } catch (error) {
+                console.error('Errore durante il recupero dei messaggi della chat:', error);
+            }
+        };
+        fetchMessages();
+    }, [chatId]);
+
 
   const handleMessageSubmit = () => {
     if (input.trim().length === 0) return
-   
-    setInput("")
-    setIsRecording(false)
-    setIsPaused(false)
-    if (recognitionRef.current) {
-      stopRecording()
-    }
-    
+    const timestamp = new Date().toLocaleTimeString();
+    setChat(prevChat => {
+        if (!prevChat){
+        setInput("")
+        setIsRecording(false)
+        setIsPaused(false)
+        return null
+        }
+        return {
+            ...prevChat,
+            messages: [
+            ...prevChat.messages,
+            {
+                sender: MessageSender.USER,
+                content: input,
+                timestamp: timestamp,
+                relevantDocuments: []
+            }
+            ]
+        }
+
+  })
   }
-  
-  function handleDeleteMessage() {
-   
-    setInput("")
-    setIsRecording(false)
-    setIsPaused(false)
-    if (recognitionRef.current) {
-      stopRecording()
-    }
+
+  const responseChatBot = async () => {
+    const response = await askChatbot(chatId);
+    console.log(response);
+    const timestamp = new Date().toLocaleTimeString();
+    setChat(prevChat => {
+        if (!prevChat){
+        setInput("")
+        setIsRecording(false)
+        setIsPaused(false)
+        return null
+        }return {
+            ...prevChat,
+            messages: [
+            ...prevChat.messages,
+            {
+                sender: MessageSender.CHATBOT,
+                content: response.messageResponse.content,
+                timestamp: response.messageResponse.timestamp,
+                relevantDocuments: response.messageResponse.relevantDocuments
+            }
+            ]
+        }
+    })
   }
 
   useEffect(() => {
@@ -131,7 +196,6 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
     setIsPaused(false)
   }
 
-
   return (
     <div className="flex h-full flex-col">
       <ChatHeader chatTitle={chat?.title} isChatSelected={!!chat} />
@@ -155,7 +219,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
           <Separator className="mt-auto" />
           <form className="p-4" onSubmit={(e) => {
             e.preventDefault()
-            setInput("")
+            handleMessageSubmit()
           }}>
             <div className="flex max-h-full justify-between space-x-2">
               <div className="flex flex-col space-y-2">
@@ -200,7 +264,6 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
                 onChange={(e) => setInput(e.target.value.trimStart())}
               />
               <div className="flex flex-col space-y-2">
-                
                 <Button
                   type="submit"
                   size="icon"
@@ -217,10 +280,7 @@ export function ChatDisplay({ chat }: ChatDisplayProps) {
                   input !== "" ? (
                     <Button
                       variant={"warning"}
-                      onClick={() => {
-                        handleDeleteMessage()
-                      }      
-                    }
+                      onClick={() => setInput("")}
                       size="icon"
                     >
                       <EraserIcon className="w-4 h-4" />

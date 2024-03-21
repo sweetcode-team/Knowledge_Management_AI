@@ -23,3 +23,5 @@ export const NAV_ITEMS: NavItem[] = [
     icon: SettingsIcon,
   }
 ];
+
+export const MAX_FILE_SIZE = 10000000; 

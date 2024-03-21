@@ -1,20 +1,35 @@
-from adapter.out.persistence.vector_store.vector_store_manager import VectorStoreManager
-from typing import List
-from application.port.out.conceal_documents_port import ConcealDocumentsPort
+import unittest.mock
+from unittest.mock import MagicMock, patch
+from adapter.out.conceal_documents.conceal_documents_vector_store import ConcealDocumentsVectorStore
 from domain.document.document_id import DocumentId
 from domain.document.document_operation_response import DocumentOperationResponse
 
-class ConcealDocumentsVectorStore(ConcealDocumentsPort):
-    def __init__(self, vectorStoreManager: VectorStoreManager):
-        self.vectorStoreManager = vectorStoreManager
-
-    def concealDocuments(self, documentsIds: List[DocumentId]) -> List[DocumentOperationResponse]:
-        #adaptee because vectorStoreManger needs a List of string
-        documentsIdsString = [documentId.id for documentId in documentsIds]
-        vectorStoreDocumentOperationResponseList = self.vectorStoreManager.concealDocuments(documentsIdsString)
-        #return DocumentOperationResponse therefore we adaptee the response
-        documentOperationResponseList = []
-        for vectorOperationResponse in vectorStoreDocumentOperationResponseList:
-            documentOperationResponseList.append(vectorOperationResponse.toDocumentOperationResponse())
-        return documentOperationResponseList
-        
+def test_concealDocumentsTrue():
+    vectorStoreManagerMock = MagicMock()
+    vectorStoreDocumentOperationResponseMock = MagicMock()
+    
+    vectorStoreDocumentOperationResponseMock.toDocumentOperationResponse.return_value = DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document concealed")
+    vectorStoreManagerMock.concealDocuments.return_value = [vectorStoreDocumentOperationResponseMock]
+    
+    concealDocumentsVectorStore = ConcealDocumentsVectorStore(vectorStoreManagerMock)
+    
+    response = concealDocumentsVectorStore.concealDocuments([DocumentId("Prova.pdf")])
+    
+    vectorStoreManagerMock.concealDocuments.assert_called_with(["Prova.pdf"])
+    assert isinstance(response, list)
+    assert isinstance(response[0], DocumentOperationResponse)
+    
+def test_concealDocumentsFail():
+    vectorStoreManagerMock = MagicMock()
+    vectorStoreDocumentOperationResponseMock = MagicMock()
+    
+    vectorStoreDocumentOperationResponseMock.toDocumentOperationResponse.return_value = DocumentOperationResponse(DocumentId("Prova.pdf"), False, "Document not concealed")
+    vectorStoreManagerMock.concealDocuments.return_value = [vectorStoreDocumentOperationResponseMock]
+    
+    concealDocumentsVectorStore = ConcealDocumentsVectorStore(vectorStoreManagerMock)
+    
+    response = concealDocumentsVectorStore.concealDocuments([DocumentId("Prova.pdf")])
+    
+    vectorStoreManagerMock.concealDocuments.assert_called_with(["Prova.pdf"])
+    assert isinstance(response, list)
+    assert isinstance(response[0], DocumentOperationResponse)

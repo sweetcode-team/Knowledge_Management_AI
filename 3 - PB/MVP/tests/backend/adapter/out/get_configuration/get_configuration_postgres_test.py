@@ -1,18 +1,27 @@
-import os
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.get_configuration.get_configuration_postgres import GetConfigurationPostgres
 
-from application.port.out.get_configuration_port import GetConfigurationPort
-from domain.configuration.configuration import Configuration
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-
-class GetConfigurationPostgres(GetConfigurationPort):
-    def __init__(self, postgresConfigurationORM: PostgresConfigurationORM):
-        self.postgresConfigurationORM = postgresConfigurationORM
+def test_getConfigurationTrue():
+    postgresConfigurationORMMock = MagicMock()
+    postgresConfigurationMock = MagicMock()
+    configurationMock = MagicMock()
     
-    def getConfiguration(self) -> Configuration:
-        userId = os.environ.get('USER_ID')
-        
-        postgresConfiguration = self.postgresConfigurationORM.getConfiguration(userId=userId)
-        
-        if postgresConfiguration is None:
-            return None
-        return postgresConfiguration.toConfiguration()
+    postgresConfigurationORMMock.getConfiguration.return_value = postgresConfigurationMock
+    postgresConfigurationMock.toConfiguration.return_value = configurationMock
+    
+    getConfigurationResponse = GetConfigurationPostgres(postgresConfigurationORMMock)
+    
+    response = getConfigurationResponse.getConfiguration()
+    
+    assert response == configurationMock
+    
+def test_getConfigurationFail():
+    postgresConfigurationORMMock = MagicMock()
+    
+    postgresConfigurationORMMock.getConfiguration.return_value = None
+    
+    getConfigurationResponse = GetConfigurationPostgres(postgresConfigurationORMMock)
+    
+    response = getConfigurationResponse.getConfiguration()
+    
+    assert response == None

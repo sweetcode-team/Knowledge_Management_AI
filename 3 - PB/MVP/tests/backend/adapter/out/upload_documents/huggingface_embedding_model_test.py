@@ -1,21 +1,40 @@
-from typing import List
+from unittest.mock import patch, MagicMock, mock_open
+from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
 
-from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
-from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
-
-
-class HuggingFaceEmbeddingModel(LangchainEmbeddingModel):
-    def __init__(self):
-        with open('/run/secrets/huggingface_key', 'r') as file:
-            huggingFaceKey = file.read()
-            
-        self.model = HuggingFaceInferenceAPIEmbeddings(api_key=huggingFaceKey, model_name="sentence-transformers/all-mpnet-base-v2")
-        self.embeddingsDimension = 768
-    
-    def embedDocument(self, documentChunks: List[str]) -> List[List[float]]:
-        try:
-            return self.model.embed_documents(documentChunks)
-        except Exception as e:
-            return []
-    def getEmbeddingFunction(self):
-        return self.model
+def test_embedDocumentTrue():
+    with    patch('adapter.out.upload_documents.huggingface_embedding_model.HuggingFaceInferenceAPIEmbeddings') as HuggingFaceInferenceAPIEmbeddingsMock, \
+            patch('adapter.out.upload_documents.huggingface_embedding_model.open', mock_open(read_data='contenuto_file')) as mock_file:
+        
+        HuggingFaceInferenceAPIEmbeddingsMock.return_value.embed_documents.return_value = [1, 2, 3]
+        
+        huggingFaceEmbeddingModel = HuggingFaceEmbeddingModel()
+        
+        response = huggingFaceEmbeddingModel.embedDocument(['test'])
+        
+        HuggingFaceInferenceAPIEmbeddingsMock.return_value.embed_documents.assert_called_once_with(['test'])
+        
+        assert response == [1, 2, 3]
+        
+def test_embedDocumentFail():
+    with    patch('adapter.out.upload_documents.huggingface_embedding_model.HuggingFaceInferenceAPIEmbeddings') as HuggingFaceInferenceAPIEmbeddingsMock, \
+            patch('adapter.out.upload_documents.huggingface_embedding_model.open', mock_open(read_data='contenuto_file')) as mock_file:
+        
+        HuggingFaceInferenceAPIEmbeddingsMock.return_value.embed_documents.side_effect = Exception
+        
+        huggingFaceEmbeddingModel = HuggingFaceEmbeddingModel()
+        
+        response = huggingFaceEmbeddingModel.embedDocument(['test'])
+        
+        HuggingFaceInferenceAPIEmbeddingsMock.return_value.embed_documents.assert_called_once_with(['test'])
+        
+        assert response == []
+        
+def test_getEmbeddingFunction():
+    with    patch('adapter.out.upload_documents.huggingface_embedding_model.HuggingFaceInferenceAPIEmbeddings') as HuggingFaceInferenceAPIEmbeddingsMock, \
+            patch('adapter.out.upload_documents.huggingface_embedding_model.open', mock_open(read_data='contenuto_file')) as mock_file:
+        
+        huggingFaceEmbeddingModel = HuggingFaceEmbeddingModel()
+        
+        response = huggingFaceEmbeddingModel.getEmbeddingFunction()
+        
+        assert response == HuggingFaceInferenceAPIEmbeddingsMock.return_value

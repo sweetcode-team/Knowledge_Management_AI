@@ -25,6 +25,6 @@ class GetChatsPostgres(GetChatsPort):
         chatsPreview = []
         listOfChatPreview = self.postgresORM.getChats(chatFilter.searchFilter)
         for chatPreview in listOfChatPreview:
-            previewOfChat = chatPreview.getChatPreview()
+            previewOfChat = chatPreview.toChatPreview()
             chatsPreview.append(previewOfChat)
         return chatsPreview

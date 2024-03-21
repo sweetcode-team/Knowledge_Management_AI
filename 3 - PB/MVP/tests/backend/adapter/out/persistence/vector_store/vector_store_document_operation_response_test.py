@@ -1,12 +1,13 @@
-from domain.document.document_operation_response import DocumentOperationResponse
-from domain.document.document_id import DocumentId
-from dataclasses import dataclass
+from unittest.mock import patch, MagicMock
+from adapter.out.persistence.vector_store.vector_store_document_operation_response import VectorStoreDocumentOperationResponse
 
-@dataclass
-class VectorStoreDocumentOperationResponse:
-    documentId: str
-    status: bool
-    message: str
+def test_toDocumentOperationResponse():
+    with patch('adapter.out.persistence.vector_store.vector_store_document_operation_response.DocumentOperationResponse') as documentOperationResponseMock, \
+        patch('adapter.out.persistence.vector_store.vector_store_document_operation_response.DocumentId') as documentIdMock:
+        vectorStoreDocumentOperationResponse = VectorStoreDocumentOperationResponse('Prova.pdf', True, 'message')
         
-    def toDocumentOperationResponse(self) -> DocumentOperationResponse:
-        return DocumentOperationResponse(DocumentId(self.documentId), self.status, self.message)        
+        response = vectorStoreDocumentOperationResponse.toDocumentOperationResponse()
+        
+        documentOperationResponseMock.assert_called_once_with(documentIdMock.return_value, True, 'message')
+        documentIdMock.assert_called_once_with('Prova.pdf')
+        assert response == documentOperationResponseMock.return_value

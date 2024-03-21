@@ -6,7 +6,7 @@ from domain.configuration.embedding_model_configuration import EmbeddingModelCon
 from domain.configuration.llm_model_configuration import LLMModelType, LLMModelConfiguration
 from domain.configuration.configuration_operation_response import ConfigurationOperationResponse
 from domain.configuration.vector_store_configuration import VectorStoreConfiguration, VectorStoreType
-from service.get_configuration_options_service import GetConfigurationOptionsService
+from application.service.get_configuration_options_service import GetConfigurationOptionsService
 
 
 def test_getConfigurationOption():

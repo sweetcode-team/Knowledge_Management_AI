@@ -1,106 +1,251 @@
-from datetime import datetime
-from typing import List
-from adapter.out.persistence.postgres.chat_models import Chat, MessageStore, MessageRelevantDocuments
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 
-from adapter.out.persistence.postgres.database import db_session
-
-from adapter.out.persistence.postgres.postgres_chat_operation_response import PostgresChatOperationResponse
-from adapter.out.persistence.postgres.postgres_message import PostgresMessage, PostgresMessageSenderType
-from adapter.out.persistence.postgres.postgres_chat_preview import PostgresChatPreview
-from adapter.out.persistence.postgres.postgres_chat import PostgresChat
-
-from datetime import datetime
-
-class PostgresChatORM:
-    def __init__(self) -> None:
-        pass
-    
-    def persistChat(self, messages: List[PostgresMessage], chatId: int = None) -> PostgresChatOperationResponse:
-        if len(messages) == 0:
-            return PostgresChatOperationResponse(False, "Nessun messaggio da salvare.", None)
+def test_saveMessageTrue():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageRelevantDocuments') as messageRelevantDocumentsMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageStore') as messageStoreMock:
+        postgresMessageMock = MagicMock()
         
-        if chatId is None:
-            newChatResponse = self.createChat()
-            if not newChatResponse.status:
-                return newChatResponse
-            return self.saveMessages(messages, newChatResponse.chatId)
-        else:
-            return self.saveMessages(messages, chatId)
-    
-    def createChat(self) -> PostgresChatOperationResponse:
-        try:
-            newChat = Chat(f"Nuova chat {datetime.now().isoformat()}")
-            db_session.add(newChat)
-            db_session.commit()
-            newChatId = newChat.id
-            return PostgresChatOperationResponse(True, "Chat creata correttamente.", newChatId)
-        except Exception as e:
-            return PostgresChatOperationResponse(False, f"Errore nella creazione della chat: {str(e)}", None)
-    
-    def saveMessages(self, messages: List[PostgresMessage], chatId: int) -> PostgresChatOperationResponse:
-        try:
-            newMessages = [MessageStore(chatId, {"type": message.sender.name, "data": {"content": message.content, "timestamp": message.timestamp.isoformat()}}) for message in messages]
-            db_session.add_all(newMessages)
-            db_session.commit()
-            newMessageIds = [newMessage.id for newMessage in newMessages]
-            
-            messageRelevantDocuments = []
-            for i, message in enumerate(messages):
-                if message.relevantDocuments is not None:
-                    for document in message.relevantDocuments:
-                        messageRelevantDocuments.append(MessageRelevantDocuments(id=newMessageIds[i], documentId=document))
-            db_session.add_all(messageRelevantDocuments)
-            return PostgresChatOperationResponse(True, "Messaggi salvati correttamente.", chatId)
-        except Exception as e:
-            return PostgresChatOperationResponse(False, f"Errore nel salvataggio dei messaggi: {str(e)}", None)
-    
-    def deleteChats(self, chatIds: List[int]) -> List[PostgresChatOperationResponse]:
-        try:
-            db_session.query(Chat).filter(Chat.id.in_(chatIds)).delete(synchronize_session=False)
-            db_session.commit()
-            #TODO: eliminare anche i messaggi e i documenti associati
-            #TODO: vedere se è stata eliminata effettivamente la chat
-            return [PostgresChatOperationResponse(True, "Chat eliminata correttamente.", chatId) for chatId in chatIds]
-        except Exception as e:
-            return [PostgresChatOperationResponse(False, f"Errore nella eliminazione della chat: {str(e)}", chatId) for chatId in chatIds]
-    
-    def renameChat(self, chatId: int, newName: str) -> PostgresChatOperationResponse:
-        try:
-            db_session.query(Chat).filter(Chat.id == chatId).update({"title": newName})
-            db_session.commit()
-            return PostgresChatOperationResponse(True, "Chat rinominata correttamente.", chatId)
-        except Exception as e:
-            return PostgresChatOperationResponse(False, f"Errore nella rinomina della chat: {str(e)}", chatId)
-    
-    def getChats(self, chatFilter:str) -> List[PostgresChatPreview]:
-        try:
-            chats = db_session.query(Chat).filter(Chat.title.like(f"%{chatFilter}%")).all()
-            chatPreviews = []
-            for chat in chats:
-                lastMessage = db_session.query(MessageStore).filter(MessageStore.sessionId == chat.id).order_by(MessageStore.id.desc()).first()
-                if lastMessage is not None:
-                    chatPreviews.append(PostgresChatPreview(chat.id, chat.title, PostgresMessage(
-                        lastMessage.message["data"]["content"],
-                        datetime.fromisoformat(lastMessage.message["data"]["timestamp"]),
-                        [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == lastMessage.id).all()],
-                        PostgresMessageSenderType[lastMessage.message["type"]]))
-                    )
-                else:
-                    chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
-            return chatPreviews
-        except Exception as e:
-            return []
-    
-    def getChatMessages(self, chatId: int) -> PostgresChat:
-        try:
-            chat = db_session.query(Chat).filter(Chat.id == chatId).first()
-            messages = db_session.query(MessageStore).filter(MessageStore.sessionId == chatId).all()
-            postgresMessages = [PostgresMessage(
-                message.message["data"]["content"],
-                datetime.fromisoformat(message.message["data"]["timestamp"]),
-                [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == message.id).all()],
-                PostgresMessageSenderType[message.message["type"]]) for message in messages]
-            
-            return PostgresChat(chat.id, chat.title, postgresMessages)
-        except Exception as e:
-            return None
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.saveMessages([postgresMessageMock], 1)
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(True, "Messaggi salvati correttamente.", 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_saveMessageFail():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageRelevantDocuments') as messageRelevantDocumentsMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageStore') as messageStoreMock:
+        postgresMessageMock = MagicMock()
+        
+        db_sessionMock.add_all.side_effect = Exception
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.saveMessages([postgresMessageMock], 1)
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, ANY, 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+
+def test_createChatTrue():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+        postgresChatORMMock = PostgresChatORM()
+        
+        ChatMock.return_value.id = 1
+        
+        response = postgresChatORMMock.createChat()
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(True, "Chat creata correttamente.", 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_createChatFail():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+        postgresChatORMMock = PostgresChatORM()
+        
+        ChatMock.side_effect = Exception
+        
+        response = postgresChatORMMock.createChat()
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, ANY, None)
+        assert response == PostgresChatOperationResponseMock.return_value
+
+def test_persistChatWithChatId():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageRelevantDocuments') as messageRelevantDocumentsMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageStore') as messageStoreMock:
+        postgresMessageMock = MagicMock()
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.persistChat([postgresMessageMock], 1)
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(True, "Messaggi salvati correttamente.", 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_persistChatWithoutChatId():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageRelevantDocuments') as messageRelevantDocumentsMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageStore') as messageStoreMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+        postgresMessageMock = MagicMock()
+        
+        ChatMock.return_value.id = 1
+        PostgresChatOperationResponseMock.return_value.chatId = 1
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.persistChat([postgresMessageMock])
+        
+        PostgresChatOperationResponseMock.assert_called_with(True, "Messaggi salvati correttamente.", 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+
+def test_persistChatWithoutMessages():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageRelevantDocuments') as messageRelevantDocumentsMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.MessageStore') as messageStoreMock:
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.persistChat([])
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, "Nessun messaggio da salvare.", None)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_deleteChats():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+                
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.deleteChats([1])
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(True, ANY, 1)
+        assert response == [PostgresChatOperationResponseMock.return_value]
+        
+def test_deleteChatsFail():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+                
+        db_sessionMock.query.side_effect = Exception
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.deleteChats([1])
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, ANY, 1)
+        assert response == [PostgresChatOperationResponseMock.return_value]
+        
+def test_renameChat():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+                
+        db_sessionMock.query.return_value.filter.return_value.update.return_value = 1
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.renameChat(1, "newName")
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(True, ANY, 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_renameChatNotFound():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+                
+        db_sessionMock.query.return_value.filter.return_value.update.return_value = 0
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.renameChat(1, "newName")
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, ANY, 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_renameChatFail():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatOperationResponse') as PostgresChatOperationResponseMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.Chat') as ChatMock:
+                
+        db_sessionMock.query.return_value.filter.return_value.update.side_effect = Exception
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.renameChat(1, "newName")
+        
+        PostgresChatOperationResponseMock.assert_called_once_with(False, ANY, 1)
+        assert response == PostgresChatOperationResponseMock.return_value
+        
+def test_getChatsWithoutLastMessage():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatPreview') as PostgresChatPreviewMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock:
+        ChatMock = MagicMock()
+                
+        db_sessionMock.query.return_value.filter.return_value.all.return_value = [ChatMock]
+        db_sessionMock.query.return_value.filter.return_value.order_by.return_value.first.return_value = None
+        ChatMock.id = 1
+        ChatMock.title = "chatName"
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.getChats('filter test')
+        
+        PostgresChatPreviewMock.assert_called_once_with(1, "chatName", None)
+        assert response == [PostgresChatPreviewMock.return_value]
+        
+def test_getChatsWithLastMessage():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatPreview') as PostgresChatPreviewMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresMessage') as PostgresMessageMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.datetime') as datetimeMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresMessageSenderType') as PostgresMessageSenderTypeMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock:
+        ChatMock = MagicMock()
+        MessageMock = MagicMock()
+                
+        db_sessionMock.query.return_value.filter.return_value.all.return_value = [ChatMock]
+        db_sessionMock.query.return_value.filter.return_value.order_by.return_value.first.return_value = MessageMock
+        ChatMock.id = 1
+        ChatMock.title = "chatName"
+        ChatMock.documentId = "documentId"
+        MessageMock.message = {"data": {"content": "messageContent", "timestamp": "2021-01-01T00:00:00.000Z"}, "type": "USER"}
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.getChats('filter test')
+        
+        PostgresChatPreviewMock.assert_called_once_with(1, "chatName", PostgresMessageMock.return_value)
+        assert response == [PostgresChatPreviewMock.return_value]
+
+def test_getChatsFail():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChatPreview') as PostgresChatPreviewMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock:
+        db_sessionMock.query.side_effect = Exception
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.getChats('filter test')
+        
+        assert response == None
+        
+def test_getChatMessages():
+    with    patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresChat') as PostgresChatMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresMessage') as PostgresMessageMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.datetime') as datetimeMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.PostgresMessageSenderType') as PostgresMessageSenderTypeMock, \
+            patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock:
+        ChatMock = MagicMock()
+        MessageMock = MagicMock()
+                
+        db_sessionMock.query.return_value.filter.return_value.first.return_value = ChatMock
+        db_sessionMock.query.return_value.filter.return_value.all.return_value = [MessageMock]
+        ChatMock.id = 1
+        ChatMock.title = "chatName"
+        MessageMock.message = {"data": {"content": "messageContent", "timestamp": "2021-01-01T00:00:00.000Z"}, "type": "USER"}
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.getChatMessages(1)
+        
+        PostgresChatMock.assert_called_once_with(1, "chatName", [PostgresMessageMock.return_value])
+        assert response == PostgresChatMock.return_value
+        
+def test_getChatMessagesFail():
+    with   patch('adapter.out.persistence.postgres.postgres_chat_orm.db_session') as db_sessionMock:
+        db_sessionMock.query.side_effect = Exception
+        
+        postgresChatORMMock = PostgresChatORM()
+        
+        response = postgresChatORMMock.getChatMessages(1)
+        
+        assert response == None

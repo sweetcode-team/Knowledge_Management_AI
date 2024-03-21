@@ -1,21 +1,32 @@
-import os
-from dataclasses import dataclass
-from datetime import datetime
+from unittest.mock import  patch, MagicMock, ANY
+from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
 
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-
-"""
-This class is used to store the metadata of a document stored in AWS S3.
-"""
-@dataclass
-class AWSDocumentMetadata:
-    id: str
-    size: float
-    uploadTime: datetime
+def test_toDocumentMetadataFromPDF():
+    with    patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentMetadata') as DocumentMetadataMock, \
+            patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentId') as DocumentIdMock, \
+            patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentType') as DocumentTypeMock:
+                
+        DocumentIdMock.return_value = "Prova.pdf"
         
-    def toDocumentMetadataFrom(self) -> DocumentMetadata:
-        return DocumentMetadata(id=DocumentId(self.id),
-                                type=DocumentType.PDF if os.path.splitext(self.id)[1].upper() == ".PDF" else DocumentType.DOCX,
-                                size=self.size,
-                                uploadTime=self.uploadTime)
+        documentMetadata = AWSDocumentMetadata(id="Prova.pdf", size=1, type = "PDF", uploadTime=ANY)
+        
+        response = documentMetadata.toDocumentMetadataFrom()
+        
+        DocumentMetadataMock.assert_called_once_with(id="Prova.pdf", type=DocumentTypeMock.PDF, size=1, uploadTime=ANY)
+        
+        assert response == DocumentMetadataMock.return_value
+        
+def test_toDocumentMetadataFromDOCX():
+    with    patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentMetadata') as DocumentMetadataMock, \
+            patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentId') as DocumentIdMock, \
+            patch('adapter.out.persistence.aws.AWS_document_metadata.DocumentType') as DocumentTypeMock:
+                
+        DocumentIdMock.return_value = "Prova.docx"
+        
+        documentMetadata = AWSDocumentMetadata(id="Pova.docx", size=1, type = "DOCX", uploadTime=ANY)
+        
+        response = documentMetadata.toDocumentMetadataFrom()
+        
+        DocumentMetadataMock.assert_called_once_with(id="Prova.docx", type=DocumentTypeMock.DOCX, size=1, uploadTime=ANY)
+        
+        assert response == DocumentMetadataMock.return_value

@@ -34,7 +34,7 @@ class AskChatbotService(AskChatbotUseCase):
             
             return MessageResponse(
                 status=chatOperationResponse.ok(),
-                messageResponse=messageResponse.messageResponse if messageResponse.messageResponse else None,
+                messageResponse=messageResponse.messageResponse if chatOperationResponse.ok() else None,
                 chatId=chatOperationResponse.chatId
             )
         

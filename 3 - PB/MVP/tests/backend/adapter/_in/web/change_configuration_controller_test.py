@@ -1,20 +1,22 @@
+from unittest.mock import MagicMock, patch
 from adapter._in.web.change_configuration_controller import ChangeConfigurationController 
+from domain.configuration.llm_model_configuration import LLMModelType
 
-from domain.configuration.configuration_operation_response import ConfigurationOperationResponse
 
-def test_changeLLMModel_with_existent_model(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.changeLLMModel.return_value = ConfigurationOperationResponse(True, "Model changed successfully")
+def test_changeLLMModelWithExistentModel():
+    useCaseMock = MagicMock()
     
     changeConfigurationController = ChangeConfigurationController(useCaseMock)
     
     response = changeConfigurationController.changeLLMModel("OPENAI")
     
-    assert isinstance(response, ConfigurationOperationResponse)
+    useCaseMock.changeLLMModel.assert_called_once_with(LLMModelType.OPENAI)
+    assert response == useCaseMock.changeLLMModel.return_value
     
-def test_changeLLMModel_with_absent_model(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.changeLLMModel.return_value = ConfigurationOperationResponse(True, "Model changed successfully")
+def test_changeLLMModelWithAbsentModel():
+    useCaseMock = MagicMock()
+
+    useCaseMock.changeLLMModel.side_effect = KeyError
     
     changeConfigurationController = ChangeConfigurationController(useCaseMock)
     

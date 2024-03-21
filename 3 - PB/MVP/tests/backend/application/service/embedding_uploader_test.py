@@ -8,7 +8,7 @@ from domain.document.document_operation_response import DocumentOperationRespons
 from application.service.enable_documents_service import EnableDocumentsService
 from domain.document.document_status import DocumentStatus, Status
 from domain.document.plain_document import PlainDocument
-from service.embeddings_uploader import EmbeddingsUploader
+from application.service.embeddings_uploader import EmbeddingsUploader
 
 
 def test_embeddingUploader():

@@ -1,35 +1,32 @@
-import os
-from typing import List
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.get_documents.get_documents_content_awss3 import GetDocumentsContentAWSS3
 
-from domain.document.document_content import DocumentContent
-from domain.document.document_filter import DocumentFilter
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-from domain.document.plain_document import PlainDocument
-from application.port.out.get_documents_content_port import GetDocumentsContentPort
-from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
-
-
-class GetDocumentsContentAWSS3(GetDocumentsContentPort):
-
-    def __init__(self, awsS3Manager: AWSS3Manager):
-        self.awsS3Manager = awsS3Manager
-
-    def getDocumentsContent(self, documentIds: List[DocumentId]) -> List[PlainDocument]:
-        documents = []
-        for documentId in documentIds:
-            retrievedDocument = self.awsS3Manager.getDocumentContent(documentId.id)
-            documents.append(retrievedDocument)
+def test_getDocumentsContent():
+    with    patch('adapter.out.get_documents.get_documents_content_awss3.PlainDocument') as plainDocumentMock:
+        awsS3ManagerMock = MagicMock()
+        awsDocumentMock = MagicMock()
+        documentIdMock = MagicMock()
         
-        plainDocuments = [
-            PlainDocument(
-                DocumentMetadata(
-                    id=DocumentId(document.id),
-                    type=DocumentType.PDF if document.type.split('.')[1].upper() == "PDF" else DocumentType.DOCX,
-                    size=document.size,
-                    uploadTime=document.uploadTime
-                ),
-                DocumentContent(document.content)
-            ) if document is not None else None for document in documents]
-        return plainDocuments
-
+        awsS3ManagerMock.getDocumentContent.return_value = awsDocumentMock
+        
+        getDocumentsContentResponse = GetDocumentsContentAWSS3(awsS3ManagerMock)
+        
+        response = getDocumentsContentResponse.getDocumentsContent([documentIdMock])
+        
+        assert isinstance(response, list)
+        assert response == [awsDocumentMock.toPlainDocument.return_value]
+        
+def test_getDocumentsContentNone():
+    with    patch('adapter.out.get_documents.get_documents_content_awss3.PlainDocument') as plainDocumentMock:
+        awsS3ManagerMock = MagicMock()
+        awsDocumentMock = MagicMock()
+        documentIdMock = MagicMock()
+        
+        awsS3ManagerMock.getDocumentContent.return_value = None
+        
+        getDocumentsContentResponse = GetDocumentsContentAWSS3(awsS3ManagerMock)
+        
+        response = getDocumentsContentResponse.getDocumentsContent([documentIdMock])
+        
+        assert isinstance(response, list)
+        assert response == [None]

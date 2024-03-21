@@ -63,6 +63,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+
 secrets:
   aws_access_key_id:
     file: ./secrets/aws_access_key_id.txt

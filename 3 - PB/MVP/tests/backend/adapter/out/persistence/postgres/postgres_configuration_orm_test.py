@@ -1,43 +1,84 @@
-from typing import List 
-from adapter.out.persistence.postgres.configuration_models import PostgresConfigurationChoice, PostgresVectorStoreConfiguration, PostgresEmbeddingModelConfiguration, PostgresLLMModelConfiguration, PostgresDocumentStoreConfiguration, PostgresLLMModelType, PostgresVectorStoreType, PostgresEmbeddingModelType, PostgresDocumentStoreType
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
 
-from adapter.out.persistence.postgres.database import db_session
-
-from adapter.out.persistence.postgres.postgres_configuration_operation_response import PostgresConfigurationOperationResponse
-from adapter.out.persistence.postgres.postgres_configuration import PostgresConfiguration
-
-class PostgresConfigurationORM:
-    
-    def getConfiguration(self, userId: int) -> PostgresConfiguration:
-        userConfiguration = db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == userId).first()
-
-        vectorStore = db_session.query(PostgresVectorStoreConfiguration).filter(PostgresVectorStoreConfiguration.name == userConfiguration.vectorStore).first()
-        embeddingModel = db_session.query(PostgresEmbeddingModelConfiguration).filter(PostgresEmbeddingModelConfiguration.name == userConfiguration.embeddingModel).first()
-        LLMModel = db_session.query(PostgresLLMModelConfiguration).filter(PostgresLLMModelConfiguration.name == userConfiguration.LLMModel).first()
-        documentStore = db_session.query(PostgresDocumentStoreConfiguration).filter(PostgresDocumentStoreConfiguration.name == userConfiguration.documentStore).first()
-
-        return PostgresConfiguration(userId, vectorStore=vectorStore, embeddingModel=embeddingModel, LLMModel=LLMModel, documentStore=documentStore)
-    
-    def getConfigurationChoices(self, userId: int) -> PostgresConfigurationChoice:
-        return db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == userId).first()
-
-    def changeLLMModel(self, userId: int, LLMModel: PostgresLLMModelType) -> PostgresConfigurationOperationResponse:
-        try:
-            db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == userId).update({PostgresConfigurationChoice.LLMModel: LLMModel})
-            db_session.commit()
-            return PostgresConfigurationOperationResponse(True, 'Modello LLM aggiornato con successo')
-        except Exception as e:
-            db_session.rollback()
-            return PostgresConfigurationOperationResponse(False, f'Errore nell\'aggiornamento del modello LLM: {str(e)}')
+def test_getConfiguration():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_configuration_orm.PostgresConfiguration') as PostgresConfigurationMock:
         
-    def getVectorStoreOptions(self) -> List[PostgresVectorStoreConfiguration]:
-        return db_session.query(PostgresVectorStoreConfiguration).order_by(PostgresVectorStoreConfiguration.name).all()
-    
-    def getEmbeddingModelOptions(self) -> List[PostgresEmbeddingModelConfiguration]:
-        return db_session.query(PostgresEmbeddingModelConfiguration).order_by(PostgresEmbeddingModelConfiguration.name).all()
-    
-    def getLLMModelOptions(self) -> List[PostgresLLMModelConfiguration]:
-        return db_session.query(PostgresLLMModelConfiguration).order_by(PostgresLLMModelConfiguration.name).all()
-    
-    def getDocumentStoreOptions(self) -> List[PostgresDocumentStoreConfiguration]:
-        return db_session.query(PostgresDocumentStoreConfiguration).order_by(PostgresDocumentStoreConfiguration.name).all()
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.getConfiguration(1)
+        
+        assert response == PostgresConfigurationMock.return_value
+
+def test_getConfigurationChoices():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:
+        PostgresConfigurationMock = MagicMock()
+        
+        db_sessionMock.query.return_value.filter.return_value.first.return_value = PostgresConfigurationMock
+        
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.getConfigurationChoices(1)
+        
+        assert response == PostgresConfigurationMock
+        
+def test_changeLLMModelTrue():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_configuration_orm.PostgresConfigurationOperationResponse') as PostgresConfigurationOperationResponseMock:
+        PostgresLLMModelTypeMock = MagicMock()
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.changeLLMModel(1, PostgresLLMModelTypeMock)
+        
+        PostgresConfigurationOperationResponseMock.assert_called_with(True, ANY)
+        assert response == PostgresConfigurationOperationResponseMock.return_value
+        
+def test_changeLLMModelFail():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock, \
+            patch('adapter.out.persistence.postgres.postgres_configuration_orm.PostgresConfigurationOperationResponse') as PostgresConfigurationOperationResponseMock:
+        PostgresLLMModelTypeMock = MagicMock()
+        db_sessionMock.query.side_effect = Exception
+        
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.changeLLMModel(1, PostgresLLMModelTypeMock)
+        
+        PostgresConfigurationOperationResponseMock.assert_called_with(False, ANY)
+        assert response == PostgresConfigurationOperationResponseMock.return_value
+        
+def test_getVectorStoreOptions():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:
+        PostgresVectorStoreConfigurationMock = MagicMock()
+        
+        db_sessionMock.query.return_value.order_by.return_value.all.return_value = [PostgresVectorStoreConfigurationMock]
+        
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.getVectorStoreOptions()
+        
+        assert response == [PostgresVectorStoreConfigurationMock]
+        
+def test_getEmbeddingModelOptions():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:
+        PostgresEmbeddingModelConfigurationMock = MagicMock()
+        
+        db_sessionMock.query.return_value.order_by.return_value.all.return_value = [PostgresEmbeddingModelConfigurationMock]
+        
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.getEmbeddingModelOptions()
+        
+        assert response == [PostgresEmbeddingModelConfigurationMock]
+        
+def test_getLLMModelOptions():
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:
+        PostgresLLMModelConfigurationMock = MagicMock()
+        
+        db_sessionMock.query.return_value.order_by.return_value.all.return_value = [PostgresLLMModelConfigurationMock]
+        
+        postgresConfigurationORM = PostgresConfigurationORM()
+        
+        response = postgresConfigurationORM.getLLMModelOptions()
+        
+        assert response == [PostgresLLMModelConfigurationMock]

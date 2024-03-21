@@ -18,6 +18,7 @@ Returns:
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
     requestedIds = request.form.getlist('documentIds')
+    print(requestedIds, flush=True)
     if requestedIds is None:
         raise InsufficientParameters()
     if len(requestedIds) == 0:
@@ -44,6 +45,6 @@ def deleteDocuments():
         raise APIElaborationException("Errore nell'eliminazione dei documenti.")
     
     return jsonify([{
-        "id": documentOperationResponse.documentId.id,
+        "documentId": documentOperationResponse.documentId.id,
         "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

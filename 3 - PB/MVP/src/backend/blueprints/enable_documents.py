@@ -37,6 +37,6 @@ def enableDocuments():
         raise APIElaborationException("Errore nella riabilitazione dei documenti.")
     
     return jsonify([{
-        "id": documentOperationResponse.documentId.id,
+        "documentId": documentOperationResponse.documentId.id,
         "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

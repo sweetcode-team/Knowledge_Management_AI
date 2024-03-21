@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { useChat } from "../use-chat";
-import { Chat } from "../data";
+import { Chat, ChatPreview } from "@/types/types";
 import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useCallback } from 'react';
@@ -15,7 +15,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ChatListProps {
-  items: Chat[]
+  items: ChatPreview[]
 }
 
 export function ChatList({ items }: ChatListProps) {
@@ -23,7 +23,7 @@ export function ChatList({ items }: ChatListProps) {
   const [filteredChats, setFilteredChats] = useState(items)
 
   const [isBeingSelected, setIsBeingSelected] = useState(false)
-  const [selectedChats, setSelectedChats] = useState<string[]>([])
+  const [selectedChats, setSelectedChats] = useState<number[]>([])
 
   const handleDelete = () => {
     setIsBeingSelected(false)
@@ -32,17 +32,7 @@ export function ChatList({ items }: ChatListProps) {
   }
 
   return (
-    <div
-    // onBlur={(e) => {
-    //   const currentTarget = e.currentTarget;
-
-    //   if (currentTarget.id !== "dialog-cancel" && e.relatedTarget?.role !== "checkbox") {
-    //     console.log(e)
-    //     setIsBeingSelected(false)
-    //     setSelectedChats([])
-    //   }
-    // }}
-    >
+    <div>
       <div
         className="flex w-full space-x-2 bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="relative w-full">
@@ -52,7 +42,9 @@ export function ChatList({ items }: ChatListProps) {
           <Input
             placeholder="Search"
             className="pl-8"
-            onChange={(e) => { setFilteredChats(items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase()))) }}
+            onChange={(e) => {
+              setFilteredChats(items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())))
+            }}
           />
         </div>
         {
@@ -119,15 +111,15 @@ export function ChatList({ items }: ChatListProps) {
               filteredChats.map((item) => (
                 <div
                   tabIndex={0}
-                  key={item.id}
+                  key={item.chatId}
                   className={cn(
                     "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
-                    chat.selected === item.id && "bg-muted"
+                    chat.selected === item.chatId && "bg-muted"
                   )}
                   onClick={() =>
                     setChat({
                       ...chat,
-                      selected: item.id,
+                      selected: item.chatId,
                     })
                   }
                 >
@@ -140,10 +132,10 @@ export function ChatList({ items }: ChatListProps) {
                             (e) => {
                               e.stopPropagation()
                               setSelectedChats((prev) => {
-                                if (prev.includes(item.id)) {
-                                  return prev.filter((id) => id !== item.id)
+                                if (prev.includes(item.chatId)) {
+                                  return prev.filter((id) => id !== item.chatId)
                                 } else {
-                                  return [...prev, item.id]
+                                  return [...prev, item.chatId]
                                 }
                               })
                             }
@@ -154,19 +146,19 @@ export function ChatList({ items }: ChatListProps) {
                       <div
                         className={cn(
                           "ml-auto text-xs line-clamp-1",
-                          chat.selected === item.id
+                          chat.selected === item.chatId
                             ? "text-foreground"
                             : "text-muted-foreground"
                         )}
                       >
-                        {formatDistanceToNow(new Date(item.messages[item.messages.length - 1].timestamp), {
+                        {formatDistanceToNow(new Date(item.lastMessage.timestamp), {
                           addSuffix: true,
                         })}
                       </div>
                     </div>
                   </div>
                   <div className="line-clamp-2 text-xs text-muted-foreground">
-                    {item.messages[item.messages.length - 1].content.substring(0, 300)}
+                    {item.lastMessage.content.substring(0, 300)}
                   </div>
                 </div>
               ))

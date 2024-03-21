@@ -12,8 +12,9 @@ import { types, statuses } from "../data/data"
 import { Document } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import {DocumentMetadata} from "@/types/types";
 
-export const columns: ColumnDef<Document>[] = [
+export const columns: ColumnDef<DocumentMetadata>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -56,14 +57,14 @@ export const columns: ColumnDef<Document>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "dimension",
+    accessorKey: "size",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Dimension" />
+      <DataTableColumnHeader column={column} title="size" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex items-center justify-center">
-          {prettyBytes(row.getValue("dimension"))}
+          {prettyBytes(row.getValue("size"))}
         </div >
       )
     }
@@ -122,16 +123,16 @@ export const columns: ColumnDef<Document>[] = [
     },
   },
   {
-    accessorKey: "uploadTime",
+    accessorKey: "uploadDate",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Upload Time" />
     ),
     cell: ({ row }) => {
-      const date = parseISO(row.getValue("uploadTime"));
+      const date = parseISO(row.getValue("uploadDate"));
       return (
         <div className="flex items-center justify-center">
           <span className="truncate font-medium">
-            <time dateTime={row.getValue("uploadTime")}>{format(date, 'yyyy-MM-dd hh:mm')}</time>
+            <time dateTime={row.getValue("uploadDate")}>{format(date, 'yyyy-MM-dd hh:mm')}</time>
           </span>
         </div>
       )

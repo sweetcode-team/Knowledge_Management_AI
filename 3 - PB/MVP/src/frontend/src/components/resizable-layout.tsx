@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ReactNode } from 'react';
 
-import { NAV_ITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/constants';
 
 import { Logo } from "@/components/logo"
 import { Nav } from "@/components/nav"
@@ -13,7 +13,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 import Header from "@/components/header"
 import { usePathname } from "next/navigation";
-import { NavItem } from "@/types/navItem";
+import { Types } from "@/types/types";
 
 interface ResizableLayoutProps {
     defaultLayout: number[] | undefined
@@ -32,7 +32,7 @@ export function ResizableLayout({
 
     const pathname = "/" + usePathname().split("/")[1];
 
-    const navItems: NavItem[] = NAV_ITEMS
+    const navItems: Types[] = NAV_ITEMS
 
     const title = navItems.find((item) => item.path === pathname)?.title
 

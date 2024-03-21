@@ -1,19 +1,24 @@
-import os
-from typing import List
-import tempfile
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.upload_documents.PDF_text_extractor import PDFTextExtractor
 
-from domain.document.document_content import DocumentContent
-from adapter.out.upload_documents.text_extractor import TextExtractor
-from langchain_core.documents.base import Document as LangchainCoreDocuments
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-class PDFTextExtractor(TextExtractor):
-    def extractText(self, documentContent:DocumentContent) -> List[LangchainCoreDocuments]:
-        with tempfile.NamedTemporaryFile(delete=False) as tempFile:
-            tempFile.write(documentContent.content)
-        pdf = PyPDFLoader(tempFile.name)
-        documents = pdf.load()
-        textSplitter = RecursiveCharacterTextSplitter(chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP")))
-        return textSplitter.split_documents(documents)
-
+def test_extractText():
+    with    patch('adapter.out.upload_documents.PDF_text_extractor.tempfile.NamedTemporaryFile') as tempfileMock, \
+            patch('adapter.out.upload_documents.PDF_text_extractor.PyPDFLoader') as pyPDFLoaderMock, \
+            patch('adapter.out.upload_documents.PDF_text_extractor.RecursiveCharacterTextSplitter') as recursiveCharacterTextSplitterMock:
+            documentContentMock = MagicMock()
+            documentLangchainMock = MagicMock()
+            
+            documentContentMock.content = "content"
+            tempfileMock.write.return_value = None
+            tempfileMock.name = "tempFile"
+            pyPDFLoaderMock.return_value = pyPDFLoaderMock
+            pyPDFLoaderMock.load.return_value = [documentLangchainMock]
+            recursiveCharacterTextSplitterMock.return_value = recursiveCharacterTextSplitterMock
+            recursiveCharacterTextSplitterMock.split_documents.return_value = [documentLangchainMock]
+            
+            pdfTextExtractor = PDFTextExtractor()
+            
+            response = pdfTextExtractor.extractText(documentContentMock)
+            
+            assert isinstance(response, list)
+            assert response == [documentLangchainMock]

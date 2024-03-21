@@ -27,4 +27,4 @@ class EmbedDocumentsController:
         try:
             return self.useCase.embedDocuments([DocumentId(documentId) for documentId in documentsIds])
         except ElaborationException as e:
-            raise APIElaborationException(str(e))
+            raise APIElaborationException(str(e)) 

@@ -11,7 +11,6 @@ This class is used to store the document in Langchain.
 """
 @dataclass
 class LangchainDocument:
-    def __init__(self, documentId: str, chunks: List[LangchainCoreDocument], embeddings: List[List[float]]):
-        self.documentId = documentId
-        self.chunks = chunks
-        self.embeddings = embeddings
+    documentId: str
+    chunks: List[LangchainCoreDocument]
+    embeddings: List[List[float]]

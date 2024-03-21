@@ -142,7 +142,6 @@ class AWSS3Manager:
                     id=content.get('Key'),
                     size=content.get('Size'),
                     uploadTime=content.get('LastModified'),
-                    type=content.get('ContentType')
                 )
             )
         return awsDocumentsMetadata

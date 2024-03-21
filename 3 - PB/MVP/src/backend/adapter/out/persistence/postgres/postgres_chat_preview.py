@@ -18,5 +18,5 @@ class PostgresChatPreview:
     Returns:
         ChatPreview: The ChatPreview converted from the PostgresChatPreview.
     """
-    def getChatPreview(self) -> ChatPreview:
+    def toChatPreview(self) -> ChatPreview:
         return ChatPreview(id=ChatId(self.id), title=self.title, lastMessage=self.lastMessage.toMessage())

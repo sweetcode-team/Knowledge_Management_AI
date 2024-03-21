@@ -1,28 +1,28 @@
-from typing import List
-from dataclasses import dataclass
-from datetime import datetime
-from enum import Enum
+from unittest.mock import patch, MagicMock, ANY
+from adapter.out.persistence.postgres.postgres_message import PostgresMessage, PostgresMessageSenderType
 
-from domain.chat.message import Message, MessageSender
-from domain.document.document_id import DocumentId
+def test_toMessageHuman():
+    with patch('adapter.out.persistence.postgres.postgres_message.Message') as messageMock, \
+        patch('adapter.out.persistence.postgres.postgres_message.DocumentId') as documentIdMock, \
+        patch('adapter.out.persistence.postgres.postgres_message.MessageSender') as messageSenderMock:
+            
+        postgresMessage = PostgresMessage('content', ANY, ['relevantDocument'], PostgresMessageSenderType.human)
+        
+        response = postgresMessage.toMessage()
+        
+        messageMock.assert_called_once_with('content', ANY, [documentIdMock.return_value], messageSenderMock.USER)
+        documentIdMock.assert_called_once_with('relevantDocument')
+        assert response == messageMock.return_value
 
-
-@dataclass
-class PostgresMessageSenderType(Enum):
-    human = 1
-    ai = 2
-
-@dataclass
-class PostgresMessage:
-    content: str
-    timestamp: datetime
-    relevantDocuments: List[str]
-    sender: PostgresMessageSenderType
-
-    def toMessage(self) -> Message:
-        return Message(
-            self.content,
-            self.timestamp,
-            [DocumentId(relevantDocument) for relevantDocument in self.relevantDocuments],
-            MessageSender.USER if self.sender.value == PostgresMessageSenderType.human.value else MessageSender.CHATBOT
-        )
+def test_toMessageAI():
+    with patch('adapter.out.persistence.postgres.postgres_message.Message') as messageMock, \
+        patch('adapter.out.persistence.postgres.postgres_message.DocumentId') as documentIdMock, \
+        patch('adapter.out.persistence.postgres.postgres_message.MessageSender') as messageSenderMock:
+            
+        postgresMessage = PostgresMessage('content', ANY, ['relevantDocument'], PostgresMessageSenderType.ai)
+        
+        response = postgresMessage.toMessage()
+        
+        messageMock.assert_called_once_with('content', ANY, [documentIdMock.return_value], messageSenderMock.CHATBOT)
+        documentIdMock.assert_called_once_with('relevantDocument')
+        assert response == messageMock.return_value

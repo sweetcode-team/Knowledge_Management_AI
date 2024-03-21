@@ -29,6 +29,13 @@ import {
 
 import { documentSchema } from "../data/schema"
 import { statuses, types } from "../data/data"
+import {
+  concealDocument,
+  deleteDocument,
+  embeddDocument,
+  enableDocument
+} from "@/app/documents/components/data-table-group-actions";
+import {DocumentMetadata} from "@/types/types";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -40,17 +47,19 @@ export function DataTableRowActions<TData>({
   const document = documentSchema.parse(row.original)
 
   const handleAction = () => {
-    if (document.status === "concealed") {
-      console.log("Chiamare API Enable su", document.id)
-    } else if (document.status === "enabled") {
-      console.log("Chiamare API Conceal su", document.id)
+    console.log(document.id)
+    if (document.status === "CONCEALED") {
+      const result = enableDocument([document.id])
+    } else if (document.status === "ENABLED") {
+        const result = concealDocument([document.id])
     } else {
-      console.log("Chiamare API Embed su", document.id)
+      const result = embeddDocument([document.id])
     }
   }
 
   const handleDelete = () => {
-    console.log("Chiamare API Deletes su", document.id)
+        const result = deleteDocument([document.id])
+
   }
 
   const handleViewContent = () => {

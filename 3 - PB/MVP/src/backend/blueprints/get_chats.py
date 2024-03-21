@@ -41,7 +41,7 @@ def getDocuments(filter):
             "lastMessage": {
                 "content": chat.lastMessage.content,
                 "sender":chat.lastMessage.sender.name,
-                "time": chat.lastMessage.timestamp
+                "timestamp": chat.lastMessage.timestamp
             }
         } for chat in retrievedChats]
     )

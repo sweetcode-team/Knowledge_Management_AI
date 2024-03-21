@@ -1,22 +1,16 @@
-import os
-from typing import List
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.get_documents.get_documents_list_awss3 import GetDocumentsListAWSS3
 
-from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
-from domain.document.document_filter import DocumentFilter
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-from adapter.out.persistence.aws.AWS_document_metadata import AWSDocumentMetadata
-from application.port.out.get_documents_metadata_port import GetDocumentsMetadataPort
-
-
-class GetDocumentsListAWSS3(GetDocumentsMetadataPort):
-    def __init__(self, awsS3Manager: AWSS3Manager):
-        self.awsS3Manager = awsS3Manager
-
-    def getDocumentsMetadata(self, documentFilter: DocumentFilter) -> List[DocumentMetadata]:
-        listOfDocumentsMetadata = []
-        documentsMetadatas = self.awsS3Manager.getDocumentsMetadata(documentFilter.searchFilter)
-        for documentMetadata in documentsMetadatas:
-            documentM = documentMetadata.toDocumentMetadataFrom()
-            listOfDocumentsMetadata.append(documentM)
-        return listOfDocumentsMetadata
+def test_getDocumentsList():
+    awsS3ManagerMock = MagicMock()
+    awsDocumentMetadataMock = MagicMock()
+    documentFilterMock = MagicMock()
+    
+    awsS3ManagerMock.getDocumentsMetadata.return_value = [awsDocumentMetadataMock]
+    
+    getDocumentsListResponse = GetDocumentsListAWSS3(awsS3ManagerMock)
+    
+    response = getDocumentsListResponse.getDocumentsMetadata(documentFilterMock)
+    
+    assert isinstance(response, list)
+    assert response == [awsDocumentMetadataMock.toDocumentMetadataFrom.return_value]

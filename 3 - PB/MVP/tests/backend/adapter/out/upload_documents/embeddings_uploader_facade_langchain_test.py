@@ -1,45 +1,66 @@
-from typing import List
+from unittest.mock import MagicMock, patch, ANY
+from adapter.out.upload_documents.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
 
-from domain.document.document_id import DocumentId
-from domain.document.document import Document
-from domain.document.document_operation_response import DocumentOperationResponse
-from application.port.out.embeddings_uploader_port import EmbeddingsUploaderPort
-from adapter.out.persistence.vector_store.langchain_document import LangchainDocument
-from adapter.out.upload_documents.chunkerizer import Chunkerizer
-from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
-from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
-
-class EmbeddingsUploaderFacadeLangchain(EmbeddingsUploaderPort):
-    def __init__(self, chunkerizer: Chunkerizer, embeddingsCreator: EmbeddingsCreator, embeddingsUploaderVectorStore: EmbeddingsUploaderVectorStore):
-        self.chunkerizer = chunkerizer
-        self.embeddingsCreator = embeddingsCreator
-        self.embeddingsUploaderVectorStore = embeddingsUploaderVectorStore
-
-    def uploadEmbeddings(self, documents: List[Document]) -> List[DocumentOperationResponse]:
-        documentsChunks = []
-        for document in documents:
-            documentChunks = self.chunkerizer.extractText(document)
-            documentsChunks.append(documentChunks)
-
-        documentsEmbeddings = []
-        for documentChunks in documentsChunks:
-            documentEmbeddings = self.embeddingsCreator.embedDocument(documentChunks)
-            documentsEmbeddings.append(documentEmbeddings)
+def test_uploadEmbeddingsTrue():
+    with    patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.DocumentOperationResponse') as DocumentOperationResponseMock, \
+            patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.DocumentId') as DocumentIdMock, \
+            patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.LangchainDocument') as LangchainDocumentMock:
+        chunkerizerMock = MagicMock()
+        embeddingsCreatorMock = MagicMock()
+        embeddingsUploaderVectorStoreMock = MagicMock()
+        documentMock = MagicMock()
+        langchainDocumentMock = MagicMock()
+        vectorStoreDocumentOperationResponseMock = MagicMock()
         
-        vectorStoreDocumentOperationResponses = self.embeddingsUploaderVectorStore.uploadEmbeddings(
-            [
-                LangchainDocument(
-                    documentId=document.plainDocument.metadata.id.id,
-                    chunks=documentChunks,
-                    embeddings=documentEmbeddings
-                ) for document, documentChunks, documentEmbeddings in zip(documents, documentsChunks, documentsEmbeddings)
-            ]
-        )
-
-        return [
-            DocumentOperationResponse(
-                DocumentId(vectorStoreDocumentOperationResponse.documentId),
-                vectorStoreDocumentOperationResponse.status,
-                vectorStoreDocumentOperationResponse.message
-            ) for vectorStoreDocumentOperationResponse in vectorStoreDocumentOperationResponses
-        ]
+        chunkerizerMock.extractText.return_value = [langchainDocumentMock]
+        embeddingsCreatorMock.embedDocument.return_value = [[1.0, 2.0, 3.0]]
+        embeddingsUploaderVectorStoreMock.uploadEmbeddings.return_value = [vectorStoreDocumentOperationResponseMock]
+        vectorStoreDocumentOperationResponseMock.documentId = "Prova.pdf"
+        vectorStoreDocumentOperationResponseMock.ok.return_value = True
+        vectorStoreDocumentOperationResponseMock.message = "OK"
+        documentMock.plainDocument.metadata.id.id = "Prova.pdf"
+        
+        
+        embeddingsUploaderFacadeLangchain = EmbeddingsUploaderFacadeLangchain(chunkerizerMock, embeddingsCreatorMock, embeddingsUploaderVectorStoreMock)
+        
+        response = embeddingsUploaderFacadeLangchain.uploadEmbeddings([documentMock])
+        
+        LangchainDocumentMock.assert_called_once_with(documentId='Prova.pdf', 
+                                                      chunks=[langchainDocumentMock], 
+                                                      embeddings=[[1.0, 2.0, 3.0]])
+        DocumentIdMock.assert_called_once_with('Prova.pdf')
+        DocumentOperationResponseMock.assert_called_once_with(DocumentIdMock(), True, "OK")
+        
+        assert response == [DocumentOperationResponseMock()]
+        
+def test_uploadEmbeddingsFail():
+    with    patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.DocumentOperationResponse') as DocumentOperationResponseMock, \
+            patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.DocumentId') as DocumentIdMock, \
+            patch('adapter.out.upload_documents.embeddings_uploader_facade_langchain.LangchainDocument') as LangchainDocumentMock:
+        chunkerizerMock = MagicMock()
+        embeddingsCreatorMock = MagicMock()
+        embeddingsUploaderVectorStoreMock = MagicMock()
+        documentMock = MagicMock()
+        langchainDocumentMock = MagicMock()
+        vectorStoreDocumentOperationResponseMock = MagicMock()
+        
+        chunkerizerMock.extractText.return_value = [langchainDocumentMock]
+        embeddingsCreatorMock.embedDocument.return_value = [[1.0, 2.0, 3.0]]
+        embeddingsUploaderVectorStoreMock.uploadEmbeddings.return_value = [vectorStoreDocumentOperationResponseMock]
+        vectorStoreDocumentOperationResponseMock.documentId = "Prova.pdf"
+        vectorStoreDocumentOperationResponseMock.ok.return_value = False
+        vectorStoreDocumentOperationResponseMock.message = "KO"
+        documentMock.plainDocument.metadata.id.id = "Prova.pdf"
+        
+        
+        embeddingsUploaderFacadeLangchain = EmbeddingsUploaderFacadeLangchain(chunkerizerMock, embeddingsCreatorMock, embeddingsUploaderVectorStoreMock)
+        
+        response = embeddingsUploaderFacadeLangchain.uploadEmbeddings([documentMock])
+        
+        LangchainDocumentMock.assert_called_once_with(documentId='Prova.pdf', 
+                                                      chunks=[langchainDocumentMock], 
+                                                      embeddings=[[1.0, 2.0, 3.0]])
+        DocumentIdMock.assert_called_once_with('Prova.pdf')
+        DocumentOperationResponseMock.assert_called_once_with(DocumentIdMock(), False, "KO")
+        
+        assert response == [DocumentOperationResponseMock()]

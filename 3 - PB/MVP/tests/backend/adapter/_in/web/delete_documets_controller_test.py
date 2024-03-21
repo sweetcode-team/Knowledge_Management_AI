@@ -1,19 +1,32 @@
-import unittest
+from unittest.mock import patch, MagicMock
 from adapter._in.web.delete_documents_controller import DeleteDocumentsController
-from domain.document.document_operation_response import DocumentOperationResponse
-from domain.document.document_id import DocumentId
 
-def test_deleteDocuments(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.deleteDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document deleted successfully")]
+def test_deleteDocuments():
+    useCaseMock = MagicMock()
     
-    with unittest.mock.patch("adapter._in.web.delete_documents_controller.DocumentId") as MockDocumentId:
-        MockDocumentId.return_value = DocumentId("Prova.pdf")
+    with patch("adapter._in.web.delete_documents_controller.DocumentId") as MockDocumentId:
     
         deleteDocumentsController = DeleteDocumentsController(useCaseMock)
         
         response = deleteDocumentsController.deleteDocuments(["Prova.pdf"])
         
         MockDocumentId.assert_called_once_with("Prova.pdf")
+        useCaseMock.deleteDocuments.assert_called_once_with([MockDocumentId.return_value])
+        assert response == useCaseMock.deleteDocuments.return_value
+        
+def test_deleteDocumentsException():
+    useCaseMock = MagicMock()
     
-        assert isinstance(response[0], DocumentOperationResponse)
+    from domain.exception.exception import ElaborationException
+    from api_exceptions import APIElaborationException
+    useCaseMock.deleteDocuments.side_effect = ElaborationException("message error")
+    
+    with patch("adapter._in.web.delete_documents_controller.DocumentId") as MockDocumentId:
+    
+        deleteDocumentsController = DeleteDocumentsController(useCaseMock)
+        
+        try:
+            deleteDocumentsController.deleteDocuments(["Prova.pdf"])
+            assert False
+        except APIElaborationException:
+            pass

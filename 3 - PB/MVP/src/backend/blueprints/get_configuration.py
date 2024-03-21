@@ -9,7 +9,11 @@ from adapter.out.persistence.postgres.postgres_configuration_orm import Postgres
 from api_exceptions import APIElaborationException
 
 getConfigurationBlueprint = Blueprint("getConfiguration", __name__)
-
+"""
+This method is the endpoint for the getConfiguration API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getConfigurationBlueprint.route('/getConfiguration', methods=['GET'])
 def getConfiguration():
     controller = GetConfigurationController(
@@ -24,7 +28,7 @@ def getConfiguration():
         raise APIElaborationException("Errore nel recupero della configurazione.")
     
     if configuration.documentStore is None or configuration.vectorStore is None or configuration.embeddingModel is None or configuration.LLMModel is None:
-        return "Configurazione inesistente.", 404
+        return "Configurazione inesistente.", 401
 
     return jsonify({
         "vectorStore": {

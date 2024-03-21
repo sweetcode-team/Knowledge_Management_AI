@@ -10,6 +10,11 @@ from api_exceptions import InsufficientParameters, APIBadRequest, APIElaboration
 
 getDocumentContentBlueprint = Blueprint("getDocumentContent", __name__)
 
+"""
+This method is the endpoint for the getDocumentContent API.
+Returns:
+    jsonify: The response of the API.
+"""
 @getDocumentContentBlueprint.route("/getDocumentContent/<documentId>", methods=['GET'])
 def getDocumentsContent(documentId):
     if documentId is None:

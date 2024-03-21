@@ -7,7 +7,20 @@ import os
 from domain.chat.chat_id import ChatId
 from langchain.memory import ConversationBufferMemory
 
+"""
+This class is the implementation of the ChatHistoryManager interface. It uses the PostgresChatMessageHistory to get the chat history.
+    Attributes:
+        None
+"""
 class ChatHistoryManager:
+    
+    """
+    Gets the chat history and returns the chat history.
+    Args:
+        chatId (int): The chat id.
+    Returns:
+        PostgresChatMessageHistory: The chat history.
+    """
     def getChatHistory(self, chatId: int)-> PostgresChatMessageHistory:
         try:
             history = PostgresChatMessageHistory(

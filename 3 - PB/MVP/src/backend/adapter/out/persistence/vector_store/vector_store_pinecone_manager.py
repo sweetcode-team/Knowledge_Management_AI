@@ -10,7 +10,14 @@ from langchain_core.documents.base import Document as LangchainCoreDocument
 from langchain_community.vectorstores import Pinecone as PineconeLangchain
 from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
 
-
+   
+""" 
+    This class is the implementation of the VectorStoreManager interface. It uses the Pinecone to manage the documents embeddings.
+        Attributes:
+            pinecone (Pinecone): The Pinecone to use to manage the documents embeddings.
+            index (Pinecone.Index): The index of the Pinecone to use to manage the documents embeddings.
+            dimension (int): The dimension of the embeddings.
+""" 
 class VectorStorePineconeManager(VectorStoreManager):
     def __init__(self):
         with open('/run/secrets/pinecone_api', 'r') as file:
@@ -27,6 +34,14 @@ class VectorStorePineconeManager(VectorStoreManager):
         self.index = self.pinecone.Index(pineconeIndexName)
         self.dimension = self.pinecone.describe_index(pineconeIndexName).get('dimension', 768)
 
+   
+    """
+    Gets the status of the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to get the status.
+    Returns:
+        List[VectorStoreDocumentStatusResponse]: The response of the operation.
+    """ 
     def getDocumentsStatus(self, documentsIds: List[str]) -> List[VectorStoreDocumentStatusResponse]:
         vectorStoreDocumentStatusResponses = []
         for documentId in documentsIds:
@@ -54,7 +69,15 @@ class VectorStorePineconeManager(VectorStoreManager):
                 continue
 
         return vectorStoreDocumentStatusResponses
-  
+
+       
+    """
+    Deletes the documents embeddings and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to delete the embeddings.   
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """ 
     def deleteDocumentsEmbeddings(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
@@ -83,7 +106,15 @@ class VectorStorePineconeManager(VectorStoreManager):
                 vectorStoreDocumentOperationResponses.append(VectorStoreDocumentOperationResponse(documentId, False, f"Errore nell'eliminazione degli embeddings: {e}"))
 
         return vectorStoreDocumentOperationResponses
+    
      
+    """
+    Conceals the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to conceal. 
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """ 
     def concealDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: 
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
@@ -118,6 +149,14 @@ class VectorStorePineconeManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
     
+       
+    """
+    Enables the documents and returns the response.
+    Args:
+        documentsIds (List[str]): The documents to enable.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """ 
     def enableDocuments(self, documentsIds: List[str]) -> List[VectorStoreDocumentOperationResponse]: 
         vectorStoreDocumentOperationResponses = []
         for documentId in documentsIds:
@@ -152,6 +191,16 @@ class VectorStorePineconeManager(VectorStoreManager):
         
         return vectorStoreDocumentOperationResponses
      
+        
+    """ 
+    Uploads the documents embeddings and returns the response.
+    Args:
+        documentsId (List[str]): The documents to upload the embeddings.
+        documentsChunks (List[List[LangchainCoreDocument]]): The documents chunks to upload the embeddings.
+        documentsEmbeddings (List[List[List[float]]]): The documents embeddings to upload.
+    Returns:
+        List[VectorStoreDocumentOperationResponse]: The response of the operation.
+    """ 
     def uploadEmbeddings(self, documentsId: List[str], documentsChunks: List[List[LangchainCoreDocument]], documentsEmbeddings: List[List[List[float]]]) -> List[VectorStoreDocumentOperationResponse]:
         vectorStoreDocumentOperationResponses = []
         for documentId, documentChunks, documentEmbeddings in zip(documentsId, documentsChunks, documentsEmbeddings):
@@ -186,5 +235,14 @@ class VectorStorePineconeManager(VectorStoreManager):
             
         return vectorStoreDocumentOperationResponses
 
+   
+    """
+    Gets the retriever.
+    Args:
+    LangchainEmbeddingModel: The embedding model to use to get the retriever.
+    Returns:
+    BaseRetriever: The retriever.
+
+    """ 
     def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
         return PineconeLangchain(self.index, embeddingModel.getEmbeddingFunction(), "text").as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.5})

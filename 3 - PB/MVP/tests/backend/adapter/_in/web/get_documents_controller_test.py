@@ -1,43 +1,44 @@
-import unittest
-
+from unittest.mock import patch, MagicMock
 from adapter._in.web.get_documents_controller import GetDocumentsController
-from adapter._in.web.get_document_content_controller import GetDocumentContentController
-from api_exceptions import APIElaborationException
-from domain.document.document import Document
-from domain.document.document_content import DocumentContent
-from domain.document.document_filter import DocumentFilter
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentType, DocumentMetadata
-from domain.document.document_status import DocumentStatus, Status
-from domain.document.light_document import LightDocument
-from domain.document.plain_document import PlainDocument
 
-
-def test_get_document_content_with_id(mocker):
-    useCaseMock = mocker.Mock()
-    documentStatus = DocumentStatus(Status.ENABLED)
-    documentMetadata = DocumentMetadata(DocumentId("Prova.pdf"), DocumentType.PDF, 12, unittest.mock.ANY)
-    useCaseMock.getDocuments.return_value = [LightDocument(documentStatus, documentMetadata)]
-
-    with unittest.mock.patch('adapter._in.web.get_documents_controller.DocumentFilter') as mockDocumentFilter:
-        mockDocumentFilter.return_value = DocumentFilter("searchFilter")
+def test_getDocumentsWithFilter():
+    useCaseMock = MagicMock()
+    
+    with patch('adapter._in.web.get_documents_controller.DocumentFilter') as mockDocumentFilter:
 
         getDocumentsController = GetDocumentsController(useCaseMock)
 
-        response = getDocumentsController.getDocuments("searchFilter")
-        mockDocumentFilter.assert_called_once_with("searchFilter")
+        response = getDocumentsController.getDocuments("test filter")
+        
+        mockDocumentFilter.assert_called_once_with("test filter")
+        useCaseMock.getDocuments.assert_called_once_with(mockDocumentFilter.return_value)
+        assert response == useCaseMock.getDocuments.return_value
 
-        assert isinstance(response[0], LightDocument)
+def test_getDocumentsWithoutFilter():
+    useCaseMock = MagicMock()
+    
+    with patch('adapter._in.web.get_documents_controller.DocumentFilter') as mockDocumentFilter:
 
-def test_get_document_content_withException(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.getDocuments.side_effect = APIElaborationException("message")
+        getDocumentsController = GetDocumentsController(useCaseMock)
 
-    with unittest.mock.patch('adapter._in.web.get_documents_controller.DocumentFilter') as mockDocumentFilter:
-        mockDocumentFilter.return_value = DocumentId("1")
+        response = getDocumentsController.getDocuments('')
+        
+        mockDocumentFilter.assert_called_once_with('')
+        useCaseMock.getDocuments.assert_called_once_with(mockDocumentFilter.return_value)
+        assert response == useCaseMock.getDocuments.return_value
+        
+def test_getDocumentsException():
+    useCaseMock = MagicMock()
+    
+    from domain.exception.exception import ElaborationException
+    from api_exceptions import APIElaborationException
+    useCaseMock.getDocuments.side_effect = ElaborationException("message error")
+
+    with patch('adapter._in.web.get_documents_controller.DocumentFilter') as mockDocumentFilter:
+        
         getDocumentsController = GetDocumentsController(useCaseMock)
         try:
-            getDocumentsController.getDocuments("1")
+            getDocumentsController.getDocuments("test filter")
             assert False
-        except APIElaborationException as e:
-            assert True
+        except APIElaborationException:
+            pass

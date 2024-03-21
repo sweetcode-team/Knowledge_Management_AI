@@ -8,11 +8,25 @@ from application.service.get_documents_content import GetDocumentsContent
 
 from domain.exception.exception import ElaborationException
 
+"""
+    A service that gets the content of documents.
+Methods:
+    getDocumentsContent(self, documentIds:List[DocumentId]) -> List[Document]: 
+        Gets the content of a list of documents.
+"""
 class GetDocumentsContentFacadeService(GetDocumentsContentUseCase):
     def __init__(self, documentContentGetter: GetDocumentsContent, getDocumentsStatus: GetDocumentsStatus):
         self.documentContentGetter = documentContentGetter
         self.getDocumentsStatus = getDocumentsStatus
 
+    
+    """
+    Gets the content of a list of documents.
+    Args:
+        documentIds (List[DocumentId]): The documents to get the content.
+    Returns:
+        List[Document]: The documents with the content.
+    """ 
     def getDocumentsContent(self, documentIds: List[DocumentId]) -> List[Document]:
         documentsContent = self.documentContentGetter.getDocumentsContent(documentIds)
         documentsStatus = self.getDocumentsStatus.getDocumentsStatus(documentIds)

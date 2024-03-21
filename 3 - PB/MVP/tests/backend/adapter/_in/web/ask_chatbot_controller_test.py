@@ -1,53 +1,44 @@
+from unittest.mock import MagicMock, patch, ANY
 from adapter._in.web.ask_chatbot_controller import AskChatbotController
-from domain.chat.message_response import MessageResponse
-from domain.chat.message import Message, MessageSender
-from domain.chat.chat_id import ChatId
-from domain.document.document_id import DocumentId
-import unittest
 
-def test_askChatbot_with_existent_chat(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.askChatbot.return_value = MessageResponse(True, Message("response", unittest.mock.ANY, None, MessageSender.CHATBOT), ChatId(1))
+def test_askChatbotWithExistentChat():
+    useCaseMock = MagicMock()
 
     askChatbotController = AskChatbotController(useCaseMock)
 
-    with    unittest.mock.patch('adapter._in.web.ask_chatbot_controller.ChatId') as MockChatId, \
-            unittest.mock.patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage:
-        MockChatId.return_value = ChatId(1)
-        MockMessage.return_value = Message("response", unittest.mock.ANY, None, MessageSender.CHATBOT)
+    with    patch('adapter._in.web.ask_chatbot_controller.ChatId') as MockChatId, \
+            patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage, \
+            patch('adapter._in.web.ask_chatbot_controller.MessageSender') as MessageSenderMock:
 
         response = askChatbotController.askChatbot("message", 1)
 
         MockChatId.assert_called_once_with(1)
         MockMessage.assert_called_once_with(
             "message",
-            unittest.mock.ANY,
+            ANY,
             None,
-            MessageSender.USER
+            MessageSenderMock.USER
         )
+        useCaseMock.askChatbot.assert_called_once_with(MockMessage.return_value, MockChatId.return_value)
+        assert response == useCaseMock.askChatbot.return_value
 
-    assert isinstance(response, MessageResponse)
-
-def test_askChatbot_without_chat(mocker):
-    useCaseMock = mocker.Mock()
-    useCaseMock.askChatbot.return_value = MessageResponse(True, Message("response", unittest.mock.ANY, None, MessageSender.CHATBOT), ChatId(1))
+def test_askChatbotWithoutChat():
+    useCaseMock = MagicMock()
 
     askChatbotController = AskChatbotController(useCaseMock)
 
-    with    unittest.mock.patch('adapter._in.web.ask_chatbot_controller.ChatId') as MockChatId, \
-            unittest.mock.patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage:
-
-        MockChatId.return_value = ChatId(1)
-        MockMessage.return_value = Message("response", unittest.mock.ANY, [DocumentId("example.pdf")], MessageSender.CHATBOT)
+    with    patch('adapter._in.web.ask_chatbot_controller.ChatId') as MockChatId, \
+            patch('adapter._in.web.ask_chatbot_controller.Message') as MockMessage, \
+            patch('adapter._in.web.ask_chatbot_controller.MessageSender') as MessageSenderMock:
 
         response = askChatbotController.askChatbot("message")
 
         MockChatId.assert_not_called()
         MockMessage.assert_called_once_with(
             "message",
-            unittest.mock.ANY,
+            ANY,
             None,
-            MessageSender.USER
+            MessageSenderMock.USER
         )
-
-        assert isinstance(response, MessageResponse)
+        useCaseMock.askChatbot.assert_called_once_with(MockMessage.return_value, None)
+        assert response == useCaseMock.askChatbot.return_value

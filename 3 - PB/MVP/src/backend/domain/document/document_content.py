@@ -1,6 +1,10 @@
 from dataclasses import dataclass
 
-"""The content of a document."""
+"""
+DocumentContent: classe che rappresenta il contenuto di un documento
+    Attributes:
+        content (bytes): Il contenuto del documento
+"""
 
 @dataclass
 class DocumentContent:

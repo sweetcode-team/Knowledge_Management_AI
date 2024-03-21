@@ -2,6 +2,15 @@ from dataclasses import dataclass
 from adapter.out.persistence.postgres.configuration_models import PostgresVectorStoreConfiguration, PostgresEmbeddingModelConfiguration, PostgresLLMModelConfiguration, PostgresDocumentStoreConfiguration
 from domain.configuration.configuration import Configuration
 
+""" 
+This class is used to store the configuration in Postgres.
+    attributes: 
+        id: int
+        documentStore: PostgresDocumentStoreConfiguration
+        vectorStore: PostgresVectorStoreConfiguration
+        embeddingModel: PostgresEmbeddingModelConfiguration
+        LLMModel: PostgresLLMModelConfiguration
+"""
 @dataclass
 class PostgresConfiguration:
     id: int
@@ -10,7 +19,12 @@ class PostgresConfiguration:
     embeddingModel: PostgresEmbeddingModelConfiguration
     LLMModel: PostgresLLMModelConfiguration
     
-    def toConfiguration(self) -> Configuration:
+    """
+    Converts the PostgresConfiguration to a Configuration.
+    Returns:
+        Configuration: The Configuration converted from the PostgresConfiguration.
+    """
+    def toConfiguration(self):
         return Configuration(
             vectorStore=PostgresVectorStoreConfiguration(
                 self.vectorStore.name,

@@ -8,7 +8,12 @@ from api_exceptions import APIBadRequest, InsufficientParameters, APIElaboration
 
 concealDocumentsBlueprint = Blueprint("concealDocuments", __name__)
 
-@concealDocumentsBlueprint.route("/concealDocuments", methods=['POST'])
+"""
+This method is the endpoint for the concealDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""  
+@concealDocumentsBlueprint.route("/concealDocuments", methods=['POST'])  
 def concealDocuments():
     requestedIds = request.form.getlist('documentIds')
     if requestedIds is None:

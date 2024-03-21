@@ -2,6 +2,13 @@ from sqlalchemy import Column, Integer, String, Text, JSON, ForeignKey
 from sqlalchemy.orm import relationship
 from adapter.out.persistence.postgres.database import Base, db_session
 
+"""
+This class is the ORM of the chat table.
+    Attributes:
+        id (Column): The id of the chat.
+        title (Column): The title of the chat.
+        messages_cascade (relationship): The messages of the chat.
+"""
 class Chat(Base):
     __tablename__ = 'chat'
     id = Column('id', Integer, primary_key=True, autoincrement=True)
@@ -17,9 +24,23 @@ class Chat(Base):
     def __init__(self, title: str) -> None:
         self.title = title
 
+    """
+    Returns the string representation of the chat.
+    Returns:
+        str: The string representation of the chat.
+    """
     def __repr__(self):
         return f'({self.id}, {self.title})'
 
+"""
+This class is the ORM of the message_store table.
+    Attributes:
+        id (Column): The id of the message.
+        sessionId (Column): The session id of the message.
+        message (Column): The message.
+        messages_cascade_rel (relationship): The chat of the message.
+        relevant_documents_cascade (relationship): The relevant documents of the message.
+"""
 class MessageStore(Base):
     __tablename__ = 'message_store'
     id = Column('id', Integer, primary_key=True, autoincrement=True)
@@ -41,6 +62,13 @@ class MessageStore(Base):
     def __repr__(self):
         return f'({self.id}, {self.session_id}, {self.message})'
 
+"""
+This class is the ORM of the message_relevant_documents table.
+    Attributes:
+        id (Column): The id of the message.
+        documentId (Column): The document id.
+        relevant_documents_cascade_rel (relationship): The message of the relevant documents.
+"""
 class MessageRelevantDocuments(Base):
     __tablename__ = 'message_relevant_documents'
     id = Column('id', Integer, ForeignKey('message_store.id', ondelete='CASCADE'), primary_key=True)
@@ -54,6 +82,10 @@ class MessageRelevantDocuments(Base):
         
     def __repr__(self):
         return f'({self.id}, {self.documentId})'
-
+"""
+Initializes the chat table.
+Returns:
+    None
+"""
 def initChat():
     Base.metadata.create_all(bind=db_session.bind)

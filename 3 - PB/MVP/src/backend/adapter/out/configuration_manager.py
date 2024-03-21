@@ -39,13 +39,25 @@ from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
 from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
 
 
+   
 class ConfigurationException(Exception):
     pass
 
+"""
+This class is the implementation of the ConfigurationManager interface. It uses the PostgresConfigurationORM to get the configuration and the other adapters to get the ports.
+    Attributes:
+        postgresConfigurationORM (PostgresConfigurationORM): The PostgresConfigurationORM to use to get the configuration.
+"""        
 class ConfigurationManager:
     def __init__(self, postgresConfigurationORM: PostgresConfigurationORM):
         self.postgresConfigurationORM = postgresConfigurationORM
 
+   
+    """
+    Gets the DocumentsUploaderPort.
+    Returns:
+        DocumentsUploaderPort: The DocumentsUploaderPort.
+    """ 
     def getDocumentsUploaderPort(self) -> DocumentsUploaderPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == PostgresDocumentStoreType.AWS:
@@ -57,6 +69,12 @@ class ConfigurationManager:
         
         return configuredDocumentStore
 
+   
+    """
+    Gets the EmbeddingsUploaderPort.
+    Returns:
+        EmbeddingsUploaderPort: The EmbeddingsUploaderPort.
+    """ 
     def getEmbeddingsUploaderPort(self) -> EmbeddingsUploaderPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
@@ -79,6 +97,12 @@ class ConfigurationManager:
                     EmbeddingsUploaderVectorStore(configuredVectorStore)
                 )
 
+   
+    """
+    Gets the GetDocumentsStatusPort.
+    Returns:
+        GetDocumentsStatusPort: The GetDocumentsStatusPort.
+    """ 
     def getGetDocumentsStatusPort(self) -> GetDocumentsStatusPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
@@ -90,6 +114,12 @@ class ConfigurationManager:
         
         return GetDocumentsStatusVectorStore(configuredVectorStore)
 
+   
+    """
+    Gets the GetDocumentsMetadataPort.
+    Returns:
+        GetDocumentsMetadataPort: The GetDocumentsMetadataPort.
+    """ 
     def getGetDocumentsMetadataPort(self) -> GetDocumentsMetadataPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == PostgresDocumentStoreType.AWS:
@@ -101,6 +131,12 @@ class ConfigurationManager:
         
         return configuredDocumentStore
 
+   
+    """
+    Gets the DeleteDocumentsPort.
+    Returns:
+        DeleteDocumentsPort: The DeleteDocumentsPort.
+    """ 
     def getDeleteDocumentsPort(self) -> DeleteDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == PostgresDocumentStoreType.AWS:
@@ -112,6 +148,12 @@ class ConfigurationManager:
         
         return configuredDocumentStore
 
+   
+    """
+    Gets the DeleteEmbeddingsPort.
+    Returns:
+        DeleteEmbeddingsPort: The DeleteEmbeddingsPort.
+    """ 
     def getDeleteEmbeddingsPort(self) -> DeleteEmbeddingsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
@@ -123,6 +165,12 @@ class ConfigurationManager:
         
         return DeleteEmbeddingsVectorStore(configuredVectorStore)
 
+   
+    """
+    Gets the ConcealDocumentsPort.
+    Returns:
+        ConcealDocumentsPort: The ConcealDocumentsPort.
+    """ 
     def getConcealDocumentsPort(self) -> ConcealDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
@@ -134,6 +182,12 @@ class ConfigurationManager:
         
         return ConcealDocumentsVectorStore(configuredVectorStore)
 
+   
+    """
+    Gets the EnableDocumentsPort.
+    Returns:
+        EnableDocumentsPort: The EnableDocumentsPort.
+    """ 
     def getEnableDocumentsPort(self) -> EnableDocumentsPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:
@@ -145,6 +199,12 @@ class ConfigurationManager:
         
         return EnableDocumentsVectorStore(configuredVectorStore)
 
+   
+    """
+    Gets the GetDocumentsContentPort.
+    Returns:
+        GetDocumentsContentPort: The GetDocumentsContentPort.
+    """ 
     def getGetDocumentsContentPort(self) -> GetDocumentsContentPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.documentStore == PostgresDocumentStoreType.AWS:
@@ -156,6 +216,12 @@ class ConfigurationManager:
 
         return configuredDocumentStore
 
+   
+    """
+    Gets the AskChatbotPort.
+    Returns:
+        AskChatbotPort: The AskChatbotPort.
+    """ 
     def getAskChatbotPort(self) -> AskChatbotPort:
         configuration = self.postgresConfigurationORM.getConfigurationChoices(os.environ.get('USER_ID'))
         if configuration.vectorStore == PostgresVectorStoreType.PINECONE:

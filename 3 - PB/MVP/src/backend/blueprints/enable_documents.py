@@ -8,6 +8,11 @@ from api_exceptions import InsufficientParameters, APIBadRequest, APIElaboration
 
 enableDocumentsBlueprint = Blueprint("enableDocuments", __name__)
 
+"""
+This method is the endpoint for the enableDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @enableDocumentsBlueprint.route("/enableDocuments", methods=['POST'])
 def enableDocuments():
     requestedIds = request.form.getlist('documentIds')

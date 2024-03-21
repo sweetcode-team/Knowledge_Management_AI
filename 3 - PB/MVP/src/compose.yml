@@ -63,16 +63,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  test_runner:
-    image: python:3.9
-    container_name: test_runner
-    volumes:
-      - ../tests:/tests
-      - ./backend:/src/backend  
-    depends_on:
-      - flaskapp
-    command: >
-      sh -c "cd /tests && pip install -r requirements.txt && pytest" 
 
 secrets:
   aws_access_key_id:

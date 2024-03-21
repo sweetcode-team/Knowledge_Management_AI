@@ -64,6 +64,14 @@ export type DocumentContent = {
     status: Status;
 }
 
+export type DocumentMetadata = {
+    id: string;
+    type: string;
+    size: number;
+    uploadDate: string;
+    status: string;
+}
+
 export type DocumentOperationResponse = {
     status: boolean;
     message: string;
@@ -106,6 +114,13 @@ export type Configuration = {
     embeddingModel: EmbeddingsModel;
     LLMModel: LLMModel;
     documentStore: DocumentStore;
+}
+
+export type ConfigurationOption = {
+    vectorStore: VectorStore[];
+    embeddingModel: EmbeddingsModel[];
+    LLMModel: LLMModel[];
+    documentStore: DocumentStore[];
 }
 export type ConfigurationOperationResponse = {
     status: boolean;

@@ -36,10 +36,9 @@ def getDocuments(filter):
     
     if len(documents) == 0:
         return jsonify([]), 404
-    
     return jsonify([{
         "id": document.metadata.id.id,
         "type": document.metadata.type.name,
         "size": document.metadata.size,
-        "uploadDate": document.metadata.uploadTime,
+        "uploadDate": document.metadata.uploadTime.isoformat(),
         "status": document.status.status.name} for document in documents])

@@ -1,7 +1,7 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Message } from "../data";
-import { Button } from "@/components/ui/button";
-import { ChevronRightIcon, Copy } from "lucide-react";
+import {Card, CardContent, CardFooter} from "@/components/ui/card";
+import {Message, MessageSender} from "@/types/types";
+import {Button} from "@/components/ui/button";
+import {ChevronRightIcon, Copy} from "lucide-react";
 
 
 interface MessageCardProps {
@@ -18,20 +18,20 @@ export function MessageCard({ message }: MessageCardProps) {
     }
 
     return (
-        <div className={`flex gap-2 ${message.role === "user" && "flex-row-reverse"}`}>
-            <Card className={`flex flex-col max-w-[80%] border-none px-4 py-3 ${message.role === "user" ? "bg-primary" : "bg-muted"}`}>
+        <div className={`flex gap-2 ${message.sender.toString() === "USER" && "flex-row-reverse"}`}>
+            <Card className={`flex flex-col max-w-[80%] border-none px-4 py-3 ${message.sender.toString() === "USER" ? "bg-primary" : "bg-muted"}`}>
                 <CardContent className="p-0 break-words">
-                    <p className={`word-break ${message.role === "user" ? "text-primary-foreground" : "text-secondary-foreground"}`}>{message.content}</p>
+                    <p className={`word-break ${message.sender.toString() === "USER" ? "text-primary-foreground" : "text-secondary-foreground"}`}>{message.content}</p>
                 </CardContent>
                 {
-                    message.role === "bot" && message.relevantDocuments.length > 0 && (
+                    message.sender.toString() === "CHATBOT" && message.relevantDocuments.length > 0 && (
                         <CardFooter className="flex-col items-start w-full p-0 mt-4 space-y-2">
                             {
                                 message.relevantDocuments.map((document, index) => (
                                     <div key={index} className="flex w-full items-stretch justify-between space-x-2">
                                         <div className="flex flex-grow shadow-md items-center rounded-md bg-card px-4 min-w-0">
                                             <p className="truncate">
-                                                {document}
+                                                {document.id}
                                             </p>
                                         </div>
                                         <Button size="sm" onClick={() => showDocument()} className="bg-card shadow-md text-primary hover:text-secondary flex items-center justify-center gap-x-2">

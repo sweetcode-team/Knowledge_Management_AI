@@ -1,4 +1,3 @@
-"use client"
 import { ActionButton } from '@/components/action-button'
 import { Button } from '@/components/ui/button';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
@@ -6,7 +5,6 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ExpandIcon, FilePlusIcon, MessageSquarePlusIcon } from 'lucide-react';
-import { Chat } from "@/app/chatbot/data"
 import { RecentChats } from "@/components/recent-chats"
 import { RecentDocuments } from "@/components/recent-documents"
 import Link from 'next/link';
@@ -22,7 +20,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import {useEffect} from "react";
 import type {
     Chat,
     ChatPreview,
@@ -32,29 +29,14 @@ import type {
     MessageResponse
 } from '@/types/types'
 import {toast} from "sonner";
-import {useEffect, useState} from "react";
+//import {useEffect, useState} from "react";
+import {getDocuments} from "@/app/documents/page"
 
-async function getDocuments() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/app/documents/data/documents.json")
-  )
-  const documents = JSON.parse(data.toString())
-
-  return z.array(documentSchema).parse(documents)
-}
-
-async function getDocuments(id : string): Promise<DocumentContent[]> {
-  const result = await fetch(`http://localhost:4000/getDocuments/${id}`)
-  return result.json()
-}
 async function getDocumentContent(id: string): Promise<DocumentContent> {
   const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`, { cache: 'no-store' })
   return result.json()
 }
-async function getChats(id: string):Promise<ChatPreview[]> {
-    const result = await fetch(`http://localhost:4000/getChats/${id}`, { cache: 'no-store' })
-    return result.json()
-}
+
 async function getChatMessages(id: string): Promise<Chat> {
     const result = await fetch(`http://localhost:4000/getChatMessages/${id}`, { cache: 'no-store' })
     return result.json()
@@ -80,397 +62,11 @@ async function askChatbot(id: string): Promise<MessageResponse> {
      // Attendiamo che il corpo della risposta sia disponibile
     return await response.json(); // Restituiamo i dati JSON ricevuti dalla richiesta
 }
-//TODO delete document
-async function deleteDocument(ids: string[]): Promise<DocumentOperationResponse> {
-    const result = await fetch(`http://localhost:4000/deleteDocuments`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: JSON.stringify({'documentIds': 'SWE_Concepts.pdf'})
-        }
-    )
-    return result.json()
-}
-function HomeDeleteDocument() {
-    const [documentOperationResponse, setDocumentOperationResponse] = useState<DocumentOperationResponse | null>(null);
-     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const documentOperationResponse = await deleteDocument(["SWE_Concepts.pdf"]);
-                setDocumentOperationResponse(documentOperationResponse);
-                console.log(documentOperationResponse);
-            } catch (error) {
-                console.error('Errore durante la richiesta:', error);
-            }
-        };
-
-        fetchData(); // Chiamare fetchData al di fuori del blocco try-catch
-    }, []); // Passare un array vuoto come dipendenza per eseguire l'effetto solo al mount
-
-    return (
-        <div>
-                <div>
-                    <p>Document ID: {documentOperationResponse?.documentId}</p>
-                    <p>Status: {documentOperationResponse?.status}</p>
-                    <p>Message: {documentOperationResponse?.message}</p>
-                </div>
-        </div>
-    );
-}
-
-
 
 export default async function Dashboard() {
   const documents = await getDocuments()
 
-  const lastChats = [
-    {
-      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
-      title: "William Smith",
-      messages: [
-        {
-          role: "user",
-          content: "Hello",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Hello, how can I help you?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Documenfssf.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "I would like to book an appointment",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx1gr463.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Sure, when would you like to book the appointment?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Docxvf3425.docx",
-            "Docccc99.pdf"
-          ]
-        },
-        {
-          role: "user",
-          content: "Tomorrow",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "What time?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "9am",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-      ]
-    },
-    {
-      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
-      title: "William Smith",
-      messages: [
-        {
-          role: "user",
-          content: "Hello",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Hello, how can I help you?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Documenfssf.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "I would like to book an appointment",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx1gr463.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Sure, when would you like to book the appointment?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Docxvf3425.docx",
-            "Docccc99.pdf"
-          ]
-        },
-        {
-          role: "user",
-          content: "Tomorrow",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "What time?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "9am",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-      ]
-    },
-    {
-      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
-      title: "William Smith",
-      messages: [
-        {
-          role: "user",
-          content: "Hello",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Hello, how can I help you?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Documenfssf.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "I would like to book an appointment",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx1gr463.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Sure, when would you like to book the appointment?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Docxvf3425.docx",
-            "Docccc99.pdf"
-          ]
-        },
-        {
-          role: "user",
-          content: "Tomorrow",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "What time?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "9am",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-      ]
-    },
-    {
-      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
-      title: "William Smith",
-      messages: [
-        {
-          role: "user",
-          content: "Hello",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Hello, how can I help you?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Documenfssf.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "I would like to book an appointment",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx1gr463.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Sure, when would you like to book the appointment?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Docxvf3425.docx",
-            "Docccc99.pdf"
-          ]
-        },
-        {
-          role: "user",
-          content: "Tomorrow",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "What time?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "9am",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-      ]
-    },
-    {
-      id: "6c84fb90-12c4-11eqrhqee1-840d-7b25c5ee775a",
-      title: "William Smith",
-      messages: [
-        {
-          role: "user",
-          content: "Hello",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Hello, how can I help you?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Documenfssf.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "I would like to book an appointment",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx1gr463.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "Sure, when would you like to book the appointment?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Docxvf3425.docx",
-            "Docccc99.pdf"
-          ]
-        },
-        {
-          role: "user",
-          content: "Tomorrow",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "bot",
-          content: "What time?",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-        {
-          role: "user",
-          content: "9am",
-          timestamp: "2023-10-22T09:00:00",
-          relevantDocuments: [
-            "Document1.pdf",
-            "Docx123.docx"
-          ]
-        },
-      ]
-    },
-  ] as Chat[]
+  const lastChats = [] as ChatPreview[]
 
   return (
     <ScrollArea className='h-full'>
@@ -490,12 +86,11 @@ export default async function Dashboard() {
               <h3 className="pt-2 ml-3 font-semibold text-nowrap">Last chat</h3>
               <ScrollArea className='w-full h-[50vh]'>
                 <div className="m-auto p-3 pb-0">
-                  <ChatContent messages={lastChats[lastChats.length - 1].messages} />
                 </div>
               </ScrollArea>
               <Tooltip>
                 <TooltipTrigger className="pt-2 h-6 w-6">
-                  <Link href="/chatbot">
+                  <Link href="/chatbot/page">
                     <ExpandIcon className="text-border hover:text-primary" />
                   </Link>
                 </TooltipTrigger>
@@ -511,7 +106,6 @@ export default async function Dashboard() {
             <ScrollArea className='h-[50vh] mr-2'>
               <div className="p-2">
                 <h3 className="ml-3 font-semibold  mb-2">Recently visited chats</h3>
-                <RecentChats items={lastChats} />
               </div>
             </ScrollArea>
           </ResizablePanel>
@@ -529,7 +123,7 @@ export default async function Dashboard() {
                 <RecentDocuments
                   items={
                     documents
-                      .sort((a, b) => new Date(b.uploadTime).getTime() - new Date(a.uploadTime).getTime())
+                      .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime())
                       .slice(0, 12)
                   }
                 />
@@ -545,6 +139,7 @@ export default async function Dashboard() {
       </div >
     </ScrollArea>
   )}
+
 /*
 export function HomeAskChatbot(message: string){
     const [messageResponse, setMessageResponse] = useState<MessageResponse | null>(null);

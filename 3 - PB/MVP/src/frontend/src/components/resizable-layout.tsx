@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ReactNode } from 'react';
 
-import { NAV_ITEMS } from '@/constants/navItems';
+import { NAV_ITEMS } from '@/constants/constants';
 
 import { Logo } from "@/components/logo"
 import { Nav } from "@/components/nav"

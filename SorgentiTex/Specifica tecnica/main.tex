@@ -482,9 +482,14 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "message": messaggio da parte dell'utente;
-        \item "chatId": id della chat a cui appartiene il messaggio.
+        \item \code{message}: messaggio da parte dell'utente;
+        \item \code{chatId}: id della chat a cui appartiene il messaggio.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{askChatbot} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{message} non deve essere nullo nè vuoto;
+        \item Il parametro \code{chatId} deve essere valido.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \begin{xltabular}{\textwidth}{c|X|X}
@@ -500,8 +505,16 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 \hline
 200 & Risposta ottenuta con successo. & - \\
 \hline
-500 & Risposta del chatbot fallita. & Errore di generazione della risposta del chatbot. \\
+400 & Il parametro \code{message} è nullo. & Parametri insufficienti. \\
+\hline
+400 & Il parametro \code{message} è vuoto. & Filtro '{message}' non valido. \\
+\hline
+400 & Il parametro \code{chatId} è nullo, non un numero o un numero negativo. & Filtro '{message}' non valido. \\
+\hline
+500 & Risposta del chatbot fallita. & Errore di generazione della risposta. \\
 \end{xltabular}
+\begin{comment}
+    
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
@@ -509,7 +522,7 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
         \item RF.O.47.1;
         \item RF.O.48.
 \end{itemize}
-
+\end{comment}
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{AskChatbotController}\textbf{AskChatbotController}: classe controller che si occupa del richiedere una risposta al chatbot ad un messaggio appartente ad una chat allo use case AskChatbotUseCase;
@@ -525,15 +538,11 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     %\item \label{HuggingFaceEmbeddingModel}\textbf{HuggingFaceEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di HugginFace;
 
     %\item \label{HugginFaceLLM}\textbf{HugginFaceLLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di HugginFace;
-    
-
     %\item \label{LangchainLLM}\textbf{LangchainLLM}: classe astratta che permette di interagire con un oggetto langchain.BaseLanguageModel;
     %\item \label{LangchainVectorStore}\textbf{LangchainVectorStore}: classe astratta che permette di interagire con un oggetto langchain.VectorStore;
     \item \label{Message}\textbf{Message}: classe di business che rappresenta un messaggio di una chat;
     \item \label{MessageResponse}\textbf{MessageResponse}: classe che rappresenta un messaggio risposta del chatbot;
     \item \label{MessageSender}\textbf{MessageSender}: classe di business che rappresenta il mittente di un messaggio;
-    
-
     %\item \label{OpenAILLM}\textbf{OpenAILLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di OpenAI;
     %\item \label{PineconeVectorStore}\textbf{PineconeVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store Pinecone;
     \item \label{PersistChatPort}\textbf{PersistChatPort}: interfaccia che rappresenta la porta in uscita verso il database per la storicizzazione delle chat;
@@ -562,8 +571,12 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "LLMModel": stringa che rappresenta il modello LLM da configurare.
+        \item \code{LLMModel}: stringa che rappresenta il modello LLM da configurare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{changeConfiguration} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{LLMModel} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \begin{xltabular}{\textwidth}{c|X|X}
@@ -579,13 +592,13 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 \hline
 200 & Configurazione avvenuta con successo. & - \\
 \hline
-500 & Configurazione fallita. & Errore nella configurazione. \\
+400 & Il parametro \code{LLMModel} è nullo. & Parametri insufficienti. \\
+\hline
+400 & Il parametro \code{LLMModel} è vuoto. & Modello LLM '{LLMModel}' non valido. \\
+\hline
+500 & Configurazione fallita. & Errore nell'aggiornamento del modello LLM. \\
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item TODO.
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -611,8 +624,12 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da occultare.
+        \item \code{documentIds}: una lista di stringhe che rappresentano gli id dei documenti da occultare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{concealDocuments} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{documentIds} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -629,14 +646,22 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 \hline
 200 & Occultamento avvenuto con successo. & - \\
 \hline
-500 & Occultamento fallito. & Errore nell'occultamento dei documenti.
+400 & Il parametro \code{documentIds} è nullo. & Parametri insufficienti. \\
+\hline
+400 & La lunghezza del parametro \code{documentIds} è 0. & Nessun id di documento specificato.\\
+\hline
+400 & Un id di \code{documentIds} è vuoto. & Id di documento '{id}' non valido. \\
+\hline
+500 & Occultamento fallito. & Errore nell'occultamento dei documenti.\\
 \end{xltabular}
 
+\begin{comment}
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
     \item RF.O.25;
     \item RF.O.26.
 \end{itemize}
+\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -663,8 +688,12 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "chatIds": lista di Id utilizzati per identificare univocamente le chat.
+        \item \code{chatIds}: lista di Id utilizzati per identificare univocamente le chat.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{deleteChats} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{chatIds} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -681,15 +710,23 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
 \hline
 200 & Eliminazione avvenuta con successo. & - \\
 \hline
-500 & Eliminazione fallita. & Errore nella eliminazione della chat. \\
+400 & Il parametro \code{chatIds} è nullo. & Parametri insufficienti. \\
+\hline
+400 & La lunghezza del parametro \code{chatIds} è 0. & Nessun chat id specificato.\\
+\hline
+400 & Un id di \code{chatIds} è vuoto. & Chat id '{Id}' non valido. \\
+\hline
+500 & Eliminazione fallita. & Errore nell' eliminazione delle chat. \\
 \end{xltabular}
 
+\begin{comment}
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
         \item RF.O.33
         \item RF.O.34
         \item RF.O.34.1
 \end{itemize}
+\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -698,9 +735,7 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
     \item \label{DeleteChatsController}\textbf{DeleteChatsController}: classe controller che si occupa del passaggio allo use case CreateChatUseCase di interi rappresentanti gli id di una lista di chat per eseguire la loro eliminazione;
     \item \label{DeleteChatsPort}\textbf{DeleteChatsPort}: interfaccia che rappresenta la porta in uscita per effettuare l'eliminazione di una lista di chat verso il database per la storicizzazione delle chat;
     \item \label{DeleteChatsPostgres}\textbf{DeleteChatsPostgres}: classe che implementa la porta DeleteChatPort, adattando la chiamata di DeleteChatsService a PostgresChatORM;
-
     \item \label{DeleteChatsService}\textbf{DeleteChatsService}: classe service che implementa lo use case DeleteChatsUseCase;
-
     \item \label{DeleteChatsUseCase}\textbf{DeleteChatsUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare l'eliminazione di una lista di chat;
     \item \textbf{PostgresChatOperationResponse}: vedi \vedi{PostgresChatOperationResponse};
     \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}.
@@ -708,18 +743,12 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
  
 
 
-
-
-
-
-
-
-
-
-
 \subsubsection{ConfigurationManager}
 \subsubsubsection{Descrizione}
-Questa componente ha il compito di gestire la configurazione del sistema. %TODO
+Questa componente ha il compito di gestire la configurazione del sistema.
+\begin{comment}
+    
+
 È costituita da:
 \begin{itemize}
     \item \textbf{Route API}:%TODO ;
@@ -752,7 +781,7 @@ Questa componente ha il compito di gestire la configurazione del sistema. %TODO
         \item 
        
 \end{itemize}
-
+\end{comment}
 \subsubsubsection{Lista sottocomponenti}%descrizioni da chiedere con più dettaglio
 \begin{itemize}
     \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone metodi per ottenere le porte in uscita delle componenti del sistema;
@@ -781,8 +810,12 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da eliminare.
+        \item \code{documentIds}: una lista di stringhe che rappresentano gli id dei documenti da eliminare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{deleteDocuments} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{documentIds} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -799,13 +832,15 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
 \hline
 200 & Eliminazione avvenuta con successo. & - \\
 \hline
+400 & Il parametro \code{documentIds} è nullo. & Parametri insufficienti. \\
+\hline
+400 & La lunghezza del parametro \code{documentIds} è 0. & Nessun id di documento specificato.\\
+\hline
+400 & Un id di \code{documentIds} è vuoto. & Id di documento '{id}' non valido. \\
+\hline
 500 & Eliminazione fallita. & Errore nell'eliminazione dei documenti.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item TODO.
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -828,6 +863,8 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
+
+
 \subsubsection{EmbedDocuments}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di generare e memorizzare gli embeddings dei documenti indicati dall'utente.
@@ -837,8 +874,12 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti di cui generare gli embeddings.
+        \item \code{documentIds}: una lista di stringhe che rappresentano gli id dei documenti di cui generare gli embeddings.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{embedDocuments} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{documentIds} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -855,13 +896,16 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \hline
 200 & Generazione embeddings avvenuta con successo. & - \\
 \hline
+400 & Il parametro \code{documentIds} è nullo. & Parametri insufficienti. \\
+\hline
+400 & La lunghezza del parametro \code{documentIds} è 0. & Nessun id di documento specificato.\\
+\hline
+400 & Un id di \code{documentIds} è vuoto. & Id di documento '{id}' non valido. \\
+\hline
 500 & Generazione embeddings fallita. & Errore nella generazione degli embeddings.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item TODO.
-\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -913,8 +957,12 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documentIds": una lista di stringhe che rappresentano gli id dei documenti da riabilitare.
+        \item \code{documentIds}: una lista di stringhe che rappresentano gli id dei documenti da riabilitare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{enableDocuments} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{documentIds} non deve essere nullo nè vuoto.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -931,14 +979,24 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
 \hline
 200 & Riabilitazione avvenuta con successo. & - \\
 \hline
+400 & Il parametro \code{documentIds} è nullo. & Parametri insufficienti. \\
+\hline
+400 & La lunghezza del parametro \code{documentIds} è 0. & Nessun id di documento specificato.\\
+\hline
+400 & Un id di \code{documentIds} è vuoto. & Id di documento '{id}' non valido. \\
+\hline
 500 & Riabilitazione fallita. & Errore nella riabilitazione dei documenti.
 \end{xltabular}
+
+\begin{comment}
+    
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
     \item RF.O.25;
     \item RF.O.26.
 \end{itemize}
+\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -962,11 +1020,15 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 È costituita da:
 \begin{itemize}
     \item \textbf{Route API}: /getChatMessages;
-    \item \textbf{Metodo}: POST;
+    \item \textbf{Metodo}: GET;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "chatId": id della chat da recuperare.
+        \item \code{chatId}: id della chat da recuperare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getChatMessages} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{chatId} non deve essere nullo nè minore di 0.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \begin{xltabular}{\textwidth}{c|X|X}
@@ -982,9 +1044,14 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 \hline
 200 & Chat recuperata con succcesso. & - \\
 \hline
-500 & Recupero della Chat fallito. & Errore nella recupero della chat. \\
+400 & Il parametro \code{chatId} è nullo. & Parametri insufficienti.\\
+\hline
+400 & Il parametro \code{chatId} è minore di 0. & Chat id '{chatId}' non valido.\\
+\hline
+500 & Recupero della Chat fallito. & Errore nel recupero dei messaggi. \\
 \end{xltabular}
 
+\begin{comment}
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
         \item RF.O.39;
@@ -992,7 +1059,7 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
         \item RF.O.39.1.1;
         \item RF.O.39.1.2.
 \end{itemize}
-
+\end{comment}
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{Chat}\textbf{Chat}: classe di business che rappresenta una chat completa;
@@ -1028,11 +1095,15 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 È costituita da:
 \begin{itemize}
     \item \textbf{Route API}: /getChats;
-    \item \textbf{Metodo}: POST;
+    \item \textbf{Metodo}: GET;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "filter": filtro da applicare per la ricerca tra le chat.
+        \item \code{filter}: filtro da applicare per la ricerca tra le chat.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getChats} che esegue i seguenti controlli:
+    \begin{enumerate}
+        \item Il parametro \code{filter} non deve essere nullo.
+    \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \begin{xltabular}{\textwidth}{c|X|X}
@@ -1048,8 +1119,12 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 \hline
 200 & Ricerca avvenuta con successo. & - \\
 \hline
-500 & Ricerca fallita. & Errore nella ricerca della chat. \\
+400 & Il parametro \code{filter} è nullo. & Parametri insufficienti \\
+\hline
+404 & Non sono state trovate chat & - \\
 \end{xltabular}
+\begin{comment}
+    
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
@@ -1061,6 +1136,7 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
         \item RF.O.30.1.4;
         \item RF.O.38.
 \end{itemize}
+\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1081,6 +1157,8 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \item \textbf{PostgresMessageSenderType}: vedi \vedi{PostgresMessageSenderType}.
 \end{itemize}
 
+
+
 \subsubsection{GetConfiguration}
     \subsubsubsection{Descrizione}
     Questa componente ha il compito di ricavare la configurazione del sistema.
@@ -1089,6 +1167,11 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
         \item \textbf{Route API}: /getConfiguration;
         \item \textbf{Metodo}: GET;
         \item \textbf{Lista parametri HTTP}: -
+        \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getConfiguration} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item L'oggetto configurazione non deve essere nullo;
+            \item Nessun campo dell'oggetto configurazione deve essere nullo.
+        \end{enumerate}
     \end{itemize}
     \subsubsubsection{Esiti possibili}
     \begin{xltabular}{\textwidth}{c|X|X}
@@ -1104,13 +1187,10 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \hline
     200 & Configurazione ricavata con successo. & - \\
     \hline
-    500 & Ricavo configurazione fallito. & Errore nel ricavo della configurazione. \\
+    404 & Almeno un campo della configurazione è nullo. & Configurazione inesistente. \\
+    \hline
+    400 & Recupero configurazione fallito. & Errore nel recupero della configurazione. \\
     \end{xltabular}
-    
-    \subsubsubsection{Tracciamento dei requisiti}
-    \begin{itemize}
-            \item TODO.
-    \end{itemize}
     
 
 \subsubsubsection{Lista sottocomponenti}
@@ -1161,6 +1241,10 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
         \item \textbf{Route API}: /getConfigurationOptions;
         \item \textbf{Metodo}: GET;
         \item \textbf{Lista parametri HTTP}: -
+        \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getConfigurationOptions} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item L'oggetto opzioni di configurazione non deve essere nullo.
+        \end{enumerate}
     \end{itemize}
     \subsubsubsection{Esiti possibili}
     \begin{xltabular}{\textwidth}{c|X|X}
@@ -1174,15 +1258,10 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \endfoot
     \endlastfoot
     \hline
-    200 &  & - \\%todo.
+    200 & Opzioni di configurazione ricavate con successo. & - \\
     \hline
-    500 &  &  \\%todo.
+    404 & Opzioni di configurazione non esistenti. & - \\%da controllare la frase
     \end{xltabular}
-    
-    \subsubsubsection{Tracciamento dei requisiti}
-    \begin{itemize}
-            \item TODO.
-    \end{itemize}
     
 
 \subsubsubsection{Lista sottocomponenti}
@@ -1244,8 +1323,12 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
     \item \textbf{Metodo}: GET;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "searchFilter": stringa che rappresenta il filtro opzionale da applicare alla ricerca dei documenti.
+        \item \code{filter}: stringa che rappresenta il filtro opzionale da applicare alla ricerca dei documenti.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getDocuments} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Il parametro \code{filter} non deve essere nullo.
+        \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -1262,13 +1345,12 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
 \hline
 200 & Ricerca avvenuta con successo. & - \\
 \hline
-500 & Ricerca fallita. & Errore nella ricerca dei documenti.
+400 & Il parametro \code{filter} è nullo. & Parametri insufficienti. \\
+\hline
+404 & Ricerca fallita. & Errore nella ricerca dei documenti.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item TODO.
-\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1309,9 +1391,15 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "chatI": l'Id utilizzato per identificare univocamente una chat;
-        \item "title": nuovo titolo da assegnare alla chat.
+        \item \code{chatId}: l'Id utilizzato per identificare univocamente una chat;
+        \item \code{title}: nuovo titolo da assegnare alla chat.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{renameChat} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Il parametro \code{chatId} non deve essere nullo;
+            \item Il parametro \code{chatId} non deve essere vuoto, diverso da un numero o un numero negativo;
+            \item Il parametro \code{title} non può essere vuoto.
+        \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \begin{xltabular}{\textwidth}{c|X|X}
@@ -1325,20 +1413,19 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 \endfoot
 \endlastfoot
 \hline
-500 & Rinomina fallita. & Errore nella rinomina della chat. \\
+200 & Rinomina avventua con successo. & -\\
 \hline
-500 & Rinomina fallita. & Errore nella rinomina della chat: titolo vuoto.\\
+400 & Il parametro \code{chatId} o il parametro \code{title} sono nulli. & Parametri insufficienti. \\
 \hline
-500 & Rinomina fallita. & Errore nella rinomina della chat: titolo già utilizzato per un'altra chat.\\ 
-%RICCARDO chiedo
+400 & Il parametro \code{chatId} non è valido. & Chat id '{chatId}' non valido. \\
+\hline
+400 & Il parametro \code{title} è vuoto. & Il titolo della chat non può essere vuoto.\\
+\hline
+500 & Rinomina fallita. & Errore nella rinomina della chat.\\ 
+
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.35
-        \item RF.O.36  %e non 36.1
-        \item RF.O.37  %uguale
-\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1354,6 +1441,89 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 \end{itemize}
 
 
+%SETCONFIGURATION
+\subsubsection{SetConfiguration}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di impostare le configurazioni di vector store, documents store, modelli LLM e di embedding al primo avvio del sistema.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /setConfiguration;
+    \item \textbf{Metodo}: POST;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item \code{embeddingModel}: modello di embedding scelto;
+        \item \code{documentStore}: metodo di storicizzazione dei documenti scelto;
+        \item \code{LLMModel}: modello LLM scelto;
+        \item \code{vectorStore}: vector store scelto.
+    \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{setConfiguration} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Il parametro \code{embeddingModel} non deve essere vuoto o nullo;
+            \item Il parametro \code{documentStore} non deve essere vuoto o nullo;
+            \item Il parametro \code{LLMModel} non deve essere vuoto o nullo;
+            \item Il parametro \code{vectorStore} non deve essere vuoto o nullo.
+        \end{enumerate}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili SetConfiguration}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili SetConfiguration (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Configurazione impostata con successo. & -\\
+\hline
+400 & Uno o più dei parametri (\code{embeddingModel, documentStore,}\code{ LLMModel, vectorStore}) è nullo. & Parametri insufficienti. \\
+\hline
+400 & Il parametro \code{LLMModel} è vuoto. & Modello LLM '{LLMModel}' non valido. \\
+\hline
+400 & Il parametro \code{embeddingModel} è vuoto. & Modello di embedding '{embeddingModel}' non valido.\\
+\hline
+400 & Il parametro \code{documentStore} è vuoto. & Document Store '{documentStore}' non valido. \\
+\hline
+400 & Il parametro \code{vectorStore} è vuoto. & Vector Store '{vectorStore}' non valido.\\
+\hline
+500 & Configurazione fallita. & Errore nella inizializzazione della configurazione.\\ 
+
+\end{xltabular}
+
+\begin{comment}
+    
+
+    \subsubsubsection{Tracciamento dei requisiti}
+    \begin{itemize}
+        
+    \end{itemize}
+\end{comment}
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \textbf{ConfigurationOperationResponse}: vedi \vedi{ConfigurationOperationResponse};
+    \item \textbf{PostgresConfigurationOperationResponse}: vedi \vedi{PostgresConfigurationOperationResponse};
+    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
+    
+    \item \label{SetConfigurationController}\textbf{SetConfigurationController}: classe controller che si occupa del passaggio allo use case SetConfigurationUseCase di stringhe che rappresentano rispettivamente LLModel, document store, vector store ed embedding model, per inizializzare la configurazione del sistema;
+    \item \label{SetConfigurationPort}\textbf{SetConfigurationPort}: interfaccia che rappresenta la porta in uscita per effettuare la inizializzazione della configurazione di sistema;
+    \item \label{SetConfigurationPostgres}\textbf{SetConfigurationPostgres}:  classe che implementa la porta SetConfigurationPort, adattando la chiamata di SetConfigurationService a PostgresConfigurationORM;
+
+    \item \label{SetConfigurationService}\textbf{SetConfigurationService}:classe service che implementa lo use case SetConfigurationUseCase;
+    \item \label{SetConfigurationUseCase}\textbf{SetConfigurationUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per effettuare la inizializzazione della configurazione di sistema.
+
+
+\end{itemize}
+
+
+
+
+
+
+
+
 \subsubsection{UploadDocuments}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di memorizzare i documenti inseriti dall'utente nel sistema di archiviazione e calcolare gli embeddings, memorizzandoli nel vector store configurato.
@@ -1363,8 +1533,14 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documents": una lista di documenti.
+        \item \code{documents}: una lista di documenti.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{uploadDocuments} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Ogni documento deve avere un titolo;
+            \item Ogni documento deve essere di tipo \textit{PDF} o \textit{DOC};
+            \item Devono esserci dei documenti nell'area di staging.
+        \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -1381,10 +1557,17 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
 \hline
 200 & Upload avvenuto con successo. & - \\
 \hline
-500 & Upload fallito. & Errore nell'upload dei documenti. \\
+400 & Non ci sono documenti di cui fare l'upload. & Parametri insufficienti.\\
 \hline
-500 & Upload fallito. & Errore nel calcolo degli embeddings dei documenti. \\
+422 & Un documento ha titolo vuoto. & L'upload di documenti senza titolo non è supportato.\\
+\hline
+422 & Formato non accettato. & Documento {filename} non supportato. \\
+\hline
+500 & Upload fallito. & Errore nell'upload dei documenti. \\
 \end{xltabular}
+
+\begin{comment}
+    
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
@@ -1394,6 +1577,7 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     \item RF.O.21.4;
     \item RF.O.21.6.
 \end{itemize}
+\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1447,8 +1631,12 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{Metodo}: GET;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
-        \item "documentId": una stringa che rappresenta l'id del documento da recuperare.
+        \item {documentId}: una stringa che rappresenta l'id del documento da recuperare.
     \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getDocumentContent} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Il parametro {documentId} non deve essere vuoto o nullo.
+        \end{enumerate}
 \end{itemize}
 \subsubsubsection{Esiti possibili}
 \renewcommand{\arraystretch}{1.5}
@@ -1465,13 +1653,12 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \hline
 200 & Documento recuperato con successo. & - \\
 \hline
-500 & Recupero documento fallito. & Errore nel recupero del documento.
+400 & Il parametro {documentId} è nullo. &  Parametri insufficienti.\\
+\hline
+400 & Il parametro {documentId} è vuoto. &  Id di documento '{documentId}' non valido.\\
+\hline
+404 & Recupero documento fallito. & Errore nel recupero del documento.
 \end{xltabular}
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item TODO.
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1503,13 +1690,13 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
-
 \subsection{Database} %TODO
+
     % definisco ogni tabella e la descrivo
     % diagramma ER del db
     % script di creazione db
 
-\subsection{Libreria per la persistenza} %TODO
+%\subsection{Libreria per la persistenza} %TODO
     % diagramma delle classi
     % x ogni entità ci sarà una classe:
     %     - annotazioni (non ci sono in py, non penso di metterle)
@@ -1567,15 +1754,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
         %\item \code{toMessageFrom(message: BaseMessage): Message}\\
         %Metodo per ottenere un Message a partire da un BaseMessage;
-
-        %\item \code{toBaseMessageFrom(message: Message): BaseMessage}\\
-       % Metodo per ottenere un BaseMessage a partire da un Message;
-
-        %\item \code{createChat(): ChatId}\\
-        %Metodo per creare una chat tramite postgresChatORM, ritornando il suo ChatId;
-
-        %\item \code{createMemory(chatId:ChatId): langchain.Memory}\\
-        %Metodo per ottenere una langchain.Memory a partire da un ChatId tramite chatHistoryManager.
+      
     \end{itemize}
 \end{itemize}
 
@@ -1657,7 +1836,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
         \item \code{content: string};
         \item \code{relevantDocument: List<DocumentId>};
         \item \code{sender: MessageSender};
-        \item \code{timestamp: timestamp}.
+        \item \code{timestamp: datetime}.
     \end{itemize}
 \end{itemize}
 
@@ -1667,7 +1846,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{Attributi}:
     \begin{itemize}  
         \item \code{chatId: ChatId};
-        \item \code{messageResponse: Message};
+        \item \code{message: Message};
         \item \code{status: boolean}.
     \end{itemize}
 \end{itemize}
@@ -1738,7 +1917,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
         \item \code{content: string};
         \item \code{relevantDocument: List<string>};        
         \item \code{sender: PostgresMessageSenderType};
-        \item \code{timestamp: timestamp}.
+        \item \code{timestamp: datetime}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -1752,7 +1931,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \begin{itemize}
     \item \textbf{Valori}:
     \begin{itemize}
-        \item \code{ai};
+        \item \code{AI};
         \item \code{human}.
     \end{itemize}
 \end{itemize}
@@ -2016,6 +2195,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
             \item \code{getConfiguration(userId:int): PostgresConfiguration}\\
             Metodo per ottenere la configurazione del sistema; ricava le configurazioni di userId, vector store, modello di embedding, LLM e metodo di storicizzazione dei documenti. Ritorna un oggetto PostgresConfiguration;
+            
             \item \code{getConfigurationChoices(userId:int): PostgresConfigurationChoice}\\
             Metodo che restituisce la scelta di configurazione dell'utente come oggetto PostgresConfigurationChoice;
 
@@ -2030,7 +2210,9 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
             \item \code{getVectorStoreOptions(): List<PostgresVectorStoreConfiguration>:}\\
             Metodo che restituisce la lista delle possibili alternative di configurazione di vector store sottoforma di lista di PostgresVectorStoreConfiguration.
-            
+
+            \item \code{setConfiguration(userId:int, LLMModel:PostgresLLMModelType, DocumentStore:PostgresDocumentStoreType, VectorStore:PostgresVectorStoreType, EmbeddingModel:PostgresEmbeddingModelType): PostgresConfigurationOperationResponse}\\
+            Metodo per impostare le configurazioni di vector store, modello di embedding, LLM e metodo di storicizzazione dei documenti.
         \end{itemize}
     \end{itemize}
 
@@ -2132,7 +2314,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-       % \item \code{chromadb: chromadbCollection}; ?
+        \item \code{chroma: chromadb.PersistentClient}; 
         \item \code{collection: chromadbCollection}.
     \end{itemize}
     \item \textbf{Implementa}: VectorStoreManager;
@@ -2151,11 +2333,11 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
         Implementazione del metodo astratto di VectorStoreManager per ottenere da ChromaDB gli status di una lista di documenti dai loro metadati a partire da una lista di stringhe che rappresentano i documentIds dei documenti, ritornandoli in una lista di VectorStoreDocumentStatusResponse;      
 
         \item \code{uploadEmbeddings(documentsIds:List<string>, documentsChunks:}\\ 
-        \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
-        \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
+        \code{List<List<LangchainCoreDocument>>, documentEmbeddings:}\\ 
+        \code{List<List<List<float>>>): List<VectorStoreDocumentOperationResponse>}\\ 
         Implementazione del metodo astratto di VectorStoreManager per effettuare in ChromaDB l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
         %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
-        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store ChromaDB.
     \end{itemize}
 \end{itemize}
@@ -2166,8 +2348,8 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{documentId: string};
-        \item \code{responseMessage: string};
-        \item \code{responseStatus: boolean}.
+        \item \code{message: string};
+        \item \code{status: boolean}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -2199,7 +2381,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
         \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
         Metodo astratto per effettuare l'upload degli embeddings di un documento.  Ritorna un VectorStoreDocumentOperationResponse;
         %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento).
-        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Metodo astratto per ottenere un langchain.BaseRetriever.
     \end{itemize}
 \end{itemize}
@@ -2209,7 +2391,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        %\item \code{dimension: int};
+        \item \code{dimension: int};
         \item \code{index: string};
         \item \code{pinecone: pinecone.Pinecone}.
         
@@ -2234,7 +2416,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
         \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
         Implementazione del metodo astratto di VectorStoreManager per effettuare in Pinecone l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
         % a partire da una lista di stringhe (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
-        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): BaseRetriever}\\
+        \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store Pinecone.
     \end{itemize}
 \end{itemize}
@@ -2278,7 +2460,7 @@ Vedi \vedi{ChatOperationResponseDettaglio};
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Metodo astratto per per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        Metodo astratto per per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
@@ -2289,12 +2471,12 @@ Vedi \vedi{ChatOperationResponseDettaglio};
     \item \textbf{Implementa}: DeleteChatsPort;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{postgresChatORM: PostgresChatORM}.
+        \item \code{postgresORM: PostgresChatORM}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
@@ -2309,7 +2491,7 @@ Vedi \vedi{ChatOperationResponseDettaglio};
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificare da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
 
@@ -2331,14 +2513,8 @@ Vedi \vedi{PostgresChatOperationResponseDettaglio};
 
 
 
-
-
-
-
 \subsubsubsection{PostgresChatORM}
 Vedi \vedi{PostgresChatORMDettaglio}.
-
-
 
 
 
@@ -2358,35 +2534,38 @@ Vedi \vedi{PostgresChatORMDettaglio}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{getDocumentsUploaderPort(): DocumentsUploaderPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id
-
-        \item \code{getEmbeddingsUploaderPort(): EmbeddingsUploaderPort}
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
-
-        \item \code{getGetDocumentsStatusPort(): GetDocumentsStatusPort}\\        
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
-
-        \item \code{getGetDocumentsMetadataPort(): GetDocumentsMetadataPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
-
-        \item \code{dgetDeleteDocumentsPort(): DeleteDocumentsPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
-
-        \item \code{getDeleteEmbeddingsPort(): DeleteEmbeddingsPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+        \item \code{getAskChatbotPort(): AskChatbotPort}\\ 
+        Metodo per ottenere la porta in uscita della componente AskChatbot;
 
         \item \code{getConcealDocumentsPort(): ConcealDocumentsPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+        Metodo per ottenere la porta in uscita della componente ConcealDocuments;
 
-        \item \code{getEnableDocumentsPort(): EnableDocumentsPort}\\
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+        \item \code{getDeleteDocumentsPort(): DeleteDocumentsPort}\\ 
+        Metodo per ottenere una delle porte in uscita della componente DeleteDocuments;
+
+        \item \code{getDeleteEmbeddingsPort(): DeleteEmbeddingsPort}\\ 
+        Metodo per ottenere una delle porte in uscita della componente DeleteDocuments;
 
         \item \code{getDocumentsContentPort(): GetDocumentsContentPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+        Metodo per ottenere la porta in uscita delle componenti EmbedDocuments e ViewDocumentContent;
 
-        \item \code{getAskChatbotPort(): AskChatbotPort}\\ 
-        Metodo per eliminare una lista di documenti tramite outPort dal sistema di archiviazione a partire dai loro id.
+        \item \code{getDocumentsUploaderPort(): DocumentsUploaderPort}\\ 
+        Metodo per ottenere la porta in uscita della componente UploadDocuments;
+
+        \item \code{getEmbeddingsUploaderPort(): EmbeddingsUploaderPort}
+        Metodo per ottenere la porta in uscita della componente EmbedDocuments e UploadDocuments;
+
+        \item \code{getEnableDocumentsPort(): EnableDocumentsPort}\\
+        Metodo per ottenere la porta in uscita della componente EnableDocuments;
+
+        \item \code{getGetDocumentsMetadataPort(): GetDocumentsMetadataPort}\\ 
+        Metodo per ottenere una delle porte in uscita della componente GetDocuments;
+
+        \item \code{getGetDocumentsStatusPort(): GetDocumentsStatusPort}\\        
+        Metodo per ottenere una delle porte in uscita delle componenti EmbedDocuments, GetDocuments e ViewDocumentContent.
+
+        
+
     \end{itemize}
 \end{itemize}
 
@@ -2541,6 +2720,11 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
         \item \code{message: string};
         \item \code{status: boolean}.
     \end{itemize}
+    \item \textbf{Metodi}:
+    \item \begin{itemize}
+        \item \item \code{toDocumentOperationResponse(): DocumentOperationResponse:}\\
+        Metodo per ottenere un oggetto DocumentOperationResponse dal AWSDocumentOperationResponse.
+    \end{itemize}
 \end{itemize}
 
 \subsubsubsection{AWSS3Manager}
@@ -2548,7 +2732,8 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{boto3: boto3.session.Session};
+        \item \code{awsBucketName: string};
+        \item \code{boto3: boto3.session.Session}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -2618,7 +2803,7 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{deleteDocumentsEmbeddings(documentIds:List<DocumentId>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo per eliminare gli embeddings di una lista di documenti tramite outPort dal vector store a partire dai loro id.
+        Metodo per eliminare gli embeddings di una lista di documenti, a partire dai loro id, tramite outPort dal vector store.
     \end{itemize}
 \end{itemize}
 
@@ -2638,7 +2823,7 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
     \item \textbf{Implementa}: DocumentsUseCase;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{deleteDocuments: DeleteDocuments};
+        \item \code{documentsDeleter: DeleteDocuments};
         \item \code{deleteDocumentsEmbeddings: DeleteDocumentsEmbeddings}. 
     \end{itemize}
     \item \textbf{Metodi}:
@@ -2721,6 +2906,11 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
         \item \code{type: string};
         \item \code{uploadTime: timestamp}.
     \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toPlainDocument(): PlainDocument}\\
+        Metodo che ottiene ritorna un PlainDocument.
+    \end{itemize}
 \end{itemize}   
 
 \subsubsubsection{AWSS3Manager}
@@ -2731,7 +2921,7 @@ Vedi \vedi{AWSS3ManagerDettaglio}.
 \begin{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \code{extractText(document:Document):}\\ \code{List<langchain.Document>}\\
+        \item \code{extractText(document:Document):}\\ \code{ List<langchain.Document>}\\
         Metodo per suddividere in chunks una lista di langchain.Document, ritornandoli attraverso una lista di langchain.Document.
         
         \item \code{getTextExtractorFrom(documentType:string):}\\ \code{ TextExtractor}\\
@@ -2989,7 +3179,7 @@ Vedi \vedi{DocumentOperationResponseDettaglio}.
         \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
         Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings di HuggingFace: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
         \item \code{getEmbeddingFunction(): langchain.Embedding}\\
-        Implementazione del metodo astratto per ottenere il model.
+        Implementazione del metodo astratto per ottenere il campo \code{model}.
     \end{itemize}
 \end{itemize}
 
@@ -3013,7 +3203,7 @@ Vedi \vedi{DocumentOperationResponseDettaglio}.
         \item \code{embedDocument(documentChunks: List<string>): List<List<float>>}\\
         Metodo astratto per generare gli embeddings di un insieme di chunks sotto forma di lista di stringhe: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
         \item \code{getEmbeddingFunction(): langchain.Embedding}\\
-        Metodo astratto per ottenere il model.
+        Metodo astratto per ottenere il campo \code{model}.
     \end{itemize}
 \end{itemize}
 
@@ -3031,7 +3221,7 @@ Vedi \vedi{DocumentOperationResponseDettaglio}.
         \item \code{embedDocument(documentChunks:List<string>): List<List<float>>}\\
         Implementazione del metodo astratto di LangchainEmbeddingModel per generare gli embeddings di un insieme di chunks di stringhe tramite un modello di embeddings OpenAI: per ogni chunk in lista viene generata una lista di float che rappresenta gli embeddings;
         \item \code{getEmbeddingFunction(): langchain.Embedding}\\
-        Implementazione del metodo astratto per ottenere il model.
+        Implementazione del metodo astratto per ottenere il campo \code{model}.
     \end{itemize}
 \end{itemize}
 
@@ -3055,6 +3245,7 @@ Vedi \vedi{DocumentOperationResponseDettaglio}.
     \begin{itemize}
         \item \code{Concealed};
         \item \code{Enabled};
+        \item \code{Inconsistent};
         \item \code{Not Embedded}.
     \end{itemize}
 \end{itemize}
@@ -3265,6 +3456,7 @@ Vedi \vedi{ChatIdDettaglio}.
 \subsubsubsection{GetChatMessagesPostgres}
 \label{GetChatMessagesPostgresDettaglio}
 \begin{itemize}
+    \item \textbf{Implementa}: GetChatMessagesPort;
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{postgresChatORM: PostgresChatORM}.
@@ -3347,9 +3539,7 @@ Vedi \vedi{PostgresMessageDettaglio}.
 
 
 
-
-
-
+%GETCHATS
 
 
 \subsection{GetChats}
@@ -3375,8 +3565,8 @@ Vedi \vedi{ChatIdDettaglio}.
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{id: ChatId};
-        \item \code{title: string};
-        \item \code{lastMessage: Message}.
+        \item \code{lastMessage: Message};
+        \item \code{title: string}.
     \end{itemize}
 \end{itemize}
 
@@ -3474,8 +3664,8 @@ Vedi \vedi{PostgresChatORMDettaglio}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
-        \item \item \code{getChatPreviewFrom():}\\ \code{ChatPreview}
-        Metodo per ottenere una ChatPreview a partire da una PostgresChatPreview.
+        \item \item \code{toChatPreviewFrom():}\\ \code{ChatPreview}
+        Metodo per ottenere una ChatPreview a partire dal PostgresChatPreview.
     \end{itemize}
 \end{itemize}
 
@@ -3487,7 +3677,9 @@ Vedi \vedi{PostgresMessageDettaglio}.
 \subsubsubsection{PostgresMessageSenderType}
 Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
 
-\subsection{GetConfiguration}%TODO
+%GETCONFIGURATION
+
+\subsection{GetConfiguration}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
 
@@ -3566,13 +3758,12 @@ Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
         Metodo che si occupa di ritornare la configurazione di vector store, document store, embedding e LLM model tramite oggetto Configuration.
     \end{itemize}
 \end{itemize}
-%
-%
-%
-%
-%
-%
-\subsubsubsection{GetConfigurationPort}%TODO
+
+
+
+
+
+\subsubsubsection{GetConfigurationPort}
 \label{GetConfigurationPortDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
@@ -3583,7 +3774,7 @@ Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
 \end{itemize}
 
 
-\subsubsubsection{GetConfigurationPostgres}%TODO
+\subsubsubsection{GetConfigurationPostgres}
 \label{GetConfigurationPostgresDettaglio}
 \begin{itemize}
     \item \textbf{Implementa}: GetConfigurationPort;
@@ -3599,7 +3790,7 @@ Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
 \end{itemize}
 
 
-\subsubsubsection{GetConfigurationService}%TODO
+\subsubsubsection{GetConfigurationService}
 \label{GetConfigurationServiceDettaglio}
 \begin{itemize}
     \item \textbf{Implementa}: GetConfigurationUseCase;
@@ -3615,7 +3806,7 @@ Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
 \end{itemize}
 
 
-\subsubsubsection{GetConfigurationUseCase}%TODO
+\subsubsubsection{GetConfigurationUseCase}
 \label{GetConfigurationUseCaseDettaglio}
 \begin{itemize}
     \item \textbf{Metodi}:
@@ -3810,7 +4001,7 @@ Vedi \vedi{EmbeddingModelTypeDettaglio}.
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{getConfigurationOptions(): ConfigurationOptions}\\
-        Metodo astratto per ritornare le opzioni disponibili per le configurazioni di vectore store, document store, embedding model e LLM model.
+        Metodo astratto per ritornare le opzioni disponibili per le configurazioni di vector store, document store, embedding model e LLM model.
     \end{itemize}   
 \end{itemize}
 
@@ -3859,7 +4050,7 @@ Vedi \vedi{VectorStoreTypeDettaglio}.
 
 
 
-
+%GETDOCUMENTS
 
 
 \subsection{GetDocuments}
@@ -3874,8 +4065,7 @@ Vedi \vedi{VectorStoreTypeDettaglio}.
     \begin{itemize}
         \item \code{id: string};
         \item \code{size: float};
-        \item \code{type: string};
-        \item \code{uploadTime: timestamp}.
+        \item \code{uploadTime: datetime}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -3906,10 +4096,10 @@ Vedi \vedi{DocumentIdDettaglio}.
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{documentId: DocumentId};
+        \item \code{id: DocumentId};
         \item \code{size: float};
         \item \code{type: DocumentType};
-        \item \code{uploadTime: timestamp}.
+        \item \code{uploadTime: datetime}.
     \end{itemize}
 \end{itemize}
 
@@ -4063,7 +4253,7 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
 
 
-
+%RENAMECHAT
 
 
 \subsection{RenameChat}
@@ -4155,17 +4345,103 @@ Vedi \vedi{PostgresChatOperationResponseDettaglio}.
 Vedi \vedi{PostgresChatORMDettaglio}.
 
 
+%SETCONFIGURATION
+\subsection{SetConfiguration}
+\subsubsection{Diagramma delle classi}
+\subsubsection{Lista delle sottocomponenti}
+
+
+\subsubsubsection{ConfigurationOperationResponse}
+Vedi \vedi{ConfigurationOperationResponseDettaglio}.
+
+\subsubsubsection{PostgresConfigurationOperationResponse}
+Vedi \vedi{PostgresConfigurationOperationResponseDettaglio}.
+
+\subsubsubsection{PostgresConfigurationORM}
+Vedi \vedi{PostgresConfigurationORMDettaglio}.
+
+\subsubsubsection{SetConfigurationController}
+\label{SetConfigurationControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}: \code{useCase: SetConfigurationUseCase};
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{setConfiguration(LLModel:string, DocumentStore:string,}\\\code{ VectorStore:string EmbeddingModel:string): ConfigurationOperationResponse}\\
+        Metodo che si occupa di inizializzare la configurazione del sistema al primo avvio, passando stringhe che rappresentano rispettivamente LLModel, document store, vector store ed embedding model. Ritorna un ConfigurationOperationResponse rappresentante l'esito dell'operazione.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{SetConfigurationPort}
+\label{SetConfigurationPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{setConfiguration(LLModel:LLMModelType, DocumentStore:DocumentStoreType,}\\ \code{ VectorStore:VectorStoreType, EmbeddingModel:EmbeddingModelType):}\\ \code{ConfigurationOperationResponse}\\
+        Metodo astratto per inizializzare la configurazione del sistema al primo avvio passando LLMModelType, DocumentStoreType, VectorStoreType ed EmbeddingModelType. Ritorna un ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{SetConfigurationPostgres}
+\label{SetConfigurationPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: SetConfigurationPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresConfigurationORM: PostgresConfigurationORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{setConfiguration(LLModel:LLMModelType, DocumentStore:DocumentStoreType,}\\ \code{ VectorStore:VectorStoreType, EmbeddingModel:EmbeddingModelType):}\\ \code{ConfigurationOperationResponse}\\
+        Implementazione del metodo astratto di SetConfigurationPort inizializzare la configurazione del sistema al primo avvio passando LLMModelType, DocumentStoreType, VectorStoreType ed EmbeddingModelType. Ritorna l'esito dell'operazione con un ConfigurationOperationResponse;
+        \item \code{toPostgresDocumentStoreTypeFrom(DocumentStore:DocumentStoreType): PostgresDocumentStoreType}\\
+        Metodo per convertire un DocumentStoreType in PostgresDocumentStoreType;
+        \item \code{toPostgresEmbeddingModelFrom(EmbeddingModel: EmbeddingModelType): PostgresEmbeddingModelType}\\
+        Metodo per convertire un EmbeddingModelType in PostgresEmbeddingModelType;
+        \item \code{toPostgresLLMModelTypeFrom(LLMModel:LLMModelType): PostgresLLMModelType}\\
+        Metodo per convertire un LLLMModelType in PostgresLLMModelType;
+        \item \code{toPostgresVectorStoreTypeFrom(VectorStore:VectorStoreType): PostgresVectorStoreType}\\
+        Metodo per convertire un VectorStoreType in PostgresVectorStoreType.
+
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{SetConfigurationService}
+\label{SetConfigurationServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: SetConfigurationUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: SetConfigurationPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{setConfiguration(LLModel:LLMModelType, DocumentStore:DocumentStoreType,}\\ \code{ VectorStore:VectorStoreType, EmbeddingModel:EmbeddingModelType):}\\ \code{ConfigurationOperationResponse}\\
+        Implementazione del metodo astratto di SetConfigurationUseCase per inizializzare la configurazione del sistema al primo avvio tramite outPort. Ritorna l'esito dell'operazione con un ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{SetConfigurationUseCase}
+\label{SetConfigurationUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{setConfiguration(LLModel:LLMModelType, DocumentStore:DocumentStoreType,}\\ \code{ VectorStore:VectorStoreType, EmbeddingModel:EmbeddingModelType):}\\ \code{ConfigurationOperationResponse}\\
+        Metodo astratto per inizializzare la configurazione del sistema al primo avvio, ritornando l'esito come ConfigurationOperationResponse.
+    \end{itemize}
+\end{itemize}
 
 
 
 
 
+%UPLOADDOCUMENTS
 
 
 \subsection{UploadDocuments}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}
-
 
 
 
@@ -4298,6 +4574,12 @@ Vedi \vedi {LangchainEmbeddingModelDettaglio}.
         \item \code{size: float};
         \item \code{type: string}.
     \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toDocument(): Document}\\
+        Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
+        
+    \end{itemize}
 \end{itemize}
 
 \subsubsubsection{OpenAIEmbeddingModel}
@@ -4312,8 +4594,8 @@ Vedi \vedi{PDFTextExtractorDettaglio}.
 \begin{itemize}
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{metadata: DocumentMetadata};
-        \item \code{content: DocumentContent}.
+        \item \code{content: DocumentContent};
+        \item \code{metadata: DocumentMetadata}.
     \end{itemize}
 \end{itemize}
 
@@ -4336,9 +4618,7 @@ Vedi \vedi{TextExtractorDettaglio}.
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{uploadDocuments(newDocuments:List<NewDocument>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo che effettua l'upload di una lista di NewDocument tramite useCase, ritornando una lista di DocumentOperationResponse;
-        \item \code{toDocument(document:NewDocument): Document}\\
-        Metodo che trasforma un NewDocument della presentation logic in un Document della business logic.
+        Metodo che effettua l'upload di una lista di NewDocument tramite useCase, ritornando una lista di DocumentOperationResponse.        
     \end{itemize}
 \end{itemize}
 
@@ -4374,24 +4654,6 @@ Vedi \vedi{TextExtractorDettaglio}.
 
 
 
-\begin{comment} % TODO: capire cosa fare con substitute (route a parte o unirla a upload)
-\subsubsubsection{SubstituteDocumentController}
-\label{SubstituteDocumentControllerDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{useCase: UploadDocumentsUseCase}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{substituteDocuments(newDocumentIds:List<string>):}\\ \code{List<DocumentOperationResponse>}\\
-        Metodo che effettua la sostituzione di una lista di NewDocument tramite useCase, ritornando una lista di DocumentOperationResponse;
-        \item \code{getTempDocument(documentId:string): Document}\\
-        Metodo che recupera un documento caricato precedentemente dall'utente, a partire dal suo id, trasformandolo in oggetto Document della business logic.
-    \end{itemize}
-\end{itemize}
-\end{comment}
-
 
 \subsubsubsection{VectorStoreChromaDBManager}
 Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
@@ -4408,8 +4670,7 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
 
 
-
-
+%VIEWDOCUMENTCONTENT
 
 \subsection{ViewDocumentContent}
 \subsubsection{Diagramma delle classi}

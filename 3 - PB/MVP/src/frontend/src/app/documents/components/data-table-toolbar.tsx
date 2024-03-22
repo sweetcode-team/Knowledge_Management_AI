@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "@/app/documents/components/data-table-view-options"
 
-import { types, statuses } from "../data/data"
+import { types, statuses } from "@/app/documents/data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { DataTableGroupActions } from "./data-table-group-actions"
 

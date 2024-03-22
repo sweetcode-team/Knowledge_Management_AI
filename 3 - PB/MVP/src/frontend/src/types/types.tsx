@@ -1,29 +1,34 @@
 import { LucideIcon } from "lucide-react";
 
+import { z } from "zod";
+
 export type NavItems = {
-    title: string;
-    path: string;
-    icon: LucideIcon;
+    title: string
+    path: string
+    icon: LucideIcon
 }
+
+// CHAT
+
 export type Chat = {
-    id: number;
-    title: string;
-    messages: Message[];
+    id: number
+    title: string
+    messages: Message[]
 }
+
 export type ChatOperationResponse = {
-    chatId: number;
-    status: boolean;
-    message: string;
+    chatId: number
+    status: boolean
+    message: string
 }
 
 export type ChatPreview = {
-    chatId: number;
-    title: string;
-    lastMessage: Message;
+    chatId: number
+    title: string
+    lastMessage: Message
 }
 
-// ----------------      MESSAGE
-
+// MESSAGE
 
 export enum MessageSender {
     USER = 1,
@@ -31,99 +36,108 @@ export enum MessageSender {
 }
 
 export type Message = {
-    content: string;
-    timestamp: string;
-    sender: MessageSender;
-    relevantDocuments: DocumentId[];
+    content: string
+    timestamp: string
+    sender: MessageSender
+    relevantDocuments: DocumentId[]
 }
 
 export type MessageResponse = {
-    chatId: string;
-    status: boolean;
-    messageResponse: Message;
+    chatId: string
+    status: boolean
+    messageResponse: Message
 }
 
-// ----------------      DOCUMENT
+// DOCUMENT
 
 export type DocumentId = {
-    id: string;
+    id: string
 }
 
-export enum Status{
+export enum Status {
     CONCEALED = 1,
     ENABLED = 2,
     NOT_EMBEDDED = 3,
     INCONSISTENT = 4
 }
 export type DocumentContent = {
-    id: string;
-    type: string;
-    size: number;
-    content: string;
-    uploadDate: string;
-    status: Status;
+    id: string
+    type: string
+    size: number
+    content: string
+    uploadDate: string
+    status: Status
 }
 
 export type DocumentMetadata = {
-    id: string;
-    type: string;
-    size: number;
-    uploadDate: string;
-    status: string;
+    id: string
+    type: string
+    size: number
+    uploadDate: string
+    status: string
 }
 
 export type DocumentOperationResponse = {
-    status: boolean;
-    message: string;
-    documentId: string;
+    status: boolean
+    message: string
+    documentId: string
 }
-// ----------------      CONFIGURATION
+
+// CONFIGURATION
 
 export type VectorStore = {
-    costIndicator: string,
-    description: string,
-    name: string,
-    organization: string,
+    name: string
     type: string
+    description: string
+    organization: string
+    costIndicator: string
 }
+
 export type EmbeddingsModel = {
-    costIndicator: string,
-    description: string,
-    name: string,
-    organization: string,
+    name: string
     type: string
+    description: string
+    organization: string
+    costIndicator: string
 }
+
 export type LLMModel = {
-    costIndicator: string,
-    description: string,
-    name: string,
-    organization: string,
+    name: string
     type: string
+    description: string
+    organization: string
+    costIndicator: string
 }
 
 export type DocumentStore = {
-    costIndicator: string,
-    description: string,
-    name: string,
-    organization: string,
+    name: string
     type: string
+    description: string
+    organization: string
+    costIndicator: string
 }
 
 export type Configuration = {
-    vectorStore: VectorStore;
-    embeddingModel: EmbeddingsModel;
-    LLMModel: LLMModel;
-    documentStore: DocumentStore;
+    vectorStore: VectorStore
+    embeddingModel: EmbeddingsModel
+    LLMModel: LLMModel
+    documentStore: DocumentStore
 }
 
-export type ConfigurationOption = {
-    vectorStore: VectorStore[];
-    embeddingModel: EmbeddingsModel[];
-    LLMModel: LLMModel[];
-    documentStore: DocumentStore[];
-}
 export type ConfigurationOperationResponse = {
-    status: boolean;
-    message: string;
+    status: boolean
+    message: string
 }
 
+export type ConfigurationOptions = {
+    vectorStores: VectorStore[]
+    embeddingModels: EmbeddingsModel[]
+    LLMModels: LLMModel[]
+    documentStores: DocumentStore[]
+}
+
+export const configurationFormSchema = z.object({
+    LLMModel: z.string()
+})
+
+export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>

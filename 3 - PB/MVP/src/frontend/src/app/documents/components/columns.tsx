@@ -8,11 +8,10 @@ import { ColumnDef } from "@tanstack/react-table"
 import { StatusBadge } from "@/components/status-badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { types, statuses } from "../data/data"
-import { Document } from "../data/schema"
+import { types, statuses } from "@/app/documents/data/data"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
-import {DocumentMetadata} from "@/types/types";
+import { DocumentMetadata } from "@/types/types";
 
 export const columns: ColumnDef<DocumentMetadata>[] = [
   {

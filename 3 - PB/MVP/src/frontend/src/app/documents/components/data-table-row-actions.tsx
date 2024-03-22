@@ -27,15 +27,15 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog"
 
-import { documentSchema } from "../data/schema"
-import { statuses, types } from "../data/data"
+import { statuses } from "@/app/documents/data/data"
+
 import {
-  concealDocument,
-  deleteDocument,
-  embeddDocument,
-  enableDocument
-} from "@/app/documents/components/data-table-group-actions";
-import {DocumentMetadata} from "@/types/types";
+  concealDocuments,
+  deleteDocuments,
+  embedDocuments,
+  enableDocuments
+} from "@/lib/actions";
+import { DocumentMetadata } from "@/types/types";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -44,21 +44,21 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const document = documentSchema.parse(row.original)
+  const document = row.original as DocumentMetadata
 
   const handleAction = () => {
     console.log(document.id)
     if (document.status === "CONCEALED") {
-      const result = enableDocument([document.id])
+      const result = enableDocuments([document.id])
     } else if (document.status === "ENABLED") {
-        const result = concealDocument([document.id])
+      const result = concealDocuments([document.id])
     } else {
-      const result = embeddDocument([document.id])
+      const result = embedDocuments([document.id])
     }
   }
 
   const handleDelete = () => {
-        const result = deleteDocument([document.id])
+    const result = deleteDocuments([document.id])
 
   }
 

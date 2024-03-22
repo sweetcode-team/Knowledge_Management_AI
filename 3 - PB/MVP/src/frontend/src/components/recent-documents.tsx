@@ -2,17 +2,10 @@
 import { formatDate, formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat } from "../app/chatbot/data";
 import { Button } from "@/components/ui/button"
-import { buttonVariants } from "@/components/ui/button"
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu"
 
-import { types, statuses } from "@/app/documents/data/data"
-import { Document } from "@/app/documents/data/schema"
+import { statuses } from "@/app/documents/data/data"
+import { DocumentMetadata } from "@/types/types"
 
 import {
   Drawer,
@@ -35,36 +28,37 @@ import {
 import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { StatusBadge } from "./status-badge";
-import {DocumentContent} from "@/types/types";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 interface RecentDocumentsProps {
-  items: Document[]
+  items: DocumentMetadata[]
 }
-async function getDocumentContent(id: string): Promise<DocumentContent> {
-  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`, { cache: 'no-store' })
+
+async function getDocumentContent(id: string): Promise<DocumentMetadata> {
+  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`)
   return result.json()
 }
-export async function HandleClick(id: string) {
-  const [src, setSrc] = useState('');
-  const documentContent = await getDocumentContent("2024-02-19.pdf");
-  useEffect(() => {
-    const prova = Buffer.from(documentContent.content, 'hex')
-    const blob = new Blob([prova], {type: 'application/pdf'});
-    //Object.assign(prova, {preview:  URL.createObjectURL(blob)});
-    const pdfUrl = URL.createObjectURL(blob);
-    setSrc(pdfUrl);
-  }, [documentContent.content]);
 
-  return (
-      <div>
-        <a href={src} target="_blank"> prova </a>
-      </div>
-  );
-}
-export function RecentDocuments({
-  items,
-}: RecentDocumentsProps) {
+// export async function handleClick(id: string) {
+//   const [src, setSrc] = useState('');
+
+//   useEffect(() => {
+//     const documentContent = await getDocumentContent("2024-02-19.pdf");
+//     const prova = Buffer.from(documentContent.content, 'hex')
+//     const blob = new Blob([prova], { type: 'application/pdf' });
+//     //Object.assign(prova, {preview:  URL.createObjectURL(blob)});
+//     const pdfUrl = URL.createObjectURL(blob);
+//     setSrc(pdfUrl);
+//   }, [documentContent.content]);
+
+//   return (
+//     <div>
+//       <a href={src} target="_blank"> prova </a>
+//     </div>
+//   );
+// }
+
+export function RecentDocuments({ items }: RecentDocumentsProps) {
 
   return (
     <ScrollArea>
@@ -138,8 +132,9 @@ export function RecentDocuments({
                   </Table>
                 </div>
                 <DrawerFooter>
-                  <Button asChild onClick={() => HandleClick(item.id)}>
+                  <Button asChild>
                     <Link href={`/documents/${item.id}`} >
+                      {/* TODO: pagina documents/id che fa richiesta document content e crea il documento, visualizzando blob o mammoth */}
                       View content
                     </Link>
                   </Button>
@@ -150,36 +145,6 @@ export function RecentDocuments({
               </div>
             </DrawerContent>
           </Drawer>
-          /* <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="ghost" size="sm" className="text-error-foreground hover:bg-error hover:text-error-foreground w-full justify-start px-2 py-[6px] h-8"
-          >
-            Delete
-          </Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the selected document.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel
-              onClick={() => hideContextMenu(item.id)}
-            >
-              Abort</AlertDialogCancel>
-            <AlertDialogAction className={
-              cn(buttonVariants({ variant: "destructive" }),
-                "mt-2 sm:mt-0")}
-              onClick={() => {
-                hideContextMenu(item.id)
-                deleteDocument(item.id)
-              }}
-            >Delete</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog> */
         ))}
       </div>
     </ScrollArea >

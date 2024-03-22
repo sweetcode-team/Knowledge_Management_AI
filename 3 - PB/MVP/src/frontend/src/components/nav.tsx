@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
@@ -12,11 +11,11 @@ import {
 } from "@/components/ui/tooltip"
 
 import { usePathname } from 'next/navigation';
-import { Types } from "@/types/types"
+import { NavItems } from "@/types/types"
 
 interface NavProps {
   isCollapsed: boolean
-  links: Types[]
+  links: NavItems[]
 }
 
 export function Nav({ links, isCollapsed }: NavProps) {
@@ -42,7 +41,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
                     )}
                   >
-                    <link.icon className="h-5 w-5" />
+                    <link.icon className="min-h-5 min-w-5 h-5 w-5" />
                     <span className="sr-only">{link.title}</span>
                   </Link>
                 </TooltipTrigger>
@@ -62,8 +61,12 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 "justify-start last:mt-auto"
               )}
             >
-              <link.icon className="mr-2 h-5 w-5" />
-              {link.title}
+              <link.icon className="mr-2 min-h-5 min-w-5 h-5 w-5" />
+              <div className="flex items-center min-w-0">
+                <p className="truncate">
+                  {link.title}
+                </p>
+              </div>
             </Link>
           )
         )}

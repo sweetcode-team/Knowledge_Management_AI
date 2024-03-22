@@ -1,14 +1,12 @@
-import { NavItem } from '@/types/navItem';
+import { NavItems } from '@/types/types';
 import {
   BotMessageSquareIcon,
   FolderOpenIcon,
   GalleryVerticalEndIcon,
-  LayoutDashboardIcon,
-  MessageSquareTextIcon,
   SettingsIcon
 } from 'lucide-react';
 
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS: NavItems[] = [
   {
     title: "Dashboard",
     path: "/",

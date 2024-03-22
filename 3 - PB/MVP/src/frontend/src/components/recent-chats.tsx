@@ -2,7 +2,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat } from "../app/chatbot/data";
+import { Chat } from "@/types/types";
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -29,11 +29,11 @@ interface RecentChatsProps {
 
 export function RecentChats({ items }: RecentChatsProps) {
 
-  const hideContextMenu = (id: string) => {
-    document.getElementById(id)!.style.display = "none";
+  const hideContextMenu = (id: number) => {
+    document.getElementById(id.toString())!.style.display = "none";
   }
 
-  const handleDeleteChat = (id: string) => {
+  const handleDeleteChat = (id: number) => {
     console.log('Chat deleted:', id)
   }
 
@@ -69,7 +69,7 @@ export function RecentChats({ items }: RecentChatsProps) {
                 </div>
               </div>
             </ContextMenuTrigger>
-            <ContextMenuContent id={item.id}>
+            <ContextMenuContent id={item.id.toString()}>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="ghost" size="sm" className="text-error-foreground hover:bg-error hover:text-error-foreground w-full justify-start px-2 py-[6px] h-8"

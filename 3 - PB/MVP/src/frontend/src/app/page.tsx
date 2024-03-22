@@ -1,5 +1,4 @@
 import { ActionButton } from '@/components/action-button'
-import { Button } from '@/components/ui/button';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
@@ -8,12 +7,7 @@ import { ExpandIcon, FilePlusIcon, MessageSquarePlusIcon } from 'lucide-react';
 import { RecentChats } from "@/components/recent-chats"
 import { RecentDocuments } from "@/components/recent-documents"
 import Link from 'next/link';
-import { documentSchema } from "@/app/documents/data/schema"
-import { promises as fs } from "fs"
-import { z } from "zod"
-import path from "path"
-import { ChatContent } from './chatbot/components/chat-content';
-import { Label } from "@/components/ui/label"
+
 import {
   Tabs,
   TabsContent,
@@ -21,46 +15,47 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import type {
-    Chat,
-    ChatPreview,
-    Configuration,
-    DocumentContent,
-    DocumentOperationResponse,
-    MessageResponse
+  Chat,
+  ChatPreview,
+  Configuration,
+  DocumentContent,
+  DocumentOperationResponse,
+  MessageResponse
 } from '@/types/types'
-import {toast} from "sonner";
-//import {useEffect, useState} from "react";
-import {getDocuments} from "@/app/documents/page"
 
-async function getDocumentContent(id: string): Promise<DocumentContent> {
-  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`, { cache: 'no-store' })
+import { getDocuments } from "@/app/documents/page"
+
+export async function getDocumentContent(id: string): Promise<DocumentContent> {
+  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`)
   return result.json()
 }
 
-async function getChatMessages(id: string): Promise<Chat> {
-    const result = await fetch(`http://localhost:4000/getChatMessages/${id}`, { cache: 'no-store' })
-    return result.json()
+export async function getChatMessages(id: string): Promise<Chat> {
+  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
+  return result.json()
 }
-async function getConfiguration(): Promise<Configuration> {
-    const result = await fetch(`http://localhost:4000/getConfiguration`, { cache: 'no-store' })
-    return result.json()
+
+export async function getConfiguration(): Promise<Configuration> {
+  "use server"
+  const result = await fetch(`http://localhost:4000/getConfiguration`)
+  return result.json()
 }
+
 async function askChatbot(id: string): Promise<MessageResponse> {
-    const message = "chi è andrea barutta?";
-    const formData = new URLSearchParams();
-    formData.append('message', message);
+  const message = "chi è andrea barutta?"
+  const formData = new URLSearchParams()
+  formData.append('message', message)
 
-    const response = await fetch('http://localhost:4000/askChatbot', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString()
-    });
+  const response = await fetch('http://localhost:4000/askChatbot', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  })
 
-
-     // Attendiamo che il corpo della risposta sia disponibile
-    return await response.json(); // Restituiamo i dati JSON ricevuti dalla richiesta
+  // Attendiamo che il corpo della risposta sia disponibile
+  return await response.json()
 }
 
 export default async function Dashboard() {
@@ -138,7 +133,8 @@ export default async function Dashboard() {
         </div>
       </div >
     </ScrollArea>
-  )}
+  )
+}
 
 /*
 export function HomeAskChatbot(message: string){

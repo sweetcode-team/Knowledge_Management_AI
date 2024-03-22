@@ -1,32 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-async function getConfiguration() {
-  //1000ms delay to simulate a real API call
-  await new Promise((resolve) => setTimeout(resolve, 500))
-  return true
-}
+import { getConfiguration } from '@/app/page'
 
 export async function middleware(req: NextRequest) {
-    const pathname = req.nextUrl.pathname
+  const pathname = req.nextUrl.pathname
 
-    if (req.nextUrl.pathname.startsWith("/_next")) {
-      return NextResponse.next();
-    }
-  
-    const isConfigurationSet = await getConfiguration()
-    const isConfigurationPage = pathname.startsWith('/configuration')
-
-    if (isConfigurationPage) {
-      if (isConfigurationSet) {
-        return NextResponse.redirect(new URL('/', req.url))
-      }
-      return NextResponse.next()
+  if (req.nextUrl.pathname.startsWith("/_next")) {
+    return NextResponse.next();
   }
 
-    if (!isConfigurationSet) {
-        return NextResponse.redirect(new URL('/configuration', req.url))
+  let isConfigurationSet = false
+  try {
+    const currentConfiguration = await getConfiguration()
+    isConfigurationSet =
+      currentConfiguration.LLMModel !== null
+      && currentConfiguration.documentStore !== null
+      && currentConfiguration.embeddingModel !== null
+      && currentConfiguration.vectorStore !== null
+  } catch (error) {
+    // return NextResponse.redirect(req.url, { status: 301 });
+    console.error('Errore durante la richiesta:', error);
+  }
+
+  const isConfigurationPage = pathname.startsWith('/configuration')
+
+  if (isConfigurationPage) {
+    if (isConfigurationSet) {
+      return NextResponse.redirect(new URL('/', req.url))
     }
     return NextResponse.next()
+  }
+
+  if (!isConfigurationSet) {
+      return NextResponse.redirect(new URL('/configuration', req.url))
+  }
+  return NextResponse.next()
 }
 
 export const config = {

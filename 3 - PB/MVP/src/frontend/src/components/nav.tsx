@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
@@ -12,11 +11,11 @@ import {
 } from "@/components/ui/tooltip"
 
 import { usePathname } from 'next/navigation';
-import { Types } from "@/types/types"
+import { NavItems } from "@/types/types"
 
 interface NavProps {
   isCollapsed: boolean
-  links: Types[]
+  links: NavItems[]
 }
 
 export function Nav({ links, isCollapsed }: NavProps) {

@@ -20,21 +20,21 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog"
 
-import { statuses } from "../data/data"
+import { statuses } from "@/app/documents/data/data"
 import { TrashIcon } from "lucide-react"
-import {DocumentMetadata, DocumentOperationResponse} from "@/types/types";
-import {revalidatePath} from "next/cache";
+import { DocumentMetadata, DocumentOperationResponse } from "@/types/types";
+import { revalidatePath } from "next/cache";
 
 
 interface DataTableGroupActionsProps<TData> {
   table: Table<TData>
 }
-export async function embeddDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+export async function embeddDocument(ids: string[] = []): Promise<DocumentOperationResponse[]> {
 
   const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('documentIds', id));
+  ids.forEach(id => formData.append('documentIds', id));
 
-  const result = await fetch(`http://localhost:4000/embedDocuments`,{
+  const result = await fetch(`http://localhost:4000/embedDocuments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -43,12 +43,12 @@ export async function embeddDocument(ids : string[] = []): Promise<DocumentOpera
   });
   return result.json()
 }
-export async function concealDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+export async function concealDocument(ids: string[] = []): Promise<DocumentOperationResponse[]> {
 
   const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('documentIds', id));
+  ids.forEach(id => formData.append('documentIds', id));
 
-  const result = await fetch(`http://localhost:4000/concealDocuments`,{
+  const result = await fetch(`http://localhost:4000/concealDocuments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -59,23 +59,23 @@ export async function concealDocument(ids : string[] = []): Promise<DocumentOper
 }
 export async function deleteDocument(ids: string[]): Promise<DocumentOperationResponse> {
   const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('documentIds', id));
+  ids.forEach(id => formData.append('documentIds', id));
 
-    const result = await fetch(`http://localhost:4000/deleteDocuments`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString()
-        }
-    )
-    return result.json()
+  const result = await fetch(`http://localhost:4000/deleteDocuments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  }
+  )
+  return result.json()
 }
-export async function enableDocument(ids : string[] = []): Promise<DocumentOperationResponse[]> {
+export async function enableDocument(ids: string[] = []): Promise<DocumentOperationResponse[]> {
   const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('documentIds', id));
+  ids.forEach(id => formData.append('documentIds', id));
 
-  const result = await fetch(`http://localhost:4000/enableDocuments`,{
+  const result = await fetch(`http://localhost:4000/enableDocuments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -92,21 +92,21 @@ export function DataTableGroupActions<TData>({
   const handleAction = () => {
     console.log(selectedRowsStatuses)
     if (selectedRowsStatuses.has("NOT_EMBEDDED")) {
-        const result = embeddDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-        result.then((res) => console.log(res))
-    }else if(selectedRowsStatuses.has("ENABLED")){
-        const result = concealDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-        result.then((res) => console.log(res))
-    }else if(selectedRowsStatuses.has("CONCEALED")){
+      const result = embeddDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      result.then((res) => console.log(res))
+    } else if (selectedRowsStatuses.has("ENABLED")) {
+      const result = concealDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      result.then((res) => console.log(res))
+    } else if (selectedRowsStatuses.has("CONCEALED")) {
       const result = enableDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-        result.then((res) => console.log(res))
+      result.then((res) => console.log(res))
     }
   }
 
   const handleDelete = () => {
     const result = deleteDocument(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
     result.then((res) => console.log(res))
-    }
+  }
 
   const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
 

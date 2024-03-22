@@ -16,7 +16,7 @@ interface ChatDisplayProps {
 }
 
 async function getChatMessages(id: number = -1): Promise<Chat> {
-  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`, { cache: 'no-store' })
+  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
   return result.json()
 }
 

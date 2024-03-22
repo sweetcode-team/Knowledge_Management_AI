@@ -13,7 +13,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 import Header from "@/components/header"
 import { usePathname } from "next/navigation";
-import { Types } from "@/types/types";
+import { NavItems } from "@/types/types";
 
 interface ResizableLayoutProps {
     defaultLayout: number[] | undefined
@@ -32,7 +32,7 @@ export function ResizableLayout({
 
     const pathname = "/" + usePathname().split("/")[1];
 
-    const navItems: Types[] = NAV_ITEMS
+    const navItems: NavItems[] = NAV_ITEMS
 
     const title = navItems.find((item) => item.path === pathname)?.title
 

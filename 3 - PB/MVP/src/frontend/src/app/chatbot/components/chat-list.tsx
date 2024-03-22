@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { useChat } from "../use-chat";
-import { Chat, ChatPreview } from "@/types/types";
+import { ChatPreview } from "@/types/types";
 import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useCallback } from 'react';

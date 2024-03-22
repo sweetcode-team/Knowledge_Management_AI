@@ -1,3 +1,5 @@
+"use server"
+
 import { ActionButton } from '@/components/action-button'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -23,40 +25,7 @@ import type {
   MessageResponse
 } from '@/types/types'
 
-import { getDocuments } from "@/app/documents/page"
-
-export async function getDocumentContent(id: string): Promise<DocumentContent> {
-  const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`)
-  return result.json()
-}
-
-export async function getChatMessages(id: string): Promise<Chat> {
-  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
-  return result.json()
-}
-
-export async function getConfiguration(): Promise<Configuration> {
-  "use server"
-  const result = await fetch(`http://localhost:4000/getConfiguration`)
-  return result.json()
-}
-
-async function askChatbot(id: string): Promise<MessageResponse> {
-  const message = "chi è andrea barutta?"
-  const formData = new URLSearchParams()
-  formData.append('message', message)
-
-  const response = await fetch('http://localhost:4000/askChatbot', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formData.toString()
-  })
-
-  // Attendiamo che il corpo della risposta sia disponibile
-  return await response.json()
-}
+import { getDocuments } from '@/lib/actions';
 
 export default async function Dashboard() {
   const documents = await getDocuments()

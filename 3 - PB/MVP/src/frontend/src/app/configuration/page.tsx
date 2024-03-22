@@ -382,9 +382,3 @@ export default function Configuration() {
         </div>
     )
 }
-
-
-
-export function ConfigurationForm() {
-
-}

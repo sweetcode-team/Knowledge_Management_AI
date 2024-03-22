@@ -14,9 +14,9 @@ Returns:
 @setConfigurationBlueprint.route("/setConfiguration", methods=['POST'])
 def setConfiguration():
     LLMModelChoice = request.form.get('LLMModel')
-    DocumentStoreChoice = request.form.get('DocumentStore')
-    VectorStoreChoice = request.form.get('VectorStore')
-    EmbeddingModelChoice = request.form.get('EmbeddingModel')
+    DocumentStoreChoice = request.form.get('documentStore')
+    VectorStoreChoice = request.form.get('vectorStore')
+    EmbeddingModelChoice = request.form.get('embeddingModel')
     if LLMModelChoice is None or DocumentStoreChoice is None or VectorStoreChoice is None or EmbeddingModelChoice is None:
         raise InsufficientParameters()
     if LLMModelChoice.strip() == "":

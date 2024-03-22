@@ -1,113 +1,107 @@
-import * as React from "react"
-import {useEffect, useRef, useState} from "react"
-import {Button} from "@/components/ui/button"
-import {Separator} from "@/components/ui/separator"
-import {Textarea} from "@/components/ui/textarea"
-import {Chat, Message, MessageResponse, MessageSender} from "@/types/types"
-import {ScrollArea} from '@/components/ui/scroll-area';
-import {ChatContent} from "@/app/chatbot/components/chat-content"
-import {ChatHeader} from "./chat-header"
-import Image from "next/image"
-import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon, XCircleIcon } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Textarea } from "@/components/ui/textarea"
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { ChatContent } from "@/app/chatbot/components/chat-content"
+import { ChatHeader } from "./chat-header"
+import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
+import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 
+import { Chat, Message, MessageResponse, MessageSender } from "@/types/types"
 
 interface ChatDisplayProps {
-  chatId: Chat["id"]
+  chatId: Chat["id"] | null
 }
+
 async function getChatMessages(id: number = -1): Promise<Chat> {
-    const result = await fetch(`http://localhost:4000/getChatMessages/${id}`, { cache: 'no-store' })
-    return result.json()
+  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
+  return result.json()
 }
-async function askChatbot(id: number, message: string): Promise<MessageResponse> {
-    console.log(id, message)
-    if (id === undefined|| message === "") {
-        throw new Error('error non specificato');
-    }
-    const formData = new FormData();
-    formData.append('message', message);
-    console.log(formData.toString())
-    const response = await fetch('http://localhost:4000/askChatbot', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString()
-    });
-     // Attendiamo che il corpo della risposta sia disponibile
-    return await response.json(); // Restituiamo i dati JSON ricevuti dalla richiesta
+
+async function askChatbot(id: number | null, message: string): Promise<MessageResponse> {
+
+  // TODO: Usare react use form e zod per validare il messaggio
+
+  const formData = new FormData();
+  formData.append('message', message);
+  console.log(formData.toString())
+  const response = await fetch('http://localhost:4000/askChatbot', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData.toString()
+  })
+  return await response.json()
 }
+
 export function ChatDisplay({ chatId }: ChatDisplayProps) {
   const [input, setInput] = useState("")
   const [isRecording, setIsRecording] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const recognitionRef = useRef<any>(null)
-
   const [chat, setChat] = useState<Chat | null>(null);
+
   useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-              if (chatId){
-                const chat = await getChatMessages(chatId);
-                console.log(chat)
-                setChat(chat);
-              }
-            } catch (error) {
-                console.error('Errore durante il recupero dei messaggi della chat:', error);
-            }
-        };
-        fetchMessages();
-    }, [chatId]);
+    const fetchMessages = async () => {
+      try {
+        if (chatId) {
+          const chat = await getChatMessages(chatId)
+          setChat(chat)
+        }
+      } catch (error) {
+        console.error('Errore durante il recupero dei messaggi della chat:', error)
+      }
+    }
+    fetchMessages()
+  }, [chatId])
 
 
-  const handleMessageSubmit = () => {
-    if (input.trim().length === 0) return
+  const handleMessageSubmit = async () => {
+    setInput("")
+    setIsRecording(false)
+    setIsPaused(false)
+
+    if (input.trim().length === 0)
+      return
     const timestamp = new Date().toLocaleTimeString();
-    setChat(prevChat => {
-        if (!prevChat){
-        setInput("")
-        setIsRecording(false)
-        setIsPaused(false)
-        return null
-        }
-        return {
-            ...prevChat,
-            messages: [
-            ...prevChat.messages,
-            {
-                sender: MessageSender.USER,
-                content: input,
-                timestamp: timestamp,
-                relevantDocuments: []
-            }
-            ]
-        }
 
-  })
-  }
-
-  const responseChatBot = async () => {
-    const response = await askChatbot(chatId);
-    console.log(response);
-    const timestamp = new Date().toLocaleTimeString();
     setChat(prevChat => {
-        if (!prevChat){
-        setInput("")
-        setIsRecording(false)
-        setIsPaused(false)
+      if (!prevChat) {
         return null
-        }return {
-            ...prevChat,
-            messages: [
-            ...prevChat.messages,
-            {
-                sender: MessageSender.CHATBOT,
-                content: response.messageResponse.content,
-                timestamp: response.messageResponse.timestamp,
-                relevantDocuments: response.messageResponse.relevantDocuments
-            }
-            ]
-        }
+      } return {
+        ...prevChat,
+        messages: [
+          ...prevChat.messages,
+          {
+            sender: MessageSender.USER,
+            content: input,
+            timestamp,
+            relevantDocuments: []
+          }
+        ]
+      }
+    })
+
+    const response = await askChatbot(chatId, input.trim());
+
+    setChat(prevChat => {
+      if (!prevChat) {
+        return null
+      } return {
+        ...prevChat,
+        messages: [
+          ...prevChat.messages,
+          {
+            sender: MessageSender.CHATBOT,
+            content: response.messageResponse.content,
+            timestamp: response.messageResponse.timestamp,
+            relevantDocuments: response.messageResponse.relevantDocuments
+          }
+        ]
+      }
     })
   }
 
@@ -211,7 +205,7 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
           </div>
         ) : (
           <div className="h-full flex flex-col items-center justify-center select-none animate-show-in" >
-            <Image src="sweetcode-logo.svg" width={70} height={70} className="dark:invert" alt="SWEetCode logo" />
+            <SWEetCodeLogo className="w-20 h-20" />
             <h4 className="text-lg font-bold" >Hey, how can I help you?</h4>
           </div>
         )}
@@ -258,7 +252,7 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
                 }
               </div>
               <Textarea
-                className="flex-1 min-h-28"
+                className="flex-1 min-h-28 max-h-60"
                 placeholder={`Type your message...`}
                 value={input}
                 onChange={(e) => setInput(e.target.value.trimStart())}

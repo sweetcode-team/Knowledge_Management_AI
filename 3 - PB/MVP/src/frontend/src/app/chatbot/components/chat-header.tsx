@@ -10,9 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { useChat } from "../use-chat";
 
 const RenameChatFormSchema = z.object({
     title: z.string().min(1).max(70),

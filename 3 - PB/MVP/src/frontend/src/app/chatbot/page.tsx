@@ -1,15 +1,15 @@
 import { cookies } from "next/headers"
 
 import { Chatbot } from "@/app/chatbot/components/chatbot"
-import {Chat, ChatPreview, Message} from "@/types/types";
+import { Chat, ChatPreview, Message } from "@/types/types";
 // import { chats } from "@/app/chatbot/data"
 
-async function getChats(id: string = ""):Promise<ChatPreview[]> {
+async function getChats(id: string = ""): Promise<ChatPreview[]> {
     if (id === "") {
-        const result = await fetch("http://localhost:4000/getChats", { cache: 'no-store' })
+        const result = await fetch("http://localhost:4000/getChats")
         return result.json()
     }
-    const result = await fetch(`http://localhost:4000/getChats/${id}`, { cache: 'no-store' })
+    const result = await fetch(`http://localhost:4000/getChats/${id}`)
     return result.json()
 }
 

@@ -1,26 +1,23 @@
 'use client'
 
 import { forwardRef } from 'react'
-import Image from 'next/image'
-import { useUploadFile } from '@/hooks/use-upload-file'
-import { Progress } from '@radix-ui/react-progress'
-import { Loader2, TrashIcon } from 'lucide-react'
+import { TrashIcon } from 'lucide-react'
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button'
 
 interface FileUploadProps extends React.HTMLAttributes<HTMLTableRowElement> {
-  name: string
-  size: number
-  getUrl: string
-  type : string
-  error?: boolean | undefined
-  deleteAction: () => void
+    name: string
+    size: number
+    getUrl: string
+    type: string
+    error?: boolean | undefined
+    deleteAction: () => void
 }
 
 export const FileUpload = forwardRef<HTMLTableRowElement, FileUploadProps>(
-    ({ getUrl, error,type, name, size, className, deleteAction, ...props }, ref) => {
-    
+    ({ getUrl, error, type, name, size, className, deleteAction, ...props }, ref) => {
+
 
         return (
             <tr ref={ref} {...props} className={cn('', className)}>
@@ -57,14 +54,14 @@ export const FileUpload = forwardRef<HTMLTableRowElement, FileUploadProps>(
                     {type.toUpperCase()}
                 </td>
                 <td>
-                    <Button 
-                    size="icon" 
-                    variant="ghost" 
-                    className="hover:text-error-foreground" 
-                    onClick={() => {
+                    <Button
+                        size="icon"
+                        variant="ghost"
+                        className="hover:text-error-foreground"
+                        onClick={() => {
                             deleteAction()
                         }}>
-                        <TrashIcon className="h-4 w-4"/>
+                        <TrashIcon className="h-4 w-4" />
                     </Button>
                 </td>
             </tr>

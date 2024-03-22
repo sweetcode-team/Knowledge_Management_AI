@@ -1,5 +1,7 @@
 import { LucideIcon } from "lucide-react";
 
+import { z } from "zod";
+
 export type NavItems = {
     title: string
     path: string
@@ -134,3 +136,8 @@ export type ConfigurationOptions = {
     documentStores: DocumentStore[]
 }
 
+export const configurationFormSchema = z.object({
+    LLMModel: z.string()
+})
+
+export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>

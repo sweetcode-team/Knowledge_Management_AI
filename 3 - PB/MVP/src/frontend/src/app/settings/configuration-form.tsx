@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, useForm } from "react-hook-form"
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -29,7 +29,9 @@ import {
   VectorStore,
   DocumentStore,
   EmbeddingsModel,
-  ConfigurationOptions
+  ConfigurationOptions,
+  ConfigurationFormValues,
+  configurationFormSchema
 } from "@/types/types"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card"
@@ -44,32 +46,38 @@ import {
 } from "@/components/ui/carousel"
 import { InfoIcon } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-
-const configurationFormSchema = z.object({
-  LLMModel: z.string()
-})
-
-type ConfigurationFormValues = z.infer<typeof configurationFormSchema>
-
-const defaultValues: Partial<ConfigurationFormValues> = {}
+import { changeConfiguration } from "@/lib/actions"
 
 export function ConfigurationForm() {
   const form = useForm<ConfigurationFormValues>({
     resolver: zodResolver(configurationFormSchema),
-    defaultValues,
     mode: "onChange",
   })
 
-  function onSubmit(data: ConfigurationFormValues) {
-    // TODO: changeConfiguration(data)
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data) => {
+    const result = await changeConfiguration(data)
+
+    if (!result) {
+      toast({
+        variant: "destructive",
+        title: "An error occurred",
+        description: "Please try again later.",
+      })
+      return
+    }
+
+    if (result.status) {
+      toast({
+        title: "Configuration updated",
+        description: result.message,
+      })
+    } else {
+      toast({
+        variant: "destructive",
+        title: "An error occurred",
+        description: result.message,
+      })
+    }
   }
 
   const currentConfiguration: Configuration = {

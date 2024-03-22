@@ -11,30 +11,10 @@ import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 
 import { Chat, Message, MessageResponse, MessageSender } from "@/types/types"
 
+import { getChatMessages, askChatbot } from "@/lib/actions"
+
 interface ChatDisplayProps {
   chatId: Chat["id"] | null
-}
-
-async function getChatMessages(id: number = -1): Promise<Chat> {
-  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
-  return result.json()
-}
-
-async function askChatbot(id: number | null, message: string): Promise<MessageResponse> {
-
-  // TODO: Usare react use form e zod per validare il messaggio
-
-  const formData = new FormData();
-  formData.append('message', message);
-  console.log(formData.toString())
-  const response = await fetch('http://localhost:4000/askChatbot', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formData.toString()
-  })
-  return await response.json()
 }
 
 export function ChatDisplay({ chatId }: ChatDisplayProps) {
@@ -85,24 +65,25 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
       }
     })
 
-    const response = await askChatbot(chatId, input.trim());
+    // TODO
+    // const response = await askChatbot(chatId, input.trim());
 
-    setChat(prevChat => {
-      if (!prevChat) {
-        return null
-      } return {
-        ...prevChat,
-        messages: [
-          ...prevChat.messages,
-          {
-            sender: MessageSender.CHATBOT,
-            content: response.messageResponse.content,
-            timestamp: response.messageResponse.timestamp,
-            relevantDocuments: response.messageResponse.relevantDocuments
-          }
-        ]
-      }
-    })
+    // setChat(prevChat => {
+    //   if (!prevChat) {
+    //     return null
+    //   } return {
+    //     ...prevChat,
+    //     messages: [
+    //       ...prevChat.messages,
+    //       {
+    //         sender: MessageSender.CHATBOT,
+    //         content: response.messageResponse.content,
+    //         timestamp: response.messageResponse.timestamp,
+    //         relevantDocuments: response.messageResponse.relevantDocuments
+    //       }
+    //     ]
+    //   }
+    // })
   }
 
   useEffect(() => {

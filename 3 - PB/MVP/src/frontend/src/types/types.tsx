@@ -30,15 +30,10 @@ export type ChatPreview = {
 
 // MESSAGE
 
-export enum MessageSender {
-    USER = 1,
-    CHATBOT = 2
-}
-
 export type Message = {
     content: string
     timestamp: string
-    sender: MessageSender
+    sender: string
     relevantDocuments: DocumentId[]
 }
 
@@ -143,7 +138,7 @@ export const configurationFormSchema = z.object({
 export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>
 
 export const askChatbotFormSchema = z.object({
-    chatId: z.number().nonnegative().int().nullable(),
+    chatId: z.number().optional(),
     message: z.string()
 })
 

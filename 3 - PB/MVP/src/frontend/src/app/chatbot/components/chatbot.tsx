@@ -47,23 +47,23 @@ export function Chatbot({
             maxSize={40}
             className="flex flex-col"
           >
-            <div className="flex items-center px-4 py-2">
-              <h3 className="text-xl font-bold">Chat list</h3>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="info"
-                    className="ml-auto"
-                    size="icon"
-                    onClick={() => setChat({ selected: null })}
-                  >
-                    <MessageSquarePlusIcon className="h-4 w-4" />
-                    <span className="sr-only">New Chat</span>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>New Chat</TooltipContent>
-              </Tooltip>
-            </div>
+                <div className="flex items-center px-4 py-2">
+                  <h3 className="text-xl font-bold">Chat list</h3>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="info"
+                        className="ml-auto"
+                        size="icon"
+                        onClick={() => setChat({ selected: null })}
+                      >
+                        <MessageSquarePlusIcon className="h-4 w-4" />
+                        <span className="sr-only">New Chat</span>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>New Chat</TooltipContent>
+                  </Tooltip>
+                </div>
             <Separator />
             <ChatList items={chats} />
           </ResizablePanel>

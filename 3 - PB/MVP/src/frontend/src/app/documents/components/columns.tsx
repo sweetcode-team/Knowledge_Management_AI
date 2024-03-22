@@ -128,7 +128,7 @@ export const columns: ColumnDef<DocumentMetadata>[] = [
       <DataTableColumnHeader column={column} title="Upload Time" />
     ),
     cell: ({ row }) => {
-      const date = parseISO(row.getValue("uploadDate"));
+      const date = row.getValue("uploadDate");
       return (
         <div className="flex items-center justify-center">
           <span className="truncate font-medium">

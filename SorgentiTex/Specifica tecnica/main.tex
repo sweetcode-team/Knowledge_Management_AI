@@ -450,6 +450,140 @@ Questa struttura riflette il modello architetturale scelto, facilitando il passa
 \newpage
 \section{Architettura delle componenti} % architettura interna di ciascuna componente
 \subsection{Frontend}
+
+
+\begin{comment}
+    requisiti per frontend
+
+visualizza caratteristiche
+        \item RF.O.10; %visualizza caratteristiche LLM
+        \item RF.O.10.1;%visualizza caratteristiche LLM
+        \item RF.O.10.2;%visualizza caratteristiche LLM
+        \item RF.O.10.3;%visualizza caratteristiche LLM
+        \item RF.O.10.4;%visualizza caratteristiche LLM
+        \item RF.O.10.5; %visualizza caratteristiche LLM
+        \item RF.O.11; %visualizza caratteristiche vector store
+        \item RF.O.11.1;%visualizza caratteristiche vector store
+        \item RF.O.11.2;%visualizza caratteristiche vector store
+        \item RF.O.11.3;%visualizza caratteristiche vector store
+        \item RF.O.11.4;%visualizza caratteristiche vector store
+        \item RF.O.11.5%visualizza caratteristiche vector store
+        \item RF.O.12;%visualizza caratteristiche embedding model
+        \item RF.O.12.1;%visualizza caratteristiche embedding model
+        \item RF.O.12.2;%visualizza caratteristiche embedding model
+        \item RF.O.12.3;%visualizza caratteristiche embedding model
+        \item RF.O.12.4;%visualizza caratteristiche embedding model
+        \item RF.O.12.5;%visualizza caratteristiche embedding model
+        \item RF.O.13;%visualizza caratteristiche sistema di archiviazione
+        \item RF.O.13.1;%visualizza caratteristiche sistema di archiviazione
+        \item RF.O.13.2;%visualizza caratteristiche sistema di archiviazione
+        \item RF.O.13.3;%visualizza caratteristiche sistema di archiviazione
+        \item RF.O.13.4;%visualizza caratteristiche sistema di archiviazione
+        \item RF.O.13.5.%visualizza caratteristiche sistema di archiviazione
+
+
+
+
+
+
+
+    STAGING:
+    \item RF.O.16; %’utente deve poter caricare un documento nell’area di staging
+    \item RF.O.16.1;% "
+    \item RF.O.16.2;% "
+    \item RF.O.17;% "
+    \item RF.O.17.1;% "
+    \item RF.O.17.2;% "
+    \item RF.O.17.3;% "
+    \item \item RF.O.18; %tentativo formato caricato  in area di staging non supportato
+    \item RF.O.18.1;% "
+     \item RF.O.19; %rimuovere un documento caricato nell’area di stagi
+    \item RF.O.20; % "
+     \item RF.O.21.1; % poter scegliere se sostituire con il documento caricato
+    \item RF.O.21.2; % conferma sostituzione doc
+    \item RF.O.21.3; % annulla sostituzione doc
+    \item RF.O.21.4; % poter scegliere se sostituire con il documenti caricato
+    \item RF.O.21.5; % conferma sostituzione docs
+    \item RF.O.21.6; % annulla sostituzione docs
+    
+Visualizza lista chat e loro informazioni
+ RF.O.34
+    RF.O.34.1
+    RF.O.34.1.1
+    RF.O.34.1.2
+    RF.O.34.1.3
+    RF.O.34.1.4
+
+
+
+    creare nuova chat e visualizzare errore se vuota già esiste
+    RF.O.35
+    RF.O.36
+    RF.O.36.1
+
+    BOH
+    RF.O.27.1 Seleziona più documenti per eliminarli 
+    RF.O.30.1 Seleziona più documenti per occultarli
+    RF.O.32.1 Seleziona più documenti per riabilitarli
+    RF.O.38.2 selezione più chat per eliminarle
+
+
+
+     visualizzare i singoli documenti presenti nel sistema di archiviazione
+  \item RF.O.15;
+    \item RF.O.15.1;
+    \item RF.O.15.1.1;
+    \item RF.O.15.1.2;
+    \item RF.O.15.1.3;
+    \item RF.O.15.1.4;
+    
+
+
+RF.O.43 visualizzare il contenuto di una chat
+RF.O.43.1
+RF.O.43.1.1
+RF.O.43.1.2
+
+RF.D.44 rispostachatbot con riferimento a documento
+RF.D.45 domande suggerite in chat vuota
+RF.D.46 inviare domanda suggerita 
+RF.D.46.1 seleziona dom. suggerita
+RF.D.46.2 conferma invio dom. suggerita
+RF.D.47 ascoltare tramite audio un messaggio
+RF.D.48 copiare un messaggio
+
+
+(fatta?) RF.OP.49 attiva modalità vocale
+RF.OP.50 disattiva mod. vocale
+
+
+RF.O.51 inserire messaggio in area di testo chat
+RF.O.51.1 testuale
+RF.O.51.2 vocale
+RF.O.51.2.1 attiva inserimento messaggio vocale
+RF.O.51.2.2 disattiva inserimento messaggio vocale
+RF.O.53 reso noto mittente per ogni mess.
+
+RF.O.54 offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente.
+
+RF.OP.55 fallback su ai locale
+
+RF.D.56 richiesta non pertinente->risposta cortese
+
+BOH
+RF.O.59
+RF.O.60
+
+
+REQUISITI DI VINCOLO SONO DA PIAZZARE? E QUELLI DI QUALITà?
+
+
+
+
+\end{comment}
+
+
+
 % - X ogni componente frontend:
     % - definizione e utilità
     % - route API
@@ -513,16 +647,15 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 \hline
 500 & Risposta del chatbot fallita. & Errore di generazione della risposta. \\
 \end{xltabular}
-\begin{comment}
+
     
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
-        \item RF.D.40;
-        \item RF.O.47.1;
-        \item RF.O.48.
+     \item RF.O.52;
+     \item RF.OP.57.
 \end{itemize}
-\end{comment}
+
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{AskChatbotController}\textbf{AskChatbotController}: classe controller che si occupa del richiedere una risposta al chatbot ad un messaggio appartente ad una chat allo use case AskChatbotUseCase;
@@ -562,7 +695,7 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 
 
 
-\subsubsection{ChangeConfiguration} %TODO
+\subsubsection{ChangeConfiguration} 
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di cambiare la configurazione del modello LLM del sistema.
 È costituita da:
@@ -598,6 +731,13 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 \hline
 500 & Configurazione fallita. & Errore nell'aggiornamento del modello LLM. \\
 \end{xltabular}
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.6;
+        \item RF.O.6.1.
+\end{itemize}
 
 
 \subsubsubsection{Lista sottocomponenti}
@@ -655,13 +795,13 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 500 & Occultamento fallito. & Errore nell'occultamento dei documenti.\\
 \end{xltabular}
 
-\begin{comment}
+
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
-    \item RF.O.25;
-    \item RF.O.26.
+    \item RF.O.29;
+    \item RF.O.30.
 \end{itemize}
-\end{comment}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -719,14 +859,15 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
 500 & Eliminazione fallita. & Errore nell' eliminazione delle chat. \\
 \end{xltabular}
 
-\begin{comment}
+
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
-        \item RF.O.33
-        \item RF.O.34
-        \item RF.O.34.1
+        \item RF.O.37;
+        \item RF.O.37.1;
+        \item RF.O.38;
+        \item RF.O.38.1. 
 \end{itemize}
-\end{comment}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -841,6 +982,22 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
 500 & Eliminazione fallita. & Errore nell'eliminazione dei documenti.
 \end{xltabular}
 
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.25;
+    \item RF.O.26;
+    \item RF.O.26.1;
+    \item RF.O.26.1.1; % poter visualizzare un errore se l’eliminazione di un documento sul sistema di archiviazione fallisce.
+    \item RF.O.26.2;
+    \item RF.O.26.3;
+    \item RF.O.27;
+    \item RF.O.28;
+    \item RF.O.28.1;
+    \item RF.O.28.1.1; % poter visualizzare un errore se l’eliminazione di un insieme di documenti sul sistema di archiviazione fallisce.
+    \item RF.O.28.2;
+    \item RF.O.28.3.
+   
+\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -906,6 +1063,10 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \end{xltabular}
 
 
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.58
+\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -988,15 +1149,14 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
 500 & Riabilitazione fallita. & Errore nella riabilitazione dei documenti.
 \end{xltabular}
 
-\begin{comment}
     
 
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
-    \item RF.O.25;
-    \item RF.O.26.
+    \item RF.O.31;
+    \item RF.O.32.
 \end{itemize}
-\end{comment}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1051,15 +1211,15 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 500 & Recupero della Chat fallito. & Errore nel recupero dei messaggi. \\
 \end{xltabular}
 
-\begin{comment}
+
+
+
+
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{itemize}
-        \item RF.O.39;
-        \item RF.O.39.1;
-        \item RF.O.39.1.1;
-        \item RF.O.39.1.2.
+        \item RF.O.42.
 \end{itemize}
-\end{comment}
+
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{Chat}\textbf{Chat}: classe di business che rappresenta una chat completa;
@@ -1123,20 +1283,11 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 \hline
 404 & Non sono state trovate chat & - \\
 \end{xltabular}
-\begin{comment}
+
     
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.30;
-        \item RF.O.30.1;
-        \item RF.O.30.1.1;
-        \item RF.O.30.1.2;
-        \item RF.O.30.1.3;
-        \item RF.O.30.1.4;
-        \item RF.O.38.
-\end{itemize}
-\end{comment}
+\subsubsubsection{Tracciamento dei requisiti} -
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1192,6 +1343,17 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     400 & Recupero configurazione fallito. & Errore nel recupero della configurazione. \\
     \end{xltabular}
     
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+    \begin{itemize}
+        \item RF.O.14;
+        \item RF.O.14.1;
+        \item RF.O.14.2;
+        \item RF.O.14.3;
+        \item RF.O.14.4.
+    \end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1264,6 +1426,19 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \end{xltabular}
     
 
+    \subsubsubsection{Tracciamento dei requisiti}
+    \begin{itemize}
+        \item RF.O.2;
+        \item RF.O.2.1;
+        \item RF.O.3;
+        \item RF.O.3.1;
+        \item RF.O.4;
+        \item RF.O.4.1;
+        \item RF.O.5;
+        \item RF.O.5.1.
+        
+    \end{itemize}
+       
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{ConfigurationOptions}\textbf{ConfigurationOptions}: classe che contiene liste delle possibili configurazioni per vector store, document store, embedding model e LLM;
@@ -1350,7 +1525,12 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
 404 & Ricerca fallita. & Errore nella ricerca dei documenti.
 \end{xltabular}
 
-
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+   
+    \item RF.O.33.
+   
+\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1425,7 +1605,14 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 
 \end{xltabular}
 
-
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.39;
+    \item RF.O.40;
+    \item RF.O.40.1;
+    \item RF.O.41;
+    \item RF.O.41.1.
+\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1492,14 +1679,27 @@ Questa componente ha il compito di impostare le configurazioni di vector store, 
 
 \end{xltabular}
 
-\begin{comment}
-    
 
-    \subsubsubsection{Tracciamento dei requisiti}
-    \begin{itemize}
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item RF.O.1;
+        \item RF.O.1.1;
+        \item RF.O.1.1.1;
+        \item RF.O.1.2;
+        \item RF.O.1.2.1;
+        \item RF.O.1.3;
+        \item RF.O.1.3.1;
+        \item RF.O.1.4;
+        \item RF.O.1.4.1;
+        \item RF.OP.7; %scelta vector db
+        \item RF.OP.7.1;
+        \item RF.OP.8;
+        \item RF.OP.8.1;
+        \item RF.OP.9;
+        \item RF.OP.9.1.
         
-    \end{itemize}
-\end{comment}
+\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1518,11 +1718,24 @@ Questa componente ha il compito di impostare le configurazioni di vector store, 
 \end{itemize}
 
 
-
-
-
-
-
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    
+    
+    \item RF.O.21;% L’utente deve poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging
+    
+    \item RF.O.22;
+    \item RF.O.22.1;
+    \item RF.O.22.1.1;
+    \item RF.O.22.2;
+    \item RF.O.22.3;
+    \item RF.O.23;
+    \item RF.O.23.1;
+    \item RF.O.23.1.1; %L’utente deve poter visualizzare un errore se il caricameno insieme docs fallisce
+    \item RF.O.23.2;
+    \item RF.O.23.3.
+   
+\end{itemize}
 
 \subsubsection{UploadDocuments}
 \subsubsubsection{Descrizione}
@@ -1659,6 +1872,11 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \hline
 404 & Recupero documento fallito. & Errore nel recupero del documento.
 \end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+    \item RF.O.24.%visualizzare contenuto di un docs
+\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}

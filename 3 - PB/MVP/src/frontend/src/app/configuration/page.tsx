@@ -19,7 +19,6 @@ import {
 import { toast } from "@/components/ui/use-toast"
 
 import {
-    Configuration,
     ConfigurationOperationResponse,
     LLMModel,
     VectorStore,

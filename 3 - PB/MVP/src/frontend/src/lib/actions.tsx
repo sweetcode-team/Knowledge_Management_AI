@@ -1,13 +1,26 @@
 "use server"
 
-import { Chat, ChatOperationResponse, ChatPreview, Configuration, ConfigurationOperationResponse, ConfigurationOptions, DocumentContent, DocumentMetadata, DocumentOperationResponse, MessageResponse } from "@/types/types"
+import {
+    AskChatbotFormValues,
+    Chat,
+    ChatOperationResponse,
+    ChatPreview,
+    Configuration,
+    ConfigurationOperationResponse,
+    ConfigurationOptions,
+    DocumentContent,
+    DocumentMetadata,
+    DocumentOperationResponse,
+    MessageResponse
+} from "@/types/types"
 import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
-export async function askChatbot(id: number | null, message: string): Promise<MessageResponse> {
-    const formData = new FormData();
-    formData.append('message', message);
+export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
     console.log(formData.toString())
+    if (formData.chatId === null) {
+        throw new Error("chatId is null")
+    }
     const response = await fetch('http://localhost:4000/askChatbot', {
         method: 'POST',
         headers: {

@@ -68,3 +68,4 @@ export const FileUpload = forwardRef<HTMLTableRowElement, FileUploadProps>(
         )
     }
 )
+FileUpload.displayName = 'FileUpload'

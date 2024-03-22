@@ -344,3 +344,4 @@ export const StagingArea = forwardRef<HTMLInputElement, InputProps>(
         )
     }
 )
+StagingArea.displayName = 'StagingArea'

@@ -141,3 +141,10 @@ export const configurationFormSchema = z.object({
 })
 
 export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>
+
+export const askChatbotFormSchema = z.object({
+    chatId: z.number().nonnegative().int().nullable(),
+    message: z.string()
+})
+
+export type AskChatbotFormValues = z.infer<typeof askChatbotFormSchema>

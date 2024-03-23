@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getConfiguration } from '@/app/page'
+import { getConfiguration } from './lib/actions';
+
 
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
@@ -17,8 +18,8 @@ export async function middleware(req: NextRequest) {
       && currentConfiguration.embeddingModel !== null
       && currentConfiguration.vectorStore !== null
   } catch (error) {
-    // return NextResponse.redirect(req.url, { status: 301 });
-    console.error('Errore durante la richiesta:', error);
+    console.error('Errore durante la richiesta:', error)
+    return NextResponse.error()
   }
 
   const isConfigurationPage = pathname.startsWith('/configuration')

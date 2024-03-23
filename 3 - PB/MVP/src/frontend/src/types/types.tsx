@@ -1,5 +1,7 @@
 import { LucideIcon } from "lucide-react";
 
+import { z } from "zod";
+
 export type NavItems = {
     title: string
     path: string
@@ -28,16 +30,11 @@ export type ChatPreview = {
 
 // MESSAGE
 
-export enum MessageSender {
-    USER = 1,
-    CHATBOT = 2
-}
-
 export type Message = {
     content: string
     timestamp: string
-    sender: MessageSender
-    relevantDocuments: DocumentId[]
+    sender: string
+    relevantDocuments: string[]
 }
 
 export type MessageResponse = {
@@ -48,16 +45,13 @@ export type MessageResponse = {
 
 // DOCUMENT
 
-export type DocumentId = {
-    id: string
-}
-
 export enum Status {
     CONCEALED = 1,
     ENABLED = 2,
     NOT_EMBEDDED = 3,
     INCONSISTENT = 4
 }
+
 export type DocumentContent = {
     id: string
     type: string
@@ -134,3 +128,15 @@ export type ConfigurationOptions = {
     documentStores: DocumentStore[]
 }
 
+export const configurationFormSchema = z.object({
+    LLMModel: z.string()
+})
+
+export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>
+
+export const askChatbotFormSchema = z.object({
+    chatId: z.number().optional(),
+    message: z.string()
+})
+
+export type AskChatbotFormValues = z.infer<typeof askChatbotFormSchema>

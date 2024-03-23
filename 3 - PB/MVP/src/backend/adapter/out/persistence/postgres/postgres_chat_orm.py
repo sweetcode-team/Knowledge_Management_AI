@@ -137,7 +137,6 @@ class PostgresChatORM:
                         [document.documentId for document in db_session.query(MessageRelevantDocuments).filter(MessageRelevantDocuments.id == lastMessage.id).all()],
                         PostgresMessageSenderType[lastMessage.message["type"]]))
                     )
-                    print(1)
                 else:
                     chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
             return chatPreviews

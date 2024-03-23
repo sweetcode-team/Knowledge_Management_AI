@@ -41,6 +41,6 @@ def getDocumentsContent(documentId):
         "content": retrievedDocument.plainDocument.content.content.hex(),
         "type": retrievedDocument.plainDocument.metadata.type.name,
         "size": retrievedDocument.plainDocument.metadata.size,
-        "uploadDate": retrievedDocument.plainDocument.metadata.uploadTime,
+        "uploadDate": retrievedDocument.plainDocument.metadata.uploadTime.isoformat(),
         "status": retrievedDocument.documentStatus.status.name
     })

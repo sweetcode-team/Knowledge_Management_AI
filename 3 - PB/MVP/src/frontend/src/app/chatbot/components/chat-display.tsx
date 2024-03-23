@@ -9,32 +9,20 @@ import { EraserIcon, MicIcon, PauseIcon, PlayIcon, SendIcon, StopCircleIcon } fr
 import { Toggle } from "@/components/ui/toggle"
 import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 
-import { Chat, Message, MessageResponse, MessageSender } from "@/types/types"
+import {
+  askChatbotFormSchema,
+  AskChatbotFormValues,
+  Chat
+} from "@/types/types"
+
+import {getChatMessages, askChatbot, changeConfiguration} from "@/lib/actions"
+import {SubmitHandler, useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {toast} from "@/components/ui/use-toast";
+import {Form, FormField, FormItem} from "@/components/ui/form";
 
 interface ChatDisplayProps {
   chatId: Chat["id"] | null
-}
-
-async function getChatMessages(id: number = -1): Promise<Chat> {
-  const result = await fetch(`http://localhost:4000/getChatMessages/${id}`)
-  return result.json()
-}
-
-async function askChatbot(id: number | null, message: string): Promise<MessageResponse> {
-
-  // TODO: Usare react use form e zod per validare il messaggio
-
-  const formData = new FormData();
-  formData.append('message', message);
-  console.log(formData.toString())
-  const response = await fetch('http://localhost:4000/askChatbot', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formData.toString()
-  })
-  return await response.json()
 }
 
 export function ChatDisplay({ chatId }: ChatDisplayProps) {
@@ -43,6 +31,51 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
   const [isPaused, setIsPaused] = useState(false)
   const recognitionRef = useRef<any>(null)
   const [chat, setChat] = useState<Chat | null>(null);
+  const formDefaultValues = chatId !== null ? { chatId } : {};
+  console.log(chatId)
+  const form = useForm<AskChatbotFormValues>({
+    resolver: zodResolver(askChatbotFormSchema),
+    defaultValues: formDefaultValues,
+    mode: "onChange",
+  })
+
+  const onSubmit: SubmitHandler<AskChatbotFormValues> = async (data) => {
+    if (chatId !== null) data.chatId = chatId;
+    console.log("onsub chat id" + data.chatId + "onsub message" + data.message)
+    const result = await askChatbot(data);
+    console.log(result)
+    // setChat(prevChat => {
+    //   if (!prevChat) {
+    //     return null
+    //   } return {
+    //     ...prevChat,
+    //     messages: [
+    //       ...prevChat.messages,
+    //       {
+    //         sender: MessageSender.CHATBOT,
+    //         content: response.messageResponse.content,
+    //         timestamp: response.messageResponse.timestamp,
+    //         relevantDocuments: response.messageResponse.relevantDocuments
+    //       }
+    //     ]
+    //   }
+    // })
+    if (!result) {
+      toast({
+        variant: "destructive",
+        title: "An error occurred",
+        description: "Please try again later.",
+      })
+      return
+    }
+
+    if (!result.status) {
+      toast({
+        variant: "destructive",
+        title: "An error occurred",
+      })
+    }
+  }
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -52,58 +85,14 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
           setChat(chat)
         }
       } catch (error) {
-        console.error('Errore durante il recupero dei messaggi della chat:', error)
+        toast({
+        variant: "destructive",
+        title: "An error occurred while fetching messages",
+      })
       }
     }
     fetchMessages()
   }, [chatId])
-
-
-  const handleMessageSubmit = async () => {
-    setInput("")
-    setIsRecording(false)
-    setIsPaused(false)
-
-    if (input.trim().length === 0)
-      return
-    const timestamp = new Date().toLocaleTimeString();
-
-    setChat(prevChat => {
-      if (!prevChat) {
-        return null
-      } return {
-        ...prevChat,
-        messages: [
-          ...prevChat.messages,
-          {
-            sender: MessageSender.USER,
-            content: input,
-            timestamp,
-            relevantDocuments: []
-          }
-        ]
-      }
-    })
-
-    const response = await askChatbot(chatId, input.trim());
-
-    setChat(prevChat => {
-      if (!prevChat) {
-        return null
-      } return {
-        ...prevChat,
-        messages: [
-          ...prevChat.messages,
-          {
-            sender: MessageSender.CHATBOT,
-            content: response.messageResponse.content,
-            timestamp: response.messageResponse.timestamp,
-            relevantDocuments: response.messageResponse.relevantDocuments
-          }
-        ]
-      }
-    })
-  }
 
   useEffect(() => {
     if (!("webkitSpeechRecognition" in window)) {
@@ -154,7 +143,7 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
         recognition.stop()
       }
     }
-  }, [])
+  }, [isRecording, isPaused])
 
   const startRecording = () => {
     console.log("startRecording")
@@ -211,80 +200,81 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
         )}
         <div>
           <Separator className="mt-auto" />
-          <form className="p-4" onSubmit={(e) => {
-            e.preventDefault()
-            handleMessageSubmit()
-          }}>
-            <div className="flex max-h-full justify-between space-x-2">
-              <div className="flex flex-col space-y-2">
-                <Button
-                  onClick={
-                    () => {
-                      if (isRecording) {
-                        stopRecording();
-                      } else {
-                        startRecording();
-                      }
-                    }
-                  }
-                  variant={isRecording ? isPaused ? "danger" : "destructive" : "default"}
-                  size="icon"
-                >
-                  {!isRecording ? <MicIcon className="w-4 h-4" /> : <StopCircleIcon className="w-4 h-4" />}
-                </Button>
-                {
-                  isRecording ? (
-                    <Toggle
-                      aria-label="Toggle audio register"
-                      onClick={
-                        () => {
-                          if (isPaused) {
-                            resumeRecording();
-                          } else {
-                            pauseRecording();
-                          }
+          <Form {...form}>
+            <form className="p-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="flex max-h-full justify-between space-x-2">
+                <div className="flex flex-col space-y-2">
+                  <Button
+                    onClick={
+                      () => {
+                        if (isRecording) {
+                          stopRecording();
+                        } else {
+                          startRecording();
                         }
                       }
-                    >
-                      {isPaused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
-                    </Toggle>
-                  ) : null
-                }
+                    }
+                    variant={isRecording ? isPaused ? "danger" : "destructive" : "default"}
+                    size="icon"
+                  >
+                    {!isRecording ? <MicIcon className="w-4 h-4" /> : <StopCircleIcon className="w-4 h-4" />}
+                  </Button>
+                  {
+                    isRecording ? (
+                      <Toggle
+                        aria-label="Toggle audio register"
+                        onClick={
+                          () => {
+                            if (isPaused) {
+                              resumeRecording();
+                            } else {
+                              pauseRecording();
+                            }
+                          }
+                        }
+                      >
+                        {isPaused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
+                      </Toggle>
+                    ) : null
+                  }
+                </div>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                    <Textarea
+                      className="flex-1 min-h-28 max-h-60"
+                      placeholder={`Type your message...`}
+                      onChange={field.onChange}
+                      defaultValue={field.value}
+                    />
+                    </FormItem>
+                  )}
+                    />
+                    <div className="flex flex-col space-y-2">
+                      <Button
+                        type="submit"
+                        size="icon"
+                      >
+                        <SendIcon
+                          className="w-4 h-4"
+                        />
+                      </Button>
+                      {
+                        input !== "" ? (
+                          <Button
+                            variant={"warning"}
+                            size="icon"
+                          >
+                            <EraserIcon className="w-4 h-4" />
+                          </Button>
+                        ) : null
+                      }
+                </div>
               </div>
-              <Textarea
-                className="flex-1 min-h-28 max-h-60"
-                placeholder={`Type your message...`}
-                value={input}
-                onChange={(e) => setInput(e.target.value.trimStart())}
-              />
-              <div className="flex flex-col space-y-2">
-                <Button
-                  type="submit"
-                  size="icon"
-                  disabled={input.trim().length === 0}
-                >
-                  <SendIcon
-                    className="w-4 h-4"
-                    onClick={() => {
-                      handleMessageSubmit()
-                    }}
-                  />
-                </Button>
-                {
-                  input !== "" ? (
-                    <Button
-                      variant={"warning"}
-                      onClick={() => setInput("")}
-                      size="icon"
-                    >
-                      <EraserIcon className="w-4 h-4" />
-                    </Button>
-                  ) : null
-                }
-
-              </div>
-            </div>
-          </form>
+            </form>
+          </Form>
         </div>
       </div >
     </div >

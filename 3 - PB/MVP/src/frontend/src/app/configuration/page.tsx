@@ -19,7 +19,6 @@ import {
 import { toast } from "@/components/ui/use-toast"
 
 import {
-    Configuration,
     ConfigurationOperationResponse,
     LLMModel,
     VectorStore,
@@ -381,10 +380,4 @@ export default function Configuration() {
             </ScrollArea>
         </div>
     )
-}
-
-
-
-export function ConfigurationForm() {
-
 }

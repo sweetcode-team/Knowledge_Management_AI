@@ -36,7 +36,7 @@ def getDocuments(filter):
 
     return jsonify(
         [{
-            "chatId": chat.id.id,
+            "id": chat.id.id,
             "title": chat.title,
             "lastMessage": {
                 "content": chat.lastMessage.content,

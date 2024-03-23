@@ -49,7 +49,7 @@ class PostgresChatORM:
     """
     def createChat(self) -> PostgresChatOperationResponse:
         try:
-            newChat = Chat(f"Nuova chat {datetime.now().isoformat()}")
+            newChat = Chat(f"Nuova chat {datetime.now().strftime("%X %d %b %Y")}")
             db_session.add(newChat)
             db_session.commit()
             newChatId = newChat.id
@@ -127,7 +127,7 @@ class PostgresChatORM:
     def getChats(self, chatFilter:str) -> List[PostgresChatPreview]:
         try:
             chats = db_session.query(Chat).filter(Chat.title.like(f"%{chatFilter}%")).all()
-            chatPreviews = []
+            chatPreviews : List[PostgresChatPreview] = []
             for chat in chats:
                 lastMessage = db_session.query(MessageStore).filter(MessageStore.sessionId == chat.id).order_by(MessageStore.id.desc()).first()
                 if lastMessage is not None:
@@ -139,6 +139,7 @@ class PostgresChatORM:
                     )
                 else:
                     chatPreviews.append(PostgresChatPreview(chat.id, chat.title, None))
+            chatPreviews.sort(key=lambda chat: chat.lastMessage.timestamp, reverse=True)
             return chatPreviews
         except Exception as e:
             return None

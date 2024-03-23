@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner"
 import { SquarePenIcon, TrashIcon } from "lucide-react"
 import { useEffect, useState } from "react";
 
@@ -23,8 +23,6 @@ interface ChatHeaderProps {
 export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
     const [isBeingRenamed, setIsBeingRenamed] = useState(false);
 
-    const { toast } = useToast()
-
     const form = useForm<z.infer<typeof RenameChatFormSchema>>({
         resolver: zodResolver(RenameChatFormSchema),
         defaultValues: {
@@ -40,22 +38,14 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
 
     function onSubmit(data: z.infer<typeof RenameChatFormSchema>) {
         if (data.title !== "" && data.title !== chatTitle) {
-            // Rename chat
-            toast({
-                title: "Operation successful",
+            // TODO: Rename chat
+            toast.success("Operation successful", {
                 description: "Chat renamed.",
             })
-            // toast({
-            //     variant: "destructive",
-            //     title: "Operation failed",
-            //     description: "Chat rename failed.",
-            // })
         }
         setIsBeingRenamed(false)
         form.reset()
     }
-
-
 
     return (
         <div className="flex w-full items-center py-2 px-4">

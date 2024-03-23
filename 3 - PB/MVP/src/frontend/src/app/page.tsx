@@ -1,5 +1,3 @@
-"use server"
-
 import { ActionButton } from '@/components/action-button'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -25,12 +23,16 @@ import type {
   MessageResponse
 } from '@/types/types'
 
-import { getDocuments } from '@/lib/actions';
+import { getChats, getDocuments, getChatMessages } from '@/lib/actions';
+import { ChatContent } from './chatbot/components/chat-content';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export default async function Dashboard() {
   const documents = await getDocuments()
+  const chats = await getChats()
 
-  const lastChats = [] as ChatPreview[]
+  console.log(chats[0].id)
 
   return (
     <ScrollArea className='h-full'>
@@ -49,12 +51,13 @@ export default async function Dashboard() {
             <div className="px-2 w-full flex justify-between align-top">
               <h3 className="pt-2 ml-3 font-semibold text-nowrap">Last chat</h3>
               <ScrollArea className='w-full h-[50vh]'>
-                <div className="m-auto p-3 pb-0">
+                <div className="m-auto p-3 pb-0 h-full">
+                  <ChatContent messages={[chats[0].lastMessage]} />
                 </div>
               </ScrollArea>
               <Tooltip>
                 <TooltipTrigger className="pt-2 h-6 w-6">
-                  <Link href="/chatbot/page">
+                  <Link href="/chatbot">
                     <ExpandIcon className="text-border hover:text-primary" />
                   </Link>
                 </TooltipTrigger>
@@ -63,13 +66,13 @@ export default async function Dashboard() {
                 </TooltipContent>
               </Tooltip>
             </div>
-            {/* <ChatBody /> */}
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={40} minSize={35}>
             <ScrollArea className='h-[50vh] mr-2'>
               <div className="p-2">
                 <h3 className="ml-3 font-semibold  mb-2">Recently visited chats</h3>
+                {/* <RecentChats chats={chats} /> */}
               </div>
             </ScrollArea>
           </ResizablePanel>

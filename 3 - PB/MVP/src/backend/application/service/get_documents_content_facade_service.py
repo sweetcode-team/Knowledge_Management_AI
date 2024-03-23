@@ -31,7 +31,7 @@ class GetDocumentsContentFacadeService(GetDocumentsContentUseCase):
         documentsContent = self.documentContentGetter.getDocumentsContent(documentIds)
         documentsStatus = self.getDocumentsStatus.getDocumentsStatus(documentIds)
         
-        if len(documentsContent) != len(documentsStatus):
+        if len(documentsContent) != len(documentsStatus) or len(documentsContent) == 0:
             raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")
         
         documents = []

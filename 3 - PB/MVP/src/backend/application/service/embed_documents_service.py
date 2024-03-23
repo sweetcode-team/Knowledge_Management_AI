@@ -42,8 +42,11 @@ class EmbedDocumentsService(EmbedDocumentsUseCase):
             if documentStatus.status == Status.NOT_EMBEDDED:
                 verifiedDocumentsIds.append(documentId)
                 verifiedDocumentsStatus.append(documentStatus)
-        
-        plainDocuments = self.getDocumentsContent.getDocumentsContent(verifiedDocumentsIds)
+                
+        if verifiedDocumentsIds != []:
+            plainDocuments = self.getDocumentsContent.getDocumentsContent(verifiedDocumentsIds)
+        else:
+            raise ElaborationException("Nessun documento su cui rigenerare gli embeddings.")
         
         if len(verifiedDocumentsIds) != len(plainDocuments) or len(plainDocuments) == 0:
             raise ElaborationException("Errore nel recupero dei contenuti dei documenti.")

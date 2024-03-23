@@ -1,35 +1,98 @@
-import unittest.mock
-from domain.document.document import Document
-from domain.document.document_content import DocumentContent
-from domain.document.document_id import DocumentId
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-from domain.document.document_operation_response import DocumentOperationResponse
-from domain.document.document_status import DocumentStatus, Status
-from domain.document.plain_document import PlainDocument
+from unittest.mock import MagicMock, patch
 from application.service.embed_documents_service import EmbedDocumentsService
+from domain.exception.exception import ElaborationException
 
 
 def test_embedDocumentsService():
-    with    unittest.mock.patch('application.service.embed_documents_service.GetDocumentsContent') as getDocumentsContentMock,\
-            unittest.mock.patch('application.service.embed_documents_service.EmbeddingsUploader') as embeddingsUploaderPortMock,\
-            unittest.mock.patch('application.service.embed_documents_service.GetDocumentsStatus') as getDocumentsStatusPortMock:
+    with    patch('application.service.embed_documents_service.Status') as statusMock, \
+            patch('application.service.embed_documents_service.Document') as documentMock:
+        embeddingsUploaderPortMock = MagicMock()
+        getDocumentsStatusPortMock = MagicMock()
+        getDocumentsContentMock = MagicMock()
+        documentIdMock = MagicMock()
+        documentStatusMock = MagicMock()
+        plainDocumentMock = MagicMock()
 
-            embeddingsUploaderPortMock.uploadEmbeddings.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Embedding uploaded successfully")]
-            getDocumentsContentMock.getDocumentsContent.return_value = [PlainDocument(DocumentMetadata(DocumentId("Prova.pdf"), DocumentType.PDF, 12, unittest.mock.ANY), DocumentContent(b'content'))]
-            getDocumentsStatusPortMock.getDocumentsStatus.return_value = [DocumentStatus(Status.NOT_EMBEDDED)]
+        getDocumentsStatusPortMock.getDocumentsStatus.return_value = [documentStatusMock]
+        documentStatusMock.status = statusMock.NOT_EMBEDDED
+        getDocumentsContentMock.getDocumentsContent.return_value = [plainDocumentMock]
 
-            #getDocumentsContentMock.uploadEmbeddings.return_value = None
-            #getDocumentsStatusPortMock.uploadEmbeddings.return_value = None
+        embedDocumentsService = EmbedDocumentsService(getDocumentsContentMock, embeddingsUploaderPortMock, getDocumentsStatusPortMock)
 
-            embedDocumentsService = EmbedDocumentsService(getDocumentsContentMock, embeddingsUploaderPortMock, getDocumentsStatusPortMock)
-            # documentStatus = DocumentStatus(Status.NOT_EMBEDDED)
-            # plainDocument = PlainDocument(DocumentMetadata(DocumentId("Prova.pdf"), DocumentType.PDF, 12, unittest.mock.ANY),
-            #                         DocumentContent(b'content')
-            #                         )
-            # documents = [Document(documentStatus, plainDocument)]
+        response = embedDocumentsService.embedDocuments([documentIdMock])
+                
+        getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([documentIdMock]) 
+        getDocumentsContentMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+        documentMock.assert_called_once_with(documentStatusMock, plainDocumentMock)
+        embeddingsUploaderPortMock.uploadEmbeddings.assert_called_once_with([documentMock.return_value])    
+        assert response == embeddingsUploaderPortMock.uploadEmbeddings.return_value
+        
+def test_embedDocumentsServiceFailGetDocumentStatus():
+    with    patch('application.service.embed_documents_service.Status') as statusMock, \
+            patch('application.service.embed_documents_service.Document') as documentMock:
+        embeddingsUploaderPortMock = MagicMock()
+        getDocumentsStatusPortMock = MagicMock()
+        getDocumentsContentMock = MagicMock()
+        documentIdMock = MagicMock()
+        documentStatusMock = MagicMock()
+        plainDocumentMock = MagicMock()
 
-            response = embedDocumentsService.embedDocuments([DocumentId("Prova.pdf")])
-            # getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([DocumentId("Prova.pdf")])
-            # embeddingsUploaderPortMock.uploadEmbeddings.assert_called_once_with(documents)
+        getDocumentsStatusPortMock.getDocumentsStatus.return_value = []
+        documentStatusMock.status = statusMock.NOT_EMBEDDED
+        getDocumentsContentMock.getDocumentsContent.return_value = [plainDocumentMock]
 
-            assert isinstance(response[0], DocumentOperationResponse)
+        embedDocumentsService = EmbedDocumentsService(getDocumentsContentMock, embeddingsUploaderPortMock, getDocumentsStatusPortMock)
+
+        try:
+            response = embedDocumentsService.embedDocuments([documentIdMock])
+            assert False
+        except ElaborationException:
+            getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            pass
+
+def test_embedDocumentsServiceFailGetDocumentStatusNotNOT_EMBEDDED():   
+    with    patch('application.service.embed_documents_service.Status') as statusMock, \
+            patch('application.service.embed_documents_service.Document') as documentMock:
+        embeddingsUploaderPortMock = MagicMock()
+        getDocumentsStatusPortMock = MagicMock()
+        getDocumentsContentMock = MagicMock()
+        documentIdMock = MagicMock()
+        documentStatusMock = MagicMock()
+        plainDocumentMock = MagicMock()
+
+        getDocumentsStatusPortMock.getDocumentsStatus.return_value = [documentStatusMock]
+        documentStatusMock.status = statusMock.CONCEAL
+        getDocumentsContentMock.getDocumentsContent.return_value = [plainDocumentMock]
+
+        embedDocumentsService = EmbedDocumentsService(getDocumentsContentMock, embeddingsUploaderPortMock, getDocumentsStatusPortMock)
+
+        try:
+            response = embedDocumentsService.embedDocuments([documentIdMock])
+            assert False
+        except ElaborationException:
+            getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            pass
+     
+def test_embedDocumentsServiceFailGetDocumentContent():
+    with    patch('application.service.embed_documents_service.Status') as statusMock, \
+            patch('application.service.embed_documents_service.Document') as documentMock:
+        embeddingsUploaderPortMock = MagicMock()
+        getDocumentsStatusPortMock = MagicMock()
+        getDocumentsContentMock = MagicMock()
+        documentIdMock = MagicMock()
+        documentStatusMock = MagicMock()
+        plainDocumentMock = MagicMock()
+
+        getDocumentsStatusPortMock.getDocumentsStatus.return_value = [documentStatusMock]
+        documentStatusMock.status = statusMock.NOT_EMBEDDED
+        getDocumentsContentMock.getDocumentsContent.return_value = []
+
+        embedDocumentsService = EmbedDocumentsService(getDocumentsContentMock, embeddingsUploaderPortMock, getDocumentsStatusPortMock)
+
+        try:
+            response = embedDocumentsService.embedDocuments([documentIdMock])
+            assert False
+        except ElaborationException:
+            getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            getDocumentsContentMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+            pass

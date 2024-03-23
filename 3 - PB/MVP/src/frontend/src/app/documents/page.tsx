@@ -22,7 +22,7 @@ export default async function DocumentManagerPage() {
         <h3 className="text-xl font-bold tracking-tight">Staging area</h3>
         <StagingArea />
         <Separator />
-        <h3 className="text-xl font-bold tracking-tight">Lista dei documenti</h3>
+        <h3 className="text-xl font-bold tracking-tight">List of documents</h3>
         <DataTable data={documents} columns={columns} />
       </div>
     </ScrollArea>

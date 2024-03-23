@@ -71,9 +71,10 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                   "flex flex-col items-start gap-1 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent w-full",
                 )}
               >
-                <div className="font-semibold line-clamp-1">{item.id}</div>
+                <div className="w-full min-w-0">
+                  <p className="font-semibold truncate">{item.id}</p>
+                </div>
                 <div className="flex flex-col md:flex-row w-full items-center justify-between gap-2">
-                  {/* <StatusBadge variant={item.status as any} /> */}
                   <div className="text-xs line-clamp-1">{prettyBytes(item.size)} | {item.type.toUpperCase()}</div>
                   {
                     item.status &&
@@ -82,17 +83,18 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                       variant={statuses.find(
                         (status) => status.value === item.status
                       )?.style as any}>
-                      <span className="truncate">{item.status}</span>
+                      <span className="truncate">{statuses.find(
+                        (status) => status.value === item.status
+                      )?.label}</span>
                     </StatusBadge>
                   }
-                  {/* <ArrowRightIcon className="h-4 w-4 text-blue-600 ml-auto " /> */}
                 </div>
               </div>
             </DrawerTrigger>
             <DrawerContent className="max-h-screen">
               <div className="mx-auto w-full sm:w-6/12 xl:w-4/12 max-h-screen overflow-auto">
                 <DrawerHeader className="pb-0">
-                  <DrawerTitle>{item.id}</DrawerTitle>
+                  <DrawerTitle className="text-wrap break-all">{item.id}</DrawerTitle>
                   <DrawerDescription>Document details.</DrawerDescription>
                 </DrawerHeader>
                 <div className="px-4 pb-0 xl:py-4 w-full">

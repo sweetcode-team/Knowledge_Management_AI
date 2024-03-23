@@ -20,12 +20,12 @@ export async function askChatbot(formData: AskChatbotFormValues): Promise<Messag
     const params = new URLSearchParams(formData as any)
     console.log(params)
     const response = await fetch('http://localhost:4000/askChatbot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: params.toString(),
-        })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString(),
+    })
     revalidateTag("chat")
     return await response.json()
 }
@@ -123,7 +123,7 @@ export async function enableDocuments(ids: string[]): Promise<DocumentOperationR
     return result.json()
 }
 
-export async function (id: number): Promise<Chat> {
+export async function getChatMessages(id: number): Promise<Chat> {
     const result = await fetch(`http://localhost:4000/getChatMessages/${id}`,
         {
             next: { tags: ["chat"] }
@@ -183,10 +183,7 @@ export async function renameChat(id: number, title: string): Promise<ChatOperati
     formData.append('title', title);
     const result = await fetch(`http://localhost:4000/renameChat`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString()
+        body: formData
     })
     revalidateTag("chat")
 
@@ -202,20 +199,17 @@ export async function setConfiguration(configuration: Configuration): Promise<Co
 
     const result = await fetch(`http://localhost:4000/setConfiguration`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString()
+        body: formData
     })
     revalidateTag("configuration")
 
     return result.json()
 }
 
-export async function uploadDocuments(files: File[], forceUpload: boolean = false): Promise<DocumentOperationResponse[]> {
-    const formData = new FormData();
-    files.forEach(file => formData.append('documents', file));
-    formData.append('forceUpload', forceUpload.toString());
+export async function uploadDocuments(formData: FormData, forceUpload: boolean = false): Promise<DocumentOperationResponse[]> {
+    if (forceUpload) {
+        formData.append('forceUpload', 'true')
+    }
     const result = await fetch(`http://localhost:4000/uploadDocuments`, {
         method: 'POST',
         body: formData

@@ -1,82 +1,47 @@
-"use client"
-import {
-  MessageSquarePlusIcon,
-} from "lucide-react"
 
-import { ChatDisplay } from "@/app/chatbot/components/chat-display"
-import { ChatList } from "@/app/chatbot/components/chat-list"
-import { ChatPreview } from "@/types/types"
 import { Separator } from "@/components/ui/separator"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { ChatContent } from "@/app/chatbot/components/chat-content"
+import { ChatHeader } from "./chat-header"
+import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { useChat } from "../use-chat"
+import { Chat } from "@/types/types"
+
+import { getChatMessages } from "@/lib/actions"
+import ChatFooter from "./chat-footer";
 
 interface ChatbotProps {
-  chats: ChatPreview[]
-  defaultLayout: number[] | undefined
+    chatId?: number
 }
 
-export function Chatbot({
-  chats,
-  defaultLayout = [30, 70],
-}: ChatbotProps) {
-  const [chat, setChat] = useChat()
+export default async function Chatbot({ chatId }: ChatbotProps) {
 
-  return (
-    <>
-      <TooltipProvider delayDuration={0}>
-        <ResizablePanelGroup
-          direction="horizontal"
-          onLayout={(sizes: number[]) => {
-            document.cookie = `react-resizable-panels:chat-layout=${JSON.stringify(
-              sizes
-            )}`
-          }}
-          className="items-stretch"
-        >
-          <ResizablePanel
-            defaultSize={defaultLayout[0]}
-            minSize={25}
-            maxSize={40}
-            className="flex flex-col"
-          >
-                <div className="flex items-center px-4 py-2">
-                  <h3 className="text-xl font-bold">Chat list</h3>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="info"
-                        className="ml-auto"
-                        size="icon"
-                        onClick={() =>
-                            setChat({ selected: null }
-                        )}
-                      >
-                        <MessageSquarePlusIcon className="h-4 w-4" />
-                        <span className="sr-only">New Chat</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>New Chat</TooltipContent>
-                  </Tooltip>
-                </div>
+    let chat = null as Chat | null
+    if (chatId !== undefined) {
+        chat = await getChatMessages(chatId)
+    }
+
+    return (
+        <div className="flex h-full flex-col">
+            <ChatHeader chatTitle={chat?.title} isChatSelected={!!chat} />
             <Separator />
-            <ChatList items={chats} />
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel
-            defaultSize={defaultLayout[1]}
-          >
-            <ChatDisplay chatId={chat.selected}/>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </TooltipProvider>
-    </>
-  )
+            <div className="h-full flex flex-1 flex-col justify-between overflow-auto">
+                {chat ? (
+                    <div className="flex-1 whitespace-pre-wrap text-sm overflow-auto">
+                        <ScrollArea className="h-full">
+                            <div className="p-4 pb-0">
+                                <ChatContent messages={chat?.messages} />
+                            </div>
+                        </ScrollArea>
+                    </div>
+                ) : (
+                    <div className="h-full flex flex-col items-center justify-center select-none animate-show-in" >
+                        <SWEetCodeLogo className="w-20 h-20" />
+                        <h4 className="text-lg font-bold" >Hey, how can I help you?</h4>
+                    </div>
+                )}
+            </div>
+            <ChatFooter chatId={chatId} />
+        </div>
+    )
 }

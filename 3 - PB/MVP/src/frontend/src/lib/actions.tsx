@@ -13,21 +13,23 @@ import {
     DocumentOperationResponse,
     MessageResponse
 } from "@/types/types"
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
 export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
-    const params = new URLSearchParams(formData as any)
-    console.log(params)
-    const response = await fetch('http://localhost:4000/askChatbot', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params.toString(),
-    })
-    revalidateTag("chat")
-    return await response.json()
+    try {
+        const response = await fetch('http://localhost:4000/askChatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(formData as any).toString(),
+        })
+        revalidateTag("chat")
+        return response.json()
+    } catch (e) {
+
+    }
 }
 
 export async function changeConfiguration(formData: ConfigurationFormValues): Promise<ConfigurationOperationResponse> {
@@ -36,11 +38,11 @@ export async function changeConfiguration(formData: ConfigurationFormValues): Pr
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: formData.toString()
+        body: new URLSearchParams(formData.toString())
     })
     revalidateTag("configuration")
 
-    return await response.json()
+    return response.json()
 }
 
 export async function concealDocuments(ids: string[]): Promise<DocumentOperationResponse[]> {

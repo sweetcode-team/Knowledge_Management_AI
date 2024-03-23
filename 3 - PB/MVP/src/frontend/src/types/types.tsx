@@ -23,7 +23,7 @@ export type ChatOperationResponse = {
 }
 
 export type ChatPreview = {
-    chatId: number
+    id: number
     title: string
     lastMessage: Message
 }
@@ -34,7 +34,7 @@ export type Message = {
     content: string
     timestamp: string
     sender: string
-    relevantDocuments: string[]
+    relevantDocuments?: string[]
 }
 
 export type MessageResponse = {
@@ -70,9 +70,9 @@ export type DocumentMetadata = {
 }
 
 export type DocumentOperationResponse = {
+    documentId: string
     status: boolean
     message: string
-    documentId: string
 }
 
 // CONFIGURATION

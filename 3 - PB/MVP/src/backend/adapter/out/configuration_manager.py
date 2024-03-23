@@ -245,7 +245,7 @@ class ConfigurationManager:
         elif configuration.LLMModel == PostgresLLMModelType.HUGGINGFACE:
             with open('/run/secrets/huggingface_key', 'r') as file:
                 hugging_face = file.read()
-            configuredLLMModel = HuggingFaceEndpoint(repo_id="mistralai/Mistral-7B-v0.1", temperature=0.01, huggingfacehub_api_token=hugging_face)
+            configuredLLMModel = HuggingFaceEndpoint(repo_id="google/flan-t5-xxl", temperature=0.01, huggingfacehub_api_token=hugging_face)
         else:
             raise ConfigurationException('LLM model non configurato.')
 

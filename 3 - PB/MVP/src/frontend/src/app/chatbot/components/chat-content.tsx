@@ -22,10 +22,12 @@ export function ChatContent({ messages }: ChatContentProps) {
 
   return (
     <>
-      <div className="space-y-4 w-full pb-4">
+      <div className="h-full w-full space-y-4 pb-4">
         {
-          messages?.length === 0 ?
-            "Nessun messaggio presente."
+          !messages || messages?.length === 0 ?
+            <div className="flex text-sm h-full items-center justify-center">
+              Nessun messaggio presente.
+            </div>
             :
             messages?.map((message, index) => (
               <MessageCard key={index} message={message} />

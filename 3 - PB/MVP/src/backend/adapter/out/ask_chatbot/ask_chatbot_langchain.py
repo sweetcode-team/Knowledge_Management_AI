@@ -40,7 +40,6 @@ class AskChatbotLangchain(AskChatbotPort):
             if len(chatHistory.messages) == 0:
                 return MessageResponse(status=False, messageResponse=None, chatId=chatId)
             else:
-                #TODO: Controllare se 6 messaggi sono sufficienti
                 answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
         else:
             answer = self.chain.invoke({"question": message.content, "chat_history": []})

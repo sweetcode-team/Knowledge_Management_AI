@@ -2,7 +2,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat } from "@/types/types";
+import { Chat, ChatPreview } from "@/types/types";
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -24,10 +24,10 @@ import {
 } from "@/components/ui/alert-dialog"
 
 interface RecentChatsProps {
-  items: Chat[]
+  chats: ChatPreview[]
 }
 
-export function RecentChats({ items }: RecentChatsProps) {
+export function RecentChats({ chats }: RecentChatsProps) {
 
   const hideContextMenu = (id: number) => {
     document.getElementById(id.toString())!.style.display = "none";
@@ -40,11 +40,11 @@ export function RecentChats({ items }: RecentChatsProps) {
   return (
     <ScrollArea>
       <div className="flex flex-col gap-2 mx-2">
-        {items.map((item, index) => (
+        {chats.map((chat, index) => (
           <ContextMenu key={index}>
             <ContextMenuTrigger>
               <div
-                key={item.id}
+                key={chat.id}
                 tabIndex={0}
                 className={cn(
                   "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
@@ -53,23 +53,23 @@ export function RecentChats({ items }: RecentChatsProps) {
                 <div className="flex w-full flex-col gap-1">
                   <div className="flex items-center gap-x-2">
                     <div className="flex items-center gap-x-2">
-                      <div className="font-semibold line-clamp-1">{item.title}</div>
+                      <div className="font-semibold line-clamp-1">{chat.title}</div>
                     </div>
                     <div
                       className={cn("ml-auto text-xs line-clamp-1")}
                     >
-                      {formatDistanceToNow(new Date(item.messages[item.messages.length - 1].timestamp), {
+                      {formatDistanceToNow(new Date(chat.lastMessage.timestamp), {
                         addSuffix: true,
                       })}
                     </div>
                   </div>
                 </div>
                 <div className="line-clamp-2 text-xs text-muted-foreground">
-                  {item.messages[item.messages.length - 1].content.substring(0, 300)}
+                  {chat.lastMessage.content.substring(0, 300)}
                 </div>
               </div>
             </ContextMenuTrigger>
-            <ContextMenuContent id={item.id.toString()}>
+            <ContextMenuContent id={chat.id.toString()}>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="ghost" size="sm" className="text-error-foreground hover:bg-error hover:text-error-foreground w-full justify-start px-2 py-[6px] h-8"
@@ -86,15 +86,15 @@ export function RecentChats({ items }: RecentChatsProps) {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel
-                      onClick={() => hideContextMenu(item.id)}
+                      onClick={() => hideContextMenu(chat.id)}
                     >
                       Abort</AlertDialogCancel>
                     <AlertDialogAction className={
                       cn(buttonVariants({ variant: "destructive" }),
                         "mt-2 sm:mt-0")}
                       onClick={() => {
-                        hideContextMenu(item.id)
-                        handleDeleteChat(item.id)
+                        hideContextMenu(chat.id)
+                        handleDeleteChat(chat.id)
                       }}
                     >Delete</AlertDialogAction>
                   </AlertDialogFooter>

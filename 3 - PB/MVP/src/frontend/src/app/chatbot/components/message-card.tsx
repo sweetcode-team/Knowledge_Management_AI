@@ -5,9 +5,8 @@ import { ChevronRightIcon, Copy } from "lucide-react";
 import { formatDate } from 'date-fns';
 import { Message } from "@/types/types";
 
-
 interface MessageCardProps {
-    message: Message;
+    message: Message
 }
 
 export function MessageCard({ message }: MessageCardProps) {
@@ -28,14 +27,14 @@ export function MessageCard({ message }: MessageCardProps) {
                         </p>
                     </CardContent>
                     {
-                        message.sender === "CHATBOT" && message.relevantDocuments.length > 0 && (
+                        message.sender === "CHATBOT" && message.relevantDocuments && message.relevantDocuments?.length > 0 && (
                             <CardFooter className="flex-col items-start w-full p-0 mt-4 space-y-2">
                                 {
-                                    message.relevantDocuments.map((document, index) => (
+                                    message.relevantDocuments.map((relevantDocument, index) => (
                                         <div key={index} className="flex w-full items-stretch justify-between space-x-2">
                                             <div className="flex flex-grow shadow-md items-center rounded-md bg-card px-4 min-w-0">
                                                 <p className="truncate">
-                                                    {document.id}
+                                                    {relevantDocument}
                                                 </p>
                                             </div>
                                             <Button size="sm" onClick={() => showDocument()} className="bg-card shadow-md text-primary hover:text-secondary flex items-center justify-center gap-x-2">
@@ -64,5 +63,5 @@ export function MessageCard({ message }: MessageCardProps) {
                 {formatDate(message.timestamp, "dd MMM HH:mm")}
             </div>
         </div>
-    );
-};
+    )
+}

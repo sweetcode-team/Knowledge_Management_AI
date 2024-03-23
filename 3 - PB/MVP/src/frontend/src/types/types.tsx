@@ -39,7 +39,7 @@ export type Message = {
     content: string
     timestamp: string
     sender: MessageSender
-    relevantDocuments: DocumentId[]
+    relevantDocuments: string[]
 }
 
 export type MessageResponse = {
@@ -50,16 +50,13 @@ export type MessageResponse = {
 
 // DOCUMENT
 
-export type DocumentId = {
-    id: string
-}
-
 export enum Status {
     CONCEALED = 1,
     ENABLED = 2,
     NOT_EMBEDDED = 3,
     INCONSISTENT = 4
 }
+
 export type DocumentContent = {
     id: string
     type: string

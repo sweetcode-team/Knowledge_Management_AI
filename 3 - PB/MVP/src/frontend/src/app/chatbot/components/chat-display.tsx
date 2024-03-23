@@ -12,12 +12,7 @@ import { SWEetCodeLogo } from "@/components/sweetcode-logo"
 import {
   askChatbotFormSchema,
   AskChatbotFormValues,
-  Chat,
-  configurationFormSchema,
-  ConfigurationFormValues,
-  Message,
-  MessageResponse,
-  MessageSender
+  Chat
 } from "@/types/types"
 
 import {getChatMessages, askChatbot, changeConfiguration} from "@/lib/actions"
@@ -36,15 +31,19 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
   const [isPaused, setIsPaused] = useState(false)
   const recognitionRef = useRef<any>(null)
   const [chat, setChat] = useState<Chat | null>(null);
-
+  const formDefaultValues = chatId !== null ? { chatId } : {};
+  console.log(chatId)
   const form = useForm<AskChatbotFormValues>({
     resolver: zodResolver(askChatbotFormSchema),
-    defaultValues: {chatId: chatId},
+    defaultValues: formDefaultValues,
     mode: "onChange",
   })
 
   const onSubmit: SubmitHandler<AskChatbotFormValues> = async (data) => {
+    if (chatId !== null) data.chatId = chatId;
+    console.log("onsub chat id" + data.chatId + "onsub message" + data.message)
     const result = await askChatbot(data);
+    console.log(result)
     // setChat(prevChat => {
     //   if (!prevChat) {
     //     return null
@@ -239,10 +238,6 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
                     ) : null
                   }
                 </div>
-                <FormField name="chatId" render={({field}) => {
-                  <FormItem defaultValue={field.value}></FormItem>
-                }}>
-                </FormField>
                 <FormField
                   control={form.control}
                   name="message"
@@ -270,7 +265,6 @@ export function ChatDisplay({ chatId }: ChatDisplayProps) {
                         input !== "" ? (
                           <Button
                             variant={"warning"}
-                            onClick={() => setInput("")}
                             size="icon"
                           >
                             <EraserIcon className="w-4 h-4" />

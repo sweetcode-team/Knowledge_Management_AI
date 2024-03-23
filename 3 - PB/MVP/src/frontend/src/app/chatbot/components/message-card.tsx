@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRightIcon, Copy } from "lucide-react";
 
 import { formatDate } from 'date-fns';
-import { Message, MessageSender } from "@/types/types";
+import { Message } from "@/types/types";
 
 
 interface MessageCardProps {
@@ -14,22 +14,21 @@ export function MessageCard({ message }: MessageCardProps) {
     const showDocument = () => {
         console.log("Show Document");
     }
-
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)
     }
 
     return (
         <div className="pb-4">
-            <div className={`flex gap-2 ${message.sender === MessageSender.USER && "flex-row-reverse"}`}>
-                <Card className={`text-sm flex flex-col max-w-[80%] border-none px-4 py-3 ${message.sender === MessageSender.USER ? "bg-primary" : "bg-muted"}`}>
+            <div className={`flex gap-2 ${message.sender === "USER" ? "flex-row-reverse" : ""}`}>
+                <Card className={`text-sm flex flex-col max-w-[80%] border-none px-4 py-3 ${message.sender === "USER" ? "bg-primary" : "bg-muted"}`}>
                     <CardContent className="p-0 break-words">
-                        <p className={`word-break ${message.sender === MessageSender.USER ? "text-primary-foreground" : "text-secondary-foreground"}`}>
+                        <p className={`word-break ${message.sender === "USER" ? "text-primary-foreground" : "text-secondary-foreground"}`}>
                             {message.content}
                         </p>
                     </CardContent>
                     {
-                        message.sender === MessageSender.CHATBOT && message.relevantDocuments.length > 0 && (
+                        message.sender === "CHATBOT" && message.relevantDocuments.length > 0 && (
                             <CardFooter className="flex-col items-start w-full p-0 mt-4 space-y-2">
                                 {
                                     message.relevantDocuments.map((document, index) => (
@@ -61,7 +60,7 @@ export function MessageCard({ message }: MessageCardProps) {
                     <span className="sr-only">Copy</span>
                 </Button>
             </div>
-            <div className={`text-xs mt-2 ${message.sender === MessageSender.USER ? "float-right mr-2" : "ml-2"}`}>
+            <div className={`text-xs mt-2 ${message.sender === "USER" ? "float-right mr-2" : "ml-2"}`}>
                 {formatDate(message.timestamp, "dd MMM HH:mm")}
             </div>
         </div>

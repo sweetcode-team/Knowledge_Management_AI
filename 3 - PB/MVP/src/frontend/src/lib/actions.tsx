@@ -17,19 +17,16 @@ import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
 export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
-    console.log(formData.toString())
-    if (formData.chatId === null) {
-        throw new Error("chatId is null")
-    }
+    const params = new URLSearchParams(formData as any)
+    console.log(params)
     const response = await fetch('http://localhost:4000/askChatbot', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: formData.toString(),
+        body: params.toString(),
     })
     revalidateTag("chat")
-
     return await response.json()
 }
 
@@ -64,8 +61,8 @@ export async function concealDocuments(ids: string[]): Promise<DocumentOperation
 
 export async function deleteChats(ids: number[]): Promise<ChatOperationResponse> {
     const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('documentIds', id.toString()));
-
+    ids.forEach(id => formData.append('chatIds', id.toString()));
+    console.log(formData.toString())
     const result = await fetch(`http://localhost:4000/deleteChats`, {
         method: 'POST',
         headers: {

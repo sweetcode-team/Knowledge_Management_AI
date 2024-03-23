@@ -55,7 +55,9 @@ export function Chatbot({
                         variant="info"
                         className="ml-auto"
                         size="icon"
-                        onClick={() => setChat({ selected: null })}
+                        onClick={() =>
+                            setChat({ selected: null }
+                        )}
                       >
                         <MessageSquarePlusIcon className="h-4 w-4" />
                         <span className="sr-only">New Chat</span>

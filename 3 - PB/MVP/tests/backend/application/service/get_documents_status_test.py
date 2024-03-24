@@ -1,18 +1,14 @@
-import unittest.mock
+from unittest.mock import MagicMock
 from application.service.get_documents_status import GetDocumentsStatus
-from domain.document.document_id import DocumentId
-from domain.document.document_status import DocumentStatus, Status
 
 def test_getDocumentsStatus():
-    with unittest.mock.patch('application.service.get_documents_status.GetDocumentsStatusPort') as getDocumentsStatusPortMock:
-        
-        mockStatus = DocumentStatus(Status.ENABLED)
-        getDocumentsStatusPortMock.return_value.getDocumentsStatus.return_value = [mockStatus]
-
-        getDocumentsStatus = GetDocumentsStatus(getDocumentsStatusPortMock.return_value)
+    getDocumentsStatusPortMock = MagicMock()
+    documentIdMock = MagicMock()
     
-        response = getDocumentsStatus.getDocumentsStatus([DocumentId("1")])
+    getDocumentsStatus = GetDocumentsStatus(getDocumentsStatusPortMock)
+    
+    response = getDocumentsStatus.getDocumentsStatus([documentIdMock])
         
-        getDocumentsStatusPortMock.return_value.getDocumentsStatus.assert_called_once_with([DocumentId("1")])
+    getDocumentsStatusPortMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
         
-        assert isinstance(response[0], DocumentStatus)
+    assert response == getDocumentsStatusPortMock.getDocumentsStatus.return_value

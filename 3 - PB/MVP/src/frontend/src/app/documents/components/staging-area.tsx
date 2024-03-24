@@ -94,13 +94,12 @@ export function StagingArea() {
             }
             else if (result.status) {
                 toast.success("Operation successful", {
-                    description: result.documentId + " uploaded successfully",
+                    description: result.id + " uploaded successfully",
                 })
             }
             else {
-                toast.error("An error occurred for " + result.documentId, {
+                toast.error("An error occurred for " + result.id, {
                     description: "Please try again. " + result.message,
-                    duration: 200000,
                 })
             }
         })

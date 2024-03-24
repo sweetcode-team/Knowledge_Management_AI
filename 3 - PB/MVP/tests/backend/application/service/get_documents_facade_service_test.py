@@ -1,24 +1,83 @@
-import unittest.mock
+from unittest.mock import MagicMock, patch
 from application.service.get_documents_facade_service import GetDocumentsFacadeService
-from domain.document.document_filter import DocumentFilter
-from domain.document.light_document import LightDocument
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-from domain.document.document_status import DocumentStatus, Status
-from domain.document.document_id import DocumentId
+from domain.exception.exception import ElaborationException
 
 def test_getDocumentsFacadeService():
-    with unittest.mock.patch('application.service.get_documents_metadata.GetDocumentsMetadata') as getDocumentsMetadataMock, \
-         unittest.mock.patch('application.service.get_documents_status.GetDocumentsStatus') as getDocumentsStatusMock:
-        
-        mockMetadata = DocumentMetadata(id=DocumentId("1"), type=DocumentType.PDF, size=1024, uploadTime="2022-01-01T00:00:00")
-        getDocumentsMetadataMock.return_value.getDocumentsMetadata.return_value = [mockMetadata]
-        getDocumentsStatusMock.return_value.getDocumentsStatus.return_value = [DocumentStatus(Status.ENABLED)]
-
-        getDocumentsFacadeService = GetDocumentsFacadeService(getDocumentsMetadataMock.return_value, getDocumentsStatusMock.return_value)
+    getDocumentsMetadataMock = MagicMock()
+    getDocumentsStatusMock = MagicMock()
+    documentFilterMock = MagicMock()
+    documentMetadataMock = MagicMock()
+    documentStatusMock = MagicMock()
     
-        response = getDocumentsFacadeService.getDocuments(DocumentFilter("filter"))
+    with patch('application.service.get_documents_facade_service.LightDocument') as LightDocumentMock:
+        getDocumentsFacadeService = GetDocumentsFacadeService(getDocumentsMetadataMock, getDocumentsStatusMock)
         
-        getDocumentsMetadataMock.return_value.getDocumentsMetadata.assert_called_once_with(DocumentFilter("filter"))
-        getDocumentsStatusMock.return_value.getDocumentsStatus.assert_called_once_with([DocumentId("1")])
+        getDocumentsMetadataMock.getDocumentsMetadata.return_value = [documentMetadataMock]
+        getDocumentsStatusMock.getDocumentsStatus.return_value = [documentStatusMock]
         
-        assert isinstance(response[0], LightDocument)
+        response = getDocumentsFacadeService.getDocuments(documentFilterMock)
+            
+        getDocumentsMetadataMock.getDocumentsMetadata.assert_called_once_with(documentFilterMock)
+        getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentMetadataMock.id])
+        LightDocumentMock.assert_called_once_with(metadata=documentMetadataMock, status=documentStatusMock)
+        assert response == [LightDocumentMock.return_value]
+        
+def test_getDocumentsFacadeServiceFailGetMetadata():
+    getDocumentsMetadataMock = MagicMock()
+    getDocumentsStatusMock = MagicMock()
+    documentFilterMock = MagicMock()
+    
+    with patch('application.service.get_documents_facade_service.LightDocument') as LightDocumentMock:
+        getDocumentsFacadeService = GetDocumentsFacadeService(getDocumentsMetadataMock, getDocumentsStatusMock)
+        
+        getDocumentsMetadataMock.getDocumentsMetadata.return_value = []
+        
+        try:    
+            response = getDocumentsFacadeService.getDocuments(documentFilterMock)
+            assert False
+        except ElaborationException:    
+            getDocumentsMetadataMock.getDocumentsMetadata.assert_called_once_with(documentFilterMock)
+            getDocumentsStatusMock.getDocumentsStatus.assert_not_called()
+            LightDocumentMock.assert_not_called()
+            pass
+        
+def test_getDocumentsFacadeServiceFailGetStatus():
+    getDocumentsMetadataMock = MagicMock()
+    getDocumentsStatusMock = MagicMock()
+    documentFilterMock = MagicMock()
+    documentMetadataMock = MagicMock()
+    
+    with patch('application.service.get_documents_facade_service.LightDocument') as LightDocumentMock:
+        getDocumentsFacadeService = GetDocumentsFacadeService(getDocumentsMetadataMock, getDocumentsStatusMock)
+        
+        getDocumentsMetadataMock.getDocumentsMetadata.return_value = [documentMetadataMock]
+        getDocumentsStatusMock.getDocumentsStatus.return_value = []
+        
+        try:    
+            response = getDocumentsFacadeService.getDocuments(documentFilterMock)
+            assert False
+        except ElaborationException:    
+            getDocumentsMetadataMock.getDocumentsMetadata.assert_called_once_with(documentFilterMock)
+            getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentMetadataMock.id])
+            LightDocumentMock.assert_not_called()
+            pass
+        
+def test_getDocumentsFacadeServiceFailGetMetadataAndStatus():
+    getDocumentsMetadataMock = MagicMock()
+    getDocumentsStatusMock = MagicMock()
+    documentFilterMock = MagicMock()
+    
+    with patch('application.service.get_documents_facade_service.LightDocument') as LightDocumentMock:
+        getDocumentsFacadeService = GetDocumentsFacadeService(getDocumentsMetadataMock, getDocumentsStatusMock)
+        
+        getDocumentsMetadataMock.getDocumentsMetadata.return_value = []
+        getDocumentsStatusMock.getDocumentsStatus.return_value = []
+        
+        try:    
+            response = getDocumentsFacadeService.getDocuments(documentFilterMock)
+            assert False
+        except ElaborationException:    
+            getDocumentsMetadataMock.getDocumentsMetadata.assert_called_once_with(documentFilterMock)
+            getDocumentsStatusMock.getDocumentsStatus.assert_not_called()
+            LightDocumentMock.assert_not_called()
+            pass

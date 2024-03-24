@@ -28,8 +28,7 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
     const form = useForm<AskChatbotFormValues>({
         resolver: zodResolver(askChatbotFormSchema),
         defaultValues: {
-            message: "",
-            chatId: chatId
+            message: ""
         },
         mode: "onChange",
     })
@@ -37,26 +36,26 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
     const watchMessage = form.watch("message")
 
     const onSubmit: SubmitHandler<AskChatbotFormValues> = async (data) => {
-
         setIsRecording(false)
         setIsPaused(false)
 
-        const formData = new FormData()
-        formData.append("message", data.message)
-        if (data.chatId !== undefined) {
-            formData.append("chatId", data.chatId.toString())
+        console.log(data)
+
+        if (chatId !== undefined) {
+            data.chatId = chatId
         }
 
-        const result = await askChatbot(formData)
-
-        if (!result) {
+        let result: MessageResponse
+        try {
+            result = await askChatbot(data)
+        } catch (e) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
             })
             return
         }
 
-        if (!result.status) {
+        if (!result || !result.status) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
             })
@@ -64,8 +63,8 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
         }
         if (chatId === undefined)
             router.push(`/chatbot/${result.chatId}`)
+        form.reset({ message: "" })
     }
-
 
     useEffect(() => {
         if (!("webkitSpeechRecognition" in window)) {
@@ -205,7 +204,6 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
                                     className="flex-1 min-h-28 max-h-60"
                                     placeholder={`Type your message...`}
                                     {...field}
-                                    required
                                     disabled={form.formState.isSubmitting}
                                 />
                             </FormItem>

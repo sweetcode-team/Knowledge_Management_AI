@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "@/app/documents/components/data-table-view-options"
 
-import { types, statuses } from "@/app/documents/data/data"
+import { DOCUMENT_STATUSES, ALLOWED_FILE_TYPES } from "@/constants/constants"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { DataTableGroupActions } from "./data-table-group-actions"
 
@@ -35,14 +35,14 @@ export function DataTableToolbar<TData>({
           <DataTableFacetedFilter
             column={table.getColumn("status")}
             title="Status"
-            options={statuses}
+            options={DOCUMENT_STATUSES}
           />
         )}
         {table.getColumn("type") && (
           <DataTableFacetedFilter
             column={table.getColumn("type")}
             title="Type"
-            options={types}
+            options={ALLOWED_FILE_TYPES}
           />
         )}
         {isFiltered && (

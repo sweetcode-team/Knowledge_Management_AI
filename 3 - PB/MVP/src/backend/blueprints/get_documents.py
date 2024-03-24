@@ -40,5 +40,5 @@ def getDocuments(filter):
         "id": document.metadata.id.id,
         "type": document.metadata.type.name,
         "size": document.metadata.size,
-        "uploadDate": document.metadata.uploadTime.isoformat(),
+        "uploadTime": document.metadata.uploadTime.isoformat(),
         "status": document.status.status.name} for document in documents])

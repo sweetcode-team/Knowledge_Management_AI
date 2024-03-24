@@ -1,18 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
 
 import { cn } from "@/lib/utils"
-import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { ChatPreview } from "@/types/types";
-import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useState, useCallback } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { deleteChats } from "@/lib/actions";
-import { toast } from "sonner";
 
 import { useRouter, useParams } from "next/navigation";
 

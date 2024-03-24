@@ -57,7 +57,7 @@ export type DocumentContent = {
     type: string
     size: number
     content: string
-    uploadDate: string
+    uploadTime: string
     status: Status
 }
 
@@ -65,7 +65,7 @@ export type LightDocument = {
     id: string
     type: string
     size: number
-    uploadDate: string
+    uploadTime: string
     status: string
 }
 
@@ -128,11 +128,11 @@ export type ConfigurationOptions = {
     documentStores: DocumentStore[]
 }
 
-export const configurationLLMFormSchema = z.object({
+export const LLMconfigurationFormSchema = z.object({
     LLMModel: z.string()
 })
 
-export type ConfigurationLLMFormValues = z.infer<typeof configurationLLMFormSchema>
+export type LLMConfigurationFormValues = z.infer<typeof LLMconfigurationFormSchema>
 
 export const configurationFormSchema = z.object({
     LLMModel: z.string(),

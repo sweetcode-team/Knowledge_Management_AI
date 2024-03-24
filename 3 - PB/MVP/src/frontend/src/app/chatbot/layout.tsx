@@ -21,7 +21,6 @@ export default async function ChatbotLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
     const chatPreviews = await getChats()
 
     const defaultLayout = [30, 70]

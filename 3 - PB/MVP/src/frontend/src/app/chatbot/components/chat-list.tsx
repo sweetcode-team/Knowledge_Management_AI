@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChatPreview } from "@/types/types";
 import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, buttonVariants } from "@/components/ui/button";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -24,6 +24,10 @@ export function ChatList({ chatPreviews }: ChatListProps) {
 
   const [isBeingSelected, setIsBeingSelected] = useState(false)
   const [selectedChats, setSelectedChats] = useState<number[]>([])
+
+  useEffect(() => {
+    setFilteredChats(chatPreviews)
+  }, [chatPreviews])
 
   const handleDelete = async () => {
     try {

@@ -11,9 +11,10 @@ import {
     DocumentContent,
     LightDocument,
     DocumentOperationResponse,
+    LLMConfigurationFormValues,
     MessageResponse
 } from "@/types/types"
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
 export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
@@ -28,11 +29,11 @@ export async function askChatbot(formData: AskChatbotFormValues): Promise<Messag
         revalidateTag("chat")
         return response.json()
     } catch (e) {
-
+        throw new Error();
     }
 }
 
-export async function changeConfiguration(formData: ConfigurationFormValues): Promise<ConfigurationOperationResponse> {
+export async function changeConfiguration(formData: LLMConfigurationFormValues): Promise<ConfigurationOperationResponse> {
     const response = await fetch('http://localhost:4000/changeConfiguration', {
         method: 'POST',
         headers: {

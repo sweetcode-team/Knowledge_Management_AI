@@ -20,7 +20,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog"
 
-import { statuses } from "@/app/documents/data/data"
+import { DOCUMENT_STATUSES } from "@/constants/constants"
 import { TrashIcon } from "lucide-react"
 import { DocumentMetadata, DocumentOperationResponse } from "@/types/types";
 import { revalidatePath } from "next/cache";
@@ -56,7 +56,7 @@ export function DataTableGroupActions<TData>({
 
   const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
 
-  const Icon = statuses.find((status) => selectedRowsStatuses.has(status.value))?.actionIcon as React.ComponentType<{ className?: string }>
+  const Icon = DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.icon as React.ComponentType<{ className?: string }>
 
   return (
     <>
@@ -71,7 +71,7 @@ export function DataTableGroupActions<TData>({
                 <Button variant="default" size="sm" className="w-full justify-start px-4 py-[6px] h-8 space-x-2">
                   <Icon className="h-4 w-4" />
                   <div>
-                    {statuses.find((status) => selectedRowsStatuses.has(status.value))?.action}
+                    {DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.action}
                   </div>
                 </Button>
               </AlertDialogTrigger>
@@ -79,14 +79,14 @@ export function DataTableGroupActions<TData>({
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    {statuses.find((status) => selectedRowsStatuses.has(status.value))?.groupActionMessage}
+                    {DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.groupActionMessage}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Abort</AlertDialogCancel>
                   <AlertDialogAction className={
                     cn(buttonVariants(),
-                      "mt-2 sm:mt-0")} onClick={() => handleAction()}>{statuses.find((status) => selectedRowsStatuses.has(status.value))?.action}</AlertDialogAction>
+                      "mt-2 sm:mt-0")} onClick={() => handleAction()}>{DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.action}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

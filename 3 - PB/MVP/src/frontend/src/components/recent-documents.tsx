@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 
-import { statuses } from "@/app/documents/data/data"
 import { LightDocument } from "@/types/types"
+import { DOCUMENT_STATUSES } from "@/constants/constants"
 
 import {
   Drawer,
@@ -80,10 +80,10 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                     item.status &&
                     <StatusBadge
                       className="truncate"
-                      variant={statuses.find(
+                      variant={DOCUMENT_STATUSES.find(
                         (status) => status.value === item.status
                       )?.style as any}>
-                      <span className="truncate">{statuses.find(
+                      <span className="truncate">{DOCUMENT_STATUSES.find(
                         (status) => status.value === item.status
                       )?.label}</span>
                     </StatusBadge>
@@ -112,7 +112,7 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                         <TableCell className="font-bold">Upload time</TableCell>
                         <TableCell>
                           {
-                            formatDate(item.uploadDate, "dd MMM yyyy HH:mm")
+                            formatDate(item.uploadTime, "dd MMM yyyy HH:mm")
                           }
                         </TableCell>
                       </TableRow>
@@ -122,7 +122,7 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                           {
                             item.status &&
                             <StatusBadge
-                              variant={statuses.find(
+                              variant={DOCUMENT_STATUSES.find(
                                 (status) => status.value === item.status
                               )?.style as any}>
                               <span className="truncate">{item.status}</span>

@@ -30,7 +30,7 @@ import {
   DocumentStore,
   EmbeddingsModel,
   ConfigurationOptions,
-  ConfigurationFormValues,
+  LLMConfigurationFormValues,
   configurationFormSchema
 } from "@/types/types"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -55,31 +55,37 @@ interface SettingsConfigurationFormProps {
 
 export function SettingsConfigurationForm({ currentConfiguration, configurationOptions }: SettingsConfigurationFormProps) {
 
-  const form = useForm<ConfigurationFormValues>({
+  const defaultValues: Partial<LLMConfigurationFormValues> = {
+    LLMModel: currentConfiguration.LLMModel.name,
+  }
+
+  const form = useForm<LLMConfigurationFormValues>({
     resolver: zodResolver(configurationFormSchema),
     mode: "onChange",
+    defaultValues
   })
 
-  const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data) => {
+
+  const onSubmit: SubmitHandler<LLMConfigurationFormValues> = async (data) => {
     console.log(data)
     const result = await changeConfiguration(data)
 
     if (!result) {
       toast.error("An error occurred", {
-          description: "Please try again later.",
+        description: "Please try again later.",
       })
       return
     }
     else if (result.status) {
-        toast.success("Operation successful", {
-            description: "The configuration has been set.",
-        })
+      toast.success("Operation successful", {
+        description: "The configuration has been set.",
+      })
     }
     else {
-        toast.error("An error occurred", {
-            description: "Please try again later.",
-        })
-        return
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+      })
+      return
     }
   }
 
@@ -97,8 +103,8 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
                 currentConfiguration.documentStore,
                 currentConfiguration.vectorStore,
                 currentConfiguration.embeddingModel
-              ].map((option) => (
-                <CarouselItem key={option.name} className="max-w-72">
+              ].map((option, index) => (
+                <CarouselItem key={index} className="max-w-72">
                   <Card className="w-fit text-sm font-medium leading-none h-full flex flex-col justify-between">
                     <CardHeader>
                       <h2 className="text-xl">{option.name}</h2>
@@ -161,9 +167,9 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
                   <Carousel className="w-[calc(100%-100px)] mx-auto">
                     <CarouselContent>
                       {
-                        LLMModelOptions.map((option) => (
-                          <CarouselItem key={option.name} className="max-w-72">
-                            <FormItem>
+                        LLMModelOptions.map((option, index) => (
+                          <CarouselItem key={index} className="max-w-72 min-h-full">
+                            <FormItem className="h-full">
                               <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                 <FormControl>
                                   <RadioGroupItem value={option.name} className="sr-only" />
@@ -206,7 +212,13 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
             )}
           />
           <div className="py-8 flex justify-center">
-            <Button className="w-full sm:w-5/12 py-6" type="submit">Confirm configuration</Button>
+            <Button
+              className="w-full sm:w-5/12 py-6"
+              type="submit"
+              disabled={form.formState.isSubmitting}
+            >
+              Confirm configuration
+            </Button>
           </div>
         </form>
       </Form>

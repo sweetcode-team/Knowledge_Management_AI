@@ -8,7 +8,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { StatusBadge } from "@/components/status-badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { types, statuses } from "@/app/documents/data/data"
+import { DOCUMENT_STATUSES, ALLOWED_FILE_TYPES } from "@/constants/constants"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { DocumentMetadata } from "@/types/types";
@@ -74,8 +74,8 @@ export const columns: ColumnDef<DocumentMetadata>[] = [
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
+      const status = DOCUMENT_STATUSES.find(
+        (documentStatus) => documentStatus.value === row.getValue("status")
       )
 
       if (!status) {
@@ -100,7 +100,7 @@ export const columns: ColumnDef<DocumentMetadata>[] = [
       <DataTableColumnHeader column={column} title="Type" />
     ),
     cell: ({ row }) => {
-      const type = types.find(
+      const type = ALLOWED_FILE_TYPES.find(
         (type) => type.value === row.getValue("type")
       )
 
@@ -122,16 +122,16 @@ export const columns: ColumnDef<DocumentMetadata>[] = [
     },
   },
   {
-    accessorKey: "uploadDate",
+    accessorKey: "uploadTime",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Upload Time" />
     ),
     cell: ({ row }) => {
-      const date:Date = row.getValue("uploadDate");
+      const date: Date = row.getValue("uploadTime");
       return (
         <div className="flex items-center justify-center">
           <span className="truncate font-medium">
-            <time dateTime={row.getValue("uploadDate")}>{format(date, 'yyyy-MM-dd hh:mm')}</time>
+            <time dateTime={row.getValue("uploadTime")}>{format(date, 'yyyy-MM-dd hh:mm')}</time>
           </span>
         </div>
       )

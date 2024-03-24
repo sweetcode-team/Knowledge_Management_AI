@@ -308,7 +308,7 @@ export function StagingArea() {
                                 <input
                                     multiple
                                     onChange={handleChange}
-                                    accept="application/pdf, application/msword"
+                                    accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                     id="dropzone-file"
                                     type="file"
                                     className="hidden"

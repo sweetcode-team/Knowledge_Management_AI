@@ -1,12 +1,10 @@
 import { Metadata } from "next"
-import { z } from "zod"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { StagingArea } from "./components/staging-area"
-import { DocumentContent, DocumentMetadata, DocumentOperationResponse } from "@/types/types";
 import { getDocuments } from "@/lib/actions"
 
 export const metadata: Metadata = {

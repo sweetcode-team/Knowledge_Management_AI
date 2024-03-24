@@ -27,7 +27,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog"
 
-import { statuses } from "@/app/documents/data/data"
+import { DOCUMENT_STATUSES } from "@/constants/constants"
 
 import {
   concealDocuments,
@@ -86,7 +86,7 @@ export function DataTableRowActions<TData>({
           <AlertDialogTrigger asChild>
             <Button variant="ghost" size="sm" className="w-full justify-start px-2 py-[6px] h-8">
               {
-                statuses.find((status) => status.value === document.status)?.action
+                DOCUMENT_STATUSES.find((status) => status.value === document.status)?.action
               }
             </Button>
           </AlertDialogTrigger>
@@ -95,7 +95,7 @@ export function DataTableRowActions<TData>({
               <AlertDialogTitle>Are you sure?</AlertDialogTitle>
               <AlertDialogDescription>
                 {
-                  statuses.find((status) => status.value === document.status)?.actionMessage
+                  DOCUMENT_STATUSES.find((status) => status.value === document.status)?.actionMessage
                 }
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -104,7 +104,7 @@ export function DataTableRowActions<TData>({
               <AlertDialogAction className={
                 cn(buttonVariants(),
                   "mt-2 sm:mt-0")} onClick={() => handleAction()}>
-                {statuses.find((status) => status.value === document.status)?.action}
+                {DOCUMENT_STATUSES.find((status) => status.value === document.status)?.action}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

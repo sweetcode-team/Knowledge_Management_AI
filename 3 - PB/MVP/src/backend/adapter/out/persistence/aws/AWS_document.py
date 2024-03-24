@@ -13,7 +13,6 @@ from domain.document.plain_document import PlainDocument
 class AWSDocument:
     id: str
     content: bytes
-    type: str
     size: float
     uploadTime: datetime
     
@@ -26,7 +25,7 @@ class AWSDocument:
         return PlainDocument(
             metadata=DocumentMetadata(
                 id=DocumentId(self.id),
-                type=DocumentType.PDF if self.type == "PDF" else DocumentType.DOCX,
+                type=DocumentType.PDF if self.id.rsplit(".", 1)[-1].lower() == "pdf" else DocumentType.DOCX,
                 size=self.size,
                 uploadTime=self.uploadTime
             ),

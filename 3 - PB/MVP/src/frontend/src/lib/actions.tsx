@@ -13,7 +13,7 @@ import {
     DocumentOperationResponse,
     MessageResponse
 } from "@/types/types"
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
 export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
@@ -28,7 +28,7 @@ export async function askChatbot(formData: AskChatbotFormValues): Promise<Messag
         revalidateTag("chat")
         return response.json()
     } catch (e) {
-
+        throw new Error();
     }
 }
 

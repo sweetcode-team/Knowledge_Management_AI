@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button'
 import prettyBytes from 'pretty-bytes';
 
+import { ALLOWED_FILE_TYPES } from '@/constants/constants'
+
 interface StagingAreaTableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
     file: File
     deleteAction: (fileIds: string[]) => void
@@ -34,7 +36,9 @@ export const StagingAreaTableRow = forwardRef<HTMLTableRowElement, StagingAreaTa
                 <td
                     className='px-2 py-4 whitespace-nowrap text-sm dark:text-slate-400 truncate'
                 >
-                    {file.type.split('/')[1]}
+                    {
+                        ALLOWED_FILE_TYPES.find((allowedFileType) => allowedFileType.type === file.type)?.label
+                    }
                 </td>
                 <td>
                     <Button

@@ -32,7 +32,9 @@ export default async function Dashboard() {
   const documents = await getDocuments()
   const chats = await getChats()
 
-  console.log(chats[0].id)
+  const recentlyViewedDocumentIds = new Set(chats.map((chat: ChatPreview) => chat.lastMessage.relevantDocuments).flat())
+
+  const recentlyViewedDocuments = documents.filter((document) => recentlyViewedDocumentIds.has(document.id))
 
   return (
     <ScrollArea className='h-full'>
@@ -45,7 +47,7 @@ export default async function Dashboard() {
         </ActionButton>
       </div>
       <Separator />
-      <div className="">
+      <div>
         <ResizablePanelGroup direction="horizontal" className="min-h-[50vh] max-h-[100vh]">
           <ResizablePanel defaultSize={60} minSize={55}>
             <div className="px-2 w-full flex justify-between align-top">
@@ -71,8 +73,20 @@ export default async function Dashboard() {
           <ResizablePanel defaultSize={40} minSize={35}>
             <ScrollArea className='h-[50vh] mr-2'>
               <div className="p-2">
-                <h3 className="ml-3 font-semibold  mb-2">Recently visited chats</h3>
-                {/* <RecentChats chats={chats} /> */}
+                <h3 className="ml-3 font-semibold  mb-2">Recent chats</h3>
+                {
+                  chats.length !== 0 ?
+                    <RecentChats chats={
+                      chats
+                        .sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime())
+                        .slice(0, 6)
+                    } />
+                    :
+                    <p className='text-center text-sm mt-4'>
+                      No recent chats.
+                    </p>
+                }
+
               </div>
             </ScrollArea>
           </ResizablePanel>
@@ -87,18 +101,34 @@ export default async function Dashboard() {
             </TabsList>
             <TabsContent value="uploaded">
               <ScrollArea className='h-[50vh] px-2'>
-                <RecentDocuments
-                  items={
-                    documents
-                      .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime())
-                      .slice(0, 12)
-                  }
-                />
+                {
+                  documents ?
+                    <RecentDocuments
+                      items={
+                        documents
+                          .sort((a, b) => new Date(b.uploadTime).getTime() - new Date(a.uploadTime).getTime())
+                          .slice(0, 12)
+                      }
+                    />
+                    :
+                    <p className='text-center text-sm mt-4'>
+                      No recently uploaded documents.
+                    </p>
+                }
               </ScrollArea>
             </TabsContent>
             <TabsContent value="viewed">
               <ScrollArea className='h-[50vh] px-2'>
-                <RecentDocuments items={documents} />
+                {
+                  recentlyViewedDocuments.length !== 0 ?
+                    <RecentDocuments
+                      items={recentlyViewedDocuments}
+                    />
+                    :
+                    <p className='text-center text-sm mt-4'>
+                      No recently viewed documents.
+                    </p>
+                }
               </ScrollArea>
             </TabsContent>
           </Tabs>
@@ -235,7 +265,7 @@ export async function HomegetDocuments(){
             <p>{document.id}</p>
             <p>{document.type}</p>
             <p>{document.size}</p>
-            <p> {document.uploadDate}</p>
+            <p> {document.uploadTime}</p>
             <p> {document.status}</p>
             </div>
         ))}

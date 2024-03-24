@@ -53,8 +53,8 @@ class PostgresConfigurationORM:
     """
     def setConfiguration(self, userId: int, LLMModel: PostgresLLMModelType, DocumentStore: PostgresDocumentStoreType, VectorStore: PostgresVectorStoreType, EmbeddingModel: PostgresEmbeddingModelType) -> PostgresConfigurationOperationResponse:
         try:
-            existingConfiguration = self.getConfigurationChoices() 
-            if existingConfiguration is None:
+            existingConfiguration = self.getConfigurationChoices(userId) 
+            if existingConfiguration is not None:
                 db_session.add(PostgresConfigurationChoice(userId=userId, LLMModel=LLMModel, documentStore=DocumentStore, vectorStore=VectorStore, embeddingModel=EmbeddingModel))
                 db_session.commit()
                 return PostgresConfigurationOperationResponse(True, 'Configurazione aggiornata con successo')

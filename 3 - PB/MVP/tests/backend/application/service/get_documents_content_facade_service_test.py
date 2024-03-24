@@ -1,27 +1,86 @@
-import unittest.mock
+from unittest.mock import MagicMock, patch
 from application.service.get_documents_content_facade_service import GetDocumentsContentFacadeService
-from domain.document.document import Document
-from domain.document.document_id import DocumentId
-from domain.document.document_status import DocumentStatus, Status
-from domain.document.plain_document import PlainDocument
-from domain.document.document_metadata import DocumentMetadata, DocumentType
-from domain.document.document_content import DocumentContent
+from domain.exception.exception import ElaborationException
 
 def test_getDocumentsContentFacade():
-    with unittest.mock.patch('application.service.get_documents_content.GetDocumentsContent') as documentContentGetterMock, \
-         unittest.mock.patch('application.service.get_documents_status.GetDocumentsStatus') as getDocumentsStatusMock:
-        
-        mockMetadata = DocumentMetadata(id=DocumentId("1"), type=DocumentType.PDF, size=1024, uploadTime="2022-01-01T00:00:00")
-        mockPlainDocument = PlainDocument(metadata=mockMetadata, content=DocumentContent(content="content"))
-        mocDocument = Document(documentStatus=DocumentStatus(Status.ENABLED), plainDocument=mockPlainDocument)
-        documentContentGetterMock.return_value.getDocumentsContent.return_value = [mocDocument]
-        getDocumentsStatusMock.return_value.getDocumentsStatus.return_value = [mocDocument]
-
-        getDocumentsContentFacadeService = GetDocumentsContentFacadeService(documentContentGetterMock.return_value, getDocumentsStatusMock.return_value)
+    getDocumentsStatusMock = MagicMock()
+    documentContentGetterMock = MagicMock()
+    documentIdMock = MagicMock()
+    documentContentMock = MagicMock()
+    documentStatusMock = MagicMock()
     
-        response = getDocumentsContentFacadeService.getDocumentsContent([DocumentId("1")])
+    with patch('application.service.get_documents_content_facade_service.Document') as documentMock:
+            
+        getDocumentsContentFacadeService = GetDocumentsContentFacadeService(documentContentGetterMock, getDocumentsStatusMock)
         
-        documentContentGetterMock.return_value.getDocumentsContent.assert_called_once_with([DocumentId("1")])
-        getDocumentsStatusMock.return_value.getDocumentsStatus.assert_called_once_with([DocumentId("1")])
+        getDocumentsStatusMock.getDocumentsStatus.return_value = [documentStatusMock]
+        documentContentGetterMock.getDocumentsContent.return_value = [documentContentMock]
         
-        assert isinstance(response[0], Document)
+        response = getDocumentsContentFacadeService.getDocumentsContent([documentIdMock])
+            
+        documentContentGetterMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+        getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+        documentMock.assert_called_once_with(plainDocument=documentContentMock, documentStatus=documentStatusMock)
+        assert response == [documentMock.return_value]
+
+def test_getDocumentsContentFacadeFailGetStatus():
+    getDocumentsStatusMock = MagicMock()
+    documentContentGetterMock = MagicMock()
+    documentIdMock = MagicMock()
+    documentContentMock = MagicMock()
+    
+    with patch('application.service.get_documents_content_facade_service.Document') as documentMock:
+            
+        getDocumentsContentFacadeService = GetDocumentsContentFacadeService(documentContentGetterMock, getDocumentsStatusMock)
+        
+        getDocumentsStatusMock.getDocumentsStatus.return_value = []
+        documentContentGetterMock.getDocumentsContent.return_value = [documentContentMock]
+        try:
+            response = getDocumentsContentFacadeService.getDocumentsContent([documentIdMock])
+            assert False
+        except ElaborationException:
+            documentContentGetterMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+            getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            documentMock.assert_not_called()
+            pass
+        
+def test_getDocumentsContentFacadeFailGetContent():
+    getDocumentsStatusMock = MagicMock()
+    documentContentGetterMock = MagicMock()
+    documentIdMock = MagicMock()
+    documentStatusMock = MagicMock()
+    
+    with patch('application.service.get_documents_content_facade_service.Document') as documentMock:
+            
+        getDocumentsContentFacadeService = GetDocumentsContentFacadeService(documentContentGetterMock, getDocumentsStatusMock)
+        
+        getDocumentsStatusMock.getDocumentsStatus.return_value = [documentStatusMock]
+        documentContentGetterMock.getDocumentsContent.return_value = []
+        try:
+            response = getDocumentsContentFacadeService.getDocumentsContent([documentIdMock])
+            assert False
+        except ElaborationException:
+            documentContentGetterMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+            getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            documentMock.assert_not_called()
+            pass
+        
+def test_getDocumentsContentFacadeFailGetContentAndStatus():
+    getDocumentsStatusMock = MagicMock()
+    documentContentGetterMock = MagicMock()
+    documentIdMock = MagicMock()
+    
+    with patch('application.service.get_documents_content_facade_service.Document') as documentMock:
+            
+        getDocumentsContentFacadeService = GetDocumentsContentFacadeService(documentContentGetterMock, getDocumentsStatusMock)
+        
+        getDocumentsStatusMock.getDocumentsStatus.return_value = []
+        documentContentGetterMock.getDocumentsContent.return_value = []
+        try:
+            response = getDocumentsContentFacadeService.getDocumentsContent([documentIdMock])
+            assert False
+        except ElaborationException:
+            documentContentGetterMock.getDocumentsContent.assert_called_once_with([documentIdMock])
+            getDocumentsStatusMock.getDocumentsStatus.assert_called_once_with([documentIdMock])
+            documentMock.assert_not_called()
+            pass

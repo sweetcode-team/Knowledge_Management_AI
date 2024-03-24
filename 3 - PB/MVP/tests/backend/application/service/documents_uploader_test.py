@@ -1,52 +1,26 @@
-import unittest.mock
+from unittest.mock import MagicMock, patch
 from application.service.documents_uploader import DocumentsUploader
-from domain.document.document_operation_response import DocumentOperationResponse
-from domain.document.document_id import DocumentId
 
-def test_uploadDocumentsForceUploadTrueTrue():
-    with unittest.mock.patch('application.service.documents_uploader.DocumentsUploaderPort') as documentsUploaderPortMock:
-        documentsUploaderPortMock.uploadDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document uploaded successfully")]
+def test_uploadDocumentsForceUploadTrue():
+    documentsUploaderPortMock = MagicMock()
+    documentIdMock = MagicMock()
     
-        documentsUploader = DocumentsUploader(documentsUploaderPortMock)
+    documentsUploader = DocumentsUploader(documentsUploaderPortMock)
     
-        response = documentsUploader.uploadDocuments([DocumentId("Prova.pdf")], True)
+    response = documentsUploader.uploadDocuments([documentIdMock], True)
         
-        documentsUploaderPortMock.uploadDocuments.assert_called_once_with([DocumentId("Prova.pdf")], True)
+    documentsUploaderPortMock.uploadDocuments.assert_called_once_with([documentIdMock], True)
         
-        assert isinstance(response[0], DocumentOperationResponse)
+    assert response == documentsUploaderPortMock.uploadDocuments.return_value
         
-def test_uploadDocumentForceUploadFalseTrue():
-    with unittest.mock.patch('application.service.documents_uploader.DocumentsUploaderPort') as documentsUploaderPortMock:
-        documentsUploaderPortMock.uploadDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document uploaded successfully")]
+def test_uploadDocumentForceUploadFalse():
+    documentsUploaderPortMock = MagicMock()
+    documentIdMock = MagicMock()
     
-        documentsUploader = DocumentsUploader(documentsUploaderPortMock)
+    documentsUploader = DocumentsUploader(documentsUploaderPortMock)
     
-        response = documentsUploader.uploadDocuments([DocumentId("Prova.pdf")], False)
+    response = documentsUploader.uploadDocuments([documentIdMock], False)
         
-        documentsUploaderPortMock.uploadDocuments.assert_called_once_with([DocumentId("Prova.pdf")], False)
+    documentsUploaderPortMock.uploadDocuments.assert_called_once_with([documentIdMock], False)
         
-        assert isinstance(response[0], DocumentOperationResponse)
-        
-def test_uploadDocumentForceUploadTrueFalse():
-    with unittest.mock.patch('application.service.documents_uploader.DocumentsUploaderPort') as documentsUploaderPortMock:
-        documentsUploaderPortMock.uploadDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), False, "Error uploading document")]
-    
-        documentsUploader = DocumentsUploader(documentsUploaderPortMock)
-    
-        response = documentsUploader.uploadDocuments([DocumentId("Prova.pdf")], True)
-        
-        documentsUploaderPortMock.uploadDocuments.assert_called_once_with([DocumentId("Prova.pdf")], True)
-        
-        assert isinstance(response[0], DocumentOperationResponse)
-        
-def test_uploadDocumentForceUploadFalseFalse():
-    with unittest.mock.patch('application.service.documents_uploader.DocumentsUploaderPort') as documentsUploaderPortMock:
-        documentsUploaderPortMock.uploadDocuments.return_value = [DocumentOperationResponse(DocumentId("Prova.pdf"), False, "Error uploading document")]
-    
-        documentsUploader = DocumentsUploader(documentsUploaderPortMock)
-    
-        response = documentsUploader.uploadDocuments([DocumentId("Prova.pdf")], False)
-        
-        documentsUploaderPortMock.uploadDocuments.assert_called_once_with([DocumentId("Prova.pdf")], False)
-        
-        assert isinstance(response[0], DocumentOperationResponse)
+    assert response == documentsUploaderPortMock.uploadDocuments.return_value

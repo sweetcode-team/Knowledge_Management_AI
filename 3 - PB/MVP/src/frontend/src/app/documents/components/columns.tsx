@@ -1,6 +1,6 @@
 "use client"
 
-import { parseISO, format } from "date-fns"
+import { format } from "date-fns"
 import prettyBytes from 'pretty-bytes';
 
 import { ColumnDef } from "@tanstack/react-table"
@@ -11,9 +11,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { DOCUMENT_STATUSES, ALLOWED_FILE_TYPES } from "@/constants/constants"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
-import { DocumentMetadata } from "@/types/types";
+import { LightDocument } from "@/types/types";
 
-export const columns: ColumnDef<DocumentMetadata>[] = [
+export const columns: ColumnDef<LightDocument>[] = [
   {
     id: "select",
     header: ({ table }) => (

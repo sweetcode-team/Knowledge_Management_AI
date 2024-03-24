@@ -44,7 +44,7 @@ def embedDocuments():
     if len(documentOperationResponses) == 0:
         raise APIElaborationException("Errore nella generazione degli embeddings dei documenti.")
      
-    return jsonify([{"documentId": documentOperationResponse.documentId.id,
+    return jsonify([{"id": documentOperationResponse.documentId.id,
                      "status": documentOperationResponse.ok(), 
                      "message": documentOperationResponse.message} 
                     for documentOperationResponse in documentOperationResponses])

@@ -1,7 +1,12 @@
 import { Separator } from "@/components/ui/separator"
-import { ConfigurationForm } from "@/app/settings/configuration-form"
+import { SettingsConfigurationForm } from "@/app/settings/configuration-form"
+import { getConfiguration, getConfigurationOptions } from "@/lib/actions"
+  
 
-export default function SettingsProfilePage() {
+export default async function SettingsProfilePage() {
+  const currentConfiguration = await getConfiguration()
+  const configurationOptions = await getConfigurationOptions()
+
   return (
     <div className="space-y-6">
       <div>
@@ -11,7 +16,7 @@ export default function SettingsProfilePage() {
         </p>
       </div>
       <Separator />
-      <ConfigurationForm />
+      <SettingsConfigurationForm currentConfiguration={currentConfiguration} configurationOptions={configurationOptions} />
     </div>
   )
 }

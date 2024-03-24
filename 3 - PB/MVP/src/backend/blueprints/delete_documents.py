@@ -45,6 +45,6 @@ def deleteDocuments():
         raise APIElaborationException("Errore nell'eliminazione dei documenti.")
     
     return jsonify([{
-        "documentId": documentOperationResponse.documentId.id,
+        "id": documentOperationResponse.documentId.id,
         "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

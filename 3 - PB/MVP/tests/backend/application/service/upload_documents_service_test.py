@@ -1,40 +1,72 @@
-import unittest.mock
+from unittest.mock import MagicMock, patch
 from application.service.upload_documents_service import UploadDocumentsService
-from domain.document.document import Document
-from domain.document.document_id import DocumentId
-from domain.document.document_operation_response import DocumentOperationResponse
+from domain.exception.exception import ElaborationException
 
-def test_uploadDocumentsService():
-    with unittest.mock.patch('application.service.documents_uploader.DocumentsUploader') as documentsUploaderMock, \
-         unittest.mock.patch('application.service.embeddings_uploader.EmbeddingsUploader') as embeddingsUploaderMock, \
-         unittest.mock.patch('domain.document.document.Document') as DocumentMock, \
-         unittest.mock.patch('domain.document.document_status.DocumentStatus') as DocumentStatusMock, \
-         unittest.mock.patch('domain.document.plain_document.PlainDocument') as PlainDocumentMock, \
-         unittest.mock.patch('domain.document.document_metadata.DocumentMetadata') as DocumentMetadataMock, \
-         unittest.mock.patch('domain.document.document_content.DocumentContent') as DocumentContentMock:
-        
-        mockDocument = DocumentMock.return_value
-        mockDocumentStatus = DocumentStatusMock.return_value
-        mockPlainDocument = PlainDocumentMock.return_value
-        mockMetadata = DocumentMetadataMock.return_value
-        mockContent = DocumentContentMock.return_value
-
-        mockPlainDocument.metadata = mockMetadata
-        mockPlainDocument.content = mockContent
-
-        mockDocument.documentStatus = mockDocumentStatus
-        mockDocument.plainDocument = mockPlainDocument
-
-        mockResponse = DocumentOperationResponse(status=True, message="Document uploaded successfully", documentId=DocumentId("1"))
-        documentsUploaderMock.return_value.uploadDocuments.return_value = [mockResponse]
-        embeddingsUploaderMock.return_value.uploadEmbeddings.return_value = [mockResponse]
-
-        uploadDocumentsService = UploadDocumentsService(documentsUploaderMock.return_value, embeddingsUploaderMock.return_value)
+def test_uploadDocumentsServiceForceTrue():
+    documentsUploaderMock = MagicMock()
+    embeddingsUploaderMock = MagicMock()
+    documentMock = MagicMock()
+    documentOperationResponseMock = MagicMock()
     
-        response = uploadDocumentsService.uploadDocuments([mockDocument], True)
-        
-        documentsUploaderMock.return_value.uploadDocuments.assert_called_once_with([mockDocument], True)
-        embeddingsUploaderMock.return_value.uploadEmbeddings.assert_called_once_with([mockDocument])
-        
-        assert isinstance(response[0], DocumentOperationResponse)
+    documentsUploaderMock.uploadDocuments.return_value = [documentOperationResponseMock]
+    documentOperationResponseMock.ok.return_value = True
+    
+    uploadDocumentsService = UploadDocumentsService(documentsUploaderMock, embeddingsUploaderMock)
+    
+    response = uploadDocumentsService.uploadDocuments([documentMock], True)
+    
+    documentsUploaderMock.uploadDocuments.assert_called_once_with([documentMock], True)
+    embeddingsUploaderMock.uploadEmbeddings.assert_called_once_with([documentMock])
+    assert response == [embeddingsUploaderMock.uploadEmbeddings.return_value[0]]
 
+def test_uploadDocumentsServiceForceFalse():
+    documentsUploaderMock = MagicMock()
+    embeddingsUploaderMock = MagicMock()
+    documentMock = MagicMock()
+    documentOperationResponseMock = MagicMock()
+    
+    documentsUploaderMock.uploadDocuments.return_value = [documentOperationResponseMock]
+    documentOperationResponseMock.ok.return_value = True
+    
+    uploadDocumentsService = UploadDocumentsService(documentsUploaderMock, embeddingsUploaderMock)
+    
+    response = uploadDocumentsService.uploadDocuments([documentMock], False)
+    
+    documentsUploaderMock.uploadDocuments.assert_called_once_with([documentMock], False)
+    embeddingsUploaderMock.uploadEmbeddings.assert_called_once_with([documentMock])
+    
+    assert response == [embeddingsUploaderMock.uploadEmbeddings.return_value[0]]
+    
+def test_uploadDocumentsServiceFailUploadDocuments():
+    documentsUploaderMock = MagicMock()
+    embeddingsUploaderMock = MagicMock()
+    documentMock = MagicMock()
+    documentOperationResponseMock = MagicMock()
+    
+    documentsUploaderMock.uploadDocuments.return_value = [documentOperationResponseMock]
+    documentOperationResponseMock.ok.return_value = False
+    
+    uploadDocumentsService = UploadDocumentsService(documentsUploaderMock, embeddingsUploaderMock)
+    
+    response = uploadDocumentsService.uploadDocuments([documentMock], False)
+    
+    documentsUploaderMock.uploadDocuments.assert_called_once_with([documentMock], False)
+    embeddingsUploaderMock.uploadEmbeddings.assert_not_called()
+    assert response == [documentOperationResponseMock]
+    
+def test_uploadDocumentsServiceFailUploadDocumentsException():
+    documentsUploaderMock = MagicMock()
+    embeddingsUploaderMock = MagicMock()
+    documentMock = MagicMock()
+    
+    documentsUploaderMock.uploadDocuments.return_value = [] 
+    
+    uploadDocumentsService = UploadDocumentsService(documentsUploaderMock, embeddingsUploaderMock)
+    
+    try:
+        response = uploadDocumentsService.uploadDocuments([documentMock], False)
+        assert False
+    except ElaborationException:
+        documentsUploaderMock.uploadDocuments.assert_called_once_with([documentMock], False)
+        embeddingsUploaderMock.uploadEmbeddings.assert_not_called()
+        pass

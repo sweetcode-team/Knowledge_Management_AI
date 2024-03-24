@@ -37,6 +37,6 @@ def concealDocuments():
         raise APIElaborationException("Errore nell'occultamento dei documenti.")
     
     return jsonify([{
-        "documentId": documentOperationResponse.documentId.id,
+        "id": documentOperationResponse.documentId.id,
         "status": documentOperationResponse.ok(),
         "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

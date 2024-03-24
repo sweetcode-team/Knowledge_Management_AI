@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 
 import {
   Alert,
@@ -30,7 +30,7 @@ import {
   DocumentStore,
   EmbeddingsModel,
   ConfigurationOptions,
-  ConfigurationFormValues,
+  LLMConfigurationFormValues,
   configurationFormSchema
 } from "@/types/types"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -48,105 +48,48 @@ import { InfoIcon } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { changeConfiguration } from "@/lib/actions"
 
-export function ConfigurationForm() {
-  const form = useForm<ConfigurationFormValues>({
+interface SettingsConfigurationFormProps {
+  currentConfiguration: Configuration
+  configurationOptions: ConfigurationOptions
+}
+
+export function SettingsConfigurationForm({ currentConfiguration, configurationOptions }: SettingsConfigurationFormProps) {
+
+  const defaultValues: Partial<LLMConfigurationFormValues> = {
+    LLMModel: currentConfiguration.LLMModel.name,
+  }
+
+  const form = useForm<LLMConfigurationFormValues>({
     resolver: zodResolver(configurationFormSchema),
     mode: "onChange",
+    defaultValues
   })
 
-  const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data) => {
+
+  const onSubmit: SubmitHandler<LLMConfigurationFormValues> = async (data) => {
+    console.log(data)
     const result = await changeConfiguration(data)
 
     if (!result) {
-      toast({
-        variant: "destructive",
-        title: "An error occurred",
+      toast.error("An error occurred", {
         description: "Please try again later.",
       })
       return
     }
-
-    if (result.status) {
-      toast({
-        title: "Configuration updated",
-        description: result.message,
-      })
-    } else {
-      toast({
-        variant: "destructive",
-        title: "An error occurred",
-        description: result.message,
+    else if (result.status) {
+      toast.success("Operation successful", {
+        description: "The configuration has been set.",
       })
     }
-  }
-
-  const currentConfiguration: Configuration = {
-    LLMModel: {
-      name: "GPT-3.5-turbo",
-      type: "Language Model",
-      costIndicator: "Paid",
-      description: "The GPT-3.5-turbo model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "OpenAI"
-    },
-    vectorStore: {
-      name: "VectorStore",
-      type: "Vector Store",
-      costIndicator: "Free",
-      description: "The Vector Store is a store that is capable of storing vectors.",
-      organization: "Meta"
-    },
-    documentStore: {
-      name: "DocumentStore",
-      type: "Document Store",
-      costIndicator: "Free",
-      description: "The Document Store is a store that is capable of storing documents.",
-      organization: "Meta"
-    },
-    embeddingModel: {
-      name: "EmbeddingsModel",
-      type: "Embeddings Model",
-      costIndicator: "Free",
-      description: "The Embeddings Model is a model that is capable of generating embeddings.",
-      organization: "Meta"
+    else {
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+      })
+      return
     }
   }
 
-  const configurationOptions = {
-    LLMModel: [{
-      name: "GPT-3.5-turbo",
-      type: "Language Model",
-      costIndicator: "Paid",
-      description: "The GPT-3.5-turbo model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "OpenAI"
-    },
-    {
-      name: "LLama",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    },
-    {
-      name: "GPT 4",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    },
-    {
-      name: "HGMod",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    }
-    ],
-    VectorStore: [],
-    DocumentStore: [],
-    EmbeddingModel: []
-  }
-
-  const LLMModelOptions: LLMModel[] = configurationOptions.LLMModel
+  const LLMModelOptions: LLMModel[] = configurationOptions.LLMModels
 
   return (
     <>
@@ -160,8 +103,8 @@ export function ConfigurationForm() {
                 currentConfiguration.documentStore,
                 currentConfiguration.vectorStore,
                 currentConfiguration.embeddingModel
-              ].map((option) => (
-                <CarouselItem key={option.name} className="max-w-72">
+              ].map((option, index) => (
+                <CarouselItem key={index} className="max-w-72">
                   <Card className="w-fit text-sm font-medium leading-none h-full flex flex-col justify-between">
                     <CardHeader>
                       <h2 className="text-xl">{option.name}</h2>
@@ -224,9 +167,9 @@ export function ConfigurationForm() {
                   <Carousel className="w-[calc(100%-100px)] mx-auto">
                     <CarouselContent>
                       {
-                        LLMModelOptions.map((option) => (
-                          <CarouselItem key={option.name} className="max-w-72">
-                            <FormItem>
+                        LLMModelOptions.map((option, index) => (
+                          <CarouselItem key={index} className="max-w-72 min-h-full">
+                            <FormItem className="h-full">
                               <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                 <FormControl>
                                   <RadioGroupItem value={option.name} className="sr-only" />
@@ -269,7 +212,13 @@ export function ConfigurationForm() {
             )}
           />
           <div className="py-8 flex justify-center">
-            <Button className="w-full sm:w-5/12 py-6" type="submit">Confirm configuration</Button>
+            <Button
+              className="w-full sm:w-5/12 py-6"
+              type="submit"
+              disabled={form.formState.isSubmitting}
+            >
+              Confirm configuration
+            </Button>
           </div>
         </form>
       </Form>

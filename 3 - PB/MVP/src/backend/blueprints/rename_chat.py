@@ -41,6 +41,6 @@ def renameChat():
         raise APIElaborationException("Errore nella rinomina della chat.")
     
     return jsonify({
-        "chatId": chatOperationResponse.chatId.id,
+        "id": chatOperationResponse.chatId.id,
         "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message})

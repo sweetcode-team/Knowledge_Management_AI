@@ -28,11 +28,14 @@ class GetDocumentsFacadeService(GetDocumentsUseCase):
     """ 
     def getDocuments(self, documentFilter: DocumentFilter) -> List[LightDocument]:
         documentsMetadata = self.getDocumentsMetadatas.getDocumentsMetadata(documentFilter)
-
-        documentsId = [document.id for document in documentsMetadata]
-        documentsStatus = self.getDocumentsStatus.getDocumentsStatus(documentsId)
+    
+        if len(documentsMetadata) == 0:
+            raise ElaborationException("Errore nel recupero dei documenti.")
+        else:
+            documentsId = [document.id for document in documentsMetadata]
+            documentsStatus = self.getDocumentsStatus.getDocumentsStatus(documentsId)
         
-        if len(documentsMetadata) != len(documentsStatus):
+        if len(documentsMetadata) != len(documentsStatus) or len(documentsMetadata) == 0:
             raise ElaborationException("Errore nel recupero dei documenti.")
         
         lightDocuments = []

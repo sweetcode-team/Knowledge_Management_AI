@@ -28,25 +28,25 @@ def getConfigurationOptions():
         return jsonify({}), 404
 
     return jsonify({
-        "vectorStore": [{
+        "vectorStores": [{
             "name": vectorStoreOption.name.name,
             "organization": vectorStoreOption.organization,
             "description": vectorStoreOption.description,
             "type": vectorStoreOption.type,
             "costIndicator": vectorStoreOption.costIndicator} for vectorStoreOption in configurationOptions.vectorStoreOptions],
-        "documentStore": [{
+        "documentStores": [{
             "name": documentStoreOption.name.name,
             "organization": documentStoreOption.organization,
             "description": documentStoreOption.description,
             "type": documentStoreOption.type,
             "costIndicator": documentStoreOption.costIndicator} for documentStoreOption in configurationOptions.documentStoreOptions],
-        "embeddingModel": [{
+        "embeddingModels": [{
             "name": embeddingModelOption.name.name,
             "organization": embeddingModelOption.organization,
             "description": embeddingModelOption.description,
             "type": embeddingModelOption.type,
             "costIndicator": embeddingModelOption.costIndicator} for embeddingModelOption in configurationOptions.embeddingModelOptions],
-        "LLMModel": [{
+        "LLMModels": [{
             "name": LLMModelOption.name.name,
             "organization": LLMModelOption.organization,
             "description": LLMModelOption.description,

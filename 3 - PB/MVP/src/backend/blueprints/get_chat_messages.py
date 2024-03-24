@@ -36,7 +36,7 @@ def getChatMessages(chatId):
     
     return jsonify({
         "title": chatMessages.title,
-        "chatId": chatMessages.chatId.id,
+        "id": chatMessages.chatId.id,
         "messages": [
             {
                 "content": chatMessage.content,

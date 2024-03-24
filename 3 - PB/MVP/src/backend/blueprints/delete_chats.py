@@ -41,6 +41,6 @@ def deleteChats():
         raise APIElaborationException("Errore nell'eliminazione delle chat.")
     
     return jsonify([{
-        "chatId": chatOperationResponse.chatId.id,
+        "id": chatOperationResponse.chatId.id,
         "status": chatOperationResponse.ok(),
         "message": chatOperationResponse.message} for chatOperationResponse in chatOperationResponses])

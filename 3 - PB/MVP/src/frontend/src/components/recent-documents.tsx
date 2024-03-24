@@ -5,7 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 
 import { statuses } from "@/app/documents/data/data"
-import { DocumentMetadata } from "@/types/types"
+import { LightDocument } from "@/types/types"
 
 import {
   Drawer,
@@ -31,10 +31,10 @@ import { StatusBadge } from "./status-badge";
 import { useEffect, useState } from "react";
 
 interface RecentDocumentsProps {
-  items: DocumentMetadata[]
+  items: LightDocument[]
 }
 
-async function getDocumentContent(id: string): Promise<DocumentMetadata> {
+async function getDocumentContent(id: string): Promise<LightDocument> {
   const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`)
   return result.json()
 }

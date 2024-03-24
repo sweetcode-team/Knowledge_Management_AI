@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 
 import {
   Alert,
@@ -48,105 +48,42 @@ import { InfoIcon } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { changeConfiguration } from "@/lib/actions"
 
-export function ConfigurationForm() {
+interface SettingsConfigurationFormProps {
+  currentConfiguration: Configuration
+  configurationOptions: ConfigurationOptions
+}
+
+export function SettingsConfigurationForm({ currentConfiguration, configurationOptions }: SettingsConfigurationFormProps) {
+
   const form = useForm<ConfigurationFormValues>({
     resolver: zodResolver(configurationFormSchema),
     mode: "onChange",
   })
 
   const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data) => {
+    console.log(data)
     const result = await changeConfiguration(data)
 
     if (!result) {
-      toast({
-        variant: "destructive",
-        title: "An error occurred",
-        description: "Please try again later.",
+      toast.error("An error occurred", {
+          description: "Please try again later.",
       })
       return
     }
-
-    if (result.status) {
-      toast({
-        title: "Configuration updated",
-        description: result.message,
-      })
-    } else {
-      toast({
-        variant: "destructive",
-        title: "An error occurred",
-        description: result.message,
-      })
+    else if (result.status) {
+        toast.success("Operation successful", {
+            description: "The configuration has been set.",
+        })
+    }
+    else {
+        toast.error("An error occurred", {
+            description: "Please try again later.",
+        })
+        return
     }
   }
 
-  const currentConfiguration: Configuration = {
-    LLMModel: {
-      name: "GPT-3.5-turbo",
-      type: "Language Model",
-      costIndicator: "Paid",
-      description: "The GPT-3.5-turbo model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "OpenAI"
-    },
-    vectorStore: {
-      name: "VectorStore",
-      type: "Vector Store",
-      costIndicator: "Free",
-      description: "The Vector Store is a store that is capable of storing vectors.",
-      organization: "Meta"
-    },
-    documentStore: {
-      name: "DocumentStore",
-      type: "Document Store",
-      costIndicator: "Free",
-      description: "The Document Store is a store that is capable of storing documents.",
-      organization: "Meta"
-    },
-    embeddingModel: {
-      name: "EmbeddingsModel",
-      type: "Embeddings Model",
-      costIndicator: "Free",
-      description: "The Embeddings Model is a model that is capable of generating embeddings.",
-      organization: "Meta"
-    }
-  }
-
-  const configurationOptions = {
-    LLMModel: [{
-      name: "GPT-3.5-turbo",
-      type: "Language Model",
-      costIndicator: "Paid",
-      description: "The GPT-3.5-turbo model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "OpenAI"
-    },
-    {
-      name: "LLama",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    },
-    {
-      name: "GPT 4",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    },
-    {
-      name: "HGMod",
-      type: "Language Model",
-      costIndicator: "Free",
-      description: "The LLama model is a language model that is capable of answering questions and generating text based on the input it receives.",
-      organization: "Meta"
-    }
-    ],
-    VectorStore: [],
-    DocumentStore: [],
-    EmbeddingModel: []
-  }
-
-  const LLMModelOptions: LLMModel[] = configurationOptions.LLMModel
+  const LLMModelOptions: LLMModel[] = configurationOptions.LLMModels
 
   return (
     <>

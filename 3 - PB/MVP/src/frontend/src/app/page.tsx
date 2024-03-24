@@ -32,7 +32,6 @@ export default async function Dashboard() {
   const documents = await getDocuments()
   const chats = await getChats()
 
-  console.log(chats[0].id)
 
   return (
     <ScrollArea className='h-full'>
@@ -52,7 +51,7 @@ export default async function Dashboard() {
               <h3 className="pt-2 ml-3 font-semibold text-nowrap">Last chat</h3>
               <ScrollArea className='w-full h-[50vh]'>
                 <div className="m-auto p-3 pb-0 h-full">
-                  <ChatContent messages={[chats[0].lastMessage]} />
+                  <ChatContent messages={chats[0]?[chats[0].lastMessage]:[]} /> 
                 </div>
               </ScrollArea>
               <Tooltip>
@@ -62,7 +61,7 @@ export default async function Dashboard() {
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
-                  Espandi
+                  Enlarge
                 </TooltipContent>
               </Tooltip>
             </div>

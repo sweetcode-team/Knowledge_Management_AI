@@ -9,7 +9,7 @@ import {
     ConfigurationOperationResponse,
     ConfigurationOptions,
     DocumentContent,
-    DocumentMetadata,
+    LightDocument,
     DocumentOperationResponse,
     MessageResponse
 } from "@/types/types"
@@ -170,7 +170,7 @@ export async function getDocumentContent(id: string): Promise<DocumentContent> {
     return result.json()
 }
 
-export async function getDocuments(filter: string = ""): Promise<DocumentMetadata[]> {
+export async function getDocuments(filter: string = ""): Promise<LightDocument[]> {
     const result = await fetch(`http://localhost:4000/getDocuments` + (filter.trim() !== "" ? `/${filter.trim()}` : ""),
         {
             next: { tags: ["document"] }
@@ -192,16 +192,13 @@ export async function renameChat(id: number, title: string): Promise<ChatOperati
     return result.json()
 }
 
-export async function setConfiguration(configuration: Configuration): Promise<ConfigurationOperationResponse> {
-    const formData = new FormData();
-    formData.append('LLMModel', JSON.stringify(configuration.LLMModel));
-    formData.append('documentStore', JSON.stringify(configuration.documentStore));
-    formData.append('vectorStore', JSON.stringify(configuration.vectorStore));
-    formData.append('embeddingModel', JSON.stringify(configuration.embeddingModel));
-
+export async function setConfiguration(configuration: ConfigurationFormValues): Promise<ConfigurationOperationResponse> {
     const result = await fetch(`http://localhost:4000/setConfiguration`, {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(configuration).toString()
     })
     revalidateTag("configuration")
 

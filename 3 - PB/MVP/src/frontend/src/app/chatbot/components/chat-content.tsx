@@ -24,9 +24,9 @@ export function ChatContent({ messages }: ChatContentProps) {
     <>
       <div className="h-full w-full space-y-4 pb-4">
         {
-          !messages || messages?.length === 0 ?
-            <div className="flex text-sm h-full items-center justify-center">
-              Nessun messaggio presente.
+          messages===undefined || messages?.length === 0 ?
+            <div className="flex text-sm h-full items-center justify-center pt-8">
+              No messages yet.
             </div>
             :
             messages?.map((message, index) => (

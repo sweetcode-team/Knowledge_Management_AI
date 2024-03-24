@@ -17,7 +17,7 @@ export type Chat = {
 }
 
 export type ChatOperationResponse = {
-    chatId: number
+    id: number
     status: boolean
     message: string
 }
@@ -61,7 +61,7 @@ export type DocumentContent = {
     status: Status
 }
 
-export type DocumentMetadata = {
+export type LightDocument = {
     id: string
     type: string
     size: number
@@ -70,7 +70,7 @@ export type DocumentMetadata = {
 }
 
 export type DocumentOperationResponse = {
-    documentId: string
+    id: string
     status: boolean
     message: string
 }
@@ -128,8 +128,17 @@ export type ConfigurationOptions = {
     documentStores: DocumentStore[]
 }
 
-export const configurationFormSchema = z.object({
+export const configurationLLMFormSchema = z.object({
     LLMModel: z.string()
+})
+
+export type ConfigurationLLMFormValues = z.infer<typeof configurationLLMFormSchema>
+
+export const configurationFormSchema = z.object({
+    LLMModel: z.string(),
+    vectorStore: z.string(),
+    embeddingModel: z.string(),
+    documentStore: z.string()
 })
 
 export type ConfigurationFormValues = z.infer<typeof configurationFormSchema>

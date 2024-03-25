@@ -163,6 +163,6 @@ class PostgresChatORM:
                     PostgresMessageSenderType[message.message["type"]]
                 ) for message in messages]
             
-            return PostgresChat(chat.id, chat.title, postgresMessages)
+            return PostgresChat(chat.id, chat.title, sorted(postgresMessages, key=lambda message: message.timestamp))
         except Exception as e:
             return None

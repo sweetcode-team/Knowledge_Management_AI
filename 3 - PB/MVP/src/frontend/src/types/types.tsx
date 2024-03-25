@@ -149,3 +149,10 @@ export const askChatbotFormSchema = z.object({
 })
 
 export type AskChatbotFormValues = z.infer<typeof askChatbotFormSchema>
+
+export const renameChatFormSchema = z.object({
+    chatId: z.coerce.number(),
+    title: z.string().min(1).max(70).trim(),
+})
+
+export type RenameChatFormValues = z.infer<typeof renameChatFormSchema>

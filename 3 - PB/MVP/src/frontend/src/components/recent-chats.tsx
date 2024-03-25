@@ -2,7 +2,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat, ChatPreview } from "@/types/types";
+import { Chat, ChatOperationResponse, ChatPreview } from "@/types/types";
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -22,6 +22,10 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog"
+import { deleteChats } from "@/lib/actions";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface RecentChatsProps {
   chats: ChatPreview[]
@@ -29,12 +33,29 @@ interface RecentChatsProps {
 
 export function RecentChats({ chats }: RecentChatsProps) {
 
-  const hideContextMenu = (id: number) => {
-    document.getElementById(id.toString())!.style.display = "none";
-  }
+  const onDeleteSubmit = async (chatId: number) => {
+    let results: ChatOperationResponse[]
+    try {
+      results = await deleteChats([chatId])
+    } catch (e) {
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+      })
+      return
+    }
 
-  const handleDeleteChat = (id: number) => {
-    console.log('Chat deleted:', id)
+    results.forEach(result => {
+      if (!result || !result.status) {
+        toast.error("An error occurred", {
+          description: "Error while renaming the chat:" + result.message,
+        })
+        return
+      } else {
+        toast.success("Operation successful", {
+          description: "Chat has been deleted.",
+        })
+      }
+    })
   }
 
   return (
@@ -43,7 +64,8 @@ export function RecentChats({ chats }: RecentChatsProps) {
         {chats.map((chat, index) => (
           <ContextMenu key={index}>
             <ContextMenuTrigger>
-              <div
+              <Link
+                href={`/chatbot/${chat.id}`}
                 key={chat.id}
                 tabIndex={0}
                 className={cn(
@@ -67,9 +89,9 @@ export function RecentChats({ chats }: RecentChatsProps) {
                 <div className="line-clamp-2 text-xs text-muted-foreground">
                   {chat.lastMessage.content.substring(0, 300)}
                 </div>
-              </div>
+              </Link>
             </ContextMenuTrigger>
-            <ContextMenuContent id={chat.id.toString()}>
+            <ContextMenuContent>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="ghost" size="sm" className="text-error-foreground hover:bg-error hover:text-error-foreground w-full justify-start px-2 py-[6px] h-8"
@@ -85,18 +107,18 @@ export function RecentChats({ chats }: RecentChatsProps) {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel
-                      onClick={() => hideContextMenu(chat.id)}
-                    >
-                      Abort</AlertDialogCancel>
+                    <AlertDialogCancel>
+                      Abort
+                    </AlertDialogCancel>
                     <AlertDialogAction className={
                       cn(buttonVariants({ variant: "destructive" }),
                         "mt-2 sm:mt-0")}
                       onClick={() => {
-                        hideContextMenu(chat.id)
-                        handleDeleteChat(chat.id)
+                        onDeleteSubmit(chat.id)
                       }}
-                    >Delete</AlertDialogAction>
+                    >
+                      Delete
+                    </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>

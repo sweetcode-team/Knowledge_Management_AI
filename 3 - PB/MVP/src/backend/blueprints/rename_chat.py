@@ -19,7 +19,7 @@ Returns:
 @renameChatBlueprint.route("/renameChat", methods=['POST'])
 def renameChat():
     requestedId = request.form.get('chatId')
-    requestedTitle = request.form.get('title').strip()
+    requestedTitle = request.form.get('title')
     if requestedId is None or requestedTitle is None:
         raise InsufficientParameters()
     if requestedId.strip() == "" or not requestedId.isdigit() or int(requestedId) < 0:

@@ -12,11 +12,7 @@ export async function middleware(req: NextRequest) {
   let isConfigurationSet = false
   try {
     const currentConfiguration = await getConfiguration()
-    isConfigurationSet =
-      currentConfiguration.LLMModel !== null
-      && currentConfiguration.documentStore !== null
-      && currentConfiguration.embeddingModel !== null
-      && currentConfiguration.vectorStore !== null
+    isConfigurationSet = (currentConfiguration !== null)
   } catch (error) {
     console.error('Errore durante la richiesta:', error)
     return NextResponse.error()

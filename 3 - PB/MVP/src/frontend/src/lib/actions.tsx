@@ -39,7 +39,7 @@ export async function changeConfiguration(formData: LLMConfigurationFormValues):
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams(formData.toString())
+        body: new URLSearchParams(formData).toString()
     })
     revalidateTag("configuration")
 
@@ -145,21 +145,27 @@ export async function getChats(filter: string = ""): Promise<ChatPreview[]> {
 }
 
 export async function getConfigurationOptions(): Promise<ConfigurationOptions> {
-    const result = await fetch(`http://localhost:4000/getConfigurationOptions`,
-        {
-            next: { tags: ["configuration"] }
-        }
-    )
+    const result = await fetch(`http://localhost:4000/getConfigurationOptions`, {
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        next: { tags: ["configuration"] }
+    })
     return result.json()
 }
 
-export async function getConfiguration(): Promise<Configuration> {
+export async function getConfiguration(): Promise<Configuration | null> {
     const result = await fetch(`http://localhost:4000/getConfiguration`,
         {
             next: { tags: ["configuration"] }
         }
     )
-    return result.json()
+    if (!result.ok) {
+        if (result.status === 401)
+            return null;
+        throw new Error('Failed to fetch configuration');
+    }
+    return result.json();
 }
 
 export async function getDocumentContent(id: string): Promise<DocumentContent> {

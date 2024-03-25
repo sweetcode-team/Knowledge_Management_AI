@@ -6,12 +6,14 @@ from domain.document.document_operation_response import DocumentOperationRespons
 def test_enableDocumentsTrue():
     vectorStoreManagerMock = MagicMock()
     vectorStoreDocumentOperationResponseMock = MagicMock()
+    documentIdMock = MagicMock()
     
-    vectorStoreDocumentOperationResponseMock.toDocumentOperationResponse.return_value = DocumentOperationResponse(DocumentId("Prova.pdf"), True, "Document enabled")
+    documentIdMock.id = "Prova.pdf"
     vectorStoreManagerMock.enableDocuments.return_value = [vectorStoreDocumentOperationResponseMock]
+    
     enableDocumentsVectorStore = EnableDocumentsVectorStore(vectorStoreManagerMock)
     
-    response = enableDocumentsVectorStore.enableDocuments([DocumentId("Prova.pdf")])
+    response = enableDocumentsVectorStore.enableDocuments([documentIdMock])
    
     vectorStoreManagerMock.enableDocuments.assert_called_once_with(["Prova.pdf"])
     assert isinstance(response, list)

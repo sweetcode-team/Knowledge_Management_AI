@@ -30,6 +30,9 @@ def getDocuments(filter):
     )
 
     retrievedChats = controller.getChats(validFilter)
+    
+    if retrievedChats is None:
+        raise APIElaborationException('Errore nel recupero delle chat.')
 
     if len(retrievedChats) == 0:
         return jsonify([]), 404

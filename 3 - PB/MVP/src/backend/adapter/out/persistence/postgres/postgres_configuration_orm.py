@@ -22,7 +22,8 @@ class PostgresConfigurationORM:
     """
     def getConfiguration(self, userId: int) -> PostgresConfiguration:
         userConfiguration = db_session.query(PostgresConfigurationChoice).filter(PostgresConfigurationChoice.userId == userId).first()
-
+        if userConfiguration is None:
+            return PostgresConfiguration(userId, None, None, None, None)
         vectorStore = db_session.query(PostgresVectorStoreConfiguration).filter(PostgresVectorStoreConfiguration.name == userConfiguration.vectorStore).first()
         embeddingModel = db_session.query(PostgresEmbeddingModelConfiguration).filter(PostgresEmbeddingModelConfiguration.name == userConfiguration.embeddingModel).first()
         LLMModel = db_session.query(PostgresLLMModelConfiguration).filter(PostgresLLMModelConfiguration.name == userConfiguration.LLMModel).first()
@@ -54,7 +55,7 @@ class PostgresConfigurationORM:
     def setConfiguration(self, userId: int, LLMModel: PostgresLLMModelType, DocumentStore: PostgresDocumentStoreType, VectorStore: PostgresVectorStoreType, EmbeddingModel: PostgresEmbeddingModelType) -> PostgresConfigurationOperationResponse:
         try:
             existingConfiguration = self.getConfigurationChoices(userId) 
-            if existingConfiguration is not None:
+            if existingConfiguration is None:
                 db_session.add(PostgresConfigurationChoice(userId=userId, LLMModel=LLMModel, documentStore=DocumentStore, vectorStore=VectorStore, embeddingModel=EmbeddingModel))
                 db_session.commit()
                 return PostgresConfigurationOperationResponse(True, 'Configurazione aggiornata con successo')

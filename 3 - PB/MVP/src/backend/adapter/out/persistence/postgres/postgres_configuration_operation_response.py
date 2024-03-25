@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from domain.configuration.configuration_operation_response import ConfigurationOperationResponse
 
 """
 This class is used to store the response of a configuration operation in Postgres.
@@ -16,3 +17,11 @@ class PostgresConfigurationOperationResponse:
     
     def ok(self) -> bool:
         return self.status
+    
+    """
+    Returns a ConfigurationOperationResponse object with the same status and message.
+    Returns:
+        ConfigurationOperationResponse: The ConfigurationOperationResponse object.
+    """
+    def toConfigurationOperationResponse(self):
+        return ConfigurationOperationResponse(self.ok(), self.message)

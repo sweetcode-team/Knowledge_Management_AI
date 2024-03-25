@@ -55,6 +55,8 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
         mode: "onChange",
     })
 
+    const router = useRouter()
+
     const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data)  => {
         const result = await setConfiguration(data)
         if (!result) {
@@ -75,7 +77,7 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
             return
         }
         form.reset()
-        useRouter().push('/')
+        router.push('/')
     }
 
     const LLMModelOptions: LLMModel[] = configurationOptions.LLMModels
@@ -115,16 +117,16 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                 {
                                                     LLMModelOptions.map((option) => (
                                                         <CarouselItem key={option.name} className="max-w-72">
-                                                            <FormItem>
+                                                            <FormItem className="h-full">
                                                                 <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                                                     <FormControl>
                                                                         <RadioGroupItem value={option.name} className="sr-only" />
                                                                     </FormControl>
-                                                                    <Card className="w-fit">
+                                                                    <Card className="w-fit h-full">
                                                                         <CardHeader>
                                                                             <h2 className="text-xl">{option.name}</h2>
                                                                             <CardDescription>
-                                                                                {option.type}
+                                                                                LLM MODEL
                                                                             </CardDescription>
                                                                         </CardHeader>
                                                                         <CardContent className="py-2 text-pretty">
@@ -133,6 +135,10 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                                         <CardFooter className="pt-2">
                                                                             <Table>
                                                                                 <TableBody>
+                                                                                    <TableRow>
+                                                                                        <TableCell className="p-2">Type</TableCell>
+                                                                                        <TableCell className="p-2 font-bold">{option.type}</TableCell>
+                                                                                    </TableRow>
                                                                                     <TableRow>
                                                                                         <TableCell className="p-2">Cost</TableCell>
                                                                                         <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>
@@ -178,16 +184,16 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                 {
                                                     vectorStoreOptions.map((option) => (
                                                         <CarouselItem key={option.name} className="max-w-72">
-                                                            <FormItem>
+                                                            <FormItem className="h-full">
                                                                 <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                                                     <FormControl>
                                                                         <RadioGroupItem value={option.name} className="sr-only" />
                                                                     </FormControl>
-                                                                    <Card className="w-fit">
+                                                                    <Card className="w-fit h-full">
                                                                         <CardHeader>
                                                                             <h2 className="text-xl">{option.name}</h2>
                                                                             <CardDescription>
-                                                                                {option.type}
+                                                                                VECTOR STORE
                                                                             </CardDescription>
                                                                         </CardHeader>
                                                                         <CardContent className="py-2 text-pretty">
@@ -196,6 +202,10 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                                         <CardFooter className="pt-2">
                                                                             <Table>
                                                                                 <TableBody>
+                                                                                    <TableRow>
+                                                                                        <TableCell className="p-2">Type</TableCell>
+                                                                                        <TableCell className="p-2 font-bold">{option.type}</TableCell>
+                                                                                    </TableRow>
                                                                                     <TableRow>
                                                                                         <TableCell className="p-2">Cost</TableCell>
                                                                                         <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>
@@ -236,21 +246,21 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                         onValueChange={field.onChange}
                                         defaultValue={field.value}
                                     >
-                                        <Carousel className="w-[calc(100%-100px)] mx-auto">
+                                        <Carousel className="w-[calc(100%-100px)] mx-auto py-1">
                                             <CarouselContent>
                                                 {
                                                     documentStoreOptions.map((option) => (
                                                         <CarouselItem key={option.name} className="max-w-72">
-                                                            <FormItem>
+                                                            <FormItem className="h-full">
                                                                 <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                                                     <FormControl>
                                                                         <RadioGroupItem value={option.name} className="sr-only" />
                                                                     </FormControl>
-                                                                    <Card className="w-fit">
+                                                                    <Card className="w-fit h-full">
                                                                         <CardHeader>
                                                                             <h2 className="text-xl">{option.name}</h2>
                                                                             <CardDescription>
-                                                                                {option.type}
+                                                                                DOCUMENT STORE
                                                                             </CardDescription>
                                                                         </CardHeader>
                                                                         <CardContent className="py-2 text-pretty">
@@ -259,6 +269,10 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                                         <CardFooter className="pt-2">
                                                                             <Table>
                                                                                 <TableBody>
+                                                                                    <TableRow>
+                                                                                        <TableCell className="p-2">Type</TableCell>
+                                                                                        <TableCell className="p-2 font-bold">{option.type}</TableCell>
+                                                                                    </TableRow>
                                                                                     <TableRow>
                                                                                         <TableCell className="p-2">Cost</TableCell>
                                                                                         <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>
@@ -304,16 +318,16 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                 {
                                                     embeddingsModelOptions.map((option) => (
                                                         <CarouselItem key={option.name} className="max-w-72">
-                                                            <FormItem>
+                                                            <FormItem className="h-full">
                                                                 <FormLabel className="[&:has([data-state=checked])>div]:border-primary [&:has([data-state=checked])>div]:bg-accent hover:cursor-pointer">
                                                                     <FormControl>
                                                                         <RadioGroupItem value={option.name} className="sr-only" />
                                                                     </FormControl>
-                                                                    <Card className="w-fit">
+                                                                    <Card className="w-fit h-full">
                                                                         <CardHeader>
                                                                             <h2 className="text-xl">{option.name}</h2>
                                                                             <CardDescription>
-                                                                                {option.type}
+                                                                                EMBEDDING MODEL
                                                                             </CardDescription>
                                                                         </CardHeader>
                                                                         <CardContent className="py-2 text-pretty">
@@ -322,6 +336,10 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
                                                                         <CardFooter className="pt-2">
                                                                             <Table>
                                                                                 <TableBody>
+                                                                                    <TableRow>
+                                                                                        <TableCell className="p-2">Type</TableCell>
+                                                                                        <TableCell className="p-2 font-bold">{option.type}</TableCell>
+                                                                                    </TableRow>
                                                                                     <TableRow>
                                                                                         <TableCell className="p-2">Cost</TableCell>
                                                                                         <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>

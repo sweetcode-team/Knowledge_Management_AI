@@ -34,11 +34,11 @@ class SetConfigurationPostgres(SetConfigurationPort):
         LLMModelChoice = self.toPostgresLLMModelTypeFrom(LLModel)
         DocumentStoreChoice = self.toPostgresDocumentStoreTypeFrom(DocumentStore)
         VectorStoreChoice = self.toPostgresVectorStoreTypeFrom(VectorStore)
-        EmbeddingModelChoice = self.toEmbeddingModelTypeFrom(EmbeddingModel)
+        EmbeddingModelChoice = self.toPostgresEmbeddingModelTypeFrom(EmbeddingModel)
         userId = os.environ.get('USER_ID')
         
         postgresConfigurationOperationResponse = self.postgresConfigurationORM.setConfiguration(userId, LLMModelChoice, DocumentStoreChoice, VectorStoreChoice, EmbeddingModelChoice)
-        return ConfigurationOperationResponse(postgresConfigurationOperationResponse.ok(), postgresConfigurationOperationResponse.message)
+        return postgresConfigurationOperationResponse.toConfigurationOperationResponse()
         
     """
     Converts the LLMModelType to the PostgresLLMModelType.
@@ -77,5 +77,5 @@ class SetConfigurationPostgres(SetConfigurationPort):
     Returns:
         PostgresEmbeddingModelType: The converted Embedding Model.
     """
-    def toEmbeddingModelTypeFrom(self, EmbeddingModel: EmbeddingModelType) -> PostgresEmbeddingModelType:
+    def toPostgresEmbeddingModelTypeFrom(self, EmbeddingModel: EmbeddingModelType) -> PostgresEmbeddingModelType:
         return PostgresEmbeddingModelType[EmbeddingModel.name]

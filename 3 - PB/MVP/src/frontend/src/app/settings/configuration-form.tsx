@@ -31,7 +31,8 @@ import {
   EmbeddingsModel,
   ConfigurationOptions,
   LLMConfigurationFormValues,
-  configurationFormSchema
+  configurationFormSchema,
+  LLMConfigurationFormSchema
 } from "@/types/types"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card"
@@ -60,14 +61,14 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
   }
 
   const form = useForm<LLMConfigurationFormValues>({
-    resolver: zodResolver(configurationFormSchema),
+    resolver: zodResolver(LLMConfigurationFormSchema),
     mode: "onChange",
     defaultValues
   })
 
 
   const onSubmit: SubmitHandler<LLMConfigurationFormValues> = async (data) => {
-    console.log(data)
+
     const result = await changeConfiguration(data)
 
     if (!result) {
@@ -99,32 +100,36 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
           <CarouselContent>
             {
               [
-                currentConfiguration.LLMModel,
-                currentConfiguration.documentStore,
-                currentConfiguration.vectorStore,
-                currentConfiguration.embeddingModel
+                {currentChoice : currentConfiguration.LLMModel, componentType : 'LLM MODEL'},
+                {currentChoice : currentConfiguration.vectorStore, componentType : 'VECTOR STORE'},
+                {currentChoice : currentConfiguration.documentStore, componentType : 'DOCUMENT STORE'},
+                {currentChoice : currentConfiguration.embeddingModel, componentType : 'EMBEDDINGS MODEL'}
               ].map((option, index) => (
                 <CarouselItem key={index} className="max-w-72">
                   <Card className="w-fit text-sm font-medium leading-none h-full flex flex-col justify-between">
                     <CardHeader>
-                      <h2 className="text-xl">{option.name}</h2>
+                      <h2 className="text-xl">{option.currentChoice.name}</h2>
                       <CardDescription>
-                        {option.type}
+                        {option.componentType}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="py-2 text-pretty">
-                      {option.description}
+                      {option.currentChoice.description}
                     </CardContent>
                     <CardFooter className="pt-2">
                       <Table>
                         <TableBody>
                           <TableRow>
+                            <TableCell className="p-2">Type</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice.type}</TableCell>
+                          </TableRow>
+                          <TableRow>
                             <TableCell className="p-2">Cost</TableCell>
-                            <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice.costIndicator}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell className="p-2">Organization</TableCell>
-                            <TableCell className="p-2 font-bold">{option.organization}</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice.organization}</TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -178,7 +183,7 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
                                   <CardHeader>
                                     <h2 className="text-xl">{option.name}</h2>
                                     <CardDescription>
-                                      {option.type}
+                                      LLM MODEL
                                     </CardDescription>
                                   </CardHeader>
                                   <CardContent className="py-2 text-pretty">
@@ -187,6 +192,10 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
                                   <CardFooter className="pt-2">
                                     <Table>
                                       <TableBody>
+                                        <TableRow>
+                                          <TableCell className="p-2">Type</TableCell>
+                                          <TableCell className="p-2 font-bold">{option.type}</TableCell>
+                                        </TableRow>
                                         <TableRow>
                                           <TableCell className="p-2">Cost</TableCell>
                                           <TableCell className="p-2 font-bold">{option.costIndicator}</TableCell>
@@ -215,8 +224,7 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
             <Button
               className="w-full sm:w-5/12 py-6"
               type="submit"
-              disabled={form.formState.isSubmitting}
-            >
+              disabled={form.formState.isSubmitting}>
               Confirm configuration
             </Button>
           </div>

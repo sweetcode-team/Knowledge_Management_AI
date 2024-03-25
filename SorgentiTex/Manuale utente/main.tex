@@ -62,10 +62,25 @@ Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini util
 Questa sezione comprende le istruzioni per l'uso del prodotto delle funzionalità disponibili all'utente (attore).
 \subsection{Configurazione utente}
 La configurazione permette di selezionare diverse componenti del prodotto al primo avvio dell'applicazione come segue:
+\subsubsection{Visualizzazione configurazione corrente}
+Per visualizzare che vector database, modello di embeddings, sistema di archiviazione e modello LLM sono attualmente configurati nell'applicazione è necessario:
+\begin{itemize}
+    \item Premere dalla dashboard il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
+    \item Visualizzare la configurazione corrente sotto il rispettivo titolo 'Current configuration', scorrendo con le frecce poste a destra e sinistra del menù slider con i vari elementi della configurazione attuale.
+\end{itemize}
 \subsubsection{Selezione del modello LLM}
-\subsubsection{Selezione del vector database}
-\subsubsection{Selezione del modello di embeddings}
-\subsubsection{Selezione del sistema di archiviazione}
+
+%\subsubsection{Selezione del vector database}
+%\subsubsection{Selezione del modello di embeddings}
+%\subsubsection{Selezione del sistema di archiviazione}
+\subsubsection{Cambiamento del modello LLM selezionato}
+È possibile per l'utente cambiare il modello LLM che risponde alle domande poste al chatbot, in questo modo:
+\begin{itemize}
+    \item Dalla dashboard premere il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
+    \item Selezionare dal menù che si apre automaticamente in alto alla sinistra della pagina la sezione 'Configuration' (quando vengono aperte le informazioni si apre di default);
+    \item Selezionare dal menù che compare sotto al titolo 'LLM Models' il modello LLM desiderato;
+    \item Premere il bottone bianco con su scritto 'Confirm configuration'.
+\end{itemize}
 
 \subsection{Gestione dei documenti}
 In questa sezione si illustrano le possibili azioni operabili sui documenti.
@@ -127,22 +142,29 @@ Per eliminare più documenti dal sistema di archiviazione è necessario:
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Delete' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 
-\subsubsection{Caricamento e rimozione dall'area di staging DA MODIFICARE, l'ho fatto solo con figma}
+\subsubsection{Caricamento e rimozione dall'area di staging}
 Per caricare uno o più documenti nell'area di staging è necessario:
 \begin{itemize}
-    \item Cliccare il bottone 'Carica documento' presente in alto a sinistra nella dashboard, che aprirà automaticamente la pagina 'Documents';
-    \item In alternativa, selezionare l'opzione 'Documents' nel menù in alto a sinistra della dashboard;
-    \item Selezionare l'apposita icona per il caricamento in alto a sinistra della pagina, quindi fare clic sul bottone 'Upload documents';
-    \item Trascinare nell'apposito spazio il documento (o i documenti) da caricare oppure fare un clic sull'area e selezionarli dalla lista dei documenti personali;
-    \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nel sistema con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
+    \item Cliccare il bottone 'Carica documento' presente in alto a sinistra nella dashboard, che aprirà automaticamente la pagina 'Documents'.\\
+    In alternativa, selezionare l'opzione 'Documents' nel menù in alto a sinistra della dashboard;
+    \item Trascinare nell'apposito spazio (all'interno del rettangolo tratteggiato con scritto all'interno 'Click to upload or drag and drop') il documento (o i documenti) da caricare oppure fare un clic all'interno dell'area e selezionarli dalla lista dei documenti personali che si aprirà automaticamente;
+    \item Se si sbaglia ad inserire un documento, premere l'icona del cestino che compare a destra del titolo del documento nell'area di staging, che verrà rimosso;
+    \item Se si vogliono aggiungere ulteriori documenti, l'area rettangolare tratteggiata per l'upload resterà comunque disponibile sulla destra della pagina;
+    \item Se si cambia idea e non è più necessario fare l'upload del documento (o dei documenti) inseriti nell'area di staging, selezionare il bottone 'Cancel upload' che si trova sotto all'area di staging;
+    \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nell'area con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
     \item  Verrà successivamente richiesta la conferma della scelta selezionata: per confermarla fare clic su ..., altimenti su ... per annullarla.
     \end{itemize} 
-Per rimuovere uno o più documenti dall'area di staging è necessario ....
 
 
 \subsubsection{Upload nel sistema di archiviazione e nel vector database}
-Per poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging è necessario ...
-
+Per poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging è necessario:
+\begin{itemize}
+    \item Caricare nell'area di staging uno o più documenti da inserire nel sistema, seguendo le istruzioni del punto 2.2.5; 
+    \item Per eseguire l'upload del documento (o dei documenti) selezionare il pulsante 'Upload documents' che si trova sotto all'area di staging;
+    \item Se nel sistema di archiviazione è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nel sistema con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
+    \item  Verrà successivamente richiesta la conferma della scelta selezionata: per confermarla fare clic su ..., altimenti su ... per annullarla.
+    
+\end{itemize}
 \subsubsection{Occultamento e riabilitazione dal sistema}
 Per occultare un documento presenti nel sistema di archiviazione è necessario:
 \begin{itemize}
@@ -275,8 +297,15 @@ Per ascoltare un messaggio tramite audio è necessario ...
 \subsubsection{Cambio del tema di sfondo}
 L'interfaccia dell'applicazione è disponibile in tema chiaro o scuro. Per cambiare tema è necessario:
 \begin{itemize}
-    \item Selezionare con un clic il pulsante in alto a destra raffigurante il simbolo di una luna, presente in tutte le pagine;
+    \item Selezionare con un clic il pulsante in alto a destra raffigurante il simbolo di una luna o di un sole (in base al tema corrente), presente in tutte le pagine;
     \item Selezionare il tema desiderato dall'elenco che compare automaticamente.
+\end{itemize}
+È possibile modificare il tema di sfondo anche nel seguente modo:
+\begin{itemize}
+    \item Dalla dashboard premere il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
+    \item Dal menù delle impostazioni, in alto a sinistra della pagina che si sarà aperta automaticamente, selezionare la voce 'Appearence';
+    \item Selezionare il tema di sfondo desiderato;
+    \item Premere il bottone in basso con su scritto 'Update preferences'.
 \end{itemize}
 
 

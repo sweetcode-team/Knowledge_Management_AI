@@ -417,23 +417,317 @@ M.PC.2.RNP & Rischi non previsti & $ \le2 $ & $ 0 $\\
 \section{Verifica}
 
 \subsection{Test di unità}
-Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.
+Di seguito vengono elencati i test di unità:
 
-\begin{comment}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \hline
-     &  & \\
-    \hline
-     &  &  \\
-    \end{tabularx}
-    \subsubsection{Tracciamento}
-\end{comment}    
+
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+\textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
+\hline
+TU1 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento PDF & S \\
+\hline
+TU2 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento DOCX & S \\
+\hline
+TU3 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat esistente & S \\
+\hline
+TU4 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat non esistente & S \\
+\hline
+TU5 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello esistente & S \\
+\hline
+TU6 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello inesistente & S \\
+\hline
+TU7 & Verifica che il metodo concealDocuments di ConcealDocumentsController funzioni correttamente & S \\
+\hline
+TU8 & Verifica che il metodo deleteChats di DeleteChatsController funzioni correttamente & S \\
+\hline
+TU9 & Verifica che il metodo deleteDocuments di DeleteDocumentsController funzioni correttamente & S \\
+\hline
+TU10 & Verifica che il metodo deleteDocuments di DeleteDocumentsController gestisca correttamente un'eccezione & S \\
+\hline
+TU11 & Verifica che il metodo embedDocuments di EmbedDocumentsController funzioni correttamente & S \\
+\hline
+TU12 & Verifica che il metodo embedDocuments di EmbedDocumentsController gestisca correttamente un'eccezione & S \\
+\hline
+TU13 & Verifica che il metodo enableDocuments di EnableDocumentsController funzioni correttamente & S \\
+\hline
+TU14 & Verifica che il metodo getChatMessages di GetChatMessagesController funzioni correttamente & S \\
+\hline
+TU15 & Verifica che il metodo getChats di GetChatsController funzioni correttamente con filter & S \\
+\hline
+TU16 & Verifica che il metodo getChats di GetChatsController funzioni correttamente senza filter & S \\
+\hline
+TU17 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsController funzioni correttamente & S \\
+\hline
+TU18 & Verifica che il metodo getConfiguration di GetConfigurationController funzioni correttamente & S \\
+\hline
+TU19 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di true & S \\
+\hline
+TU20 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di none & S \\
+\hline
+TU21 & Verifica che il metodo getDocumentContent di GetDocumentContentController gestisca correttamente un'eccezione & S \\
+\hline
+TU22 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente con filter & S \\
+\hline
+TU23 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente senza filter & S \\
+\hline
+TU24 & Verifica che il metodo getDocuments di GetDocumentsController gestisca correttamente un'eccezione & S \\
+\hline
+TU25 & Verifica che il metodo renameChat di RenameChatController funzioni correttamente & S \\
+\hline
+TU26 & Verifica che il metodo setConfiguration di SetConfigurationController funzioni correttamente & S \\
+\hline
+TU27 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello LLM inesistente & S \\
+\hline
+TU28 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un document store inesistente & S \\
+\hline
+TU29 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un vectore store inesistente & S \\
+\hline
+TU30 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello di embedding inesistente & S \\
+\hline
+TU31 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di false & S \\
+\hline
+TU32 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di true & S \\
+\hline
+TU33 & Verifica che il metodo uploadDocuments di UploadDocumentsController gestisca correttamente un'eccezione & S \\
+\hline
+TU34 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando entrambe le risposte sono vere & S \\
+\hline
+TU35 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando la risposta del chatbot è falsa & S \\
+\hline
+TU36 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento di persistenza & S \\
+\hline
+TU37 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento sia del chatbot che della persistenza & S \\
+\hline
+TU38 & Verifica che il metodo changeLLMModel di ChangeConfigurationService funzioni correttamente & S \\
+\hline
+TU39 & Verifica che il metodo changeLLMModel di ChangeConfigurationService gestisca correttamente un fallimento & S \\
+\hline
+TU40 & Verifica che il metodo concealDocuments di ConcealDocumentsService funzioni correttamente & S \\
+\hline
+TU41 & Verifica che il metodo concealDocuments di ConcealDocumentsService gestisca correttamente un fallimento & S \\
+\hline
+TU42 & Verifica che il metodo deleteChats di DeleteChatsService funzioni correttamente & S \\
+\hline
+TU43 & Verifica che il metodo deleteChats di DeleteChatsService gestisca correttamente un fallimento & S \\
+\hline
+TU44 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings funzioni correttamente & S \\
+\hline
+TU45 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings gestisca correttamente un fallimento & S \\
+\hline
+TU46 & Verifica che il metodo deleteDocuments di DeleteDocumentsService funzioni correttamente quando entrambe le operazioni sono vere & S \\
+\hline
+TU47 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento degli embeddings & S \\
+\hline
+TU48 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento del documento & S \\
+\hline
+TU49 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento sia del documento che degli embeddings & S \\
+\hline
+TU50 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un'eccezione di elaborazione & S \\
+\hline
+TU51 & Verifica che il metodo deleteDocuments di DeleteDocuments funzioni correttamente & S \\
+\hline
+TU52 & Verifica che il metodo deleteDocuments di DeleteDocuments gestisca correttamente un fallimento & S \\
+\hline
+TU53 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando entrambe le risposte sono vere & S \\
+\hline
+TU54 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando la risposta del caricamento forzato è falsa ma la risposta del documento è vera & S \\
+\hline
+TU55 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando il caricamento forzato è vero ma la risposta del documento è falsa & S \\
+\hline
+TU56 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando sia il caricamento forzato che la risposta del documento sono falsi & S \\
+\hline
+TU57 & Verifica che il metodo embedDocuments di EmbedDocumentsService funzioni correttamente & S \\
+\hline
+TU58 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploader funzioni correttamente & S \\
+\hline
+TU59 & Verifica che il metodo enableDocuments di EnableDocumentsService funzioni correttamente & S \\
+\hline
+TU60 & Verifica che il metodo getChatMessages di GetChatMessagesService funzioni correttamente & S \\
+\hline
+TU61 & Verifica che il metodo getChats di GetChatsService funzioni correttamente & S \\
+\hline
+TU62 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsService funzioni correttamente & S \\
+\hline
+TU63 & Verifica che il metodo getConfiguration di GetConfigurationService funzioni correttamente & S \\
+\hline
+TU64 & Verifica che il metodo getDocumentsContent di GetDocumentsContentFacadeService funzioni correttamente & S \\
+\hline
+TU65 & Verifica che il metodo getDocumentsContent di GetDocumentsContent funzioni correttamente & S \\
+\hline
+TU66 & Verifica che il metodo getDocuments di GetDocumentsFacadeService funzioni correttamente & S \\
+\hline
+TU67 & Verifica che il metodo getDocumentsMetadata di GetDocumentsMetadata funzioni correttamente & S \\
+\hline
+TU68 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatus funzioni correttamente & S \\
+\hline
+TU69 & Verifica che il metodo renameChat di RenameChatService funzioni correttamente & S \\
+\hline
+TU70 & Verifica che il metodo uploadDocuments di UploadDocumentsService funzioni correttamente & S \\
+\hline
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{xltabular}
+
+\subsubsection{Tracciamento dei test di unità} 
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
+\textbf{ID} & \textbf{Metodo} \\
+\hline
+TU1 & Batteria di test NewDocument, test toDocumentPDFType \\
+\hline
+TU2 & Batteria di test NewDocument, test toDocumentDOCXType \\
+\hline
+TU3 & Batteria di test AskChatbotController, test askChatbotWithExistentChat \\
+\hline
+TU4 & Batteria di test AskChatbotController, test askChatbotWithoutChat \\
+\hline
+TU5 & Batteria di test ChangeConfigurationController, test changeLLMModelWithExistentModel \\
+\hline
+TU6 & Batteria di test ChangeConfigurationController, test changeLLMModelWithAbsentModel \\
+\hline
+TU7 & Batteria di test ConcealDocumentsController, test concealDocuments \\
+\hline
+TU8 & Batteria di test DeleteChatsController, test deleteChats \\
+\hline
+TU9 & Batteria di test DeleteDocumentsController, test deleteDocuments \\
+\hline
+TU10 & Batteria di test DeleteDocumentsController, test deleteDocumentsException \\
+\hline
+TU11 & Batteria di test EmbedDocumentsController, test embedDocumentsTrue \\
+\hline
+TU12 & Batteria di test EmbedDocumentsController, test embedDocumentsException \\
+\hline
+TU13 & Batteria di test EnableDocumentsController, test enableDocuments \\
+\hline
+TU14 & Batteria di test GetChatMessagesController, test getChatMessages \\
+\hline
+TU15 & Batteria di test GetChatsController, test getChatsWithFilter \\
+\hline
+TU16 & Batteria di test GetChatsController, test getChatsWithoutFilter \\
+\hline
+TU17 & Batteria di test GetConfigurationOptionsController, test getConfigurationOptions \\
+\hline
+TU18 & Batteria di test GetConfigurationController, test getConfiguration \\
+\hline
+TU19 & Batteria di test GetDocumentContentController, test getDocumentContentTrue \\
+\hline
+TU20 & Batteria di test GetDocumentContentController, test getDocumentContentNone \\
+\hline
+TU21 & Batteria di test GetDocumentContentController, test getDocumentContentException \\
+\hline
+TU22 & Batteria di test GetDocumentsController, test getDocumentsWithFilter \\
+\hline
+TU23 & Batteria di test GetDocumentsController, test getDocumentsWithoutFilter \\
+\hline
+TU24 & Batteria di test GetDocumentsController, test getDocumentsException \\
+\hline
+TU25 & Batteria di test RenameChatController, test renameChat \\
+\hline
+TU26 & Batteria di test SetConfigurationController, test setConfiguration \\
+\hline
+TU27 & Batteria di test SetConfigurationController, test setConfigurationLLMModelFail \\
+\hline
+TU28 & Batteria di test SetConfigurationController, test setConfigurationDocumentStoreFail \\
+\hline
+TU29 & Batteria di test SetConfigurationController, test setConfigurationVectorStoreFail \\
+\hline
+TU30 & Batteria di test SetConfigurationController, test setConfigurationEmbeddingModelFail \\
+\hline
+TU31 & Batteria di test UploadDocumentsController, test uploadDocumentsFalse \\
+\hline
+TU32 & Batteria di test UploadDocumentsController, test uploadDocumentsTrue \\
+\hline
+TU33 & Batteria di test UploadDocumentsController, test uploadDocumentsException \\
+\hline
+TU34 & Batteria di test AskChatbotService , test askChatbotBothTrue \\
+\hline
+TU35 & Batteria di test AskChatbotService , test askChatBothResponseFail \\
+\hline
+TU36 & Batteria di test AskChatbotService , test askChatBothPersistFail \\
+\hline
+TU37 & Batteria di test AskChatbotService , test askChatBothFail \\
+\hline
+TU38 & Batteria di test ChangeConfigurationService , test changeConfigurationTrue \\
+\hline
+TU39 & Batteria di test ChangeConfigurationService , test changeConfigurationFail \\
+\hline
+TU40 & Batteria di test ConcealDocumentsService , test concealDocumentsTrue \\
+\hline
+TU41 & Batteria di test ConcealDocumentsService , test concealDocumentsFail \\
+\hline
+TU42 & Batteria di test DeleteChatsService , test deleteChatTrue \\
+\hline
+TU43 & Batteria di test DeleteChatsService , test deleteChatFail \\
+\hline
+TU44 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsTrue \\
+\hline
+TU45 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsFail \\
+\hline
+TU46 & Batteria di test DeleteDocumentsService , test deleteDocumentsTrueBoth \\
+\hline
+TU47 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailEmbeddings \\
+\hline
+TU48 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailDocument \\
+\hline
+TU49 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailBoth \\
+\hline
+TU50 & Batteria di test DeleteDocumentsService , test deleteDocumentsElaborationException \\
+\hline
+TU51 & Batteria di test DeleteDocuments , test deleteDocumentsTrue \\
+\hline
+TU52 & Batteria di test DeleteDocuments , test deleteDocumentsFail \\
+\hline
+TU53 & Batteria di test DocumentsUploader , test uploadDocumentsForceUploadTrueTrue \\
+\hline
+TU54 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseTrue \\
+\hline
+TU55 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadTrueFalse \\
+\hline
+TU56 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseFalse \\
+\hline
+TU57 & Batteria di test EmbedDocumentsService , test embedDocumentsService \\
+\hline
+TU58 & Batteria di test EmbeddingsUploader , test embeddingUploader \\
+\hline
+TU59 & Batteria di test EnableDocumentsService , test enable \\
+\hline
+TU60 & Batteria di test GetChatMessagesService , test getChatMessages \\
+\hline
+TU61 & Batteria di test GetChatsService , test getChats \\
+\hline
+TU62 & Batteria di test GetConfigurationOptionsService , test getConfigurationOption \\
+\hline
+TU63 & Batteria di test GetConfigurationService , test getConfiguration \\
+\hline
+TU64 & Batteria di test GetDocumentsContentFacadeService , test getDocumentsContentFacade \\
+\hline
+TU65 & Batteria di test GetDocumentsContent , test getDocumentsContent \\
+\hline
+TU66 & Batteria di test GetDocumentsFacadeService , test getDocumentsFacadeService \\
+\hline
+TU67 & Batteria di test GetDocumentsMetadata , test getDocumentsMetadata \\
+\hline
+TU68 & Batteria di test GetDocumentsStatus , test getDocumentsStatus \\
+\hline
+TU69 & Batteria di test RenameChatService , test renameChatService \\
+\hline
+TU70 & Batteria di test UploadDocumentsService , test uploadDocumentsService \\
+\hline
+
+
+\end{xltabular}
+
 \subsection{Test di integrazione}
 Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.
 

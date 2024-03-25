@@ -17,7 +17,21 @@ def test_getChatsPostgresTrue():
     postgresChatPreviewMock.toChatPreview.assert_called_once()
     assert response == [postgresChatPreviewMock.toChatPreview.return_value]
     
-def test_getChatsPostgresNoneChat():
+def test_getChatsPostgresEmpty():
+    postgresORMMock = MagicMock()
+    chatFilterMock = MagicMock()
+    
+    postgresORMMock.getChats.return_value = []
+    chatFilterMock.searchFilter = "TestFilter"
+    
+    getChatsPostgres = GetChatsPostgres(postgresORMMock)
+    
+    response = getChatsPostgres.getChats(chatFilterMock)
+     
+    postgresORMMock.getChats.assert_called_once_with("TestFilter")
+    assert response == []
+    
+def test_getChatsPostgresFail():
     postgresORMMock = MagicMock()
     chatFilterMock = MagicMock()
     

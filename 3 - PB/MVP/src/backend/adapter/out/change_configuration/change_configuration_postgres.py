@@ -26,7 +26,7 @@ class ChangeConfigurationPostgres(ChangeConfigurationPort):
         userId = os.environ.get('USER_ID')
         
         postgresConfigurationOperationResponse = self.postgresConfigurationORM.changeLLMModel(userId, LLMModelChoice)
-        return ConfigurationOperationResponse(postgresConfigurationOperationResponse.ok(), postgresConfigurationOperationResponse.message)
+        return postgresConfigurationOperationResponse.toConfigurationOperationResponse()
         
     """
     Converts the LLMModelType to the PostgresLLMModelType.

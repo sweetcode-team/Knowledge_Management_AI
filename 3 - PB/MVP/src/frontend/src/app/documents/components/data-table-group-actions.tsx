@@ -22,9 +22,10 @@ import {
 
 import { DOCUMENT_STATUSES } from "@/constants/constants"
 import { TrashIcon } from "lucide-react"
-import { DocumentMetadata, DocumentOperationResponse } from "@/types/types";
+import {ChatOperationResponse, LightDocument, DocumentOperationResponse} from "@/types/types";
 import { revalidatePath } from "next/cache";
-import { concealDocuments, deleteDocuments, embedDocuments, enableDocuments } from "@/lib/actions"
+import {concealDocuments, deleteChats, deleteDocuments, embedDocuments, enableDocuments} from "@/lib/actions"
+import {toast} from "sonner";
 
 
 interface DataTableGroupActionsProps<TData> {
@@ -38,23 +39,43 @@ export function DataTableGroupActions<TData>({
   const handleAction = () => {
     console.log(selectedRowsStatuses)
     if (selectedRowsStatuses.has("NOT_EMBEDDED")) {
-      const result = embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      const result = embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       result.then((res) => console.log(res))
     } else if (selectedRowsStatuses.has("ENABLED")) {
-      const result = concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      const result = concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       result.then((res) => console.log(res))
     } else if (selectedRowsStatuses.has("CONCEALED")) {
-      const result = enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      const result = enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       result.then((res) => console.log(res))
     }
   }
 
-  const handleDelete = () => {
-    const result = deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-    result.then((res) => console.log(res))
+  const handleDelete = async () => {
+    let results: DocumentOperationResponse[]
+    try {
+        results = await deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
+        }
+    catch (e) {
+        toast.error("An error occurred", {
+            description: "Please try again later.",
+        })
+        return
+    }
+    results.forEach(result => {
+        if (!result || !result.status) {
+            toast.error("An error occurred", {
+                description: "Error while renaming the chat:" + result.message,
+            })
+            return
+        } else {
+            toast.success("Operation successful", {
+                description: "Documents have been deleted.",
+            })
+        }
+    })
   }
 
-  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
+  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as LightDocument).status))
 
   const Icon = DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.icon as React.ComponentType<{ className?: string }>
 

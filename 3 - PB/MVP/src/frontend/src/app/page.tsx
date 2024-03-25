@@ -18,7 +18,6 @@ import type {
   Chat,
   ChatPreview,
   Configuration,
-  DocumentContent,
   DocumentOperationResponse,
   Message,
   MessageResponse

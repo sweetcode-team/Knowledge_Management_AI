@@ -20,6 +20,7 @@ import type {
   Configuration,
   DocumentContent,
   DocumentOperationResponse,
+  Message,
   MessageResponse
 } from '@/types/types'
 
@@ -31,6 +32,11 @@ import { toast } from 'sonner';
 export default async function Dashboard() {
   const documents = await getDocuments()
   const chats = await getChats()
+
+  let lastChat: Chat | null = null
+  if (chats.length !== 0) {
+    lastChat = await getChatMessages(chats[0].id)
+  }
 
   const recentlyViewedDocumentIds = new Set(chats.map((chat: ChatPreview) => chat.lastMessage.relevantDocuments).flat())
 
@@ -54,12 +60,14 @@ export default async function Dashboard() {
               <h3 className="pt-2 ml-3 font-semibold text-nowrap">Last chat</h3>
               <ScrollArea className='w-full h-[50vh]'>
                 <div className="m-auto p-3 pb-0 h-full">
-                  <ChatContent messages={chats[0] ? [chats[0].lastMessage] : []} />
+                  <ChatContent messages={lastChat?.messages} />
                 </div>
               </ScrollArea>
               <Tooltip>
                 <TooltipTrigger className="pt-2 h-6 w-6">
-                  <Link href="/chatbot">
+                  <Link
+                    href={`/chatbot/${lastChat?.id}`}
+                  >
                     <ExpandIcon className="text-border hover:text-primary" />
                   </Link>
                 </TooltipTrigger>

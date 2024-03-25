@@ -35,22 +35,31 @@ class AskChatbotLangchain(AskChatbotPort):
         Returns:
             MessageResponse: The response of the chatbot.
         """
-        if chatId is not None:
-            chatHistory = self.chatHistoryManager.getChatHistory(chatId.id)
-            if len(chatHistory.messages) == 0:
+        chatbotAnswer = ""
+        try:
+            if chatId is not None:
+                chatHistory = self.chatHistoryManager.getChatHistory(chatId.id)
+                if len(chatHistory.messages) == 0:
+                    return MessageResponse(status=False, messageResponse=None, chatId=chatId)
+                else:
+                    answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
+            else:
+                answer = self.chain.invoke({"question": message.content, "chat_history": []})
+
+            chatbotAnswer = ' '.join(answer.get("answer", "").split())
+            
+            if chatbotAnswer.strip() == "":
                 return MessageResponse(status=False, messageResponse=None, chatId=chatId)
             else:
-                answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
-        else:
-            answer = self.chain.invoke({"question": message.content, "chat_history": []})
-
-        return MessageResponse(
-            status=True,
-            messageResponse=Message(
-                answer["answer"],
-                datetime.now(timezone.utc),
-                list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
-                MessageSender.CHATBOT
-            ),
-            chatId=chatId
-        )
+                return MessageResponse(
+                    status=True,
+                    messageResponse=Message(
+                        answer["answer"],
+                        datetime.now(timezone.utc),
+                        list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
+                        MessageSender.CHATBOT
+                    ),
+                    chatId=chatId
+                )
+        except Exception as e:
+            return MessageResponse(status=False, messageResponse=None, chatId=chatId)

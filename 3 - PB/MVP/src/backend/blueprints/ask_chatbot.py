@@ -38,7 +38,7 @@ def askChatbot():
         )
     )
     
-    chatbotResponse = controller.askChatbot(userMessage.strip(), validChatId)
+    chatbotResponse = controller.askChatbot(' '.join(userMessage.split()), validChatId)
     
     if chatbotResponse is None:
         raise APIElaborationException("Errore nella generazione della risposta.")

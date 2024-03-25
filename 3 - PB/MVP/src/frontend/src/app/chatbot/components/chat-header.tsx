@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { toast } from "sonner"
@@ -7,50 +7,88 @@ import { SquarePenIcon, TrashIcon } from "lucide-react"
 import { useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-
-const RenameChatFormSchema = z.object({
-    title: z.string().min(1).max(70),
-})
+import { ChatOperationResponse, RenameChatFormValues, renameChatFormSchema } from "@/types/types";
+import { deleteChats, renameChat } from "@/lib/actions";
+import { useRouter } from "next/navigation";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { cn } from "@/lib/utils";
 
 interface ChatHeaderProps {
     chatTitle?: string,
     isChatSelected: boolean,
+    chatId?: number
 }
 
-export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
+export function ChatHeader({ chatTitle, chatId, isChatSelected }: ChatHeaderProps) {
     const [isBeingRenamed, setIsBeingRenamed] = useState(false);
 
-    const form = useForm<z.infer<typeof RenameChatFormSchema>>({
-        resolver: zodResolver(RenameChatFormSchema),
+    const router = useRouter()
+
+    const form = useForm<RenameChatFormValues>({
+        resolver: zodResolver(renameChatFormSchema),
         defaultValues: {
             title: chatTitle,
+            chatId: chatId
         },
     })
 
-    useEffect(() => {
-        form.reset({
-            title: chatTitle,
-        })
-    }, [chatTitle])
-
-    function onSubmit(data: z.infer<typeof RenameChatFormSchema>) {
-        if (data.title !== "" && data.title !== chatTitle) {
-            // TODO: Rename chat
-            toast.success("Operation successful", {
-                description: "Chat renamed.",
+    const onRenameSubmit: SubmitHandler<RenameChatFormValues> = async (data) => {
+        const result = await renameChat(data)
+        if (!result) {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
             })
+            return
+        }
+        else if (result.status) {
+            toast.success("Operation successful", {
+                description: "Chat has been renamed.",
+            })
+        }
+        else {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
+            })
+            return
         }
         setIsBeingRenamed(false)
         form.reset()
     }
 
+    const onDeleteSubmit = async (chatId: number) => {
+        let results: ChatOperationResponse[]
+        try {
+            results = await deleteChats([chatId])
+        } catch (e) {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
+            })
+            return
+        }
+
+        results.forEach(result => {
+            if (!result || !result.status) {
+                toast.error("An error occurred", {
+                    description: "Error while renaming the chat:" + result.message,
+                })
+                return
+            } else {
+                toast.success("Operation successful", {
+                    description: "Chat has been deleted.",
+                })
+            }
+        })
+        router.push(`/chatbot`)
+    }
+
+    const watchMessage = form.watch("title")
+
     return (
         <div className="flex w-full items-center py-2 px-4">
             {
-                !chatTitle ?
+                !chatId ?
                     (
                         <h3 className="h-[40px] w-full flex items-center border-0 p-0 line-clamp-1 text-xl font-bold pl-2">New chat</h3>
                     ) :
@@ -58,8 +96,7 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
                         <div className="flex w-full items-center space-x-2">
                             {isBeingRenamed ? (
                                 <Form {...form}>
-                                    <form
-                                        onSubmit={form.handleSubmit(onSubmit)}
+                                    <form onSubmit={form.handleSubmit(onRenameSubmit)}
                                         onBlur={(e) => {
                                             if (e.relatedTarget?.id !== "rename-button" && e.relatedTarget?.id !== "rename-input") {
                                                 setIsBeingRenamed(false)
@@ -68,6 +105,21 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
                                         }}
                                         className="flex space-x-2 w-full"
                                     >
+                                        <FormField
+                                            control={form.control}
+                                            name="chatId"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <Input
+                                                            type="hidden"
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
                                         <FormField
                                             control={form.control}
                                             name="title"
@@ -92,7 +144,7 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
                                                     variant={isBeingRenamed ? "safe" : "secondary"}
                                                     size="icon"
                                                     type="submit"
-                                                    disabled={!form.formState.isValid}
+                                                    disabled={watchMessage === "" || watchMessage === chatTitle || form.formState.isSubmitting}
                                                     className="min-w-[40px]"
                                                 >
                                                     <SquarePenIcon className="h-4 w-4" />
@@ -109,7 +161,7 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
                             <div className="inline-flex ml-auto space-x-2">
                                 {
                                     !isBeingRenamed ?
-                                        <Tooltip >
+                                        <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <Button
                                                     variant="secondary"
@@ -126,15 +178,34 @@ export function ChatHeader({ chatTitle, isChatSelected }: ChatHeaderProps) {
                                         </Tooltip> :
                                         null
                                 }
-                                <Tooltip>
-                                    <TooltipTrigger asChild>
-                                        <Button variant="danger" size="icon" disabled={!isChatSelected || isBeingRenamed} onClick={() => { }}>
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                        <Button
+                                            variant="danger"
+                                            size="icon"
+                                            disabled={!isChatSelected || isBeingRenamed}
+                                        >
                                             <TrashIcon className="h-4 w-4" />
                                             <span className="sr-only">Delete chat</span>
                                         </Button>
-                                    </TooltipTrigger>
-                                    <TooltipContent>Delete chat</TooltipContent>
-                                </Tooltip>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                This action cannot be undone. This will permanently delete the selected chat.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel id="dialog-cancel">Abort</AlertDialogCancel>
+                                            <AlertDialogAction id="dialog-action"
+                                                className={cn(buttonVariants({ variant: "destructive" }), "mt-2 sm:mt-0")}
+                                                onClick={() => onDeleteSubmit(chatId)}
+                                            >Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </div>
                         </div>
                     )

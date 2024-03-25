@@ -136,7 +136,6 @@ export function RecentDocuments({ items }: RecentDocumentsProps) {
                 <DrawerFooter>
                   <Button asChild>
                     <Link href={`/documents/${item.id}`} >
-                      {/* TODO: pagina documents/id che fa richiesta document content e crea il documento, visualizzando blob o mammoth */}
                       View content
                     </Link>
                   </Button>

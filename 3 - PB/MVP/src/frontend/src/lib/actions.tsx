@@ -12,7 +12,8 @@ import {
     LightDocument,
     DocumentOperationResponse,
     LLMConfigurationFormValues,
-    MessageResponse
+    MessageResponse,
+    RenameChatFormValues, DocumentWithContent
 } from "@/types/types"
 import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
@@ -62,10 +63,10 @@ export async function concealDocuments(ids: string[]): Promise<DocumentOperation
     return result.json()
 }
 
-export async function deleteChats(ids: number[]): Promise<ChatOperationResponse> {
-    const formData = new URLSearchParams();
-    ids.forEach(id => formData.append('chatIds', id.toString()));
-    console.log(formData.toString())
+export async function deleteChats(ids: number[]): Promise<ChatOperationResponse[]> {
+    const formData = new URLSearchParams()
+    ids.forEach(id => formData.append('chatIds', id.toString()))
+
     const result = await fetch(`http://localhost:4000/deleteChats`, {
         method: 'POST',
         headers: {
@@ -78,7 +79,7 @@ export async function deleteChats(ids: number[]): Promise<ChatOperationResponse>
     return result.json()
 }
 
-export async function deleteDocuments(ids: string[]): Promise<DocumentOperationResponse> {
+export async function deleteDocuments(ids: string[]): Promise<DocumentOperationResponse[]> {
     const formData = new URLSearchParams();
     ids.forEach(id => formData.append('documentIds', id));
 
@@ -168,7 +169,7 @@ export async function getConfiguration(): Promise<Configuration | null> {
     return result.json();
 }
 
-export async function getDocumentContent(id: string): Promise<DocumentContent> {
+export async function getDocumentContent(id: string): Promise<DocumentWithContent> {
     const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`,
         {
             next: { tags: ["document"] }
@@ -186,13 +187,13 @@ export async function getDocuments(filter: string = ""): Promise<LightDocument[]
     return result.json()
 }
 
-export async function renameChat(id: number, title: string): Promise<ChatOperationResponse> {
-    const formData = new FormData();
-    formData.append('chatId', id.toString());
-    formData.append('title', title);
+export async function renameChat(formData: RenameChatFormValues): Promise<ChatOperationResponse> {
     const result = await fetch(`http://localhost:4000/renameChat`, {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(formData as any).toString(),
     })
     revalidateTag("chat")
 

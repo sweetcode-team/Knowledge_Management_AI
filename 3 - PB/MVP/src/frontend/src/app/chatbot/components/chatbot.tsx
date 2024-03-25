@@ -23,7 +23,7 @@ export default async function Chatbot({ chatId }: ChatbotProps) {
 
     return (
         <div className="flex h-full flex-col">
-            <ChatHeader chatTitle={chat?.title} isChatSelected={!!chat} />
+            <ChatHeader chatTitle={chat?.title} chatId={chatId} isChatSelected={!!chat} />
             <Separator />
             <div className="h-full flex flex-1 flex-col justify-between overflow-auto">
                 {chat ? (

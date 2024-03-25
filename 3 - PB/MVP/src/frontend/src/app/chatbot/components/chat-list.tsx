@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-import { ChatPreview } from "@/types/types";
+import {ChatOperationResponse, ChatPreview} from "@/types/types";
 import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from 'react';
@@ -13,51 +13,57 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { deleteChats } from "@/lib/actions";
 import { toast } from "sonner";
 import { ChatItem } from "./chat-item";
+import {useRouter} from "next/navigation";
 
 interface ChatListProps {
   chatPreviews: ChatPreview[]
 }
 
 export function ChatList({ chatPreviews }: ChatListProps) {
-
+    const router = useRouter()
   const [filteredChats, setFilteredChats] = useState(chatPreviews)
 
   const [isBeingSelected, setIsBeingSelected] = useState(false)
   const [selectedChats, setSelectedChats] = useState<number[]>([])
+  const onDeleteSubmit = async () => {
+        setIsBeingSelected(false);
 
+        let results: ChatOperationResponse[]
+        try {
+            results = await deleteChats(selectedChats)
+        } catch (e) {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
+            })
+            return
+        }
+
+        results.forEach(result => {
+            if (!result || !result.status) {
+                toast.error("An error occurred", {
+                    description: "Error while renaming the chat:" + result.message,
+                })
+                return
+            } else {
+                toast.success("Operation successful", {
+                    description: "Chat has been deleted.",
+                })
+            }
+        })
+            setSelectedChats([]);
+        router.push(`/chatbot`)
+    }
   useEffect(() => {
     setFilteredChats(chatPreviews)
   }, [chatPreviews])
 
-  const handleDelete = async () => {
-    try {
-      const result = await deleteChats(selectedChats);
-      if (result.status) {
-        toast.success(
-          "Operation successful",
-          {
-            description: "Chats deleted.",
-          }
-        );
-      } else {
-        toast.error(
-          "An error occurred",
-          {
-            description: "An error occurred while deleting chats: " + result.message,
-          }
-        );
-      }
-    } catch (error) {
-      toast.error(
-        "An error occurred",
-        {
-          description: "An error occurred while deleting chats.",
+    const toggleOnSelect = (chatId: number) => {
+        if (selectedChats.includes(chatId)) {
+            setSelectedChats(selectedChats.filter((selectedChatId) => selectedChatId !== chatId))
+        } else {
+            setSelectedChats([...selectedChats, chatId])
         }
-      );
     }
-    setIsBeingSelected(false);
-    setSelectedChats([]);
-  }
 
   return (
     <div className="flex h-full flex-col overflow-auto">
@@ -95,7 +101,12 @@ export function ChatList({ chatPreviews }: ChatListProps) {
               </Tooltip>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button disabled={selectedChats.length === 0} variant="destructive" size="icon" className="min-w-[40px]">
+                  <Button
+                      disabled={selectedChats.length === 0}
+                      variant="destructive"
+                      size="icon"
+                      className="min-w-[40px]"
+                  >
                     <CopyXIcon className="h-4 w-4" />
                   </Button>
                 </AlertDialogTrigger>
@@ -110,7 +121,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                     <AlertDialogCancel id="dialog-cancel">Abort</AlertDialogCancel>
                     <AlertDialogAction id="dialog-action"
                       className={cn(buttonVariants({ variant: "destructive" }), "mt-2 sm:mt-0")}
-                      onClick={() => handleDelete()}
+                      onClick={() => onDeleteSubmit()}
                     >Delete
                     </AlertDialogAction>
                   </AlertDialogFooter>
@@ -142,6 +153,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                     key={chatPreview.id}
                     chat={chatPreview}
                     isBeingSelected={isBeingSelected}
+                    toggleSelect={() => {toggleOnSelect( chatPreview.id)} }
                   />
                 ))
               }

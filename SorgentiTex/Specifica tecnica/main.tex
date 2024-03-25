@@ -453,134 +453,269 @@ Questa struttura riflette il modello architetturale scelto, facilitando il passa
 
 
 \begin{comment}
-    requisiti per frontend
-
-visualizza caratteristiche
-        \item RF.O.10; %visualizza caratteristiche LLM
-        \item RF.O.10.1;%visualizza caratteristiche LLM
-        \item RF.O.10.2;%visualizza caratteristiche LLM
-        \item RF.O.10.3;%visualizza caratteristiche LLM
-        \item RF.O.10.4;%visualizza caratteristiche LLM
-        \item RF.O.10.5; %visualizza caratteristiche LLM
-        \item RF.O.11; %visualizza caratteristiche vector store
-        \item RF.O.11.1;%visualizza caratteristiche vector store
-        \item RF.O.11.2;%visualizza caratteristiche vector store
-        \item RF.O.11.3;%visualizza caratteristiche vector store
-        \item RF.O.11.4;%visualizza caratteristiche vector store
-        \item RF.O.11.5%visualizza caratteristiche vector store
-        \item RF.O.12;%visualizza caratteristiche embedding model
-        \item RF.O.12.1;%visualizza caratteristiche embedding model
-        \item RF.O.12.2;%visualizza caratteristiche embedding model
-        \item RF.O.12.3;%visualizza caratteristiche embedding model
-        \item RF.O.12.4;%visualizza caratteristiche embedding model
-        \item RF.O.12.5;%visualizza caratteristiche embedding model
-        \item RF.O.13;%visualizza caratteristiche sistema di archiviazione
-        \item RF.O.13.1;%visualizza caratteristiche sistema di archiviazione
-        \item RF.O.13.2;%visualizza caratteristiche sistema di archiviazione
-        \item RF.O.13.3;%visualizza caratteristiche sistema di archiviazione
-        \item RF.O.13.4;%visualizza caratteristiche sistema di archiviazione
-        \item RF.O.13.5.%visualizza caratteristiche sistema di archiviazione
-
-
-
-
-
-
-
-    STAGING:
-    \item RF.O.16; %’utente deve poter caricare un documento nell’area di staging
-    \item RF.O.16.1;% "
-    \item RF.O.16.2;% "
-    \item RF.O.17;% "
-    \item RF.O.17.1;% "
-    \item RF.O.17.2;% "
-    \item RF.O.17.3;% "
-    \item \item RF.O.18; %tentativo formato caricato  in area di staging non supportato
-    \item RF.O.18.1;% "
-     \item RF.O.19; %rimuovere un documento caricato nell’area di stagi
-    \item RF.O.20; % "
-     \item RF.O.21.1; % poter scegliere se sostituire con il documento caricato
-    \item RF.O.21.2; % conferma sostituzione doc
-    \item RF.O.21.3; % annulla sostituzione doc
-    \item RF.O.21.4; % poter scegliere se sostituire con il documenti caricato
-    \item RF.O.21.5; % conferma sostituzione docs
-    \item RF.O.21.6; % annulla sostituzione docs
-    
-Visualizza lista chat e loro informazioni
- RF.O.34
-    RF.O.34.1
-    RF.O.34.1.1
-    RF.O.34.1.2
-    RF.O.34.1.3
-    RF.O.34.1.4
-
-
-
-    creare nuova chat e visualizzare errore se vuota già esiste
-    RF.O.35
-    RF.O.36
-    RF.O.36.1
-
-    BOH
-    RF.O.27.1 Seleziona più documenti per eliminarli 
-    RF.O.30.1 Seleziona più documenti per occultarli
-    RF.O.32.1 Seleziona più documenti per riabilitarli
-    RF.O.38.2 selezione più chat per eliminarle
-
-
-
-     visualizzare i singoli documenti presenti nel sistema di archiviazione
-  \item RF.O.15;
-    \item RF.O.15.1;
-    \item RF.O.15.1.1;
-    \item RF.O.15.1.2;
-    \item RF.O.15.1.3;
-    \item RF.O.15.1.4;
-    
-
-
-RF.O.43 visualizzare il contenuto di una chat
-RF.O.43.1
-RF.O.43.1.1
-RF.O.43.1.2
-
-RF.D.44 rispostachatbot con riferimento a documento
-RF.D.45 domande suggerite in chat vuota
-RF.D.46 inviare domanda suggerita 
-RF.D.46.1 seleziona dom. suggerita
-RF.D.46.2 conferma invio dom. suggerita
-RF.D.47 ascoltare tramite audio un messaggio
-RF.D.48 copiare un messaggio
-
-
-(fatta?) RF.OP.49 attiva modalità vocale
-RF.OP.50 disattiva mod. vocale
-
-
-RF.O.51 inserire messaggio in area di testo chat
-RF.O.51.1 testuale
-RF.O.51.2 vocale
-RF.O.51.2.1 attiva inserimento messaggio vocale
-RF.O.51.2.2 disattiva inserimento messaggio vocale
-RF.O.53 reso noto mittente per ogni mess.
-
-RF.O.54 offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente.
-
-RF.OP.55 fallback su ai locale
-
-RF.D.56 richiesta non pertinente->risposta cortese
-
-BOH
-RF.O.59
-RF.O.60
-
-
-REQUISITI DI VINCOLO SONO DA PIAZZARE? E QUELLI DI QUALITà?
-
-
-
+RF.D.56 richiesta non pertinente->risposta cortese blueprint? configurazione?
+%\hline
+%RF.O.36.1 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}\\ visualizza errore creazione nuova chat esistente
 
 \end{comment}
+
+\subsubsection{SideBar}
+\subsubsubsection{Descrizione}
+Componente dell'interfaccia utente che permette di raggiungere la pagina di interesse per l'utente tra le seguenti:\\
+\begin{itemize}
+    \item Chatbot;
+    \item Dashboard;
+    \item Documents;
+    \item Settings.
+\end{itemize}
+\subsubsubsection{Lista di sottocomponenti}
+\subsubsubsection{Tracciamento dei requisiti}
+
+
+\subsubsection{Configuration (Primo avvio)}
+\subsubsubsection{Descrizione}
+Pagina che permette di selezionare e confermare le scelte di vector store, sistema di archiviazione dei documenti, modello di embeddings e LLM al primo avvio dell'applicazione.
+\subsubsubsection{Lista di sottocomponenti}
+
+\subsubsection{Dashboard}
+\subsubsubsection{Descrizione}
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item \label{RecentChats}\textbf{RecentChats}:
+    \item \label{RecentDocuments}\textbf{RecentDocumnets}:
+    \item \label{RecentlyUploadedDocs}\textbf{RecentlyUploadedDocs}:
+   
+\end{itemize}
+\subsubsubsection{Tracciamento dei requisiti}
+
+
+
+
+
+\subsubsection{Chatbot}
+\subsubsubsection{Descrizione}
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize} 
+    \item \label{ChatContent}\textbf{ChatContent}: componente che si occupa di mostrare i dati della chat selezionata e di interagire con il chatbot;
+    \item \label{ChatForm}\textbf{ChatForm}: elemento che permette all'utente di inserire i messaggi e le richieste da fare al Chatbot;
+    \item \label{ChatHeader}\textbf{ChatHeader}: componente che permette di visualizzare il titolo e le interazioni possibili con la chat corrente; 
+    \item \label{ChatListSideBar}\textbf{ChatListSideBar}: componente che permette di navigare tra le chat salvate nel sistema e di visualizzarne le preview;
+    \item \label{MessageCard}\textbf{MessageCard}: componente che rappresenta un messaggio in chat e tutte le sue informazioni;    
+\end{itemize}
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente Chatbot}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente Chatbot (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.34  &  ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %Visualizza lista chat e loro informazioni
+\hline
+RF.O.34.1 &ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %singole chat in lista
+\hline
+RF.O.34.1.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\%titolo
+\hline
+RF.O.34.1.2  & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %Visualizza timestamp
+\hline
+RF.O.34.1.3 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %preview mess
+\hline
+RF.O.34.1.4 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\% preview mitt
+\hline
+RF.O.35 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %creare nuova chat
+\hline
+RF.O.36.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\%visualizza messaggio errore
+\hline
+RF.O.37.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}. \\% visualizza messaggio errore nell'eliminazione di una chat
+\hline
+RF.O.38.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ % visualizza messaggio errore nell'eliminazione di un insieme di chat
+\hline
+RF.O.38.2 &  ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\% selezione più chat per eliminarle
+\hline
+RF.O.40.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}. \\ %visualizza errore se rinomina titolo uguale ad altra chat
+\hline
+RF.O.41.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}.\\%visualizza errore se rinomina titolo vuoto
+\hline
+RF.O.43 & ChatContent: vedi \vedi{ChatContentDettaglio}.\\% visualizzare il contenuto di una chat 
+\hline
+RF.O.43.1 & ChatContent: vedi \vedi{ChatContentDettaglio}.\\ % visualizza singoli mess
+\hline
+RF.O.43.1.1 &  MessageCard: vedi \vedi{MessageCardDettaglio}.\\% viasualizza contenuto testuale mess
+\hline
+RF.O.43.1.2 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %visualizza orario mess
+\hline
+RF.D.44 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\% %rispostachatbot con riferimento a documento
+\hline
+RF.D.47 &  MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %ascoltare tramite audio un messaggio
+\hline
+RF.D.48 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\%copiare un messaggio
+\hline
+RF.O.51 & ChatForm: vedi \vedi{ChatFormDettaglio}.\\ %inserire messaggio in area di testo chat
+\hline
+RF.O.51.1 & ChatForm: vedi \vedi{ChatFormDettaglio}.\\%inserire messaggio testuale
+\hline
+RF.O.51.2 & ChatForm: vedi \vedi{ChatFormDettaglio}. \\% inserire messaggio vocale
+\hline
+RF.O.51.2.1 & ChatForm: vedi \vedi{ChatFormDettaglio}. \\ %attiva inserimento messaggio vocale
+\hline
+RF.O.51.2.2& ChatForm: vedi \vedi{ChatFormDettaglio}. \\%disattiva inserimento messaggio vocale
+\hline
+RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente per ogni mess
+\end{xltabular}
+
+%requisiti non soddisfatti
+    %\item RF.D.45; %domande suggerite in chat vuota
+    %\item RF.D.46; %inviare domanda suggerita 
+   % \item RF.D.46.1; %seleziona dom. suggerita
+    %\item RF.D.46.2; %%conferma invio dom. suggerita
+    %\item RF.OP.49; %attiva modalità vocale
+    %\item RF.OP.50; %disattiva mod. vocale
+
+
+\subsubsection{Documents}
+\subsubsubsection{Descrizione}
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item \label{DocumentsList}\textbf{DocumentsList}: componente che permette di navigare tra i documenti presenti nel sistema e di interagire con essi; 
+    \item \label{DocumentsListRow}\textbf{DocumentsListRow}: componente che permette di visualizzare le informazioni del documento, di eliminarlo o di modificarne lo status;
+    \item \label{StagingArea}\textbf{StagingArea}: component componente che permette di caricare i documenti e successivamente di fare l'upload degli stessi;
+    \item \label{StagingAreaRow}\textbf{StagingAreaRow}: componente che permette di interagire con i documenti caricati nell'area di staging.
+    
+\end{itemize}
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente Documents}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente Documents (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.15 & DocumentsList: vedi \vedi{DocumentsList}.\\ %visualizzare i documenti presenti nel sistema di archiviazione
+\hline
+RF.O.15.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ %singoli docs in lista
+\hline
+RF.O.15.1.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\%titolo
+\hline
+RF.O.15.1.2  &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ %Visualizza dimensione
+\hline
+RF.O.15.1.3 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ %visualizza data caricamento
+\hline
+RF.O.15.1.4 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\% visualizza se occultato
+\hline
+RF.O.16 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.16.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\%pdf
+\hline
+RF.O.16.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ %docs
+\hline
+RF.O.17 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ % carica insieme documenti
+\hline
+RF.O.17.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.17.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.17.3 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.18 &  StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ %tentativo formato caricato  in area di staging non supportato
+\hline
+RF.O.18.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\  % visualizza errore sopra
+\hline
+RF.O.19 & StagingAreaRow: vedi \vedi{StagingAreaRowDettaglio}. \\ % rimuovi doc in staging area
+\hline
+RF.O.20 & StagingAreaRow: vedi \vedi{StagingAreaRowDettaglio}. \\  % rimuovi docs in staging area
+\hline
+RF.O.21.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% poter scegliere se sostituire con il documento caricato
+\hline
+RF.O.21.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% conferma sostituzione doc
+\hline
+RF.O.21.3 &  StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ % annulla sostituzione doc
+\hline
+RF.O.21.4 &  StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% poter scegliere se sostituire con il documento caricato
+\hline
+RF.O.21.5 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ % conferma sostituzione docs
+\hline
+RF.O.21.6 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% annulla sostituzione docs
+\hline
+RF.O.22.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% visualizza errore caricamento del documento sistema archiviazione
+\hline
+RF.O.26.1.1  & DocumentsList: vedi \vedi{DocumentsListDettaglio}.\\% visualizza errore se fallisce eliminazione dal document store
+\hline
+RF.O.27.1 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\%Seleziona più documenti per eliminarli 
+\hline
+RF.O.28.1.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\% poter visualizzare un errore se l’eliminazione di un insieme di documenti sul sistema di archiviazione fallisce.
+\hline
+RF.O.30.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\ %Seleziona più documenti per occultarli
+\hline
+RF.O.32.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\% Seleziona più documenti per riabilitarli
+\end{xltabular}
+
+
+
+
+\subsubsection{Settings}
+\subsubsubsection{Descrizione}
+\subsubsubsection{Lista di sottocomponenti}
+
+
+
+\subsubsubsection{Tracciamento dei requisiti}%TODO trasformare in tabella
+\begin{itemize}
+    \item RF.O.1.1.1; %selezionare modello presente al primo avvio
+    \item RF.O.1.2.1;% selezionare vector db  presente al primo avvio
+    \item RF.O.1.3.1; % selezionare modello embeddingspresente al primo avvio
+    \item RF.O.1.4.1; % selezionare sistema di archiviazione presente al primo avvio
+    %requisiti sul poter vedere i modelli disponibili di vector store , embedding llm etc
+    \item RF.O.2;
+    \item RF.O.2.1;
+    \item RF.O.3;
+    \item RF.O.3.1;
+    \item RF.O.4;
+    \item RF.O.4.1;
+    \item RF.O.5;
+    \item RF.O.5.1.
+
+
+   \item  RF.O.6.1 % \\L’utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta de
+    \item RF.O.10; %visualizza caratteristiche LLM
+    \item RF.O.10.1;%visualizza caratteristiche LLM
+    \item RF.O.10.2;%visualizza caratteristiche LLM
+    \item RF.O.10.3;%visualizza caratteristiche LLM
+    \item RF.O.10.4;%visualizza caratteristiche LLM
+    \item RF.O.10.5; %visualizza caratteristiche LLM
+    \item RF.O.11; %visualizza caratteristiche vector store
+    \item RF.O.11.1;%visualizza caratteristiche vector store
+    \item RF.O.11.2;%visualizza caratteristiche vector store
+    \item RF.O.11.3;%visualizza caratteristiche vector store
+    \item RF.O.11.4;%visualizza caratteristiche vector store
+    \item RF.O.11.5%visualizza caratteristiche vector store
+    \item RF.O.12;%visualizza caratteristiche embedding model
+    \item RF.O.12.1;%visualizza caratteristiche embedding model
+    \item RF.O.12.2;%visualizza caratteristiche embedding model
+    \item RF.O.12.3;%visualizza caratteristiche embedding model
+    \item RF.O.12.4;%visualizza caratteristiche embedding model
+    \item RF.O.12.5;%visualizza caratteristiche embedding model
+    \item RF.O.13;%visualizza caratteristiche sistema di archiviazione
+    \item RF.O.13.1;%visualizza caratteristiche sistema di archiviazione
+    \item RF.O.13.2;%visualizza caratteristiche sistema di archiviazione
+    \item RF.O.13.3;%visualizza caratteristiche sistema di archiviazione
+    \item RF.O.13.4;%visualizza caratteristiche sistema di archiviazione
+    \item RF.O.13.5.%visualizza caratteristiche sistema di archiviazione
+
+\end{itemize}
+
+\subsubsection{DocumentViewer}( visualizzare contenuto documento e altre sue informazioni)
 
 
 
@@ -650,11 +785,9 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 
     
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-     \item RF.O.52;
-     \item RF.OP.57.
-\end{itemize}
+
+
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -667,17 +800,9 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     \item \label{ChatHistoryManager}\textbf{ChatHistoryManager}: classe per interagire con le chat come oggetti lanchain.Memory;
     \item \label{ChatId}\textbf{ChatId}: classe di business che rappresenta l'id di una chat utilizzato nella ricerca;
     \item \label{ChatOperationResponse}\textbf{ChatOperationResponse}: classe che contiene l'esito di un'operazione effettuata su una chat;
-    %\item \label{ChromaDBVectorStore}\textbf{ChromaDBVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store ChromaDB;
-    %\item \label{HuggingFaceEmbeddingModel}\textbf{HuggingFaceEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di HugginFace;
-
-    %\item \label{HugginFaceLLM}\textbf{HugginFaceLLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di HugginFace;
-    %\item \label{LangchainLLM}\textbf{LangchainLLM}: classe astratta che permette di interagire con un oggetto langchain.BaseLanguageModel;
-    %\item \label{LangchainVectorStore}\textbf{LangchainVectorStore}: classe astratta che permette di interagire con un oggetto langchain.VectorStore;
     \item \label{Message}\textbf{Message}: classe di business che rappresenta un messaggio di una chat;
     \item \label{MessageResponse}\textbf{MessageResponse}: classe che rappresenta un messaggio risposta del chatbot;
     \item \label{MessageSender}\textbf{MessageSender}: classe di business che rappresenta il mittente di un messaggio;
-    %\item \label{OpenAILLM}\textbf{OpenAILLM}: classe che implementa la classe astratta LangchainLLM per interagire con un modello LLM di OpenAI;
-    %\item \label{PineconeVectorStore}\textbf{PineconeVectorStore}: classe che implementa la classe astratta LangchainVectorStore per interagire con un vector store Pinecone;
     \item \label{PersistChatPort}\textbf{PersistChatPort}: interfaccia che rappresenta la porta in uscita verso il database per la storicizzazione delle chat;
     \item \label{PostgresChat}\textbf{PostgresChat}: classe di persistence che rappresenta una chat;
     \item \label{PostgresChatOperationResponse}\textbf{PostgresChatOperationResponse}: classe che contiene l'esito di un'operazione effettuata su Postgres riguardo una chat;
@@ -688,7 +813,47 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
     
 \end{itemize}
 
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente AskChatbot}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente AskChatbot (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.35 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
+\hline
+RF.O.36 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
+\hline
+RF.O.52 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.OP.57 & AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.O.59 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.O.60 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\end{xltabular}
 
+
+\begin{comment}
+    
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+     
+     \item ; %backend su postgresorm creare nuova chat e visualizzare errore se vuota già esiste
+     \item RF.O.36;
+     \item RF.O.36.1;
+     \item RF.O.52;
+     \item RF.OP.57;
+     \item RF.O.59;% backend askchatbot service
+     \item RF.O.60. %-Una chat viene creata in modo consistente nel database solamente dopo un messaggio da parte dell’utente e della relativa risposta da parte del chatbot postgreschatorm
+\end{itemize}
+\end{comment}
 
 
 
@@ -733,11 +898,6 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 \end{xltabular}
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.6;
-        \item RF.O.6.1.
-\end{itemize}
 
 
 \subsubsubsection{Lista sottocomponenti}
@@ -753,6 +913,23 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 
 
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nell componente ChangeConfiguration}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nell componente ChangeConfiguration (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.6 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
+
+\end{xltabular}
+
 
 
 \subsubsection{ConcealDocuments}
@@ -796,11 +973,6 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 \end{xltabular}
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.29;
-    \item RF.O.30.
-\end{itemize}
 
 
 \subsubsubsection{Lista sottocomponenti}
@@ -817,6 +989,25 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
     \item \label{VectorStoreManager}\textbf{VectorStoreManager}: interfaccia che rende disponibile metodi per dialogare con i vector store;
     \item \label{VectorStorePineconeManager}\textbf{VectorStorePineconeManager}: classe che implementa VectorStoreManager, offrendo la possibilità di dialogare con il vector store Pinecone.
 \end{itemize}
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente ConcealDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente ConcealDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.29 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}.\\
+\hline
+RF.O.30 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}. \\
+\end{xltabular}
+
 
 
 \subsubsection{DeleteChats}
@@ -860,14 +1051,6 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
 \end{xltabular}
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.37;
-        \item RF.O.37.1;
-        \item RF.O.38;
-        \item RF.O.38.1. 
-\end{itemize}
-
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -882,6 +1065,26 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
     \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}.
 \end{itemize}
  
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente DeleteChats}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente DeleteChats (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.37 & DeleteChatsService: vedi \vedi{DeleteChatsServiceDettaglio}.\\
+\hline
+RF.O.38 & DeleteChatsService: vedi \vedi{DeleteChatsServiceDettaglio}.\\
+\end{xltabular}
+
+
+
+
 
 
 \subsubsection{ConfigurationManager}
@@ -982,22 +1185,7 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
 500 & Eliminazione fallita. & Errore nell'eliminazione dei documenti.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.25;
-    \item RF.O.26;
-    \item RF.O.26.1;
-    \item RF.O.26.1.1; % poter visualizzare un errore se l’eliminazione di un documento sul sistema di archiviazione fallisce.
-    \item RF.O.26.2;
-    \item RF.O.26.3;
-    \item RF.O.27;
-    \item RF.O.28;
-    \item RF.O.28.1;
-    \item RF.O.28.1.1; % poter visualizzare un errore se l’eliminazione di un insieme di documenti sul sistema di archiviazione fallisce.
-    \item RF.O.28.2;
-    \item RF.O.28.3.
-   
-\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1019,6 +1207,42 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
     \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente DeleteDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente DeleteDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.25 & DeleteDocumentsService: vedi \vedi{DeleteDocumentsServiceDettaglio}.\\
+\hline
+RF.O.26 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.26.1 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.26.2 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.26.3 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.27 & DeleteDocumentsService: vedi \vedi{DeleteDocumentsServiceDettaglio}.\\
+\hline
+RF.O.28 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.28.1 &DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.28.2 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.28.3 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\end{xltabular}
+
+
+
 
 
 
@@ -1063,10 +1287,7 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \end{xltabular}
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.58
-\end{itemize}
+
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1107,6 +1328,23 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
     \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente EmbedDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente EmbedDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.58 & EmbedDocumentsService: vedi \vedi{EmbedDocumentsServiceDettaglio}.\\
+\end{xltabular}
+
+
 
 
 \subsubsection{EnableDocuments}
@@ -1151,11 +1389,7 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
 
     
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.31;
-    \item RF.O.32.
-\end{itemize}
+
 
 
 \subsubsubsection{Lista sottocomponenti}
@@ -1173,6 +1407,24 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
     
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente EnableDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente EnableDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.31 & EnableDocumentsService: vedi \vedi{EnableDocumentsServiceDettaglio}.\\
+\hline
+RF.O.32 & EnableDocumentsService: vedi \vedi{EnableDocumentsServiceDettaglio}.\\
+\end{xltabular}
+
 
 \subsubsection{GetChatMessages}
 \subsubsubsection{Descrizione}
@@ -1215,10 +1467,6 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.42.
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1239,14 +1487,22 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 \end{itemize}
 
 
-
-
-
-
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente GetChatMessages}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente GetChatMessages (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.42 & GetChatMessagesService: vedi \vedi{GetChatMessagesServiceDettaglio}.\\
+\end{xltabular}    
     
-    
-    
-   
+
     
 
 \subsubsection{GetChats}
@@ -1286,7 +1542,7 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 
     
 
-\subsubsubsection{Tracciamento dei requisiti} -
+
 
 
 \subsubsubsection{Lista sottocomponenti}
@@ -1307,6 +1563,9 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \item \textbf{PostgresMessage}: vedi \vedi{PostgresMessage};
     \item \textbf{PostgresMessageSenderType}: vedi \vedi{PostgresMessageSenderType}.
 \end{itemize}
+
+
+\subsubsubsection{Tracciamento dei requisiti} -
 
 
 
@@ -1345,22 +1604,10 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     
 
 
-\subsubsubsection{Tracciamento dei requisiti}
-    \begin{itemize}
-        \item RF.O.14;
-        \item RF.O.14.1;
-        \item RF.O.14.2;
-        \item RF.O.14.3;
-        \item RF.O.14.4.
-    \end{itemize}
-
-
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
 
     \item \label{Configuration}\textbf{Configuration}: classe che contiene la configurazione e le informazioni riguardo a vector store, document store, LLM ed embedding model;
-  
-    
     \item \label{DocumentStoreConfiguration}\textbf{DocumentStoreConfiguration}: classe che rappresenta la configurazione di un document store;
     \item \label{DocumentStoreType}\textbf{DocumentStoreType}:  enumeration che rappresenta i valori che può assumere il campo \code{name} in DocumentStoreConfiguration;
     \item \label{EmbeddingModelConfiguration}\textbf{EmbeddingModelConfiguration}: classe che rappresenta la configurazione di un modello di embedding;
@@ -1392,6 +1639,36 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     
 \end{itemize}
  
+
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente GetConfiguration}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente GetConfiguration (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.14 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.1 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.2 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.3 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.4 &  GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.54. &  LLMModelType: vedi \vedi{LLMModelTypeDettaglio}.  \\
+\end{xltabular}
+
+
+
     
 %GetConfigurationOptions
 
@@ -1426,18 +1703,6 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
     \end{xltabular}
     
 
-    \subsubsubsection{Tracciamento dei requisiti}
-    \begin{itemize}
-        \item RF.O.2;
-        \item RF.O.2.1;
-        \item RF.O.3;
-        \item RF.O.3.1;
-        \item RF.O.4;
-        \item RF.O.4.1;
-        \item RF.O.5;
-        \item RF.O.5.1.
-        
-    \end{itemize}
        
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1473,21 +1738,12 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
    
 \end{itemize}
  
-    
-    
    
-   
+\subsubsubsection{Tracciamento dei requisiti} -
 
 
 
 
-
-
-
-
-
-
-   
 
 \subsubsection{GetDocuments}
 \subsubsubsection{Descrizione}
@@ -1525,12 +1781,6 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
 404 & Ricerca fallita. & Errore nella ricerca dei documenti.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-   
-    \item RF.O.33.
-   
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1560,6 +1810,22 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
     
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente GetDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente GetDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.33 & GetDocumentsFacadeService: vedi \vedi{GetDocumentsFacadeServiceDettaglio}.\\
+\end{xltabular}
+
 
 
 \subsubsection{RenameChat}
@@ -1605,14 +1871,6 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.39;
-    \item RF.O.40;
-    \item RF.O.40.1;
-    \item RF.O.41;
-    \item RF.O.41.1.
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1626,6 +1884,25 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
     \item \textbf{PostgresChatOperationResponse}: vedi \vedi{PostgresChatOperationResponse};
     \item \textbf{PostgresChatORM}: vedi \vedi{PostgresChatORM}. 
 \end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente RenameChat}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente RenameChat (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.39 & RenameChatService: vedi \vedi{RenameChatServiceDettaglio}.\\
+\hline
+RF.O.40 &  RenameChatService: vedi \vedi{RenameChatServiceDettaglio}. \\
+\hline
+RF.O.41 &  RenameChatService: vedi \vedi{RenameChatServiceDettaglio}. \\
+\end{xltabular}
 
 
 %SETCONFIGURATION
@@ -1679,28 +1956,6 @@ Questa componente ha il compito di impostare le configurazioni di vector store, 
 
 \end{xltabular}
 
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item RF.O.1;
-        \item RF.O.1.1;
-        \item RF.O.1.1.1;
-        \item RF.O.1.2;
-        \item RF.O.1.2.1;
-        \item RF.O.1.3;
-        \item RF.O.1.3.1;
-        \item RF.O.1.4;
-        \item RF.O.1.4.1;
-        \item RF.OP.7; %scelta vector db
-        \item RF.OP.7.1;
-        \item RF.OP.8;
-        \item RF.OP.8.1;
-        \item RF.OP.9;
-        \item RF.OP.9.1.
-        
-\end{itemize}
-
-
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \textbf{ConfigurationOperationResponse}: vedi \vedi{ConfigurationOperationResponse};
@@ -1717,25 +1972,31 @@ Questa componente ha il compito di impostare le configurazioni di vector store, 
 
 \end{itemize}
 
-
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    
-    
-    \item RF.O.21;% L’utente deve poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging
-    
-    \item RF.O.22;
-    \item RF.O.22.1;
-    \item RF.O.22.1.1;
-    \item RF.O.22.2;
-    \item RF.O.22.3;
-    \item RF.O.23;
-    \item RF.O.23.1;
-    \item RF.O.23.1.1; %L’utente deve poter visualizzare un errore se il caricameno insieme docs fallisce
-    \item RF.O.23.2;
-    \item RF.O.23.3.
-   
-\end{itemize}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente SetConfiguration}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente SetConfiguration (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.1 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.1.1 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.1.2 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.1.3 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.1.4 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\end{xltabular}
+
+
+
 
 \subsubsection{UploadDocuments}
 \subsubsubsection{Descrizione}
@@ -1779,18 +2040,6 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
 500 & Upload fallito. & Errore nell'upload dei documenti. \\
 \end{xltabular}
 
-\begin{comment}
-    
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.21;
-    \item RF.O.21.1;
-    \item RF.O.21.3;
-    \item RF.O.21.4;
-    \item RF.O.21.6.
-\end{itemize}
-\end{comment}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1835,6 +2084,42 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     
 \end{itemize}
 
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente UploadDocuments}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente UploadDocuments (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.21 & UploadDocumentsService: vedi \vedi{UploadDocumentsServiceDettaglio}.\\
+\hline
+RF.O.22 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.22.1 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.22.2 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.22.3 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.23 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.23.1 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.23.2 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.23.3 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+
+\end{xltabular}
+
+
+
+
 \subsubsection{ViewDocumentContent}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di recuperare tutte le informazioni di un documento, compreso il suo contenuto.
@@ -1873,10 +2158,6 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 404 & Recupero documento fallito. & Errore nel recupero del documento.
 \end{xltabular}
 
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-    \item RF.O.24.%visualizzare contenuto di un docs
-\end{itemize}
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
@@ -1908,6 +2189,23 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
     \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
 \end{itemize}
 
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente ViewDocumentContent}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente ViewDocumentContent (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio}.\\
+\end{xltabular}
+
+
+
 \subsection{Database} %TODO
 
     % definisco ogni tabella e la descrivo
@@ -1923,14 +2221,155 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 
 \newpage
 
-\section{Progettazione di dettaglio}
-    % Per ogni componente:
+\section{Progettazione di dettaglio frontend}
+
+%CHATBOT-FRONTEND
+\subsection{Chatbot}
+
+\subsubsection{Descrizione delle sottocomponenti}
+
+\subsubsubsection{ChatContent}
+\label{ChatContentDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Messagges: i messaggi rappresentati sotto forma di MessageCard ordinati cronologicamente.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{ChatForm}
+\label{ChatFormDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Send Button: per l'invio della richiesta contenuta nella texting Area;
+        \item Texting Area: per l'inserimento di messaggi testuali;
+        \item Vocal Message Button: per l'inserimento di messaggi vocali.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{ChatHeader}
+\label{ChatHeaderDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Delete Chat Button: per eliminare la chat corrente;
+        \item Rename Chat Button: per rinominare la chat corrente;
+        \item Title: campo per la visualizzazione e la modifica del titolo.
+    \end{itemize}
+
+\end{itemize}
+
+
+\subsubsubsection{ChatListSideBar}
+\label{ChatListSideBarDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Abort Delete Button: per annullare l'eliminazione delle chat selezionate;
+        \item Chat Search Bar: campo di inserimento per permettere la ricerca delle chat;
+        \item Chat List: sezione che contiene i record delle chat salvate;
+        \item Confirm Delete Button: per confermare l'eliminazione delle chat selezionate;
+        \item New Chat Button: per creare una nuova chat;
+        \item Select Chat: componente per permettere di selezionare più chat da eliminare.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{MessageCard}
+\label{MessageCardDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Copy Button: elemento che permette di copiare il testo del messaggio;
+        \item Message Content: elemento che contiene il testo del messaggio e i collegamenti ai documenti pertinenti nel caso dei messaggi del chatbot;
+        \item Read Out Loud Button: per ascoltare il messaggio sottoforma di audio;
+        \item Timestamp: campo contenente data e ora di invio del messaggio.
+    \end{itemize}
+\end{itemize}
+
+
+%DOCUMENTS-FRONTEND
+
+\subsection{Documents}
+
+\subsubsection{Descrizione delle sottocomponenti}
+
+\subsubsubsection{DocumentsList}
+\label{DocumentsListDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Documents: i documenti rappresentati sotto forma di DocumentsListRow;
+        \item Delete Selected Button: per eliminare i DocumentsListRow selezionati;
+        \item Order By Button: per ordinare secondo i diversi campi informazione dei DocumentsListRow;
+        \item Status Filter: per visualizzare i documenti in base allo status selezionato;
+        \item Title Search Bar: per ricercare i documenti per titolo;
+        \item Type Filter: per visualizzare i documenti in base al formato selezionato; 
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DocumentsListRow}
+\label{DocumentsListRowDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Document Info: parte del record che contiene informazioni significative del documento quali il titolo, la dimensione, lo status, il formato e la data di upload;
+        \item Conceal Document Button: per occultare gli embeddings del documento selezionato;
+        \item Delete Document Button: per eliminare il documento selezionato;
+        \item Select Row Button: per selezionare il record del documento;
+        \item View Document Button: per visualizzare il documento selezionato.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{StagingArea}
+\label{StagingAreaDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Cancel Upload Button: per annullare l'upload dei documenti caricati in area di staging;
+        \item Drag\&Drop Area: area dove è possibile caricare i file nell'area di staging;
+        \item Staged Documents: i documenti caricati nell'area di staging, rappresentati sotto forma di StagingAreaRow;
+        \item Upload Button: per confermare l'upload dei documenti caricati in area di staging.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{StagingAreaRow}
+\label{StagingAreaRowDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Cancel Staging Button: per eliminare il documento caricato in area di staging;
+        \item Staged Document Info: parte del record che contiene informazioni significative del documento caricato in area di staging, quali il titolo, la dimensione e il formato.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+   
+\section{Progettazione di dettaglio backend}
+
+
+
+ % Per ogni componente:
     %    - diagramma di dettaglio
     %    Indicare per ogni sottocomponente:
     %        - attributi (nome: tipo)
     %        - metodi (firma, descrizione)
     % - interfacce implementate
-
 \subsection{AskChatbot}
 \subsubsection{Diagramma delle classi}
 \subsubsection{Lista delle sottocomponenti}

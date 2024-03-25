@@ -35,8 +35,8 @@ class DeleteDocumentsService(DeleteDocumentsUseCase):
         for documentId, documentOperationResponse in zip(documentsIds, documentOperationResponses):
             if documentOperationResponse.ok():
                 deleteDocumentOperationResponse = self.documentsDeleter.deleteDocuments([documentId])
-                finalOperationResponses.append(deleteDocumentOperationResponse)
+                finalOperationResponses = finalOperationResponses + deleteDocumentOperationResponse
             else:
-                finalOperationResponses.append(documentOperationResponse)
-
+                finalOperationResponses = finalOperationResponses + documentOperationResponse
+        print(finalOperationResponses, flush=True)
         return finalOperationResponses

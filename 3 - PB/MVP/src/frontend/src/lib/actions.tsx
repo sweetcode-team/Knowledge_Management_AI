@@ -13,7 +13,7 @@ import {
     DocumentOperationResponse,
     LLMConfigurationFormValues,
     MessageResponse,
-    RenameChatFormValues
+    RenameChatFormValues, DocumentWithContent
 } from "@/types/types"
 import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
@@ -163,7 +163,7 @@ export async function getConfiguration(): Promise<Configuration> {
     return result.json()
 }
 
-export async function getDocumentContent(id: string): Promise<DocumentContent> {
+export async function getDocumentContent(id: string): Promise<DocumentWithContent> {
     const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`,
         {
             next: { tags: ["document"] }

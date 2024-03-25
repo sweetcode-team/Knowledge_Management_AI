@@ -52,7 +52,7 @@ export enum Status {
     INCONSISTENT = 4
 }
 
-export type DocumentContent = {
+export type DocumentWithContent = {
     id: string
     type: string
     size: number

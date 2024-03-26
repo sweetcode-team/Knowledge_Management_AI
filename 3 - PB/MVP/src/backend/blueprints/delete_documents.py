@@ -18,7 +18,6 @@ Returns:
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
     requestedIds = request.form.getlist('documentIds')
-    print(requestedIds, flush=True)
     if requestedIds is None:
         raise InsufficientParameters()
     if len(requestedIds) == 0:

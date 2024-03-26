@@ -29,15 +29,22 @@ export function ChatList({ chatPreviews }: ChatListProps) {
   const onDeleteSubmit = async () => {
     setIsBeingSelected(false);
 
+    const toastId = toast.loading("Loading...", {
+      description: "Deleting chats."
+    })
+
     let results: ChatOperationResponse[]
     try {
       results = await deleteChats(selectedChats)
     } catch (e) {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }
+
+    toast.dismiss(toastId)
 
     results.forEach(result => {
       if (!result || !result.status) {

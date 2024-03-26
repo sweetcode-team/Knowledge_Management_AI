@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from datetime import datetime
 from typing import List
 
 from adapter.out.persistence.postgres.postgres_message import PostgresMessage

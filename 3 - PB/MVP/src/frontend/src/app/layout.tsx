@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as SonnerToaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
 
 import { ResizableLayout } from "@/components/resizable-layout"
@@ -46,9 +45,8 @@ export default function RootLayout({
           >
             {children}
           </ResizableLayout>
-          <SonnerToaster richColors />
+          <Toaster richColors />
         </ThemeProvider>
-        <Toaster />
       </body>
     </html>
   );

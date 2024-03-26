@@ -43,14 +43,24 @@ export default async function Dashboard() {
     lastChat = await getChatMessages(chats[0].id)
   }
 
-  let recentlyViewedDocumentIds = new Set<string | undefined>()
-  if (chats.length !== 0) {
-    recentlyViewedDocumentIds = new Set(chats.map((chat: ChatPreview) => chat.lastMessage.relevantDocuments).flat())
+  const recentlyViewedDocumentIds = new Set<string>();
+
+  chats.forEach(chat => {
+    chat.lastMessage.relevantDocuments?.forEach(docId => {
+      recentlyViewedDocumentIds.add(docId);
+    })
+  })
+
+  if (lastChat) {
+    lastChat.messages.forEach(message => {
+      message.relevantDocuments?.forEach(docId => {
+        recentlyViewedDocumentIds.add(docId);
+      })
+    })
   }
 
   let recentlyViewedDocuments: LightDocument[] = []
   if (documents.length !== 0) {
-    console.log("\n\n\n\n\n\n", documents)
     recentlyViewedDocuments = documents.filter((document) => recentlyViewedDocumentIds.has(document.id))
   }
 
@@ -122,7 +132,7 @@ export default async function Dashboard() {
             <TabsContent value="uploaded">
               <ScrollArea className='h-[50vh] px-2'>
                 {
-                  documents ?
+                  documents.length !== 0 ?
                     <RecentDocuments
                       items={
                         documents

@@ -62,5 +62,4 @@ class AskChatbotLangchain(AskChatbotPort):
                     chatId=chatId
                 ) 
         except Exception as e:
-            print(e, flush=True)
             return MessageResponse(status=False, messageResponse=None, chatId=chatId)

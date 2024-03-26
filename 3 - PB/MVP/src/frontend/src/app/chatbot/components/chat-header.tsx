@@ -98,7 +98,7 @@ export function ChatHeader({ chatTitle, chatId, isChatSelected }: ChatHeaderProp
         results.forEach(result => {
             if (!result || !result.status) {
                 toast.error("An error occurred", {
-                    description: "Error while renaming the chat:" + result.message,
+                    description: "Error while deleting the chat:" + result.message,
                 })
                 return
             } else {

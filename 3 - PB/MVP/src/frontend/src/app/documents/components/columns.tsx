@@ -139,7 +139,7 @@ export const columns: ColumnDef<LightDocument>[] = [
       return (
         <div className="flex items-center justify-center">
           <span className="truncate font-medium">
-            <time dateTime={row.getValue("uploadTime")}>{format(date, 'yyyy-MM-dd hh:mm')}</time>
+            <time dateTime={row.getValue("uploadTime")}>{format(date, 'yyyy-MM-dd HH:mm')}</time>
           </span>
         </div>
       )

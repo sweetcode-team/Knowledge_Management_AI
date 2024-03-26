@@ -49,30 +49,35 @@ Per evitare ambiguità e incomprensioni relative al linguaggio e ai termini util
 \subsubsection{Riferimenti informativi}
 \begin{itemize}
         \item \textit{(Analisi dei requisiti v2.0.0(0))};
-        \item \textit{Capitolato C1}: \textit{Knowledge Management AI.}
+        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
+        (Ultimo accesso: 2024-02-08);
+   
         \end{itemize}
 
 \newpage
-%\section{Installazione}
-%\subsection{Prerequisiti}
-%\subsection{Installazione del prodotto}
-%\subsection{Accesso}
+
 
 \section{Istruzioni per l'utente}
 Questa sezione comprende le istruzioni per l'uso del prodotto delle funzionalità disponibili all'utente (attore).
 \subsection{Configurazione utente}
-La configurazione permette di selezionare diverse componenti del prodotto al primo avvio dell'applicazione come segue:
+La configurazione permette all'utente di selezionare le diverse componenti del prodotto al primo avvio dell'applicazione. Al primo avvio viene infatti visualizzata una schermata di selezione della configurazione che impedisce all'utente di utilizzare l'applicazione se non viene compilata.\\ Si elencano qui le diverse componenti da selezionare.
+\subsubsection{Selezione della configurazione}
+Questa funzionalità richiede all'utente di selezionare la configurazione che desidera tramite la schermata iniziale. Per farlo è sufficiente selezionare con un clic tutte le componenti desiderate (scorrendo verticalmente con il mouse ed orizzontalmente con le frecce ni vari menù) e per finire premere il bottone 'Confirm configuration' nel fondo della pagina.\\ Le varie azioni obbligatorie da operare sono: 
+\begin{itemize}
+    \item \textbf{Selezione del modello LLM}: Un LLM (\textit{Large Language Model}) è un modello di intelligenza artificiale che utilizza tecniche di \textit{machine learning} per comprendere e generare linguaggio umano. È quindi possibile selezionare il modello che interagirà con l'utente tramite il chatbot, ed è possibile scegliere tra i modelli di \textit{Huggingface} e \textit{OpenAI};
+    \item \textbf{Selezione del vector store}: Un database vettoriale è un tipo di database che indicizza e memorizza embeddings vettoriali per un recupero rapido e una ricerca di similarità. È possibile scegliere tra quelli proposti da \textit{Pinecone} o \textit{ChromaDB};
+    \item \textbf{Selezione del sistema di archiviazione}: È possibile la selezione del sistema di archiviazione dei documenti (al momento è possibile solo la scelta del sistema di \textit{Amazon Web Services});
+    \item \textbf{Selezione del modello di embeddings}: Il modello di embeddings da selezionare si occupa della trasformazione dei documenti in embeddings. È possibile selezionare i modelli di \textit{Huggingface} oppure \textit{OpenAI}.
+\end{itemize}
+
+Le altre funzionalità che si possono operare sulla configurazione utente si elencano in seguito.
 \subsubsection{Visualizzazione configurazione corrente}
 Per visualizzare che vector database, modello di embeddings, sistema di archiviazione e modello LLM sono attualmente configurati nell'applicazione è necessario:
 \begin{itemize}
     \item Premere dalla dashboard il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
     \item Visualizzare la configurazione corrente sotto il rispettivo titolo 'Current configuration', scorrendo con le frecce poste a destra e sinistra del menù slider con i vari elementi della configurazione attuale.
 \end{itemize}
-\subsubsection{Selezione del modello LLM}
 
-%\subsubsection{Selezione del vector database}
-%\subsubsection{Selezione del modello di embeddings}
-%\subsubsection{Selezione del sistema di archiviazione}
 \subsubsection{Cambiamento del modello LLM selezionato}
 È possibile per l'utente cambiare il modello LLM che risponde alle domande poste al chatbot, in questo modo:
 \begin{itemize}
@@ -151,8 +156,8 @@ Per caricare uno o più documenti nell'area di staging è necessario:
     \item Se si sbaglia ad inserire un documento, premere l'icona del cestino che compare a destra del titolo del documento nell'area di staging, che verrà rimosso;
     \item Se si vogliono aggiungere ulteriori documenti, l'area rettangolare tratteggiata per l'upload resterà comunque disponibile sulla destra della pagina;
     \item Se si cambia idea e non è più necessario fare l'upload del documento (o dei documenti) inseriti nell'area di staging, selezionare il bottone 'Cancel upload' che si trova sotto all'area di staging;
-    \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nell'area con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
-    \item  Verrà successivamente richiesta la conferma della scelta selezionata: per confermarla fare clic su ..., altimenti su ... per annullarla.
+    \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato di quello (o quelli) selezionato/i, viene visualizzato un pop up di errore in basso a destra, dato che non è possibile inserire due documenti uguali nell'area di staging.\\ Se i due documenti dovessero avere stesso nome e formato ma dovessero essere diversi, si prega di rinominare il secondo documento in questione e caricarlo nuovamente nell'area di staging;
+    \item Se si prova ad inserire nell'area di staging un documento con un formato non leggibile dall'applicazione viene visualizzato un pop up di errore in basso a destra.
     \end{itemize} 
 
 
@@ -161,8 +166,9 @@ Per poter fare l’upload nel sistema di archiviazione e nel vector database dei
 \begin{itemize}
     \item Caricare nell'area di staging uno o più documenti da inserire nel sistema, seguendo le istruzioni del punto 2.2.5; 
     \item Per eseguire l'upload del documento (o dei documenti) selezionare il pulsante 'Upload documents' che si trova sotto all'area di staging;
-    \item Se nel sistema di archiviazione è già presente un documento (o più documenti) con lo stesso nome e formato è possibile scegliere se sostituire il documento già presente nel sistema con quello nuovo cliccando su ..., oppure se non sostituirlo, selezionando l'opzione ... 
-    \item  Verrà successivamente richiesta la conferma della scelta selezionata: per confermarla fare clic su ..., altimenti su ... per annullarla.
+    \item Se nel sistema di archiviazione è già presente un documento (o più documenti) con lo stesso nome e formato di quello (o quelli) di cui si sta facendo l'upload comparirà un avviso in centro alla pagina che segnala che sono presenti documenti duplicati. \\L'avviso permetterà di decidere quali documenti sovrascrivere e quali lasciare invariati, tramite un elenco in cui si devono spuntare i nomi dei documenti che si vuole sovrascrivere;
+    \item Una volta selezionati i documenti da sovrascrivere, premere 'Submit' per confermare o 'Cancel' per annullare l'azione.
+    
     
 \end{itemize}
 \subsubsection{Occultamento e riabilitazione dal sistema}
@@ -267,8 +273,8 @@ Per cercare una chat o il contenuto di essa all'interno della lista delle chat �
   %  \item Fare clic sulla chat che si intende leggere dalla lista delle chat. È possibile farlo sia dalla dashboard, selezionando la chat dalla lista delle ultime chat in alto a destra, o aprendo la pagina 'Chatbot' dal menù in alto a sinistra della dashboard e selezionandola dalla lista delle chat a sinistra nella pagina.
 %\end{itemize}
 %La chat desiderata verrà automaticamente aperta per la lettura. Ne vengono quindi visualizzati il contenuto testuale e l'orario dei singoli messaggi (in basso a sinistra rispetto ai messaggi). 
-\subsubsection{Domande suggerite}
-Se la chat è vuota vengono visualizzate (DOVE?) di default delle domande suggerite che possono essere poste al chatbot. Per selezionare una domanda è sufficiente selezionarla con un clic e confermarne l'invio selezionando l'opzione ...
+%\subsubsection{Domande suggerite}
+%Se la chat è vuota vengono visualizzate (DOVE?) di default delle domande suggerite che possono essere poste al chatbot. Per selezionare una domanda è sufficiente selezionarla con un clic e confermarne l'invio selezionando l'opzione ...
 \subsubsection{Inserimento, invio e copia}
 Per inserire un messaggio nell'area di testo di una chat è necessario:
 \begin{itemize}
@@ -297,15 +303,10 @@ Per ascoltare un messaggio tramite audio è necessario ...
 \subsubsection{Cambio del tema di sfondo}
 L'interfaccia dell'applicazione è disponibile in tema chiaro o scuro. Per cambiare tema è necessario:
 \begin{itemize}
-    \item Selezionare con un clic il pulsante in alto a destra raffigurante il simbolo di una luna o di un sole (in base al tema corrente), presente in tutte le pagine;
-    \item Selezionare il tema desiderato dall'elenco che compare automaticamente.
-\end{itemize}
-È possibile modificare il tema di sfondo anche nel seguente modo:
-\begin{itemize}
     \item Dalla dashboard premere il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
     \item Dal menù delle impostazioni, in alto a sinistra della pagina che si sarà aperta automaticamente, selezionare la voce 'Appearence';
     \item Selezionare il tema di sfondo desiderato;
-    \item Premere il bottone in basso con su scritto 'Update preferences'.
+    \item Premere il bottone in basso con su scritto 'Update preferences'. Comparirà successivamente un pop up in basso a destra per segnalare il successo dell'operazione.
 \end{itemize}
 
 

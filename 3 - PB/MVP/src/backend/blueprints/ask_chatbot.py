@@ -40,9 +40,9 @@ def askChatbot():
     
     chatbotResponse = controller.askChatbot(' '.join(userMessage.split()), validChatId)
     
-    if chatbotResponse is None:
+    if chatbotResponse is None or chatbotResponse.chatId is None or not chatbotResponse.ok():
         raise APIElaborationException("Errore nella generazione della risposta.")
-    
+
     return jsonify({
         "status": chatbotResponse.ok(),
         "messageResponse": {

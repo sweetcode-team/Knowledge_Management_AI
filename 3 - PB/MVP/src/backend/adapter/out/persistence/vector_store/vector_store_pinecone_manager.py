@@ -245,4 +245,4 @@ class VectorStorePineconeManager(VectorStoreManager):
 
     """ 
     def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
-        return PineconeLangchain(self.index, embeddingModel.getEmbeddingFunction(), "text").as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.3})
+        return PineconeLangchain(self.index, embeddingModel.getEmbeddingFunction(), "text").as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.05})

@@ -159,4 +159,4 @@ class VectorStoreChromaDBManager(VectorStoreManager):
         VectorStoreDocumentOperationResponse: The response of the operation.
     """
     def getRetriever(self, embeddingModel : LangchainEmbeddingModel) -> BaseRetriever:
-        return Chroma(client=self.chromadb, collection_name = self.collection.name, embedding_function=embeddingModel.getEmbeddingFunction()).as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.3})
+        return Chroma(client=self.chromadb, collection_name = self.collection.name, embedding_function=embeddingModel.getEmbeddingFunction()).as_retriever(search_type="similarity_score_threshold", search_kwargs={'filter': {'status':'ENABLED'}, 'score_threshold': 0.05})

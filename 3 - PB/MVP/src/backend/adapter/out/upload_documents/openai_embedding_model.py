@@ -11,7 +11,7 @@ class OpenAIEmbeddingModel(LangchainEmbeddingModel):
         with open('/run/secrets/openai_key', 'r') as file:
             openaikey = file.read()
             
-        self.model = OpenAIEmbeddings(model_name="text-embedding-3-small", openai_api_key=openaikey)
+        self.model = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=openaikey)
         self.embeddingsDimension = 1536
     
        

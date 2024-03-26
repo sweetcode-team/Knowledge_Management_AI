@@ -21,10 +21,13 @@ class GetChatsPostgres(GetChatsPort):
     Returns:
         List[ChatPreview]: The chat previews.
     """    
-    def getChats(self, chatFilter: ChatFilter) -> List[ChatPreview]:
-        chatsPreview = []
+    def getChats(self, chatFilter: ChatFilter) -> List[ChatPreview]: 
         listOfChatPreview = self.postgresORM.getChats(chatFilter.searchFilter)
-        for chatPreview in listOfChatPreview:
-            previewOfChat = chatPreview.toChatPreview()
-            chatsPreview.append(previewOfChat)
-        return chatsPreview
+        if listOfChatPreview is not None:
+            chatsPreview = []
+            for chatPreview in listOfChatPreview:
+                previewOfChat = chatPreview.toChatPreview()
+                chatsPreview.append(previewOfChat)
+            return chatsPreview
+        else:
+            return None

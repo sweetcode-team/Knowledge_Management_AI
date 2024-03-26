@@ -47,7 +47,6 @@ class DocumentsUploaderAWSS3(DocumentsUploaderPort):
         return AWSDocument(
             id=document.plainDocument.metadata.id.id,
             content=document.plainDocument.content.content,
-            type=document.plainDocument.metadata.type.name,
             size=document.plainDocument.metadata.size,
             uploadTime=document.plainDocument.metadata.uploadTime
         )

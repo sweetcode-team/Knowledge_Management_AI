@@ -22,10 +22,9 @@ import {
 
 import { DOCUMENT_STATUSES } from "@/constants/constants"
 import { TrashIcon } from "lucide-react"
-import { DocumentMetadata, DocumentOperationResponse } from "@/types/types";
-import { revalidatePath } from "next/cache";
+import { LightDocument, DocumentOperationResponse } from "@/types/types";
 import { concealDocuments, deleteDocuments, embedDocuments, enableDocuments } from "@/lib/actions"
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 
 interface DataTableGroupActionsProps<TData> {
@@ -44,7 +43,7 @@ export function DataTableGroupActions<TData>({
     let results: DocumentOperationResponse[] = []
     if (selectedRowsStatuses.has("NOT_EMBEDDED")) {
       try {
-        results = await embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        results = await embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       } catch (e) {
         toast.error("Operation failed", {
           description: "Failed to embed the selected documents.",
@@ -53,7 +52,7 @@ export function DataTableGroupActions<TData>({
       }
     } else if (selectedRowsStatuses.has("ENABLED")) {
       try {
-        results = await concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        results = await concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       } catch (e) {
         toast.error("Operation failed", {
           description: "Failed to disable the selected documents.",
@@ -62,7 +61,7 @@ export function DataTableGroupActions<TData>({
       }
     } else if (selectedRowsStatuses.has("CONCEALED")) {
       try {
-        results = await enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+        results = await enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
       } catch (e) {
         toast.error("Operation failed", {
           description: "Failed to enable the selected documents.",
@@ -99,7 +98,7 @@ export function DataTableGroupActions<TData>({
 
     let results: DocumentOperationResponse[] = []
     try {
-      results = await deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      results = await deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as LightDocument).id))
     } catch (e) {
       toast.error("Operation failed", {
         description: "Failed to delete the selected documents.",
@@ -130,7 +129,7 @@ export function DataTableGroupActions<TData>({
     })
   }
 
-  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
+  const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as LightDocument).status))
 
   const Icon = DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.actionIcon as React.ComponentType<{ className?: string }>
 

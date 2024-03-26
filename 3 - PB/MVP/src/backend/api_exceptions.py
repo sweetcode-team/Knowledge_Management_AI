@@ -29,3 +29,8 @@ class APIElaborationException(Exception):
     def __init__(self, message):
         self.message = message
         self.status_code = 500
+        
+class ConfigurationNotSetException(Exception):
+    def __init__(self, message="Configurazione non impostata."):
+        self.message = message
+        self.status_code = 401

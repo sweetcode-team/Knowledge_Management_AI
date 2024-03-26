@@ -10,9 +10,10 @@ import { useRouter, useParams } from "next/navigation";
 interface ChatItemProps {
   chat: ChatPreview
   isBeingSelected: boolean
+  toggleSelect: () => void
 }
 
-export function ChatItem({ chat, isBeingSelected }: ChatItemProps) {
+export function ChatItem({ chat, isBeingSelected, toggleSelect }: ChatItemProps) {
   const pathChatId = +useParams().chatId
 
   const router = useRouter()
@@ -41,7 +42,7 @@ export function ChatItem({ chat, isBeingSelected }: ChatItemProps) {
                 <Checkbox onClick={
                   (e) => {
                     e.stopPropagation()
-
+                    toggleSelect()
                   }
                 } />
               }

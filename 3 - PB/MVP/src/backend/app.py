@@ -2,7 +2,7 @@ from flask import Flask, jsonify, redirect, url_for, request
 from flask_cors import CORS
 
 from api_exceptions import APIBadRequest
-from api_exceptions import APIElaborationException
+from api_exceptions import APIElaborationException, ConfigurationNotSetException
 from blueprints.get_chat_messages import getChatMessagesBlueprint
 from blueprints.get_chats import getChatsBlueprint
 
@@ -57,11 +57,13 @@ def handle_api_error(error):
 def handle_api_elaboration_error(error):
     return jsonify(error.message), error.status_code
 
+excluded_endpoints = ['getConfiguration', 'setConfiguration', 'getConfigurationOptions']
 @app.before_request
 def check_configuration():
-    if request.endpoint is not None and request.endpoint != 'getConfiguration' and request.endpoint != 'setConfiguration' and request.endpoint != 'getConfigurationOptions':
+    if request.endpoint is not None and request.endpoint.split('.')[1] not in excluded_endpoints:
         config_response = getConfiguration()
-        
-        if config_response.status_code != 200:
-            # If configuration is not set, redirect to getConfiguration
-            return "Configurazione inesistente.", 401
+
+        if config_response.status_code == 401:
+            return jsonify("Configurazione inesistente."), 401
+        elif config_response.status_code == 500:
+            raise APIElaborationException("Errore nel recupero della configurazione.")

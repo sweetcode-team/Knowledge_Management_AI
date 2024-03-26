@@ -65,6 +65,9 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
             })
             return
         }
+
+        toast.dismiss(toastId)
+
         if (chatId === undefined)
             router.push(`/chatbot/${result.chatId}`)
         form.reset({ message: "" })

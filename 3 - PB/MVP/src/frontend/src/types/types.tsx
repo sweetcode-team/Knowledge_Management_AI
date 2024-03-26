@@ -52,7 +52,7 @@ export enum Status {
     INCONSISTENT = 4
 }
 
-export type DocumentContent = {
+export type DocumentWithContent = {
     id: string
     type: string
     size: number
@@ -128,11 +128,11 @@ export type ConfigurationOptions = {
     documentStores: DocumentStore[]
 }
 
-export const LLMconfigurationFormSchema = z.object({
+export const LLMConfigurationFormSchema = z.object({
     LLMModel: z.string()
 })
 
-export type LLMConfigurationFormValues = z.infer<typeof LLMconfigurationFormSchema>
+export type LLMConfigurationFormValues = z.infer<typeof LLMConfigurationFormSchema>
 
 export const configurationFormSchema = z.object({
     LLMModel: z.string(),

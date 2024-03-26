@@ -9,6 +9,7 @@ import { Chat } from "@/types/types"
 
 import { getChatMessages } from "@/lib/actions"
 import ChatFooter from "./chat-footer";
+import { toast } from "sonner";
 
 interface ChatbotProps {
     chatId?: number
@@ -18,7 +19,13 @@ export default async function Chatbot({ chatId }: ChatbotProps) {
 
     let chat = null as Chat | null
     if (chatId !== undefined) {
-        chat = await getChatMessages(chatId)
+        try {
+            chat = await getChatMessages(chatId)
+        } catch (error) {
+            toast.error("Operation failed", {
+                description: "Failed to load chat messages."
+            })
+        }
     }
 
     return (

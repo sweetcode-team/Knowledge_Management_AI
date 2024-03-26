@@ -25,6 +25,7 @@ import { TrashIcon } from "lucide-react"
 import { DocumentMetadata, DocumentOperationResponse } from "@/types/types";
 import { revalidatePath } from "next/cache";
 import { concealDocuments, deleteDocuments, embedDocuments, enableDocuments } from "@/lib/actions"
+import { toast } from "sonner"
 
 
 interface DataTableGroupActionsProps<TData> {
@@ -35,28 +36,103 @@ export function DataTableGroupActions<TData>({
   table,
 }: DataTableGroupActionsProps<TData>) {
 
-  const handleAction = () => {
-    console.log(selectedRowsStatuses)
+  const handleAction = async () => {
+    const toastId = toast.loading("Loading...", {
+      description: "Updating document status.",
+    })
+
+    let results: DocumentOperationResponse[] = []
     if (selectedRowsStatuses.has("NOT_EMBEDDED")) {
-      const result = embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-      result.then((res) => console.log(res))
+      try {
+        results = await embedDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to embed the selected documents.",
+          id: toastId
+        })
+      }
     } else if (selectedRowsStatuses.has("ENABLED")) {
-      const result = concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-      result.then((res) => console.log(res))
+      try {
+        results = await concealDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to disable the selected documents.",
+          id: toastId
+        })
+      }
     } else if (selectedRowsStatuses.has("CONCEALED")) {
-      const result = enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-      result.then((res) => console.log(res))
+      try {
+        results = await enableDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to enable the selected documents.",
+          id: toastId
+        })
+      }
     }
+    toast.dismiss(toastId)
+
+    results.forEach((result) => {
+      if (!result) {
+        toast.error("An error occurred", {
+          description: "Please try again later.",
+        })
+        return
+      }
+      else if (result.status) {
+        toast.success("Operation successful", {
+          description: result.id + " uploaded successfully",
+        })
+      }
+      else {
+        toast.error("An error occurred for " + result.id, {
+          description: "Please try again. " + result.message,
+        })
+      }
+    })
   }
 
-  const handleDelete = () => {
-    const result = deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
-    result.then((res) => console.log(res))
+  const handleDelete = async () => {
+    const toastId = toast.loading("Loading...", {
+      description: "Deleting documents.",
+    })
+
+    let results: DocumentOperationResponse[] = []
+    try {
+      results = await deleteDocuments(table.getSelectedRowModel().rows.map((row) => (row.original as DocumentMetadata).id))
+    } catch (e) {
+      toast.error("Operation failed", {
+        description: "Failed to delete the selected documents.",
+        id: toastId
+      })
+    }
+
+    toast.dismiss(toastId)
+
+    results.forEach((result) => {
+      if (!result) {
+        toast.error("An error occurred", {
+          description: "Please try again later.",
+        })
+        return
+      }
+      else if (result.status) {
+        toast.success("Operation successful", {
+          description: result.id + " uploaded successfully",
+        })
+      }
+      else {
+        toast.error("An error occurred for " + result.id, {
+          description: "Please try again. " + result.message,
+        })
+        return
+      }
+    })
   }
 
   const selectedRowsStatuses = new Set((table.getSelectedRowModel().rows).map((row) => (row.original as DocumentMetadata).status))
 
-  const Icon = DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.icon as React.ComponentType<{ className?: string }>
+  const Icon = DOCUMENT_STATUSES.find((status) => selectedRowsStatuses.has(status.value))?.actionIcon as React.ComponentType<{ className?: string }>
 
   return (
     <>

@@ -41,7 +41,7 @@ export function ChatItem({ chat, isBeingSelected }: ChatItemProps) {
                 <Checkbox onClick={
                   (e) => {
                     e.stopPropagation()
-                    // TODO: form field to select chat for form in chat list
+
                   }
                 } />
               }

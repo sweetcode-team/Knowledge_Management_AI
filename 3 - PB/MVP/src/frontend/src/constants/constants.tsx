@@ -45,7 +45,7 @@ export const DOCUMENT_STATUSES = [
     action: "Embed",
     actionMessage: "This document is incorrectly embedded. This action will re-embed the document. Are you sure?",
     groupActionMessage: "The selected documents are incorrectly embedded. This action will re-embed them. Documents that are already embedded correctly won't be affected. Are you sure?",
-    icon: SigmaIcon
+    actionIcon: SigmaIcon
   },
   {
     value: "CONCEALED",
@@ -54,7 +54,7 @@ export const DOCUMENT_STATUSES = [
     action: "Enable",
     actionMessage: "This action will enable this document. The chatbot will be able to answer question about it. Are you sure?",
     groupActionMessage: "This action will enable the selected documents. Documents that are already enabled correctly won't be affected. Are you sure?",
-    icon: ListPlus
+    actionIcon: ListPlus
   },
   {
     value: "ENABLED",
@@ -63,7 +63,7 @@ export const DOCUMENT_STATUSES = [
     action: "Conceal",
     actionMessage: "This action will conceal this document. The chatbot won't be able to answer question about it. Are you sure?",
     groupActionMessage: "This action will conceal the selected documents. Documents that are already concealed correctly won't be affected. Are you sure?",
-    icon: EyeOffIcon
+    actionIcon: EyeOffIcon
   },
   {
     value: "NOT_EMBEDDED",
@@ -72,7 +72,7 @@ export const DOCUMENT_STATUSES = [
     action: "Embed",
     actionMessage: "This action will embed this document. Are you sure?",
     groupActionMessage: "This action will embed the selected documents. Documents that are already embedded correctly won't be affected. Are you sure?",
-    icon: SigmaIcon
+    actionIcon: SigmaIcon
   },
 ]
 

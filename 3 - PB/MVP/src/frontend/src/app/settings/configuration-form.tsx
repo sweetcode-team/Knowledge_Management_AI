@@ -67,23 +67,38 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
 
 
   const onSubmit: SubmitHandler<LLMConfigurationFormValues> = async (data) => {
-    console.log(data)
-    const result = await changeConfiguration(data)
+    const toastId = toast.loading("Loading...", {
+      description: "Updating your configuration.",
+    })
+
+    let result: ConfigurationOperationResponse | null = null
+    try {
+      result = await changeConfiguration(data)
+    } catch (e) {
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+        id: toastId
+      })
+      return
+    }
 
     if (!result) {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }
     else if (result.status) {
       toast.success("Operation successful", {
         description: "The configuration has been set.",
+        id: toastId
       })
     }
     else {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }

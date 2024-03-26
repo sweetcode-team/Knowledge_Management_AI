@@ -16,13 +16,25 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import prettyBytes from 'pretty-bytes'
 
 import { uploadDocuments } from '@/lib/actions'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogDescription,
+    AlertDialogAction,
+    AlertDialogTitle,
+    AlertDialogCancel,
+    AlertDialogFooter
+
+} from '@/components/ui/alert-dialog'
 
 const addFilesToInput = () => ({
     type: 'ADD_FILES_TO_INPUT' as const,
     payload: [] as File[],
 })
 
-const removeFilesFromInput = (name: string) => ({
+const removeFilesFromInput = (name: string[]) => ({
     type: 'REMOVE_FILES_FROM_INPUT' as const,
     payload: name,
 })
@@ -53,7 +65,11 @@ const removeAlreadyPresentFiles = (files: FileList, stagingFiles: File[]): File[
     return updatedFilesArray.filter(file => !stagingFiles.some(stagingFile => stagingFile.name === file.name));
 }
 
-export function StagingArea() {
+interface StagingAreaProps {
+    documentIds: string[]
+}
+
+export function StagingArea({ documentIds }: StagingAreaProps) {
     const [dragActive, setDragActive] = useState<boolean>(false)
     const [input, dispatch] = useReducer((state: State, action: Action) => {
         switch (action.type) {
@@ -61,7 +77,7 @@ export function StagingArea() {
                 return [...state, ...action.payload]
             }
             case 'REMOVE_FILES_FROM_INPUT': {
-                return state.filter((file) => file.name !== action.payload)
+                return state.filter((file) => !action.payload.includes(file.name))
             }
             case 'REMOVE_ALL_FILES_FROM_INPUT': {
                 return []
@@ -70,14 +86,50 @@ export function StagingArea() {
     }, [])
     const noInput = input.length === 0
 
+    const [substituteDialogOpen, setSubstituteDialogOpen] = useState(false)
+    const [duplicatedDocumentIds, setDuplicatedDocumentIds] = useState<Set<string>>(new Set())
+    const [ignoreDocumentIds, setIgnoreDocumentIds] = useState<string[]>([])
+
+    const toggleIgnoredDocument = (documentId: string) => {
+        setIgnoreDocumentIds((prevState) => {
+            if (prevState.includes(documentId)) {
+                return prevState.filter((id) => id !== documentId);
+            } else {
+                return [...prevState, documentId];
+            }
+        })
+    }
+
+    const onPreSubmit = () => {
+        let isDuplicated = false
+        input.forEach((file) => {
+            if (documentIds.includes(file.name)) {
+                isDuplicated = true
+                setDuplicatedDocumentIds((prevState) => new Set(prevState.add(file.name)))
+            }
+        })
+
+        if (isDuplicated) setSubstituteDialogOpen(true)
+        else onSubmit()
+    }
+
     const onSubmit = async () => {
+        setSubstituteDialogOpen(false)
+        setDuplicatedDocumentIds(new Set())
+        setIgnoreDocumentIds([])
+
         const formData = new FormData()
         input.forEach((file) => {
             formData.append('documents', file)
         })
 
+        const toastId = toast.loading("Loading...", {
+            description: "Uploading your documents.",
+        })
         removeAllFilesFromState()
         const results = await uploadDocuments(formData)
+
+        toast.dismiss(toastId)
 
         if (!results || !Array.isArray(results)) {
             toast.error("An error occurred", {
@@ -105,6 +157,8 @@ export function StagingArea() {
         })
     }
 
+
+
     // handle drag events
     const handleDrag = (e: DragEvent<HTMLFormElement | HTMLDivElement>) => {
         e.preventDefault()
@@ -125,14 +179,14 @@ export function StagingArea() {
                 const validFiles = files.filter((file) => validateFileType(file))
 
                 if (!validFiles) {
-                    toast("Invalid file type", {
+                    toast.error("Invalid file type", {
                         description: "Please upload a valid file type.",
                     })
                     return
                 }
 
                 if (filesAlreadyPresent(e.target.files, input).length > 0) {
-                    toast("File already present", {
+                    toast.info("File already present", {
                         description: "Please upload a different file.",
                     })
                 }
@@ -141,7 +195,7 @@ export function StagingArea() {
                 addFilesToState(validFilesWithoutAlreadyPresent)
             }
         } catch (error) {
-            toast("An error occurred", {
+            toast.error("An error occurred", {
                 description: "Please try again.",
             })
         }
@@ -151,9 +205,9 @@ export function StagingArea() {
         dispatch({ type: 'ADD_FILES_TO_INPUT', payload: files })
     }
 
-    const removeFilesToState = (fileIds: string[]) => {
+    const removeFilesFromState = (fileIds: string[]) => {
         fileIds.forEach((fileId) => {
-            dispatch({ type: 'REMOVE_FILES_FROM_INPUT', payload: fileId })
+            dispatch({ type: 'REMOVE_FILES_FROM_INPUT', payload: [fileId] })
         })
     }
 
@@ -171,21 +225,21 @@ export function StagingArea() {
                 const validFiles = files.filter((file) => validateFileType(file))
 
                 if (files.length !== validFiles.length) {
-                    toast("Invalid file type", {
+                    toast.error("Invalid file type", {
                         description: 'Please upload a valid file type.',
                     })
                     return
                 }
 
                 if (!validFiles) {
-                    toast("Invalid file type", {
+                    toast.error("Invalid file type", {
                         description: 'Please upload a valid file type.',
                     })
                     return
                 }
 
                 if (filesAlreadyPresent(e.dataTransfer.files, input).length > 0) {
-                    toast("File already present", {
+                    toast.info("File already present", {
                         description: 'Please upload a different file.',
                     })
                 }
@@ -196,152 +250,195 @@ export function StagingArea() {
                 e.dataTransfer.clearData()
             }
         } catch (error) {
-            toast("An error occurred", {
+            toast.error("An error occurred", {
                 description: 'Please try again.',
             })
         }
     }
 
     return (
-        <form
-            onSubmit={
-                (e) => {
-                    e.preventDefault()
-                    onSubmit()
+        <>
+            <AlertDialog open={substituteDialogOpen} onOpenChange={setSubstituteDialogOpen}>
+                <AlertDialogContent className="sm:max-w-md">
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Duplicated documents</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            The following documents are already present in the system.
+                            Please select the documents you want to overwrite.
+                            The rest will be ignored.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <div className="flex items-center space-x-2">
+                        <div className="grid flex-1 gap-2">
+                            {
+                                Array.from(duplicatedDocumentIds).map((documentId, index) => (
+                                    <div key={index} className="flex items-center space-x-2">
+                                        <Checkbox
+                                            checked={ignoreDocumentIds.includes(documentId)}
+                                            onClick={() => toggleIgnoredDocument(documentId)}
+                                        />
+                                        <div>
+                                            {documentId}
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => {
+                            removeFilesFromState(ignoreDocumentIds)
+                            onSubmit()
+                        }}>Submit</AlertDialogAction>
+                        <AlertDialogCancel onClick={() => {
+                            setSubstituteDialogOpen(false)
+                        }}>Cancel</AlertDialogCancel>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+            <form
+                onSubmit={
+                    (e) => {
+                        e.preventDefault()
+                        onPreSubmit()
+                    }
                 }
-            }
-            onDragEnter={handleDrag}
-            className="w-full space-y-4"
-        >
-            <div className="flex md:h-96 items-center md:rounded-lg md:flex-row w-full h-full flex-col-reverse gap-4">
-                {!noInput && (
-                    <>
-                        {/* Summary of documents */}
-                        <div className="w-full md:w-8/12 h-full max-h-96 flex flex-col">
-                            <ScrollArea className="rounded-lg">
-                                <table className="min-w-full divide-y dark:divide-slate-600">
-                                    <thead className="z-10 sticky top-0">
-                                        <tr className="bg-secondary">
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
-                                            >
-                                                Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
-                                            >
-                                                Size
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
-                                            >
-                                                Type
-                                            </th>
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="relative divide-y dark:divide-slate-600">
-                                        {input.map((file, index) => (
-                                            <StagingAreaTableRow
-                                                key={index}
-                                                file={file}
-                                                deleteAction={removeFilesToState}
-                                            />
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <ScrollBar orientation='horizontal' />
-                            </ScrollArea>
-                        </div>
-                    </>)}
-
-                {/* Drag and drop area */}
-                <div className={`w-full h-full ${!noInput && "md:w-4/12"}`}>
-                    <label
-                        htmlFor="dropzone-file"
-                        className={cn(
-                            'h-full flex flex-col items-center cursor-pointer py-8 justify-center w-full border-2 border-muted-300 border-dashed rounded-lg',
-                            { 'dark:border-slate-400 dark:bg-slate-800': dragActive },
-                        )}
-                    >
-                        <div
-                            className={cn(
-                                'relative w-full h-full flex flex-col items-center justify-center',
-                                { 'items-start': !noInput }
-                            )}
-                        >
-
-                            <div
-                                className="h-full px-8 text-center flex flex-col items-center justify-center w-full"
-                                onDragEnter={handleDrag}
-                                onDragLeave={handleDrag}
-                                onDragOver={handleDrag}
-                                onDrop={handleDrop}
-                            >
-                                <svg
-                                    aria-hidden="true"
-                                    className="w-10 h-10 mb-3 text-gray-400"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                                    ></path>
-                                </svg>
-                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                    <span className="font-semibold">Click to upload</span> or drag
-                                    and drop
-                                </p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    {prettyBytes(MAX_FILE_SIZE)} per file
-                                </p>
-                                <input
-                                    multiple
-                                    onChange={handleChange}
-                                    accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                    id="dropzone-file"
-                                    type="file"
-                                    className="hidden"
-                                />
+                onDragEnter={handleDrag}
+                className="w-full space-y-4"
+            >
+                <div className="flex md:h-96 items-center md:rounded-lg md:flex-row w-full h-full flex-col-reverse gap-4">
+                    {!noInput && (
+                        <>
+                            {/* Summary of documents */}
+                            <div className="w-full md:w-8/12 h-full max-h-96 flex flex-col">
+                                <ScrollArea className="rounded-lg">
+                                    <table className="min-w-full divide-y dark:divide-slate-600">
+                                        <thead className="z-10 sticky top-0">
+                                            <tr className="bg-secondary">
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
+                                                >
+                                                    Name
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
+                                                >
+                                                    Size
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left font-medium dark:text-slate-300 tracking-wider"
+                                                >
+                                                    Type
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="relative divide-y">
+                                            {input.map((file, index) => (
+                                                <StagingAreaTableRow
+                                                    key={index}
+                                                    file={file}
+                                                    deleteAction={removeFilesFromState}
+                                                />
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                    <ScrollBar orientation='horizontal' />
+                                </ScrollArea>
                             </div>
-                        </div>
-                    </label>
+                        </>)}
+
+                    {/* Drag and drop area */}
+                    <div className={`w-full h-full ${!noInput && "md:w-4/12"}`}>
+                        <label
+                            htmlFor="dropzone-file"
+                            className='h-full flex flex-col items-center cursor-pointer justify-center w-full border-2 border-muted-300 border-dashed rounded-lg'>
+                            <div
+                                className={cn(
+                                    'relative w-full h-full flex flex-col items-center justify-center',
+                                    { 'items-start': !noInput }
+                                )}
+                            >
+
+                                <div
+                                    className={cn(
+                                        "h-full p-8 text-center flex flex-col items-center justify-center w-full hover:bg-accent/80",
+                                        { 'bg-accent/80': dragActive }
+                                    )}
+                                    onDragEnter={handleDrag}
+                                    onDragLeave={handleDrag}
+                                    onDragOver={handleDrag}
+                                    onDrop={handleDrop}
+                                >
+                                    <svg
+                                        aria-hidden="true"
+                                        className="w-10 h-10 mb-3 text-gray-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                        ></path>
+                                    </svg>
+                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <span className="font-semibold">Click to upload</span> or drag
+                                        and drop
+                                    </p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                                        {prettyBytes(MAX_FILE_SIZE)} per file
+                                    </p>
+                                    <input
+                                        multiple
+                                        onChange={handleChange}
+                                        accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        id="dropzone-file"
+                                        type="file"
+                                        className="hidden"
+                                    />
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            {!noInput && (
-                <div className="space-x-2 pr-4 w-full flex justify-center">
-                    <Button
-                        variant="secondary"
-                        className="space-x-4 md:w-1/4 w-1/2"
-                        onClick={
-                            () => removeAllFilesFromState()
-                        }>
-                        <div className="font-bold">
-                            Cancel upload
-                        </div>
-                        <CircleSlashIcon className="w-5 h-5" />
-                    </Button>
-                    <Button
-                        variant="info"
-                        className="space-x-4 md:w-1/4 w-1/2"
-                        type="submit">
-                        <div className="font-bold">
-                            Upload documents
-                        </div>
-                        <FolderUpIcon className="w-5 h-5" />
-                    </Button>
-                </div>
-            )}
-        </form>
+                {!noInput && (
+                    <div className="space-x-2 pr-4 w-full flex justify-center">
+                        <Button
+                            variant="secondary"
+                            className="space-x-4 md:w-1/4 w-1/2"
+                            onClick={
+                                () => {
+                                    setDuplicatedDocumentIds(new Set())
+                                    setIgnoreDocumentIds([])
+                                    removeAllFilesFromState()
+                                }
+                            }>
+                            <div className="font-bold">
+                                Cancel upload
+                            </div>
+                            <CircleSlashIcon className="w-5 h-5" />
+                        </Button>
+                        <Button
+                            variant="info"
+                            className="space-x-4 md:w-1/4 w-1/2"
+                            type="submit">
+                            <div className="font-bold">
+                                Upload documents
+                            </div>
+                            <FolderUpIcon className="w-5 h-5" />
+                        </Button>
+                    </div>
+                )}
+            </form>
+        </>
     )
 }
 StagingArea.displayName = 'StagingArea'

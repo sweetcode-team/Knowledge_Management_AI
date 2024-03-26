@@ -45,7 +45,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
           {
             description: "An error occurred while deleting chats: " + result.message,
           }
-        );
+        )
       }
     } catch (error) {
       toast.error(
@@ -53,7 +53,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
         {
           description: "An error occurred while deleting chats.",
         }
-      );
+      )
     }
     setIsBeingSelected(false);
     setSelectedChats([]);
@@ -91,7 +91,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                     <Undo2Icon className="h-4 w-4 min-w-[40px]" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="">Abort</TooltipContent>
+                <TooltipContent side="left">Abort</TooltipContent>
               </Tooltip>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
@@ -128,7 +128,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                   <ListTodoIcon className="h-4 w-4 min-w-[40px]" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className="">Select chats</TooltipContent>
+              <TooltipContent side="left">Select chats</TooltipContent>
             </Tooltip>
         }
       </div>

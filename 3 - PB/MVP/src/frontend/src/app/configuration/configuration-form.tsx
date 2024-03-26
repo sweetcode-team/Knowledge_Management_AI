@@ -3,8 +3,7 @@
 import { Separator } from "@/components/ui/separator";
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, SubmitHandler, useForm } from "react-hook-form"
-import { z } from "zod"
+import { SubmitHandler, useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -19,14 +18,14 @@ import {
 import { toast } from "sonner"
 
 import {
-    ConfigurationOperationResponse,
     LLMModel,
     VectorStore,
     DocumentStore,
     EmbeddingsModel,
     ConfigurationOptions,
     configurationFormSchema,
-    ConfigurationFormValues
+    ConfigurationFormValues,
+    ConfigurationOperationResponse
 } from "@/types/types"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card"
@@ -41,7 +40,6 @@ import {
 } from "@/components/ui/carousel"
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { setConfiguration } from "@/lib/actions";
-import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 
 interface ConfigurationFormProps {
@@ -55,22 +53,39 @@ export function ConfigurationForm({ configurationOptions }: ConfigurationFormPro
         mode: "onChange",
     })
 
-    const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data)  => {
-        const result = await setConfiguration(data)
+    const onSubmit: SubmitHandler<ConfigurationFormValues> = async (data) => {
+        const toastId = toast.loading("Loading...",
+            { description: "Setting configuration." }
+        )
+
+        let result: ConfigurationOperationResponse | null
+        try {
+            result = await setConfiguration(data)
+        } catch (error) {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
+                id: toastId
+            })
+            return
+        }
+
         if (!result) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }
         else if (result.status) {
             toast.success("Operation successful", {
                 description: "The configuration has been set.",
+                id: toastId
             })
         }
         else {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }

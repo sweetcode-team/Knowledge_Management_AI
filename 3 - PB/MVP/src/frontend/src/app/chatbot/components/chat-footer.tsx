@@ -39,11 +39,13 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
         setIsRecording(false)
         setIsPaused(false)
 
-        console.log(data)
-
         if (chatId !== undefined) {
             data.chatId = chatId
         }
+
+        const toastId = toast.loading("Loading...", {
+            description: "Sending message.",
+        })
 
         let result: MessageResponse
         try {
@@ -51,6 +53,7 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
         } catch (e) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }
@@ -58,6 +61,7 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
         if (!result || !result.status) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { toast } from "sonner"
 import { SquarePenIcon, TrashIcon } from "lucide-react"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -31,42 +31,69 @@ export function ChatHeader({ chatTitle, chatId, isChatSelected }: ChatHeaderProp
         defaultValues: {
             title: chatTitle,
             chatId: chatId
-        },
+        }
     })
 
     const onRenameSubmit: SubmitHandler<RenameChatFormValues> = async (data) => {
-        const result = await renameChat(data)
+        const toastId = toast.loading("Loading...", {
+            description: "Renaming the chat.",
+        })
+
+        let result: ChatOperationResponse
+        try {
+            result = await renameChat(data)
+        } catch (e) {
+            toast.error("An error occurred", {
+                description: "Please try again later.",
+                id: toastId
+            })
+            return
+        }
+
         if (!result) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }
         else if (result.status) {
             toast.success("Operation successful", {
                 description: "Chat has been renamed.",
+                id: toastId
             })
         }
         else {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }
         setIsBeingRenamed(false)
-        form.reset()
+        form.reset({
+            title: data.title,
+            chatId: data.chatId
+        })
     }
 
     const onDeleteSubmit = async (chatId: number) => {
+        const toastId = toast.loading("Loading...", {
+            description: "Deleting the chat.",
+        })
+
         let results: ChatOperationResponse[]
         try {
             results = await deleteChats([chatId])
         } catch (e) {
             toast.error("An error occurred", {
                 description: "Please try again later.",
+                id: toastId
             })
             return
         }
+
+        toast.dismiss(toastId);
 
         results.forEach(result => {
             if (!result || !result.status) {
@@ -134,6 +161,7 @@ export function ChatHeader({ chatTitle, chatId, isChatSelected }: ChatHeaderProp
                                                             {...field}
                                                         />
                                                     </FormControl>
+                                                    <FormMessage />
                                                 </FormItem>
                                             )}
                                         />

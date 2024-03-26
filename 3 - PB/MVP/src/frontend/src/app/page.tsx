@@ -16,24 +16,43 @@ import {
 } from "@/components/ui/tabs"
 import type {
   Chat,
-  ChatPreview
+  ChatPreview,
+  LightDocument
 } from '@/types/types'
 
 import { getChats, getDocuments, getChatMessages } from '@/lib/actions';
 import { ChatContent } from './chatbot/components/chat-content';
 
 export default async function Dashboard() {
-  const documents = await getDocuments()
-  const chats = await getChats()
+  let documents: LightDocument[] = []
+  try {
+    documents = await getDocuments()
+  } catch (e) {
+    console.error(e)
+  }
+
+  let chats: ChatPreview[] = []
+  try {
+    chats = await getChats()
+  } catch (e) {
+    console.error(e)
+  }
 
   let lastChat: Chat | null = null
   if (chats.length !== 0) {
     lastChat = await getChatMessages(chats[0].id)
   }
 
-  const recentlyViewedDocumentIds = new Set(chats.map((chat: ChatPreview) => chat.lastMessage.relevantDocuments).flat())
+  let recentlyViewedDocumentIds = new Set<string | undefined>()
+  if (chats.length !== 0) {
+    recentlyViewedDocumentIds = new Set(chats.map((chat: ChatPreview) => chat.lastMessage.relevantDocuments).flat())
+  }
 
-  const recentlyViewedDocuments = documents.filter((document) => recentlyViewedDocumentIds.has(document.id))
+  let recentlyViewedDocuments: LightDocument[] = []
+  if (documents.length !== 0) {
+    console.log("\n\n\n\n\n\n", documents)
+    recentlyViewedDocuments = documents.filter((document) => recentlyViewedDocumentIds.has(document.id))
+  }
 
   return (
     <ScrollArea className='h-full'>
@@ -57,7 +76,7 @@ export default async function Dashboard() {
                 </div>
               </ScrollArea>
               <Tooltip>
-                <TooltipTrigger className="pt-2 h-6 w-6">
+                <TooltipTrigger className="pt-2 h-6 w-6" hidden={!lastChat}>
                   <Link
                     href={`/chatbot/${lastChat?.id}`}
                   >

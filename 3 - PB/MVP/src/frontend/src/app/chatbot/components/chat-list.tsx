@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-import {ChatOperationResponse, ChatPreview} from "@/types/types";
+import { ChatOperationResponse, ChatPreview } from "@/types/types";
 import { CopyXIcon, ListTodoIcon, Search, Undo2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from 'react';
@@ -13,57 +13,59 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { deleteChats } from "@/lib/actions";
 import { toast } from "sonner";
 import { ChatItem } from "./chat-item";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface ChatListProps {
   chatPreviews: ChatPreview[]
 }
 
 export function ChatList({ chatPreviews }: ChatListProps) {
-    const router = useRouter()
+  const router = useRouter()
   const [filteredChats, setFilteredChats] = useState(chatPreviews)
 
   const [isBeingSelected, setIsBeingSelected] = useState(false)
   const [selectedChats, setSelectedChats] = useState<number[]>([])
+
   const onDeleteSubmit = async () => {
-        setIsBeingSelected(false);
+    setIsBeingSelected(false);
 
-        let results: ChatOperationResponse[]
-        try {
-            results = await deleteChats(selectedChats)
-        } catch (e) {
-            toast.error("An error occurred", {
-                description: "Please try again later.",
-            })
-            return
-        }
-
-        results.forEach(result => {
-            if (!result || !result.status) {
-                toast.error("An error occurred", {
-                    description: "Error while renaming the chat:" + result.message,
-                })
-                return
-            } else {
-                toast.success("Operation successful", {
-                    description: "Chat has been deleted.",
-                })
-            }
-        })
-            setSelectedChats([]);
-        router.push(`/chatbot`)
+    let results: ChatOperationResponse[]
+    try {
+      results = await deleteChats(selectedChats)
+    } catch (e) {
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+      })
+      return
     }
+
+    results.forEach(result => {
+      if (!result || !result.status) {
+        toast.error("An error occurred", {
+          description: "Error while renaming the chat:" + result.message,
+        })
+        return
+      } else {
+        toast.success("Operation successful", {
+          description: "Chat has been deleted.",
+        })
+      }
+    })
+    setSelectedChats([]);
+    router.push(`/chatbot`)
+  }
+
   useEffect(() => {
     setFilteredChats(chatPreviews)
   }, [chatPreviews])
 
-    const toggleOnSelect = (chatId: number) => {
-        if (selectedChats.includes(chatId)) {
-            setSelectedChats(selectedChats.filter((selectedChatId) => selectedChatId !== chatId))
-        } else {
-            setSelectedChats([...selectedChats, chatId])
-        }
+  const toggleOnSelect = (chatId: number) => {
+    if (selectedChats.includes(chatId)) {
+      setSelectedChats(selectedChats.filter((selectedChatId) => selectedChatId !== chatId))
+    } else {
+      setSelectedChats([...selectedChats, chatId])
     }
+  }
 
   return (
     <div className="flex h-full flex-col overflow-auto">
@@ -97,15 +99,15 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                     <Undo2Icon className="h-4 w-4 min-w-[40px]" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="">Abort</TooltipContent>
+                <TooltipContent side="left">Abort</TooltipContent>
               </Tooltip>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
-                      disabled={selectedChats.length === 0}
-                      variant="destructive"
-                      size="icon"
-                      className="min-w-[40px]"
+                    disabled={selectedChats.length === 0}
+                    variant="destructive"
+                    size="icon"
+                    className="min-w-[40px]"
                   >
                     <CopyXIcon className="h-4 w-4" />
                   </Button>
@@ -139,7 +141,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                   <ListTodoIcon className="h-4 w-4 min-w-[40px]" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className="">Select chats</TooltipContent>
+              <TooltipContent side="left">Select chats</TooltipContent>
             </Tooltip>
         }
       </div>
@@ -153,7 +155,7 @@ export function ChatList({ chatPreviews }: ChatListProps) {
                     key={chatPreview.id}
                     chat={chatPreview}
                     isBeingSelected={isBeingSelected}
-                    toggleSelect={() => {toggleOnSelect( chatPreview.id)} }
+                    toggleSelect={() => { toggleOnSelect(chatPreview.id) }}
                   />
                 ))
               }

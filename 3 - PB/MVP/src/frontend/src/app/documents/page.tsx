@@ -14,11 +14,14 @@ export const metadata: Metadata = {
 
 export default async function DocumentManagerPage() {
   const documents = await getDocuments()
+
   return (
     <ScrollArea className="h-full">
       <div className="h-full flex-1 flex-col space-y-4 p-4">
         <h3 className="text-xl font-bold tracking-tight">Staging area</h3>
-        <StagingArea />
+        <StagingArea
+          documentIds={documents.map((document) => document.id)}
+        />
         <Separator />
         <h3 className="text-xl font-bold tracking-tight">List of documents</h3>
         <DataTable data={documents} columns={columns} />

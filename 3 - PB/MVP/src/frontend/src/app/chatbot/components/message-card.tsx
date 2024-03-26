@@ -12,6 +12,7 @@ interface MessageCardProps {
 export function MessageCard({ message }: MessageCardProps) {
     const showDocument = () => {
         console.log("Show Document");
+        // TODO: Link document view
     }
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)

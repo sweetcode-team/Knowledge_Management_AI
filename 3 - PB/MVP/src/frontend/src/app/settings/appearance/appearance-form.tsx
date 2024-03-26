@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 
 import { useTheme } from "next-themes"
 
@@ -47,12 +47,9 @@ export function AppearanceForm() {
 
   function onSubmit(data: AppearanceFormValues) {
     setTheme(data.theme)
-    toast({
-      title: "Operation successful",
+    toast.success("Operation successful", {
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data)}</code>
-        </pre>
+        "Preferences updated successfully."
       ),
     })
   }

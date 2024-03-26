@@ -15,13 +15,23 @@ import {
 } from "@/components/ui/tooltip"
 import { getChats } from "@/lib/actions"
 import Link from "next/link"
+import { toast } from "sonner"
+import { ChatPreview } from "@/types/types"
 
 export default async function ChatbotLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const chatPreviews = await getChats()
+
+    let chatPreviews: ChatPreview[] = []
+    try {
+        chatPreviews = await getChats()
+    } catch (error) {
+        toast.error("Operation failed", {
+            description: "Failed to load chat previews."
+        })
+    }
 
     const defaultLayout = [30, 70]
 

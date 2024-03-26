@@ -68,23 +68,38 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
 
 
   const onSubmit: SubmitHandler<LLMConfigurationFormValues> = async (data) => {
+    const toastId = toast.loading("Loading...", {
+      description: "Updating your configuration.",
+    })
 
-    const result = await changeConfiguration(data)
+    let result: ConfigurationOperationResponse | null = null
+    try {
+      result = await changeConfiguration(data)
+    } catch (e) {
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+        id: toastId
+      })
+      return
+    }
 
     if (!result) {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }
     else if (result.status) {
       toast.success("Operation successful", {
         description: "The configuration has been set.",
+        id: toastId
       })
     }
     else {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }
@@ -100,10 +115,10 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
           <CarouselContent>
             {
               [
-                {currentChoice : currentConfiguration.LLMModel, componentType : 'LLM MODEL'},
-                {currentChoice : currentConfiguration.vectorStore, componentType : 'VECTOR STORE'},
-                {currentChoice : currentConfiguration.documentStore, componentType : 'DOCUMENT STORE'},
-                {currentChoice : currentConfiguration.embeddingModel, componentType : 'EMBEDDINGS MODEL'}
+                { currentChoice: currentConfiguration.LLMModel, componentType: 'LLM MODEL' },
+                { currentChoice: currentConfiguration.vectorStore, componentType: 'VECTOR STORE' },
+                { currentChoice: currentConfiguration.documentStore, componentType: 'DOCUMENT STORE' },
+                { currentChoice: currentConfiguration.embeddingModel, componentType: 'EMBEDDINGS MODEL' }
               ].map((option, index) => (
                 <CarouselItem key={index} className="max-w-72">
                   <Card className="w-fit text-sm font-medium leading-none h-full flex flex-col justify-between">

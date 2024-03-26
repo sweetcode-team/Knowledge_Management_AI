@@ -2,7 +2,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Chat, ChatOperationResponse, ChatPreview } from "@/types/types";
+import { ChatOperationResponse, ChatPreview } from "@/types/types";
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/alert-dialog"
 import { deleteChats } from "@/lib/actions";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface RecentChatsProps {
@@ -34,12 +33,17 @@ interface RecentChatsProps {
 export function RecentChats({ chats }: RecentChatsProps) {
 
   const onDeleteSubmit = async (chatId: number) => {
+    const toastId = toast.loading("Loading...", {
+      description: "Deleting chat."
+    })
+
     let results: ChatOperationResponse[]
     try {
       results = await deleteChats([chatId])
     } catch (e) {
       toast.error("An error occurred", {
         description: "Please try again later.",
+        id: toastId
       })
       return
     }
@@ -47,12 +51,14 @@ export function RecentChats({ chats }: RecentChatsProps) {
     results.forEach(result => {
       if (!result || !result.status) {
         toast.error("An error occurred", {
-          description: "Error while renaming the chat:" + result.message,
+          description: "Error while deleting the chat:" + result.message,
+          id: toastId
         })
         return
       } else {
         toast.success("Operation successful", {
           description: "Chat has been deleted.",
+          id: toastId
         })
       }
     })

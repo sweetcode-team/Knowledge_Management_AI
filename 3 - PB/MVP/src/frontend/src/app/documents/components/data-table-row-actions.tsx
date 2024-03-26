@@ -35,7 +35,8 @@ import {
   embedDocuments,
   enableDocuments
 } from "@/lib/actions";
-import { DocumentMetadata } from "@/types/types";
+import { LightDocument, DocumentOperationResponse } from "@/types/types";
+import { toast } from 'sonner';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -44,22 +45,99 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const document = row.original as DocumentMetadata
+  const document = row.original as LightDocument
 
-  const handleAction = () => {
-    console.log(document.id)
-    if (document.status === "CONCEALED") {
-      const result = enableDocuments([document.id])
-    } else if (document.status === "ENABLED") {
-      const result = concealDocuments([document.id])
-    } else {
-      const result = embedDocuments([document.id])
+  const handleAction = async () => {
+    const toastId = toast.loading("Loading...", {
+      description: "Updating document status.",
+    })
+
+    let results: DocumentOperationResponse[] = []
+    if (document.status == "NOT_EMBEDDED") {
+      try {
+        results = await embedDocuments([document.id])
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to embed the selected documents.",
+          id: toastId
+        })
+      }
+    } else if (document.status == "ENABLED") {
+      try {
+        results = await concealDocuments([document.id])
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to disable the selected documents.",
+          id: toastId
+        })
+      }
+    } else if (document.status == "CONCEALED") {
+      try {
+        results = await enableDocuments([document.id])
+      } catch (e) {
+        toast.error("Operation failed", {
+          description: "Failed to enable the selected documents.",
+          id: toastId
+        })
+      }
     }
+    toast.dismiss(toastId)
+
+    results.forEach((result) => {
+      if (!result) {
+        toast.error("An error occurred", {
+          description: "Please try again later.",
+        })
+        return
+      }
+      else if (result.status) {
+        toast.success("Operation successful", {
+          description: result.id + " uploaded successfully",
+        })
+      }
+      else {
+        toast.error("An error occurred for " + result.id, {
+          description: "Please try again. " + result.message,
+        })
+      }
+    })
   }
 
-  const handleDelete = () => {
-    const result = deleteDocuments([document.id])
+  const handleDelete = async () => {
+    const toastId = toast.loading("Loading...", {
+      description: "Updating document status.",
+    })
 
+    let results: DocumentOperationResponse[] = []
+    try {
+      results = await deleteDocuments([document.id])
+    } catch (e) {
+      toast.error("Operation failed", {
+        description: "Failed to delete the selected documents.",
+        id: toastId
+      })
+    }
+
+    toast.dismiss(toastId)
+
+    results.forEach((result) => {
+      if (!result) {
+        toast.error("An error occurred", {
+          description: "Please try again later.",
+        })
+        return
+      }
+      else if (result.status) {
+        toast.success("Operation successful", {
+          description: result.id + " uploaded successfully",
+        })
+      }
+      else {
+        toast.error("An error occurred for " + result.id, {
+          description: "Please try again. " + result.message,
+        })
+      }
+    })
   }
 
   const handleViewContent = () => {

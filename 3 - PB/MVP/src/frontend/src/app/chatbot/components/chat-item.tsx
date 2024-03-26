@@ -13,7 +13,7 @@ interface ChatItemProps {
   toggleSelect: () => void
 }
 
-export function ChatItem({ chat, isBeingSelected, toggleSelect}: ChatItemProps) {
+export function ChatItem({ chat, isBeingSelected, toggleSelect }: ChatItemProps) {
   const pathChatId = +useParams().chatId
 
   const router = useRouter()
@@ -42,7 +42,6 @@ export function ChatItem({ chat, isBeingSelected, toggleSelect}: ChatItemProps) 
                 <Checkbox onClick={
                   (e) => {
                     e.stopPropagation()
-                    // TODO: form field to select chat for form in chat list
                     toggleSelect()
                   }
                 } />

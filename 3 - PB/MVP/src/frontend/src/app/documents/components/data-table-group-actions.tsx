@@ -169,7 +169,9 @@ export function DataTableGroupActions<TData>({
       }
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button disabled={!table.getIsSomeRowsSelected()} variant="destructive" size="sm" className="h-8">
+          <Button disabled={
+            table.getSelectedRowModel().rows.length === 0
+          } variant="destructive" size="sm" className="h-8">
             <TrashIcon className="h-4 w-4" />
           </Button>
         </AlertDialogTrigger>

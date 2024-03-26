@@ -31,7 +31,7 @@ export default function RootLayout({
   const defaultCollapsed = collapsed ? JSON.parse(collapsed.value) : undefined
 
   return (
-    <html lang="it">
+    <html lang="it" suppressHydrationWarning>
       <body className={cn("h-screen", poppins.className)}>
         <ThemeProvider
           attribute="class"

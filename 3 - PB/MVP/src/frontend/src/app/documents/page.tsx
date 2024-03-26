@@ -20,7 +20,12 @@ export default async function DocumentManagerPage() {
       <div className="h-full flex-1 flex-col space-y-4 p-4">
         <h3 className="text-xl font-bold tracking-tight">Staging area</h3>
         <StagingArea
-          documentIds={documents.map((document) => document.id)}
+          documentIds={
+            documents.length === 0 ?
+              []
+              :
+              documents.map((document) => document.id)
+          }
         />
         <Separator />
         <h3 className="text-xl font-bold tracking-tight">List of documents</h3>

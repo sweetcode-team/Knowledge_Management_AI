@@ -19,13 +19,7 @@ export default async function Chatbot({ chatId }: ChatbotProps) {
 
     let chat = null as Chat | null
     if (chatId !== undefined) {
-        try {
-            chat = await getChatMessages(chatId)
-        } catch (error) {
-            toast.error("Operation failed", {
-                description: "Failed to load chat messages."
-            })
-        }
+        chat = await getChatMessages(chatId)
     }
 
     return (

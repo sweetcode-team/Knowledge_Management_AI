@@ -1,11 +1,12 @@
 "use client"
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import {DocumentWithContent} from "@/types/types";
-import {getDocumentContent} from "@/lib/actions";
+import { DocumentWithContent } from "@/types/types";
+import { getDocumentContent } from "@/lib/actions";
 import mammoth from "mammoth";
-interface DocumentViewerProps{
-  document : DocumentWithContent
+import { ScrollArea } from '@/components/ui/scroll-area';
+interface DocumentViewerProps {
+    document: DocumentWithContent
 }
 
 
@@ -25,14 +26,19 @@ export const DocumentViewer = ({ document }: DocumentViewerProps) => {
             const blob = new Blob([prova], { type: 'application/msdoc' });
 
             blob.arrayBuffer().then(arrayBuffer => {
-                mammoth.convertToHtml({ arrayBuffer })
+                mammoth.convertToHtml(
+                    { arrayBuffer },
+                    {
+                        includeDefaultStyleMap: true
+                    }
+                )
                     .then(function (result) {
-                        var html = result.value; // L'HTML generato
+                        var html = result.value;
                         console.log(html)
-                        var messages = result.messages; // Eventuali messaggi, come avvisi durante la conversione
-                        setHtmlContent(html); // Imposta l'HTML generato nello stato per renderizzarlo successivamente
+                        var messages = result.messages;
+                        setHtmlContent(html);
                     })
-                    .catch((error) => console.error(error)); // Gestisci eventuali errori
+                    .catch((error) => console.error(error));
             });
         }
     }, [document.content]);
@@ -42,8 +48,10 @@ export const DocumentViewer = ({ document }: DocumentViewerProps) => {
         document.type.toUpperCase() === "PDF" ?
             <iframe id={document.id} src={src} className="h-full"> </iframe>
             :
-            <div>
-                <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-            </div>
+            <ScrollArea className='w-full h-full text-black bg-white'>
+                <div
+                    className='px-8 [&>img]:max-w-60 [&>img]:max-h-60 [&>img]:flex [&>img]:justify-center [&>img]:m-auto [&>img]:my-4 '
+                    dangerouslySetInnerHTML={{ __html: htmlContent }} />
+            </ScrollArea>
     );
 };

@@ -6,7 +6,7 @@ from domain.document.document_content import DocumentContent
 from adapter.out.upload_documents.text_extractor import TextExtractor
 from langchain_core.documents.base import Document as LangchainCoreDocuments
 from langchain_community.document_loaders.word_document import Docx2txtLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitter import CharacterTextSplitter
 
 """
 This class is used to extract the text from the DOCX documents.
@@ -25,5 +25,5 @@ class DOCXTextExtractor(TextExtractor):
             tempFile.write(documentContent.content)
         docx = Docx2txtLoader(tempFile.name)
         documents = docx.load()
-        text_splitter = RecursiveCharacterTextSplitter(separators= ["\n\n", "\n"], chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP")))
-        return text_splitter.split_documents(documents)
+        textSplitter = CharacterTextSplitter(chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP")))
+        return textSplitter.split_documents(documents)

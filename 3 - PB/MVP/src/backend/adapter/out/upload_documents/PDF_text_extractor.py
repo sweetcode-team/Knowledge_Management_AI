@@ -25,6 +25,6 @@ class PDFTextExtractor(TextExtractor):
             tempFile.write(documentContent.content)
         pdf = PyPDFLoader(tempFile.name)
         documents = pdf.load()
-        textSplitter = CharacterTextSplitter(chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP"), length_function=len))
+        textSplitter = CharacterTextSplitter(chunk_size = int(os.environ.get("CHUNK_SIZE")), chunk_overlap = int(os.environ.get("CHUNK_OVERLAP")))
         return textSplitter.split_documents(documents)
 

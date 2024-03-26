@@ -184,6 +184,9 @@ export async function getDocuments(filter: string = ""): Promise<LightDocument[]
             next: { tags: ["document"] }
         }
     )
+    if (!result.ok) {
+        return [];
+    }
     return result.json()
 }
 

@@ -472,21 +472,8 @@ Componente dell'interfaccia utente che permette di raggiungere la pagina di inte
 \subsubsubsection{Tracciamento dei requisiti}
 
 
-\subsubsection{Configuration (Primo avvio)}
-\subsubsubsection{Descrizione}
-Pagina che permette di selezionare e confermare le scelte di vector store, sistema di archiviazione dei documenti, modello di embeddings e LLM al primo avvio dell'applicazione.
-\subsubsubsection{Lista di sottocomponenti}
 
-\subsubsection{Dashboard}
-\subsubsubsection{Descrizione}
-\subsubsubsection{Lista di sottocomponenti}
-\begin{itemize}
-    \item \label{RecentChats}\textbf{RecentChats}:
-    \item \label{RecentDocuments}\textbf{RecentDocumnets}:
-    \item \label{RecentlyUploadedDocs}\textbf{RecentlyUploadedDocs}:
-   
-\end{itemize}
-\subsubsubsection{Tracciamento dei requisiti}
+
 
 
 
@@ -500,7 +487,7 @@ Pagina che permette di selezionare e confermare le scelte di vector store, siste
     \item \label{ChatForm}\textbf{ChatForm}: elemento che permette all'utente di inserire i messaggi e le richieste da fare al Chatbot;
     \item \label{ChatHeader}\textbf{ChatHeader}: componente che permette di visualizzare il titolo e le interazioni possibili con la chat corrente; 
     \item \label{ChatListSideBar}\textbf{ChatListSideBar}: componente che permette di navigare tra le chat salvate nel sistema e di visualizzarne le preview;
-    \item \label{MessageCard}\textbf{MessageCard}: componente che rappresenta un messaggio in chat e tutte le sue informazioni;    
+    \item \label{MessageCard}\textbf{MessageCard}: componente che rappresenta un messaggio in chat e tutte le sue informazioni.  
 \end{itemize}
 
 
@@ -518,7 +505,7 @@ Pagina che permette di selezionare e confermare le scelte di vector store, siste
 \hline
 RF.O.34  &  ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %Visualizza lista chat e loro informazioni
 \hline
-RF.O.34.1 &ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %singole chat in lista
+RF.O.34.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ %singole chat in lista
 \hline
 RF.O.34.1.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\%titolo
 \hline
@@ -576,6 +563,27 @@ RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente p
     %\item RF.D.46.2; %%conferma invio dom. suggerita
     %\item RF.OP.49; %attiva modalità vocale
     %\item RF.OP.50; %disattiva mod. vocale
+
+
+    \subsubsection{Dashboard}
+    \subsubsubsection{Descrizione}
+    Pagina che raccoglie alcune funzionalità importanti dell'applicazione assieme ai documenti e alle chat con cui l'utente ha interagito più recentemente.
+    \subsubsubsection{Lista di sottocomponenti}
+    \begin{itemize}
+        \item \label{DashboardHeader}\textbf{DashboardHeader}: elemento che permette di accedere velocemente a delle funzioni principali dell'applicazione;
+        \item \label{DocumentPreview}\textbf{DocumentPreview}: componente pop-up che permette di vedere una preview delle informazioni del documento in archivio a cui si riferisce;       
+       % \item \label{RecentDocRecord}\textbf{RecentDocRecord}
+        \item \label{LatestChatContent}\textbf{LatestChatContent}: componente che mostra il contenuto della chat con l'interazione più recente da parte dell'utente;
+        \item \textbf{MessageCard}: vedi \vedi{MessageCard}; 
+        \item \label{RecentChatsList}\textbf{RecentChatsList}: elenco di chat ordinate cronologicamnete con le quali l'utente ha interagito più recentemente;
+        \item \label{RecentlyViewedTab}\textbf{RecentlyViewedTab}: elenco di documenti che l'utente ha visualizzato più recentemente;
+        \item \label{RecentlyUploadedTab}\textbf{RecentlyUploadedTab}: elenco di documenti che l'utente ha caricato più recentemente;
+       
+    \end{itemize}
+    \subsubsubsection{Tracciamento dei requisiti} -
+    
+
+
 
 
 \subsubsection{Documents}
@@ -663,60 +671,168 @@ RF.O.32.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\% Selezion
 
 
 
-
-\subsubsection{Settings}
+\subsubsection{SettingsAppearance}
 \subsubsubsection{Descrizione}
+Pagina della finestra Settings che permette all'utente di modificare il tema dell'applicazione.
 \subsubsubsection{Lista di sottocomponenti}
-
-
-
-\subsubsubsection{Tracciamento dei requisiti}%TODO trasformare in tabella
 \begin{itemize}
-    \item RF.O.1.1.1; %selezionare modello presente al primo avvio
-    \item RF.O.1.2.1;% selezionare vector db  presente al primo avvio
-    \item RF.O.1.3.1; % selezionare modello embeddingspresente al primo avvio
-    \item RF.O.1.4.1; % selezionare sistema di archiviazione presente al primo avvio
-    %requisiti sul poter vedere i modelli disponibili di vector store , embedding llm etc
-    \item RF.O.2;
-    \item RF.O.2.1;
-    \item RF.O.3;
-    \item RF.O.3.1;
-    \item RF.O.4;
-    \item RF.O.4.1;
-    \item RF.O.5;
-    \item RF.O.5.1.
+    \item \label{AppearanceHeader}\textbf{AppearanceHeader}:
+    \item \label{ThemeSelection}\textbf{ThemeSelection}:
+\end{itemize}
+\subsubsubsection{Tracciamento dei requisiti} -
 
 
-   \item  RF.O.6.1 % \\L’utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta de
-    \item RF.O.10; %visualizza caratteristiche LLM
-    \item RF.O.10.1;%visualizza caratteristiche LLM
-    \item RF.O.10.2;%visualizza caratteristiche LLM
-    \item RF.O.10.3;%visualizza caratteristiche LLM
-    \item RF.O.10.4;%visualizza caratteristiche LLM
-    \item RF.O.10.5; %visualizza caratteristiche LLM
-    \item RF.O.11; %visualizza caratteristiche vector store
-    \item RF.O.11.1;%visualizza caratteristiche vector store
-    \item RF.O.11.2;%visualizza caratteristiche vector store
-    \item RF.O.11.3;%visualizza caratteristiche vector store
-    \item RF.O.11.4;%visualizza caratteristiche vector store
-    \item RF.O.11.5%visualizza caratteristiche vector store
-    \item RF.O.12;%visualizza caratteristiche embedding model
-    \item RF.O.12.1;%visualizza caratteristiche embedding model
-    \item RF.O.12.2;%visualizza caratteristiche embedding model
-    \item RF.O.12.3;%visualizza caratteristiche embedding model
-    \item RF.O.12.4;%visualizza caratteristiche embedding model
-    \item RF.O.12.5;%visualizza caratteristiche embedding model
-    \item RF.O.13;%visualizza caratteristiche sistema di archiviazione
-    \item RF.O.13.1;%visualizza caratteristiche sistema di archiviazione
-    \item RF.O.13.2;%visualizza caratteristiche sistema di archiviazione
-    \item RF.O.13.3;%visualizza caratteristiche sistema di archiviazione
-    \item RF.O.13.4;%visualizza caratteristiche sistema di archiviazione
-    \item RF.O.13.5.%visualizza caratteristiche sistema di archiviazione
+
+\subsubsection{SettingsConfiguration}
+
+\subsubsubsection{Descrizione}
+Pagina della finestra Settings che permette di visualizzare e modificare alcuni elementi della configurazione del sistema.
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item \label{ChangeLLMConfiguration}\textbf{ChangeLLMConfiguration}: sezione che consente di cambiare LLM Model configurato;
+    \item \label{CurrentConfigurationCarousel}\textbf{CurrentConfigurationCarousel}: componente che permette di conoscere la configurazione corrente di vector store, sistema di archiviazione documenti, embedding model e LLM;
+    \item \label{DocumentStoreCard}\textbf{DocumentStoreCard}: elemento che contiene informazioni rilevanti di un sistema di archiviazione dei documenti;
+    \item \label{EmbeddingModelCard}\textbf{EmbeddingModelCard}: elemento che contiene informazioni rilevanti di un modello di embeddings;
+    \item \label{LLMCard}\textbf{LLMCard}: elemento che contiene informazioni rilevanti di un modello LLM; 
+    \item \label{VectorStoreCard}\textbf{VectorStoreCard}: elemento che contiene informazioni rilevanti di un vector store.
+    
+    
+\end{itemize}
+
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente SettingsConfiguration}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente SettingsConfiguration (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.2 & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}. \\ 
+\hline
+RF.O.2.1 & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}.\\ 
+\hline
+RF.O.6.1 & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}.\\
+\hline
+RF.O.10 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.10.1 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.10.2 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.10.3 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.10.4 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.10.5 & LLMCard: vedi \vedi{LLMCardDettaglio}. \\
+\hline
+RF.O.11 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.1 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.2 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.3 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.4 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.5 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.12 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.1 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.2 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.3 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.4 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.5 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.13 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.1 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.2 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.3 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.4 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.5 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\end{xltabular}
+
+
+
+\subsubsection{SetUp(Primo avvio)}%TODO da completare quando ci sono gli screen
+\subsubsubsection{Descrizione}
+Pagina che permette di inizializzare le configurazioni di vector store, sistema di archiviazione dei documenti, modello di embeddings e LLM al primo avvio dell'applicazione.
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item \textbf{DocumentStoreCard}: vedi \vedi{DocumentStoreCard};
+    \item \label{DocumentStoreInit}\textbf{DocumentStoreInit}:
+    \item \textbf{EmbeddingModelCard}: vedi \vedi{EmbeddingModelCard};
+    \item \label{EmbeddingModelInit}\textbf{EmbeddingModelInit}:
+    \item \textbf{LLMCard}: vedi \vedi{LLMCard};
+    \item \label{LLMModelInit}\textbf{LLMModelInit}:
+    \item \textbf{VectorStoreCard}: vedi \vedi{VectorStoreCard};
+    \item \label{VectorStoreInit}\textbf{VectorStoreInit}:
+    
+
 
 \end{itemize}
 
-\subsubsection{DocumentViewer}( visualizzare contenuto documento e altre sue informazioni)
 
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|X}
+\caption{Tracciamento dei requisiti nella componente SetUp}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente SetUp (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.1.1.1 & \\ %selezionare modello llm presente al primo avvio
+\hline
+RF.O.1.2.1 & \\ % selezionare vector db  presente al primo avvio
+\hline
+RF.O.1.3.1 & \\  %selezionare modello embeddingspresente al primo avvio
+\hline
+RF.O.1.4.1 & \\ % selezionare sistema di archiviazione presente al primo avvio
+\hline
+RF.O.3 & \\ %seleziona
+\hline
+RF.O.3.1 & \\ %se
+\hline
+RF.O.4 & \\ %sel
+\hline
+RF.O.4.1 & \\ %se
+\hline
+RF.O.5 & \\ %s
+\hline
+RF.O.5.1 & \\ %
+
+\end{xltabular}
+
+
+
+
+\subsubsection{DocumentViewer}
+\subsubsubsection{Descrizione}
+Componente che permette visualizzare l'intero contenuto del documento salvato nel sistema di achiviazione e altre sue informazioni rilevanti.
+
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item 
+\end{itemize}
 
 
 % - X ogni componente frontend:
@@ -2291,6 +2407,79 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
 \end{itemize}
 
 
+%DASHBOARD-FRONTEND
+\subsection{Dashboard}
+
+\subsubsection{Descrizione delle sottocomponenti}
+
+\subsubsubsection{DashboardHeader}
+\label{DashboardHeaderDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item New Chat Shortcut: elemento che permette di passare velocemente alla finestra Chatbot con una nuova chat aperta;
+        \item Upload Document Shortcut: elemento ch epermette di passare velocemente alla finestra Documents per caricare un nuovo documento.   
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DocumentPreview}
+\label{DocumentPreviewDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Close Preview Button: elemento che permette di chiudere la preview pop-up del documento selezionato;
+        \item Document Info: scheda che permette di vedere lo status del documento, la dimensione, il formato, e la data di caricamento;
+        \item Document Title: campo che contiene il nome del documento;
+        \item View Document Button: elemento che permette di vedere per intero il documento selezionato.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{LatestChatContent}
+\label{LatestChatContentDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Expand Chat Button: elemento che permette di aprire la finestra Chatbot con la chat più recente aperta;
+        \item Recent Chat Messages: i messaggi della chat più recente rappresentati sotto forma di MessageCard ordinati cronologicamente.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{MessageCard}
+Vedi \vedi{MessageCardDettaglio}.
+
+
+\subsubsubsection{RecentChatsList}
+\label{RecentChatsListDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Recent Chat Row: componenteche rappresenta una chat con la quale l'utente ha recentemente interagito e ne mostra una preview.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{RecentlyViewedTab}
+\label{RecentlyViewedTabDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Recently Uploaded Document Record: elemento che rappresenta un documento recentemente visualizzato e ne mostra il titolo, formato, dimensioni e status.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{RecentlyUploadedTab}
+\label{RecentlyUploadedTabDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+    \begin{itemize}
+        \item Recently Uploaded Document Record: elemento che rappresenta un documento recentemente caricato nel sistema e ne mostra il titolo, formato, dimensioni e status.
+    \end{itemize}
+\end{itemize}
+
+
+
+
 %DOCUMENTS-FRONTEND
 
 \subsection{Documents}
@@ -2318,8 +2507,10 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
     \item \textbf{Elementi determinanti}:
      \begin{itemize}
         \item Document Info: parte del record che contiene informazioni significative del documento quali il titolo, la dimensione, lo status, il formato e la data di upload;
-        \item Conceal Document Button: per occultare gli embeddings del documento selezionato;
+        \item Conceal Document Button: per occultare gli embeddings di un documento abilitato;
         \item Delete Document Button: per eliminare il documento selezionato;
+        \item Embed Document Button: per creare gli embeddings di un documento \textit{Not Embedded};
+        \item Enable Document Button: per abilitare un documento occultato;
         \item Select Row Button: per selezionare il record del documento;
         \item View Document Button: per visualizzare il documento selezionato.
     \end{itemize}
@@ -2349,6 +2540,114 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
 
 
 
+
+%CHATBOT-FRONTEND toDO
+\subsection{SettingsAppearance}
+\subsubsection{Descrizione delle sottocomponenti}
+
+\subsubsubsection{AppearanceHeader}
+\label{AppearanceHeaderDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+       \item TODO;
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{ThemeSelection}
+\label{ThemeSelectionDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+       \item TODO;
+    \end{itemize}
+\end{itemize}
+
+
+%CHATBOT-FRONTEND
+\subsection{SettingsConfiguration}
+\subsubsection{Descrizione delle sottocomponenti}
+
+\subsubsubsection{ChangeLLMConfiguration}
+\label{ChangeLLMConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Change LLM Carousel: contiene una LLMCard selezionabile per ogni opzione disponibile di modello LLM;
+        \item Confirm Configuration Button: elemento per confermare la scelta di LLM selezionata nel Change LLM Carousel.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{CurrentConfigurationCarousel}
+\label{CurrentConfigurationCarouselDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Chosen Document Store: una DocumentStoreCard che indica il sistema di archiviazione della configurazione corrente;
+        \item Chosen Embedding Model: una EmbeddingModelCard che indica il modello di embeddings della configurazione corrente;
+        \item Chosen LLM Model: una LLMCard che indica il modello LLM della configurazione corrente;
+        \item Chosen Vector Store: una VectorStoreCard che indica il vector store della configurazione corrente.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DocumentStoreCard}
+\label{DocumentStoreCardDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Document Store Cost Indicator: campo che fornisce informazioni sul costo del document store;
+        \item Document Store Description: campo che descrive il document store e la organizzazione proprietaria;
+        \item Document Store Name: campo che rappresenta il nome del document store;
+        \item Document Store Organization: campo che rappresenta il nome dell'organizzazione proprietaria di quel document store;
+        \item Document Store Type: campo che indica il tipo di document store.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{EmbeddingModelCard}
+\label{EmbeddingModelCardDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Embedding Model Cost Indicator: campo che fornisce informazioni sul costo del modello di embedding;
+        \item Embedding Model Description: campo che descrive il modello di embedding e la organizzazione proprietaria;
+        \item Embedding ModelName: campo che rappresenta il nome del modello di embedding;
+        \item Embedding Model Organization: campo che rappresenta il nome dell'organizzazione proprietaria di quel modello di embedding;
+        \item Embedding Model Type: campo che indica il tipo di modello di embedding.
+        
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{LLMCard}
+\label{LLMCardDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item LLM Cost Indicator: campo che fornisce informazioni sul costo del modello LLM;
+        \item LLM Description: campo che descrive il modello LLM e la organizzazione proprietaria;
+        \item LLM Name: campo che rappresenta il nome del modello LLM;
+        \item LLM Organization: campo che rappresenta il nome dell'organizzazione proprietaria di quel modello LLM;
+        \item LLM Type: campo che indica il tipo di modello LLM.
+        
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{VectorStoreCard} 
+\label{VectorStoreCardDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Vector Store Cost Indicator: campo che fornisce informazioni sul costo del vector store;
+        \item Vector Store Description: campo che descrive il vector store e la organizzazione proprietaria;
+        \item Vector Store Name: campo che rappresenta il nome del vector store;
+        \item Vector Store Organization: campo che rappresenta il nome dell'organizzazione proprietaria di quel vector store;
+        \item Vector Store Type: campo che indica il tipo di vector store.
+    \end{itemize}
+\end{itemize}
 
 
 

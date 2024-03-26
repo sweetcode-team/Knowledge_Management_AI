@@ -80,7 +80,7 @@ export function DataTableGroupActions<TData>({
       }
       else if (result.status) {
         toast.success("Operation successful", {
-          description: result.id + " uploaded successfully",
+          description: result.id + "status modified successfully.",
         })
       }
       else {
@@ -117,7 +117,7 @@ export function DataTableGroupActions<TData>({
       }
       else if (result.status) {
         toast.success("Operation successful", {
-          description: result.id + " uploaded successfully",
+          description: result.id + " deleted successfully",
         })
       }
       else {

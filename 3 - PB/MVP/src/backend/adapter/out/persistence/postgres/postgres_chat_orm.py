@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 from adapter.out.persistence.postgres.chat_models import Chat, MessageStore, MessageRelevantDocuments
 
@@ -8,8 +8,6 @@ from adapter.out.persistence.postgres.postgres_chat_operation_response import Po
 from adapter.out.persistence.postgres.postgres_message import PostgresMessage, PostgresMessageSenderType
 from adapter.out.persistence.postgres.postgres_chat_preview import PostgresChatPreview
 from adapter.out.persistence.postgres.postgres_chat import PostgresChat
-
-from datetime import datetime
 
 """
 This class is the ORM of the chat table.
@@ -49,7 +47,7 @@ class PostgresChatORM:
     """
     def createChat(self) -> PostgresChatOperationResponse:
         try:
-            newChat = Chat(f"Nuova chat {datetime.now().strftime("%X %d %b %Y")}")
+            newChat = Chat(f"Nuova chat {datetime.now(timezone.utc).strftime("%X %d %b %Y")}")
             db_session.add(newChat)
             db_session.commit()
             newChatId = newChat.id

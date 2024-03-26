@@ -9,7 +9,6 @@ import { Chat } from "@/types/types"
 
 import { getChatMessages } from "@/lib/actions"
 import ChatFooter from "./chat-footer";
-import { toast } from "sonner";
 
 interface ChatbotProps {
     chatId?: number

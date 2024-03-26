@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from domain.chat.chat_id import ChatId
 from domain.chat.chat_preview import ChatPreview
 from adapter.out.persistence.postgres.postgres_message import PostgresMessage

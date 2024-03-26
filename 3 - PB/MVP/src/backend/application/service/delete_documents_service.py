@@ -38,5 +38,4 @@ class DeleteDocumentsService(DeleteDocumentsUseCase):
                 finalOperationResponses = finalOperationResponses + deleteDocumentOperationResponse
             else:
                 finalOperationResponses = finalOperationResponses + documentOperationResponse
-        print(finalOperationResponses, flush=True)
         return finalOperationResponses

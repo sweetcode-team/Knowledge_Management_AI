@@ -100,10 +100,17 @@ export function StagingArea({ documentIds }: StagingAreaProps) {
         })
     }
 
+    const normalizeFilename = (filename: string) => {
+        return filename.replace(/[^\w.-]/g, '_').toLowerCase();
+    }
+
     const onPreSubmit = () => {
         let isDuplicated = false
+        const normalizedDocumentIds = documentIds.map(normalizeFilename)
+
         input.forEach((file) => {
-            if (documentIds.includes(file.name)) {
+            const normalizedFilename = normalizeFilename(file.name)
+            if (normalizedDocumentIds.includes(normalizedFilename)) {
                 isDuplicated = true
                 setDuplicatedDocumentIds((prevState) => new Set(prevState.add(file.name)))
             }
@@ -127,7 +134,7 @@ export function StagingArea({ documentIds }: StagingAreaProps) {
             description: "Uploading your documents.",
         })
         removeAllFilesFromState()
-        const results = await uploadDocuments(formData)
+        const results = await uploadDocuments(formData, true)
 
         toast.dismiss(toastId)
 

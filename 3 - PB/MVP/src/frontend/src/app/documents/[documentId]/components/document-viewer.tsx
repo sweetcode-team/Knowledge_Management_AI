@@ -34,8 +34,6 @@ export const DocumentViewer = ({ document }: DocumentViewerProps) => {
                 )
                     .then(function (result) {
                         var html = result.value;
-                        console.log(html)
-                        var messages = result.messages;
                         setHtmlContent(html);
                     })
                     .catch((error) => console.error(error));

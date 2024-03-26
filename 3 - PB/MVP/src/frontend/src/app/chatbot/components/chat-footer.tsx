@@ -23,6 +23,8 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
     const [isPaused, setIsPaused] = useState(false)
     const recognitionRef = useRef<any>(null)
 
+    const [isSpeechRecognitionSupported, setIsSpeechRecognitionSupported] = useState(false)
+
     const router = useRouter()
 
     const form = useForm<AskChatbotFormValues>({
@@ -74,10 +76,10 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
     }
 
     useEffect(() => {
-        if (!("webkitSpeechRecognition" in window)) {
-            console.log("Speech recognition not supported")
+        if (("webkitSpeechRecognition" in window)) {
             return
         }
+        setIsSpeechRecognitionSupported(true)
 
         recognitionRef.current = new (window as any).webkitSpeechRecognition()
         const recognition = recognitionRef.current;
@@ -164,44 +166,48 @@ export default function ChatFooter({ chatId }: ChatFooterProps) {
             <Separator className="mt-auto" />
             <form className="p-4" onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="flex max-h-full justify-between space-x-2">
-                    <div className="flex flex-col space-y-2">
-                        <Button
-                            onClick={
-                                (e) => {
-                                    e.preventDefault()
-                                    if (isRecording) {
-                                        stopRecording();
-                                    } else {
-                                        startRecording();
-                                    }
-                                }
-                            }
-                            variant={isRecording ? isPaused ? "danger" : "destructive" : "default"}
-                            size="icon"
-                            disabled={form.formState.isSubmitting}
-                        >
-                            {!isRecording ? <MicIcon className="w-4 h-4" /> : <StopCircleIcon className="w-4 h-4" />}
-                        </Button>
-                        {
-                            isRecording ? (
-                                <Toggle
-                                    aria-label="Toggle audio register"
+                    {
+                        !isSpeechRecognitionSupported && (
+                            <div className="flex flex-col space-y-2">
+                                <Button
                                     onClick={
                                         (e) => {
                                             e.preventDefault()
-                                            if (isPaused) {
-                                                resumeRecording();
+                                            if (isRecording) {
+                                                stopRecording();
                                             } else {
-                                                pauseRecording();
+                                                startRecording();
                                             }
                                         }
                                     }
+                                    variant={isRecording ? isPaused ? "danger" : "destructive" : "default"}
+                                    size="icon"
+                                    disabled={form.formState.isSubmitting}
                                 >
-                                    {isPaused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
-                                </Toggle>
-                            ) : null
-                        }
-                    </div>
+                                    {!isRecording ? <MicIcon className="w-4 h-4" /> : <StopCircleIcon className="w-4 h-4" />}
+                                </Button>
+                                {
+                                    isRecording ? (
+                                        <Toggle
+                                            aria-label="Toggle audio register"
+                                            onClick={
+                                                (e) => {
+                                                    e.preventDefault()
+                                                    if (isPaused) {
+                                                        resumeRecording();
+                                                    } else {
+                                                        pauseRecording();
+                                                    }
+                                                }
+                                            }
+                                        >
+                                            {isPaused ? <PlayIcon className="h-4 w-4" /> : <PauseIcon className="h-4 w-4" />}
+                                        </Toggle>
+                                    ) : null
+                                }
+                            </div>
+                        )
+                    }
                     <FormField
                         control={form.control}
                         name="message"

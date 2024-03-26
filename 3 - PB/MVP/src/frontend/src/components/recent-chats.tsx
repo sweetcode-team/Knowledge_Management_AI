@@ -34,7 +34,7 @@ export function RecentChats({ chats }: RecentChatsProps) {
 
   const onDeleteSubmit = async (chatId: number) => {
     const toastId = toast.loading("Loading...", {
-      description: "Deleting chat."
+      description: "Deleting the selected chat."
     })
 
     let results: ChatOperationResponse[]

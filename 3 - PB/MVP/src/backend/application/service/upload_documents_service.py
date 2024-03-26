@@ -45,7 +45,6 @@ class UploadDocumentsService(UploadDocumentsUseCase):
                 finalOperationResponses.append(documentOperationResponse)
                 
         if len(documents) != len(finalOperationResponses):
-            print(1)
             raise ElaborationException("Errore nell'elaborazione delle operazioni di upload dei documenti.")
         
         return finalOperationResponses

@@ -59,7 +59,7 @@ export function DataTableRowActions<TData>({
         results = await embedDocuments([document.id])
       } catch (e) {
         toast.error("Operation failed", {
-          description: "Failed to embed the selected documents.",
+          description: "Failed to embed the selected document.",
           id: toastId
         })
       }
@@ -68,7 +68,7 @@ export function DataTableRowActions<TData>({
         results = await concealDocuments([document.id])
       } catch (e) {
         toast.error("Operation failed", {
-          description: "Failed to disable the selected documents.",
+          description: "Failed to disable the selected document.",
           id: toastId
         })
       }
@@ -77,7 +77,7 @@ export function DataTableRowActions<TData>({
         results = await enableDocuments([document.id])
       } catch (e) {
         toast.error("Operation failed", {
-          description: "Failed to enable the selected documents.",
+          description: "Failed to enable the selected document.",
           id: toastId
         })
       }
@@ -93,7 +93,7 @@ export function DataTableRowActions<TData>({
       }
       else if (result.status) {
         toast.success("Operation successful", {
-          description: result.id + " uploaded successfully",
+          description: result.id + " status modified successfully.",
         })
       }
       else {
@@ -106,7 +106,7 @@ export function DataTableRowActions<TData>({
 
   const handleDelete = async () => {
     const toastId = toast.loading("Loading...", {
-      description: "Updating document status.",
+      description: "Deleting the selected document.",
     })
 
     let results: DocumentOperationResponse[] = []
@@ -114,7 +114,7 @@ export function DataTableRowActions<TData>({
       results = await deleteDocuments([document.id])
     } catch (e) {
       toast.error("Operation failed", {
-        description: "Failed to delete the selected documents.",
+        description: "Failed to delete the selected document.",
         id: toastId
       })
     }
@@ -130,7 +130,7 @@ export function DataTableRowActions<TData>({
       }
       else if (result.status) {
         toast.success("Operation successful", {
-          description: result.id + " uploaded successfully",
+          description: result.id + " deleted successfully.",
         })
       }
       else {
@@ -139,10 +139,6 @@ export function DataTableRowActions<TData>({
         })
       }
     })
-  }
-
-  const handleViewContent = () => {
-    console.log("Andare in pagina /documents/", document.id)
   }
 
   return (
@@ -157,7 +153,7 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => handleViewContent()}>
+        <DropdownMenuItem>
           <Link
             href={`/documents/${document.id}`}
             className="w-full"

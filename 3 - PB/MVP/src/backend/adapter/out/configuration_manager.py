@@ -2,6 +2,7 @@ import os
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.llms import HuggingFaceEndpoint
+from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAI
 
 from application.port.out.documents_uploader_port import DocumentsUploaderPort
@@ -241,17 +242,36 @@ class ConfigurationManager:
         if configuration.LLMModel == PostgresLLMModelType.OPENAI:
             with open('/run/secrets/openai_key', 'r') as file:
                 openai_key = file.read()
-            configuredLLMModel = OpenAI(openai_api_key=openai_key, model_name="gpt-3.5-turbo-instruct", temperature=0.01,)
+            configuredLLMModel = OpenAI(openai_api_key=openai_key, model_name="gpt-3.5-turbo-instruct", temperature=0.3,)
         elif configuration.LLMModel == PostgresLLMModelType.HUGGINGFACE:
             with open('/run/secrets/huggingface_key', 'r') as file:
                 hugging_face = file.read()
-            configuredLLMModel = HuggingFaceEndpoint(repo_id="google/flan-t5-xxl", temperature=0.01, huggingfacehub_api_token=hugging_face)
+            configuredLLMModel = HuggingFaceEndpoint(repo_id="google/flan-t5-xxl", temperature=0.3, huggingfacehub_api_token=hugging_face)
         else:
             raise ConfigurationException('LLM model non configurato.')
 
+        prompt = PromptTemplate(
+            input_variables=["chat_history", "context", "question"],
+            template="""Answer the question in your own words as truthfully as possible from the context given to you.\n
+If you don't know the answer, just say that you don't know, don't try to make up an answer.\n
+If questions are asked without relevant context, kindly request for questions pertinent to the documents and 
+don't give suggestions that are not based on the context given to you.\n
+If the answer you provide includes some specific informations, don't invent this information and instead just say that you don't know and kindly 
+request for questions pertinent to the documents.\n
+Always answer in Italian.
+Chat History:
+{chat_history}
+Context:
+{context}
+Human: {question}
+Assistant:"""
+        )
+        
         chain = ConversationalRetrievalChain.from_llm(
             llm=configuredLLMModel,
             retriever=configuredVectorStore.getRetriever(configuredEmbeddingModel),
-            return_source_documents=True
+            return_source_documents=True,
+            combine_docs_chain_kwargs={'prompt': prompt},
+            verbose = True
         )
         return AskChatbotLangchain(chain=chain, chatHistoryManager=ChatHistoryManager())

@@ -42,9 +42,9 @@ class AskChatbotLangchain(AskChatbotPort):
                 if len(chatHistory.messages) == 0:
                     return MessageResponse(status=False, messageResponse=None, chatId=chatId)
                 else:
-                    answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
+                    answer = self.chain.invoke({"question": message.content, "chat_history": (chatHistory.messages[-6:])})
             else:
-                answer = self.chain.invoke({"question": message.content, "chat_history": ""})
+                answer = self.chain.invoke({"question": message.content, "chat_history": []})
 
             chatbotAnswer = ' '.join(answer.get("answer", "").split())
             
@@ -60,6 +60,7 @@ class AskChatbotLangchain(AskChatbotPort):
                         MessageSender.CHATBOT
                     ),
                     chatId=chatId
-                )
+                ) 
         except Exception as e:
+            print(e, flush=True)
             return MessageResponse(status=False, messageResponse=None, chatId=chatId)

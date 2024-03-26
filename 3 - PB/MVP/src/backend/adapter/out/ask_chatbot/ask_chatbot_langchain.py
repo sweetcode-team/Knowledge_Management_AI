@@ -44,7 +44,7 @@ class AskChatbotLangchain(AskChatbotPort):
                 else:
                     answer = self.chain.invoke({"question": message.content, "chat_history": get_buffer_string(chatHistory.messages[:-6])})
             else:
-                answer = self.chain.invoke({"question": message.content, "chat_history": []})
+                answer = self.chain.invoke({"question": message.content, "chat_history": ""})
 
             chatbotAnswer = ' '.join(answer.get("answer", "").split())
             
@@ -54,9 +54,9 @@ class AskChatbotLangchain(AskChatbotPort):
                 return MessageResponse(
                     status=True,
                     messageResponse=Message(
-                        answer["answer"],
+                        chatbotAnswer,
                         datetime.now(timezone.utc),
-                        list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer["source_documents"])),
+                        list(set(DocumentId(relevantDocumentId.metadata.get("source")) for relevantDocumentId in answer.get("source_documents", []))),
                         MessageSender.CHATBOT
                     ),
                     chatId=chatId

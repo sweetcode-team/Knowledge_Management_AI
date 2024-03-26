@@ -37,6 +37,7 @@ import {
 } from "@/lib/actions";
 import { LightDocument, DocumentOperationResponse } from "@/types/types";
 import { toast } from 'sonner';
+import Link from "next/link";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -157,8 +158,12 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem onClick={() => handleViewContent()}>
-          {/* {types.find((type) => type.value === document.type)?.action} */}
-          View details
+          <Link
+            href={`/documents/${document.id}`}
+            className="w-full"
+          >
+            View details
+          </Link>
         </DropdownMenuItem>
         <AlertDialog>
           <AlertDialogTrigger asChild>

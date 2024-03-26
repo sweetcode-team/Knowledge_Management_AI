@@ -12,6 +12,7 @@ import { DOCUMENT_STATUSES, ALLOWED_FILE_TYPES } from "@/constants/constants"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { LightDocument } from "@/types/types";
+import Link from "next/link";
 
 export const columns: ColumnDef<LightDocument>[] = [
   {
@@ -47,7 +48,14 @@ export const columns: ColumnDef<LightDocument>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("id")}
+            {
+              <Link
+                href={`/documents/${row.getValue("id")}`}
+                className="hover:underline"
+              >
+                {row.getValue("id")}
+              </Link>
+            }
           </span>
         </div>
       )
@@ -58,7 +66,7 @@ export const columns: ColumnDef<LightDocument>[] = [
   {
     accessorKey: "size",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="size" />
+      <DataTableColumnHeader column={column} title="Size" />
     ),
     cell: ({ row }) => {
       return (

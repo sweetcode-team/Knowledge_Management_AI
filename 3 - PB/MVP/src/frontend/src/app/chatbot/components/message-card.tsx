@@ -4,16 +4,14 @@ import { ChevronRightIcon, Copy } from "lucide-react";
 
 import { formatDate } from 'date-fns';
 import { Message } from "@/types/types";
+import Link from "next/link";
 
 interface MessageCardProps {
     message: Message
 }
 
 export function MessageCard({ message }: MessageCardProps) {
-    const showDocument = () => {
-        console.log("Show Document");
-        // TODO: Link document view
-    }
+
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)
     }
@@ -34,13 +32,14 @@ export function MessageCard({ message }: MessageCardProps) {
                                     message.relevantDocuments.map((relevantDocument, index) => (
                                         <div key={index} className="flex w-full items-stretch justify-between space-x-2">
                                             <div className="flex flex-grow shadow-md items-center rounded-md bg-card px-4 min-w-0">
-                                                <p className="truncate">
+                                                <p className="truncate text-xs">
                                                     {relevantDocument}
                                                 </p>
                                             </div>
-                                            <Button size="sm" onClick={() => showDocument()} className="bg-card shadow-md text-primary hover:text-secondary flex items-center justify-center gap-x-2">
-                                                <span className="hidden md:block">Vedi</span>
-                                                <ChevronRightIcon className="w-4 h-4" />
+                                            <Button size="sm" className="bg-card shadow-md text-primary hover:text-secondary flex items-center justify-center gap-x-2">
+                                                <Link href={`/documents/${relevantDocument}`}>
+                                                    <ChevronRightIcon className="w-4 h-4" />
+                                                </Link>
                                             </Button>
                                         </div>
                                     ))

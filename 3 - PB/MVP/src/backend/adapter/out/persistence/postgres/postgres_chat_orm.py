@@ -72,12 +72,13 @@ class PostgresChatORM:
             db_session.commit()
             newMessageIds = [newMessage.id for newMessage in newMessages]
             
+            messageRelevantDocuments = []
             for i, message in enumerate(messages):
-                messageRelevantDocuments = []
                 if message.relevantDocuments is not None:
                     for document in message.relevantDocuments:
                         messageRelevantDocuments.append(MessageRelevantDocuments(id=newMessageIds[i], documentId=document))
             db_session.add_all(messageRelevantDocuments)
+            db_session.commit()
             return PostgresChatOperationResponse(True, "Messaggi salvati correttamente.", chatId)
         except Exception as e:
             return PostgresChatOperationResponse(False, f"Errore nel salvataggio dei messaggi: {str(e)}", chatId)

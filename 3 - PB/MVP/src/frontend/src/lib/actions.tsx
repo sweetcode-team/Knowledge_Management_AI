@@ -8,12 +8,12 @@ import {
     Configuration,
     ConfigurationOperationResponse,
     ConfigurationOptions,
-    DocumentContent,
+    DocumentWithContent,
     LightDocument,
     DocumentOperationResponse,
     LLMConfigurationFormValues,
     MessageResponse,
-    RenameChatFormValues, DocumentWithContent
+    RenameChatFormValues
 } from "@/types/types"
 import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
@@ -149,7 +149,7 @@ export async function getConfigurationOptions(): Promise<ConfigurationOptions> {
     const result = await fetch(`http://localhost:4000/getConfigurationOptions`, {
         headers: {
             "Content-Type": "application/json"
-        }, 
+        },
         next: { tags: ["configuration"] }
     })
     return result.json()

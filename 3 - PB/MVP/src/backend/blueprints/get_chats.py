@@ -44,7 +44,8 @@ def getDocuments(filter):
             "lastMessage": {
                 "content": chat.lastMessage.content,
                 "sender":chat.lastMessage.sender.name,
-                "timestamp": chat.lastMessage.timestamp.isoformat()
+                "timestamp": chat.lastMessage.timestamp.isoformat(),
+                "relevantDocuments": [relevantDocument.id for relevantDocument in chat.lastMessage.relevantDocuments]
             }
         } for chat in retrievedChats]
     )

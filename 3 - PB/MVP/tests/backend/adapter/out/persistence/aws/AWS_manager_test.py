@@ -52,7 +52,7 @@ def test_uploadDocumentsFalseNotPresentTrue():
             response = awsS3Manager.uploadDocuments([AWSDocumentMock], False)
             
             s3Mock.head_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id)
-            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content, ContentType=AWSDocumentMock.type)
+            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content)
             AWSDocumentOperationResponseMock.assert_called_once_with(AWSDocumentMock.id, True, ANY)
             assert isinstance(response, list)
             assert response[0] == AWSDocumentOperationResponseMock.return_value
@@ -73,7 +73,7 @@ def test_uploadDocumentsFalseNotPresentFalse():
             response = awsS3Manager.uploadDocuments([AWSDocumentMock], False)
             
             s3Mock.head_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id)
-            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content, ContentType=AWSDocumentMock.type)
+            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content)
             AWSDocumentOperationResponseMock.assert_called_once_with(AWSDocumentMock.id, False, ANY)
             assert isinstance(response, list)
             assert response[0] == AWSDocumentOperationResponseMock.return_value
@@ -92,7 +92,7 @@ def test_uploadDocumentsTrueTrue():
             response = awsS3Manager.uploadDocuments([AWSDocumentMock], True)
             
             s3Mock.head_object.assert_not_called()
-            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content, ContentType=AWSDocumentMock.type)
+            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content)
             AWSDocumentOperationResponseMock.assert_called_once_with(AWSDocumentMock.id, True, ANY)
             assert isinstance(response, list)
             assert response[0] == AWSDocumentOperationResponseMock.return_value 
@@ -112,7 +112,7 @@ def test_uploadDocumentsTrueFail():
             response = awsS3Manager.uploadDocuments([AWSDocumentMock], True)
             
             s3Mock.head_object.assert_not_called()
-            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content, ContentType=AWSDocumentMock.type)
+            s3Mock.put_object.assert_called_once_with(Bucket=awsS3Manager.awsBucketName, Key=AWSDocumentMock.id, Body=AWSDocumentMock.content)
             AWSDocumentOperationResponseMock.assert_called_once_with(AWSDocumentMock.id, False, ANY)
             assert isinstance(response, list)
             assert response[0] == AWSDocumentOperationResponseMock.return_value
@@ -188,7 +188,7 @@ def test_getDocumentsMetadataWithFilter():
             
             response = awsS3Manager.getDocumentsMetadata(documentFilter = "test_filter")
             
-            AWSDocumentMetadataMock.assert_called_once_with(id='Prova.pdf', size=100, uploadTime='2021-05-21T14:00:00Z', type='pdf')
+            AWSDocumentMetadataMock.assert_called_once_with(id='Prova.pdf', size=100, uploadTime='2021-05-21T14:00:00Z')
             assert isinstance(response, list)
             assert response[0] == AWSDocumentMetadataMock.return_value
             
@@ -206,7 +206,7 @@ def test_getDocumentsMetadataWithoutFilter():
             
             response = awsS3Manager.getDocumentsMetadata(documentFilter = "")
             
-            AWSDocumentMetadataMock.assert_called_once_with(id='Prova.pdf', size=100, uploadTime='2021-05-21T14:00:00Z', type='pdf')
+            AWSDocumentMetadataMock.assert_called_once_with(id='Prova.pdf', size=100, uploadTime='2021-05-21T14:00:00Z')
             assert isinstance(response, list)
             assert response[0] == AWSDocumentMetadataMock.return_value
             

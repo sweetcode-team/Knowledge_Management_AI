@@ -20,7 +20,7 @@ def test_toPostgresMessageFromUser():
         postgresMessageMock.assert_called_with(
             content="message",
             timestamp=ANY,
-            relevantDocuments=[],
+            relevantDocuments=None,
             sender=PostgresMessageSenderType.human
         )
         assert resposne == postgresMessageMock.return_value
@@ -72,10 +72,8 @@ def test_persistChatWithChatId():
 def test_persistChatWithoutChatId():
     postgresChatORMMock = MagicMock()
     messageMock = MagicMock()
-    chatIdMock = MagicMock()
     postgresChatOperationResponseMock = MagicMock()
     with patch('adapter.out.ask_chatbot.postgres_persist_chat.PostgresMessage') as postgresMessageMock:
-        chatIdMock.id = 1
         messageMock.content = "message"
         messageMock.timestamp = ANY
         messageMock.relevantDocuments = []
@@ -84,7 +82,7 @@ def test_persistChatWithoutChatId():
         
         postgresPersistChat = PostgresPersistChat(postgresChatORMMock)
         
-        response = postgresPersistChat.persistChat([messageMock])
+        response = postgresPersistChat.persistChat([messageMock], None)
         
         postgresChatORMMock.persistChat.assert_called_with([postgresMessageMock.return_value], None)
         assert response == postgresChatOperationResponseMock.toChatOperationResponse.return_value

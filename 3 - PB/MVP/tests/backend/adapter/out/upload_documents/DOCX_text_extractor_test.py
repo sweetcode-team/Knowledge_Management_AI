@@ -4,7 +4,7 @@ from adapter.out.upload_documents.DOCX_text_extractor import DOCXTextExtractor
 def test_extractText():
     with    patch('adapter.out.upload_documents.DOCX_text_extractor.tempfile.NamedTemporaryFile') as tempfileMock, \
             patch('adapter.out.upload_documents.DOCX_text_extractor.Docx2txtLoader') as docx2txtLoaderMock, \
-            patch('adapter.out.upload_documents.DOCX_text_extractor.RecursiveCharacterTextSplitter') as recursiveCharacterTextSplitterMock:
+            patch('adapter.out.upload_documents.DOCX_text_extractor.CharacterTextSplitter') as CharacterTextSplitterMock:
             documentContentMock = MagicMock()
             documentLangchainMock = MagicMock()
             
@@ -13,8 +13,8 @@ def test_extractText():
             tempfileMock.name = "tempFile"
             docx2txtLoaderMock.return_value = docx2txtLoaderMock
             docx2txtLoaderMock.load.return_value = [documentLangchainMock]
-            recursiveCharacterTextSplitterMock.return_value = recursiveCharacterTextSplitterMock
-            recursiveCharacterTextSplitterMock.split_documents.return_value = [documentLangchainMock]
+            CharacterTextSplitterMock.return_value = CharacterTextSplitterMock
+            CharacterTextSplitterMock.split_documents.return_value = [documentLangchainMock]
             
             docxTextExtractor = DOCXTextExtractor()
             

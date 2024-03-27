@@ -1,6 +1,4 @@
 from langchain.chains.base import Chain
-from langchain.memory import ConversationBufferWindowMemory
-from langchain_core.messages import get_buffer_string
 
 from domain.chat.message_response import MessageResponse
 from domain.chat.message import Message
@@ -12,7 +10,6 @@ from application.port.out.ask_chatbot_port import AskChatbotPort
 
 from datetime import datetime, timezone
 
-from adapter.out.upload_documents.langchain_embedding_model import LangchainEmbeddingModel
 from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
 
 """

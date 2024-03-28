@@ -20,7 +20,7 @@ from domain.document.document_id import DocumentId
 from domain.document.document_content import DocumentContent
 from domain.document.document_operation_response import DocumentOperationResponse
 
-def test_uploadEmbeddingsWithHuggingFacceWithPineconeWithPDF():
+def test_uploadEmbeddingsWithHuggingFaceWithPineconeWithPDF():
     with    patch('adapter.out.persistence.vector_store.vector_store_pinecone_manager.Pinecone') as pineconeMock, \
             patch('adapter.out.persistence.vector_store.vector_store_pinecone_manager.open', mock_open(read_data='contenuto_file')) as mock_file, \
             patch('adapter.out.upload_documents.huggingface_embedding_model.open', mock_open(read_data='contenuto_file')) as mock_file, \

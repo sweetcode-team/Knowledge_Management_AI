@@ -1,13 +1,13 @@
 from unittest.mock import patch, MagicMock
 
-from _in.web.ask_chatbot_controller import AskChatbotController
+from adapter._in.web.ask_chatbot_controller import AskChatbotController
 from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 from application.service.ask_chatbot_service import AskChatbotService
 from adapter.out.ask_chatbot.postgres_persist_chat import PostgresPersistChat
-from adapter.out.configuration_manager import ConfigurationManager
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-from out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
-from out.persistence.postgres.chat_history_manager import ChatHistoryManager
+from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
+from adapter.out.persistence.postgres.chat_history_manager import ChatHistoryManager
+from domain.chat.chat_id import ChatId
+from domain.chat.message_response import MessageResponse
 
 
 def test_askChatbot():
@@ -31,6 +31,5 @@ def test_askChatbot():
         )
 
         result = controller.askChatbot("prova")
-        print(result)
-        assert result == []
+        assert result == MessageResponse(chatId=ChatId(id=None), status=False, messageResponse=None)
 

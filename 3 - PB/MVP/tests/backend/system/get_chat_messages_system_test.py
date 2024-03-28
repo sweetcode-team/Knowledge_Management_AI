@@ -1,6 +1,6 @@
 from unittest.mock import patch, MagicMock, ANY
 
-from _in.web.get_chat_messages_controller import GetChatMessagesController
+from adapter._in.web.get_chat_messages_controller import GetChatMessagesController
 from adapter.out.get_chat_messages.get_chat_messages_postgres import (GetChatMessagesPostgres)
 from adapter.out.persistence.postgres.postgres_chat_orm import PostgresChatORM
 from application.service.get_chat_messages_service import GetChatMessagesService

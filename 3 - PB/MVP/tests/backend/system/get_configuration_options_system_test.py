@@ -2,10 +2,6 @@ from unittest.mock import patch
 
 from adapter._in.web.get_configuration_options_controller import GetConfigurationOptionsController
 from domain.configuration.configuration_options import ConfigurationOptions
-from domain.configuration.document_store_configuration import DocumentStoreConfiguration, DocumentStoreType
-from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration, EmbeddingModelType
-from domain.configuration.llm_model_configuration import LLMModelConfiguration, LLMModelType
-from domain.configuration.vector_store_configuration import VectorStoreConfiguration, VectorStoreType
 from adapter.out.get_configuration.get_configuration_options_postgres import GetConfigurationOptionsPostgres
 from adapter.out.persistence.postgres.configuration_models import PostgresEmbeddingModelType, \
     PostgresEmbeddingModelConfiguration, PostgresVectorStoreConfiguration, PostgresVectorStoreType, \

@@ -452,30 +452,6 @@ Questa struttura riflette il modello architetturale scelto, facilitando il passa
 \subsection{Frontend}
 
 
-\begin{comment}
-RF.D.56 richiesta non pertinente->risposta cortese blueprint? configurazione?
-%\hline
-%RF.O.36.1 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}\\ visualizza errore creazione nuova chat esistente
-
-\end{comment}
-
-\subsubsection{SideBar}
-\subsubsubsection{Descrizione}
-Componente dell'interfaccia utente che permette di raggiungere la pagina di interesse per l'utente tra le seguenti:\\
-\begin{itemize}
-    \item Chatbot;
-    \item Dashboard;
-    \item Documents;
-    \item Settings.
-\end{itemize}
-\subsubsubsection{Lista di sottocomponenti}
-\subsubsubsection{Tracciamento dei requisiti}
-
-
-
-
-
-
 
 
 
@@ -492,7 +468,7 @@ Componente dell'interfaccia utente che permette di raggiungere la pagina di inte
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente Chatbot}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -556,18 +532,11 @@ RF.O.51.2.2& ChatForm: vedi \vedi{ChatFormDettaglio}. \\%disattiva inserimento m
 RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente per ogni mess
 \end{xltabular}
 
-%requisiti non soddisfatti
-    %\item RF.D.45; %domande suggerite in chat vuota
-    %\item RF.D.46; %inviare domanda suggerita 
-   % \item RF.D.46.1; %seleziona dom. suggerita
-    %\item RF.D.46.2; %%conferma invio dom. suggerita
-    %\item RF.OP.49; %attiva modalità vocale
-    %\item RF.OP.50; %disattiva mod. vocale
 
 
     \subsubsection{Dashboard}
     \subsubsubsection{Descrizione}
-    Pagina che raccoglie alcune funzionalità importanti dell'applicazione assieme ai documenti e alle chat con cui l'utente ha interagito più recentemente.
+    Pagina che raccoglie alcune funzionalità importanti dell'applicazione e i documenti e chat con cui l'utente ha interagito più recentemente.
     \subsubsubsection{Lista di sottocomponenti}
     \begin{itemize}
         \item \label{DashboardHeader}\textbf{DashboardHeader}: elemento che permette di accedere velocemente a delle funzioni principali dell'applicazione;
@@ -577,7 +546,7 @@ RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente p
         \item \textbf{MessageCard}: vedi \vedi{MessageCard}; 
         \item \label{RecentChatsList}\textbf{RecentChatsList}: elenco di chat ordinate cronologicamnete con le quali l'utente ha interagito più recentemente;
         \item \label{RecentlyViewedTab}\textbf{RecentlyViewedTab}: elenco di documenti che l'utente ha visualizzato più recentemente;
-        \item \label{RecentlyUploadedTab}\textbf{RecentlyUploadedTab}: elenco di documenti che l'utente ha caricato più recentemente;
+        \item \label{RecentlyUploadedTab}\textbf{RecentlyUploadedTab}: elenco di documenti che l'utente ha caricato più recentemente.
        
     \end{itemize}
     \subsubsubsection{Tracciamento dei requisiti} -
@@ -599,7 +568,7 @@ RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente p
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente Documents}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -610,7 +579,7 @@ RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ %reso noto mittente p
 \endfoot
 \endlastfoot
 \hline
-RF.O.15 & DocumentsList: vedi \vedi{DocumentsList}.\\ %visualizzare i documenti presenti nel sistema di archiviazione
+RF.O.15 & DocumentsList: vedi \vedi{DocumentsListDettaglio}.\\ %visualizzare i documenti presenti nel sistema di archiviazione
 \hline
 RF.O.15.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ %singoli docs in lista
 \hline
@@ -636,7 +605,7 @@ RF.O.17.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\
 \hline
 RF.O.17.3 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
 \hline
-RF.O.18 &  StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ %tentativo formato caricato  in area di staging non supportato
+RF.O.18 &  StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
 \hline
 RF.O.18.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\  % visualizza errore sopra
 \hline
@@ -656,7 +625,9 @@ RF.O.21.5 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ % conferma sostituz
 \hline
 RF.O.21.6 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% annulla sostituzione docs
 \hline
-RF.O.22.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\% visualizza errore caricamento del documento sistema archiviazione
+RF.O.22.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\
+\hline
+RF.O.23.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\
 \hline
 RF.O.26.1.1  & DocumentsList: vedi \vedi{DocumentsListDettaglio}.\\% visualizza errore se fallisce eliminazione dal document store
 \hline
@@ -669,6 +640,16 @@ RF.O.30.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\ %Selezio
 RF.O.32.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\% Seleziona più documenti per riabilitarli
 \end{xltabular}
 
+%DOCUMENT VIEWER
+\subsubsection{DocumentView}
+\subsubsubsection{Descrizione}
+Componente che permette visualizzare l'intero contenuto del documento salvato nel sistema di achiviazione e altre sue informazioni rilevanti.
+
+\subsubsubsection{Lista di sottocomponenti}
+\begin{itemize}
+    \item \label{DocumentViewer}\textbf{DocumentViewer}: componente che permette di visionare per intero il documento selezionato.
+\end{itemize}
+
 
 
 \subsubsection{SettingsAppearance}
@@ -676,8 +657,7 @@ RF.O.32.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\% Selezion
 Pagina della finestra Settings che permette all'utente di modificare il tema dell'applicazione.
 \subsubsubsection{Lista di sottocomponenti}
 \begin{itemize}
-    \item \label{AppearanceHeader}\textbf{AppearanceHeader}:
-    \item \label{ThemeSelection}\textbf{ThemeSelection}:
+    \item \label{ThemeSelection}\textbf{ThemeSelection}: componente che permette di scegliere il tema dell'applicazione.
 \end{itemize}
 \subsubsubsection{Tracciamento dei requisiti} -
 
@@ -701,7 +681,7 @@ Pagina della finestra Settings che permette di visualizzare e modificare alcuni 
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente SettingsConfiguration}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -769,27 +749,25 @@ RF.O.13.5 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\
 
 
 
-\subsubsection{SetUp(Primo avvio)}%TODO da completare quando ci sono gli screen
+\subsubsection{SetUp (Primo avvio)}
 \subsubsubsection{Descrizione}
 Pagina che permette di inizializzare le configurazioni di vector store, sistema di archiviazione dei documenti, modello di embeddings e LLM al primo avvio dell'applicazione.
 \subsubsubsection{Lista di sottocomponenti}
 \begin{itemize}
+    \item \label{ConfirmConfiguration}: per confermare la configurazione scelta;
     \item \textbf{DocumentStoreCard}: vedi \vedi{DocumentStoreCard};
-    \item \label{DocumentStoreInit}\textbf{DocumentStoreInit}:
+    \item \label{DocumentStoreInit}\textbf{DocumentStoreInit}: componente che permette di scegliere e inizializzare la configurazione del sistema di archiviazione dei documenti;
     \item \textbf{EmbeddingModelCard}: vedi \vedi{EmbeddingModelCard};
-    \item \label{EmbeddingModelInit}\textbf{EmbeddingModelInit}:
+    \item \label{EmbeddingModelInit}\textbf{EmbeddingModelInit}: componente che permette di scegliere e inizializzare la configurazione del modello di embedding;
     \item \textbf{LLMCard}: vedi \vedi{LLMCard};
-    \item \label{LLMModelInit}\textbf{LLMModelInit}:
+    \item \label{LLMModelInit}\textbf{LLMModelInit}: componente che permette di scegliere e inizializzare la configurazione del modello LLM;
     \item \textbf{VectorStoreCard}: vedi \vedi{VectorStoreCard};
-    \item \label{VectorStoreInit}\textbf{VectorStoreInit}:
-    
-
-
+    \item \label{VectorStoreInit}\textbf{VectorStoreInit}: componente che permette di scegliere e inizializzare la configurazione del vector store.    
 \end{itemize}
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente SetUp}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -800,47 +778,54 @@ Pagina che permette di inizializzare le configurazioni di vector store, sistema 
 \endfoot
 \endlastfoot
 \hline
-RF.O.1.1.1 & \\ %selezionare modello llm presente al primo avvio
+RF.O.1.1.1 & LLMModelInit: vedi \vedi{LLMModelInitDettaglio}.\\ %selezionare modello llm presente al primo avvio
 \hline
-RF.O.1.2.1 & \\ % selezionare vector db  presente al primo avvio
+RF.O.1.2.1 & VectorStoreInit: vedi \vedi{VectorStoreInitDettaglio}.\\  % selezionare vector db  presente al primo avvio
 \hline
-RF.O.1.3.1 & \\  %selezionare modello embeddingspresente al primo avvio
+RF.O.1.3.1 & EmbeddingModelInit: vedi \vedi{EmbeddingModelInitDettaglio}.\\   %selezionare modello embeddingspresente al primo avvio
 \hline
-RF.O.1.4.1 & \\ % selezionare sistema di archiviazione presente al primo avvio
+RF.O.1.4.1 & DocumentStoreInit: vedi \vedi{DocumentStoreInitDettaglio}.\\ % selezionare sistema di archiviazione presente al primo avvio
 \hline
-RF.O.3 & \\ %seleziona
+RF.O.3 & VectorStoreInit: vedi \vedi{VectorStoreInitDettaglio}.\\ %seleziona
 \hline
-RF.O.3.1 & \\ %se
+RF.O.3.1 & VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\  %se
 \hline
-RF.O.4 & \\ %sel
+RF.O.4 & EmbeddingModelInit: vedi \vedi{EmbeddingModelInitDettaglio}.\\  %sel
 \hline
-RF.O.4.1 & \\ %se
+RF.O.4.1 & EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}.\\  %se
 \hline
-RF.O.5 & \\ %s
+RF.O.5 & DocumentStoreInit: vedi \vedi{DocumentStoreInitDettaglio}.\\ %s
 \hline
-RF.O.5.1 & \\ %
+RF.O.5.1 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}.\\
 
 \end{xltabular}
 
 
 
-
-\subsubsection{DocumentViewer}
+\subsubsection{SideBar}
 \subsubsubsection{Descrizione}
-Componente che permette visualizzare l'intero contenuto del documento salvato nel sistema di achiviazione e altre sue informazioni rilevanti.
-
+Componente fissa dell'interfaccia utente che permette di navigare tramite tabs le seguenti pagine dell'applicazione:\\
+\begin{itemize}
+    \item Chatbot;
+    \item Dashboard;
+    \item Documents;
+    \item Settings.
+\end{itemize}
 \subsubsubsection{Lista di sottocomponenti}
 \begin{itemize}
-    \item 
+    \item \label{NavigationMenu}\textbf{NavigationMenu}: componente che permette di raggiungere altre pagine dell'applicazione;
+    \item \label{SettingShortcut}\textbf{SettingShortcut}: componente che permette di raggiungere la pagina Settings per modificare le impostazioni di sistema.
 \end{itemize}
+\subsubsubsection{Tracciamento dei requisiti} -
+
+
 
 
 % - X ogni componente frontend:
     % - definizione e utilità
-    % - route API
     % - elementi grafici (anche a seguito di azioni)
     % - tracciamento requisiti soddisfatti
-% - Requisiti implementativi
+
 
     %- X ogni sottocomponente della componente:
     %     - nome: definizione e utilità (componente che serve a ...)
@@ -930,7 +915,7 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente AskChatbot}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -946,6 +931,8 @@ RF.O.35 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
 RF.O.36 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
 \hline
 RF.O.52 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline 
+RF.D.56 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
 \hline
 RF.OP.57 & AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
 \hline
@@ -953,25 +940,6 @@ RF.O.59 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
 \hline
 RF.O.60 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
 \end{xltabular}
-
-
-\begin{comment}
-    
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-     
-     \item ; %backend su postgresorm creare nuova chat e visualizzare errore se vuota già esiste
-     \item RF.O.36;
-     \item RF.O.36.1;
-     \item RF.O.52;
-     \item RF.OP.57;
-     \item RF.O.59;% backend askchatbot service
-     \item RF.O.60. %-Una chat viene creata in modo consistente nel database solamente dopo un messaggio da parte dell’utente e della relativa risposta da parte del chatbot postgreschatorm
-\end{itemize}
-\end{comment}
-
-
 
 
 
@@ -1031,7 +999,7 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nell componente ChangeConfiguration}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1042,7 +1010,7 @@ Questa componente ha il compito di cambiare la configurazione del modello LLM de
 \endfoot
 \endlastfoot
 \hline
-RF.O.6 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
+RF.O.6 & ChangeConfigurationService: vedi \vedi{ChangeConfigurationServiceDettaglio}.\\
 
 \end{xltabular}
 
@@ -1108,7 +1076,7 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente ConcealDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1182,7 +1150,7 @@ Questa componente ha il compito di eliminare una lista di chat, aggiornando di c
 \end{itemize}
  
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente DeleteChats}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1242,7 +1210,7 @@ Questa componente ha il compito di gestire la configurazione del sistema.
        
 \end{itemize}
 \end{comment}
-\subsubsubsection{Lista sottocomponenti}%descrizioni da chiedere con più dettaglio
+\subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
     \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone metodi per ottenere le porte in uscita delle componenti del sistema;
     \item \label{PostgresConfiguration}\textbf{PostgresConfiguration}: classe di persistence che rappresenta la configurazione del sistema di userId, vector store, document store, LLM ed embedding model su Postgres;
@@ -1325,7 +1293,7 @@ Questa componente ha il compito di eliminare una lista di documenti e i loro ris
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente DeleteDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1446,7 +1414,7 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente EmbedDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1525,7 +1493,7 @@ Questa componente ha il compito di riabilitare gli embeddings dei documenti indi
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente EnableDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1604,7 +1572,7 @@ Questa componente ha il compito di ottenere una chat completa, ovvero che compre
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente GetChatMessages}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1759,7 +1727,7 @@ Questa componente ha il compito di ottenere una lista di preview di chat, eventu
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente GetConfiguration}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -1928,7 +1896,7 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente GetDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -2002,7 +1970,7 @@ Questa componente ha il compito di rinominare una chat, aggiornando di conseguen
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente RenameChat}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -2089,7 +2057,7 @@ Questa componente ha il compito di impostare le configurazioni di vector store, 
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente SetConfiguration}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -2202,7 +2170,7 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
 
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente UploadDocuments}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -2306,7 +2274,7 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 \end{itemize}
 
 \subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|X}
+\begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente ViewDocumentContent}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
@@ -2320,13 +2288,359 @@ Questa componente ha il compito di recuperare tutte le informazioni di un docume
 RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio}.\\
 \end{xltabular}
 
-
-
+\newpage
 \subsection{Database} %TODO
 
     % definisco ogni tabella e la descrivo
     % diagramma ER del db
     % script di creazione db
+
+
+
+
+
+\newpage
+
+\subsection{Riepilogo tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|c}
+\caption{Tabella riepilogativa del tracciamento dei requisiti}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tabella riepilogativa del tracciamento dei requisiti (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline 
+
+    
+
+RF.O.1 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline 
+RF.O.1.1 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline 
+RF.O.1.1.1 & LLMModelInit: vedi \vedi{LLMModelInitDettaglio}.\\ 
+\hline 
+RF.O.1.2 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline 
+RF.O.1.3 & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+\hline 
+RF.O.1.3.1 & EmbeddingModelInit: vedi \vedi{EmbeddingModelInitDettaglio}.\\    
+\hline 
+RF.O.1.4  & SetConfigurationService: vedi \vedi{SetConfigurationServiceDettaglio}.\\
+
+\hline 
+RF.O.1.4.1 &  DocumentStoreInit: vedi \vedi{DocumentStoreInitDettaglio}.\\
+\hline 
+RF.O.2  & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}. \\ 
+\hline 
+RF.O.2.1  & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}. \\ 
+\hline 
+RF.O.3 & VectorStoreInit: vedi \vedi{VectorStoreInitDettaglio}.\\
+\hline 
+RF.O.3.1 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\
+\hline 
+RF.O.4  & EmbeddingModelInit: vedi \vedi{EmbeddingModelInitDettaglio}.\\ 
+\hline 
+RF.O.4.1  & EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}.\\
+
+\hline 
+RF.O.5  & DocumentStoreInit: vedi \vedi{DocumentStoreInitDettaglio}.\\
+\hline 
+RF.O.5.1  & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}.\\
+\hline
+ RF.O.6  & ChangeConfigurationService: vedi \vedi{ChangeConfigurationServiceDettaglio}.\\
+\hline 
+RF.O.6.1 & ChangeLLMConfiguration: vedi \vedi{ChangeLLMConfigurationDettaglio}.\\
+
+\hline 
+RF.OP.7  & NS \\
+\hline 
+RF.OP.7.1 & NS \\
+\hline 
+RF.OP.8 & NS \\
+\hline 
+RF.OP.8.1 & NS \\
+\hline 
+RF.OP.9 & NS \\
+\hline 
+RF.OP.9.1 & NS \\
+
+\hline 
+RF.O.10  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline 
+RF.O.10.1  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline
+RF.O.10.2  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline 
+RF.O.10.3  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline 
+RF.O.10.4  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline 
+RF.O.10.5  & LLMCard: vedi \vedi{LLMCardDettaglio}.\\
+\hline
+RF.O.11 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.1 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.2 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.3 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.4 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.11.5 &  VectorStoreCard: vedi \vedi{VectorStoreCardDettaglio}.\\ 
+\hline
+RF.O.12 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.1 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.2 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.3 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.4 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.12.5 &  EmbeddingModelCard: vedi \vedi{EmbeddingModelCardDettaglio}. \\
+\hline
+RF.O.13 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.1 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.2 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.3 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.4 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.13.5 & DocumentStoreCard: vedi \vedi{DocumentStoreCardDettaglio}. \\ 
+\hline
+RF.O.14 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.1 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.2 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.3 & GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.14.4 &  GetConfigurationService: vedi \vedi{GetConfigurationServiceDettaglio}.\\
+\hline
+RF.O.15 & DocumentsList: vedi \vedi{DocumentsListDettaglio}.\\  
+
+\hline
+RF.O.15.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ 
+\hline
+RF.O.15.1.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\ 
+\hline
+RF.O.15.1.2  &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\  
+\hline
+RF.O.15.1.3 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\   
+\hline
+RF.O.15.1.4 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\
+\hline
+RF.O.16 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.16.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.16.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\  
+\hline
+RF.O.17 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\  
+\hline
+RF.O.17.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.17.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.17.3 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.18 &  StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.18.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}. \\ 
+\hline
+RF.O.19 & StagingAreaRow: vedi \vedi{StagingAreaRowDettaglio}. \\ 
+\hline
+RF.O.20 & StagingAreaRow: vedi \vedi{StagingAreaRowDettaglio}. \\   
+\hline
+RF.O.21 & UploadDocumentsService: vedi \vedi{UploadDocumentsServiceDettaglio}.\\
+\hline
+RF.O.21.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ 
+\hline
+RF.O.21.2 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ 
+\hline
+RF.O.21.3 &  StagingArea: vedi \vedi{StagingAreaDettaglio}.\\  
+\hline
+RF.O.21.4 &  StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ 
+\hline
+RF.O.21.5 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\  
+\hline
+RF.O.21.6 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\ 
+\hline
+RF.O.22 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.22.1 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.22.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\
+\hline
+RF.O.22.2 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.22.3 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.23 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.23.1 & DocumentsUploader: vedi \vedi{DocumentsUploaderDettaglio}.\\
+\hline
+RF.O.23.1.1 & StagingArea: vedi \vedi{StagingAreaDettaglio}.\\
+\hline
+RF.O.23.2 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.23.3 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
+\hline
+RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio}.\\
+\hline
+RF.O.25 & DeleteDocumentsService: vedi \vedi{DeleteDocumentsServiceDettaglio}.\\
+\hline
+RF.O.26 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.26.1 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.26.1.1  & DocumentsList: vedi \vedi{DocumentsListDettaglio}.\\
+\hline
+RF.O.26.2 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.26.3 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.27 & DeleteDocumentsService: vedi \vedi{DeleteDocumentsServiceDettaglio}.\\
+\hline
+RF.O.27.1 &  DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\
+\hline
+RF.O.28 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.28.1 & DeleteDocuments: vedi \vedi{DeleteDocumentsDettaglio}.\\
+\hline
+RF.O.28.1.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\
+\hline
+RF.O.28.2 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.28.3 & DeleteDocumentsEmbeddings: vedi \vedi{DeleteDocumentsEmbeddingsDettaglio}.\\
+\hline
+RF.O.29 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}.\\
+\hline
+RF.O.30 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}. \\
+\hline
+RF.O.30.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}. \\
+\hline
+RF.O.31 & EnableDocumentsService: vedi \vedi{EnableDocumentsServiceDettaglio}.\\
+\hline
+RF.O.32 & EnableDocumentsService: vedi \vedi{EnableDocumentsServiceDettaglio}.\\
+\hline
+RF.O.32.1 & DocumentsListRow: vedi \vedi{DocumentsListRowDettaglio}.\\
+\hline
+RF.O.33 & GetDocumentsFacadeService: vedi \vedi{GetDocumentsFacadeServiceDettaglio}.\\
+\hline
+RF.O.34  &  ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.34.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.34.1.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.34.1.2  & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.34.1.3 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.34.1.4 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\ 
+\hline
+RF.O.35 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\
+\hline
+RF.O.36 & PostgresChatORM: vedi \vedi{PostgresChatORMDettaglio}.\\
+\hline
+RF.O.36.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\
+\hline
+RF.O.37 & DeleteChatsService: vedi \vedi{DeleteChatsServiceDettaglio}.\\
+\hline
+RF.O.37.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}. \\
+\hline
+RF.O.38 & DeleteChatsService: vedi \vedi{DeleteChatsServiceDettaglio}.\\
+\hline
+RF.O.38.1 & ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\  
+\hline
+RF.O.38.2 &  ChatListSideBar: vedi \vedi{ChatListSideBarDettaglio}. \\
+\hline
+RF.O.39 & RenameChatService: vedi \vedi{RenameChatServiceDettaglio}.\\
+\hline
+RF.O.40 &  RenameChatService: vedi \vedi{RenameChatServiceDettaglio}. \\
+\hline
+RF.O.40.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}. \\
+\hline
+RF.O.41 &  RenameChatService: vedi \vedi{RenameChatServiceDettaglio}. \\
+\hline
+RF.O.41.1 & ChatHeader: vedi \vedi{ChatHeaderDettaglio}.\\
+\hline
+RF.O.42 & GetChatMessagesService: vedi \vedi{GetChatMessagesServiceDettaglio}.\\
+\hline
+RF.O.43 & ChatContent: vedi \vedi{ChatContentDettaglio}.\\
+
+\hline
+RF.O.43.1 & ChatContent: vedi \vedi{ChatContentDettaglio}.\\  
+\hline
+RF.O.43.1.1 &  MessageCard: vedi \vedi{MessageCardDettaglio}.\\ 
+\hline
+RF.O.43.1.2 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\
+\hline
+RF.D.44 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\
+\hline 
+RF.D.45  & NS \\
+\hline 
+RF.D.46 & NS \\
+\hline 
+RF.D.46.1 & NS \\
+\hline 
+RF.D.46.2 & NS \\
+\hline
+RF.D.47 &  MessageCard: vedi \vedi{MessageCardDettaglio}.\\
+\hline
+RF.D.48 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\
+\hline
+RF.OP.49  & NS \\
+\hline 
+RF.OP.50 & NS \\
+\hline
+RF.O.51 & ChatForm: vedi \vedi{ChatFormDettaglio}.\\  
+\hline
+RF.O.51.1 & ChatForm: vedi \vedi{ChatFormDettaglio}.\\ 
+\hline
+RF.O.51.2 & ChatForm: vedi \vedi{ChatFormDettaglio}. \\ 
+\hline
+RF.O.51.2.1 & ChatForm: vedi \vedi{ChatFormDettaglio}. \\  
+\hline
+RF.O.51.2.2 & ChatForm: vedi \vedi{ChatFormDettaglio}. \\
+\hline
+RF.O.52 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.O.53 & MessageCard: vedi \vedi{MessageCardDettaglio}.\\ 
+\hline
+RF.O.54. &  LLMModelType: vedi \vedi{LLMModelTypeDettaglio}.  \\
+\hline
+RF.OP.55 & NS \\
+\hline 
+RF.D.56 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.OP.57 & AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.O.58 & EmbedDocumentsService: vedi \vedi{EmbedDocumentsServiceDettaglio}.\\
+\hline
+RF.O.59 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\hline
+RF.O.60 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
+\end{xltabular}
+
+
+
+
+
+
+
+
+
 
 %\subsection{Libreria per la persistenza} %TODO
     % diagramma delle classi
@@ -2342,7 +2656,7 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
 %CHATBOT-FRONTEND
 \subsection{Chatbot}
 
-\subsubsection{Descrizione delle sottocomponenti}
+\subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{ChatContent}
 \label{ChatContentDettaglio}
@@ -2360,6 +2674,8 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
     \item \textbf{Elementi determinanti}:
     \begin{itemize}
         \item Send Button: per l'invio della richiesta contenuta nella texting Area;
+        \item Pause-Play Button: per mettere in pausa o in play la registrazione del messaggio vocale;
+        \item Record Button: per iniziare la registrazione del messaggio vocale;
         \item Texting Area: per l'inserimento di messaggi testuali;
         \item Vocal Message Button: per l'inserimento di messaggi vocali.
     \end{itemize}
@@ -2402,6 +2718,7 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
         \item Copy Button: elemento che permette di copiare il testo del messaggio;
         \item Message Content: elemento che contiene il testo del messaggio e i collegamenti ai documenti pertinenti nel caso dei messaggi del chatbot;
         \item Read Out Loud Button: per ascoltare il messaggio sottoforma di audio;
+        \item Referenced Docs Shortcut: pulsante  presente nei messaggi del chatbot che permette di visualizzare i documenti pertinenti alla risposta;
         \item Timestamp: campo contenente data e ora di invio del messaggio.
     \end{itemize}
 \end{itemize}
@@ -2410,7 +2727,7 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
 %DASHBOARD-FRONTEND
 \subsection{Dashboard}
 
-\subsubsection{Descrizione delle sottocomponenti}
+\subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{DashboardHeader}
 \label{DashboardHeaderDettaglio}
@@ -2484,7 +2801,7 @@ Vedi \vedi{MessageCardDettaglio}.
 
 \subsection{Documents}
 
-\subsubsection{Descrizione delle sottocomponenti}
+\subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{DocumentsList}
 \label{DocumentsListDettaglio}
@@ -2493,7 +2810,9 @@ Vedi \vedi{MessageCardDettaglio}.
      \begin{itemize}
         \item Documents: i documenti rappresentati sotto forma di DocumentsListRow;
         \item Delete Selected Button: per eliminare i DocumentsListRow selezionati;
+        \item Nav Row Pages Buttons: per navigare tra le pagine di DocumentsListRow;
         \item Order By Button: per ordinare secondo i diversi campi informazione dei DocumentsListRow;
+        \item Rows Per Page: per scegliere il numero di DocumentsListRow per pagina;
         \item Status Filter: per visualizzare i documenti in base allo status selezionato;
         \item Title Search Bar: per ricercare i documenti per titolo;
         \item Type Filter: per visualizzare i documenti in base al formato selezionato; 
@@ -2506,7 +2825,8 @@ Vedi \vedi{MessageCardDettaglio}.
 \begin{itemize}
     \item \textbf{Elementi determinanti}:
      \begin{itemize}
-        \item Document Info: parte del record che contiene informazioni significative del documento quali il titolo, la dimensione, lo status, il formato e la data di upload;
+        \item Document Info: parte del record che contiene informazioni significative del documento quali la dimensione, lo status, il formato e la data di upload;
+        \item Document Title: parte del record che contiene il titolo del documento;
         \item Conceal Document Button: per occultare gli embeddings di un documento abilitato;
         \item Delete Document Button: per eliminare il documento selezionato;
         \item Embed Document Button: per creare gli embeddings di un documento \textit{Not Embedded};
@@ -2522,7 +2842,7 @@ Vedi \vedi{MessageCardDettaglio}.
     \item \textbf{Elementi determinanti}:
      \begin{itemize}
         \item Cancel Upload Button: per annullare l'upload dei documenti caricati in area di staging;
-        \item Drag\&Drop Area: area dove è possibile caricare i file nell'area di staging;
+        \item Drag\&Drop Area: area dove è possibile trascinare e rilasciare i file nell'area di staging;
         \item Staged Documents: i documenti caricati nell'area di staging, rappresentati sotto forma di StagingAreaRow;
         \item Upload Button: per confermare l'upload dei documenti caricati in area di staging.
     \end{itemize}
@@ -2539,34 +2859,43 @@ Vedi \vedi{MessageCardDettaglio}.
 \end{itemize}
 
 
+%DocumentViewer-FRONTEND toDO
+\subsection{DocumentView}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{DocumentViewer}
+\label{DocumentViewerDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Document Viewer Box: componente che permette di visualizzare l'intero documento \textit{PDF} o \textit{DOC} selezionato.
+    \end{itemize}
+\end{itemize}
+
+
+
+
 
 
 %CHATBOT-FRONTEND toDO
 \subsection{SettingsAppearance}
-\subsubsection{Descrizione delle sottocomponenti}
-
-\subsubsubsection{AppearanceHeader}
-\label{AppearanceHeaderDettaglio}
-\begin{itemize}
-    \item \textbf{Elementi determinanti}:
-     \begin{itemize}
-       \item TODO;
-    \end{itemize}
-\end{itemize}
+\subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{ThemeSelection}
 \label{ThemeSelectionDettaglio}
 \begin{itemize}
     \item \textbf{Elementi determinanti}:
      \begin{itemize}
-       \item TODO;
+        \item System Theme Choice: per selezionare il tema del sistema sul quale gira l'applicazione;       
+        \item Theme Preview: elemento che mostra una anteprima del tema;
+        \item Update Preferences Button: elemento che permette di applicare il tema scelto.
     \end{itemize}
 \end{itemize}
 
 
-%CHATBOT-FRONTEND
+%Settingsconfiguration-FRONTEND
 \subsection{SettingsConfiguration}
-\subsubsection{Descrizione delle sottocomponenti}
+\subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{ChangeLLMConfiguration}
 \label{ChangeLLMConfigurationDettaglio}
@@ -2651,10 +2980,96 @@ Vedi \vedi{MessageCardDettaglio}.
 
 
 
+%SetUp(Primo avvio)-FRONTEND
+\subsection{SetUp(Primo avvio)}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{ConfirmConfiguration} 
+\label{ConfirmConfigurationDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Confirm Configuration Choices Button: elemento che permette di confermare le scelte di vector store, document store, modello di embeddings e LLM al primo avvio dell'applicazione.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DocumentStoreCard} 
+Vedi \vedi{DocumentStoreCardDettaglio}.
+
+\subsubsubsection{DocumentStoreInit} 
+\label{DocumentStoreInitDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Document Store Choices: componente che contiene una DocumentStoreCard selezionabile per ogni sistema di archiviazione dei documenti disponibile.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{EmbeddingModelCard} 
+Vedi \vedi{EmbeddingModelCardDettaglio}.
+
+
+\subsubsubsection{EmbeddingModelInit} 
+\label{EmbeddingModelInitDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Embedding Model Choices: componente che contiene una EmbeddingModelCard selezionabile per ogni modello di embeddings disponibile.
+    \end{itemize}
+\end{itemize}
 
 
 
+\subsubsubsection{LLMCard} 
+Vedi \vedi{LLMCardDettaglio}.
 
+\subsubsubsection{LLMModelInit} 
+\label{LLMModelInitDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item LLM Model Choices: componente che contiene una LLMCard selezionabile per ogni modello LLM disponibile.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{VectorStoreCard} 
+Vedi \vedi{VectorStoreCardDettaglio}.
+
+\subsubsubsection{VectorStoreInit} 
+\label{VectorStoreInitDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Vector Store Choices: componente che contiene una VectorStoreCard selezionabile per ogni vector store disponibile.
+    \end{itemize}
+\end{itemize}
+
+
+%Sidebar-FRONTEND
+\subsection{SideBar}
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{NavigationMenu} 
+\label{NavigationMenuDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Chatbot Nav Button: per raggiungere la pagina Chatbot;
+        \item Dashboard Nav Button: per raggiungere la Dashboard dell'applicazione;
+        \item Documents Nav Button: per raggiungere la pagine Documents.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{SettingShortcut} 
+\label{SettingShortcutDettaglio}
+\begin{itemize}
+    \item \textbf{Elementi determinanti}:
+     \begin{itemize}
+        \item Settings Nav Button: per raggiungere le impostazioni dell'applicazione.
+    \end{itemize}
+\end{itemize}
 
 
 \newpage
@@ -2701,16 +3116,11 @@ Vedi \vedi{MessageCardDettaglio}.
     \begin{itemize}
         \item \code{chain: langchain.Chain};
         \item \code{chatHistoryManager: ChatHistoryManager}.
-       % \item \code{postgresChatORM: PostgresChatORM}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{askChatbot(message:Message, chatId:ChatId): MessageResponse}\\
-        Implementazione del metodo astratto di AskChatbotPort per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. %Nel caso in cui il chatId sia vuoto e venga inoltre generata correttamente una risposta, viene creata una nuova chat tramite postgresChatORM;
-
-        %\item \code{toMessageFrom(message: BaseMessage): Message}\\
-        %Metodo per ottenere un Message a partire da un BaseMessage;
-      
+        Implementazione del metodo astratto di AskChatbotPort per ottenere una risposta dal chatbot ad un messaggio appartenente ad una chat identificata da un ChatId. 
     \end{itemize}
 \end{itemize}
 
@@ -2756,9 +3166,7 @@ Vedi \vedi{MessageCardDettaglio}.
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{getChatHistory(chatId:int): langchain.PostgresChatMessageHistory}\\
-        Metodo per ottenere una langchain.PostgresChatMessageHistory rappresentante il contesto di una chat identificata da un ChatId;
-        %\item \code{saveMessage(message: langchain.BaseMessage, memory:langchain.Memory): void}\\
-        %Metodo per salvare un messaggio di tipo lanchain.BaseMessage in una memory di tipo lanchain.Memory rappresentante il contesto di una chat. 
+        Metodo per ottenere una langchain.PostgresChatMessageHistory rappresentante il contesto di una chat identificata da un ChatId.
     \end{itemize}
 \end{itemize}
 
@@ -2835,7 +3243,6 @@ Vedi \vedi{MessageCardDettaglio}.
     \begin{itemize}
         \item \code{id: int};
         \item \code{messages: List<PostgresMessage>};
-        %\item \code{timestamp: datetime};
         \item \code{title: string}.     
     \end{itemize}    
     \item \textbf{Metodi}:
@@ -2861,9 +3268,7 @@ Vedi \vedi{MessageCardDettaglio}.
         Metodo che ritorna l'esito dell'operazione effettuata sottoforma di ChatOperationResponse.
     \end{itemize}
 \end{itemize}
-%class PostgresMessageSenderType(Enum):
-  %  human = 1
-  %  ai = 2
+
 
 \subsubsubsection{PostgresMessage}
 \label{PostgresMessageDettaglio}
@@ -2910,95 +3315,7 @@ Vedi \vedi{MessageCardDettaglio}.
 \end{itemize}
 
 
-\begin{comment}
-    
 
-\subsubsubsection{ChatbotLangchain}
-\label{ChatbotLangchainDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{chain: langchain.Chain}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{ask(userMessage:BaseMessage, memory:langchain.Memory): langchain.BaseMessage}\\
-        Metodo per ottenere una risposta di tipo langchain.BaseMessage dal chatbot tramite chain ad un userMessage di tipo BaseMessage, richiedendo inoltre il contesto della chat attraverso la memory di tipo langchain.Memory.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{LangchainLLM}
-\label{LangchainLLMDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{llm: langchain.BaseLanguageModel}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{OpenAILLM}
-\label{OpenAILLMDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{llm: langchain.BaseLanguageModel}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{HugginFaceLLM}
-\label{HugginFaceLLMDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{llm: langchain.BaseLanguageModel}.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{LangchainVectorStore}
-\label{LangchainVectorStoreDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{vectorStore: langchain.VectorStore}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getRetriever(): BaseRetriever}\\
-        Metodo astratto per ottenere un langchain.BaseRetriever.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{PineconeVectorStore}
-\label{PineconeVectorStoreDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{vectorStore: langchain.VectorStore}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getRetriever(): BaseRetriever}\\
-        Implementazione del metodo astratto di LangchainVectorStore per ottenere un langchain.BaseRetriever da un vector store Pinecone.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{ChromaDBVectorStore}
-\label{ChromaDBVectorStoreDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{vectorStore: langchain.VectorStore}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getRetriever(): BaseRetriever}\\
-        Implementazione del metodo astratto di LangchainVectorStore per ottenere un langchain.BaseRetriever da un vector store ChromaDB.
-    \end{itemize}
-\end{itemize}
-
-
-
-\end{comment}
 
 
 \subsubsubsection{PostgresChatORM}
@@ -3034,12 +3351,10 @@ Vedi \vedi{MessageCardDettaglio}.
 
 
 
- \subsection{ChangeConfiguration}%TODO
+ \subsection{ChangeConfiguration}
  \subsubsection{Diagramma delle classi}
  \subsubsection{Lista delle sottocomponenti}
  
-
-
 
 
  \subsubsubsection{ChangeConfigurationController}
@@ -3121,8 +3436,8 @@ Vedi \vedi{MessageCardDettaglio}.
         \item \code{status: boolean}.
     \end{itemize}
     
-    \subsubsubsection{PostgresConfigurationOperationResponse}
-    \label{PostgresConfigurationOperationResponseDettaglio}
+\subsubsubsection{PostgresConfigurationOperationResponse}
+\label{PostgresConfigurationOperationResponseDettaglio}
     \begin{itemize}
         
         \item \textbf{Attributi}:
@@ -3292,7 +3607,6 @@ Vedi \vedi{MessageCardDettaglio}.
         \code{List<List<LangchainCoreDocument>>, documentEmbeddings:}\\ 
         \code{List<List<List<float>>>): List<VectorStoreDocumentOperationResponse>}\\ 
         Implementazione del metodo astratto di VectorStoreManager per effettuare in ChromaDB l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
-        %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
         \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store ChromaDB.
     \end{itemize}
@@ -3335,8 +3649,8 @@ Vedi \vedi{MessageCardDettaglio}.
         \item \code{uploadEmbeddings(documentsIds:List<string>, documentsChunks:}\\ 
         \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
         \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
-        Metodo astratto per effettuare l'upload degli embeddings di un documento.  Ritorna un VectorStoreDocumentOperationResponse;
-        %a partire da una lista di tuple, ciascuna formata da una stringa (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento).
+        Metodo astratto per effettuare l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
+      
         \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Metodo astratto per ottenere un langchain.BaseRetriever.
     \end{itemize}
@@ -3371,7 +3685,7 @@ Vedi \vedi{MessageCardDettaglio}.
         \code{List<List<LangchainCoreDocument>>,documentEmbeddings:}\\ 
         \code{List<List<List<float>>>):List<VectorStoreDocumentOperationResponse>}\\ 
         Implementazione del metodo astratto di VectorStoreManager per effettuare in Pinecone l'upload degli embeddings di un documento. Ritorna un VectorStoreDocumentOperationResponse;
-        % a partire da una lista di stringhe (documentId), una lista di float (embeddings del documento) e un dizionario con coppie string: Any (metadata del documento). 
+
         \item \code{getRetriever(embeddingModel:LangchainEmbeddingModel): langchain.BaseRetriever}\\
         Implementazione del metodo astratto di VectorStoreManager per ottenere un langchain.BaseRetriever da un vector store Pinecone.
     \end{itemize}
@@ -3536,6 +3850,11 @@ Vedi \vedi{PostgresChatORMDettaglio}.
         \item \code{id: int};
         \item \code{LLMModel: PostgresLLMModelConfiguration};
         \item \code{vectorStore: PostgresVectorStoreConfiguration}. 
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{toConfiguration(): Configuration}\\
+        Metodo che ricava un oggetto Configuration dal PostgresConfiguration
     \end{itemize}
 \end{itemize}
 
@@ -3859,13 +4178,12 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
         \item \code{content: bytes};
         \item \code{id: string};
         \item \code{size: float};
-        \item \code{type: string};
         \item \code{uploadTime: timestamp}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
         \item \code{toPlainDocument(): PlainDocument}\\
-        Metodo che ottiene ritorna un PlainDocument.
+        Metodo che ritorna un PlainDocument.
     \end{itemize}
 \end{itemize}   
 

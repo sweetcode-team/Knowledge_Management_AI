@@ -47,7 +47,7 @@ class PostgresChatORM:
     """
     def createChat(self) -> PostgresChatOperationResponse:
         try:
-            newChat = Chat(f"Nuova chat {datetime.now(timezone.utc).strftime("%X %d %b %Y")}")
+            newChat = Chat(f"Nuova chat {datetime.now(timezone.utc).strftime('%X %d %b %Y')}")
             db_session.add(newChat)
             db_session.commit()
             newChatId = newChat.id

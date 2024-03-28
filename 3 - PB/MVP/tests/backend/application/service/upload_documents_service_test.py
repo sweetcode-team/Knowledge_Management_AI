@@ -70,3 +70,4 @@ def test_uploadDocumentsServiceFailUploadDocumentsException():
         documentsUploaderMock.uploadDocuments.assert_called_once_with([documentMock], False)
         embeddingsUploaderMock.uploadEmbeddings.assert_not_called()
         pass
+

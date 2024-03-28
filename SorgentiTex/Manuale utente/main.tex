@@ -84,7 +84,7 @@ Per visualizzare che vector database, modello di embeddings, sistema di archivia
     \item Dalla dashboard premere il simbolo delle impostazioni, posto in basso a sinistra della pagina e accompagnato dalla scritta 'Settings';
     \item Selezionare dal menù che si apre automaticamente in alto alla sinistra della pagina la sezione 'Configuration' (quando vengono aperte le informazioni si apre di default);
     \item Selezionare dal menù che compare sotto al titolo 'LLM Models' il modello LLM desiderato;
-    \item Premere il bottone bianco con su scritto 'Confirm configuration'.
+    \item Premere il bottone con su scritto 'Confirm configuration'.
 \end{itemize}
 
 \subsection{Gestione dei documenti}
@@ -104,31 +104,59 @@ In questa sezione si illustrano le possibili azioni operabili sui documenti.
 \end{itemize}
 
 \subsubsection{Visualizzazione tabella di archiviazione}
-Come accennato in precedenza nella lista dei documenti vengono visualizzate delle informazioni (titolo, dimensioni, stato, tipo e data di caricamento) per ogni documento presente nel sistema di archiviazione.\\ Nel caso in cui si vogliano visualizzare meno informazioni riguardo i documenti, quindi modificare il numero di colonne nella tabella delle informazioni, è necessario:
 \begin{itemize}
-    \item Visualizzare lista dei documenti come indicato in 2.2.1.;
+
+\item \textbf{Visualizzazione delle colonne}: Come accennato in precedenza nella lista dei documenti vengono visualizzate delle informazioni (titolo, dimensioni, stato, tipo e data di caricamento) per ogni documento presente nel sistema di archiviazione.\\ Nel caso in cui si vogliano visualizzare meno informazioni riguardo i documenti, quindi modificare il numero di colonne nella tabella delle informazioni, è necessario:
+\begin{itemize}
+    \item Visualizzare lista di tutti i documenti come indicato in 2.2.1.;
     \item Fare clic sul bottone 'View' in alto a destra nella lista dei documenti;
     \item Spuntare dall'elenco che compare automaticamente il titolo delle colonne che si intende rimuovere dalla tabella di visualizzazione della lista (non è possibile rimuovere la colonna del titolo dei documenti), che verranno rimosse in automatico;
     \item Se successivamente si vuole ripristinare una colonna eliminata, è sufficiente ripetere l'operazione e fare un altro clic sul suo titolo perchè vengano automaticamente ripristinate.
 \end{itemize}
-Se il numero di documenti presenti nel sistema di archiviazione è elevato, la tabella viene rappresentata su più pagine. Per passare da una pagina all'altra è necessario:
+In alternativa per compiere la stessa azione è possibile anche:
 \begin{itemize}
+    \item  Visualizzare lista di tutti i documenti come indicato in 2.2.1.;
+    \item Fare un clic in corrispondenza del titolo della colonna che non si vuole più visualizzare;
+    \item Selezionare l'opzione 'Hide' dal menù che comparirà automaticamente.
+\end{itemize}
+
+\item \textbf{Scorrimento orizzontale}: Se il numero di documenti presenti nel sistema di archiviazione è elevato, la tabella viene rappresentata su più pagine. Per passare da una pagina all'altra è necessario:
+\begin{itemize}
+    \item Visualizzare lista di tutti i documenti come indicato in 2.2.1.;
     \item Scorrere la tabella fino all'ultima riga;
     \item Selezionare il pulsante raffigurante '>' per andare avanti di una pagina, e quello raffigurante '<' per tornare indietro di una pagina;
     \item Selezionare il pulsante raffigurante '>>' per visualizzare l'ultima pagina della tabella, e quello raffigurante '<<' per visualizzarne la prima pagina;
     \item Quando ci si trova nella prima o nell'ultima pagina le azioni per andare avanti (nel caso dell'ultima pagina) o indietro (nel caso della prima pagina) sono bloccate poichè ci si trova già all'estremo.
 \end{itemize}
-È inoltre possibile modificare il numero di righe che si vuole compaiano in ogni pagina della tabella in questo modo:
+\item \textbf{Numero di righe}: È possibile modificare il numero di righe che si vuole compaiano in ogni pagina della tabella in questo modo:
 \begin{itemize}
+    \item Visualizzare lista di tutti i documenti come indicato in 2.2.1.;
     \item Scorrere la tabella fino all'ultima riga;
     \item Selezionare il bottone in basso a destra che indica il numero di righe per pagina presenti al momento, al fianco della scritta 'Rows per page';
     \item Selezionare il numero di righe che si vuole visualizzare dall'elenco che compare automaticamente.
 \end{itemize}
-\subsubsection{Visualizzazione di un documento presente nel sistema di archiviazione}
-Per visualizzare un documento presente nel sistema di archiviazione è necessario:
+\item \textbf{Ordinamento}: Per ordinare in ordine crescente o decrescente in base ad un determinato parametro gli elementi della tabella è necessario:
+\begin{itemize}
+    \item Visualizzare lista di tutti i documenti come indicato in 2.2.1.;
+    \item Fare clic sul titolo del parametro di ordinamento desiderato (deve essere uno dei titoli delle colonne della tabella);
+    \item Selezionare dal menù che si aprirà automaticamente l'opzione 'Asc' se si desidera un ordinamento ascendente rispetto a tale parametro, o 'Desc' se si desidera un ordinamento discendente rispetto a tale parametro.
+\end{itemize}
+\item \textbf{Selezione degli elementi}: Per selezionare gli elementi della tabella è necessario:
+\begin{itemize}
+    \item Visualizzare la parte sinistra della tabella e spuntare il quadrato che compare alla sinistra del titolo dell'elemento desiderato;
+    \item Se si vogliono selezionare tutti gli elementi della tabella, fare clic sul quadrato vuoto alla sinistra della colonna 'Title', in alto alla tabella.
+\end{itemize}
+\end{itemize}
+\subsubsection{Visualizzazione contenuto documenti}
+Per visualizzare il contenuto di un documento è necessario:
 \begin{itemize}
     \item Visualizzare lista dei documenti come indicato in 2.2.1.;
-    \item Selezionare con due clic il documento desiderato dalla lista.
+    \item Selezionare con due clic il documento desiderato dalla lista, che si aprirà automaticamente.
+\end{itemize}
+È anche possibile visualizzare il contenuto di un documento dalla dashboard, in questo modo:
+\begin{itemize}
+    \item Nella parte inferiore della dashboard sono presenti i documenti recenti. Selezionare con un clic il documento desiderato da tale lista;
+    \item Compariranno informazioni aggiuntive sul documento in questione. Selezionare l'opzione 'View content' per aprire il documento, oppure 'Close' per chiudere il pop up.
 \end{itemize}
 \subsubsection{Rimozione dal sistema di archiviazione}
 Per eliminare un documento dal sistema di archiviazione è necessario:
@@ -161,7 +189,7 @@ Per caricare uno o più documenti nell'area di staging è necessario:
     \end{itemize} 
 
 
-\subsubsection{Upload nel sistema di archiviazione e nel vector database}
+\subsubsection{Upload nel sistema di archiviazione e nel vector database dall'area di staging}
 Per poter fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging è necessario:
 \begin{itemize}
     \item Caricare nell'area di staging uno o più documenti da inserire nel sistema, seguendo le istruzioni del punto 2.2.5; 
@@ -171,32 +199,52 @@ Per poter fare l’upload nel sistema di archiviazione e nel vector database dei
     
     
 \end{itemize}
-\subsubsection{Occultamento e riabilitazione dal sistema}
+\subsubsection{Occultamento dal sistema}
 Per occultare un documento presenti nel sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare il documento che si desidera occultare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
+    \item Selezionare l'opzione 'Conceal' dall'elenco che compare automaticamente;
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+Per occultare più documenti presenti nel sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
+    \item Trovare i documenti che si desidera occultare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da occultare, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Enabled', altrimenti non sarà possibile proseguire;
+    \item Selezionare l'opzione 'Conceal' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+\subsubsection{Riabilitazione dal sistema}
+Per riabilitare un documento occultato nel sistema di archiviazione è necessario:
 \begin{itemize}
     \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
     \item Trovare il documento che si desidera riabilitare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
     \item Selezionare l'opzione 'Enable' dall'elenco che compare automaticamente;
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
-Per riabilitare un documento occultato nel sistema di archiviazione è necessario:
-\begin{itemize}
-    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
-    \item Trovare il documento che si desidera occultare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
-\end{itemize}
-Per occultare più documenti presenti nel sistema di archiviazione è necessario:
-\begin{itemize}
-    \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
-    \item Trovare i documenti che si desidera occultare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da occultare, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Enabled', altrimenti non sarà possibile proseguire;
-    \item Selezionare l'opzione 'Conceal' facendo clic sul bottone bianco che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
-    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
-\end{itemize}
+
 Per riabilitare più documenti presenti nel sistema di archiviazione è necessario:
 \begin{itemize}
     \item Aprire la lista dei documenti nel sistema di archiviazione secondo i passaggi della sezione 2.2.1;
     \item Trovare i documenti che si desidera riabilitare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da riabilitare, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Concealed', altrimenti non sarà possibile proseguire;
-    \item Selezionare l'opzione 'Enable' facendo clic sul bottone bianco che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item Selezionare l'opzione 'Enable' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+
+\subsubsection{Incorporazione (Embed) da lista dei documenti}
+Per incorporare nel sistema un documento è necessario:
+\begin{itemize}
+    \item Aprire la lista di tutti i documenti secondo i passaggi della sezione 2.2.1;
+    \item Trovare il documento che si desidera incorporare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
+    \item Selezionare l'opzione 'Embed' dall'elenco che compare automaticamente;
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Embed' per confermare o l'opzione 'Abort' per annullare l'azione.
+\end{itemize}
+Per incorporare più documenti presenti nel sistema di archiviazione è necessario:
+\begin{itemize}
+    \item Aprire la lista di tutti i documenti secondo i passaggi della sezione 2.2.1;
+    \item Trovare i documenti che si desidera incorporare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Not Embedded', altrimenti non sarà possibile proseguire;
+    \item Selezionare l'opzione 'Embed' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Embed' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 
 \subsubsection{Ricerca nel sistema}
@@ -225,7 +273,8 @@ In questa sezione si illustrano le possibili azioni operabili sulle chat dell'ap
 Le azioni possibili di visualizzazione delle chat sono le seguenti:
 \begin{itemize}
     \item \textbf{Visualizzazione chat più recente}: È possibile visualizzare la chat più recente nella parte in alto a sinistra della dasboard. Selezionando il pulsante 'Espandi' in alto a destra della chat, sarà disponibile a schermo intero;
-    \item \textbf{Visualizzazione lista chat più recenti}: Per visualizzare le chat più recenti è sufficiente visualizzare la parte destra della dashboard dell'applicazione, sotto il titolo 'Recently visited chats', dove è possibile visualizzare le singole chat presenti in lista automaticamente con il rispettivo titolo in ordine cronologico. Vengono visualizzati inoltre il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat;
+    \item \textbf{Visualizzazione lista chat più recenti}: Per visualizzare le chat più recenti è sufficiente visualizzare la parte destra della dashboard dell'applicazione, sotto il titolo 'Recently visited chats', dove è possibile visualizzare le singole chat presenti in lista automaticamente con il rispettivo titolo in ordine cronologico. Vengono visualizzati inoltre il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat.\\
+    Facendo un clic sul riquadro di una chat recente dalla lista è possibile aprire tale chat.
     \item \textbf{Visualizzazione lista chat}: Se si comincia una conversazione con il chatbot o se si seleziona l'opzione 'Chatbot' dal menù in alto a sinistra della dashboard, la lista delle chat dell'applicazione è resa disponibile nella parte sinistra della pagina. Nella lista vengono visualizzati il timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat.
 \end{itemize}
 
@@ -307,6 +356,13 @@ L'interfaccia dell'applicazione è disponibile in tema chiaro o scuro. Per cambi
     \item Dal menù delle impostazioni, in alto a sinistra della pagina che si sarà aperta automaticamente, selezionare la voce 'Appearence';
     \item Selezionare il tema di sfondo desiderato;
     \item Premere il bottone in basso con su scritto 'Update preferences'. Comparirà successivamente un pop up in basso a destra per segnalare il successo dell'operazione.
+\end{itemize}
+\subsubsection{Adattamento delle dimensioni}
+Per modificare le dimensioni delle varie sezioni presenti nelle diverse pagine è necessario:
+\begin{itemize}
+    \item Aprire la pagina desiderata dal menù a sinistra;
+    \item Posizionarsi con il mouse sulla linea che divide le sezioni della pagina;
+    \item Premere e trascinare l'icona dei sei puntini presente sulla linea in corrispondenza della metà della sua altezza, fino alla dimensione desiderata.
 \end{itemize}
 
 

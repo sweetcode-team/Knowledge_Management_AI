@@ -13,7 +13,7 @@ def test_toVectorStoreConfiguration():
     with patch('adapter.out.persistence.postgres.configuration_models.VectorStoreConfiguration', return_value=expected) as mock:
         result = vectorStoreConfiguration.toVectorStoreConfiguration()
         mock.assert_called_once_with(
-            PostgresVectorStoreType.PINECONE,
+            PostgresVectorStoreType.PINECONE.toVectorStoreType(),
             'organization',
             'description',
             'type',
@@ -33,7 +33,7 @@ def test_toEmbeddingModelConfiguration():
     with patch('adapter.out.persistence.postgres.configuration_models.EmbeddingModelConfiguration', return_value=expected) as mock:
         result = embeddingModelConfiguration.toEmbeddingModelConfiguration()
         mock.assert_called_once_with(
-            PostgresEmbeddingModelType.OPENAI,
+            PostgresEmbeddingModelType.OPENAI.toEmbeddingModelType(),
             'organization',
             'description',
             'type',
@@ -53,7 +53,7 @@ def test_toLLMModelConfiguration():
     with patch('adapter.out.persistence.postgres.configuration_models.LLMModelConfiguration', return_value=expected) as mock:
         result = llmModelConfiguration.toLLMModelConfiguration()
         mock.assert_called_once_with(
-            PostgresLLMModelType.OPENAI,
+            PostgresLLMModelType.OPENAI.toLLMModelType(),
             'organization',
             'description',
             'type',
@@ -73,7 +73,7 @@ def test_toDocumentStoreConfiguration():
     with patch('adapter.out.persistence.postgres.configuration_models.DocumentStoreConfiguration', return_value=expected) as mock:
         result = documentStoreConfiguration.toDocumentStoreConfiguration()
         mock.assert_called_once_with(
-            PostgresDocumentStoreType.AWS,
+            PostgresDocumentStoreType.AWS.toDocumentStoreType(),
             'organization',
             'description',
             'type',

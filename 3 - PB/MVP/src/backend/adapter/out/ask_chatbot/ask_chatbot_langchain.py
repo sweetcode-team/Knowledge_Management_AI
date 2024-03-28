@@ -42,7 +42,7 @@ class AskChatbotLangchain(AskChatbotPort):
                     answer = self.chain.invoke({"question": message.content, "chat_history": (chatHistory.messages[-6:])})
             else:
                 answer = self.chain.invoke({"question": message.content, "chat_history": []})
-
+            
             chatbotAnswer = ' '.join(answer.get("answer", "").split())
             
             if chatbotAnswer.strip() == "":

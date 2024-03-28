@@ -214,7 +214,7 @@ def test_getDocumentContentTrue():
     with    patch('adapter.out.persistence.aws.AWS_manager.boto3') as boto3Mock, \
             patch('adapter.out.persistence.aws.AWS_manager.open', mock_open(read_data='contenuto_file')) as mock_file, \
             patch('adapter.out.persistence.aws.AWS_manager.AWSDocument') as AWSDocumentMock:
-            documentContentResponseMock = {'Body': 'contenuto_file', 'ContentType': 'pdf', 'size': 100, 'uploadTime': '2021-05-21T14:00:00Z'}
+            
             s3Mock = MagicMock()
             
             boto3Mock.client.return_value = s3Mock

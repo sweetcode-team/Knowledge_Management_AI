@@ -10,7 +10,7 @@ def test_deleteDocumentsTrueBoth():
     
     deleteDocumentsEmbeddingsMock.deleteDocumentsEmbeddings.return_value = [documentOperationResponseMock]
     documentOperationResponseMock.ok.return_value = True
-    deleteDocumentsMock.deleteDocuments.return_value = documentOperationResponseMock
+    deleteDocumentsMock.deleteDocuments.return_value = [documentOperationResponseMock]
     
     deleteDocumentsService = DeleteDocumentsService(deleteDocumentsMock, deleteDocumentsEmbeddingsMock)
         
@@ -30,7 +30,7 @@ def test_deleteDocumentsFailEmbeddings1():
     
     deleteDocumentsEmbeddingsMock.deleteDocumentsEmbeddings.return_value = [documentOperationResponseMockEmbeddings]
     documentOperationResponseMockEmbeddings.ok.return_value = False
-    deleteDocumentsMock.deleteDocuments.return_value = documentOperationResponseMock
+    deleteDocumentsMock.deleteDocuments.return_value = [documentOperationResponseMock]
     
     deleteDocumentsService = DeleteDocumentsService(deleteDocumentsMock, deleteDocumentsEmbeddingsMock)
         
@@ -48,7 +48,7 @@ def test_deleteDocumentsFailEmbeddings2():
     documentOperationResponseMock = MagicMock()
     
     deleteDocumentsEmbeddingsMock.deleteDocumentsEmbeddings.return_value = []
-    deleteDocumentsMock.deleteDocuments.return_value = documentOperationResponseMock
+    deleteDocumentsMock.deleteDocuments.return_value = [documentOperationResponseMock]
     
     deleteDocumentsService = DeleteDocumentsService(deleteDocumentsMock, deleteDocumentsEmbeddingsMock)
     try:   
@@ -67,7 +67,7 @@ def test_deleteDocumentsFailDocument():
     
     deleteDocumentsEmbeddingsMock.deleteDocumentsEmbeddings.return_value = [documentOperationResponseMockEmbeddings]
     documentOperationResponseMockEmbeddings.ok.return_value = True
-    deleteDocumentsMock.deleteDocuments.return_value = documentOperationResponseMock
+    deleteDocumentsMock.deleteDocuments.return_value = [documentOperationResponseMock]
     documentOperationResponseMock.ok.return_value = False
     
     deleteDocumentsService = DeleteDocumentsService(deleteDocumentsMock, deleteDocumentsEmbeddingsMock)
@@ -88,7 +88,7 @@ def test_deleteDocumentsFailBoth():
     
     deleteDocumentsEmbeddingsMock.deleteDocumentsEmbeddings.return_value = [documentOperationResponseMockEmbeddings]
     documentOperationResponseMockEmbeddings.ok.return_value = False
-    deleteDocumentsMock.deleteDocuments.return_value = documentOperationResponseMock
+    deleteDocumentsMock.deleteDocuments.return_value = [documentOperationResponseMock]
     documentOperationResponseMock.ok.return_value = False
     
     deleteDocumentsService = DeleteDocumentsService(deleteDocumentsMock, deleteDocumentsEmbeddingsMock)

@@ -1,10 +1,9 @@
 from unittest.mock import MagicMock, patch, ANY
 from adapter.out.ask_chatbot.ask_chatbot_langchain import AskChatbotLangchain
-from domain.chat.message import Message, MessageSender
+from domain.chat.message import MessageSender
         
 def test_askChatbotWithChatId():
     with    patch('adapter.out.ask_chatbot.ask_chatbot_langchain.MessageResponse') as messageResponseMock, \
-            patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.get_buffer_string') as get_buffer_stringMock, \
             patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.Message') as messageReturnMock:
             postgresChatMessageHistoryMock = MagicMock()
             chatHistoryManagerMock = MagicMock()
@@ -16,7 +15,6 @@ def test_askChatbotWithChatId():
             chatHistoryManagerMock.getChatHistory.return_value = postgresChatMessageHistoryMock
             postgresChatMessageHistoryMock.messages = ['message1', 'message2']
             chainMock.invoke.return_value = {"answer": "response", "source_documents": []}
-            get_buffer_stringMock.return_value = "message1message2"
             messageMock.content = "content"
             
             askChatbotLangchain = AskChatbotLangchain(chainMock, chatHistoryManagerMock)
@@ -24,7 +22,7 @@ def test_askChatbotWithChatId():
             response = askChatbotLangchain.askChatbot(messageMock, chatIdMock)
             
             chatHistoryManagerMock.getChatHistory.assert_called_with(1)
-            chainMock.invoke.assert_called_with({"question": "content", "chat_history": 'message1message2'})
+            chainMock.invoke.assert_called_with({"question": "content", "chat_history": ['message1', 'message2']})
             messageResponseMock.assert_called_with(
                 status=True, 
                 messageResponse= messageReturnMock.return_value,
@@ -34,7 +32,6 @@ def test_askChatbotWithChatId():
             
 def test_askChatbotWithoutChatId():
     with    patch('adapter.out.ask_chatbot.ask_chatbot_langchain.MessageResponse') as messageResponseMock, \
-            patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.get_buffer_string') as get_buffer_stringMock, \
             patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.Message') as messageReturnMock:
             postgresChatMessageHistoryMock = MagicMock()
             chatHistoryManagerMock = MagicMock()
@@ -44,7 +41,6 @@ def test_askChatbotWithoutChatId():
             chatHistoryManagerMock.getChatHistory.return_value = postgresChatMessageHistoryMock
             postgresChatMessageHistoryMock.messages = ['message1', 'message2']
             chainMock.invoke.return_value = {"answer": "response", "source_documents": []}
-            get_buffer_stringMock.return_value = "message1message2"
             messageMock.content = "content"
             
             askChatbotLangchain = AskChatbotLangchain(chainMock, chatHistoryManagerMock)
@@ -62,7 +58,6 @@ def test_askChatbotWithoutChatId():
             
 def test_askChatbotChatHistoryManagerFail():
     with    patch('adapter.out.ask_chatbot.ask_chatbot_langchain.MessageResponse') as messageResponseMock, \
-            patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.get_buffer_string') as get_buffer_stringMock, \
             patch ('adapter.out.ask_chatbot.ask_chatbot_langchain.Message') as messageReturnMock:
             chatHistoryManagerMock = MagicMock()
             chainMock = MagicMock()

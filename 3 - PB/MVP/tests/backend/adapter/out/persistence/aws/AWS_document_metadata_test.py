@@ -8,7 +8,7 @@ def test_toDocumentMetadataFromPDF():
                 
         DocumentIdMock.return_value = "Prova.pdf"
         
-        documentMetadata = AWSDocumentMetadata(id="Prova.pdf", size=1, type = "PDF", uploadTime=ANY)
+        documentMetadata = AWSDocumentMetadata(id="Prova.pdf", size=1, uploadTime=ANY)
         
         response = documentMetadata.toDocumentMetadataFrom()
         
@@ -23,7 +23,7 @@ def test_toDocumentMetadataFromDOCX():
                 
         DocumentIdMock.return_value = "Prova.docx"
         
-        documentMetadata = AWSDocumentMetadata(id="Pova.docx", size=1, type = "DOCX", uploadTime=ANY)
+        documentMetadata = AWSDocumentMetadata(id="Pova.docx", size=1, uploadTime=ANY)
         
         response = documentMetadata.toDocumentMetadataFrom()
         

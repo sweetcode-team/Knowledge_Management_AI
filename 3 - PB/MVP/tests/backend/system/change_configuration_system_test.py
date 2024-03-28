@@ -1,11 +1,12 @@
 from unittest.mock import MagicMock, patch, ANY
 
-from adapter._in.web.change_configuration_controller import ChangeConfigurationController
+from _in.web.change_configuration_controller import ChangeConfigurationController
 from domain.configuration.configuration_operation_response import ConfigurationOperationResponse
-from adapter.out.change_configuration.change_configuration_postgres import ChangeConfigurationPostgres
-from adapter.out.persistence.postgres.postgres_configuration_operation_response import PostgresConfigurationOperationResponse
-from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
-from application.service.change_configuration_service import ChangeConfigurationService
+from out.change_configuration.change_configuration_postgres import ChangeConfigurationPostgres
+from out.persistence.postgres.postgres_configuration_operation_response import PostgresConfigurationOperationResponse
+from out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
+from service.change_configuration_service import ChangeConfigurationService
+from service.set_configuration_service import SetConfigurationService
 
 def test_changeLLMModel():
     with     patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_session, \

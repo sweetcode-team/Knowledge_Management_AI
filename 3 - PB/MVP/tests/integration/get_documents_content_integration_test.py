@@ -7,7 +7,6 @@ from domain.document.plain_document import PlainDocument
 from domain.document.document_metadata import DocumentMetadata, DocumentType
 from domain.document.document_content import DocumentContent
 
-from datetime import datetime
 import io
 
 def test_getDocumentsContent():
@@ -31,7 +30,7 @@ def test_getDocumentsContent():
             DocumentId("Prova.pdf"),
             DocumentType.PDF,
             10,
-            '2021-01-01T01:01:01Z',
+            '2021-01-01T01:01:01Z'
         ),
         DocumentContent('content')
     )]

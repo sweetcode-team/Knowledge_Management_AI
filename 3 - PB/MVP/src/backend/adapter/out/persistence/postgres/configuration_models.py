@@ -2,28 +2,50 @@ from sqlalchemy import Column, Integer, String, Enum as SQLEnum, ForeignKey
 from enum import Enum
 from sqlalchemy.orm import relationship
 
-from domain.configuration.document_store_configuration import DocumentStoreConfiguration
-from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration
-from domain.configuration.llm_model_configuration import LLMModelConfiguration
-from domain.configuration.vector_store_configuration import VectorStoreConfiguration
+from domain.configuration.document_store_configuration import DocumentStoreConfiguration, DocumentStoreType
+from domain.configuration.embedding_model_configuration import EmbeddingModelConfiguration, EmbeddingModelType
+from domain.configuration.llm_model_configuration import LLMModelConfiguration, LLMModelType
+from domain.configuration.vector_store_configuration import VectorStoreConfiguration, VectorStoreType
 
 from adapter.out.persistence.postgres.database import Base, db_session
 
 
 class PostgresDocumentStoreType(Enum):
     AWS = 1
+    
+    def toDocumentStoreType(self):
+        if self == PostgresDocumentStoreType.AWS:
+            return  DocumentStoreType.AWS
 
 class PostgresVectorStoreType(Enum):
     PINECONE = 1
     CHROMA_DB = 2
+    
+    def toVectorStoreType(self):
+        if self == PostgresVectorStoreType.PINECONE:
+            return  VectorStoreType.PINECONE
+        elif self == PostgresVectorStoreType.CHROMA_DB:
+            return  VectorStoreType.CHROMA_DB
 
 class PostgresLLMModelType(Enum):
     OPENAI = 1
     HUGGINGFACE = 2
+    
+    def toLLMModelType(self):
+        if self == PostgresLLMModelType.OPENAI:
+            return  LLMModelType.OPENAI
+        elif self == PostgresLLMModelType.HUGGINGFACE:
+            return  LLMModelType.HUGGINGFACE
 
 class PostgresEmbeddingModelType(Enum):
     OPENAI = 1
     HUGGINGFACE = 2
+    
+    def toEmbeddingModelType(self):
+        if self == PostgresEmbeddingModelType.OPENAI:
+            return  EmbeddingModelType.OPENAI
+        elif self == PostgresEmbeddingModelType.HUGGINGFACE:
+            return  EmbeddingModelType.HUGGINGFACE
 
 """ 
 This class is the ORM of the vectorStoreConfiguration table.
@@ -59,7 +81,7 @@ class PostgresVectorStoreConfiguration(Base):
     """
     def toVectorStoreConfiguration(self):
         return VectorStoreConfiguration(
-            self.name,
+            self.name.toVectorStoreType(),
             self.organization,
             self.description,
             self.type,
@@ -100,7 +122,7 @@ class PostgresEmbeddingModelConfiguration(Base):
     """
     def toEmbeddingModelConfiguration(self):
         return EmbeddingModelConfiguration(
-            self.name,
+            self.name.toEmbeddingModelType(),
             self.organization,
             self.description,
             self.type,
@@ -141,7 +163,7 @@ class PostgresLLMModelConfiguration(Base):
     """
     def toLLMModelConfiguration(self):
         return LLMModelConfiguration(
-            self.name,
+            self.name.toLLMModelType(),
             self.organization,
             self.description,
             self.type,
@@ -182,7 +204,7 @@ class PostgresDocumentStoreConfiguration(Base):
     """
     def toDocumentStoreConfiguration(self):
         return DocumentStoreConfiguration(
-            self.name,
+            self.name.toDocumentStoreType(),
             self.organization,
             self.description,
             self.type,

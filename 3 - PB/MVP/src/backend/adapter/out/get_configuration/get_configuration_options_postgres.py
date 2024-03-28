@@ -22,8 +22,8 @@ class GetConfigurationOptionsPostgres(GetConfigurationOptionsPort):
         postgresConfigurationDocumentStoreOptions = self.postgresConfigurationORM.getDocumentStoreOptions()
         
         return ConfigurationOptions(
-            vectorStoreOptions=postgresConfigurationVectorStoreOptions,
-            embeddingModelOptions=postgresConfigurationEmbeddingModelOptions,
-            LLMModelOptions=postgresConfigurationLLMModelOptions,
-            documentStoreOptions=postgresConfigurationDocumentStoreOptions
+            vectorStoreOptions=[option.toVectorStoreConfiguration() for option in postgresConfigurationVectorStoreOptions],
+            embeddingModelOptions=[option.toEmbeddingModelConfiguration() for option in postgresConfigurationEmbeddingModelOptions],
+            LLMModelOptions=[option.toLLMModelConfiguration() for option in postgresConfigurationLLMModelOptions],
+            documentStoreOptions=[option.toDocumentStoreConfiguration() for option in postgresConfigurationDocumentStoreOptions]
         )

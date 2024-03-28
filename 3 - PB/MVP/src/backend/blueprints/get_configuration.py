@@ -23,7 +23,6 @@ def getConfiguration():
     )
     
     configuration = controller.getConfiguration()
-    
     if configuration is None:
         raise APIElaborationException("Errore nel recupero della configurazione.")
     

@@ -28,7 +28,6 @@ class DeleteDocumentsService(DeleteDocumentsUseCase):
         documentOperationResponses = self.deleteDocumentsEmbeddings.deleteDocumentsEmbeddings(documentsIds)
         
         finalOperationResponses = []
-        
         if len(documentsIds) != len(documentOperationResponses):
             raise ElaborationException("Errore nell'elaborazione delle operazioni di cancellazione dei documenti.")
 
@@ -38,4 +37,5 @@ class DeleteDocumentsService(DeleteDocumentsUseCase):
                 finalOperationResponses = finalOperationResponses + deleteDocumentOperationResponse
             else:
                 finalOperationResponses.append(documentOperationResponse)
+        print(len(finalOperationResponses))
         return finalOperationResponses

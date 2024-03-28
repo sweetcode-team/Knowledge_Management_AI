@@ -57,9 +57,9 @@ def handle_api_error(error):
 def handle_api_elaboration_error(error):
     return jsonify(error.message), error.status_code
 
-excluded_endpoints = ['getConfiguration', 'setConfiguration', 'getConfigurationOptions']
 @app.before_request
 def check_configuration():
+    excluded_endpoints = ['getConfiguration', 'setConfiguration', 'getConfigurationOptions']
     if request.endpoint is not None and request.endpoint.split('.')[1] not in excluded_endpoints:
         config_response = getConfiguration()
 

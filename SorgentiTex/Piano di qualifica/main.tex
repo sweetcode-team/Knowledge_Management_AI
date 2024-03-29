@@ -424,157 +424,494 @@ Di seguito vengono elencati i test di unità:
 \begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
 \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
 \hline
-TU1 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento PDF & S \\
+TU1 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento PDF. & S \\
 \hline
-TU2 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento DOCX & S \\
+TU2 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento DOCX. & S \\
 \hline
-TU3 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat esistente & S \\
+TU3 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat esistente. & S \\
 \hline
-TU4 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat non esistente & S \\
+TU4 & Verifica che il metodo askChatbot di AskChatbotController gestisca correttamente una chat non esistente. & S \\
 \hline
-TU5 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello esistente & S \\
+TU5 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello esistente. & S \\
 \hline
-TU6 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello inesistente & S \\
+TU6 & Verifica che il metodo changeLLMModel di ChangeConfigurationController gestisca correttamente un modello inesistente. & S \\
 \hline
-TU7 & Verifica che il metodo concealDocuments di ConcealDocumentsController funzioni correttamente & S \\
+TU7 & Verifica che il metodo concealDocuments di ConcealDocumentsController funzioni correttamente. & S \\
 \hline
-TU8 & Verifica che il metodo deleteChats di DeleteChatsController funzioni correttamente & S \\
+TU8 & Verifica che il metodo deleteChats di DeleteChatsController funzioni correttamente. & S \\
 \hline
-TU9 & Verifica che il metodo deleteDocuments di DeleteDocumentsController funzioni correttamente & S \\
+TU9 & Verifica che il metodo deleteDocuments di DeleteDocumentsController funzioni correttamente. & S \\
 \hline
-TU10 & Verifica che il metodo deleteDocuments di DeleteDocumentsController gestisca correttamente un'eccezione & S \\
+TU10 & Verifica che il metodo deleteDocuments di DeleteDocumentsController gestisca correttamente un'eccezione. & S \\
 \hline
-TU11 & Verifica che il metodo embedDocuments di EmbedDocumentsController funzioni correttamente & S \\
+TU11 & Verifica che il metodo embedDocuments di EmbedDocumentsController funzioni correttamente. & S \\
 \hline
-TU12 & Verifica che il metodo embedDocuments di EmbedDocumentsController gestisca correttamente un'eccezione & S \\
+TU12 & Verifica che il metodo embedDocuments di EmbedDocumentsController gestisca correttamente un'eccezione. & S \\
 \hline
-TU13 & Verifica che il metodo enableDocuments di EnableDocumentsController funzioni correttamente & S \\
+TU13 & Verifica che il metodo enableDocuments di EnableDocumentsController funzioni correttamente. & S \\
 \hline
-TU14 & Verifica che il metodo getChatMessages di GetChatMessagesController funzioni correttamente & S \\
+TU14 & Verifica che il metodo getChatMessages di GetChatMessagesController funzioni correttamente. & S \\
 \hline
-TU15 & Verifica che il metodo getChats di GetChatsController funzioni correttamente con filter & S \\
+TU15 & Verifica che il metodo getChats di GetChatsController funzioni correttamente con filter. & S \\
 \hline
-TU16 & Verifica che il metodo getChats di GetChatsController funzioni correttamente senza filter & S \\
+TU16 & Verifica che il metodo getChats di GetChatsController funzioni correttamente senza filter. & S \\
 \hline
-TU17 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsController funzioni correttamente & S \\
+TU17 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsController funzioni correttamente. & S \\
 \hline
-TU18 & Verifica che il metodo getConfiguration di GetConfigurationController funzioni correttamente & S \\
+TU18 & Verifica che il metodo getConfiguration di GetConfigurationController funzioni correttamente. & S \\
 \hline
-TU19 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di true & S \\
+TU19 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di true. & S \\
 \hline
-TU20 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di none & S \\
+TU20 & Verifica che il metodo getDocumentContent di GetDocumentContentController funzioni correttamente in caso di none. & S \\
 \hline
-TU21 & Verifica che il metodo getDocumentContent di GetDocumentContentController gestisca correttamente un'eccezione & S \\
+TU21 & Verifica che il metodo getDocumentContent di GetDocumentContentController gestisca correttamente un'eccezione. & S \\
 \hline
-TU22 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente con filter & S \\
+TU22 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente con filter. & S \\
 \hline
-TU23 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente senza filter & S \\
+TU23 & Verifica che il metodo getDocuments di GetDocumentsController funzioni correttamente senza filter. & S \\
 \hline
-TU24 & Verifica che il metodo getDocuments di GetDocumentsController gestisca correttamente un'eccezione & S \\
+TU24 & Verifica che il metodo getDocuments di GetDocumentsController gestisca correttamente un'eccezione. & S \\
 \hline
-TU25 & Verifica che il metodo renameChat di RenameChatController funzioni correttamente & S \\
+TU25 & Verifica che il metodo renameChat di RenameChatController funzioni correttamente. & S \\
 \hline
-TU26 & Verifica che il metodo setConfiguration di SetConfigurationController funzioni correttamente & S \\
+TU26 & Verifica che il metodo setConfiguration di SetConfigurationController funzioni correttamente. & S \\
 \hline
-TU27 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello LLM inesistente & S \\
+TU27 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello LLM inesistente. & S \\
 \hline
-TU28 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un document store inesistente & S \\
+TU28 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un document store inesistente. & S \\
 \hline
-TU29 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un vectore store inesistente & S \\
+TU29 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un vectore store inesistente. & S \\
 \hline
-TU30 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello di embedding inesistente & S \\
+TU30 & Verifica che il metodo setConfiguration di SetConfigurationController gestisca correttamente un modello di embedding inesistente. & S \\
 \hline
-TU31 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di false & S \\
+TU31 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di false. & S \\
 \hline
-TU32 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di true & S \\
+TU32 & Verifica che il metodo uploadDocuments di UploadDocumentsController funzioni correttamente in caso di true. & S \\
 \hline
-TU33 & Verifica che il metodo uploadDocuments di UploadDocumentsController gestisca correttamente un'eccezione & S \\
+TU33 & Verifica che il metodo uploadDocuments di UploadDocumentsController gestisca correttamente un'eccezione. & S \\
 \hline
-TU34 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando entrambe le risposte sono vere & S \\
+TU34 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando entrambe le risposte sono vere. & S \\
 \hline
-TU35 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando la risposta del chatbot è falsa & S \\
+TU35 & Verifica che il metodo askChatbot di AskChatbotService funzioni correttamente quando la risposta del chatbot è falsa. & S \\
 \hline
-TU36 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento di persistenza & S \\
+TU36 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento di persistenza. & S \\
 \hline
-TU37 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento sia del chatbot che della persistenza & S \\
+TU37 & Verifica che il metodo askChatbot di AskChatbotService gestisca correttamente un fallimento sia del chatbot che della persistenza. & S \\
 \hline
-TU38 & Verifica che il metodo changeLLMModel di ChangeConfigurationService funzioni correttamente & S \\
+TU38 & Verifica che il metodo changeLLMModel di ChangeConfigurationService funzioni correttamente. & S \\
 \hline
-TU39 & Verifica che il metodo changeLLMModel di ChangeConfigurationService gestisca correttamente un fallimento & S \\
+TU39 & Verifica che il metodo changeLLMModel di ChangeConfigurationService gestisca correttamente un fallimento. & S \\
 \hline
-TU40 & Verifica che il metodo concealDocuments di ConcealDocumentsService funzioni correttamente & S \\
+TU40 & Verifica che il metodo concealDocuments di ConcealDocumentsService funzioni correttamente. & S \\
 \hline
-TU41 & Verifica che il metodo concealDocuments di ConcealDocumentsService gestisca correttamente un fallimento & S \\
+TU41 & Verifica che il metodo concealDocuments di ConcealDocumentsService gestisca correttamente un fallimento. & S \\
 \hline
-TU42 & Verifica che il metodo deleteChats di DeleteChatsService funzioni correttamente & S \\
+TU42 & Verifica che il metodo deleteChats di DeleteChatsService funzioni correttamente. & S \\
 \hline
-TU43 & Verifica che il metodo deleteChats di DeleteChatsService gestisca correttamente un fallimento & S \\
+TU43 & Verifica che il metodo deleteChats di DeleteChatsService gestisca correttamente un fallimento. & S \\
 \hline
-TU44 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings funzioni correttamente & S \\
+TU44 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings funzioni correttamente. & S \\
 \hline
-TU45 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings gestisca correttamente un fallimento & S \\
+TU45 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteDocumentsEmbeddings gestisca correttamente un fallimento. & S \\
 \hline
-TU46 & Verifica che il metodo deleteDocuments di DeleteDocumentsService funzioni correttamente quando entrambe le operazioni sono vere & S \\
+TU46 & Verifica che il metodo deleteDocuments di DeleteDocumentsService funzioni correttamente quando entrambe le operazioni sono vere. & S \\
 \hline
-TU47 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento degli embeddings & S \\
+TU47 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento degli embeddings. & S \\
 \hline
-TU48 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento del documento & S \\
+TU48 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento del documento. & S \\
 \hline
-TU49 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento sia del documento che degli embeddings & S \\
+TU49 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un fallimento sia del documento che degli embeddings. & S \\
 \hline
-TU50 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un'eccezione di elaborazione & S \\
+TU50 & Verifica che il metodo deleteDocuments di DeleteDocumentsService gestisca correttamente un'eccezione di elaborazione. & S \\
 \hline
-TU51 & Verifica che il metodo deleteDocuments di DeleteDocuments funzioni correttamente & S \\
+TU51 & Verifica che il metodo deleteDocuments di DeleteDocuments funzioni correttamente. & S \\
 \hline
-TU52 & Verifica che il metodo deleteDocuments di DeleteDocuments gestisca correttamente un fallimento & S \\
+TU52 & Verifica che il metodo deleteDocuments di DeleteDocuments gestisca correttamente un fallimento. & S \\
 \hline
-TU53 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando entrambe le risposte sono vere & S \\
+TU53 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando entrambe le risposte sono vere. & S \\
 \hline
-TU54 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando la risposta del caricamento forzato è falsa ma la risposta del documento è vera & S \\
+TU54 & Verifica che il metodo uploadDocuments di DocumentsUploader funzioni correttamente quando la risposta del caricamento forzato è falsa ma la risposta del documento è vera. & S \\
 \hline
-TU55 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando il caricamento forzato è vero ma la risposta del documento è falsa & S \\
+TU55 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando il caricamento forzato è vero ma la risposta del documento è falsa. & S \\
 \hline
-TU56 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando sia il caricamento forzato che la risposta del documento sono falsi & S \\
+TU56 & Verifica che il metodo uploadDocuments di DocumentsUploader gestisca correttamente un fallimento quando sia il caricamento forzato che la risposta del documento sono falsi. & S \\
 \hline
-TU57 & Verifica che il metodo embedDocuments di EmbedDocumentsService funzioni correttamente & S \\
+TU57 & Verifica che il metodo embedDocuments di EmbedDocumentsService funzioni correttamente. & S \\
 \hline
-TU58 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploader funzioni correttamente & S \\
+TU58 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploader funzioni correttamente. & S \\
 \hline
-TU59 & Verifica che il metodo enableDocuments di EnableDocumentsService funzioni correttamente & S \\
+TU59 & Verifica che il metodo enableDocuments di EnableDocumentsService funzioni correttamente. & S \\
 \hline
-TU60 & Verifica che il metodo getChatMessages di GetChatMessagesService funzioni correttamente & S \\
+TU60 & Verifica che il metodo getChatMessages di GetChatMessagesService funzioni correttamente. & S \\
 \hline
-TU61 & Verifica che il metodo getChats di GetChatsService funzioni correttamente & S \\
+TU61 & Verifica che il metodo getChats di GetChatsService funzioni correttamente. & S \\
 \hline
-TU62 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsService funzioni correttamente & S \\
+TU62 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsService funzioni correttamente. & S \\
 \hline
-TU63 & Verifica che il metodo getConfiguration di GetConfigurationService funzioni correttamente & S \\
+TU63 & Verifica che il metodo getConfiguration di GetConfigurationService funzioni correttamente. & S \\
 \hline
-TU64 & Verifica che il metodo getDocumentsContent di GetDocumentsContentFacadeService funzioni correttamente & S \\
+TU64 & Verifica che il metodo getDocumentsContent di GetDocumentsContentFacadeService funzioni correttamente. & S \\
 \hline
-TU65 & Verifica che il metodo getDocumentsContent di GetDocumentsContent funzioni correttamente & S \\
+TU65 & Verifica che il metodo getDocumentsContent di GetDocumentsContent funzioni correttamente. & S \\
 \hline
-TU66 & Verifica che il metodo getDocuments di GetDocumentsFacadeService funzioni correttamente & S \\
+TU66 & Verifica che il metodo getDocuments di GetDocumentsFacadeService funzioni correttamente. & S \\
 \hline
-TU67 & Verifica che il metodo getDocumentsMetadata di GetDocumentsMetadata funzioni correttamente & S \\
+TU67 & Verifica che il metodo getDocumentsMetadata di GetDocumentsMetadata funzioni correttamente. & S \\
 \hline
-TU68 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatus funzioni correttamente & S \\
+TU68 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatus funzioni correttamente. & S \\
 \hline
-TU69 & Verifica che il metodo renameChat di RenameChatService funzioni correttamente & S \\
+TU69 & Verifica che il metodo renameChat di RenameChatService funzioni correttamente. & S \\
 \hline
-TU70 & Verifica che il metodo uploadDocuments di UploadDocumentsService funzioni correttamente & S \\
+TU70 & Verifica che il metodo uploadDocuments di UploadDocumentsService funzioni correttamente. & S \\
 \hline
-
-
-
-
-
-
-
-
-
-
-
+TU71 & Verifica che il metodo askChatbot di AskChatbotLangchain funzioni correttamente in caso ci sia il chat id. & S \\
+\hline
+TU72 & Verifica che il metodo askChatbot di AskChatbotLangchain funzioni correttamente in caso non ci sia il chat id. & S \\
+\hline
+TU73 & Verifica che il metodo askChatbot di AskChatbotLangchain gestisca correttamente un fallimento di ChatHistoryManager. & S \\
+\hline
+TU74 & Verifica che il metodo toPostgresMessageFrom di PostgresPersistChat funzioni correttamente in caso di messaggio dallo user. & S \\
+\hline
+TU75 & Verifica che il metodo toPostgresMessageFrom di PostgresPersistChat funzioni correttamente in caso di messaggio dal chatbot. & S \\
+\hline
+TU76 & Verifica che il metodo persistChat di PostgresPersistChat funzioni correttamente in caso la chat abbia id. & S \\
+\hline
+TU77 & Verifica che il metodo persistChat di PostgresPersistChat funzioni correttamente in caso la chat non abbia id. & S \\
+\hline
+TU78 & Verifica che il metodo toPostgresLLMModelTypeFrom di ChangeConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU79 & Verifica che il metodo changeLLMModel di ChangeConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU80 & Verifica che il metodo concealDocuments di ConcealDocumentsVectorStore funzioni correttamente. & S \\
+\hline
+TU81 & Verifica che il metodo deleteChats di DeleteChatsPostgres funzioni correttamente. & S \\
+\hline
+TU82 & Verifica che il metodo deleteDocuments di DeleteDocumentsAWSS3 funzioni correttamente. & S \\
+\hline
+TU83 & Verifica che il metodo deleteDocumentsEmbeddings di DeleteEmbeddingsVectorStore funzioni correttamente. & S \\
+\hline
+TU84 & Verifica che il metodo enableDocuments di EnableDocumentsVectorStore funzioni correttamente. & S \\
+\hline
+TU85 & Verifica che il metodo getChatMessages di GetChatMessagesPostgres funzioni correttamente. & S \\
+\hline
+TU86 & Verifica che il metodo getChatMessages di GetChatMessagesPostgres gestisca correttamente un fallimento. & S \\
+\hline
+TU87 & Verifica che il metodo getChats di GetChatsPostgres funzioni correttamente. & S \\
+\hline
+TU88 & Verifica che il metodo getChats di GetChatsPostgres funzioni correttamente se il db è vuoto. & S \\
+\hline
+TU89 & Verifica che il metodo getChats di GetChatsPostgres gestisca correttamente un fallimento. & S \\
+\hline
+TU90 & Verifica che il metodo getConfigurationOptions di GetConfigurationOptionsPostgres funzioni correttamente. & S \\
+\hline
+TU91 & Verifica che il metodo getConfiguration di GetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU92 & Verifica che il metodo getConfiguration di GetConfigurationPostgres gestisca correttamente un fallimento. & S \\
+\hline
+TU93 & Verifica che il metodo getDocumentsContent di GetDocumentsContentAWSS3 funzioni correttamente. & S \\
+\hline
+TU94 & Verifica che il metodo getDocumentsContent di GetDocumentsContentAWSS3 funzioni correttamente se il contenuto non è presente. & S \\
+\hline
+TU95 & Verifica che il metodo getDocumentsMetadata di GetDocumentsListAWSS3 funzioni correttamente. & S \\
+\hline
+TU96 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatusVectorStore funzioni correttamente in caso di concealed. & S \\
+\hline
+TU97 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatusVectorStore funzioni correttamente in caso di eanbled. & S \\
+\hline
+TU98 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatusVectorStore funzioni correttamente in caso di inconsistent. & S \\
+\hline
+TU99 & Verifica che il metodo getDocumentsStatus di GetDocumentsStatusVectorStore funzioni correttamente in caso di notEmbedded. & S \\
+\hline
+TU100 & Verifica che il metodo toDocumentMetadataFrom di AWSDocumentMetadata funzioni correttamente con i PDF. & S \\
+\hline
+TU101 & Verifica che il metodo toDocumentMetadataFrom di AWSDocumentMetadata funzioni correttamente con i DOCX. & S \\
+\hline
+TU102 & Verifica che il metodo toDocumentOperationResponse di AWSDocumentOperationResponse funzioni correttamente. & S \\
+\hline
+TU103 & Verifica che il metodo toDocumentOperationResponse di AWSDocumentOperationResponse gestisca correttamente un fallimento. & S \\
+\hline
+TU104 & Verifica che il metodo getDocumentById di AWSS3Manager funzioni correttamente. & S \\
+\hline
+TU105 & Verifica che il metodo uploadDocuments di AWSS3Manager funzioni correttamente in caso "FalsePresent". & S \\
+\hline
+TU106 & Verifica che il metodo uploadDocuments di AWSS3Manager funzioni correttamente in caso "FalseNotPresentTrue". & S \\
+\hline
+TU107 & Verifica che il metodo uploadDocuments di AWSS3Manager funzioni correttamente in caso "FalseNotPresentFalse". & S \\
+\hline
+TU108 & Verifica che il metodo uploadDocuments di AWSS3Manager funzioni correttamente in caso "TrueTrue". & S \\
+\hline
+TU109 & Verifica che il metodo uploadDocuments di AWSS3Manager funzioni correttamente in caso "TrueFail". & S \\
+\hline
+TU110 & Verifica che il metodo deleteDocuments di AWSS3Manager funzioni correttamente. & S \\
+\hline
+TU111 & Verifica che il metodo deleteDocuments di AWSS3Manager gestisca correttamente un fallimento. & S \\
+\hline
+TU112 & Verifica che il metodo deleteDocuments di AWSS3Manager funzioni correttamente in caso di "NotFound". & S \\
+\hline
+TU113 & Verifica che il metodo getDocumentsMetadata di AWSS3Manager funzioni correttamente in caso di "WithFilter". & S \\
+\hline
+TU114 & Verifica che il metodo getDocumentsMetadata di AWSS3Manager funzioni correttamente in caso di "WithoutFilter". & S \\
+\hline
+TU115 & Verifica che il metodo getDocumentContent di AWSS3Manager funzioni correttamente. & S \\
+\hline
+TU116 & Verifica che il metodo getDocumentContent di AWSS3Manager gestisca correttamente un fallimento. & S \\
+\hline
+TU117 & Verifica che il metodo getChatHistory di ChatHistoryManager funzioni correttamente. & S \\
+\hline
+TU118 & Verifica che il metodo toVectorStoreConfiguration di PostgresVectorStoreConfiguration funzioni correttamente. & S \\
+\hline
+TU119 & Verifica che il metodo toEmbeddingModelConfiguration di PostgresEmbeddingModelConfiguration funzioni correttamente. & S \\
+\hline
+TU120 & Verifica che il metodo toLLMModelConfiguration di PostgresLLMModelConfiguration funzioni correttamente. & S \\
+\hline
+TU121 & Verifica che il metodo toDocumentStoreConfiguration di PostgresDocumentStoreConfiguration funzioni correttamente. & S \\
+\hline
+TU122 & Verifica che il metodo toChatOperationResponse di PostgresChatOperationResponse funzioni correttamente in caso di risposta. & S \\
+\hline
+TU123 & Verifica che il metodo toChatOperationResponse di PostgresChatOperationResponse gestisca correttamente un fallimento. & S \\
+\hline
+TU124 & Verifica che il metodo saveMessages di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU125 & Verifica che il metodo saveMessages di PostgresChatORM funzioni correttamente gestisca correttamente un fallimento. & S \\
+\hline
+TU126 & Verifica che il metodo createChat di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU127 & Verifica che il metodo createChat di PostgresChatORM funzioni correttamente gestisca correttamente un fallimento. & S \\
+\hline
+TU128 & Verifica che il metodo persistChat di PostgresChatORM funzioni correttamente con il ChatId. & S \\
+\hline
+TU129 & Verifica che il metodo persistChat di PostgresChatORM funzioni correttamente senza il ChatId. & S \\
+\hline
+TU130 & Verifica che il metodo persistChat di PostgresChatORM funzioni correttamente senza messaggi. & S \\
+\hline
+TU131 & Verifica che il metodo deleteChats di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU132 & Verifica che il metodo deleteChats di PostgresChatORM gestisca correttamente un fallimento. & S \\
+\hline
+TU133 & Verifica che il metodo renameChat di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU134 & Verifica che il metodo renameChat di PostgresChatORM funzioni correttamente se la chat non viene trovata. & S \\
+\hline
+TU135 & Verifica che il metodo renameChat di PostgresChatORM gestisca correttamente un fallimento. & S \\
+\hline
+TU136 & Verifica che il metodo getChats di PostgresChatORM funzioni correttamente senza ultimo messaggio. & S \\
+\hline
+TU137 & Verifica che il metodo getChats di PostgresChatORM funzioni correttamente con ultimo messaggio. & S \\
+\hline
+TU138 & Verifica che il metodo getChats di PostgresChatORM gestisca correttamente un fallimento. & S \\
+\hline
+TU139 & Verifica che il metodo getChatMessages di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU140 & Verifica che il metodo getChatMessages di PostgresChatORM funzioni correttamente. & S \\
+\hline
+TU141 & Verifica che il metodo toChatPreview di PostgresChatPreview funzioni correttamente. & S \\
+\hline
+TU142 & Verifica che il metodo toChat di PostgresChat funzioni correttamente. & S \\
+\hline
+TU143 & Verifica che il metodo toConfigurationOperationResponse di PostgresConfigurationOperationResponse funzioni correttamente. & S \\
+\hline
+TU144 & Verifica che il metodo ok di PostgresConfigurationOperationResponse funzioni correttamente e ritorni true. & S \\
+\hline
+TU145 & Verifica che il metodo ok di PostgresConfigurationOperationResponse funzioni correttamente e ritorni false. & S \\
+\hline
+TU146 & Verifica che il metodo getConfiguration di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU147 & Verifica che il metodo getConfiguration di PostgresConfigurationORM funzioni correttamente in caso di configurazione vuota. & S \\
+\hline
+TU148 & Verifica che il metodo getConfigurationChoices di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU149 & Verifica che il metodo setConfiguration di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU150 & Verifica che il metodo setConfiguration di PostgresConfigurationORM funzioni correttamente in caso di false. & S \\
+\hline
+TU151 & Verifica che il metodo changeLLMModel di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU152 & Verifica che il metodo changeLLMModel di PostgresConfigurationORM funzioni correttamente in caso di false. & S \\
+\hline
+TU153 & Verifica che il metodo getVectorStoreOptions di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU154 & Verifica che il metodo getEmbeddingModelOptions di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU155 & Verifica che il metodo getLLMModelOptions di PostgresConfigurationORM funzioni correttamente. & S \\
+\hline
+TU156 & Verifica che il metodo toConfiguration di PostgresConfiguration funzioni correttamente. & S \\
+\hline
+TU157 & Verifica che il metodo toMessage di PostgresMessage funzioni correttamente mandando un messaggio allo user. & S \\
+\hline
+TU158 & Verifica che il metodo toMessage di PostgresMessage funzioni correttamente mandando un messaggio al chatbot. & S \\
+\hline
+TU159 & Verifica che il metodo getDocumentsStatus di VectorStoreChromaDBManager funzioni correttamente in caso notEmbedded. & S \\
+\hline
+TU160 & Verifica che il metodo getDocumentsStatus di VectorStoreChromaDBManager funzioni correttamente in caso enabled. & S \\
+\hline
+TU161 & Verifica che il metodo getDocumentsStatus di VectorStoreChromaDBManager funzioni correttamente in caso di conceal. & S \\
+\hline
+TU162 & Verifica che il metodo getDocumentsStatus di VectorStoreChromaDBManager funzioni correttamente in caso di inconsistent. & S \\
+\hline
+TU163 & Verifica che il metodo getDocumentsStatus di VectorStoreChromaDBManager gestisca correttamente un fallimento. & S \\
+\hline
+TU164 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStoreChromaDBManager funzioni correttamente. & S \\
+\hline
+TU165 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStoreChromaDBManager gestisca correttamente un fallimento. & S \\
+\hline
+TU166 & Verifica che il metodo concealDocuments di VectorStoreChromaDBManager funzioni correttamente. & S \\
+\hline
+TU167 & Verifica che il metodo concealDocuments di VectorStoreChromaDBManager gestisca correttamente un fallimento. & S \\
+\hline
+TU168 & Verifica che il metodo enableDocuments di VectorStoreChromaDBManager funzioni correttamente. & S \\
+\hline
+TU169 & Verifica che il metodo enableDocuments di VectorStoreChromaDBManager gestisca correttamente un fallimento. & S \\
+\hline
+TU170 & Verifica che il metodo uploadEmbeddings di VectorStoreChromaDBManager funzioni correttamente. & S \\
+\hline
+TU171 & Verifica che il metodo uploadEmbeddings di VectorStoreChromaDBManager gestisca correttamente un fallimento. & S \\
+\hline
+TU172 & Verifica che il metodo getRetriever di VectorStoreChromaDBManager funzioni correttamente. & S \\
+\hline
+TU173 & Verifica che il metodo toDocumentOperationResponse di VectorStoreDocumentOperationResponse funzioni correttamente. & S \\
+\hline
+TU174 & Verifica che il metodo getDocumentsStatus di VectorStorePineconeManager funzioni correttamente in caso di notEmbedded. & S \\
+\hline
+TU175 & Verifica che il metodo getDocumentsStatus di VectorStorePineconeManager funzioni correttamente in caso di enabled. & S \\
+\hline
+TU176 & Verifica che il metodo getDocumentsStatus di VectorStorePineconeManager funzioni correttamente in caso di concealed. & S \\
+\hline
+TU177 & Verifica che il metodo getDocumentsStatus di VectorStorePineconeManager funzioni correttamente in caso di inconsistent. & S \\
+\hline
+TU178 & Verifica che il metodo getDocumentsStatus di VectorStorePineconeManager gestisca correttamente un fallimento. & S \\
+\hline
+TU179 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStorePineconeManager funzioni correttamente trovando embeddings. & S \\
+\hline
+TU180 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStorePineconeManager gestisca correttamente un fallimento. & S \\
+\hline
+TU181 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStorePineconeManager funzioni correttamente non trovando embeddings. & S \\
+\hline
+TU182 & Verifica che il metodo deleteDocumentsEmbeddings di VectorStorePineconeManager gestisca correttamente un fallimento. & S \\
+\hline
+TU183 & Verifica che il metodo concealDocuments di VectorStorePineconeManager funzioni correttamente. & S \\
+\hline
+TU184 & Verifica che il metodo concealDocuments di VectorStorePineconeManager gestisca correttamente un fallimento. & S \\
+\hline
+TU185 & Verifica che il metodo concealDocuments di VectorStorePineconeManager gestisca correttamente un fallimento della query. & S \\
+\hline
+TU186 & Verifica che il metodo enableDocuments di VectorStorePineconeManager funzioni correttamente. & S \\
+\hline
+TU187 & Verifica che il metodo enableDocuments di VectorStorePineconeManager gestisca correttamente un fallimento della query. & S \\
+\hline
+TU188 & Verifica che il metodo enableDocuments di VectorStorePineconeManager gestisca correttamente un fallimento di update. & S \\
+\hline
+TU189 & Verifica che il metodo uploadEmbeddings di VectorStorePineconeManager funzioni correttamente. & S \\
+\hline
+TU190 & Verifica che il metodo uploadEmbeddings di VectorStorePineconeManager gestisca correttamente un fallimento. & S \\
+\hline
+TU191 & Verifica che il metodo uploadEmbeddings di VectorStorePineconeManager gestisca correttamente un'eccezione. & S \\
+\hline
+TU192 & Verifica che il metodo getRetriever di VectorStorePineconeManager funzioni correttamente. & S \\
+\hline
+TU193 & Verifica che il metodo renameChat di RenameChatPostgres funzioni correttamente. & S \\
+\hline
+TU194 & Verifica che il metodo setConfiguration di SetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU195 & Verifica che il metodo toPostgresLLMModelTypeFrom di SetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU196 & Verifica che il metodo toPostgresDocumentStoreTypeFrom di SetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU197 & Verifica che il metodo toPostgresVectorStoreTypeFrom di SetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU198 & Verifica che il metodo toPostgresEmbeddingModelTypeFrom di SetConfigurationPostgres funzioni correttamente. & S \\
+\hline
+TU199 & Verifica che il metodo extractText di Chunkerizer funzioni correttamente con i PDF. & S \\
+\hline
+TU200 & Verifica che il metodo extractText di Chunkerizer funzioni correttamente con i DOCX. & S \\
+\hline
+TU201 & Verifica che il metodo extractText di Chunkerizer gestisca correttamente un fallimento. & S \\
+\hline
+TU202 & Verifica che il metodo getTextExtractorFrom di Chunkerizer funzioni correttamente con i PDF& S \\
+\hline
+TU203 & Verifica che il metodo getTextExtractorFrom di Chunkerizer funzioni correttamente con i DOCX. & S \\
+\hline
+TU204 & Verifica che il metodo getTextExtractorFrom di Chunkerizer gestisca correttamente un fallimento. & S \\
+\hline
+TU205 & Verifica che il metodo toAWSDocumentFrom di DocumentsUploaderAWSS3 funzioni correttamente. & S \\
+\hline
+TU206 & Verifica che il metodo uploadDocuments di DocumentsUploaderAWSS3 funzioni correttamente in caso di true. & S \\
+\hline
+TU207 & Verifica che il metodo uploadDocuments di DocumentsUploaderAWSS3 funzioni correttamente in caso di false. & S \\
+\hline
+TU208 & Verifica che il metodo extractText di DOCXTextExtractor funzioni correttamente. & S \\
+\hline
+TU209 & Verifica che il metodo embedDocument di EmbeddingsCreator funzioni correttamente. & S \\
+\hline
+TU210 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploaderFacadeLangchain funzioni correttamente. & S \\
+\hline
+TU211 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploaderFacadeLangchain gestisca correttamente un fallimento. & S \\
+\hline
+TU212 & Verifica che il metodo uploadEmbeddings di EmbeddingsUploaderVectorStore funzioni correttamente. & S \\
+\hline
+TU213 & Verifica che il metodo embedDocument di HuggingFaceEmbeddingModel funzioni correttamente. & S \\
+\hline
+TU214 & Verifica che il metodo embedDocument di HuggingFaceEmbeddingModel gestisca correttamente un fallimento. & S \\
+\hline
+TU215 & Verifica che il metodo getEmbeddingFunction di HuggingFaceEmbeddingModel funzioni correttamente. & S \\
+\hline
+TU216 & Verifica che il metodo embedDocument di OpenAIEmbeddingModel funzioni correttamente. & S \\
+\hline
+TU217 & Verifica che il metodo embedDocument di OpenAIEmbeddingModel gestisca correttamente un fallimento. & S \\
+\hline
+TU218 & Verifica che il metodo getEmbeddingFunction di OpenAIEmbeddingModel funzioni correttamente. & S \\
+\hline
+TU219 & Verifica che il metodo extractText di PDFTextExtractor funzioni correttamente. & S \\
+\hline
+TU220 & Verifica che il metodo getDocumentsUploaderPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU221 & Verifica che il metodo getDocumentsUploaderPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU222 & Verifica che il metodo getEmbeddingsUploaderPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU223 & Verifica che il metodo getEmbeddingsUploaderPort di ConfigurationManager gestisca correttamente un fallimento del vector store. & S \\
+\hline
+TU224 & Verifica che il metodo getEmbeddingsUploaderPort di ConfigurationManager gestisca correttamente un fallimento dell'embeddingModel. & S \\
+\hline
+TU225 & Verifica che il metodo getGetDocumentsStatusPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU226 & Verifica che il metodo getGetDocumentsStatusPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU227 & Verifica che il metodo getGetDocumentsMetadataPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU228 & Verifica che il metodo getGetDocumentsMetadataPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU229 & Verifica che il metodo getDeleteDocumentsPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU230 & Verifica che il metodo getDeleteDocumentsPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU231 & Verifica che il metodo getDeleteEmbeddingsPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU232 & Verifica che il metodo getDeleteEmbeddingsPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU233 & Verifica che il metodo getConcealDocumentsPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU234 & Verifica che il metodo getConcealDocumentsPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU235 & Verifica che il metodo getEnableDocumentsPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU236 & Verifica che il metodo getEnableDocumentsPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU237 & Verifica che il metodo getGetDocumentsContentPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU238 & Verifica che il metodo getGetDocumentsContentPort di ConfigurationManager gestisca correttamente un fallimento. & S \\
+\hline
+TU239 & Verifica che il metodo getAskChatbotPort di ConfigurationManager funzioni correttamente. & S \\
+\hline
+TU240 & Verifica che il metodo getAskChatbotPort di ConfigurationManager gestisca correttamente un fallimento del vector store. & S \\
+\hline
+TU241 & Verifica che il metodo getAskChatbotPort di ConfigurationManager gestisca correttamente un fallimento dell'embeddingModel. & S \\
+\hline
+TU242 & Verifica che il metodo getAskChatbotPort di ConfigurationManager gestisca correttamente un fallimento del modello LLM. & S \\
+\hline
+TU243 & Verifica che il metodo ok di DocumentOperationResponse funzioni correttamente. & S \\
+\hline
+TU244 & Verifica che il metodo ok di DocumentOperationResponse gestisca correttamente un fallimento. & S \\
+\hline
 
 
 \end{xltabular}
@@ -584,149 +921,497 @@ TU70 & Verifica che il metodo uploadDocuments di UploadDocumentsService funzioni
 \begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
 \textbf{ID} & \textbf{Metodo} \\
 \hline
-TU1 & Batteria di test NewDocument, test toDocumentPDFType \\
+TU1 & Batteria di test NewDocument, test toDocumentPDFType. \\
 \hline
-TU2 & Batteria di test NewDocument, test toDocumentDOCXType \\
+TU2 & Batteria di test NewDocument, test toDocumentDOCXType. \\
 \hline
-TU3 & Batteria di test AskChatbotController, test askChatbotWithExistentChat \\
+TU3 & Batteria di test AskChatbotController, test askChatbotWithExistentChat. \\
 \hline
-TU4 & Batteria di test AskChatbotController, test askChatbotWithoutChat \\
+TU4 & Batteria di test AskChatbotController, test askChatbotWithoutChat. \\
 \hline
-TU5 & Batteria di test ChangeConfigurationController, test changeLLMModelWithExistentModel \\
+TU5 & Batteria di test ChangeConfigurationController, test changeLLMModelWithExistentModel. \\
 \hline
-TU6 & Batteria di test ChangeConfigurationController, test changeLLMModelWithAbsentModel \\
+TU6 & Batteria di test ChangeConfigurationController, test changeLLMModelWithAbsentModel. \\
 \hline
-TU7 & Batteria di test ConcealDocumentsController, test concealDocuments \\
+TU7 & Batteria di test ConcealDocumentsController, test concealDocuments. \\
 \hline
-TU8 & Batteria di test DeleteChatsController, test deleteChats \\
+TU8 & Batteria di test DeleteChatsController, test deleteChats. \\
 \hline
-TU9 & Batteria di test DeleteDocumentsController, test deleteDocuments \\
+TU9 & Batteria di test DeleteDocumentsController, test deleteDocuments. \\
 \hline
-TU10 & Batteria di test DeleteDocumentsController, test deleteDocumentsException \\
+TU10 & Batteria di test DeleteDocumentsController, test deleteDocumentsException. \\
 \hline
-TU11 & Batteria di test EmbedDocumentsController, test embedDocumentsTrue \\
+TU11 & Batteria di test EmbedDocumentsController, test embedDocumentsTrue. \\
 \hline
-TU12 & Batteria di test EmbedDocumentsController, test embedDocumentsException \\
+TU12 & Batteria di test EmbedDocumentsController, test embedDocumentsException. \\
 \hline
-TU13 & Batteria di test EnableDocumentsController, test enableDocuments \\
+TU13 & Batteria di test EnableDocumentsController, test enableDocuments. \\
 \hline
-TU14 & Batteria di test GetChatMessagesController, test getChatMessages \\
+TU14 & Batteria di test GetChatMessagesController, test getChatMessages. \\
 \hline
-TU15 & Batteria di test GetChatsController, test getChatsWithFilter \\
+TU15 & Batteria di test GetChatsController, test getChatsWithFilter. \\
 \hline
-TU16 & Batteria di test GetChatsController, test getChatsWithoutFilter \\
+TU16 & Batteria di test GetChatsController, test getChatsWithoutFilter. \\
 \hline
-TU17 & Batteria di test GetConfigurationOptionsController, test getConfigurationOptions \\
+TU17 & Batteria di test GetConfigurationOptionsController, test getConfigurationOptions. \\
 \hline
-TU18 & Batteria di test GetConfigurationController, test getConfiguration \\
+TU18 & Batteria di test GetConfigurationController, test getConfiguration. \\
 \hline
-TU19 & Batteria di test GetDocumentContentController, test getDocumentContentTrue \\
+TU19 & Batteria di test GetDocumentContentController, test getDocumentContentTrue. \\
 \hline
-TU20 & Batteria di test GetDocumentContentController, test getDocumentContentNone \\
+TU20 & Batteria di test GetDocumentContentController, test getDocumentContentNone. \\
 \hline
-TU21 & Batteria di test GetDocumentContentController, test getDocumentContentException \\
+TU21 & Batteria di test GetDocumentContentController, test getDocumentContentException. \\
 \hline
-TU22 & Batteria di test GetDocumentsController, test getDocumentsWithFilter \\
+TU22 & Batteria di test GetDocumentsController, test getDocumentsWithFilter. \\
 \hline
-TU23 & Batteria di test GetDocumentsController, test getDocumentsWithoutFilter \\
+TU23 & Batteria di test GetDocumentsController, test getDocumentsWithoutFilter. \\
 \hline
-TU24 & Batteria di test GetDocumentsController, test getDocumentsException \\
+TU24 & Batteria di test GetDocumentsController, test getDocumentsException. \\
 \hline
-TU25 & Batteria di test RenameChatController, test renameChat \\
+TU25 & Batteria di test RenameChatController, test renameChat. \\
 \hline
-TU26 & Batteria di test SetConfigurationController, test setConfiguration \\
+TU26 & Batteria di test SetConfigurationController, test setConfiguration. \\
 \hline
-TU27 & Batteria di test SetConfigurationController, test setConfigurationLLMModelFail \\
+TU27 & Batteria di test SetConfigurationController, test setConfigurationLLMModelFail. \\
 \hline
-TU28 & Batteria di test SetConfigurationController, test setConfigurationDocumentStoreFail \\
+TU28 & Batteria di test SetConfigurationController, test setConfigurationDocumentStoreFail. \\
 \hline
-TU29 & Batteria di test SetConfigurationController, test setConfigurationVectorStoreFail \\
+TU29 & Batteria di test SetConfigurationController, test setConfigurationVectorStoreFail. \\
 \hline
-TU30 & Batteria di test SetConfigurationController, test setConfigurationEmbeddingModelFail \\
+TU30 & Batteria di test SetConfigurationController, test setConfigurationEmbeddingModelFail. \\
 \hline
-TU31 & Batteria di test UploadDocumentsController, test uploadDocumentsFalse \\
+TU31 & Batteria di test UploadDocumentsController, test uploadDocumentsFalse. \\
 \hline
-TU32 & Batteria di test UploadDocumentsController, test uploadDocumentsTrue \\
+TU32 & Batteria di test UploadDocumentsController, test uploadDocumentsTrue. \\
 \hline
-TU33 & Batteria di test UploadDocumentsController, test uploadDocumentsException \\
+TU33 & Batteria di test UploadDocumentsController, test uploadDocumentsException. \\
 \hline
-TU34 & Batteria di test AskChatbotService , test askChatbotBothTrue \\
+TU34 & Batteria di test AskChatbotService , test askChatbotBothTrue. \\
 \hline
-TU35 & Batteria di test AskChatbotService , test askChatBothResponseFail \\
+TU35 & Batteria di test AskChatbotService , test askChatBothResponseFail. \\
 \hline
-TU36 & Batteria di test AskChatbotService , test askChatBothPersistFail \\
+TU36 & Batteria di test AskChatbotService , test askChatBothPersistFail. \\
 \hline
-TU37 & Batteria di test AskChatbotService , test askChatBothFail \\
+TU37 & Batteria di test AskChatbotService , test askChatBothFail. \\
 \hline
-TU38 & Batteria di test ChangeConfigurationService , test changeConfigurationTrue \\
+TU38 & Batteria di test ChangeConfigurationService , test changeConfigurationTrue. \\
 \hline
-TU39 & Batteria di test ChangeConfigurationService , test changeConfigurationFail \\
+TU39 & Batteria di test ChangeConfigurationService , test changeConfigurationFail. \\
 \hline
-TU40 & Batteria di test ConcealDocumentsService , test concealDocumentsTrue \\
+TU40 & Batteria di test ConcealDocumentsService , test concealDocumentsTrue. \\
 \hline
-TU41 & Batteria di test ConcealDocumentsService , test concealDocumentsFail \\
+TU41 & Batteria di test ConcealDocumentsService , test concealDocumentsFail. \\
 \hline
-TU42 & Batteria di test DeleteChatsService , test deleteChatTrue \\
+TU42 & Batteria di test DeleteChatsService , test deleteChatTrue. \\
 \hline
-TU43 & Batteria di test DeleteChatsService , test deleteChatFail \\
+TU43 & Batteria di test DeleteChatsService , test deleteChatFail. \\
 \hline
-TU44 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsTrue \\
+TU44 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsTrue. \\
 \hline
-TU45 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsFail \\
+TU45 & Batteria di test DeleteDocumentsEmbeddings , test deleteDocumentsEmbeddingsFail. \\
 \hline
-TU46 & Batteria di test DeleteDocumentsService , test deleteDocumentsTrueBoth \\
+TU46 & Batteria di test DeleteDocumentsService , test deleteDocumentsTrueBoth. \\
 \hline
-TU47 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailEmbeddings \\
+TU47 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailEmbeddings. \\
 \hline
-TU48 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailDocument \\
+TU48 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailDocument. \\
 \hline
-TU49 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailBoth \\
+TU49 & Batteria di test DeleteDocumentsService , test deleteDocumentsFailBoth. \\
 \hline
-TU50 & Batteria di test DeleteDocumentsService , test deleteDocumentsElaborationException \\
+TU50 & Batteria di test DeleteDocumentsService , test deleteDocumentsElaborationException. \\
 \hline
-TU51 & Batteria di test DeleteDocuments , test deleteDocumentsTrue \\
+TU51 & Batteria di test DeleteDocuments , test deleteDocumentsTrue. \\
 \hline
-TU52 & Batteria di test DeleteDocuments , test deleteDocumentsFail \\
+TU52 & Batteria di test DeleteDocuments , test deleteDocumentsFail. \\
 \hline
-TU53 & Batteria di test DocumentsUploader , test uploadDocumentsForceUploadTrueTrue \\
+TU53 & Batteria di test DocumentsUploader , test uploadDocumentsForceUploadTrueTrue. \\
 \hline
-TU54 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseTrue \\
+TU54 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseTrue. \\
 \hline
-TU55 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadTrueFalse \\
+TU55 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadTrueFalse. \\
 \hline
-TU56 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseFalse \\
+TU56 & Batteria di test DocumentsUploader , test uploadDocumentForceUploadFalseFalse. \\
 \hline
-TU57 & Batteria di test EmbedDocumentsService , test embedDocumentsService \\
+TU57 & Batteria di test EmbedDocumentsService , test embedDocumentsService. \\
 \hline
-TU58 & Batteria di test EmbeddingsUploader , test embeddingUploader \\
+TU58 & Batteria di test EmbeddingsUploader , test embeddingUploader. \\
 \hline
-TU59 & Batteria di test EnableDocumentsService , test enable \\
+TU59 & Batteria di test EnableDocumentsService , test enable. \\
 \hline
-TU60 & Batteria di test GetChatMessagesService , test getChatMessages \\
+TU60 & Batteria di test GetChatMessagesService , test getChatMessages. \\
 \hline
-TU61 & Batteria di test GetChatsService , test getChats \\
+TU61 & Batteria di test GetChatsService , test getChats. \\
 \hline
-TU62 & Batteria di test GetConfigurationOptionsService , test getConfigurationOption \\
+TU62 & Batteria di test GetConfigurationOptionsService , test getConfigurationOption. \\
 \hline
-TU63 & Batteria di test GetConfigurationService , test getConfiguration \\
+TU63 & Batteria di test GetConfigurationService , test getConfiguration. \\
 \hline
-TU64 & Batteria di test GetDocumentsContentFacadeService , test getDocumentsContentFacade \\
+TU64 & Batteria di test GetDocumentsContentFacadeService , test getDocumentsContentFacade. \\
 \hline
-TU65 & Batteria di test GetDocumentsContent , test getDocumentsContent \\
+TU65 & Batteria di test GetDocumentsContent , test getDocumentsContent. \\
 \hline
-TU66 & Batteria di test GetDocumentsFacadeService , test getDocumentsFacadeService \\
+TU66 & Batteria di test GetDocumentsFacadeService , test getDocumentsFacadeService. \\
 \hline
-TU67 & Batteria di test GetDocumentsMetadata , test getDocumentsMetadata \\
+TU67 & Batteria di test GetDocumentsMetadata , test getDocumentsMetadata. \\
 \hline
-TU68 & Batteria di test GetDocumentsStatus , test getDocumentsStatus \\
+TU68 & Batteria di test GetDocumentsStatus , test getDocumentsStatus. \\
 \hline
-TU69 & Batteria di test RenameChatService , test renameChatService \\
+TU69 & Batteria di test RenameChatService , test renameChatService. \\
 \hline
-TU70 & Batteria di test UploadDocumentsService , test uploadDocumentsService \\
+TU70 & Batteria di test UploadDocumentsService , test uploadDocumentsService. \\
 \hline
-
-
+TU71 & Batteria di test AskChatbotLangchain, test askChatbotWithChatId. \\
+\hline
+TU72 & Batteria di test AskChatbotLangchain, test askChatbotWithoutChatId. \\
+\hline
+TU73 & Batteria di test AskChatbotLangchain, test askChatbotChatHistoryManagerFail. \\
+\hline
+TU74 & Batteria di test PostgresPersistChat, test toPostgresMessageFromUser. \\
+\hline
+TU75 & Batteria di test PostgresPersistChat, test toPostgresMessageFromChatbot. \\
+\hline
+TU76 & Batteria di test PostgresPersistChat, test persistChatWithChatId. \\
+\hline
+TU77 & Batteria di test PostgresPersistChat, test persistChatWithoutChatId. \\
+\hline
+TU78 & Batteria di test ChangeConfigurationPostgres, test toPostgresLLModelTypeFrom. \\
+\hline
+TU79 & Batteria di test ChangeConfigurationPostgres, test changeLLMModel. \\
+\hline
+TU80 & Batteria di test ConcealDocumentsVectorStore, test concealDocuments. \\
+\hline
+TU81 & Batteria di test DeleteChatsPostgres, test deleteChats. \\
+\hline
+TU82 & Batteria di test DeleteDocumentsAWSS3, test deleteDocuments. \\
+\hline
+TU83 & Batteria di test DeleteEmbeddingsVectorStore, test deleteDocumentsEmbeddings. \\
+\hline
+TU84 & Batteria di test EnableDocumentsVectorStore, test enableDocuments. \\
+\hline
+TU85 & Batteria di test GetChatMessagesPostgres, test getChatMessagesPostgresTrue. \\
+\hline
+TU86 & Batteria di test GetChatMessagesPostgres, test getChatMessagesPostgresFail. \\
+\hline
+TU87 & Batteria di test GetChatsPostgres, test getChatsPostgresTrue. \\
+\hline
+TU88 & Batteria di test GetChatsPostgres, test getChatsPostgresEmpty. \\
+\hline
+TU89 & Batteria di test GetChatsPostgres, test getChatsPostgresFail. \\
+\hline
+TU90 & Batteria di test GetConfigurationOptionsPostgres, test getConfigurationOptions. \\
+\hline
+TU91 & Batteria di test GetConfigurationPostgres, test getConfigurationTrue. \\
+\hline
+TU92 & Batteria di test GetConfigurationPostgres, test getConfigurationFail. \\
+\hline
+TU93 & Batteria di test GetDocumentsContentAWSS3, test getDocumentsContent. \\
+\hline
+TU94 & Batteria di test GetDocumentsContentAWSS3, test getDocumentsContentNone. \\
+\hline
+TU95 & Batteria di test GetDocumentsListAWSS3, test getDocumentsList. \\
+\hline
+TU96 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusVectorConcealed. \\
+\hline
+TU97 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusVectorEnabled. \\
+\hline
+TU98 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusVectorInconsistent. \\
+\hline
+TU99 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusVectorNotEmbedded. \\
+\hline
+TU100 & Batteria di test AWSDocumentMetadata, test toDocumentMetadataFromPDF. \\
+\hline
+TU101 & Batteria di test AWSDocumentMetadata, test toDocumentMetadataFromDOCX. \\
+\hline
+TU102 & Batteria di test AWSDocumentOperationResponse, test toDocumentOperationResponseTrue. \\
+\hline
+TU103 & Batteria di test AWSDocumentOperationResponse, test toDocumentOperationResponseFail. \\
+\hline
+TU104 & Batteria di test AWSS3Manager, test getDocumentById. \\
+\hline
+TU105 & Batteria di test AWSS3Manager, test uploadDocumentsFalsePresent\\
+\hline
+TU106 & Batteria di test AWSS3Manager, test uploadDocumentsFalseNotPresentTrue. \\
+\hline
+TU107 & Batteria di test AWSS3Manager, test uploadDocumentsFalseNotPresentFalse. \\
+\hline
+TU108 & Batteria di test AWSS3Manager, test uploadDocumentsTrueTrue. \\
+\hline
+TU109 & Batteria di test AWSS3Manager, test uploadDocumentsTrueFail. \\
+\hline
+TU110 & Batteria di test AWSS3Manager, test deleteDocumentsTrue. \\
+\hline
+TU111 & Batteria di test AWSS3Manager, test deleteDocumentsFail. \\
+\hline
+TU112 & Batteria di test AWSS3Manager, test deleteDocumentsNotFound. \\
+\hline
+TU113 & Batteria di test AWSS3Manager, test getDocumentsMetadataWithFilter. \\
+\hline
+TU114 & Batteria di test AWSS3Manager, test getDocumentsMetadataWithoutFilter. \\
+\hline
+TU115 & Batteria di test AWSS3Manager, test getDocumentContentTrue. \\
+\hline
+TU116 & Batteria di test AWSS3Manager, test getDocumentContentFail. \\
+\hline
+TU117 & Batteria di test ChatHistoryManager, test getChatHistory. \\
+\hline
+TU118 & Batteria di test PostgresVectorStoreConfiguration, test toVectorStoreConfiguration. \\
+\hline
+TU119 & Batteria di test PostgresEmbeddingModelConfiguration, test toEmbeddingModelConfiguration. \\
+\hline
+TU120 & Batteria di test PostgresLLMModelConfiguration, test toLLMModelConfiguration. \\
+\hline
+TU121 & Batteria di test PostgresDocumentStoreConfiguration, test toDocumentStoreConfiguration. \\
+\hline
+TU122 & Batteria di test PostgresChatOperationResponse, test toChatOperationResponseTrue. \\
+\hline
+TU123 & Batteria di test PostgresChatOperationResponse, test toChatOperationResponseFalse. \\
+\hline
+TU124 & Batteria di test PostgresChatORM, test saveMessageTrue. \\
+\hline
+TU125 & Batteria di test PostgresChatORM, test saveMessageFail. \\
+\hline
+TU126 & Batteria di test PostgresChatORM, test createChatTrue. \\
+\hline
+TU127 & Batteria di test PostgresChatORM, test createChatFail. \\
+\hline
+TU128 & Batteria di test PostgresChatORM, test persistChatWithChatId. \\
+\hline
+TU129 & Batteria di test PostgresChatORM, test persistChatWithoutChatId. \\
+\hline
+TU130 & Batteria di test PostgresChatORM, test persistChatWithoutMessages. \\
+\hline
+TU131 & Batteria di test PostgresChatORM, test deleteChats. \\
+\hline
+TU132 & Batteria di test PostgresChatORM, test deleteChatsFail. \\
+\hline
+TU133 & Batteria di test PostgresChatORM, test renameChat. \\
+\hline
+TU134 & Batteria di test PostgresChatORM, test renameChatNotFound. \\
+\hline
+TU135 & Batteria di test PostgresChatORM, test renameChatFail. \\
+\hline
+TU136 & Batteria di test PostgresChatORM, test getChatsWithoutLastMessage. \\
+\hline
+TU137 & Batteria di test PostgresChatORM, test getChatsWithLastMessage. \\
+\hline
+TU138 & Batteria di test PostgresChatORM, test getChatsFail. \\
+\hline
+TU139 & Batteria di test PostgresChatORM, test getChatMessages. \\
+\hline
+TU140 & Batteria di test PostgresChatORM, test getChatMessagesFail. \\
+\hline
+TU141 & Batteria di test PostgresChatPreview, test toChatPreview. \\
+\hline
+TU142 & Batteria di test PostgresChat, test toChat. \\
+\hline
+TU143 & Batteria di test PostgresConfigurationOperationResponse, test toConfigurationOperationResponse. \\
+\hline
+TU144 & Batteria di test PostgresConfigurationOperationResponse, test postgresConfigurationOperationResponseOkTrue. \\
+\hline
+TU145 & Batteria di test PostgresConfigurationOperationResponse, test postgresConfigurationOperationResponseOkFalse. \\
+\hline
+TU146 & Batteria di test PostgresConfigurationORM, test getConfiguration. \\
+\hline
+TU147 & Batteria di test PostgresConfigurationORM, test emptyConfiguration. \\
+\hline
+TU148 & Batteria di test PostgresConfigurationORM, test getConfigurationChoices. \\
+\hline
+TU149 & Batteria di test PostgresConfigurationORM, test setConfigurationTrue. \\
+\hline
+TU150 & Batteria di test PostgresConfigurationORM, test setConfigurationAlreadySetted. \\
+\hline
+TU151 & Batteria di test PostgresConfigurationORM, test changeLLMModelTrue. \\
+\hline
+TU152 & Batteria di test PostgresConfigurationORM, test changeLLMModelFail. \\
+\hline
+TU153 & Batteria di test PostgresConfigurationORM, test getVectorStoreOptions. \\
+\hline
+TU154 & Batteria di test PostgresConfigurationORM, test getEmbeddingModelOptions. \\
+\hline
+TU155 & Batteria di test PostgresConfigurationORM, test getLLMModelOptions. \\
+\hline
+TU156 & Batteria di test PostgresConfiguration, test toConfiguration. \\
+\hline
+TU157 & Batteria di test PostgresMessage, test toMessageHuman. \\
+\hline
+TU158 & Batteria di test PostgresMessage, test toMessageAI. \\
+\hline
+TU159 & Batteria di test VectorStoreChromaDBManager, test getDocumentsStatusNotEmbedded. \\
+\hline
+TU160 & Batteria di test VectorStoreChromaDBManager, test getDocumentsStatusEnabled. \\
+\hline
+TU161 & Batteria di test VectorStoreChromaDBManager, test getDocumentsStatusConceal. \\
+\hline
+TU162 & Batteria di test VectorStoreChromaDBManager, test getDocumentsStatusInconsistent. \\
+\hline
+TU163 & Batteria di test VectorStoreChromaDBManager, test getDocumentsStatusFail. \\
+\hline
+TU164 & Batteria di test VectorStoreChromaDBManager, test deleteDocumentsEmbeddingsTrue. \\
+\hline
+TU165 & Batteria di test VectorStoreChromaDBManager, test deleteDocumentsEmbeddingsFail. \\
+\hline
+TU166 & Batteria di test VectorStoreChromaDBManager, test concealDocumentsTrue. \\
+\hline
+TU167 & Batteria di test VectorStoreChromaDBManager, test concealDocumentsFail. \\
+\hline
+TU168 & Batteria di test VectorStoreChromaDBManager, test enableDocumentsTrue. \\
+\hline
+TU169 & Batteria di test VectorStoreChromaDBManager, test enableDocumentsFail. \\
+\hline
+TU170 & Batteria di test VectorStoreChromaDBManager, test uploadEmbeddingsTrue. \\
+\hline
+TU171 & Batteria di test VectorStoreChromaDBManager, test uploadEmbeddingsFail. \\
+\hline
+TU172 & Batteria di test VectorStoreChromaDBManager, test getRetrieverTrue. \\
+\hline
+TU173 & Batteria di test VectorStoreDocumentOperationResponse, test toDocumentOperationResponse. \\
+\hline
+TU174 & Batteria di test VectorStorePineconeManager, test getDocumentsStatusNotEmbbeded. \\
+\hline
+TU175 & Batteria di test VectorStorePineconeManager, test getDocumentsStatusEnabled. \\
+\hline
+TU176 & Batteria di test VectorStorePineconeManager, test getDocumentsStatusConcealed. \\
+\hline
+TU177 & Batteria di test VectorStorePineconeManager, test getDocumentsStatusInconsistent. \\
+\hline
+TU178 & Batteria di test VectorStorePineconeManager, test getDocumentsStatusFail. \\
+\hline
+TU179 & Batteria di test VectorStorePineconeManager, test deleteDocumentsEmbeddingsFoundSomeEmbeddingsTrue. \\
+\hline
+TU180 & Batteria di test VectorStorePineconeManager, test deleteDocumentsEmbeddingsFoundSomeEmbeddingsFail. \\
+\hline
+TU181 & Batteria di test VectorStorePineconeManager, test deleteDocumentsEmbeddingsNotFoundEmbeddingsTrue. \\
+\hline
+TU182 & Batteria di test VectorStorePineconeManager, test deleteDocumentsEmbeddingsFail. \\
+\hline
+TU183 & Batteria di test VectorStorePineconeManager, test concealDocumentsEmbeddings. \\
+\hline
+TU184 & Batteria di test VectorStorePineconeManager, test concealDocumentsEmbeddingsFail. \\
+\hline
+TU185 & Batteria di test VectorStorePineconeManager, test concealDocumntsEmbeddingsFailQuery. \\
+\hline
+TU186 & Batteria di test VectorStorePineconeManager, test enableDocumentsEmmbeddings. \\
+\hline
+TU187 & Batteria di test VectorStorePineconeManager, test enableDocumentsEmmbeddingsFailQuery. \\
+\hline
+TU188 & Batteria di test VectorStorePineconeManager, test enableDocumentsEmmbeddingsFailUpdate. \\
+\hline
+TU189 & Batteria di test VectorStorePineconeManager, test uploadEmbeddingsTrue. \\
+\hline
+TU190 & Batteria di test VectorStorePineconeManager, test uploadEmbeddingsFailUpload. \\
+\hline
+TU191 & Batteria di test VectorStorePineconeManager, test uploadEmbeddingsException. \\
+\hline
+TU192 & Batteria di test VectorStorePineconeManager, test getRetriever. \\
+\hline
+TU193 & Batteria di test RenameChatPostgres, test renameChat. \\
+\hline
+TU194 & Batteria di test SetConfigurationPostgres, test setConfiguration. \\
+\hline
+TU195 & Batteria di test SetConfigurationPostgres, test toPostgresLLMModelTypeFrom. \\
+\hline
+TU196 & Batteria di test SetConfigurationPostgres, test toPostgresDocumentStoreTypeFrom. \\
+\hline
+TU197 & Batteria di test SetConfigurationPostgres, test toPostgresVectorStoreTypeFrom. \\
+\hline
+TU198 & Batteria di test SetConfigurationPostgres, test toPostgresEmbeddingModelTypeFrom. \\
+\hline
+TU199 & Batteria di test Chunkerizer, test extractTextPDF. \\
+\hline
+TU200 & Batteria di test Chunkerizer, test extractTextDOCX. \\
+\hline
+TU201 & Batteria di test Chunkerizer, test extractTextFail. \\
+\hline
+TU202 & Batteria di test Chunkerizer, test getTextExtractorFromPDF. \\
+\hline
+TU203 & Batteria di test Chunkerizer, test getTextExtractorFromDOCX. \\
+\hline
+TU204 & Batteria di test Chunkerizer, test getTextExtractorFromFail. \\
+\hline
+TU205 & Batteria di test DocumentsUploaderAWSS3, test toAWSDocumentFrom. \\
+\hline
+TU206 & Batteria di test DocumentsUploaderAWSS3, test uploadDocumentsForceTrue. \\
+\hline
+TU207 & Batteria di test DocumentsUploaderAWSS3, test uploadDocumentsForceFalse. \\
+\hline
+TU208 & Batteria di test DOCXTextExtractor, test extractText. \\
+\hline
+TU209 & Batteria di test EmbeddingsCreator, test createEmbeddings. \\
+\hline
+TU210 & Batteria di test EmbeddingsUploaderFacadeLangchain, test uploadEmbeddingsTrue. \\
+\hline
+TU211 & Batteria di test EmbeddingsUploaderFacadeLangchain, test uploadEmbeddingsFail. \\
+\hline
+TU212 & Batteria di test EmbeddingsUploaderVectorStore, test uploadEmbeddings. \\
+\hline
+TU213 & Batteria di test HuggingFaceEmbeddingModel, test embedDocumentTrue. \\
+\hline
+TU214 & Batteria di test HuggingFaceEmbeddingModel, test embedDocumentFail. \\
+\hline
+TU215 & Batteria di test HuggingFaceEmbeddingModel, test getEmbeddingFunction. \\
+\hline
+TU216 & Batteria di test OpenAIEmbeddingModel, test embedDocumentsTrue. \\
+\hline
+TU217 & Batteria di test OpenAIEmbeddingModel, test embedDocumentsFail. \\
+\hline
+TU218 & Batteria di test OpenAIEmbeddingModel, test getEmbeddingFunction. \\
+\hline
+TU219 & Batteria di test PDFTextExtractor, test extractText. \\
+\hline
+TU220 & Batteria di testConfigurationManager, test getDocumentsUploaderPortTrue. \\
+\hline
+TU221 & Batteria di test ConfigurationManager, test getDocumentsUploaderPortFail. \\
+\hline
+TU222 & Batteria di test ConfigurationManager, test getEmbeddingsUploaderPortTrue. \\
+\hline
+TU223 & Batteria di test ConfigurationManager, test getEmbeddingsUploaderPortFailVectorStore. \\
+\hline
+TU224 & Batteria di test ConfigurationManager, test getEmbeddingsUploaderPortFailVectorStore. \\
+\hline
+TU225 & Batteria di test ConfigurationManager, test getGetDocumentsStatusPortTrue. \\
+\hline
+TU226 & Batteria di test ConfigurationManager, test getGetDocumentsStatusPortFail. \\
+\hline
+TU227 & Batteria di test ConfigurationManager, test getGetDocumentsMetadataPortTrue. \\
+\hline
+TU228 & Batteria di test ConfigurationManager, test getGetDocumentsMetadataPortFail. \\
+\hline
+TU229 & Batteria di test ConfigurationManager, test getDeleteDocumentsPort. \\
+\hline
+TU230 & Batteria di test ConfigurationManager, test getDeleteDocumentsPortFail. \\
+\hline
+TU231 & Batteria di test ConfigurationManager, test getDeleteEmbeddingsPortTrue. \\
+\hline
+TU232 & Batteria di test ConfigurationManager, test getDeleteEmbeddingsPortFail. \\
+\hline
+TU233 & Batteria di test ConfigurationManager, test getConcealDocumentsPortTrue. \\
+\hline
+TU234 & Batteria di test ConfigurationManager, test getConcealDocumentsPortFail. \\
+\hline
+TU235 & Batteria di test ConfigurationManager, test getEnableDocumentStorePortTrue. \\
+\hline
+TU236 & Batteria di test ConfigurationManager, test getEnableDocumentStorePortFail. \\
+\hline
+TU237 & Batteria di test ConfigurationManager, test getGetDocumentsContentPortTrue. \\
+\hline
+TU238 & Batteria di test ConfigurationManager, test getGetDocumentsContentPortFail. \\
+\hline
+TU239 & Batteria di test ConfigurationManager, test getAskChatbotPortTrue. \\
+\hline
+TU240 & Batteria di test ConfigurationManager, test getAskChatbotPortFailVectorStore. \\
+\hline
+TU241 & Batteria di test ConfigurationManager, test getAskChatbotPortFailEmbeddingModel. \\
+\hline
+TU242 & Batteria di test ConfigurationManager, test getAskChatbotPortFailLLMModel. \\
+\hline
+TU243 & Batteria di test DocumentOperationResponse, test okTrue. \\
+\hline
+TU244 & Batteria di test DocumentOperationResponse, test okFalse. \\
+\hline
 \end{xltabular}
+
+
 
 \subsection{Test di integrazione}
 Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.

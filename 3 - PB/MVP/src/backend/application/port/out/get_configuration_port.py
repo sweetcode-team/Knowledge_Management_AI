@@ -1,5 +1,13 @@
-from domain.configuration.configuration_response import ConfigurationResponse
-
+from domain.configuration.configuration import Configuration
+"""
+This interface is the output port of the GetConfigurationUseCase. It is used to get the configuration.
+"""
 class GetConfigurationPort:
-    def getConfiguration(self) -> ConfigurationResponse:
+       
+    """
+    Gets the configuration and returns it.
+    Returns:
+        Configuration: The configuration.
+    """ 
+    def getConfiguration(self) -> Configuration:
         pass

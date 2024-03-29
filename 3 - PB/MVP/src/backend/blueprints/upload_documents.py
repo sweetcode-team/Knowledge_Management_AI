@@ -1,31 +1,66 @@
+import os
 from flask import request, Blueprint, jsonify
-from adapter._in.web.new_document import NewDocument
+from werkzeug.utils import secure_filename
+from adapter._in.web.presentation_domain.new_document import NewDocument
 from adapter._in.web.upload_documents_controller import UploadDocumentsController
-from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
-from application.service.documents_uploader import DocumentsUploader
-from adapter.out.upload_documents.documents_uploader_AWSS3 import DocumentsUploaderAWSS3
 from application.service.upload_documents_service import UploadDocumentsService
+from application.service.documents_uploader import DocumentsUploader
 from application.service.embeddings_uploader import EmbeddingsUploader
-from adapter.out.upload_documents.chunkerizer import Chunkerizer
-from adapter.out.upload_documents.embeddings_creator import EmbeddingsCreator
-from adapter.out.upload_documents.embeddings_uploader_facade_langchain import EmbeddingsUploaderFacadeLangchain
-from adapter.out.upload_documents.embeddings_uploader_vector_store import EmbeddingsUploaderVectorStore
-from adapter.out.upload_documents.huggingface_embedding_model import HuggingFaceEmbeddingModel
-from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
+
+from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
+from adapter.out.configuration_manager import ConfigurationManager
+
+from api_exceptions import InsufficientParameters, DocumentNotSupported, APIElaborationException
 
 uploadDocumentsBlueprint = Blueprint("uploadDocuments", __name__)
 
+"""
+This method is the endpoint for the uploadDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @uploadDocumentsBlueprint.route("/uploadDocuments", methods=['POST'])
 def uploadDocuments():
-    newDocuments = [
-        NewDocument(
-            documentId = uploadedDocument.filename,
-            type = "PDF" if uploadedDocument.content_type == "application/pdf" else "DOCX",
-            size = uploadedDocument.content_length,
-            content = uploadedDocument.read()
-        ) for uploadedDocument in request.files.getlist('file')
-    ]
-    controller = UploadDocumentsController(UploadDocumentsService(DocumentsUploader(DocumentsUploaderAWSS3(AWSS3Manager())),
-                                    EmbeddingsUploader(EmbeddingsUploaderFacadeLangchain(Chunkerizer(), EmbeddingsCreator(HuggingFaceEmbeddingModel()), EmbeddingsUploaderVectorStore(VectorStorePineconeManager())))))
-    documentOperationResponses = controller.uploadDocuments(newDocuments, False)
-    return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])
+    forceUpload = request.form.get('forceUpload')
+    if forceUpload is None:
+        forceUpload = False
+    
+    newDocuments = []
+    for uploadedDocument in request.files.getlist('documents'):
+        secureFilename = secure_filename(uploadedDocument.filename)
+        if secureFilename == '':
+            raise DocumentNotSupported("L'upload di documenti senza titolo non è supportato.")
+        
+        contentType = uploadedDocument.content_type
+        if contentType == "application/pdf" or contentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            newDocument = NewDocument(
+                documentId = secureFilename,
+                type = "PDF" if contentType == "application/pdf" else "DOCX",
+                size = uploadedDocument.content_length,
+                content = uploadedDocument.read()
+            )
+            newDocuments.append(newDocument)
+        else:
+            raise DocumentNotSupported(f"Documento {uploadedDocument.filename} non supportato.")
+            
+    if len(newDocuments) == 0:
+        raise InsufficientParameters()
+
+    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
+
+    controller = UploadDocumentsController(
+        uploadDocumentsUseCase = UploadDocumentsService(
+            DocumentsUploader(configurationManager.getDocumentsUploaderPort()),
+            EmbeddingsUploader(configurationManager.getEmbeddingsUploaderPort())
+        )
+    )
+    
+    documentOperationResponses = controller.uploadDocuments(newDocuments, forceUpload)
+    
+    if len(documentOperationResponses) == 0:
+        raise APIElaborationException("Errore nell'upload dei documenti.")
+        
+    return jsonify([{
+        "id": documentOperationResponse.documentId.id,
+        "status": documentOperationResponse.ok(),
+        "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

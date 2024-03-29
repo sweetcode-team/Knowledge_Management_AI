@@ -4,10 +4,17 @@ from domain.configuration.embedding_model_configuration import EmbeddingModelCon
 from domain.configuration.llm_model_configuration import LLMModelConfiguration
 from domain.configuration.vector_store_configuration import VectorStoreConfiguration
 
+"""
+Configuration: classe che rappresenta la configurazione
+    Attributes:
+        vectorStore (VectorStoreConfiguration): La configurazione del VectorStore
+        embeddingModel (EmbeddingModelConfiguration): La configurazione dell'EmbeddingModel
+        LLMModel (LLMModelConfiguration): La configurazione del LLMModel
+        documentStore (DocumentStoreConfiguration): La configurazione del DocumentStore
+"""
 @dataclass
 class Configuration:
-    def __init__(self, vectorStore: VectorStoreConfiguration, embeddingModel: EmbeddingModelConfiguration, llmModel: LLMModelConfiguration, documentStore: DocumentStoreConfiguration):
-        self.vectorStore = vectorStore
-        self.embeddingModel = embeddingModel
-        self.llmModel = llmModel
-        self.documentStore = documentStore
+    vectorStore: VectorStoreConfiguration
+    embeddingModel: EmbeddingModelConfiguration
+    LLMModel: LLMModelConfiguration
+    documentStore: DocumentStoreConfiguration

@@ -14,5 +14,13 @@ class EmbeddingsUploader:
     def __init__(self, outPort: EmbeddingsUploaderPort):
         self.outPort = outPort
 
-    def uploadEmbeddings(self, documents:List[Document]) -> List[DocumentOperationResponse]:
+    
+    """
+    Uploads a list of embeddings to the system.
+    Args:
+        documents (List[Document]): The documents to upload.    
+    Returns:
+        List[DocumentOperationResponse]: The response of the operation.
+    """ 
+    def uploadEmbeddings(self, documents: List[Document]) -> List[DocumentOperationResponse]:
         return self.outPort.uploadEmbeddings(documents)

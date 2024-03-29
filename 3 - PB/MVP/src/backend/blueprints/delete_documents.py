@@ -1,19 +1,49 @@
 from flask import request, Blueprint, jsonify
 from adapter._in.web.delete_documents_controller import DeleteDocumentsController
-from adapter.out.persistence.aws.AWS_manager import AWSS3Manager
-from application.service.delete_documents import DeleteDocuments 
-from adapter.out.delete_documents.delete_documents_AWSS3 import DeleteDocumentsAWSS3
-from application.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
 from application.service.delete_documents_service import DeleteDocumentsService
-from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
-from adapter.out.delete_documents.delete_embeddings_vector_store import DeleteEmbeddingsVectorStore
-from adapter.out.persistence.vector_store.vector_store_pinecone_manager import VectorStorePineconeManager
+from application.service.delete_documents import DeleteDocuments
+from application.service.delete_documents_embeddings import DeleteDocumentsEmbeddings
+
+from adapter.out.persistence.postgres.postgres_configuration_orm import PostgresConfigurationORM
+from adapter.out.configuration_manager import ConfigurationManager
+from api_exceptions import InsufficientParameters, APIBadRequest, APIElaborationException
 
 deleteDocumentsBlueprint = Blueprint("deleteDocuments", __name__)
 
+"""
+This method is the endpoint for the deleteDocuments API.
+Returns:
+    jsonify: The response of the API.
+"""
 @deleteDocumentsBlueprint.route("/deleteDocuments", methods=['POST'])
 def deleteDocuments():
-    controller = DeleteDocumentsController(DeleteDocumentsService(DeleteDocuments(DeleteDocumentsAWSS3(AWSS3Manager()))), DeleteDocumentsEmbeddings(DeleteEmbeddingsVectorStore(VectorStorePineconeManager())))
-    documentOperationResponses = controller.deleteDocuments(request.json.get('ids'))
+    requestedIds = request.form.getlist('documentIds')
+    if requestedIds is None:
+        raise InsufficientParameters()
+    if len(requestedIds) == 0:
+        raise APIBadRequest("Nessun id di documento specificato.")
+    validDocumentIds = []
+    for requestedId in requestedIds:
+        if requestedId.strip() == "":
+            raise APIBadRequest(f"Id di documento '{requestedId}' non valido.")
+        else:
+            validDocumentIds.append((requestedId).strip())
+    
+    configurationManager = ConfigurationManager(postgresConfigurationORM=PostgresConfigurationORM())
+
+    controller = DeleteDocumentsController(
+        DeleteDocumentsService(
+            DeleteDocuments(configurationManager.getDeleteDocumentsPort()),
+            DeleteDocumentsEmbeddings(configurationManager.getDeleteEmbeddingsPort())
+        )
+    )
+    
+    documentOperationResponses = controller.deleteDocuments(validDocumentIds)
      
-    return jsonify([{"id": documentOperationResponse.documentId.id, "status": documentOperationResponse.status, "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])
+    if len(documentOperationResponses) == 0:
+        raise APIElaborationException("Errore nell'eliminazione dei documenti.")
+    
+    return jsonify([{
+        "id": documentOperationResponse.documentId.id,
+        "status": documentOperationResponse.ok(),
+        "message": documentOperationResponse.message} for documentOperationResponse in documentOperationResponses])

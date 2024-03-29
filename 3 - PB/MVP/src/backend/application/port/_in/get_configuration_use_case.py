@@ -1,5 +1,14 @@
-from domain.configuration.configuration_response import ConfigurationResponse
+from domain.configuration.configuration import Configuration
 
+"""
+This class is the interface of the GetConfigurationUseCase.
+"""
 class GetConfigurationUseCase:
-    def getConfigurations(self) -> ConfigurationResponse:
+       
+    """ 
+    Gets the configuration and returns it.
+    Returns:
+        Configuration: The configuration.
+    """ 
+    def getConfiguration(self) -> Configuration:
         pass

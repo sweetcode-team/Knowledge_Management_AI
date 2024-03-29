@@ -422,6 +422,8 @@ Di seguito vengono elencati i test di unità:
 
 \renewcommand{\arraystretch}{1.5}
 \begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+\caption{Tabella dei test di unità}
+\label{tab:test_test_unità}\\
 \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
 \hline
 TU1 & Verifica che il metodo toDocument di NewDocument gestisca correttamente un documento PDF. & S \\
@@ -919,6 +921,8 @@ TU244 & Verifica che il metodo ok di DocumentOperationResponse gestisca corretta
 \subsubsection{Tracciamento dei test di unità} 
 \renewcommand{\arraystretch}{1.5}
 \begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
+\caption{Tabella di tracciamento dei test di unità}
+\label{tab:test_tracciamento_test_unità}\\
 \textbf{ID} & \textbf{Metodo} \\
 \hline
 TU1 & Batteria di test NewDocument, test toDocumentPDFType. \\
@@ -1414,601 +1418,199 @@ TU244 & Batteria di test DocumentOperationResponse, test okFalse. \\
 
 
 \subsection{Test di integrazione}
-Questa sezione vuota verrà ampliata in futuro con la progettazione di dettaglio del prodotto.
+Di seguito vengono elencati i test di integrazione:
 
-\begin{comment}
     \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+    \begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.7\textwidth}|X}
+    \caption{Tabella dei test di integrazione}
+    \label{tab:test_integrazione}\\
     \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
     \hline
-     &  & \\
+    TI1 & Questo test verifica la funzionalità di askChatbot. Il test simula l'invio di un messaggio all'utente e verifica la risposta del chatbot. & S \\
     \hline
-     &  &  \\
+    TI2 & Questo test verifica la funzionalità di changeConfiguration. Il test cambia il modello LLM in uso e verifica la risposta dell'operazione. & S \\
     \hline
-     &  & \\
-    \end{tabularx}
-    \subsubsection{Tracciamento}
-\end{comment}
+    TI3 & Questo test verifica la funzionalità di concealDocuments. Il test nasconde un documento nel VectorStore e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI4 & Questo test verifica la funzionalità di concealDocuments con ChromaDB. Il test nasconde un documento nel VectorStore utilizzando ChromaDB e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI5 & Questo test verifica la funzionalità di deleteChats. Il test elimina una chat dal database e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI6 & Questo test verifica la funzionalità di deleteDocumentsBusiness. Il test elimina i documenti e le loro rappresentazioni vettoriali e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI7 & Questo test verifica la funzionalità di deleteDocumentsAWSS3. Il test elimina i documenti da un bucket AWS S3 e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI8 & Questo test verifica la funzionalità di deleteDocumentsEmbeddingsWithPinecone. Il test elimina le rappresentazioni vettoriali dei documenti da un indice Pinecone e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI9 & Questo test verifica la funzionalità di deleteDocumentsEmbeddingsWithChromaDB. Il test elimina le rappresentazioni vettoriali dei documenti da un indice ChromaDB e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI10 & Questo test verifica la funzionalità di embedDocumentsBusiness. Il test recupera il contenuto dei documenti, verifica lo stato dei documenti, carica le rappresentazioni vettoriali e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI11 & Questo test verifica la funzionalità di enableDocumentsWithPinecone. Il test abilita i documenti in un indice Pinecone e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI12 & Questo test verifica la funzionalità di enableDocumentsWithChromaDB. Il test abilita i documenti in un indice ChromaDB e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI13 & Questo test verifica la funzionalità di GetChatMessagesOutPort. Il test recupera i messaggi di una chat e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI14 & Questo test verifica la funzionalità di GetChatsOutPort. Il test recupera le chat e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI15 & Questo test verifica la funzionalità di getConfiguration. Il test recupera la configurazione corrente del sistema e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI16 & Questo test verifica la funzionalità di getConfigurationOptions. Il test recupera le opzioni di configurazione disponibili per il sistema e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI17 & Questo test verifica la funzionalità di getDocumentsContent. Il test recupera il contenuto dei documenti da un bucket AWS S3 e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI18 & Questo test verifica la funzionalità di getDocumentsFacadeBusiness. Il test recupera i metadati dei documenti, verifica lo stato dei documenti e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI19 & Questo test verifica la funzionalità di getDocumentsMetadata. Il test recupera i metadati dei documenti da un bucket AWS S3 e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI20 & Questo test verifica la funzionalità di getDocumentsStatusWithPinecone. Il test recupera lo stato dei documenti da un indice Pinecone e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI21 & Questo test verifica la funzionalità di getDocumentsStatusWithChromaDB. Il test recupera lo stato dei documenti da un indice ChromaDB e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI22 & Questo test verifica la funzionalità di RenameChatPostgres. Il test rinomina una chat nel database e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI23 & Questo test verifica la funzionalità di RenameChatPostgresFail. Il test tenta di rinominare una chat inesistente nel database e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI24 & Questo test verifica la funzionalità di setConfiguration. Il test imposta la configurazione del sistema e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI25 & Questo test verifica la funzionalità di uploadDocumentsBusiness. Il test carica i documenti e le loro rappresentazioni vettoriali e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI26 & Questo test verifica la funzionalità di uploadDocumentsAWSS3. Il test carica i documenti su un bucket AWS S3 e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI27 & Questo test verifica la funzionalità di uploadEmbeddingsWithHuggingFaceWithPineconeWithPDF. Il test carica le rappresentazioni vettoriali dei documenti utilizzando HuggingFace e Pinecone e verifica la risposta dell'operazione. & S \\
+    \hline
+    TI28 & Questo test verifica la funzionalità di uploadEmbeddingsWithOpenAIWithChromaDBWithDOCX. Il test carica le rappresentazioni vettoriali dei documenti utilizzando OpenAI e ChromaDB e verifica la risposta dell'operazione. & S \\
+    \hline
+    
+    \end{xltabular}
+    
+    \subsubsection{Tracciamento dei test di integrazione} 
+    \renewcommand{\arraystretch}{1.5}
+    \begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
+    \caption{Tabella di tracciamento dei test di integrazione}
+    \label{tab:test_tracciamento_test_integrazione}\\
+    \textbf{ID} & \textbf{Metodo} \\
+    \hline
+    TI1 & Batteria di test AskChatbotLangchain, test askChatbot. \\
+    \hline
+    TI2 & Batteria di test ChangeConfigurationPostgres, test changeConfiguration. \\
+    \hline
+    TI3 & Batteria di test ConcealDocumentsVectorStore, test concealDocuments. \\
+    \hline
+    TI4 & Batteria di test ConcealDocumentsVectorStore, test concealDocumentsWithChromaDB. \\
+    \hline
+    TI5 & Batteria di test DeleteChatsPostgres, test deleteChats. \\
+    \hline
+    TI6 & Batteria di test DeleteDocumentsService, test deleteDocumentsBusiness. \\
+    \hline
+    TI7 & Batteria di test DeleteDocumentsAWSS3, test deleteDocumentsAWSS3. \\
+    \hline
+    TI8 & Batteria di test DeleteEmbeddingsVectorStore, test deleteDocumentsEmbeddingsWithPinecone. \\
+    \hline
+    TI9 & Batteria di test DeleteEmbeddingsVectorStore, test deleteDocumentsEmbeddingsWithChromaDB. \\
+    \hline
+    TI10 & Batteria di test EmbedDocumentsService, test embedDocumentsBusiness. \\
+    \hline
+    TI11 & Batteria di test EnableDocumentsVectorStore, test enableDocumentsWithPinecone. \\
+    \hline
+    TI12 & Batteria di test EnableDocumentsVectorStore, test enableDocumentsWithChromaDB. \\
+    \hline
+    TI13 & Batteria di test GetChatMessagesPostgres, test GetChatMessagesOutPort. \\
+    \hline
+    TI14 & Batteria di test GetChatsPostgres, test GetChatsOutPort. \\
+    \hline
+    TI15 & Batteria di test GetConfigurationPostgres, test getConfiguration. \\
+    \hline
+    TI16 & Batteria di test GetConfigurationOptionsPostgres, test getConfigurationOptions. \\
+    \hline
+    TI17 & Batteria di test GetDocumentsContentAWSS3, test getDocumentsContent. \\
+    \hline
+    TI18 & Batteria di test GetDocumentsFacadeService, test getDocumentsFacadeBusiness. \\
+    \hline
+    TI19 & Batteria di test GetDocumentsListAWSS3, test getDocumentsMetadata. \\
+    \hline
+    TI20 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusWithPinecone. \\
+    \hline
+    TI21 & Batteria di test GetDocumentsStatusVectorStore, test getDocumentsStatusWithChromaDB. \\
+    \hline
+    TI22 & Batteria di test RenameChatService, test RenameChatPostgres. \\
+    \hline
+    TI23 & Batteria di test RenameChatService, test RenameChatPostgresFail. \\
+    \hline
+    TI24 & Batteria di test SetConfigurationPostgres, test setConfiguration. \\
+    \hline
+    TI25 & Batteria di test UploadDocumentsService, test uploadDocumentsBusiness. \\
+    \hline
+    TI26 & Batteria di test DocumentsUploaderAWSS3, test uploadDocumentsAWSS3. \\
+    \hline
+    TI27 & Batteria di test EmbeddingsUploaderFacadeLangchain, test uploadEmbeddingsWithHuggingFaceWithPineconeWithPDF. \\
+    \hline
+    TI28 & Batteria di test EmbeddingsUploaderFacadeLangchain, test uploadEmbeddingsWithOpenAIWithChromaDBWithDOCX. \\
+    \hline
+\end{xltabular}
+
+
+
+
 
 \subsection{Test di sistema}
 Il documento Analisi dei Requisiti identifica i requisiti che devono essere completamente coperti dai test di sistema. Di seguito è presente l'elenco dei test di sistema:
-    \begin{xltabular}{\textwidth}{|c|X|c|c|}
-    %\begin{xltabular}{\textwidth}{p{0.12\textwidth}|p{0.55\textwidth}|p{0.12\textwidth}|X}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X|p{0.12\textwidth}}
+
     \caption{Tabella dei test di sistema}
     \label{tab:test_sistema}\\
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato}  \\
     \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato}  \\
-    \hline
-    \endfirsthead
-    \caption[]{Tabella dei test di sistema (cont)}\\
-    \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato}  \\
-    \hline
-    \endhead
-    \multicolumn{4}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-    \endfoot
-    \hline
-    \endlastfoot
-    TS.1 & Verificare che l'utente possa scegliere le componenti del sistema (modello LLM, vector database, modello di embeddings, sistema di archiviazione) al primo avvio dell'applicazione. & RF.O.1 & I \\
-\hline
-TS.2 & Verificare che l'utente possa scegliere un modello LLM tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.1 & I \\
-\hline
-TS.3 & Verificare che l'utente possa selezionare un solo modello LLM tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.1.1 & I \\
-\hline
-TS.4 & Verificare che l'utente possa scegliere il vector database tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.2 & I \\
-\hline
-TS.5 & Verificare che l'utente possa selezionare un solo vector database tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.2.1 & I \\
-\hline
-TS.6 & Verificare che l'utente possa scegliere un modello di embeddings tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.3 & I \\
-\hline
-TS.7 & Verificare che l'utente possa selezionare un solo modello di embeddings tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.3.1 & I \\
-\hline
-TS.8 & Verificare che l'utente possa scegliere un sistema di archiviazione documenti tra quelli disponibili al primo avvio dell'applicazione. & RF.O.1.4 & I \\
-\hline
-TS.9 & Verificare che l'utente possa selezionare un solo sistema di archiviazione dei documenti tra quelli presenti in lista durante la scelta delle componenti del sistema al primo avvio dell'applicazione. & RF.O.1.4.1 & I \\
-\hline
-TS.10 & Verificare che l'utente possa visualizzare la lista dei modelli LLM disponibili. & RF.O.2 & I \\
-\hline
-TS.11 & Verificare che l'utente possa visualizzare i singoli modelli LLM presenti in lista. & RF.O.2.1 & I \\
-\hline
-TS.12 & Verificare che l'utente possa visualizzare la lista dei vector database disponibili. & RF.O.3 & I \\
-\hline
-TS.13 & Verificare che l'utente possa visualizzare i singoli vector database presenti in lista. & RF.O.3.1 & I \\
-\hline
-TS.14 & Verificare che l'utente possa visualizzare la lista dei modelli di embeddings disponibili. & RF.O.4 & I \\
-\hline
-TS.15 & Verificare che l'utente possa visualizzare i singoli modelli di embeddings presenti in lista. & RF.O.4.1 & I \\
-\hline
-TS.16 & Verificare che l'utente possa visualizzare la lista dei sistemi di archiviazione disponibili. & RF.O.5 & I \\
-\hline
-TS.17 & Verificare che l'utente possa visualizzare i singoli sistemi di archiviazione presenti in lista. & RF.O.5.1 & I \\
-\hline
-TS.18 & Verificare che l'utente possa cambiare la scelta del modello LLM. & RF.O.6 & I \\
-\hline
-TS.19 & Verificare che l'utente possa selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. & RF.O.6.1 & I \\
-\hline
-TS.20 & Verificare che l'utente possa cambiare la scelta del vector database. & RF.O.7 & I \\
-\hline
-TS.21 & Verificare che l'utente possa selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. & RF.O.7.1 & I \\
-\hline
-TS.22 & Verificare che l'utente possa cambiare la scelta del modello di embeddings. & RF.O.8 & I \\
-\hline
-TS.23 & Verificare che l'utente possa selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. & RF.O.8.1 & I \\
-\hline
-TS.24 & Verificare che l'utente possa cambiare la scelta del sistema di archiviazione documenti. & RF.O.9 & I \\
-\hline
-TS.25 & Verificare che l'utente possa selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. & RF.O.9.1 & I \\
-\hline
-TS.26 & Verificare che l'utente possa visualizzare le caratteristiche di un modello LLM. & RF.O.10 & I \\
-\hline
-TS.27 & Verificare che l'utente possa visualizzare il nome di un modello LLM. & RF.O.10.1 & I \\
-\hline
-TS.28 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un modello LLM. & RF.O.10.2 & I \\
-\hline
-TS.29 & Verificare che l'utente possa visualizzare la descrizione di un modello LLM. & RF.O.10.3 & I \\
-\hline
-TS.30 & Verificare che l'utente possa visualizzare la tipologia di un modello LLM. & RF.O.10.4 & I \\
-\hline
-TS.31 & Verificare che l'utente possa visualizzare l’indicatore di costi di un modello LLM. & RF.O.10.5 & I \\
-\hline
-TS.32 & Verificare che l'utente possa visualizzare le caratteristiche di un vector database. & RF.O.11 & I \\
-\hline
-TS.33 & Verificare che l'utente possa visualizzare il nome di un vector database. & RF.O.11.1 & I \\
-\hline
-TS.34 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un vector database. & RF.O.11.2 & I \\
-\hline
-TS.35 & Verificare che l'utente possa visualizzare la descrizione di un vector database. & RF.O.11.3 & I \\
-\hline
-TS.36 & Verificare che l'utente possa visualizzare la tipologia di un vector database. & RF.O.11.4 & I \\
-\hline
-TS.37 & Verificare che l'utente possa visualizzare l’indicatore di costi di un vector database. & RF.O.11.5 & I \\
-\hline
-TS.38 & Verificare che l'utente possa visualizzare le caratteristiche di un modello di embeddings. & RF.O.12 & I \\
-\hline
-TS.39 & Verificare che l'utente possa visualizzare il nome di un modello di embeddings. & RF.O.12.1 & I \\
-\hline
-TS.40 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un modello di embeddings. & RF.O.12.2 & I \\
-\hline
-TS.41 & Verificare che l'utente possa visualizzare la descrizione di un modello di embeddings. & RF.O.12.3 & I \\
-\hline
-TS.42 & Verificare che l'utente possa visualizzare la tipologia di un modello di embeddings. & RF.O.12.4 & I \\
-\hline
-TS.43 & Verificare che l'utente possa visualizzare l’indicatore di costi di un modello di embeddings. & RF.O.12.5 & I \\
-\hline
-TS.44 & Verificare che l'utente possa visualizzare le caratteristiche di un sistema di archiviazione. & RF.O.13 & I \\
-\hline
-TS.45 & Verificare che l'utente possa visualizzare il nome di un sistema di archiviazione. & RF.O.13.1 & I \\
-\hline
-TS.46 & Verificare che l'utente possa visualizzare l’organizzazione proprietaria di un sistema di archiviazione. & RF.O.13.2 & I \\
-\hline
-TS.47 & Verificare che l'utente possa visualizzare la descrizione di un sistema di archiviazione. & RF.O.13.3 & I \\
-\hline
-TS.48 & Verificare che l'utente possa visualizzare la tipologia di un sistema di archiviazione. & RF.O.13.4 & I \\
-\hline
-TS.49 & Verificare che l'utente possa visualizzare l’indicatore di costi di un sistema di archiviazione. & RF.O.13.5 & I \\
-\hline
-TS.50 & Verificare che l'utente possa visualizzare la configurazione attuale del sistema. & RF.O.14 & I \\
-\hline
-TS.51 & Verificare che l'utente possa visualizzare la configurazione attuale del modello LLM. & RF.O.14.1 & I \\
-\hline
-TS.52 & Verificare che l'utente possa visualizzare la configurazione attuale del vector database. & RF.O.14.2 & I \\
-\hline
-TS.53 & Verificare che l'utente possa visualizzare la configurazione attuale del modello di embeddings. & RF.O.14.3 & I \\
-\hline
-TS.54 & Verificare che l'utente possa visualizzare la configurazione attuale del sistema di archiviazione documenti. & RF.O.14.4 & I \\
-\hline
-TS.55 & Verificare che l'utente possa visualizzare la lista dei documenti presenti nel sistema di archiviazione. & RF.O.15 & I \\
-\hline
-TS.56 & Verificare che l'utente possa visualizzare i singoli documenti presenti nel sistema di archiviazione. & RF.O.15.1 & I \\
-\hline
-TS.57 & Verificare che l'utente possa visualizzare il titolo di un documento presente nel sistema di archiviazione. & RF.O.15.1.1 & I \\
-\hline
-TS.58 & Verificare che l'utente possa visualizzare le dimensioni di un documento presente nel sistema di archiviazione. & RF.O.15.1.2 & I \\
-\hline
-TS.59 & Verificare che l'utente possa visualizzare la data di caricamento di un documento presente nel sistema di archiviazione. & RF.O.15.1.3 & I \\
-\hline
-TS.60 & Verificare che l'utente possa visualizzare se un documento è stato occultato. & RF.O.15.1.4 & I \\
-\hline
-TS.61 & Verificare che l'utente possa caricare un documento nell’area di staging. & RF.O.16 & I \\
-\hline
-TS.62 & Verificare che l'utente possa caricare nell’area di staging un documento di tipo .PDF. & RF.O.16.1 & I \\
-\hline
-TS.63 & Verificare che l'utente possa caricare nell’area di staging un documento di tipo .docx. & RF.O.16.2 & I \\
-\hline
-TS.64 & Verificare che l'utente possa caricare un insieme di documenti nell’area di staging. & RF.O.17 & I \\
-\hline
-TS.65 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .PDF. & RF.O.17.1 & I \\
-\hline
-TS.66 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .docx. & RF.O.17.2 & I \\
-\hline
-TS.67 & Verificare che l'utente possa caricare nell’area di staging un insieme di documenti di tipo .PDF e .docx. & RF.O.17.3 & I \\
-\hline
-TS.68 & Verificare che il tentativo di caricamento in area di staging di un documento fallisca nel caso in cui il formato di questo non sia supportato. & RF.O.18 & I \\
-\hline
-TS.69 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a caricare nell’area di staging un documento con formato non supportato. & RF.O.18.1 & I \\
-\hline
-TS.70 & Verificare che l'utente possa rimuovere un documento caricato nell’area di staging. & RF.O.19 & I \\
-\hline
-TS.71 & Verificare che l'utente possa rimuovere un insieme di documenti caricati nell’area di staging. & RF.O.20 & I \\
-\hline
-TS.72 & Verificare che l'utente possa fare l’upload nel sistema di archiviazione e nel vector database dei documenti caricati nell’area di staging. & RF.O.21 & I \\
-\hline
-TS.73 & Verificare che l'utente possa scegliere se sostituire con il documento caricato un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.1 & I \\
-\hline
-TS.74 & Verificare che l'utente possa confermare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.2 & I \\
-\hline
-TS.75 & Verificare che l'utente possa annullare la sostituzione con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & RF.O.21.3 & I \\
-\hline
-TS.76 & Verificare che l'utente possa scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.4 & I \\
-\hline
-TS.77 & Verificare che l'utente possa confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.5 & I \\
-\hline
-TS.78 & Verificare che l'utente possa annullare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & RF.O.21.6 & I \\
-\hline
-TS.79 & Verificare che l'utente possa visualizzare il contenuto di ciascun documento presente nel sistema. & RF.O.22 & I \\
-\hline
-TS.80 & Verificare che l'utente possa eliminare un documento presente nel sistema. & RF.O.23 & I \\
-\hline
-TS.81 & Verificare che l'utente possa eliminare un insieme di documenti presenti nel sistema. & RF.O.24 & I \\
-\hline
-TS.82 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per eliminarli. & RF.O.24.1 & I \\
-\hline
-TS.83 & Verificare che l'utente possa occultare un documento presente nel sistema. & RF.O.25 & I \\
-\hline
-TS.84 & Verificare che l'utente possa occultare un insieme di documenti presenti nel sistema. & RF.O.26 & I \\
-\hline
-TS.85 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per occultarli. & RF.O.26.1 & I \\
-\hline
-TS.86 & Verificare che l'utente possa riabilitare un documento presente nel sistema. & RF.O.27 & I \\
-\hline
-TS.87 & Verificare che l'utente possa riabilitare un insieme di documenti presenti nel sistema. & RF.O.28 & I \\
-\hline
-TS.88 & Verificare che l'utente possa selezionare un insieme di documenti presenti nel sistema per riabilitarli. & RF.O.28.1 & I \\
-\hline
-TS.89 & Verificare che l'utente possa ricercare un documento presente nel sistema. & RF.O.29 & I \\
-\hline
-TS.90 & Verificare che l'utente possa visualizzare la lista delle chat presenti nell’applicazione. & RF.O.30 & I \\
-\hline
-TS.91 & Verificare che l'utente possa visualizzare le singole chat presenti in lista. & RF.O.30.1 & I \\
-\hline
-TS.92 & Verificare che l'utente possa visualizzare il titolo di una chat. & RF.O.30.1.1 & I \\
-\hline
-TS.93 & Verificare che l'utente possa visualizzare il timestamp dell’ultimo messaggio di una chat. & RF.O.30.1.2 & I \\
-\hline
-TS.94 & Verificare che l'utente possa creare una nuova chat. & RF.O.31 & I \\
-\hline
-TS.95 & Verificare che il tentativo di creazione di una nuova chat fallisca nel caso in cui sia già presente una chat vuota. & RF.O.32 & I \\
-\hline
-TS.96 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & RF.O.32.1 & I \\
-\hline
-TS.97 & Verificare che l'utente possa eliminare una chat. & RF.O.33 & I \\
-\hline
-TS.98 & Verificare che l'utente possa eliminare un insieme di chat. & RF.O.34 & I \\
-\hline
-TS.99 & Verificare che l'utente possa selezionare un insieme di chat per poterle eliminare. & RF.O.34.1 & I \\
-\hline
-TS.100 & Verificare che l'utente possa rinominare una chat. & RF.O.35 & I \\
-\hline
-TS.101 & Verificare che il tentativo di rinominazione di una chat fallisca nel caso in cui il titolo inserito appartenga già ad un’altra chat. & RF.O.36 & I \\
-\hline
-TS.102 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a rinominare una chat con un titolo che appartiene già ad un’altra chat. & RF.O.36.1 & I \\
-\hline
-TS.103 & Verificare che il tentativo di rinominazione di una chat fallisca nel caso in cui il titolo inserito sia vuoto. & RF.O.37 & I \\
-\hline
-TS.104 & Verificare che l'utente visualizzi un errore nel caso in cui abbia provato a rinominare una chat con un titolo vuoto. & RF.O.37.1 & I \\
-\hline
-TS.105 & Verificare che l'utente possa ricercare una chat e il suo contenuto. & RF.O.38 & I \\
-\hline
-TS.106 & Verificare che l'utente possa visualizzare il contenuto di una chat. & RF.O.39 & I \\
-\hline
-TS.107 & Verificare che l'utente possa visualizzare i singoli messaggi di una chat. & RF.O.39.1 & I \\
-\hline
-TS.108 & Verificare che l'utente possa visualizzare il contenuto testuale di un messaggio presente in una chat. & RF.O.39.1.1 & I \\
-\hline
-TS.109 & Verificare che l'utente possa visualizzare l’orario di un messaggio presente in una chat. & RF.O.39.1.2 & I \\
-\hline
-TS.110 & Verificare che la risposta fornita dal chatbot presenti un riferimento ai documenti da cui ha estrapolato le informazioni esposte. & RF.D.40 & I \\
-\hline
-TS.111 & Verificare che l'utente possa visualizzare le domande suggerite in una chat vuota. & RF.D.41 & I \\
-\hline
-TS.112 & Verificare che l'utente possa inviare una domanda suggerita in una chat vuota. & RF.D.42 & I \\
-\hline
-TS.113 & Verificare che l'utente possa selezionare una delle domande suggerite in una chat vuota. & RF.D.42.1 & I \\
-\hline
-TS.114 & Verificare che l'utente possa confermare l’invio di una domanda suggerita in una chat vuota. & RF.D.42.2 & I \\
-\hline
-TS.115 & Verificare che l'utente possa ascoltare tramite audio un messaggio. & RF.D.43 & I \\
-\hline
-TS.116 & Verificare che l'utente possa copiare un messaggio. & RF.D.44 & I \\
-\hline
-TS.117 & Verificare che l'utente possa attivare la modalità vocale. & RF.OP.45 & I \\
-\hline
-TS.118 & Verificare che l'utente possa disattivare la modalità vocale. & RF.OP.46 & I \\
-\hline
-TS.119 & Verificare che l'utente possa inserire un messaggio nell’area di testo di una chat. & RF.O.47 & I \\
-\hline
-TS.120 & Verificare che l'utente possa inserire un messaggio testuale nell’area di input in una chat. & RF.O.47.1 & I \\
-\hline
-TS.121 & Verificare che l'utente possa inserire un messaggio in una chat tramite comando vocale nell’area di input di una chat. & RF.O.47.2 & I \\
-\hline
-TS.122 & Verificare che l'utente possa attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & RF.O.47.2.1 & I \\
-\hline
-TS.123 & Verificare che l'utente possa disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & RF.O.47.2.2 & I \\
-\hline
-TS.124 & Verificare che l'utente possa inviare un messaggio in una chat. & RF.O.48 & I \\
-\hline
-TS.125 & Verificare che il sistema offra opzioni che garantiscono la privacy delle informazioni sensibili condivise dall’utente per l’addestramento del modello. & RF.O.49 & I \\
-\hline
-TS.126 & Verificare che, in caso di caduta dalle connessione, l’applicazione vada in fallback su un modello AI locale. & RF.OP.50 & I \\
-\hline
-TS.127 & Verificare che, nel caso in cui l’utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot fornisca una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & RF.D.52 & I \\
-\hline
-TS.128 & Verificare che il chatbot sia in grado di fare caching: se l’utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & RF.OP.52 & I \\
-\hline
-TS.129 & Verificare che l’eliminazione di un documento dallo spazio di storage porti all’eliminazione dei metadati del relativo documento, ma non all’eliminazione degli emmbeddings generati dallo stesso. & RF.D.53 & I \\
-\hline
-\end{xltabular}
-
-\begin{comment}
-TS.132 & Verificare che l’applicazione web garantisca la presenza di almeno un modello AI locale. & RV.O.3 & I \\
-\hline
-TS.133 & Verificare che le chat siano salvate in automatico in un database. & RV.O.4 & I \\
-\hline
-TS.134 & Verificare che i documenti caricati siano memorizzati in un sistema di archiviazione. & RV.O.5 & I \\
-\hline    
-\end{comment}
-
     
-\subsubsection{Tracciamento}
-\begin{xltabular}{\textwidth}{|c|c|}
-%\begin{xltabular}{\textwidth}{p{0.12\textwidth}|X}
-\caption{Tabella di tracciamento dei test di sistema}
-\label{tab:test_tracciamento_sistema}\\
-\hline
-\textbf{ID Test} & \textbf{Requisito}\\
-\hline
-\endfirsthead
-\caption[]{Tabella di tracciamento dei test di sistema (cont)}\\
-\hline
-\textbf{ID} & \textbf{Descrizione}\\
-\hline
-\endhead
-\multicolumn{2}{r}{\footnotesize\textit{Continua nella pagina successiva}}
-\endfoot
-\hline
-\endlastfoot   
-TS.1 & RF.O.1 \\
-\hline
-TS.2 & RF.O.1.1 \\
-\hline
-TS.3 & RF.O.1.1.1 \\
-\hline
-TS.4 & RF.O.1.2 \\
-\hline
-TS.5 & RF.O.1.2.1 \\
-\hline
-TS.6 & RF.O.1.3 \\
-\hline
-TS.7 & RF.O.1.3.1 \\
-\hline
-TS.8 & RF.O.1.4 \\
-\hline
-TS.9 & RF.O.1.4.1 \\
-\hline
-TS.10 & RF.O.2 \\
-\hline
-TS.11 & RF.O.2.1 \\
-\hline
-TS.12 & RF.O.3 \\
-\hline
-TS.13 & RF.O.3.1 \\
-\hline
-TS.14 & RF.O.4 \\
-\hline
-TS.15 & RF.O.4.1 \\
-\hline
-TS.16 & RF.O.5 \\
-\hline
-TS.17 & RF.O.5.1 \\
-\hline
-TS.18 & RF.O.6 \\
-\hline
-TS.19 & RF.O.6.1 \\
-\hline
-TS.20 & RF.O.7 \\
-\hline
-TS.21 & RF.O.7.1 \\
-\hline
-TS.22 & RF.O.8 \\
-\hline
-TS.23 & RF.O.8.1 \\
-\hline
-TS.24 & RF.O.9 \\
-\hline
-TS.25 & RF.O.9.1 \\
-\hline
-TS.26 & RF.O.10 \\
-\hline
-TS.27 & RF.O.10.1 \\
-\hline
-TS.28 & RF.O.10.2 \\
-\hline
-TS.29 & RF.O.10.3 \\
-\hline
-TS.30 & RF.O.10.4 \\
-\hline
-TS.31 & RF.O.10.5 \\
-\hline
-TS.32 & RF.O.11 \\
-\hline
-TS.33 & RF.O.11.1 \\
-\hline
-TS.34 & RF.O.11.2 \\
-\hline
-TS.35 & RF.O.11.3 \\
-\hline
-TS.36 & RF.O.11.4 \\
-\hline
-TS.37 & RF.O.11.5 \\
-\hline
-TS.38 & RF.O.12 \\
-\hline
-TS.39 & RF.O.12.1 \\
-\hline
-TS.40 & RF.O.12.2 \\
-\hline
-TS.41 & RF.O.12.3 \\
-\hline
-TS.42 & RF.O.12.4 \\
-\hline
-TS.43 & RF.O.12.5 \\
-\hline
-TS.44 & RF.O.13 \\
-\hline
-TS.45 & RF.O.13.1 \\
-\hline
-TS.46 & RF.O.13.2 \\
-\hline
-TS.47 & RF.O.13.3 \\
-\hline
-TS.48 & RF.O.13.4 \\
-\hline
-TS.49 & RF.O.13.5 \\
-\hline
-TS.50 & RF.O.14 \\
-\hline
-TS.51 & RF.O.14.1 \\
-\hline
-TS.52 & RF.O.14.2 \\
-\hline
-TS.53 & RF.O.14.3 \\
-\hline
-TS.54 & RF.O.14.4 \\
-\hline
-TS.55 & RF.O.15 \\
-\hline
-TS.56 & RF.O.15.1 \\
-\hline
-TS.57 & RF.O.15.1.1 \\
-\hline
-TS.58 & RF.O.15.1.2 \\
-\hline
-TS.59 & RF.O.15.1.3 \\
-\hline
-TS.60 & RF.O.15.1.4 \\
-\hline
-TS.61 & RF.O.16 \\
-\hline
-TS.62 & RF.O.16.1 \\
-\hline
-TS.63 & RF.O.16.2 \\
-\hline
-TS.64 & RF.O.17 \\
-\hline
-TS.65 & RF.O.17.1 \\
-\hline
-TS.66 & RF.O.17.2 \\
-\hline
-TS.67 & RF.O.17.3 \\
-\hline
-TS.68 & RF.O.18 \\
-\hline
-TS.69 & RF.O.18.1 \\
-\hline
-TS.70 & RF.O.19 \\
-\hline
-TS.71 & RF.O.20 \\
-\hline
-TS.72 & RF.O.21 \\
-\hline
-TS.73 & RF.O.21.1 \\
-\hline
-TS.74 & RF.O.21.2 \\
-\hline
-TS.75 & RF.O.21.3 \\
-\hline
-TS.76 & RF.O.21.4 \\
-\hline
-TS.77 & RF.O.21.5 \\
-\hline
-TS.78 & RF.O.21.6 \\
-\hline
-TS.79 & RF.O.22 \\
-\hline
-TS.80 & RF.O.23 \\
-\hline
-TS.81 & RF.O.24 \\
-\hline
-TS.82 & RF.O.24.1 \\
-\hline
-TS.83 & RF.O.25 \\
-\hline
-TS.84 & RF.O.26 \\
-\hline
-TS.85 & RF.O.26.1 \\
-\hline
-TS.86 & RF.O.27 \\
-\hline
-TS.87 & RF.O.28 \\
-\hline
-TS.88 & RF.O.28.1 \\
-\hline
-TS.89 & RF.O.29 \\
-\hline
-TS.90 & RF.O.30 \\
-\hline
-TS.91 & RF.O.30.1 \\
-\hline
-TS.92 & RF.O.30.1.1 \\
-\hline
-TS.93 & RF.O.30.1.2 \\
-\hline
-TS.94 & RF.O.31 \\
-\hline
-TS.95 & RF.O.32 \\
-\hline
-TS.96 & RF.O.32.1 \\
-\hline
-TS.97 & RF.O.33 \\
-\hline
-TS.98 & RF.O.34 \\
-\hline
-TS.99 & RF.O.34.1 \\
-\hline
-TS.100 & RF.O.35 \\
-\hline
-TS.101 & RF.O.36 \\
-\hline
-TS.102 & RF.O.36.1 \\
-\hline
-TS.103 & RF.O.37 \\
-\hline
-TS.104 & RF.O.37.1 \\
-\hline
-TS.105 & RF.O.38 \\
-\hline
-TS.106 & RF.O.39 \\
-\hline
-TS.107 & RF.O.39.1 \\
-\hline
-TS.108 & RF.O.39.1.1 \\
-\hline
-TS.109 & RF.O.39.1.2 \\
-\hline
-TS.110 & RF.D.40 \\
-\hline
-TS.111 & RF.D.41 \\
-\hline
-TS.112 & RF.D.42 \\
-\hline
-TS.113 & RF.D.42.1 \\
-\hline
-TS.114 & RF.D.42.2 \\
-\hline
-TS.115 & RF.D.43 \\
-\hline
-TS.116 & RF.D.44 \\
-\hline
-TS.117 & RF.OP.45 \\
-\hline
-TS.118 & RF.OP.46 \\
-\hline
-TS.119 & RF.O.47 \\
-\hline
-TS.120 & RF.O.47.1 \\
-\hline
-TS.121 & RF.O.47.2 \\
-\hline
-TS.122 & RF.O.47.2.1 \\
-\hline
-TS.123 & RF.O.47.2.2 \\
-\hline
-TS.124 & RF.O.48 \\
-\hline
-TS.125 & RQ.O.1 \\
-\hline
-TS.126 & RQ.OP.2 \\
-\hline
-TS.127 & RQ.D.3 \\
-\hline
-TS.128 & RQ.OP.4 \\
-\hline
-TS.129 & RQ.D.5 \\
-\hline
-TS.130 & RV.O.1 \\
-\hline
-TS.131 & RV.O.2 \\
-\hline
-TS.132 & RV.O.3 \\
-\hline
-TS.133 & RV.O.4 \\
-\hline
-TS.134 & RV.O.5 \\
-\hline
-TS.135 & RP.O.1 \\
-\hline
-
+    TS1 & Questo test verifica la funzionalità del metodo \texttt{askChatbot} del controller \texttt{AskChatbotController}. Il metodo \texttt{askChatbot} è responsabile per gestire le richieste dell'utente e restituire una risposta. Il test simula un ambiente in cui il metodo \texttt{askChatbot} viene chiamato con un messaggio di prova. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{MessageResponse} con \texttt{chatId} impostato a \texttt{None}, \texttt{status} impostato a \texttt{False}, e \texttt{messageResponse} impostato a \texttt{None}. Questo indica che il metodo \texttt{askChatbot} non ha restituito una risposta valida. & N/I \\
+    \hline
+    TS2 & Questo test verifica la funzionalità del metodo \texttt{changeLLMModel} del controller \texttt{ChangeConfigurationController}. Il metodo \texttt{changeLLMModel} è responsabile per cambiare il modello LLM. Il test simula un ambiente in cui il metodo \texttt{changeLLMModel} viene chiamato con un modello di prova. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{ConfigurationOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Modello LLM aggiornato con successo'. & N/I \\
+    \hline
+    TS3 & Questo test verifica la funzionalità del metodo \texttt{concealDocuments} del controller \texttt{ConcealDocumentsController} quando viene utilizzato il manager \texttt{VectorStorePineconeManager}. Il metodo \texttt{concealDocuments} è responsabile per occultare i documenti. Il test simula un ambiente in cui il metodo \texttt{concealDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Documento occultato con successo.' per ogni documento. Pinecone. & N/I \\
+    \hline
+    TS4 & Questo test verifica la funzionalità del metodo \texttt{concealDocuments} del controller \texttt{ConcealDocumentsController} quando viene utilizzato il manager \texttt{VectorStoreChromaDBManager}. Il metodo \texttt{concealDocuments} è responsabile per occultare i documenti. Il test simula un ambiente in cui il metodo \texttt{concealDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Documento occultato con successo.' per ogni documento. Chroma. & N/I \\
+    \hline
+    TS5 & Questo test verifica la funzionalità del metodo \texttt{deleteChats} del controller \texttt{DeleteChatsController}. Il metodo \texttt{deleteChats} è responsabile per eliminare le chat. Il test simula un ambiente in cui il metodo \texttt{deleteChats} viene chiamato con una lista di ID di chat di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{ChatOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Chat eliminata correttamente.' per ogni chat. & N/I \\
+    \hline
+    TS6 & Questo test verifica la funzionalità del metodo \texttt{deleteDocuments} del controller \texttt{DeleteDocumentsController} quando viene utilizzato il manager \texttt{VectorStorePineconeManager}. Il metodo \texttt{deleteDocuments} è responsabile per eliminare i documenti. Il test simula un ambiente in cui il metodo \texttt{deleteDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Eliminazione del documento avvenuta con successo.' per ogni documento. Pinecone. & N/I \\
+    \hline
+    TS7 & Questo test verifica la funzionalità del metodo \texttt{deleteDocuments} del controller \texttt{DeleteDocumentsController} quando viene utilizzato il manager \texttt{VectorStoreChromaDBManager}. Il metodo \texttt{deleteDocuments} è responsabile per eliminare i documenti. Il test simula un ambiente in cui il metodo \texttt{deleteDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Eliminazione del documento avvenuta con successo.' per ogni documento. Chroma & N/I \\
+    \hline
+    TS8 & Questo test verifica la funzionalità del metodo \texttt{embedDocuments} del controller \texttt{EmbedDocumentsController} quando viene utilizzato il modello di embedding \texttt{OpenAIEmbeddings}, il manager \texttt{VectorStoreChromaDBManager}, e l'estratore di testo \texttt{Docx2txtLoader} per i documenti DOCX. Il metodo \texttt{embedDocuments} è responsabile per l'embedding dei documenti. Il test simula un ambiente in cui il metodo \texttt{embedDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a un valore qualsiasi . & N/I \\
+    \hline
+    TS9 & Questo test verifica la funzionalità del metodo \texttt{embedDocuments} del controller \texttt{EmbedDocumentsController} quando viene utilizzato il modello di embedding \texttt{HuggingFaceInferenceAPIEmbeddings}, il manager \texttt{VectorStorePineconeManager}, e l'estratore di testo \texttt{PyPDFLoader} per i documenti PDF. Il metodo \texttt{embedDocuments} è responsabile per l'embedding dei documenti. Il test simula un ambiente in cui il metodo \texttt{embedDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a un valore qualsiasi. & N/I \\
+    \hline
+    TS10 & Questo test verifica la funzionalità del metodo \texttt{enableDocuments} del controller \texttt{EnableDocumentsController} quando viene utilizzato il manager \texttt{VectorStoreChromaDBManager}. Il metodo \texttt{enableDocuments} è responsabile per abilitare i documenti. Il test simula un ambiente in cui il metodo \texttt{enableDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a un valore qualsiasi. Pinecone. & N/I \\
+    \hline
+    TS10 & Questo test verifica la funzionalità del metodo \texttt{enableDocuments} del controller \texttt{EnableDocumentsController} quando viene utilizzato il manager \texttt{VectorStoreChromaDBManager}. Il metodo \texttt{enableDocuments} è responsabile per abilitare i documenti. Il test simula un ambiente in cui il metodo \texttt{enableDocuments} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a un valore qualsiasi. Chroma. & N/I \\
+    \hline
+    TS11 & Questo test verifica la funzionalità del metodo \texttt{getChatMessages} del controller \texttt{GetChatMessagesController}. Il metodo \texttt{getChatMessages} è responsabile per ottenere i messaggi di una chat. Il test simula un ambiente in cui il metodo \texttt{getChatMessages} viene chiamato con un ID di chat di prova. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{Chat} con \texttt{chatId} impostato a \texttt{1}, \texttt{title} impostato a 'test', e \texttt{messages} impostato a una lista di oggetti \texttt{Message} con \texttt{content} impostato a 'ciao', \texttt{timestamp} impostato a un valore qualsiasi, \texttt{relevantDocuments} impostato a una lista di oggetti \texttt{DocumentId} con \texttt{id} impostato a 'document\_1', e \texttt{sender} impostato a \texttt{MessageSender.USER}. & N/I \\
+    \hline
+    TS12 & Questo test verifica la funzionalità del metodo \texttt{getChats} del controller \texttt{GetChatsController}. & N/I \\
+    \hline
+    TS13 & Questo test verifica la funzionalità del metodo \texttt{getConfigurationOptions} del controller \texttt{GetConfigurationOptionsController}. Il metodo \texttt{getConfiguration} è responsabile per ottenere la configurazione. Il test simula un ambiente in cui il metodo \texttt{getConfiguration} viene chiamato. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{Configuration} con \texttt{VectorStoreConfiguration} impostato a un oggetto \texttt{VectorStoreConfiguration} con \texttt{type} impostato a \texttt{VectorStoreType.PINECONE}, \texttt{name} impostato a 'pinecone', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost', \texttt{EmbeddingModelConfiguration} impostato a un oggetto \texttt{EmbeddingModelConfiguration} con \texttt{type} impostato a \texttt{EmbeddingModelType.HUGGINGFACE}, \texttt{name} impostato a 'meta', \texttt{description} impostato a 'description', \texttt{server} impostato a 'local', e \texttt{cost} impostato a 'free', \texttt{LLMModelConfiguration} impostato a un oggetto \texttt{LLMModelConfiguration} con \texttt{type} impostato a \texttt{LLMModelType.OPENAI}, \texttt{name} impostato a 'openai', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost', e \texttt{DocumentStoreConfiguration} impostato a un oggetto \texttt{DocumentStoreConfiguration} con \texttt{type} impostato a \texttt{DocumentStoreType.AWS}, \texttt{name} impostato a 'amazon', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost'. & N/I \\
+    \hline
+    TS14 & Questo test verifica la funzionalità del metodo \texttt{getConfiguration} del controller \texttt{GetConfigurationController}. Il metodo \texttt{getConfiguration} è responsabile per ottenere la configurazione. Il test simula un ambiente in cui il metodo \texttt{getConfiguration} viene chiamato. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{Configuration} con \texttt{VectorStoreConfiguration} impostato a un oggetto \texttt{VectorStoreConfiguration} con \texttt{type} impostato a \texttt{VectorStoreType.PINECONE}, \texttt{name} impostato a 'pinecone', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost', \texttt{EmbeddingModelConfiguration} impostato a un oggetto \texttt{EmbeddingModelConfiguration} con \texttt{type} impostato a \texttt{EmbeddingModelType.HUGGINGFACE}, \texttt{name} impostato a 'meta', \texttt{description} impostato a 'description', \texttt{server} impostato a 'local', e \texttt{cost} impostato a 'free', \texttt{LLMModelConfiguration} impostato a un oggetto \texttt{LLMModelConfiguration} con \texttt{type} impostato a \texttt{LLMModelType.OPENAI}, \texttt{name} impostato a 'openai', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost', e \texttt{DocumentStoreConfiguration} impostato a un oggetto \texttt{DocumentStoreConfiguration} con \texttt{type} impostato a \texttt{DocumentStoreType.AWS}, \texttt{name} impostato a 'amazon', \texttt{description} impostato a 'description', \texttt{server} impostato a 'server', e \texttt{cost} impostato a 'cost'. & N/I \\
+    \hline
+    TS15 & Questo test verifica la funzionalità del metodo \texttt{getDocumentsContent} del controller \texttt{GetDocumentsContentController} quando viene utilizzato il manager \texttt{VectorStorePineconeManager}. Il metodo \texttt{getDocumentsContent} è responsabile per ottenere il contenuto dei documenti. Il test simula un ambiente in cui il metodo \texttt{getDocumentsContent} viene chiamato con una lista di ID di documenti di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentContent} con \texttt{documentId} impostato a 'Prova.pdf', \texttt{content} impostato a 'content', e \texttt{status} impostato a \texttt{True}. & N/I \\
+    \hline
+    TS16 & Questo test verifica la funzionalità del metodo \texttt{getDocument} del controller \texttt{GetDocumentsController}. Il metodo \texttt{getDocument} è responsabile per ottenere i documenti. Il test simula un ambiente in cui il metodo \texttt{getDocument} viene chiamato con un filtro di prova. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{LightDocument} con \texttt{metadata} impostato a un oggetto \texttt{DocumentMetadata} con \texttt{id} impostato a \texttt{DocumentId(id='Prova.pdf')}, \texttt{type} impostato a \texttt{DocumentType.PDF}, \texttt{size} impostato a \texttt{10}, e \texttt{uploadTime} impostato a \texttt{'2021-01-01T01:01:01Z'}, e \texttt{status} impostato a \texttt{DocumentStatus(status=Status.ENABLED)}. & N/I \\
+    \hline
+    TS17 & Questo test verifica la funzionalità del metodo \texttt{renameChat} del controller \texttt{RenameChatController}. Il metodo \texttt{renameChat} è responsabile per rinominare le chat. Il test simula un ambiente in cui il metodo \texttt{renameChat} viene chiamato con un ID di chat di prova e un nuovo titolo. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{ChatOperationResponse} con \texttt{status} impostato a \texttt{True}, \texttt{message} impostato a un valore qualsiasi, e \texttt{chatId} impostato a \texttt{ChatId(1)}. & N/I \\
+    \hline
+    TS18 & Questo test verifica la funzionalità del metodo \texttt{renameChat} del controller \texttt{RenameChatController}. Il metodo \texttt{renameChat} è responsabile per rinominare le chat. Il test simula un ambiente in cui il metodo \texttt{renameChat} viene chiamato con un ID di chat di prova e un nuovo titolo. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{ChatOperationResponse} con \texttt{status} impostato a \texttt{False}, \texttt{message} impostato a un valore qualsiasi, e \texttt{chatId} impostato a \texttt{ChatId(-1)}. & N/I \\
+    \hline
+    TS19 & Questo test verifica la funzionalità del metodo \texttt{setConfiguration} del controller \texttt{SetConfigurationController}. Il metodo \texttt{setConfiguration} è responsabile per impostare la configurazione. Il test simula un ambiente in cui il metodo \texttt{setConfiguration} viene chiamato con i parametri 'OPENAI', 'AWS', 'PINECONE', 'HUGGINGFACE'. Il test verifica che il risultato restituito dal metodo sia un oggetto \texttt{ConfigurationOperationResponse} con \texttt{status} impostato a \texttt{True}, e \texttt{message} impostato a 'Configurazione aggiornata con successo'. & N/I \\
+    \hline
+    TS20 & Questo test verifica la funzionalità del metodo \texttt{uploadDocuments} del controller \texttt{UploadDocumentsController} quando viene utilizzato il manager \texttt{VectorStorePineconeManager}. Il metodo \texttt{uploadDocuments} è responsabile per caricare i documenti. Il test simula un ambiente in cui il metodo \texttt{uploadDocuments} viene chiamato con una lista di oggetti \texttt{NewDocument} con \texttt{documentId} impostato a 'Prova.pdf', \texttt{type} impostato a 'PDF', \texttt{size} impostato a \texttt{10}, e \texttt{content} impostato a \texttt{b'content'}. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{documentId} impostato a \texttt{DocumentId(id='Prova.pdf')}, \texttt{status} impostato a \texttt{False}, e \texttt{message} impostato a 'Il documento è già presente nel sistema.'. Pinecone. & N/I \\
+    \hline
+    TS21 & Questo test verifica la funzionalità del metodo \texttt{uploadDocuments} del controller \texttt{UploadDocumentsController} quando viene utilizzato il manager \texttt{VectorStoreChromaDBManager}. Il metodo \texttt{uploadDocuments} è responsabile per caricare i documenti. Il test simula un ambiente in cui il metodo \texttt{uploadDocuments} viene chiamato con una lista di oggetti \texttt{NewDocument} con \texttt{documentId} impostato a 'Prova.pdf', \texttt{type} impostato a 'PDF', \texttt{size} impostato a \texttt{10}, e \texttt{content} impostato a \texttt{b'content'}. Il test verifica che il risultato restituito dal metodo sia una lista di oggetti \texttt{DocumentOperationResponse} con \texttt{documentId} impostato a \texttt{DocumentId(id='Prova.pdf')}, \texttt{status} impostato a \texttt{False}, e \texttt{message} impostato a 'Il documento è già presente nel sistema.'. Chroma. & N/I \\
+    \hline
 \end{xltabular}
+
+
 
     
 \subsection{Test di accettazione}
@@ -2057,7 +1659,7 @@ TA.3 & Verificare che l'utente, durante la configurazione del modello di embeddi
     \item Scegliere un modello di embeddings tra quelli disponibili;
     \item Confermare la configurazione.
 \end{enumerate}
-& UC1.3, UC4, UC10, UC10.1, UC11, UC11.1, UC11.2, UC11.3, UC11.4, UC11.5 & I \\
+& UC1.3, UC4, UC10, UC10.1, UC11, UC11.1, UC11.2, UC11.3, UC11.4 & I \\
 \hline
 TA.4 & Verificare che l'utente, durante la configurazione del sistema di archiviazione documenti, possa:
 \begin{enumerate}

@@ -5,6 +5,7 @@
 \usepackage{style}
 \usepackage{headerfooter}
 \usepackage{comment}
+\usepackage{rotating}
 
 \title{\titolo}
 \author{SWEetCode}
@@ -29,7 +30,7 @@
 % INTRODUZIONE
 \section{Introduzione}
 \subsection{Obiettivo del documento}
-L'obiettivo che ci si pone nella realizzazione di questo documento è descrivere le scelte tecnologiche e l'architettura del prodotto \textit{Knowledge Management AI}. Verrà seguito un approccio top-down, partendo dall'architettura del sistema passando poi all'architettura delle componenti ed infine alla progettazione di dettaglio.
+L'obiettivo che ci si pone nella realizzazione di questo documento è descrivere le scelte tecnologiche e l'architettura del prodotto \textit{Knowledge\pg Management\pg AI}. Verrà seguito un approccio top-down, partendo dall'architettura del sistema passando poi all'architettura delle componenti ed infine alla progettazione di dettaglio.
 
 \subsection{Glossario}
 Per evitare ambiguità ed incomprensioni relative al linguaggio e ai termini utilizzati nella documentazione del progetto viene presentato un Glossario.
@@ -51,7 +52,7 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
     \subsubsection{Riferimenti informativi}
     \begin{itemize}
         \item \textit{(Analisi dei requisiti v2.2.14(1))};
-        \item \textit{Capitolato C1}: \textit{Knowledge Management AI}
+        \item \textit{Capitolato\pg C1}: \textit{Knowledge Management AI}
         \begin{itemize}
             \item \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
             (Ultimo accesso: 2024-03-29);
@@ -90,12 +91,12 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
             (Ultimo accesso: 2024-03-29);
             \url{https://github.com/rcardin/hexagonal-java/}\\
             (Ultimo accesso: 2024-03-29);
-        \item \textit{Repository Ingegneria del software professor Cardin}: \\
+        \item \textit{Repository Ingegneria del software\pg professor Cardin}: \\
             \url{https://github.com/rcardin/swe-imdb}\\
             (Ultimo accesso: 2024-03-29);
         \item Riferimenti a scelte tecnologiche:
         \begin{itemize}
-            \item \textit{AWS S3}: \\
+            \item \textit{AWS\pg S3}: \\
                 \url{https://aws.amazon.com/it/s3/}\\
                 (Ultimo accesso: 2024-03-29);
             \item \textit{ChromaDB}: \\
@@ -104,31 +105,31 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
             \item \textit{Docker}: \\
                 \url{https://www.docker.com/}\\
                 (Ultimo accesso: 2024-03-29);
-            \item \textit{Flask}: \\
+            \item \textit{Flask\pg}: \\
                 \url{https://flask.palletsprojects.com/en/3.0.x/}\\
             (Ultimo accesso: 2024-03-29);
-            \item \textit{HuggingFace}: \\
+            \item \textit{HuggingFace\pg}: \\
                 \url{https://huggingface.co/}\\
                 (Ultimo accesso: 2024-03-29);
-            \item \textit{Langchain}: \\
+            \item \textit{Langchain\pg}: \\
                 \url{https://python.langchain.com/docs/get_started/introduction}\\
                 (Ultimo accesso: 2024-03-29);
-            \item \textit{Next.js}: \\
+            \item \textit{Next.js\pg}: \\
                 \url{https://nextjs.org/}\\
                 (Ultimo accesso: 2024-03-29);
-            \item \textit{OpenAI}: \\
+            \item \textit{OpenAI\pg}: \\
                 \url{https://openai.com/}\\
                 (Ultimo accesso: 2024-03-29));
-            \item \textit{Pinecone}: \\
+            \item \textit{Pinecone\pg}: \\
                 \url{https://www.pinecone.io/}\\
                 (Ultimo accesso: 2024-03-29));
-            \item \textit{Postgres}: \\
+            \item \textit{Postgres\pg}: \\
                 \url{https://www.postgresql.org/}\\
                 (Ultimo accesso: 2024-03-29));
-            \item \textit{Python}: \\
+            \item \textit{Python\pg}: \\
                 \url{https://www.python.org/}\\
                 (Ultimo accesso: 2024-03-29));
-            \item \textit{Typescript}: \\
+            \item \textit{Typescript\pg}: \\
                 \url{https://www.typescriptlang.org/}\\
                 (Ultimo accesso: 2024-03-29));
         \end{itemize}
@@ -144,15 +145,15 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
 In questa sezione vengono elencate e descritte le tecnologie utilizzate nello sviluppo, illustrando le motivazioni a sostegno di ogni scelta e le alternative scartate.
 
 \subsection{Flask}
-Flask è un micro framework per applicazioni web. È stato scelto per la sua leggerezza e la sua flessibilità, rispetto ad altri framework come Django che potrebbero risultare troppo pesanti per le esigenze del progetto.
+Flask è un micro \textit{framework\pg} per applicazioni web. È stato scelto per la sua leggerezza e la sua flessibilità, rispetto ad altri framework come \textit{Django\pg} che potrebbero risultare troppo pesanti per le esigenze del progetto.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Leggerezza:} Flask è noto per la sua leggerezza, il che significa che ha poche dipendenze. Questo lo rende perfetto per progetti più piccoli dove non è necessario un carico pesante di funzionalità, a differenza di Django che include molte funzionalità out-of-the-box che potrebbero non essere necessarie;
+\item \textbf{Leggerezza:} Flask è noto per la sua leggerezza, il che significa che ha poche dipendenze. Questo lo rende perfetto per progetti più piccoli dove non è necessario un carico pesante di funzionalità, a differenza di Django che include molte funzionalità \textit{out-of-the-box\pg} che potrebbero non essere necessarie;
 \item \textbf{Flessibilità:} Flask offre una grande flessibilità, permettendo agli sviluppatori di strutturare le loro applicazioni come preferiscono, a differenza di Django che segue un approccio più rigido e strutturato;
 \item \textbf{Facilità d'uso:} Flask è facile da usare e da imparare, rendendolo ideale per i principianti;
-\item \textbf{Meno overhead rispetto a Django:} A causa della sua leggerezza e flessibilità, Flask può avere meno overhead rispetto a un framework più pesante come Django;
+\item \textbf{Meno \textit{overhead\pg} rispetto a Django:} A causa della sua leggerezza e flessibilità, Flask può avere meno overhead rispetto a un framework più pesante come Django;
 \item \textbf{Maggiore controllo rispetto a Django:} Flask offre agli sviluppatori un maggiore controllo sulle funzionalità delle loro applicazioni, a differenza di Django che fornisce molte funzionalità predefinite che potrebbero non essere necessarie o desiderate.
 \end{itemize}
 \item \textbf{Svantaggi:}
@@ -166,12 +167,12 @@ Flask è un micro framework per applicazioni web. È stato scelto per la sua leg
 \textbf{Versione scelta:} Flask 3.0.2.
 
 \subsubsection{Python}
-Python è un linguaggio di programmazione ad alto livello, interpretato, interattivo, orientato agli oggetti e di script. È progettato per essere altamente leggibile. Rispetto ad altri linguaggi come Java o C++, Python offre una sintassi più semplice e pulita, rendendo il codice più leggibile e mantenibile.
+Python è un linguaggio di programmazione ad alto livello, interpretato, interattivo, orientato agli oggetti e di \textit{script\pg}. È progettato per essere altamente leggibile.\\ Rispetto ad altri linguaggi come \textit{Java\pg} o \textit{C++\pg}, Python offre una sintassi più semplice e pulita, rendendo il codice più leggibile e mantenibile.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
-\item \textbf{Facilità d'uso:} Python ha una sintassi molto pulita e facile da leggere, il che rende il linguaggio molto facile da imparare per i nuovi programmatori;
+\item \textbf{Facilità d'uso:} Python ha una sintassi molto pulita e facile da leggere, il che rende il linguaggio molto facile da imparare per i nuovi \textit{programmatori\pg};
 \item \textbf{Versatilità:} Python può essere utilizzato per una vasta gamma di applicazioni, tra cui sviluppo web, data analysis, machine learning, intelligenza artificiale, creazione di GUI e scripting di sistema;
 \item \textbf{Grande comunità:} Python ha una grande comunità di sviluppatori che contribuiscono attivamente alla sua manutenzione e miglioramento. Ciò significa che ci sono molte risorse disponibili per l'apprendimento e la risoluzione dei problemi;
 \item \textbf{Librerie ricche rispetto a Java o C++:} Python ha una vasta gamma di librerie e framework, che possono aiutare a semplificare lo sviluppo e a ridurre il tempo di sviluppo, a differenza di altri linguaggi come Java o C++ che potrebbero non avere una gamma così ampia di librerie disponibili;
@@ -187,7 +188,7 @@ Python è un linguaggio di programmazione ad alto livello, interpretato, interat
 \textbf{Versione scelta:} Python 3.9.
 
 \subsection{Next.js}
-Next.js è un framework per applicazioni web basato su React. È stato scelto per la sua efficienza e per le sue funzionalità di rendering lato server. Rispetto ad altri framework come Angular, Next.js offre una maggiore efficienza e facilità d'uso, rendendolo ideale per questo progetto.
+Next.js è un framework per applicazioni web basato su \textit{React\pg}. È stato scelto per la sua \textit{efficienza\pg} e per le sue funzionalità di rendering lato server. Rispetto ad altri framework come \textit{Angular\pg}, Next.js offre una maggiore efficienza e facilità d'uso, rendendolo ideale per questo progetto.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -207,7 +208,7 @@ Next.js è un framework per applicazioni web basato su React. È stato scelto pe
 \textbf{Versione scelta:} Next.js 14.1.
 
 \subsubsection{Typescript}
-Typescript è un super-set di JavaScript che aggiunge tipi statici e oggetti orientati alla programmazione. È stato scelto per la sua affidabilità e robustezza. Rispetto a JavaScript, TypeScript offre un controllo dei tipi più rigoroso, il che può aiutare a prevenire errori di runtime.
+Typescript è un super-set di \textit{JavaScript\pg} che aggiunge tipi statici e oggetti orientati alla programmazione. È stato scelto per la sua affidabilità e robustezza. Rispetto a JavaScript, TypeScript offre un controllo dei tipi più rigoroso, il che può aiutare a prevenire errori di runtime.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -220,13 +221,13 @@ Typescript è un super-set di JavaScript che aggiunge tipi statici e oggetti ori
 \item \textbf{Svantaggi:}
 \begin{itemize}
 \item \textbf{Curva di apprendimento rispetto a JavaScript:} Typescript può essere più difficile da imparare rispetto a JavaScript a causa delle sue funzionalità aggiuntive;
-\item \textbf{Compilazione:} A differenza di JavaScript, TypeScript deve essere compilato in JavaScript prima di poter essere eseguito, il che può aggiungere un passaggio aggiuntivo nel processo di sviluppo.
+\item \textbf{Compilazione:} A differenza di JavaScript, TypeScript deve essere compilato in JavaScript prima di poter essere eseguito, il che può aggiungere un passaggio aggiuntivo nel \textit{processo\pg} di sviluppo.
 \end{itemize}
 \end{itemize}
 \textbf{Versione scelta:} Typescript 5.3.3.
 
 \subsection{Docker}
-Docker è una piattaforma open source che automatizza la distribuzione, la scalabilità e l'isolamento delle applicazioni utilizzando la virtualizzazione a livello di sistema operativo. È stato scelto per la sua efficienza e portabilità. Rispetto ad altre soluzioni come Vagrant, Docker offre una maggiore efficienza e facilità d'uso.
+\textit{Docker\pg} è una piattaforma open source che automatizza la distribuzione, la scalabilità e l'isolamento delle applicazioni utilizzando la virtualizzazione a livello di sistema operativo. È stato scelto per la sua efficienza e portabilità. Rispetto ad altre soluzioni come Vagrant, Docker offre una maggiore efficienza e facilità d'uso.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -234,7 +235,7 @@ Docker è una piattaforma open source che automatizza la distribuzione, la scala
 \item \textbf{Efficienza rispetto a Vagrant:} Docker consente di eseguire più applicazioni in modo isolato sulla stessa infrastruttura hardware, migliorando l'efficienza e riducendo i costi, a differenza di Vagrant che può richiedere più risorse di sistema;
 \item \textbf{Portabilità:} Con Docker, le applicazioni e le loro dipendenze possono essere confezionate come un'unità portatile chiamata container, che può essere eseguita su qualsiasi macchina che supporti Docker;
 \item \textbf{Isolamento:} Docker isola le applicazioni in container separati, il che significa che ogni applicazione può avere le proprie dipendenze e non interferire con le altre applicazioni;
-\item \textbf{Supporto per la CI/CD:} Docker può essere facilmente integrato in pipeline di integrazione continua e distribuzione continua (CI/CD), il che può semplificare il processo di sviluppo e distribuzione.
+\item \textbf{Supporto per la \textit{CI/CD\pg}:} Docker può essere facilmente integrato in pipeline di integrazione continua e distribuzione continua (CI/CD), il che può semplificare il processo di sviluppo e distribuzione.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
@@ -246,7 +247,7 @@ Docker è una piattaforma open source che automatizza la distribuzione, la scala
 \textbf{Versione scelta:} Docker Desktop 4.28.0.
 
 \subsection{Langchain}
-Langchain è un framework che facilita l'interazione tra modelli di apprendimento automatico e risorse esterne come database o altri servizi web. È stato scelto per la sua comodità e flessibilità. Rispetto ad altri framework come TensorFlow o PyTorch, Langchain offre una maggiore facilità d'uso e una migliore integrazione con le risorse esterne.
+Langchain è un framework che facilita l'interazione tra modelli di apprendimento automatico e risorse esterne come \textit{database\pg} o altri servizi web. È stato scelto per la sua comodità e flessibilità. Rispetto ad altri framework come \textit{TensorFlow\pg} o \textit{PyTorch\pg}, Langchain offre una maggiore facilità d'uso e una migliore integrazione con le risorse esterne.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -265,7 +266,7 @@ Langchain è un framework che facilita l'interazione tra modelli di apprendiment
 \textbf{Versione scelta:} Langchain 0.1.9.
 
 \subsubsection{Pinecone}
-Pinecone è un database di vettori che consente di effettuare ricerche di similarità su larga scala. È stato scelto per la sua efficienza e precisione. Rispetto ad altri database di vettori come Faiss o Annoy, Pinecone offre una maggiore efficienza e una migliore precisione nelle ricerche di similarità.
+Pinecone è un database di vettori che consente di effettuare ricerche di similarità su larga scala. È stato scelto per la sua efficienza e precisione. Rispetto ad altri database di vettori come \textit{Faiss\pg} o \textit{Annoy\pg}, Pinecone offre una maggiore efficienza e una migliore precisione nelle ricerche di similarità.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -284,7 +285,7 @@ Pinecone è un database di vettori che consente di effettuare ricerche di simila
 \textbf{Versione scelta:} Pinecone Client 3.1.0.
 
 \subsubsection{ChromaDB}
-ChromaDB è un database di vettori locale open-source. È stato scelto per la sua integrazione con Langchain e la sua popolarità tra i database di vettori locali. Rispetto ad altri database di vettori locali come Faiss o Annoy, ChromaDB offre una migliore integrazione con Langchain e una maggiore popolarità.
+\textit{ChromaDB\pg} è un database di vettori locale open-source. È stato scelto per la sua integrazione con Langchain e la sua popolarità tra i database di vettori locali. Rispetto ad altri database di vettori locali come Faiss o Annoy, ChromaDB offre una migliore integrazione con Langchain e una maggiore popolarità.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -303,7 +304,7 @@ ChromaDB è un database di vettori locale open-source. È stato scelto per la su
 \textbf{Versione scelta:} ChromaDB 0.4.24.
 
 \subsubsection{OpenAI}
-OpenAI è una piattaforma di apprendimento automatico che offre una varietà di modelli, tra cui GPT-3 e GPT-4. La scelta di utilizzare OpenAI sia per il Large Language Model (LLM) che per gli embeddings è motivata dalla sua reputazione consolidata nel campo dell'apprendimento automatico e dalla sua completa integrazione con Langchain. Rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, l’utilizzo dei modelli pre-addestrati di OpenAI offre una maggiore facilità d’uso.
+Open\textit{AI\pg} è una piattaforma di apprendimento automatico che offre una varietà di modelli, tra cui GPT-3 e GPT-4. La scelta di utilizzare OpenAI sia per il \textit{Large Language Model\pg} (LLM) che per gli \textit{embeddings\pg} è motivata dalla sua reputazione consolidata nel campo dell'apprendimento automatico e dalla sua completa integrazione con Langchain. Rispetto all’addestramento di modelli personalizzati con TensorFlow o PyTorch, l’utilizzo dei modelli pre-addestrati di OpenAI offre una maggiore facilità d’uso.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
@@ -318,7 +319,7 @@ OpenAI è una piattaforma di apprendimento automatico che offre una varietà di 
 \item \textbf{Limitazioni:} Non tutte le funzionalità sono disponibili in tutti i modelli offerti da OpenAI.
 \end{itemize}
 \end{itemize}
-\textbf{Versione modello LLM scelto:} gpt-3.5-turbo-instruct. \\
+\textbf{Versione modello \textit{LLM\pg} scelto:} gpt-3.5-turbo-instruct. \\
 \textbf{Versione modello di embeddings scelto:} text-embedding-3-small.
 
 \subsubsection{HuggingFace}
@@ -341,13 +342,13 @@ HuggingFace è una piattaforma di apprendimento automatico che offre migliaia di
 \textbf{Versione modello di embeddings scelto:} sentence-transformers/all-mpnet-base-v2.
 
 \subsection{AWS S3}
-Amazon S3 (Simple Storage Service) è un servizio di storage di oggetti offerto da Amazon Web Services. È stato scelto per la sua scalabilità, affidabilità, e sicurezza. Rispetto ad altre soluzioni di storage come Google Cloud Storage o Azure Blob Storage, AWS S3 offre una maggiore scalabilità e una migliore integrazione con altri servizi AWS.
+\textit{Amazon S3\pg} (Simple Storage Service) è un servizio di storage di oggetti offerto da \textit{Amazon Web Services\pg}. È stato scelto per la sua scalabilità, affidabilità, e sicurezza. Rispetto ad altre soluzioni di storage come \textit{Google Cloud Storage\pg} o \textit{Azure Blob Storage\pg}, AWS S3 offre una maggiore scalabilità e una migliore integrazione con altri servizi AWS.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
 \item \textbf{Scalabilità rispetto a Google Cloud Storage o Azure Blob Storage:} Amazon S3 può memorizzare qualsiasi quantità di dati e servire qualsiasi livello di traffico richiesto, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero avere limiti sulla quantità di dati o sul traffico;
-\item \textbf{Affidabilità:} Amazon S3 offre una durabilità dell'11 9's, il che significa che i dati sono estremamente sicuri, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero non offrire lo stesso livello di durabilità;
+\item \textbf{Affidabilità:} Amazon S3 offre una durabilità dell'\textit{11 9's\pg}, il che significa che i dati sono estremamente sicuri, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero non offrire lo stesso livello di durabilità;
 \item \textbf{Sicurezza rispetto a Google Cloud Storage o Azure Blob Storage:} Amazon S3 offre potenti funzionalità per proteggere i dati, tra cui controllo degli accessi, crittografia in transito e a riposo, e altro ancora, a differenza di Google Cloud Storage o Azure Blob Storage che potrebbero non offrire le stesse funzionalità di sicurezza.
 \end{itemize}
 \item \textbf{Svantaggi:}
@@ -359,14 +360,14 @@ Amazon S3 (Simple Storage Service) è un servizio di storage di oggetti offerto 
 \textbf{Versione scelta:} Amazon Simple Storage Service (Amazon S3).
 
 \subsection{Postgres}
-Postgres, o PostgreSQL, è un potente sistema di gestione di database relazionali ad oggetti open source. È stato scelto per la sua robustezza, affidabilità e flessibilità. Rispetto ad altri DBMS come MySQL o SQLite, Postgres offre una maggiore robustezza e una migliore supporto per le funzionalità di programmazione orientata agli oggetti.
+Postgres, o \textit{PostgreSQL\pg}, è un potente sistema di gestione di database relazionali ad oggetti open source. È stato scelto per la sua robustezza, affidabilità e flessibilità. Rispetto ad altri \textit{DBMS\pg} come \textit{MySQL\pg} o \textit{SQLite\pg}, Postgres offre una maggiore robustezza e una migliore supporto per le funzionalità di programmazione orientata agli oggetti.
 
 \begin{itemize}
 \item \textbf{Vantaggi:}
 \begin{itemize}
 \item \textbf{Robustezza rispetto a MySQL o SQLite:} Postgres supporta una vasta gamma di tipi di dati nativi, operatori e funzioni, tra cui JSON, XML e array, a differenza di MySQL o SQLite che potrebbero non supportare tutti questi tipi di dati;
-\item \textbf{Affidabilità:} Postgres è noto per la sua affidabilità e integrità dei dati. Offre transazioni atomiche, commit multi-versione (MVCC), punti di controllo, logging di scrittura anticipata (WAL) e una serie di meccanismi di replica, a differenza di MySQL o SQLite che potrebbero non offrire tutte queste funzionalità;
-\item \textbf{Flessibilità rispetto a MySQL o SQLite:} Postgres è estensibile, il che significa che gli sviluppatori possono definire i propri tipi di dati, operatori e funzioni. Inoltre, può essere utilizzato sia come un database SQL tradizionale che come una soluzione NoSQL per la memorizzazione di documenti, a differenza di MySQL o SQLite che potrebbero non offrire la stessa flessibilità.
+\item \textbf{Affidabilità:} Postgres è noto per la sua affidabilità e integrità dei dati. Offre transazioni atomiche, commit multi-versione (\textit{MVCC\pg}), punti di controllo, logging di scrittura anticipata (\textit{WAL\pg}) e una serie di meccanismi di replica, a differenza di MySQL o SQLite che potrebbero non offrire tutte queste funzionalità;
+\item \textbf{Flessibilità rispetto a MySQL o SQLite:} Postgres è estensibile, il che significa che gli sviluppatori possono definire i propri tipi di dati, operatori e funzioni. Inoltre, può essere utilizzato sia come un database \textit{SQL\pg} tradizionale che come una soluzione \textit{NoSQL\pg} per la memorizzazione di documenti, a differenza di MySQL o SQLite che potrebbero non offrire la stessa flessibilità.
 \end{itemize}
 \item \textbf{Svantaggi:}
 \begin{itemize}
@@ -387,7 +388,7 @@ Il \textbf{nucleo} dell'applicazione è il fulcro del sistema, contenente la log
 Le \textbf{porte} costituiscono il confine tra il nucleo dell'applicazione e il mondo esterno, consentendo una comunicazione strutturata. Esistono due tipi principali di porte:
 \begin{itemize}
     \item Inbound Port (o \textbf{Use Case}): consentono al nucleo di essere invocato da componenti esterni attraverso un'interfaccia definita. Rappresentano i punti di accesso al nucleo e isolano la logica di dominio da implementazioni specifiche;
-    \item Outbound Port: consentono al nucleo di accedere a funzionalità esterne, come l'interazione con librerie esterne o sistemi di persistenza. Forniscono un'astrazione che preserva l'indipendenza del nucleo da dettagli tecnologici specifici.  
+    \item Outbound Port: consentono al nucleo di accedere a funzionalità esterne, come l'interazione con \textit{librerie esterne\pg} o sistemi di persistenza. Forniscono un'astrazione che preserva l'indipendenza del nucleo da dettagli tecnologici specifici.  
 \end{itemize}
 
 I \textbf{services} implementano le inbound port dell'applicazione e fanno parte della business logic. La loro implementazione è concentrata sulla logica di dominio, senza preoccuparsi degli aspetti tecnologici specifici.
@@ -399,16 +400,16 @@ Gli \textbf{adapters} costituiscono il livello più esterno dell'applicazione. E
 \end{itemize}
 
 \subsection{Descrizione delle componenti}
-L'architettura generale del sistema è composta da due componenti: frontend e backend.
+L'architettura generale del sistema è composta da due componenti: \textit{frontend\pg} e \textit{backend\pg}.
 
 \subsubsection{Frontend}
 Il frontend si occupa di fornire un'interfaccia grafica all'utente per dialogare con il sistema. Inoltra le richieste dell'utente al backend e mostra i risultati ottenuti.
-%TODO: approfondire
+
 
 \subsubsection{Backend}
 Il backend si occupa di elaborare le richieste degli utenti, interagendo con i sistemi di persistenza e i servizi esterni.
-In particolare, il backend dialoga con il sistema di archiviazione documenti, il vector store, il database delle chat e con i modelli di intelligenza artificiale necessari per il corretto funzionamento dell'applicazione.
-%TODO: approfondire
+In particolare, il backend dialoga con il sistema di archiviazione documenti, il \textit{vector store\pg}, il database delle chat e con i modelli di intelligenza artificiale necessari per il corretto funzionamento dell'applicazione.
+
 
 \subsection{Assemblaggio delle componenti}
 \subsubsection{Docker}
@@ -416,8 +417,8 @@ Le componenti sono assemblate insieme utilizzando Docker Compose per facilitare 
 In particolare sono prodotti i seguenti container Docker:
 \begin{itemize}
     \item \textbf{database}: espone l'istanza del database chat nella porta 3000, abilitando il dialogo con il backend;
-    \item %\item \textbf{flaskapp}:? 
-    \item \textbf{backend}: espone la componente backend nella porta 4000, dando al frontend la possibilità di chiamare le API offerte;
+    %\item \textbf{flaskapp}:? 
+    \item \textbf{backend}: espone la componente backend nella porta 4000, dando al frontend la possibilità di chiamare le \textit{API\pg} offerte;
     \item \textbf{frontend}: espone il frontend dell'applicazione web nella porta 80, dando la possibilità all'utente di connettersi e interagire con il sistema.
     %\item \textbf{testRunner}: ?
 \end{itemize}
@@ -426,7 +427,7 @@ In particolare sono prodotti i seguenti container Docker:
 
 \subsubsection{Frontend}
 La struttura organizzativa del frontend segue la struttura standard definita dal framework Next.js.
-% TODO: approfondire
+% TODO: approfondire con la struttura
 
 \subsubsection{Backend}
 La struttura organizzativa del backend segue la seguente struttura:
@@ -446,7 +447,7 @@ La struttura organizzativa del backend segue la seguente struttura:
     \> /domain -- classi di business
 \end{tabbing}
 }
-Questa struttura riflette il modello architetturale scelto, facilitando il passaggio da progettazione a codifica.
+Questa struttura riflette il modello architetturale scelto, facilitando il passaggio da progettazione a \textit{codifica\pg}.
 
 
 \newpage
@@ -459,7 +460,7 @@ Questa struttura riflette il modello architetturale scelto, facilitando il passa
 \subsubsubsection{Descrizione}
 \subsubsubsection{Lista di sottocomponenti}
 \begin{itemize} 
-    \item \label{ChatContent}\textbf{ChatContent}: componente che si occupa di mostrare i dati della chat selezionata e di interagire con il chatbot;
+    \item \label{ChatContent}\textbf{ChatContent}: componente che si occupa di mostrare i dati della chat selezionata e di interagire con il \textit{chatbot\pg};
     \item \label{ChatForm}\textbf{ChatForm}: elemento che permette all'utente di inserire i messaggi e le richieste da fare al Chatbot;
     \item \label{ChatHeader}\textbf{ChatHeader}: componente che permette di visualizzare il titolo e le interazioni possibili con la chat corrente; 
     \item \label{ChatListSideBar}\textbf{ChatListSideBar}: componente che permette di navigare tra le chat salvate nel sistema e di visualizzarne le preview;
@@ -470,7 +471,7 @@ Questa struttura riflette il modello architetturale scelto, facilitando il passa
 \subsubsubsection{Tracciamento dei requisiti}
 \begin{xltabular}{\textwidth}{c|c}
 \caption{Tracciamento dei requisiti nella componente Chatbot}\\
-\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\textbf{\textit{Requisito\pg}} & \textbf{Soddisfacimento del requisito} \\
 \endfirsthead
 \caption[]{Tracciamento dei requisiti nella componente Chatbot (cont)}\\
 \textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
@@ -889,7 +890,7 @@ Questa componente ha il compito di ottenere una risposta ad un messaggio da part
 
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{AskChatbotController}\textbf{AskChatbotController}: classe controller che si occupa del richiedere una risposta al chatbot ad un messaggio appartente ad una chat allo use case AskChatbotUseCase;
+    \item \label{AskChatbotController}\textbf{AskChatbotController}: \textit{classe\pg} controller che si occupa del richiedere una risposta al chatbot ad un messaggio appartente ad una chat allo use case AskChatbotUseCase;
     \item \label{AskChatbotLangchain}\textbf{AskChatbotLangchain}: classe che implementa la porta AskChatbotPort, adattando la chiamata di AskChatbotService a classi offerte dal framework Langchain;
     \item \label{AskChatbotPort}\textbf{AskChatbotPort}: interfaccia che rappresenta la porta in uscita per effettuare la richiesta di una risposta al chatbot ad un messaggio appartente ad una chat;%, con storicizzazione all'interno del database delle chat;
     \item \label{AskChatbotService}\textbf{AskChatbotService}: classe service che implementa lo use case AskChatbotUseCase;
@@ -1042,7 +1043,7 @@ Questa componente ha il compito di occultare gli embeddings dei documenti indica
 \endfoot
 \endlastfoot
 \hline
-200 & Occultamento avvenuto con successo. & - \\
+200 & \textit{Occultamento\pg} avvenuto con successo. & - \\
 \hline
 400 & Il parametro \code{documentIds} è nullo. & Parametri insufficienti. \\
 \hline
@@ -1209,7 +1210,7 @@ Questa componente ha il compito di gestire la configurazione del sistema.
 \end{comment}
 \subsubsubsection{Lista sottocomponenti}
 \begin{itemize}
-    \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone metodi per ottenere le porte in uscita delle componenti del sistema;
+    \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone \textit{metodi\pg} per ottenere le porte in uscita delle componenti del sistema;
     \item \label{PostgresConfiguration}\textbf{PostgresConfiguration}: classe di persistence che rappresenta la configurazione del sistema di userId, vector store, document store, LLM ed embedding model su Postgres;
     \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
     \item \label{PostgresDocumentStoreConfiguration}\textbf{PostgresDocumentStoreConfiguration}: classe di persistence che rappresenta la configurazione di un document store;
@@ -1374,7 +1375,7 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
 \begin{itemize}
     \item \label{AWSDocument}\textbf{AWSDocument}: classe che rappresenta i documenti gestibili da AWSS3Manager;
     \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
-    \item \label{Chunkerizer}\textbf{Chunkerizer}: classe che crea chunks a partire da testo;
+    \item \label{Chunkerizer}\textbf{Chunkerizer}: classe che crea \textit{chunks\pg} a partire da testo;
     \item \textbf{DocumentId}: vedi \vedi{DocumentId};
     \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
     \item \label{DocumentStatus} \textbf{DocumentStatus}: classe di business che rappresenta lo status di un documento;
@@ -1400,7 +1401,7 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
     \item \label{LangchainDocument}\textbf{LangchainDocument}: classe che rappresenta un documento e i suoi embeddings;    
     \item \label{LangchainEmbeddingModel}\textbf{LangchainEmbeddingModel}: classe astratta che permette di interagire con un oggetto langhchain.Embeddings;
     \item \label{OpenAIEmbeddingModel}\textbf{OpenAIEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di OpenAI;
-    \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti PDF;
+    \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti \textit{PDF\pg};
     \item \label{Status}\textbf{Status}: enumeration che rappresenta i valori che può assumere lo status di un documento;
     \item \label{TextExtractor}\textbf{TextExtractor}: interfaccia che espone il metodo astratto di estrazione di testo da un documento;   
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
@@ -2286,12 +2287,100 @@ RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio
 \end{xltabular}
 
 \newpage
-\subsection{Database} %TODO
+\subsection{Database} 
+Il Database è composto dalle seguenti tabelle riguardanti la configurazione del sistema e la archiviazione delle chat:
+\subsubsection{Configurazione del sistema}
+\subsubsubsection{Diagramma ER}
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=16.5cm]{img/ConfigurationDB.png}
+    \caption{Diagramma ER: Configurations}
+\end{figure}
 
-    % definisco ogni tabella e la descrivo
-    % diagramma ER del db
-    % script di creazione db
+\subsubsubsection{Definizione}
+\begin{itemize}
+     \item \textbf{configuration} che rappresenta la scelta di configurazione di vector store, document store, modello LLM e di embedding:\\
+     Questa tabella contiene:
+    \begin{itemize}
+        \item \code{documentStore}: fa riferimento alla colonna \code{name} nella tabella \\\code{documentStoreConfiguration} e indica la configurazione del document store scelto;
+        \item \code{embeddingModel}: fa riferimento alla colonna \code{name} nella tabella \\\code{embeddingModelConfiguration} e indica la configurazione del modello di embedding scelto;
+        \item \code{LLMModel}: fa riferimento alla colonna \code{name} nella tabella \code{LLMModelConfiguration} e indica la configurazione del modello LLM scelto;
+        \item \code{userId}: questa colonna funge da chiave primaria e identifica univocamente la configurazione;
+        \item \code{vectorStore}: fa riferimento alla colonna \code{name} nella tabella \code{vectorStoreConfiguration} e indica la configurazione del vector store scelto.\\
+    \end{itemize}
 
+    \item \textbf{documentStoreConfiguration} che rappresenta la configurazione di un sistema di archiviazione dei documenti e contiene:
+    \begin{itemize}
+        \item \code{costIndicator}: indica il costo associato all'uso del document store;
+         \item \code{description}: descrizione della organizzazione proprietaria del document store e del document store;
+        \item \code{name}: il nome univoco del document store;
+        \item \code{organization}: rappresenta l'associazione proprietaria del document store;
+        \item \code{type}: indica il tipo di document store (locale o meno).\\
+    \end{itemize}
+
+    \item \textbf{embeddingModelConfiguration} che rappresenta la configurazione di un modello di embeddings e contiene:
+    \begin{itemize}
+        \item \code{costIndicator}: indicatore del costo associato all'uso del modello di embeddings;
+         \item \code{description}: descrizione della organizzazione proprietaria del modello di embeddings e del modello di embeddings stesso;
+        \item \code{name}: il nome univoco del modello di embeddings;
+        \item \code{organization}: rappresenta l'associazione proprietaria del modello di embeddings;
+        \item \code{type}: indica il tipo di modello di embeddings (locale o meno).\\
+    \end{itemize}
+
+\item \textbf{LLMModelConfiguration} che rappresenta la configurazione di un modello LLM e contiene:
+    \begin{itemize}
+        \item \code{costIndicator}: indicatore del costo associato all'uso del modello LLM;
+         \item \code{description}: descrizione della organizzazione proprietaria del modello LLM e del modello di LLM stesso;
+        \item \code{name}: il nome univoco del modello di LLM;
+        \item \code{organization}: rappresenta l'associazione proprietaria del modello LLM;
+        \item \code{type}: indica il tipo di modello LLM (locale o meno).\\
+    \end{itemize}
+    
+\item \textbf{vectorStoreConfiguration} che rappresenta la configurazione di un vector store e contiene:
+    \begin{itemize}
+        \item \code{costIndicator}: indicatore del costo associato all'uso del vector store;
+         \item \code{description}: descrizione della organizzazione proprietaria del vector store e del vector store;
+        \item \code{name}: il nome univoco del vector store;
+        \item \code{organization}: rappresenta l'associazione proprietaria del vector store;
+        \item \code{type}: indica il tipo di vector store (locale o meno).\\
+    \end{itemize}
+    \end{itemize}
+
+\subsubsection{Archiviazione chat}
+
+\subsubsubsection{Diagramma ER}
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=15.5cm]{img/ChatDB.png}
+    \caption{Diagramma ER: Chats}
+\end{figure}
+
+
+
+
+\subsubsubsection{Definizione}
+\begin{itemize}
+
+    \item \textbf{chat} tabella che rappresenta una chat del Chatbot e contiene:
+    \begin{itemize}
+        \item \code{id}: chiave primaria univoca che identifica la chat;
+        \item \code{title}: campo che sta per il titolo della chat, unico e non nullo.\\
+    \end{itemize}
+        
+    \item \textbf{messageRelevantDocuments} tabella che rappresenta i documenti rilevanti usati per un messaggio del Chatbot:
+    \begin{itemize}
+        \item \code{documentId}: campo che identifica un documento rilevante; 
+        \item \code{id}: chiave primaria univoca che fa riferimento alla colonna \code{id} nella tabella \code{messageStore}.\\
+    \end{itemize}
+         
+    \item \textbf{messageStore} tabella che rappresenta un messaggio di una chat del Chatbot e contiene:
+    \begin{itemize}
+        \item \code{id}: chiave primaria univoca che identifica il messaggio;
+        \item \code{message}: contenuto del messaggio, memorizzato come JSON;
+        \item \code{sessionId}: fa riferimento alla colonna \code{id} nella tabella \code{chat} e indica la chat di apparteneza del messaggio. Permette inoltre la cancellazione a cascata.\\
+    \end{itemize}
+    
+\end{itemize}
 
 
 
@@ -2856,7 +2945,7 @@ Vedi \vedi{MessageCardDettaglio}.
 \end{itemize}
 
 
-%DocumentViewer-FRONTEND toDO
+%DocumentViewer-FRONTEND 
 \subsection{DocumentView}
 \subsubsection{Lista delle sottocomponenti}
 
@@ -2874,7 +2963,7 @@ Vedi \vedi{MessageCardDettaglio}.
 
 
 
-%CHATBOT-FRONTEND toDO
+%CHATBOT-FRONTEND 
 \subsection{SettingsAppearance}
 \subsubsection{Lista delle sottocomponenti}
 
@@ -3086,16 +3175,17 @@ Vedi \vedi{VectorStoreCardDettaglio}.
 
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/AskChatbot.png}
+    \rotatebox{90}{\includegraphics[width=1.2\textwidth]{img/AskChatbot.png}}
     \caption{Diagramma delle classi della componente AskChatbot}
 \end{figure}
+
 
 \subsubsection{Lista delle sottocomponenti}
 
 \subsubsubsection{AskChatbotController}
 \label{AskChatbotControllerDettaglio}
 \begin{itemize}
-    \item \textbf{Attributi}:
+    \item \textbf{\textit{Attributi\pg}}:
     \begin{itemize}
         \item \code{useCase: AskChatbotUseCase}.
     \end{itemize}
@@ -3118,7 +3208,7 @@ Vedi \vedi{VectorStoreCardDettaglio}.
     \item \textbf{Implementa}: AskChatbotPort;
     \item \textbf{Attributi}:
     \begin{itemize}
-        \item \code{chain: langchain.Chain};
+        \item \code{chain\pg: langchain.Chain};
         \item \code{chatHistoryManager: ChatHistoryManager}.
     \end{itemize}
     \item \textbf{Metodi}:
@@ -3360,7 +3450,7 @@ Vedi \vedi{VectorStoreCardDettaglio}.
 
  \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/ChangeConfiguration.png}
+    \includegraphics[width=17cm]{img/ChangeConfiguration.png}
     \caption{Diagramma delle classi della componente ChangeConfiguration}
 \end{figure}
 
@@ -3713,108 +3803,6 @@ Vedi \vedi{VectorStoreCardDettaglio}.
 
 
 
-
-
-
-\subsection{DeleteChats}
-
-\subsubsection{Diagramma delle classi}
-\begin{figure}[H]
-    \centering        
-    \includegraphics[width=16.5cm]{img/DeleteChat.png}
-    \caption{Diagramma delle classi della componente DeleteChats}
-\end{figure}
-
-\subsubsection{Lista delle sottocomponenti}
-
-\subsubsubsection{ChatId}
-Vedi \vedi{ChatIdDettaglio}.
-
-\subsubsubsection{ChatOperationResponse}
-Vedi \vedi{ChatOperationResponseDettaglio};
-
-
-\subsubsubsection{DeleteChatsController}
-\label{DeleteChatsControllerDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{useCase: DeleteChatsUseCase}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdsList:List<int>):}\\ \code {List<ChatOperationResponse>}\\
-        Metodo che elimina tramite useCase una lista di chat identificate da una lista di interi, ritornando una lista di ChatOperationResponse.
-    
-    \end{itemize}
-\end{itemize}
-
-
-\subsubsubsection{DeleteChatsPort}
-\label{DeleteChatsPortDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Metodo astratto per per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-
-\subsubsubsection{DeleteChatsPostgres}
-\label{DeleteChatsPostgresDettaglio}
-\begin{itemize}
-    \item \textbf{Implementa}: DeleteChatsPort;
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{postgresORM: PostgresChatORM}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteChatsService}
-\label{DeleteChatsServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Implementa}: DeleteChatsUseCase;
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{outPort: DeleteChatsPort}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
-        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{DeleteChatsUseCase}
-\label{DeleteChatsUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
-        Metodo astratto per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
-    \end{itemize}
-\end{itemize}
-
-
-
-\subsubsubsection{PostgresChatOperationResponse}
-Vedi \vedi{PostgresChatOperationResponseDettaglio};
-
-
-
-
-\subsubsubsection{PostgresChatORM}
-Vedi \vedi{PostgresChatORMDettaglio}.
-
-
-
-
 %ConfigurationManager
 \subsection{ConfigurationManager}
 \subsubsection{Diagramma delle classi}
@@ -4034,17 +4022,128 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
 
 
 
+
+
+\subsection{DeleteChats}
+
+\subsubsection{Diagramma delle classi}
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=16.5cm]{img/DeleteChat.png}
+    \caption{Diagramma delle classi della componente DeleteChats}
+\end{figure}
+
+\subsubsection{Lista delle sottocomponenti}
+
+\subsubsubsection{ChatId}
+Vedi \vedi{ChatIdDettaglio}.
+
+\subsubsubsection{ChatOperationResponse}
+Vedi \vedi{ChatOperationResponseDettaglio};
+
+
+\subsubsubsection{DeleteChatsController}
+\label{DeleteChatsControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: DeleteChatsUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<int>):}\\ \code {List<ChatOperationResponse>}\\
+        Metodo che elimina tramite useCase una lista di chat identificate da una lista di interi, ritornando una lista di ChatOperationResponse.
+    
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteChatsPort}
+\label{DeleteChatsPortDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Metodo astratto per per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsubsection{DeleteChatsPostgres}
+\label{DeleteChatsPostgresDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DeleteChatsPort;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{postgresORM: PostgresChatORM}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteChatsPort per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteChatsService}
+\label{DeleteChatsServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: DeleteChatsUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{outPort: DeleteChatsPort}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{ List<ChatOperationResponse>}\\
+        Implementazione del metodo astratto di DeleteChatsUseCase per eliminare tramite outPort una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{DeleteChatsUseCase}
+\label{DeleteChatsUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{deleteChats(chatIdsList:List<ChatId>):}\\ \code{List<ChatOperationResponse>}\\
+        Metodo astratto per eliminare una lista di chat identificate da una lista di ChatId, ritornando una lista di ChatOperationResponse.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsubsection{PostgresChatOperationResponse}
+Vedi \vedi{PostgresChatOperationResponseDettaglio};
+
+
+
+
+\subsubsubsection{PostgresChatORM}
+Vedi \vedi{PostgresChatORMDettaglio}.
+
+
+
+
+
 %DELETEDOCS
 \subsection{DeleteDocuments}
 \subsubsection{Diagramma delle classi}
 
-
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/DeleteDocs.png}
+    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/DeleteDocs.png}}
     \caption{Diagramma delle classi della componente DeleteDocuments}
 \end{figure}
 
+
+\begin{comment}
+    
+
+\begin{sidewaysfigure}
+    \includegraphics[scale=0.4]{img/DeleteDocs.png}
+\caption{Diagramma delle classi della componente DeleteDocuments}
+\end{sidewaysfigure}
+
+\end{comment}
 \subsubsection{Lista delle sottocomponenti}
 
 
@@ -4070,7 +4169,7 @@ Vedi \vedi{PostgresConfigurationORMDettaglio};
     \item \textbf{Attributi}:
     \begin{itemize}
         \item \code{awsBucketName: string};
-        \item \code{boto3: boto3.session.Session}.
+        \item \code{\textit{boto3\pg}: boto3.session.Session}.
     \end{itemize}
     \item \textbf{Metodi}:
     \begin{itemize}
@@ -4679,7 +4778,7 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 \subsubsection{Diagramma delle classi}
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=17cm]{img/EnableDocs.png}
+    \includegraphics[width=16.5cm]{img/EnableDocs.png}
     \caption{Diagramma delle classi della componente EnableDocuments}
 \end{figure}
 
@@ -5068,7 +5167,7 @@ Vedi \vedi{PostgresMessageSenderTypeDettaglio}.
 
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/GetConfiguration.png}
+    \includegraphics[width=17cm]{img/GetConfiguration.png}
     \caption{Diagramma delle classi della componente GetConfiguration}
 \end{figure}
 
@@ -5298,9 +5397,16 @@ Vedi \vedi{PostgresVectorStoreTypeDettaglio}.
 \subsubsection{Diagramma delle classi}
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/GetConfigurationOptions.png}
+    \rotatebox{90}{\includegraphics[width=1.2\textwidth]{img/GetConfigurationOptions.png}}
     \caption{Diagramma delle classi della componente GetConfigurationOptions}
 \end{figure}
+
+
+%\begin{figure}[H]
+    %\centering        
+   % \includegraphics[width=16.5cm]{img/GetConfigurationOptions.png}
+    %\caption{Diagramma delle classi della componente GetConfigurationOptions}
+%\end{figure}
 
 
 \subsubsection{Lista delle sottocomponenti}
@@ -5454,12 +5560,12 @@ Vedi \vedi{VectorStoreTypeDettaglio}.
 
 \subsection{GetDocuments}
 \subsubsection{Diagramma delle classi}
-
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/GetDocs.png}
+    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/GetDocs.png}}
     \caption{Diagramma delle classi componente GetDocuments}
 \end{figure}
+
 
 \subsubsection{Lista delle sottocomponenti}
 
@@ -6102,11 +6208,14 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 
 \subsection{ViewDocumentContent}
 \subsubsection{Diagramma delle classi}
+
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{img/ViewDocContent.png}
+    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/ViewDocContent.png}}
     \caption{Diagramma delle classi componente ViewDocumentContent}
 \end{figure}
+
+
 
 \subsubsection{Lista delle sottocomponenti}
 

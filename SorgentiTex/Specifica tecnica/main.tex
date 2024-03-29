@@ -399,53 +399,110 @@ Gli \textbf{adapters} costituiscono il livello più esterno dell'applicazione. E
     \item Output Adapters: gestiscono le porte in uscita, traducendo le azioni del nucleo in operazioni comprensibili per il mondo esterno.
 \end{itemize}
 
-\subsection{Descrizione delle componenti}
-L'architettura generale del sistema è composta da due componenti: \textit{frontend\pg} e \textit{backend\pg}.
 
-\subsubsection{Frontend}
-Il frontend si occupa di fornire un'interfaccia grafica all'utente per dialogare con il sistema. Inoltra le richieste dell'utente al backend e mostra i risultati ottenuti.
+\begin{comment}
+    \subsection{Descrizione delle componenti}
 
 
-\subsubsection{Backend}
-Il backend si occupa di elaborare le richieste degli utenti, interagendo con i sistemi di persistenza e i servizi esterni.
-In particolare, il backend dialoga con il sistema di archiviazione documenti, il \textit{vector store\pg}, il database delle chat e con i modelli di intelligenza artificiale necessari per il corretto funzionamento dell'applicazione.
 
 
-\subsection{Assemblaggio delle componenti}
-\subsubsection{Docker}
-Le componenti sono assemblate insieme utilizzando Docker Compose per facilitare l'esecuzione e la gestione di più container docker tramite il file \code{compose.yml}, \code{testcompose.yml}.\\ %, \code{release.yml} e \code{test.yml} ?(legati alle actions?)
-In particolare sono prodotti i seguenti container Docker:
-\begin{itemize}
-    \item \textbf{database}: espone l'istanza del database chat nella porta 3000, abilitando il dialogo con il backend;
-    %\item \textbf{flaskapp}:? 
-    \item \textbf{backend}: espone la componente backend nella porta 4000, dando al frontend la possibilità di chiamare le \textit{API\pg} offerte;
-    \item \textbf{frontend}: espone il frontend dell'applicazione web nella porta 80, dando la possibilità all'utente di connettersi e interagire con il sistema.
-    %\item \textbf{testRunner}: ?
-\end{itemize}
+
+
 
 \subsection{Struttura del sistema}
 
 \subsubsection{Frontend}
 La struttura organizzativa del frontend segue la struttura standard definita dal framework Next.js.
-% TODO: approfondire con la struttura
+In particolare, all'interno della cartella app sono presenti le seguenti cartelle, che nel framework sopracitato corrispondono alle route visitabili dall'utente:
+\begin{itemize}
+    \item \textbf{chatbot}: contiene i componenti relativi alla gestione e alla visualizzazione delle chat;
+    \item \textbf{configuration}: contiene i componenti relativi alla configurazione da eseguire durante il primo avvio dell'applicazione;
+    \item \textbf{documents}: contiene i componenti relativi alla gestione e alla visualizzazione dei documenti;
+    \item \textbf{settings}: contiene i componenti relativi alla gestione delle impostazioni dell'applicazione, cioè il suo aspetto e la configurazione scelta.
+\end{itemize}
+La root del frontend corrisponde alla pagina \textbf{dashboard}, che contiene i componenti per il riepilogo e la navigazione tra le varie sezioni dell'applicazione.
+I componenti grafici di base, condivisi tra le varie interfacce, sono contenuti nella cartella \textbf{components}, localizzata allo stesso livello di app. 
 
 \subsubsection{Backend}
 La struttura organizzativa del backend segue la seguente struttura:
-\code{
-\begin{tabbing}
-    /backend\=\\
-    \> /adapter\=\\
-    \> \> /in\= \\
-    \> \> \> /web-- controllers\\
-    \> \> /out -- implementazioni di Outbound Port\\
-    \> /application\\
-    \> \> /port\\
-    \> \> \> /in -- Inbound Ports (Use Cases)\\
-    \> \> \> /out -- Outbound Ports\\
-    \> \> /service -- implementazioni di Inbound Port\\
-    \> /blueprints\\
-    \> /domain -- classi di business
-\end{tabbing}
+
+\dirtree{%
+.1 backend.
+.2 adapter.
+.3 \_in.
+.4 web-- controllers.
+.3 out -- implementazioni di Outbound Port.
+.2 application.
+.3 port.
+.4 \_in -- Inbound Ports (Use Cases).
+.4 out -- Outbound Ports.
+.3 service -- implementazioni di Inbound Port.
+.2 blueprints.
+.2 domain -- classi di business.
+}
+Questa struttura riflette il modello architetturale scelto, facilitando il passaggio da progettazione a codifica.
+\end{comment}
+
+
+
+\subsection{Descrizione delle componenti}
+L'architettura generale del sistema è composta da tre componenti: \textit{frontend\pg} e \textit{backend\pg} e database.
+
+\subsubsection{Frontend}
+Il frontend si occupa di fornire un'interfaccia grafica all'utente per dialogare con il sistema.
+Inoltra le richieste dell'utente al backend e mostra i risultati ottenuti.
+
+\subsubsection{Backend}
+Il backend si occupa di elaborare le richieste degli utenti, interagendo con i sistemi di persistenza e i servizi esterni.
+In particolare, il backend dialoga con il sistema di archiviazione documenti, il \textit{vector store\pg}, il database delle chat e con i modelli di intelligenza artificiale necessari per il corretto funzionamento dell'applicazione.
+
+\subsubsection{Database}
+Il database è responsabile della memorizzazione dei dati relativi alle chat, tra cui messaggi e relativi documenti rilevanti,
+e alla configurazione attuale dell'utente.
+
+
+\subsection{Assemblaggio delle componenti}
+\subsubsection{Docker}
+Le componenti sono assemblate tramite Docker Compose per facilitare l'esecuzione e la gestione di più container docker.
+
+In particolare sono stati prodotti i seguenti container Docker:
+\begin{itemize}
+    \item \textbf{database}: espone l'istanza del database nella porta 5432, permettendo al backend di accedere ai dati relativi alle chat e alla configurazione dell'utente;
+    \item \textbf{flaskapp}: espone la componente backend nella porta 4000, dando al frontend la possibilità di chiamare i servizi offerti;
+    \item \textbf{nextapp}: espone il frontend dell'applicazione web nella porta 80, dando la possibilità all'utente di connettersi e interagire con il sistema.
+\end{itemize}
+
+
+\subsection{Struttura del sistema}
+
+\subsubsection{Frontend}
+La struttura organizzativa del frontend segue la struttura standard definita dal framework Next.js.
+In particolare, all'interno della cartella app sono presenti le seguenti cartelle, che nel framework sopracitato corrispondono alle route visitabili dall'utente:
+\begin{itemize}
+    \item \textbf{chatbot}: contiene i componenti relativi alla gestione e alla visualizzazione delle chat;
+    \item \textbf{configuration}: contiene i componenti relativi alla configurazione da eseguire durante il primo avvio dell'applicazione;
+    \item \textbf{documents}: contiene i componenti relativi alla gestione e alla visualizzazione dei documenti;
+    \item \textbf{settings}: contiene i componenti relativi alla gestione delle impostazioni dell'applicazione, cioè il suo aspetto e la configurazione scelta.
+\end{itemize}
+La root del frontend corrisponde alla pagina \textbf{dashboard}, che contiene i componenti per il riepilogo e la navigazione tra le varie sezioni dell'applicazione.
+I componenti grafici di base, condivisi tra le varie interfacce, sono contenuti nella cartella \textbf{components}, localizzata allo stesso livello di app. 
+
+\subsubsection{Backend}
+La struttura organizzativa del backend segue la seguente struttura:
+
+\dirtree{%
+.1 backend.
+.2 adapter.
+.3 \_in.
+.4 web-- controllers.
+.3 out -- implementazioni di Outbound Port.
+.2 application.
+.3 port.
+.4 \_in -- Inbound Ports (Use Cases).
+.4 out -- Outbound Ports.
+.3 service -- implementazioni di Inbound Port.
+.2 blueprints.
+.2 domain -- classi di business.
 }
 Questa struttura riflette il modello architetturale scelto, facilitando il passaggio da progettazione a \textit{codifica\pg}.
 
@@ -849,7 +906,7 @@ Componente fissa dell'interfaccia utente che permette di navigare tramite tabs l
 Questa componente ha il compito di ottenere una risposta ad un messaggio da parte del chatbot.
 È costituita da:
 \begin{itemize}
-    \item \textbf{Route API}: /askChatbot;
+    \item \textbf{Route \textit{API\pg}}: /askChatbot;
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
@@ -947,7 +1004,7 @@ RF.O.60 &  AskChatbotService: vedi \vedi{AskChatbotServiceDettaglio}.\\
 Questa componente ha il compito di cambiare la configurazione del modello LLM del sistema.
 È costituita da:
 \begin{itemize}
-    \item \textbf{Route API}: /changeConfiguration;
+    \item \textbf{Route \textit{API\pg}}: /changeConfiguration;
     \item \textbf{Metodo}: POST;
     \item \textbf{Lista parametri HTTP}: 
     \begin{itemize}
@@ -4330,9 +4387,57 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
 \subsection{EmbedDocuments}
 \subsubsection{Diagramma delle classi}
 
+
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16cm]{img/EmbedDocs1.png}
+    \rotatebox{90}{\includegraphics[keepaspectratio, height=16cm, width=1.3\textwidth]{img/EmbedDocs0.png}}
+    \caption{Diagramma delle classi componente EmbedDocuments (continua nei prossimi diagrammi)}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=14.5cm]{img/EmbedDocs1.png}
+    \caption{Diagramma delle classi componente EmbedDocuments (continua nel prossimo diagramma)}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=15.5cm]{img/EmbedDocs2.png}
+    \caption{Diagramma delle classi componente EmbedDocuments (continua nel prossimo diagramma)}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering        
+    \rotatebox{90}{\includegraphics[keepaspectratio, height=16.3cm, width=1.55\textwidth]{img/EmbedDocs3.png}}
+    \caption{Diagramma delle classi componente EmbedDocuments}
+\end{figure}
+
+
+
+
+
+\begin{comment}
+    
+
+
+
+\begin{figure}[H]
+    \centering        
+    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/UploadDocs2.png}}
+    \caption{Diagramma delle classi componente UploadDocuments}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=16cm]{img/E}
     \caption{Diagramma 1 delle classi della componente EmbedDocuments}
 \end{figure}
 
@@ -4354,7 +4459,7 @@ Vedi \vedi{VectorStorePineconeManagerDettaglio}.
     \includegraphics[width=16.5cm]{img/EmbedDocs4.png}
     \caption{Diagramma 4 delle classi della componente EmbedDocuments}
 \end{figure}
-
+\end{comment}
 
 
 \subsubsection{Lista delle sottocomponenti}
@@ -5965,19 +6070,27 @@ Vedi \vedi{PostgresConfigurationORMDettaglio}.
 
 \subsection{UploadDocuments}
 \subsubsection{Diagramma delle classi}
-\begin{comment}
-    
+\vspace{3em}
 
 \begin{figure}[H]
     \centering        
-    \includegraphics[width=16.5cm]{}
+    \includegraphics[width=17cm]{img/UploadDocs0.png}
+    \caption{Diagramma delle classi componente UploadDocuments (continua nei prossimi diagrammi)}
+\end{figure}
+\vspace{3em}
+\begin{figure}[H]
+    \centering        
+    \includegraphics[width=15cm]{img/UploadDocs1.png}
+    \caption{Diagramma delle classi componente UploadDocuments (continua nel prossimo diagramma)}
+\end{figure}
+\vspace{3em}
+\begin{figure}[H]
+    \centering        
+    \rotatebox{90}{\includegraphics[keepaspectratio, height=16.3cm, width=1.6\textwidth]{img/UploadDocs2.png}}
     \caption{Diagramma delle classi componente UploadDocuments}
 \end{figure}
 
-\end{comment}
 \subsubsection{Lista delle sottocomponenti}
-
-
 
 \subsubsubsection{AWSDocument}
 Vedi \vedi{AWSDocumentDettaglio}.

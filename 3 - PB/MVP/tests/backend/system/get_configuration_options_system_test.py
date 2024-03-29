@@ -15,11 +15,11 @@ from application.service.get_configuration_options_service import GetConfigurati
 
 
 def test_getConfiguration():
-    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:        
+    with    patch('adapter.out.persistence.postgres.postgres_configuration_orm.db_session') as db_sessionMock:
         postgresLLMModelConfigurationOptions = [PostgresLLMModelConfiguration(
             PostgresLLMModelType.OPENAI,
             'openai',
-            'description', 
+            'description',
             'server',
             'cost'
         )]
@@ -59,7 +59,7 @@ def test_getConfiguration():
             LLMModelOptions= [LLMModelConfiguration(
                 LLMModelType.OPENAI,
                 'openai',
-                'description', 
+                'description',
                 'server',
                 'cost'
             )],

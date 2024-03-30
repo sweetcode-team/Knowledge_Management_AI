@@ -1147,7 +1147,59 @@ RF.O.29 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}.
 RF.O.30 & ConcealDocumentsService: vedi \vedi{ConcealDocumentsServiceDettaglio}. \\
 \end{xltabular}
 
+\subsubsection{ConfigurationManager}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di gestire la configurazione del sistema.
+    
 
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}:%TODO ;
+    \item \textbf{Metodo}:%TODO ;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item %TODO
+    \end{itemize}
+\end{itemize}
+\subsubsubsection{Esiti possibili ConfigurationManager}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili }\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili ConfigurationManager (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+ - & - & - \\
+\end{xltabular}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{itemize}
+        \item 
+       
+\end{itemize}
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone \textit{metodi\pg} per ottenere le porte in uscita delle componenti del sistema;
+    \item \label{PostgresConfiguration}\textbf{PostgresConfiguration}: classe di persistence che rappresenta la configurazione del sistema di userId, vector store, document store, LLM ed embedding model su Postgres;
+    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
+    \item \label{PostgresDocumentStoreConfiguration}\textbf{PostgresDocumentStoreConfiguration}: classe di persistence che rappresenta la configurazione di un document store;
+    \item \label{PostgresDocumentStoreType}\textbf{PostgresDocumentStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresDocumentStoreConfiguration;
+
+    \item \label{PostgresEmbeddingModelConfiguration}\textbf{PostgresEmbeddingModelConfiguration}: classe di persistence che rappresenta la configurazione di un embedding model;
+    \item \label{PostgresEmbeddingModelType}\textbf{PostgresEmbeddingModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresEmbeddingModelConfiguration;
+    \item \label{PostgresLLMModelConfiguration}\textbf{PostgresLLMModelConfiguration}: classe di persistence che rappresenta la configurazione di un modello LLM;
+    \item \label{PostgresLLMModelType}\textbf{PostgresLLMModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresLLMModelConfiguration;
+
+    \item \label{PostgresVectorStoreConfiguration}\textbf{PostgresVectorStoreConfiguration}: classe di persistence che rappresenta la configurazione di un vector store su Postgres;
+    \item \label{PostgresVectorStoreType}\textbf{PostgresVectorStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresVectorStoreConfiguration.
+   
+    
+\end{itemize}
 
 \subsubsection{DeleteChats}
 \subsubsubsection{Descrizione}
@@ -1223,67 +1275,6 @@ RF.O.38 & DeleteChatsService: vedi \vedi{DeleteChatsServiceDettaglio}.\\
 
 
 
-
-
-
-\subsubsection{ConfigurationManager}
-\subsubsubsection{Descrizione}
-Questa componente ha il compito di gestire la configurazione del sistema.
-\begin{comment}
-    
-
-È costituita da:
-\begin{itemize}
-    \item \textbf{Route API}:%TODO ;
-    \item \textbf{Metodo}:%TODO ;
-    \item \textbf{Lista parametri HTTP}: 
-    \begin{itemize}
-        \item %TODO
-    \end{itemize}
-\end{itemize}
-\subsubsubsection{Esiti possibili ConfigurationManager}
-\renewcommand{\arraystretch}{1.5}
-\begin{xltabular}{\textwidth}{c|X|X}
-\caption{Esiti possibili }\\
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
-\endfirsthead
-\caption[]{Esiti possibili ConfigurationManager (cont)}\\
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
-\endhead
-\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
-\endfoot
-\endlastfoot
-\hline
- &  & - \\
-\hline
- &  & \\
-\end{xltabular}
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{itemize}
-        \item 
-       
-\end{itemize}
-\end{comment}
-\subsubsubsection{Lista sottocomponenti}
-\begin{itemize}
-    \item \label{ConfigurationManager}\textbf{ConfigurationManager}: classe che espone \textit{metodi\pg} per ottenere le porte in uscita delle componenti del sistema;
-    \item \label{PostgresConfiguration}\textbf{PostgresConfiguration}: classe di persistence che rappresenta la configurazione del sistema di userId, vector store, document store, LLM ed embedding model su Postgres;
-    \item \textbf{PostgresConfigurationORM}: vedi \vedi{PostgresConfigurationORM};
-    \item \label{PostgresDocumentStoreConfiguration}\textbf{PostgresDocumentStoreConfiguration}: classe di persistence che rappresenta la configurazione di un document store;
-    \item \label{PostgresDocumentStoreType}\textbf{PostgresDocumentStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresDocumentStoreConfiguration;
-
-    \item \label{PostgresEmbeddingModelConfiguration}\textbf{PostgresEmbeddingModelConfiguration}: classe di persistence che rappresenta la configurazione di un embedding model;
-    \item \label{PostgresEmbeddingModelType}\textbf{PostgresEmbeddingModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresEmbeddingModelConfiguration;
-    \item \label{PostgresLLMModelConfiguration}\textbf{PostgresLLMModelConfiguration}: classe di persistence che rappresenta la configurazione di un modello LLM;
-    \item \label{PostgresLLMModelType}\textbf{PostgresLLMModelType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresLLMModelConfiguration;
-
-    \item \label{PostgresVectorStoreConfiguration}\textbf{PostgresVectorStoreConfiguration}: classe di persistence che rappresenta la configurazione di un vector store su Postgres;
-    \item \label{PostgresVectorStoreType}\textbf{PostgresVectorStoreType}: enumeration che rappresenta i valori che può assumere il campo \code{name} in PostgresVectorStoreConfiguration.
-   
-    
-\end{itemize}
- 
 \subsubsection{DeleteDocuments}
 \subsubsubsection{Descrizione}
 Questa componente ha il compito di eliminare una lista di documenti e i loro rispettivi embeddings.
@@ -1433,11 +1424,15 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
     \item \label{AWSDocument}\textbf{AWSDocument}: classe che rappresenta i documenti gestibili da AWSS3Manager;
     \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \label{Chunkerizer}\textbf{Chunkerizer}: classe che crea \textit{chunks\pg} a partire da testo;
-    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \label{Document}\textbf{Document}: classe di business che rappresenta i documenti completi;
+    \item \label{DocumentContent}\textbf{DocumentContent}: classe di business che rappresenta il contenuto di un documento;
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};    
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
     \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
     \item \label{DocumentStatus} \textbf{DocumentStatus}: classe di business che rappresenta lo status di un documento;
     %\item \label{DocumentToText}\textbf{DocumentToText}: classe che si occupa di convertire documenti;
     \item \label{DOCXTextExtractor}\textbf{DOCXTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti docx;
+    \item \label{DocumentType}\textbf{DocumentType}: enumeration che rappresenta i valori che può assumere il tipo di un documento;
     \item  \label{EmbeddingsCreator}\textbf{EmbeddingsCreator}: classe che dialoga con il modello di embeddings per creare gli embeddings a partire dai chunk forniti in input;
     \item \label{EmbeddingsUploader}\textbf{EmbeddingsUploader}: classe che si occupa di effettuare la chiamata dell'upload degli embeddings nella porta esterna diretta verso il vector store;
     \item \label{EmbeddingsUploaderFacadeLangchain}\textbf{EmbeddingsUploaderFacadeLangchain}: classe adapter che implementa la porta EmbeddingsUploaderPort, adattando la chiamata di EmbeddingsUploader alla sequenza di operazioni necessarie per il calcolo degli embeddings e il loro upload nel vector store;
@@ -1459,6 +1454,7 @@ Questa componente ha il compito di generare e memorizzare gli embeddings dei doc
     \item \label{LangchainEmbeddingModel}\textbf{LangchainEmbeddingModel}: classe astratta che permette di interagire con un oggetto langhchain.Embeddings;
     \item \label{OpenAIEmbeddingModel}\textbf{OpenAIEmbeddingModel}: classe che implementa la classe astratta LangchainEmbeddingModel per interagire con un modello di generazione di embeddings di OpenAI;
     \item \label{PDFTextExtractor}\textbf{PDFTextExtractor}: classe che implementa l'interfaccia TextExtractor, offrendo un metodo per l'estrazione di testo da documenti \textit{PDF\pg};
+    \item \label{PlainDocument}\textbf{PlainDocument}: classe di business che rappresenta i documenti, compresi i metadati e il contenuto;
     \item \label{Status}\textbf{Status}: enumeration che rappresenta i valori che può assumere lo status di un documento;
     \item \label{TextExtractor}\textbf{TextExtractor}: interfaccia che espone il metodo astratto di estrazione di testo da un documento;   
     \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
@@ -1882,6 +1878,89 @@ RF.O.54. &  LLMModelType: vedi \vedi{LLMModelTypeDettaglio}.  \\
 
 
 
+\subsubsection{GetDocumentContent}
+\subsubsubsection{Descrizione}
+Questa componente ha il compito di recuperare tutte le informazioni di un documento, compreso il suo contenuto.
+È costituita da:
+\begin{itemize}
+    \item \textbf{Route API}: /getDocumentContent;
+    \item \textbf{Metodo}: GET;
+    \item \textbf{Lista parametri HTTP}: 
+    \begin{itemize}
+        \item {documentId}: una stringa che rappresenta l'id del documento da recuperare.
+    \end{itemize}
+    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getDocumentContent} che esegue i seguenti controlli:
+        \begin{enumerate}
+            \item Il parametro {documentId} non deve essere vuoto o nullo.
+        \end{enumerate}
+\end{itemize}
+\subsubsubsection{Esiti possibili}
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|X}
+\caption{Esiti possibili GetDocumentContent}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endfirsthead
+\caption[]{Esiti possibili GetDocumentContent (cont)}\\
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
+\endhead
+\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+200 & Documento recuperato con successo. & - \\
+\hline
+400 & Il parametro {documentId} è nullo. &  Parametri insufficienti.\\
+\hline
+400 & Il parametro {documentId} è vuoto. &  Id di documento '{documentId}' non valido.\\
+\hline
+404 & Recupero documento fallito. & Errore nel recupero del documento.
+\end{xltabular}
+
+
+\subsubsubsection{Lista sottocomponenti}
+\begin{itemize}
+    \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
+    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
+    \item \textbf{Document}: vedi \vedi{Document};
+    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
+    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
+    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
+    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
+    \item \label{GetDocumentContentController}\textbf{GetDocumentContentController}: classe controller che si occupa del passaggio di un DocumentId allo use case GetDocumentsContentUseCase a partire da una stringa che rappresenta l'id del documento da recuperare;
+    \item \label{GetDocumentsContentFacadeService}\textbf{GetDocumentsContentFacadeService}: classe service che implementa lo use case GetDocumentsContetUseCase;
+    %\item \textbf{GetDocuments}: vedi \vedi{GetDocuments};
+    %\item \textbf{GetDocumentsAWSS3}: vedi \vedi{GetDocumentsAWSS3};
+    \item \textbf{GetDocumentsContent}: vedi \vedi{GetDocumentsContent};
+    \item \textbf{GetDocumentsContentAWSS3}: vedi \vedi{GetDocumentsContentAWSS3};
+    \item \textbf{GetDocumentsContentPort}: vedi \vedi{GetDocumentsContentPort};
+    %\item \textbf{GetDocumentsPort}: vedi \vedi{GetDocumentsPort};
+    \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
+    \item \textbf{GetDocumentsStatusPort}: \vedi{GetDocumentsStatusPort};
+    \item \textbf{GetDocumentsStatusVectorStore}: vedi \vedi{GetDocumentsStatusVectorStore};
+    \item \label{GetDocumentsContentUseCase}\textbf{GetDocumentsContentUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per recuperare un documento;
+    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument};    
+    \item \textbf{Status}: vedi \vedi{Status};
+    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
+    \item \textbf{VectorStoreDocumentStatusResponse}: vedi \vedi{VectorStoreDocumentStatusResponse};
+    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
+    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
+\end{itemize}
+
+\subsubsubsection{Tracciamento dei requisiti}
+\begin{xltabular}{\textwidth}{c|c}
+\caption{Tracciamento dei requisiti nella componente GetDocumentContent}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endfirsthead
+\caption[]{Tracciamento dei requisiti nella componente GetDocumentContent (cont)}\\
+\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
+\endhead
+\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+\hline
+RF.O.24 & GetDocumentsContentFacadeService: vedi \vedi{GetDocumentsContentFacadeServiceDettaglio}.\\
+\end{xltabular}
 
 
 \subsubsection{GetDocuments}
@@ -1929,7 +2008,7 @@ Questa componente ha il compito di ricavare la lista di tutti i documenti presen
     \item \textbf{DocumentId}: vedi \vedi{DocumentId};
     \item \label{DocumentMetadata}\textbf{DocumentMetadata}: classe di business che rappresenta i metadati di un documento;
     \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
-    \item \label{DocumentType}\textbf{DocumentType}: enumeration che rappresenta i valori che può assumere il tipo di un documento;
+    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
     \item \label{ElaborationException}\textbf{ElaborationException}: classe che rappresenta il messaggio di eccezione;
      \item \label{GetDocumentsController}\textbf{GetDocumentsController}: classe controller che si occupa del passaggio di un oggetto DocumentFilter allo use case GetDocumentsUseCase a partire da una stringa che rappresenta il filtro della ricerca;
      \item \label{GetDocumentsFacadeService}\textbf{GetDocumentsFacadeService}: classe service che implementa lo use case GetDocumentsUseCase;
@@ -2186,8 +2265,8 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     \item \textbf{AWSDocumentOperationResponse}: vedi \vedi{AWSDocumentOperationResponse};
     \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
     \item \textbf{Chunkerizer}: vedi \vedi{Chunkerizer};
-    \item \label{Document}\textbf{Document}: classe di business che rappresenta i documenti completi;
-    \item \label{DocumentContent}\textbf{DocumentContent}: classe di business che rappresenta il contenuto di un documento;
+    \item \textbf{Document}: vedi \vedi{Document};
+    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
     \item \textbf{DocumentId}: vedi \vedi{DocumentId};    
     \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
     \item \textbf{DocumentOperationResponse}: vedi \vedi{DocumentOperationResponse};
@@ -2209,7 +2288,7 @@ Questa componente ha il compito di memorizzare i documenti inseriti dall'utente 
     \item \label{NewDocument}\textbf{NewDocument}: classe di presentation che contiene le informazioni relative ai documenti appena inseriti dall'utente, presenti nella richiesta HTTP;
     \item \textbf{OpenAIEmbeddingModel}: vedi \vedi{OpenAIEmbeddingModel};
     \item \textbf{PDFTextExtractor}: vedi \vedi{PDFTextExtractor};
-    \item \label{PlainDocument}\textbf{PlainDocument}: classe di business che rappresenta i documenti, compresi i metadati e il contenuto;
+    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument}
     \item \textbf{Status}: vedi \vedi{Status};
     \item \textbf{TextExtractor}: vedi \vedi{TextExtractor};
     \item \label{UploadDocumentsController}\textbf{UploadDocumentsController}: classe controller che si occupa del passaggio di Documents allo use case UploadDocumentsUseCase a partire da NewDocuments;
@@ -2257,91 +2336,6 @@ RF.O.23.3 & EmbeddingsUploader: vedi \vedi{EmbeddingsUploaderDettaglio}.\\
 \end{xltabular}
 
 
-
-
-\subsubsection{ViewDocumentContent}
-\subsubsubsection{Descrizione}
-Questa componente ha il compito di recuperare tutte le informazioni di un documento, compreso il suo contenuto.
-È costituita da:
-\begin{itemize}
-    \item \textbf{Route API}: /viewDocumentContent;
-    \item \textbf{Metodo}: GET;
-    \item \textbf{Lista parametri HTTP}: 
-    \begin{itemize}
-        \item {documentId}: una stringa che rappresenta l'id del documento da recuperare.
-    \end{itemize}
-    \item \textbf{Implementazione generale}: La componente viene implementata dal blueprint \code{getDocumentContent} che esegue i seguenti controlli:
-        \begin{enumerate}
-            \item Il parametro {documentId} non deve essere vuoto o nullo.
-        \end{enumerate}
-\end{itemize}
-\subsubsubsection{Esiti possibili}
-\renewcommand{\arraystretch}{1.5}
-\begin{xltabular}{\textwidth}{c|X|X}
-\caption{Esiti possibili ViewDocumentContent}\\
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
-\endfirsthead
-\caption[]{Esiti possibili ViewDocumentContent (cont)}\\
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Risposta} \\
-\endhead
-\multicolumn{3}{r}{{Continua nella pagina successiva}} \\
-\endfoot
-\endlastfoot
-\hline
-200 & Documento recuperato con successo. & - \\
-\hline
-400 & Il parametro {documentId} è nullo. &  Parametri insufficienti.\\
-\hline
-400 & Il parametro {documentId} è vuoto. &  Id di documento '{documentId}' non valido.\\
-\hline
-404 & Recupero documento fallito. & Errore nel recupero del documento.
-\end{xltabular}
-
-
-\subsubsubsection{Lista sottocomponenti}
-\begin{itemize}
-    \item \textbf{AWSDocument}: vedi \vedi{AWSDocument};
-    \item \textbf{AWSS3Manager}: vedi \vedi{AWSS3Manager};
-    \item \textbf{Document}: vedi \vedi{Document};
-    \item \textbf{DocumentContent}: vedi \vedi{DocumentContent};
-    \item \textbf{DocumentId}: vedi \vedi{DocumentId};
-    \item \textbf{DocumentMetadata}: vedi \vedi{DocumentMetadata};
-    \item \textbf{DocumentStatus}: vedi \vedi{DocumentStatus};
-    \item \textbf{DocumentType}: vedi \vedi{DocumentType};
-    \item \label{GetDocumentController}\textbf{GetDocumentController}: classe controller che si occupa del passaggio di un DocumentId allo use case GetDocumentUseCase a partire da una stringa che rappresenta l'id del documento da recuperare;
-    \item \label{GetDocumentFacadeService}\textbf{GetDocumentFacadeService}: classe service che implementa lo use case GetDocumentUseCase;
-    %\item \textbf{GetDocuments}: vedi \vedi{GetDocuments};
-    %\item \textbf{GetDocumentsAWSS3}: vedi \vedi{GetDocumentsAWSS3};
-    \item \textbf{GetDocumentsContent}: vedi \vedi{GetDocumentsContent};
-    \item \textbf{GetDocumentsContentAWSS3}: vedi \vedi{GetDocumentsContentAWSS3};
-    \item \textbf{GetDocumentsContentPort}: vedi \vedi{GetDocumentsContentPort};
-    %\item \textbf{GetDocumentsPort}: vedi \vedi{GetDocumentsPort};
-    \item \textbf{GetDocumentsStatus}: vedi \vedi{GetDocumentsStatus};
-    \item \textbf{GetDocumentsStatusPort}: \vedi{GetDocumentsStatusPort};
-    \item \textbf{GetDocumentsStatusVectorStore}: vedi \vedi{GetDocumentsStatusVectorStore};
-    \item \label{GetDocumentUseCase}\textbf{GetDocumentUseCase}: interfaccia use case che rappresenta la porta della business logic in entrata per recuperare un documento;
-    \item \textbf{PlainDocument}: vedi \vedi{PlainDocument};    
-    \item \textbf{Status}: vedi \vedi{Status};
-    \item \textbf{VectorStoreChromaDBManager}: vedi \vedi{VectorStoreChromaDBManager};
-    \item \textbf{VectorStoreDocumentStatusResponse}: vedi \vedi{VectorStoreDocumentStatusResponse};
-    \item \textbf{VectorStoreManager}: vedi \vedi{VectorStoreManager};
-    \item \textbf{VectorStorePineconeManager}: vedi \vedi{VectorStorePineconeManager}.
-\end{itemize}
-
-\subsubsubsection{Tracciamento dei requisiti}
-\begin{xltabular}{\textwidth}{c|c}
-\caption{Tracciamento dei requisiti nella componente ViewDocumentContent}\\
-\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
-\endfirsthead
-\caption[]{Tracciamento dei requisiti nella componente ViewDocumentContent (cont)}\\
-\textbf{Requisito} & \textbf{Soddisfacimento del requisito} \\
-\endhead
-\multicolumn{2}{r}{{Continua nella pagina successiva}} \\
-\endfoot
-\endlastfoot
-\hline
-RF.O.24 & GetDocumentFacadeService: vedi \vedi{GetDocumentFacadeServiceDettaglio}.\\
-\end{xltabular}
 
 \newpage
 \subsection{Database} 
@@ -3896,7 +3890,7 @@ Vedi \vedi{VectorStoreCardDettaglio}.
         Metodo per ottenere una delle porte in uscita della componente DeleteDocuments;
 
         \item \code{getDocumentsContentPort(): GetDocumentsContentPort}\\ 
-        Metodo per ottenere la porta in uscita delle componenti EmbedDocuments e ViewDocumentContent;
+        Metodo per ottenere la porta in uscita delle componenti EmbedDocuments e GetDocumentContent;
 
         \item \code{getDocumentsUploaderPort(): DocumentsUploaderPort}\\ 
         Metodo per ottenere la porta in uscita della componente UploadDocuments;
@@ -3911,7 +3905,7 @@ Vedi \vedi{VectorStoreCardDettaglio}.
         Metodo per ottenere una delle porte in uscita della componente GetDocuments;
 
         \item \code{getGetDocumentsStatusPort(): GetDocumentsStatusPort}\\        
-        Metodo per ottenere una delle porte in uscita delle componenti EmbedDocuments, GetDocuments e ViewDocumentContent.
+        Metodo per ottenere una delle porte in uscita delle componenti EmbedDocuments, GetDocuments e GetDocumentContent.
 
         
 
@@ -5659,6 +5653,136 @@ Vedi \vedi{VectorStoreTypeDettaglio}.
 
 
 
+%GETDOCUMENTCONTENT
+
+\subsection{GetDocumentContent}
+\subsubsection{Diagramma delle classi}
+
+\begin{figure}[H]
+    \centering        
+    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/ViewDocContent.png}}
+    \caption{Diagramma delle classi componente GetDocumentContent}
+\end{figure}
+
+
+
+\subsubsection{Lista delle sottocomponenti}
+
+
+\subsubsubsection{AWSDocument}
+Vedi \vedi{AWSDocumentDettaglio}.
+
+\subsubsubsection{AWSS3Manager}
+Vedi \vedi{AWSS3ManagerDettaglio}.
+
+\subsubsubsection{Document}
+Vedi \vedi{DocumentDettaglio}.
+
+\subsubsubsection{DocumentContent}
+Vedi \vedi{DocumentContentDettaglio}.
+
+\subsubsubsection{DocumentId}
+Vedi \vedi{DocumentIdDettaglio}.
+
+\subsubsubsection{DocumentMetadata}
+Vedi \vedi{DocumentMetadataDettaglio}.
+
+\subsubsubsection{DocumentStatus}
+Vedi \vedi{DocumentStatusDettaglio}.
+
+\subsubsubsection{DocumentType (Enumeration)}
+Vedi \vedi{DocumentTypeDettaglio}.
+
+
+\subsubsubsection{GetDocumentContentController}
+\label{GetDocumentContentControllerDettaglio}
+\begin{itemize}
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{useCase: GetDocumentsContentUseCase}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentContent(documentId:String): Document}\\
+        Metodo che si occupa di trasformare la stringa id in DocumentId e inoltrare la richiesta di recupero del documento a GetDocumentsUseCase.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsContentFacadeService}
+\label{GetDocumentsContentFacadeServiceDettaglio}
+\begin{itemize}
+    \item \textbf{Implementa}: GetDocumentsContentUseCase;
+    \item \textbf{Attributi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent: GetDocumentsContent};
+        \item \code{getDocumentsStatus: GetDocumentsStatus}.
+    \end{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent(documentId: Lisr<DocumentId>): Listt<Document>}\\
+        Implementazione del metodo astratto di GetDocumentUseCase. Le operazioni all'interno della facade vengono svolte nel seguente ordine:
+        \begin{enumerate}
+            \item Recupero della lista di status dei documenti dal vector store;
+            \item Recupero dei documenti e il loro contenuto dal sistema di archiviazione;
+            \item Costruzione di una lista di oggetti Document a partire dagli output dei passaggi precedenti.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{GetDocumentsContent}
+Vedi \vedi {GetDocumentsContentDettaglio}.
+
+\subsubsubsection{GetDocumentsContentAWSS3}
+Vedi \vedi{GetDocumentsContentAWSS3Dettaglio}.
+
+\subsubsubsection{GetDocumentsContentPort}
+Vedi \vedi{GetDocumentsContentPortDettaglio}.
+
+
+\subsubsubsection{GetDocumentsStatus}
+Vedi \vedi{GetDocumentsStatusDettaglio}.
+
+
+
+\subsubsubsection{GetDocumentsStatusPort}
+Vedi \vedi{GetDocumentsStatusPortDettaglio}.
+
+
+\subsubsubsection{GetDocumentsStatusVectorStore}
+Vedi \vedi{GetDocumentsStatusVectorStoreDettaglio}.
+
+
+\subsubsubsection{GetDocumentsContentUseCase}
+\label{GetDocumentsContentUseCaseDettaglio}
+\begin{itemize}
+    \item \textbf{Metodi}:
+    \begin{itemize}
+        \item \code{getDocumentsContent(documentId:List<DocumentId>): List<Document>}\\
+        Metodo astratto per recuperare tutte le informazioni di una lista di documenti, compresi i loro contenuti, a partire da una lista dei loro id.
+    \end{itemize}
+\end{itemize}
+
+\subsubsubsection{PlainDocument}
+Vedi \vedi{PlainDocumentDettaglio}.
+
+
+\subsubsubsection{Status (Enumeration)}
+Vedi \vedi{StatusDettaglio}.
+
+\subsubsubsection{VectorStoreChromaDBManager}
+Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
+
+\subsubsubsection{VectorStoreDocumentStatusResponse}
+Vedi \vedi{VectorStoreDocumentStatusResponseDettaglio}.
+
+
+
+\subsubsubsection{VectorStoreManager}
+Vedi \vedi{VectorStoreManagerDettaglio}.
+
+\subsubsubsection{VectorStorePineconeManager}
+Vedi \vedi{VectorStorePineconeManagerDettaglio}.
+
 
 %GETDOCUMENTS
 
@@ -6314,139 +6438,6 @@ Vedi \vedi{VectorStoreManagerDettaglio}.
 
 \subsubsubsection{VectorStorePineconeManager}
 Vedi \vedi{VectorStorePineconeManagerDettaglio}.
-
-
-
-%VIEWDOCUMENTCONTENT
-
-\subsection{ViewDocumentContent}
-\subsubsection{Diagramma delle classi}
-
-\begin{figure}[H]
-    \centering        
-    \rotatebox{90}{\includegraphics[width=1.45\textwidth]{img/ViewDocContent.png}}
-    \caption{Diagramma delle classi componente ViewDocumentContent}
-\end{figure}
-
-
-
-\subsubsection{Lista delle sottocomponenti}
-
-
-\subsubsubsection{AWSDocument}
-Vedi \vedi{AWSDocumentDettaglio}.
-
-\subsubsubsection{AWSS3Manager}
-Vedi \vedi{AWSS3ManagerDettaglio}.
-
-\subsubsubsection{Document}
-Vedi \vedi{DocumentDettaglio}.
-
-\subsubsubsection{DocumentContent}
-Vedi \vedi{DocumentContentDettaglio}.
-
-\subsubsubsection{DocumentId}
-Vedi \vedi{DocumentIdDettaglio}.
-
-\subsubsubsection{DocumentMetadata}
-Vedi \vedi{DocumentMetadataDettaglio}.
-
-\subsubsubsection{DocumentStatus}
-Vedi \vedi{DocumentStatusDettaglio}.
-
-\subsubsubsection{DocumentType (Enumeration)}
-Vedi \vedi{DocumentTypeDettaglio}.
-
-
-\subsubsubsection{GetDocumentController}
-\label{GetDocumentControllerDettaglio}
-\begin{itemize}
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{useCase: GetDocumentUseCase}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocument(documentId:String): Document}\\
-        Metodo che si occupa di trasformare la stringa id in DocumentId e inoltrare la richiesta di recupero del documento a GetDocumentsUseCase.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{GetDocumentFacadeService}
-\label{GetDocumentFacadeServiceDettaglio}
-\begin{itemize}
-    \item \textbf{Implementa}: GetDocumentUseCase;
-    \item \textbf{Attributi}:
-    \begin{itemize}
-        \item \code{getDocumentsContent: GetDocumentsContent};
-        \item \code{getDocumentsStatus: GetDocumentsStatus}.
-    \end{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocument(documentId:DocumentId): Document}\\
-        Implementazione del metodo astratto di GetDocumentUseCase. Le operazioni all'interno della facade vengono svolte nel seguente ordine:
-        \begin{enumerate}
-            \item Recupero dello status del documento dal vector store;
-            \item Recupero del documento e il suo contenuto dal sistema di archiviazione;
-            \item Costruzione di un oggetto Document a partire dagli output dei passaggi precedenti.
-        \end{enumerate}
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{GetDocumentsContent}
-Vedi \vedi {GetDocumentsContentDettaglio}.
-
-\subsubsubsection{GetDocumentsContentAWSS3}
-Vedi \vedi{GetDocumentsContentAWSS3Dettaglio}.
-
-\subsubsubsection{GetDocumentsContentPort}
-Vedi \vedi{GetDocumentsContentPortDettaglio}.
-
-
-\subsubsubsection{GetDocumentsStatus}
-Vedi \vedi{GetDocumentsStatusDettaglio}.
-
-
-
-\subsubsubsection{GetDocumentsStatusPort}
-Vedi \vedi{GetDocumentsStatusPortDettaglio}.
-
-
-\subsubsubsection{GetDocumentsStatusVectorStore}
-Vedi \vedi{GetDocumentsStatusVectorStoreDettaglio}.
-
-
-\subsubsubsection{GetDocumentUseCase}
-\label{GetDocumentUseCaseDettaglio}
-\begin{itemize}
-    \item \textbf{Metodi}:
-    \begin{itemize}
-        \item \code{getDocument(documentId:DocumentId): Document}\\
-        Metodo astratto per recuperare tutte le informazioni di un documento, compreso il suo contenuto, a partire dal suo id.
-    \end{itemize}
-\end{itemize}
-
-\subsubsubsection{PlainDocument}
-Vedi \vedi{PlainDocumentDettaglio}.
-
-
-\subsubsubsection{Status (Enumeration)}
-Vedi \vedi{StatusDettaglio}.
-
-\subsubsubsection{VectorStoreChromaDBManager}
-Vedi \vedi{VectorStoreChromaDBManagerDettaglio}.
-
-\subsubsubsection{VectorStoreDocumentStatusResponse}
-Vedi \vedi{VectorStoreDocumentStatusResponseDettaglio}.
-
-
-
-\subsubsubsection{VectorStoreManager}
-Vedi \vedi{VectorStoreManagerDettaglio}.
-
-\subsubsubsection{VectorStorePineconeManager}
-Vedi \vedi{VectorStorePineconeManagerDettaglio}.
-
 
 
 \end{document}

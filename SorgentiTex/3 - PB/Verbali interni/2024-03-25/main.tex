@@ -1,0 +1,93 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{14.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{28em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{12cm}
+
+
+
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+\vspace{8.7cm}
+\decisioni
+
+\end{paracol}
+
+%\vspace{5em}
+\newpage
+
+\heading{Azioni da Intraprendere}\\
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|c|c|c}
+\label{tab:long}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endfirsthead
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endhead
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+% Per ID Task: vuoto se non l'abbiamo messa come issue, SWE-id_task altrimenti
+\hline
+SWE-316 & Stesura verbale riunione 2024-03-25 & Bresolin G. & Ciriolo I. & $2024-03-26$ \\
+
+\end{xltabular}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione interna verrà pianificata in seguito alla risposta da parte del professor Cardin R. in modo da organizzare la presentazione per la prima fase di revisione PB.
+
+\end{document}

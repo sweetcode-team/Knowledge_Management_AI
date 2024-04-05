@@ -1,0 +1,121 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{14.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{28em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{12cm}
+
+
+
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+\vspace{8.7cm}
+\decisioni
+
+\end{paracol}
+
+%\vspace{5em}
+\newpage
+
+\heading{Azioni da Intraprendere}\\
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|c|c|c}
+\label{tab:long}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endfirsthead
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endhead
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+% Per ID Task: vuoto se non l'abbiamo messa come issue, SWE-id_task altrimenti
+\hline
+SWE-242 & Stesura verbale riunione & Bresolin G. & Ciriolo I. & $2024-03-26$ \\
+\hline
+SWE-239 & Manuale utente: Gestione delle chat & Ciriolo I. & Feltrin E. & $2024-03-26$ \\
+\hline
+SWE-245 & Manuale utente: Configurazione utente & Michelon R. & Ciriolo I. & $2024-03-26$ \\
+\hline
+SWE-244 & Manuale utente: Area di staging & Campese M. & Ciriolo I. & $2024-03-26$ \\
+\hline
+SWE-288 & Codifica DashboardPage & Michelon R. & team & $2024-03-26$ \\
+\hline
+SWE-289 & Codifica ChatView & Dugo A. & team & $2024-03-26$ \\
+\hline
+SWE-290 & Codifica ChatsPage & Bresolin G. & team & $2024-03-26$ \\
+\hline
+SWE-291 & Codifica ConfigurationPage & Feltrin E. & team & $2024-03-26$ \\
+\hline
+SWE-292 & Codifica DocumentView & Michelon R. & team & $2024-03-26$ \\
+\hline
+SWE-293 & Codifica StagingArea & Bresolin G. & team & $2024-03-26$ \\
+\hline
+SWE-294 & Codifica DocumentsTable & Dugo A. & team & $2024-03-26$ \\
+\hline
+SWE-295 & Codifica DocumentsPage & Feltrin E. & team & $2024-03-26$ \\
+\hline
+SWE-296 & Codifica Appearence & Orlandi G. & team & $2024-03-26$ \\
+\hline
+SWE-297 & Codifica ConfigurationView & Campese M. & team & $2024-03-26$ \\
+\hline
+SWE-298 & Codifica SettingsPage & Ciriolo I. & team & $2024-03-26$ \\
+
+\end{xltabular}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione interna è pianificata in data 2023-03-25 alle ore 14:00.
+
+\end{document}

@@ -1,0 +1,69 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-03-13}
+\def\oraInizio{17:00}
+\def\oraFine{17:30}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Bresolin G.} % Cognome N.
+\def\nomeVer{Ciriolo I.} % Cognome N.
+\def\nomeSegr{Campese M.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{gianluca.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.,
+}
+
+\def\listaRevisioneAzioni {{Il team ha esposto ad AzzurroDigitale la codifica del backend realizzata, non ottenendo alcun feedback.}}
+
+\def\listaOrdineGiorno {
+{Revisione della codifica backend eseguita dal team;},
+{Aggiornamento previsioni requisiti opzionali che verranno accolti dal team;},
+{Aggiornamento pianificazione futura dello sprint corrente}.
+}
+
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{In merito alla codifica del backend effettuata avete qualche feedback da darci?}
+{L'azienda ha precisato che senza alcun relativo componente di frontend sviluppato non risulta per ora possibile fornire alcun feedback. Sarebbe infatti da preferire uno sviluppo parallelo tra backend e frontend in modo da poter fornire al 'cliente' del materiale consultabile direttamente;},
+\domris
+{Aggiornamento requisiti opzionali che il team ritiene di poter soddisfare:}
+{Il team si pone l'obiettivo inizialmente di soddisfare tutti i requisiti obbligatori e, solo in seguito prendere in considerazione lo sviluppo di componenti che soddisfino requisiti accordati come opzionali o desiderabili.
+Nonostante ciò, il team ritiene che l'implementazione della funzionalità di interazione vocale con il chatbot sia fattibile con i tempi di consegna previsti e con le risorse del progetto pianificate;},
+\domris
+{Cosa prevede la pianificazione del seguente sprint?}
+{Il team nel presente sprint ha pianificato la codifica delle componenti di frontend e relativi test, in modo da ottenere nel prossimo incontro un feedback utile sulla codifica svolta. }
+}
+
+
+
+
+\def\listaDecisioni {
+{Il team nel prossimo sprint pianifica la codifica delle componenti di frontend.}
+}

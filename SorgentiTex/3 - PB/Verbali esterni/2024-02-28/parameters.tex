@@ -1,0 +1,73 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-02-28}
+\def\oraInizio{17:00}
+\def\oraFine{18:00}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Orlandi G.} % Cognome N.
+\def\nomeVer{Bresolin G.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{giacomo.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.,
+}
+
+\def\listaRevisioneAzioni {{Il team ha esposto ad AzzurroDigitale la progettazione svolta al dettaglio fino ad ora realizzata, ottenendo un riscontro positivo che abilita la codifica del MVP.}}
+
+\def\listaOrdineGiorno {
+{Revisione della progettazione eseguita dal team;},
+{Esposizione dei dubbi presenti da parte del team all'azienda;},
+{Aggiornamento pianificazione futura dello sprint corrente}.
+}
+
+
+\def\listaDiscussioneInterna {
+{Discussione 1;},
+{Discussione 2;},
+}
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+\domris
+{Il cambio del modello utilizzato per la generazione degli embeddings comporta la ricreazione del vector database poiché ogni modello di embedding genera embeddings di dimensione differente. Tale operazione, come la migrazione degli embeddings da un vector database all'altro nel caso di un cambio nella configurazione, sono molto onerose: come dobbiamo gestire tali situazioni?}
+{L'Azienda ritiene sufficiente offrire la possibilità di scegliere la configurazione del modello di embeddings e il vector database all'avvio dell'applicazione web, in modo da non lasciare l'accesso agli utenti di operazioni che possono rappresentare un costo notevole per il cliente. L'unico cambio di configurazione che deve rimanere gestibile dall'utente consiste nella scelta del modello LLM da utilizzare per la formulazione delle risposte del chatbot;},
+\domris
+{Per quanto riguarda il caricamento e l'eliminazione di uno o più documenti tali fasi sono costituite da due sotto fasi: il caricamento/eliminazione nel sistema di archiviazione documenti e il caricamento/eliminazione dei relativi embeddings nel vector database. Prendendo ad esempio il caricamento nello specifico, il team ha pensato di effettuare prima il caricamento del documento nel sistema di archiviazione: in caso di esito negativo viene segnalato il fallimento del caricamento, mentre se si ha esito positivo si procede con la generazione e il caricamento degli embeddings nel vector database: in caso di esito positivo viene segnalato che il caricamento è avvenuto con successo, ma in caso di esito negativo di questa sotto fase il team si chiedeva se dovese occuparsi il sistema di riprovare la fase fallita o se fosse più opportuno assegnare uno stato 'notEmbedded' ai documenti in questione presenti nel sistema di archiviazione ma non dotati di relativi embeddings nel vector database e di offrire all'utente una funzionalità per riprovare la generazione e il caricamento degli embeddings, in modo da evitare il rischio di loop infiti. (Situazione analoga per l'eliminazione, dove però verrebbe eseguita prima l'eliminazione degli embeddings nel vector database e solo in caso di esito positivo l'eliminazione del documento anche nel sistema di archiviazione: in entrambi i casi in questo modo è possibile riportre il sistema in uno stato consistente, dove ogni documento presente nel sistema di archiviazione può avere i relativi embeddings nel vector database e, dall'altra parte, tutti gli embeddings presenti nel vector database corrispondono a documenti presenti nel sistema di archiviazione.}
+{L'azienda ritiene più opportuno, come suggerito dal team, una progettazione che tenga conto di uno stato 'notEmbedded' per i documenti sprovvisti di relativi embeddings nel vector database. Di conseguenza, il sistema dovrà presentare funzionalità accessibili all'utente che permettano di gestire questo nuovo stato possibile per un documento;},
+\domris
+{Come consigliate di gestire la configurazione?}
+{L'azienda ha espresso una preferenza per una gestione della configurazione tramite database;}
+\domris
+{La nostra progettazione prevede dei 'manager' per interagire con le componenti esterne presenti nella nostra architettura, i quali presentano dei partizionamenti nell'utilizzo dei metodi esposti da parte delle classi client: ciò consiste una violazione del single responsability principle?}
+{L'Azienda ritiene che la progettazione eseguita non viola la singola responsabilità da parte delle classi 'manager'.}
+} 
+
+
+
+
+\def\listaDecisioni {
+{Il cambiamento del modello per la generazione degli embeddings e il vector database attivo nel sistema è preferibile che siano scelti solo in fase di avvio;},
+{I documenti possono presentare uno stato 'notEmbedded' e il sistema deve offrire all'utente le funzionalità necessarie al ripristino di un corretto stato del sistema;},
+{I 'manager' progettati dal team non violano il single responsability principle.}
+}

@@ -436,7 +436,7 @@ L'attività di progettazione ha lo scopo di fissare un'architettura del prodotto
 La progettazione serve a dominare la complessità del prodotto, decomponendolo in parti componibili e organizzate.
 
 \subsubsubsection{Documentazione}
-L'attività di progettazione produce il documento (Specifica tecnica (v2.0.0(36))). Questo documento serve a descrivere l'architettura del prodotto e a guidare in modo chiaro e privo di ambiguità il lavoro dei programmatori attraverso la progettazione di dettaglio.
+L'attività di progettazione produce il documento (Specifica tecnica (v3.0.0(1))). Questo documento serve a descrivere l'architettura del prodotto e a guidare in modo chiaro e privo di ambiguità il lavoro dei programmatori attraverso la progettazione di dettaglio.
 Il documento tratta le seguenti tematiche:
 \begin{itemize}
     \item \textbf{Scelte tecnologiche}: analisi delle tecnologie e delle librerie selezionate e delle motivazioni a supporto di queste scelte;
@@ -469,37 +469,38 @@ Il documento tratta le seguenti tematiche:
     \end{enumerate} 
 \end{itemize}
 \subsubsubsection{Linee guida progettazione di dettaglio}
-Il documento Specifica tecnica (v2.0.0(36)) nella sezione (\S Progettazione di dettaglio) analizza in maniera precisa e chiara i moduli, raggruppandoli per appartenenza alle componenti del sistema.\\
+Il documento Specifica tecnica (v3.0.0(1)) nella sezione (\S Progettazione di dettaglio) analizza in maniera precisa e chiara i moduli, raggruppandoli per appartenenza alle componenti del sistema.\\
 Per ogni componente viene allegato un \textit{Diagramma delle classi}.\\
 Per ogni classe vengono elencate le proprietà che le caratterizzano, tra le quali:
 \begin{itemize}
-    \item \textbf{Tipo}: specifica per esempio se la classe è astratta o concreta;
     \item \textbf{Attributi}: elenca gli attributi propri della classe;
+    \item \textbf{Implementazione}: campo che specifica se la classe implementa un'interfaccia;
+    \item \textbf{Estensione}: campo che specifica se la classe estende un'altra classe;
     \item \textbf{Metodi}: ogni metodo viene identificato dalla firma e da una descrizione in cui viene eventualmente indicato se è astratto;
     \item \textbf{Valori}: campo che caratterizza le enumerazioni;
-    \item \textbf{Altro}: campo che specifica se la classe implementa un'interfaccia o deriva da una classe.
-\end{itemize}
+    \end{itemize}
+Le proprietà sono presentate nell'elenco solamente nel caso in cui ci siano elementi associati alla classe in questione.
 \paragraph{Convenzioni nella progettazione di dettaglio}
 \begin{itemize}
     \item Firma del metodo: \\
-     \code{nomeMetodo(parametro: tipoParametro, parametro1: tipoParametro1): TipoDiRitorno}
+     \code{nomeMetodo(parametro0: tipoParametro0, parametro1: tipoParametro1): TipoDiRitorno}
 \end{itemize}
 
 \paragraph{Pattern}
 
 I progettisti del team avranno l'obbligo di considerare le seguenti proprietà durante l'attività di progettazione:
 \begin{itemize}
-    \item \textbf{Sufficienza}: in grado di soddisfare tutti i requisiti;
-    \item \textbf{Modularità}: suddivisa in parti chiare e ben distinte, esponendo interfacce e nascondendo l'implementazione;
-    \item \textbf{Robustezza}: resiliente a più tipi e quantità di input;
-    \item \textbf{Flessibilità}: permette modifiche mantenendo limitati i costi per apportarle;
-    \item \textbf{Riusabilità}: permette il riuso delle sue parti in applicazioni esterne;
-    \item \textbf{Efficienza}: è efficiente nello spazio, nel tempo e nei consumi;
     \item \textbf{Affidabilità}: svolge bene il suo lavoro;
-    \item \textbf{Semplicità}: ogni parte contiene lo stretto necessario;
-    \item \textbf{Incapsulazione}: nasconde l'interno delle componenti architetturali all'esterno;
+    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse;
     \item \textbf{Coesione}: parti che agiscono sulle stesse unità di dati sono raccolte nello stesso componente;
-    \item \textbf{Basso accoppiamento}: limita le dipendenze tra parti diverse.
+    \item \textbf{Efficienza}: è efficiente nello spazio, nel tempo e nei consumi;
+    \item \textbf{Flessibilità}: permette modifiche mantenendo limitati i costi per apportarle;
+    \item \textbf{Incapsulazione}: nasconde l'interno delle componenti architetturali all'esterno;
+    \item \textbf{Modularità}: suddivisa in parti chiare e ben distinte, esponendo interfacce e nascondendo l'implementazione;
+    \item \textbf{Riusabilità}: permette il riuso delle sue parti in applicazioni esterne;
+    \item \textbf{Robustezza}: resiliente a più tipi e quantità di input;
+    \item \textbf{Semplicità}: ogni parte contiene lo stretto necessario;
+    \item \textbf{Sufficienza}: in grado di soddisfare tutti i requisiti;
 \end{itemize}
 
 \subsubsubsection{Scelte tecnologiche e PoC}
@@ -513,14 +514,14 @@ I progettisti del team avranno l'obbligo di considerare le seguenti proprietà d
         \item Avere feedback concreto e veloce da parte dell'azienda proponente;
         \item Eslorare concretamente le tecnologie scelte.
     \end{itemize}
-    \item Progettisti e programmatori si assumono il compito di realizzare più PoC, qualora fosse necessario un confronto concreto tra tecnologie; successivamente amministratori e responsabile sceglieranno la soluzione migliore a fronte di questi.
+    \item Progettisti e programmatori si assumono il compito di realizzare più PoC, qualora fosse necessario un confronto concreto tra tecnologie.
 \end{itemize}
 
 
 
 
 \subsubsubsection{Fasi di progettazione}
-Seguendo il modello a V, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
+Seguendo il \textit{modello a V}, l'attività di progettazione si divide in due fasi: progettazione logica e progettazione di dettaglio.
 
 \subsubsubsection{Progettazione logica}
 La progettazione logica consiste nel trasformare i requisiti software in un'\textit{architettura\pg} che descrive la struttura di alto livello del prodotto software e ne identifica i componenti.
@@ -554,11 +555,11 @@ Durante la progettazione di dettaglio, i progettisti hanno il compito di:
 \end{itemize}
 
 \subsubsubsection{Diagrammi}
-I diagrammi delle classiriportati all'interno del documento (Specifica tecnica (v2.0.0(36))) devono seguire la notazione e le specifiche indicate da \textit{UML v2.5}.
+I diagrammi delle classiriportati all'interno del documento (Specifica tecnica (v3.0.0(1))) devono seguire la notazione e le specifiche indicate da \textit{UML v2.5}.
 
 \subsubsubsection{Strumenti}
 \begin{itemize}
-    \item \textit{Diagrams.net}.
+    \item \textit{StarUML}.
 \end{itemize}
 
 

@@ -1,0 +1,100 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+\usepackage{verbatim}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{5.0em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{19.5em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+~\newpage
+~\vspace{15.0em}
+
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+Durante la riunione, il team ha presentato il Minimum Viable Product (MVP), il quale è stato approvato dai membri di AzzurroDigitale. Michelon R. ha iniziato mostrando la configurazione iniziale del chatbot nella quale è possibile selezionare la configurazione desiderata di tutti i componenti:
+\begin{itemize}
+\item modello per creare gli embedding
+\item modello LLM
+\item database utilizzato per i documenti
+\item database per salvare i vettori. 
+\end{itemize}
+Successivamente è stata presentata la dashboard. Quest'ultima include l'ultima conversazione con il chatbot, un elenco delle chat con esso, i documenti recentemente caricati e quelli visualizzati di recente. La dashboard ha inoltre due pulsanti per navigare verso la pagina di caricamento e visualizzazione dei documenti e per avviare una nuova chat.
+Nella sezione dedicata alle chat, gli utenti possono interagire con il chatbot tramite messaggi inseriti testualmente o vocalmente. Nella sezione documenti, è presente un'area di staging dove gli utenti possono caricare documenti tramite drag \& drop. Attraverso la visualizzazione in lista gli utenti possono visualizzare e filtrare le informazioni relative ai documenti. 
+Attraverso i pulsanti nella lista, gli utenti possono eseguire varie azioni come nascondere, embedd, visualizzare ed eliminare i documenti, sia singolarmente che in gruppo, secondo le esigenze.
+\discussione
+
+In conclusione AzzurroDigitale ha ritenuto più che soddisfacente il prodotto presentato, approvandolo.
+~\vspace{12.0em}
+
+\decisioni
+\end{paracol}
+
+
+\newpage
+
+\heading{Azioni da Intraprendere}
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{c|X|c|c|c}
+\textbf{ID Issue} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\hline
+\#SWE-247 &
+Stesura verbale riunione &
+Dugo A. &
+Bresolin G. &
+$2024-03-28$ \\
+
+\end{tabularx}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione con AzzurroDigitale è pianificata il 2024-04-10.
+
+\end{document}

@@ -1,0 +1,120 @@
+\documentclass[10pt, a4paper]{article}
+
+\input{parameters}
+
+\usepackage{style}
+\usepackage{headerfooter}
+
+\title{\data}
+\author{SWEetCode}
+
+\begin{document}
+
+% PRIMA PAGINA
+\include{firstpage}
+
+% INIZIO PAGINE
+\setlength{\parindent}{0mm}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+
+% 11111111111111111111111111111111111111111111111111111111111111111111111111111
+
+\intestazione
+\vspace{14.2em}
+
+\partecipanti
+
+\newpage
+
+\switchcolumn
+\revisioneAzioni
+\vspace{29.5em}
+
+\ordineGiorno
+
+\newpage
+
+% 22222222222222222222222222222222222222222222222222222222222222222222222222222
+
+\switchcolumn
+
+\heading{Discussione}\\
+\textbf{Sintesi degli argomenti\\discussi}
+
+\vspace{12cm}
+
+
+
+
+\heading{Decisioni}\\
+\textbf{Decisioni prese durante\\la discussione}
+
+\switchcolumn
+
+\discussione
+\vspace{7.65cm}
+\decisioni
+
+\end{paracol}
+
+%\vspace{5em}
+\newpage
+
+\heading{Azioni da Intraprendere}\\
+
+{\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{c|X|c|c|c}
+\label{tab:long}
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endfirsthead
+\textbf{Task Jira} & \textbf{Azione} & \textbf{Incaricato} & \textbf{Revisore} & \textbf{Scadenza} \\
+\endhead
+\multicolumn{5}{r}{{Continua nella pagina successiva}} \\
+\endfoot
+\endlastfoot
+% Per ID Task: vuoto se non l'abbiamo messa come issue, SWE-id_task altrimenti
+\hline
+SWE-241 & Stesura verbale riunione & {Orlandi G.} & Ciriolo I. & $2024-03-26$ \\
+\hline
+SWE-273 & Test di unità UploadDocuments & Dugo A. & team & $2024-03-13$ \\
+\hline
+SWE-274 & Test di unità DeleteDcouments & Michelon R. & team & $2024-03-13$ \\
+\hline
+SWE-275 & Test di unità ConcealDocuments & Bresolin G. & team & $2024-03-13$ \\
+\hline
+SWE-276 & Test di unità GetDocuments & Orlandi G. & team & $2024-03-13$ \\
+\hline
+SWE-277 & Test di unità EnableDocuments & Campese M. & team & $2024-03-13$ \\
+\hline
+SWE-278 & Test di unità ViewDocumentContent & Feltrin E. & team & $2024-03-13$ \\
+\hline
+SWE-279 & Test di unità AskChatbot & Bresolin G. & team & $2024-03-13$ \\
+\hline
+SWE-280 & Test di unità GetConfiguration & Ciriolo I. & team & $2024-03-13$ \\
+\hline
+SWE-281 & Test di unità DeleteChat & Campese M. & team & $2024-03-13$ \\
+\hline
+SWE-282 & Test di unità RenameChat & Michelon R. & team & $2024-03-13$ \\
+\hline
+SWE-283 & Test di unità GetChats & Dugo A. & team & $2024-03-13$ \\
+\hline
+SWE-284 & Test di unità GetChatMessages & Bresolin G. & team & $2024-03-13$ \\
+\hline
+SWE-285 & Test di unità ChangeConfiguration & Dugo A. & team & $2024-03-13$ \\
+\hline
+SWE-286 & Test di unità EmbedDocuments & Michelon R. & team & $2024-03-13$ \\
+\end{xltabular}}
+
+\vspace{3em}
+
+\heading{Altro}
+
+\textbf{Prossima Riunione}
+
+La prossima riunione interna non è ancora stata programmata.
+
+\end{document}

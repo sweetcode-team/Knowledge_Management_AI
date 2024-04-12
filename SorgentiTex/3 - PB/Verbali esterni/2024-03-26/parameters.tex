@@ -1,0 +1,65 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-03-26}
+\def\oraInizio{17:00}
+\def\oraFine{18:00}
+\def\luogo{Google Meet}
+
+\def\tipoVerb{Esterno} % Interno - Esterno
+
+\def\nomeResp{Dugo A.} % Cognome N.
+\def\nomeVer{Bresolin G.} % Cognome N.
+\def\nomeSegr{Dugo A.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{alberto.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+\def\listaPartEst{
+Bendotti E.,
+Davanzo C.,
+}
+
+\def\listaRevisioneAzioni {{Il team ha codificato tutte le componenti del frontend come da previsione.}}
+
+\def\listaOrdineGiorno {
+{Esposizione del Minimum Viable Product;},
+{Feedback da parte di AzzurroDigitale rispetto all'esposizione sopra citata}.
+}
+
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+
+
+\def\listaDiscussioneEsterna {
+\domris
+{Quali difficoltà ha incontrato il gruppo durante lo sviluppo dell’MVP?
+}{La difficoltà maggiore che il team ha riscontrato riguarda lo sviluppo dei test, questo perché era  un ambiente nuovo e mai esplorato dal gruppo stesso.s
+Il team non ha riscontrato ulteriori difficoltà;},
+\domris
+{come avete organizzato il lavoro? Avete utilizzato qualche software?
+}{il team ha utilizzato Postman per simulare le chiamate dal front end. Inoltre a causa di un limite di richieste, posto dall’account gratuito, ad AWS il team ha utilizzato dei mock i quali simulavano le risposte di AWS in modo tale da non sprecare richieste;
+},
+\domris{Per quanto riguarda i requisiti sono stati soddisfatti tutti?
+}{Sì, sono stati soddisfatti tutti i requisiti obbligatori ed inoltre è stato soddisfatto un requisito opzionale il quale il team ha ritenuto importante soddisfarlo:
+inserimento messaggio vocale 
+è possibile trovare il soddisfacimento del requisito nella chat.
+}
+}
+
+\def\listaDecisioni {
+{l'MVP è stato accettato da AzzurroDigitale;},
+{Incontro in sede AzzurroDigitale in corrispondenza dell'evento "QMeeting" nel quale il team dovrà esporre allo staff di AzzurroDigitale l'MVP e le difficoltà incontrate durante la sua progettazione e codifica.}
+}

@@ -43,10 +43,9 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
 \subsection{Riferimenti}
 \subsubsection{Riferimenti normativi}
 \begin{itemize}
-    \item \textit{(Norme di progetto v2.0.0(0))};
+    \item \textit{(Norme di progetto v3.0.0(0))};
     \item \textit{Regolamento del progetto didattico}: \\
-    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/\textasciitilde tullio/IS-1/2023/Dispense/PD2.pdf};
-    \item \textit{Verbali esterni ed interni}.
+    \href{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}{https://www.math.unipd.it/\textasciitilde tullio/IS-1/2023/Dispense/PD2.pdf}.
 \end{itemize}
 
 \subsubsection{Riferimenti informativi}
@@ -64,7 +63,40 @@ All'interno dei documenti viene identificata con tale scrittura solo e soltanto 
     \href{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20di%20Attivit%C3%A0.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2022/Diagrammi\%20di\%20Attivit\%C3\%A0.pdf;}
     \item \textit{Dispense su Progettazione e Programmazione: Diagrammi delle Classi:}\\
     \href{https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf}{https://www.math.unipd.it/\textasciitilde rcardin/swea/2023/Diagrammi\%20delle\%20Classi.pdf.}
-    \item \textit{(Glossario v2.0.0(0))}.
+    \item \textit{(Glossario v3.0.0(0))};
+    \item \textit{Verbali interni:}
+        \begin{itemize}
+            \item \textit{2023-10-17};
+            \item \textit{2023-10-20};
+            \item \textit{2023-10-27};
+            \item \textit{2023-11-07};
+            \item \textit{2023-11-17};
+            \item \textit{2023-11-22};
+            \item \textit{2023-11-27};
+            \item \textit{2023-12-06};
+            \item \textit{2023-12-27};
+            \item \textit{2024-01-15};
+            \item \textit{2024-02-03};
+            \item \textit{2024-02-19};
+            \item \textit{2024-02-26};
+            \item \textit{2024-03-07}.
+        \end{itemize}
+    \item \textit{Verbali esterni:}
+        \begin{itemize}
+            \item \textit{2023-10-23};
+            \item \textit{2023-10-25};
+            \item \textit{2023-10-26};
+            \item \textit{2023-11-09};
+            \item \textit{2023-11-15};
+            \item \textit{2023-11-22};
+            \item \textit{2023-11-24};
+            \item \textit{2023-11-29};
+            \item \textit{2023-12-06};
+            \item \textit{2024-01-24};
+            \item \textit{2024-02-14};
+            \item \textit{2024-02-28};
+            \item \textit{2024-02-28}.
+        \end{itemize}
 \end{itemize}
 
 % DESCRIZIONE
@@ -90,7 +122,7 @@ Gli utenti interagiscono con il sistema attraverso un'interfaccia grafica.
 \section{Casi d'uso}
 
 \subsection{Introduzione}
-Questa sezione ha l'obiettivo di presentare i casi d'uso relativi all'applicazione \textit{Knowledge Management AI}. Questi sono stati definiti a seguito dell'analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni caso d'uso possiede un codice e una didascalia, le cui strutture sono descritte in (Norme di progetto v2.0.0(0), \S Analisi dei requisiti).
+Questa sezione ha l'obiettivo di presentare i casi d'uso relativi all'applicazione \textit{Knowledge Management AI}. Questi sono stati definiti a seguito dell'analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni caso d'uso possiede un codice e una didascalia, le cui strutture sono descritte in (Norme di progetto v3.0.0(0), \S Analisi dei requisiti).
 
 \subsection{Attori}
 \subsubsection{Attori primari}
@@ -1126,6 +1158,31 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente desidera visualizzare il timestamp dell'ultimo messaggio della singola chat all’interno della lista.
     \end{itemize}
 
+    \subsubuc{Visualizzazione preview ultimo messaggio di una chat in lista}{vis_prev_msg_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la preview dell'ultimo messaggio della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la preview dell'ultimo messaggio della singola chat all’interno della lista.
+    \end{itemize}
+
+    \subsubuc{Visualizzazione preview ultimo mittente di una chat in lista}{vis_prev_mitt_chat}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}:
+            \begin{itemize}
+                \item il sistema è configurato e attivo;
+                \item il sistema sta mostrando la lista delle chat.
+            \end{itemize}
+        \item \textbf{Scenario principale}: l'utente visualizza la preview dell'ultimo mittente della singola chat in lista;
+        \item \textbf{Trigger}: l’utente desidera visualizzare la preview dell'ultimo mittente della singola chat all’interno della lista.
+    \end{itemize}
+
+
     \uc{Creazione nuova chat}{creaz_chat}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1294,6 +1351,16 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole visualizzare l'orario di una chat.
     \end{itemize}
 
+    \subsubuc{Visualizzazione mittente singolo messaggio in chat}{vis_mitt_mess}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l’utente sta visualizzando un singolo messaggio in chat;
+        \item \textbf{Postcondizioni}: il sistema ha mostrato il mittente del singolo messaggio in chat;
+        \item \textbf{Scenario principale}: l’utente visualizza il mittente del messaggio in chat.
+        \item \textbf{Trigger}: l’utente vuole visualizzare il mittente di un messaggio in una chat.
+    \end{itemize}
+
+
     \uc{Visualizzazione documenti pertinenti}{vis_doc_pert}
     \begin{itemize}
         \item \textbf{Attore principale}: utente;
@@ -1447,11 +1514,39 @@ L'applicazione \textit{Knowledge Management AI} richiede un singolo attore princ
         \item \textbf{Trigger}: l’utente vuole inserire un messaggio tramite comando vocale.
     \end{itemize}
 
+    \ucimg{gest_rigen_emb}{Diagramma gestione rigenerazione embeddings}{0.8}
+    \uc{Rigenerazione embeddings}{rig_emb}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'utente ha accesso al documento in stato notEmbedded;           
+        \item \textbf{Postcondizioni}: gli embeddings del documento in stato notEmbedded sono stati rigenerati;     
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l'utente richiede di rigenerare gli embeddings del documento;
+                \item il sistema rigenera gli embeddings del documento in stato notEmbedded.
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente vuole rigenerare gli embeddings di un documento.
+    \end{itemize}
+
+    \uc{Rigenerazione embeddings multipli}{rig_emb_mult}
+    \begin{itemize}
+        \item \textbf{Attore principale}: utente;
+        \item \textbf{Precondizioni}: l'utente ha accesso ai documenti in stato notEmbedded;           
+        \item \textbf{Postcondizioni}: gli embeddings dei documenti in stato notEmbedded sono stati rigenerati;     
+        \item \textbf{Scenario principale}: 
+            \begin{enumerate}
+                \item l'utente richiede di rigenerare gli embeddings dei documeniti;
+                \item il sistema rigenera gli embeddings dei documenti in stato notEmbedded.
+            \end{enumerate}
+        \item \textbf{Trigger}: l'utente vuole rigenerare gli embeddings dei documenti.
+    \end{itemize}
+
+
 
 % REQUISITI
 \newpage
 \section{Requisiti}
-In questa sezione sono presentati i requisiti relativi all’applicazione Knowledge Management AI. Questi sono stati definiti a seguito dell’analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni requisito possiede un codice, la struttura di esso è descritta in (Norme di progetto v2.0.0(0), \S Analisi dei requisiti).
+In questa sezione sono presentati i requisiti relativi all’applicazione Knowledge Management AI. Questi sono stati definiti a seguito dell’analisi del capitolato e a fronte di vari dialoghi interni, tra i componenti del gruppo, ed esterni, con il proponente. Ogni requisito possiede un codice, la struttura di esso è descritta in (Norme di progetto v3.0.0(0), \S Analisi dei requisiti).
 
 \subsection{Requisiti funzionali}
 
@@ -1498,12 +1593,12 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 
 \hline \rf{O} & L'utente deve poter cambiare la scelta del modello LLM. & \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
 \hline \subrf{O} & L'utente deve poter selezionare un solo modello LLM tra quelli resi disponibili durante il cambio di scelta del modello LLM. &  \quantities{\rifuc{camb_scel_LLM}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
-\hline \subrf{O} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
-\hline \subrf{O} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
-\hline \rf{O} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
-\hline \subrf{O} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del vector database. & \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo vector database tra quelli resi disponibili durante il cambio di scelta del vector database. &  \quantities{\rifuc{camb_scel_vd}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del modello di embeddings. & \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo modello di embeddings tra quelli resi disponibili durante il cambio di scelta del modello di embeddings. &  \quantities{\rifuc{camb_scel_emb}\\ Verbale esterno (2023-11-24)} \\
+\hline \rf{OP} & L'utente deve poter cambiare la scelta del sistema di archiviazione documenti. & \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)}\\
+\hline \subrf{OP} & L'utente deve poter selezionare un solo sistema di archiviazione dei documenti tra quelli resi disponibili durante il cambio di scelta del sistema di archiviazione dei documenti. &  \quantities{\rifuc{camb_scel_sis}\\ Verbale esterno (2023-11-24)} \\
 
 \hline \rf{O} & L'utente deve poter visualizzare le caratteristiche di un modello LLM. & \rifuc{vis_car_LLM}\\
 \hline \subrf{O} & L'utente deve poter visualizzare il nome di un modello LLM. & \rifsubuc{vis_car_LLM}{vis_nome_LLM}\\
@@ -1564,12 +1659,39 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subrf{O} & L'utente deve poter annullare la sostituire con il documento caricato di un documento con lo stesso nome e formato già presente nel sistema. & \rifuc{up_doc} \\
 \hline \subrf{O} & L'utente deve poter scegliere se sostituire con i documenti caricati un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \quantities{ \rifuc{up_docs} \\ \rifuc{sost_docs}} \\
 \hline \subrf{O} & L'utente deve poter confermare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{sost_docs} \\
-\hline \subrf{O} & L'utente deve poter annullare la sostituire con i documento caricato di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
+\hline \subrf{O} & L'utente deve poter annullare la sostituzione con i documenti caricati di un insieme di documenti con lo stesso nome e formato già presenti nel sistema. & \rifuc{up_docs} \\
+
+\hline \rf{O} & Il caricamento di un documento deve avvenire prima sul sistema di archiviazione. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{up_doc} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se il caricamento di un documento sul sistema di archiviazione fallisce. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione ha successo, gli embeddings vengono generati e caricati. & \rifuc{up_doc} \\
+\hline \subrf{O} & Se la generazione ed il caricamento degli embeddings fallisce, il documento viene messo nello stato notEmbedded. & \rifuc{up_doc} \\
+
+\hline \rf{O} & Il caricamento di un insieme di documenti deve avvenire prima sul sistema di archiviazione. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{up_docs} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se il caricamento di un insieme di documenti sul sistema di archiviazione fallisce. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se il caricamento sul sistema di archiviazione ha successo, gli embeddings vengono generati e caricati. & \rifuc{up_docs} \\
+\hline \subrf{O} & Se la generazione ed il caricamento degli embeddings fallisce, i documenti vengono messi nello stato notEmbedded. & \rifuc{up_docs} \\
+
 
 \hline \rf{O} & L'utente deve poter visualizzare il contenuto di ciascun documento presente nel sistema. & \rifuc{vis_cont_doc} \\
 \hline \rf{O} & L'utente deve poter eliminare un documento presente nel sistema. &  \rifuc{elim_doc} \\
+
+\hline \rf{O} & L'eliminazione di un documento deve avvenire prima sul sistema di archiviazione. & \rifuc{elim_doc} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{elim_doc} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se l'eliminazione di un documento sul sistema di archiviazione fallisce. & \rifuc{elim_doc} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione ha successo, gli embeddings vengono eliminati. & \rifuc{elim_doc} \\
+\hline \subrf{O} & Se l'eliminazione degli embeddings fallisce, il documento viene messo nello stato notEmbedded. & \rifuc{elim_doc} \\
+
 \hline \rf{O} & L'utente deve poter eliminare un insieme di documenti presenti nel sistema. &  \rifuc{elim_docs} \\
-\hline \subrf{O} & L'utente deve poter selezinare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
+\hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per eliminarli. & \rifuc{elim_docs} \\
+
+\hline \rf{O} & L'eliminazione di un insieme di documenti deve avvenire prima sul sistema di archiviazione. & \rifuc{elim_docs} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione fallisce, deve ritornare un errore. & \rifuc{elim_docs} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare un errore se l'eliminazione di un insieme di documenti sul sistema di archiviazione fallisce. & \rifuc{elim_docs} \\
+\hline \subrf{O} & Se l'eliminazione sul sistema di archiviazione ha successo, gli embeddings vengono eliminati. & \rifuc{elim_docs} \\
+\hline \subrf{O} & Se l'eliminazione degli embeddings fallisce, i documenti vengono messi nello stato notEmbedded. & \rifuc{elim_docs} \\
+
 \hline \rf{O} & L'utente deve poter occultare un documento presente nel sistema. & \quantities{\rifuc{occ_doc}\\ Verbale esterno (2023-11-15)} \\
 \hline \rf{O} & L'utente deve poter occultare un insieme di documenti presenti nel sistema. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
 \hline \subrf{O} & L'utente deve poter selezionare un insieme di documenti presenti nel sistema per occultarli. & \quantities{\rifuc{occ_docs}\\ Verbale esterno (2023-11-15)} \\
@@ -1582,11 +1704,16 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subrf{O} & L'utente deve poter visualizzare le singole chat presenti in lista. & \rifsubuc{vis_lista_chat}{vis_sing_chat} \\
 \hline \subsubrf{O} & L'utente deve poter visualizzare il titolo di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_tit_chat} \\
 \hline \subsubrf{O} & L'utente deve poter visualizzare il timestamp dell'ultimo messaggio di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_timestamp_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare una preview dell'ultimo messaggio di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_msg_chat} \\
+\hline \subsubrf{O} & L'utente deve poter visualizzare una preview dell'ultimo mittente di una chat. & \rifsubsubuc{vis_lista_chat}{vis_sing_chat}{vis_prev_mitt_chat} \\
+
 \hline \rf{O} & L'utente deve poter creare una nuova chat. & \rifuc{creaz_chat} \\
 \hline \rf{O} & Il tentativo di creazione di una nuova chat deve fallire se esiste già una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \subrf{O} & L'utente deve visualizzare un errore nel caso in cui abbia provato a creare una nuova chat in presenza di una chat vuota. & \rifuc{vis_err_chat_vuota} \\
 \hline \rf{O} & L'utente deve poter eliminare una chat. & \rifuc{elim_chat} \\
+\hline \subrf{O} & Se l'eliminazione di una chat fallisce, l'utente deve visualizzare un messaggio di errore. & \rifuc{elim_chat} \\
 \hline \rf{O} & L'utente deve poter eliminare un insieme di chat. & \rifuc{elim_chat_s} \\
+\hline \subrf{O} & Se l'eliminazione di un insieme di chat fallisce, l'utente deve visualizzare un messaggio di errore. & \rifuc{elim_chat_s} \\
 \hline \subrf{O} & L'utente deve poter selezionare un insieme di chat per poterle eliminare. & \rifuc{elim_chat_s} \\
 
 \hline \rf{O} & L'utente deve poter rinominare una chat. & \quantities{\rifuc{rinom_chat}\\ Verbale esterno (2023-11-24)} \\
@@ -1620,11 +1747,14 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline \subsubrf{O} & L'utente deve poter attivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \subsubrf{O} & L'utente deve poter disattivare la funzionalità di inserimento del messaggio tramite comando vocale in una chat. & \quantities{ \rifsubuc{ins_mess}{ins_mess_voc}\\ Verbale esterno (2023-11-24)} \\
 \hline \rf{O} & L'utente deve poter inviare un messaggio in una chat. & \rifuc{invio_mess} \\
+\hline \rf{O} & Per ogni messaggio, deve essere reso noto il mittente. & \rifsubsubuc{vis_cont_chat}{vis_sing_mess}{vis_mitt_mess} \\
 \hline \rf{O} & Il sistema deve offrire opzioni che garantiscono la privacy delle informazioni sensibili condivise dall'utente. & Verbale esterno (2023-11-15)\\
 \hline \rf{OP} & In caso di caduta dalle connessione, l'applicazione va in fallback su un modello AI locale. & Verbale esterno (2023-11-22) \\
 \hline \rf{D} & Nel caso in cui l'utente formuli una richiesta non pertinente al dataset di addestramento, il chatbot deve fornire una risposta cortese in cui espone la sua incapacità nel fornire una risposta alla domanda. & Verbale esterno (2023-11-15) \\
 \hline \rf{OP} & Il chatbot deve essere in grado di fare \textit{caching}: se l'utente formula più volte la stessa domanda, il chatbot fornisce la risposta elaborata alla prima occorrenza della domanda. & Verbale esterno (2023-11-29) \\
-\hline \rf{D} & L'eliminazione di un documento dallo spazio di storage deve portare all'eliminazione dei metadati del relativo documento, ma non all'eliminazione degli emmbeddings generati dallo stesso. & Verbale esterno (2023-11-24)
+\hline \rf{O} & L'utente deve poter rigenerare gli embeddings dei documenti in stato notEmbedded.  & \rifuc{rig_emb} \\
+\hline \rf{O} & Un messaggio viene salvato sul database solo se ha una risposta dal chatbot.  & \rifsubuc{vis_cont_chat}{vis_sing_mess} \\
+\hline \rf{O} & Una chat viene creata in modo consistente nel database solamente dopo un messaggio da parte dell'utente e della relativa risposta da parte del chatbot.  & \rifsubuc{vis_cont_chat}{vis_sing_mess}
 
 \end{xltabular}
 
@@ -1649,8 +1779,8 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \hline
 \endlastfoot
 
-\rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto v2.0.0(0)). & Regolamento \\
-\hline \rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica v2.0.0(0)). & Regolamento \\ 
+\rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Norme di progetto v3.0.0(0)). & Regolamento \\
+\hline \rql{O} & Il prodotto software deve rispettare tutto ciò che è descritto da (Piano di qualifica v3.0.0(0)). & Regolamento \\ 
 \end{xltabular}
 
 
@@ -1701,10 +1831,10 @@ In questa sezione sono presentati i requisiti relativi all’applicazione Knowle
 \endfoot
 \endlastfoot
 
-Funzionali & 116 & 9 & 4 & 129 \\
+Funzionali & 138 & 8 & 10 & 156 \\
 \hline Qualità & 2 & 0 & 0 & 2 \\
 \hline Vincolo & 3 & 0 & 0 & 3 \\
-\hline \textbf{Totale} & 121 & 9 & 4 & \textbf{134} \\
+\hline \textbf{Totale} & 143 & 8 & 10 & \textbf{161} \\
 
 \end{xltabular}
 

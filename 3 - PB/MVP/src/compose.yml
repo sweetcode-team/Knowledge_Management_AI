@@ -1,0 +1,84 @@
+services:
+  # next.js frontend
+  nextapp:
+    container_name: nextapp
+    image: nextapp:1.0.0
+    build:
+      context: ./frontend
+      dockerfile: next.dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - flaskapp
+
+  # flask backend
+  flaskapp:
+    container_name: flaskapp
+    image: flaskapp:1.0.0
+    secrets:
+      - aws_access_key_id
+      - aws_bucket_name
+      - aws_secret_access_key
+      - chromadb_collection
+      - huggingface_key
+      - openai_key
+      - pinecone_api
+      - pinecone_environment
+      - pinecone_index_name
+    build:
+      context: ./backend
+      dockerfile: flask.dockerfile
+    ports:
+      - 4000:4000
+    environment:
+      - FLASK_DEBUG=true
+      - DATABASE_URL=postgresql://postgres:postgres@database:5432/postgres
+      - TMP_STORAGE_FOLDER=tmp
+      - CHROMA_DB_PATH=chroma_db
+      - CHUNK_SIZE=512
+      - CHUNK_OVERLAP=128
+      - RETRIEVER_CHUNKS_NUM=4
+      - AWS_REGION_NAME=eu-west-1
+      - MAX_FILE_SIZE=10485760
+      - USER_ID=1
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - database
+
+  # postgres database
+  database:
+    container_name: database
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+secrets:
+  aws_access_key_id:
+    file: ./secrets/aws_access_key_id.txt
+  aws_bucket_name:
+    file: ./secrets/aws_bucket_name.txt
+  aws_secret_access_key:
+    file: ./secrets/aws_secret_access_key.txt
+  chromadb_collection:
+    file: ./secrets/chromadb_collection.txt
+  huggingface_key:
+    file: ./secrets/huggingface_key.txt
+  openai_key:
+    file: ./secrets/openai_key.txt
+  pinecone_api:
+    file: ./secrets/pinecone_api.txt
+  pinecone_environment:
+    file: ./secrets/pinecone_environment.txt
+  pinecone_index_name:
+    file: ./secrets/pinecone_index_name.txt
+
+
+volumes:
+  pgdata: {}

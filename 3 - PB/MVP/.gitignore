@@ -1,0 +1,9 @@
+.DS_Store
+.vscode
+.idea
+__pycache__
+.pytest_cache
+secrets
+__init__.py
+*.pyc
+chroma_db

@@ -1,0 +1,75 @@
+% Parametri che modificano il file main.tex
+% Le uniche parti da cambiare su main.tex sono:
+% - vari \vspace tra sezioni
+% - tabella azioni da intraprendere
+% - sezione altro
+
+\def\data{2024-02-19}
+\def\oraInizio{14:00}
+\def\oraFine{15:00}
+\def\luogo{Discord}
+
+\def\tipoVerb{Interno} % Interno - Esterno
+
+\def\nomeResp{Ciriolo I.} % Cognome N.
+\def\nomeVer{Michelon R.} % Cognome N.
+\def\nomeSegr{Ciriolo I.} % Cognome N.
+
+\def\nomeAzienda{AzzurroDigitale}
+\def\firmaAzienda{azzurrodigitale.png}
+\def\firmaResp{irene.png} % nome Responsabile
+
+\def\listaPartInt{
+Bresolin G.,
+Campese M.,
+Ciriolo I.,
+Dugo A.,
+Feltrin E.,
+Michelon R.,
+Orlandi G.
+}
+
+\def\listaPartEst{
+Davanzo C.,
+Bendotti E.
+}
+
+\def\listaRevisioneAzioni 
+{x}
+
+
+\def\listaOrdineGiorno {
+{Assegnazione di task per l'aggiornamento della documentazione alla luce delle correzioni del Professor Vardanega T. dopo il colloquio RTB;},
+{Assegnazione dei ruoli per la progettazione logica e per le modifiche alla documentazione;},
+{Creazione di task per la progettazione logica.}
+}
+
+
+\def\listaDiscussioneInterna {
+{Il team ha discusso di quali modifiche apportare alla documentazione in seguito al colloqui RTB.\\ Sarà aggiornato il documento 'Analisi dei requisiti' rimuovendo il processo di acquisizione dai Processi primari, poichè non di competenza del gruppo, e verranno inoltre riesaminati i primi casi d'uso ed i requisiti non funzionali. \\ Verrà effettuata un'attenta revisione del documento 'Norme di progetto' per apportarvi un linguaggio più procedurale e meno discorsivo, come indicato dal professor Vardanega T.\\ Alle pianificazioni degli sprint futuri, all'interno del 'Piano di progetto', verranno integrati i preventivi "a finire" di tutti gli sprint da questo in poi, per pianificare il tratto rimanente del progetto. Inoltre verranno aggiunte le sezioni relative all'analisi dei rischi e di gestione di questi ultimi per ogni sprint (da questo in avanti) di modo da poter innescare il riscontro del loro eventuale insorgere e la valutazione critica dell'efficacia delle misure di mitigazione adottate;},
+{Il team ha stilato una lista di task da svolgere per poter iniziare la vera e propria progettazione logica del progetto. Le attività da svolgere riguardanti la progettazione logica sono le seguenti:
+\begin{itemize}
+    \item Upload Documents;
+    \item Delete Documents;
+    \item Conceal Documents;
+    \item Get Documents;
+    \item Enable Documents;
+    \item View Document Content;
+    \item Chatbot;
+    \item Create Chat;
+    \item Delete Chat;
+    \item Rename Chat;
+    \item Get Chats;
+    \item Get Chat Messages.
+\end{itemize}}
+}
+
+
+\newcommand{\domris}[2]{\textbf{#1}\\#2}
+
+\def\listaDiscussioneEsterna {
+}
+
+\def\listaDecisioni {
+{I membri del gruppo Campese M. e Ciriolo I. si occuperanno della manutenzione della documentazione, per poi affiancare i membri Bresolin G., Dugo A. e Michelon R. che nel mentre inizieranno il lavoro relativo alla progettazione logica;}
+}

@@ -1,0 +1,36 @@
+version: '3.12'
+
+services:
+  test_runner:
+    container_name: test_runner
+    image: python:3.12
+    volumes:
+      - .:/src
+      - ../tests:/tests
+    working_dir: /src
+    command: >
+      sh -c "cd backend && pip install -r requirements.txt && cd ../../tests && pytest"
+
+secrets:
+  aws_access_key_id:
+    file: ./secrets/aws_access_key_id.txt
+  aws_bucket_name:
+    file: ./secrets/aws_bucket_name.txt
+  aws_secret_access_key:
+    file: ./secrets/aws_secret_access_key.txt
+  chromadb_collection:
+    file: ./secrets/chromadb_collection.txt
+  huggingface_key:
+    file: ./secrets/huggingface_key.txt
+  openai_key:
+    file: ./secrets/openai_key.txt
+  pinecone_api:
+    file: ./secrets/pinecone_api.txt
+  pinecone_environment:
+    file: ./secrets/pinecone_environment.txt
+  pinecone_index_name:
+    file: ./secrets/pinecone_index_name.txt
+
+
+volumes:
+  pgdata: {}

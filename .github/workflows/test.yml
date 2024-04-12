@@ -1,0 +1,36 @@
+name: Run Python Tests
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - PB
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.event.pull_request.title, 'Docs:') }}
+    defaults:
+      run:
+        working-directory: '3 - PB/MVP'
+
+    strategy:
+      matrix:
+        python-version: [3.12]
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/backend/requirements.txt
+
+      - name: Run tests
+        run: |
+          python -m pytest -v tests

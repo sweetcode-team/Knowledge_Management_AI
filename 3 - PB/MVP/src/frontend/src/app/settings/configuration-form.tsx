@@ -50,14 +50,14 @@ import { Separator } from "@/components/ui/separator"
 import { changeConfiguration } from "@/lib/actions"
 
 interface SettingsConfigurationFormProps {
-  currentConfiguration: Configuration
+  currentConfiguration: Configuration | null
   configurationOptions: ConfigurationOptions
 }
 
 export function SettingsConfigurationForm({ currentConfiguration, configurationOptions }: SettingsConfigurationFormProps) {
 
   const defaultValues: Partial<LLMConfigurationFormValues> = {
-    LLMModel: currentConfiguration.LLMModel.name,
+    LLMModel: currentConfiguration?.LLMModel.name,
   }
 
   const form = useForm<LLMConfigurationFormValues>({
@@ -115,36 +115,36 @@ export function SettingsConfigurationForm({ currentConfiguration, configurationO
           <CarouselContent>
             {
               [
-                { currentChoice: currentConfiguration.LLMModel, componentType: 'LLM MODEL' },
-                { currentChoice: currentConfiguration.vectorStore, componentType: 'VECTOR STORE' },
-                { currentChoice: currentConfiguration.documentStore, componentType: 'DOCUMENT STORE' },
-                { currentChoice: currentConfiguration.embeddingModel, componentType: 'EMBEDDINGS MODEL' }
+                { currentChoice: currentConfiguration?.LLMModel, componentType: 'LLM MODEL' },
+                { currentChoice: currentConfiguration?.vectorStore, componentType: 'VECTOR STORE' },
+                { currentChoice: currentConfiguration?.documentStore, componentType: 'DOCUMENT STORE' },
+                { currentChoice: currentConfiguration?.embeddingModel, componentType: 'EMBEDDINGS MODEL' }
               ].map((option, index) => (
                 <CarouselItem key={index} className="max-w-72">
                   <Card className="w-fit text-sm font-medium leading-none h-full flex flex-col justify-between">
                     <CardHeader>
-                      <h2 className="text-xl">{option.currentChoice.name}</h2>
+                      <h2 className="text-xl">{option.currentChoice?.name}</h2>
                       <CardDescription>
                         {option.componentType}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="py-2 text-pretty">
-                      {option.currentChoice.description}
+                      {option.currentChoice?.description}
                     </CardContent>
                     <CardFooter className="pt-2">
                       <Table>
                         <TableBody>
                           <TableRow>
                             <TableCell className="p-2">Type</TableCell>
-                            <TableCell className="p-2 font-bold">{option.currentChoice.type}</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice?.type}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell className="p-2">Cost</TableCell>
-                            <TableCell className="p-2 font-bold">{option.currentChoice.costIndicator}</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice?.costIndicator}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell className="p-2">Organization</TableCell>
-                            <TableCell className="p-2 font-bold">{option.currentChoice.organization}</TableCell>
+                            <TableCell className="p-2 font-bold">{option.currentChoice?.organization}</TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>

@@ -69,7 +69,6 @@
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^18",
     "react-hook-form": "^7.51.0",
-    "react-pdf": "^7.7.1",
     "react-resizable-panels": "^0.0.55",
     "react-wrap-balancer": "^0.4.1",
     "recharts": "^2.6.2",

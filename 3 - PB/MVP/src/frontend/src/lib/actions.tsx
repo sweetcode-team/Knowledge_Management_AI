@@ -18,9 +18,11 @@ import {
 import { revalidateTag } from "next/cache";
 import { ConfigurationFormValues } from '../types/types';
 
+const API_URL = process.env.API_URL
+
 export async function askChatbot(formData: AskChatbotFormValues): Promise<MessageResponse> {
     try {
-        const response = await fetch('http://localhost:4000/askChatbot', {
+        const response = await fetch(`${API_URL}/askChatbot`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -35,7 +37,7 @@ export async function askChatbot(formData: AskChatbotFormValues): Promise<Messag
 }
 
 export async function changeConfiguration(formData: LLMConfigurationFormValues): Promise<ConfigurationOperationResponse> {
-    const response = await fetch('http://localhost:4000/changeConfiguration', {
+    const response = await fetch(`${API_URL}/changeConfiguration`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -51,7 +53,7 @@ export async function concealDocuments(ids: string[]): Promise<DocumentOperation
     const formData = new URLSearchParams();
     ids.forEach(id => formData.append('documentIds', id));
 
-    const result = await fetch(`http://localhost:4000/concealDocuments`, {
+    const result = await fetch(`${API_URL}/concealDocuments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -67,7 +69,7 @@ export async function deleteChats(ids: number[]): Promise<ChatOperationResponse[
     const formData = new URLSearchParams()
     ids.forEach(id => formData.append('chatIds', id.toString()))
 
-    const result = await fetch(`http://localhost:4000/deleteChats`, {
+    const result = await fetch(`${API_URL}/deleteChats`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -83,7 +85,7 @@ export async function deleteDocuments(ids: string[]): Promise<DocumentOperationR
     const formData = new URLSearchParams();
     ids.forEach(id => formData.append('documentIds', id));
 
-    const result = await fetch(`http://localhost:4000/deleteDocuments`, {
+    const result = await fetch(`${API_URL}/deleteDocuments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -99,7 +101,7 @@ export async function embedDocuments(ids: string[]): Promise<DocumentOperationRe
     const formData = new URLSearchParams();
     ids.forEach(id => formData.append('documentIds', id));
 
-    const result = await fetch(`http://localhost:4000/embedDocuments`, {
+    const result = await fetch(`${API_URL}/embedDocuments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -115,7 +117,7 @@ export async function enableDocuments(ids: string[]): Promise<DocumentOperationR
     const formData = new URLSearchParams();
     ids.forEach(id => formData.append('documentIds', id));
 
-    const result = await fetch(`http://localhost:4000/enableDocuments`, {
+    const result = await fetch(`${API_URL}/enableDocuments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -128,7 +130,7 @@ export async function enableDocuments(ids: string[]): Promise<DocumentOperationR
 }
 
 export async function getChatMessages(id: number): Promise<Chat> {
-    const result = await fetch(`http://localhost:4000/getChatMessages/${id}`,
+    const result = await fetch(`${API_URL}/getChatMessages/${id}`,
         {
             next: { tags: ["chat"] }
         }
@@ -137,7 +139,7 @@ export async function getChatMessages(id: number): Promise<Chat> {
 }
 
 export async function getChats(filter: string = ""): Promise<ChatPreview[]> {
-    const result = await fetch("http://localhost:4000/getChats" + (filter.trim() !== "" ? `/${filter.trim()}` : ""),
+    const result = await fetch(`${API_URL}/getChats` + (filter.trim() !== "" ? `/${filter.trim()}` : ""),
         {
             next: { tags: ["chat"] }
         }
@@ -146,7 +148,7 @@ export async function getChats(filter: string = ""): Promise<ChatPreview[]> {
 }
 
 export async function getConfigurationOptions(): Promise<ConfigurationOptions> {
-    const result = await fetch(`http://localhost:4000/getConfigurationOptions`, {
+    const result = await fetch(`${API_URL}/getConfigurationOptions`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -156,7 +158,7 @@ export async function getConfigurationOptions(): Promise<ConfigurationOptions> {
 }
 
 export async function getConfiguration(): Promise<Configuration | null> {
-    const result = await fetch(`http://localhost:4000/getConfiguration`,
+    const result = await fetch(`${API_URL}/getConfiguration`,
         {
             next: { tags: ["configuration"] }
         }
@@ -170,7 +172,7 @@ export async function getConfiguration(): Promise<Configuration | null> {
 }
 
 export async function getDocumentContent(id: string): Promise<DocumentWithContent> {
-    const result = await fetch(`http://localhost:4000/getDocumentContent/${id}`,
+    const result = await fetch(`${API_URL}/getDocumentContent/${id}`,
         {
             next: { tags: ["document"] }
         }
@@ -179,7 +181,7 @@ export async function getDocumentContent(id: string): Promise<DocumentWithConten
 }
 
 export async function getDocuments(filter: string = ""): Promise<LightDocument[]> {
-    const result = await fetch(`http://localhost:4000/getDocuments` + (filter.trim() !== "" ? `/${filter.trim()}` : ""),
+    const result = await fetch(`${API_URL}/getDocuments` + (filter.trim() !== "" ? `/${filter.trim()}` : ""),
         {
             next: { tags: ["document"] }
         }
@@ -191,7 +193,7 @@ export async function getDocuments(filter: string = ""): Promise<LightDocument[]
 }
 
 export async function renameChat(formData: RenameChatFormValues): Promise<ChatOperationResponse> {
-    const result = await fetch(`http://localhost:4000/renameChat`, {
+    const result = await fetch(`${API_URL}/renameChat`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -204,7 +206,7 @@ export async function renameChat(formData: RenameChatFormValues): Promise<ChatOp
 }
 
 export async function setConfiguration(configuration: ConfigurationFormValues): Promise<ConfigurationOperationResponse> {
-    const result = await fetch(`http://localhost:4000/setConfiguration`, {
+    const result = await fetch(`${API_URL}/setConfiguration`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -220,7 +222,7 @@ export async function uploadDocuments(formData: FormData, forceUpload: boolean =
     if (forceUpload) {
         formData.append('forceUpload', 'true')
     }
-    const result = await fetch(`http://localhost:4000/uploadDocuments`, {
+    const result = await fetch(`${API_URL}/uploadDocuments`, {
         method: 'POST',
         body: formData
     })

@@ -1,19 +1,15 @@
 services:
   # next.js frontend
-  # nextapp:
-  #   container_name: nextapp
-  #   image: nextapp:1.0.0
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: next.dockerfile
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - NODE_ENV=development
-  #     - WATCHPACK_POLLING=true
-  #     - NEXT_PUBLIC_API_URL=http://localhost:4000
-  #   depends_on:
-  #     - flaskapp
+  nextapp:
+    container_name: nextapp
+    image: nextapp:1.0.0
+    build:
+      context: ./frontend
+      dockerfile: next.dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - flaskapp
 
   # flask backend
   flaskapp:
@@ -62,7 +58,6 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
-
 
 secrets:
   aws_access_key_id:

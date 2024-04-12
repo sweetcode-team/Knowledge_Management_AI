@@ -40,21 +40,14 @@ Non viene descritta l'installazione del prodotto poichè nel contesto di questo 
     \item \textit{Regolamento del progetto didattico}: \\
         \url{https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf}\\
         (Ultimo accesso: 2024-03-14);
-    \item \textit{Standard ISO/IEC 9126}:\\
-        \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}\\
-        (Ultimo accesso: 2024-03-14).
     \end{itemize}
 \subsubsection{Riferimenti informativi}
 \begin{itemize}
-        \item \textit{(Analisi dei requisiti v3.0.0(0))};
         \item \textit{Capitolato C1}: \textit{Knowledge Management AI}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C1.pdf}\\
-        (Ultimo accesso: 2024-02-08);
-   
+        (Ultimo accesso: 2024-02-08).
         \end{itemize}
 
 \newpage
-
-
 \section{Istruzioni per l'utente}
 Questa sezione comprende le istruzioni per l'uso del prodotto delle funzionalità disponibili all'utente (attore).
 \subsection{Configurazione utente}
@@ -110,6 +103,7 @@ Per visualizzare quale vector store, modello di embeddings, sistema di archiviaz
     \item Premere il bottone con su scritto 'Confirm configuration'.
 \end{itemize}
 
+\newpage
 \subsection{Gestione dei documenti}
 In questa sezione si illustrano le possibili azioni operabili sui documenti.
 \subsubsection{Visualizzazione lista dei documenti}
@@ -166,7 +160,7 @@ In alternativa per compiere la stessa azione è possibile anche:
     \item Selezionare l'opzione 'Hide' dal menù che comparirà automaticamente.
 \end{itemize}
 
-\subsubsubsection{Scorrimento orizzontale}
+\subsubsubsection{Paginazione}
 \begin{figure}[H]
     \centering  
     \frame{     
@@ -324,7 +318,7 @@ Per caricare uno o più documenti nell'area di staging:
         \caption{Documents - cancel staging}
         \label{img:docsStageAreadel}
     \end{figure}
-    \item Se si cambia idea e non è più necessario fare l'upload del documento (o dei documenti) inseriti nell'area di staging, selezionare il bottone 'Cancel upload' che si trova sotto all'area di staging;
+    \item Se non è più necessario fare l'upload del documento (o dei documenti) inseriti nell'area di staging, selezionare il bottone 'Cancel upload' che si trova sotto all'area di staging;
     \begin{figure}[H]
         \centering  
         \frame{     
@@ -333,9 +327,22 @@ Per caricare uno o più documenti nell'area di staging:
         \label{img:docsStageAreacancel}
     \end{figure}
     \item Se nell'area di staging è già presente un documento (o più documenti) con lo stesso nome e formato di quello (o quelli) selezionato/i, viene visualizzato un pop up di errore in basso a destra, dato che non è possibile inserire due documenti uguali nell'area di staging.\\ Se i due documenti dovessero avere stesso nome e formato ma dovessero essere diversi, si prega di rinominare il secondo documento in questione e caricarlo nuovamente nell'area di staging;
-    
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=10cm]{img/Screen/duplicateddoc.png}}
+        \caption{Documents - documenti duplicati}
+        \label{img:duplicatedDocuments}
+    \end{figure}
     \item Se si prova ad inserire nell'area di staging un documento con un formato non leggibile dall'applicazione viene visualizzato un pop up di errore in basso a destra.
-    \end{itemize} 
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=10cm]{img/Screen/invalidformat.png}}
+        \caption{Documents - Formato non valido}
+        \label{img:invalidFormat}
+    \end{figure}
+\end{itemize}
 
 
 \subsubsection{Upload nel sistema di archiviazione e nel vector database dall'area di staging}
@@ -354,7 +361,7 @@ Per poter fare l’upload nel sistema di archiviazione e nel vector database dei
     \begin{figure}[H]
         \centering  
         \frame{     
-        \includegraphics[width=8cm]{img/Screen/substitutedocuments.png}}
+        \includegraphics[width=10cm]{img/Screen/substitutedocuments.png}}
         \caption{Documents - sostituisci documenti caricati}
         \label{img:docsStageSubstitute}
     \end{figure}
@@ -368,12 +375,18 @@ Per occultare un documento presenti nel sistema di archiviazione è necessario:
     \item Aprire la lista dei documenti nel sistema di archiviazione: vedi \vedi{sec:visDocsList};
     \item Trovare il documento che si desidera occultare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
     \item Selezionare l'opzione 'Conceal' dall'elenco che compare automaticamente;
-    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
-    
     \begin{figure}[H]
         \centering  
         \frame{     
-        \includegraphics[width=8cm]{img/Screen/concealdocuments.png}}
+        \includegraphics[width=16cm]{img/Screen/concealsingle.png}}
+        \caption{Documents - singolo occultamento}
+        \label{img:concealSingle}
+    \end{figure}
+    \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=10cm]{img/Screen/concealdocuments.png}}
         \caption{Documents - conferma occultamento}
         \label{img:confirmConceal}
     \end{figure}
@@ -387,13 +400,11 @@ Per occultare più documenti presenti nel sistema di archiviazione è necessario
         \frame{     
         \includegraphics[width=16cm]{img/Screen/concealselected.png}}
         \caption{Documents - occulta selezionati}
-        \label{img:confirmConcealSel}
+        \label{img:concealSel}
     \end{figure}
-
     \item Selezionare l'opzione 'Conceal' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
     \item Come per il singolo documento prima, apparirà un pop up di conferma: selezionare l'opzione 'Conceal' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
-
 
 \subsubsection{Riabilitazione dal sistema}
 Per riabilitare un documento occultato nel sistema di archiviazione il procedimento è simile a quello dell' occultamento (vedi \vedi{sec:concealDocs}):
@@ -401,30 +412,50 @@ Per riabilitare un documento occultato nel sistema di archiviazione il procedime
     \item Aprire la lista dei documenti nel sistema di archiviazione: vedi \vedi{sec:visDocsList};
     \item Trovare il documento che si desidera riabilitare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
     \item Selezionare l'opzione 'Enable' dall'elenco che compare automaticamente;
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=16cm]{img/Screen/enablesingle.png}}
+        \caption{Documents - singola riabilitazione}
+        \label{img:enableSel}
+    \end{figure}
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione, simile al pop up di conferma occultamento.
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=10cm]{img/Screen/confirmenable.png}}
+        \caption{Documents - conferma riabilitazione}
+        \label{img:confirmEnable}
+    \end{figure}
 \end{itemize}
-
 Per riabilitare più documenti presenti nel sistema di archiviazione è necessario:
 \begin{itemize}
     \item Aprire la lista dei documenti nel sistema di archiviazione: vedi \vedi{sec:visDocsList};
     \item Trovare i documenti che si desidera riabilitare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento da riabilitare, per operare la selezione dei documenti, similmente al processo di selezione dei documenti per occultarli. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Concealed', altrimenti non sarà possibile proseguire;
+    \begin{figure}[H]
+        \centering  
+        \frame{     
+        \includegraphics[width=16cm]{img/Screen/enableselected.png}}
+        \caption{Documents - riabilita selezionati}
+        \label{img:enableSel}
+    \end{figure}
     \item Selezionare l'opzione 'Enable' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Enable' per confermare o l'opzione 'Abort' per annullare l'azione, simile al pop up di conferma occultamento documenti selezionati.
 \end{itemize}
 
-\subsubsection{Incorporazione (Embed) da lista dei documenti}
-Per incorporare nel sistema un documento il procedimento è simile a quello dell' occultamento (vedi \vedi{sec:concealDocs}):
+\subsubsection{Operazione Embed da lista dei documenti}
+Per calcolare gli embeddings di un documento nel sistema il procedimento è simile a quello dell' occultamento (vedi \vedi{sec:concealDocs}):
 \begin{itemize}
     \item Aprire la lista di tutti i documenti: vedi \vedi{sec:visDocsList};
-    \item Trovare il documento che si desidera incorporare e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
+    \item Trovare il documento di cui si desidera calcolare gli embeddings e fare clic sul bottone raffigurante i tre puntini in verticale nella riga corrispondente;
     \item Selezionare l'opzione 'Embed' dall'elenco che compare automaticamente;
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Embed' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
-Per incorporare più documenti presenti nel sistema di archiviazione è necessario:
+Per calcolare gli embeddings più documenti presenti nel sistema di archiviazione è necessario:
 \begin{itemize}
     \item Aprire la lista di tutti i documenti: vedi \vedi{sec:visDocsList};
-    \item Trovare i documenti che si desidera incorporare e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Not Embedded', altrimenti non sarà possibile proseguire;
-    \item Selezionare l'opzione 'Embed' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti; 
+    \item Trovare i documenti di cui si desidera calcolare gli embeddings e fare clic sul bottone raffigurante un quadrato a sinistra di ogni documento, per operare la selezione dei documenti. Attenzione: i documenti selezionati devono essere esclusivamente di stato 'Not Embedded', altrimenti non sarà possibile proseguire;
+    \item Selezionare l'opzione 'Embed' facendo clic sul bottone che compare automaticamente in alto a destra rispetto alla lista dei documenti;
     \item In seguito a tale azione, apparirà un pop up di conferma: selezionare l'opzione 'Embed' per confermare o l'opzione 'Abort' per annullare l'azione.
 \end{itemize}
 
@@ -463,8 +494,7 @@ Per cercare un documento presente nel sistema di archiviazione in base al suo fo
 \end{itemize}
 È inoltre possibile combinare tutte le funzioni di ricerca tra loro, quindi per esempio si può effettuare la ricerca di un documento inserendone titolo, stato e formato ricercati. \\ Per annullare le selezioni dei filtri di ricerca è sufficiente cliccare sul pulsante 'Reset' (affiancato dal simbolo 'X') che compare automaticamente dopo la selezione di un filtro di ricerca, situato a destra del pulsante di ricerca per formato.
 
-
-
+\newpage
 \subsection{Gestione delle chat}
 In questa sezione si illustrano le possibili azioni operabili sulle chat dell'applicazione. 
 \subsubsection{Visualizzazione}
@@ -501,7 +531,7 @@ Le azioni possibili di visualizzazione delle chat sono le seguenti:
     Se si comincia una conversazione con il chatbot o se si seleziona l'opzione 'Chatbot' dal menù in alto a sinistra della dashboard, la lista delle chat dell'applicazione è resa disponibile nella parte sinistra della pagina. Nella lista vengono visualizzati i timestamp dell'ultimo messaggio presente per ogni chat (nella rispettiva riga in alto a destra), la preview dell'ultimo messaggio presente della chat (appena sotto al titolo) e la preview dell'ultimo mittente di una chat.
 
 
-\subsubsection{Creazione, eliminazione, Ridenominazione}
+\subsubsection{Creazione, eliminazione, ridenominazione}
 \subsubsubsection{Creazione chat }
 Per creare una nuova chat è necessario:
 \begin{itemize}
@@ -537,7 +567,7 @@ Per eliminare una chat è necessario:
     \begin{figure}[H]
         \centering  
         \frame{     
-        \includegraphics[width=8cm]{img/Screen/deletechat.png}}
+        \includegraphics[width=10cm]{img/Screen/deletechat.png}}
         \caption{Chatbot - conferma eliminazione chat}
     \end{figure}
 \end{itemize}
@@ -678,7 +708,7 @@ Quando il chatbot fornisce una risposta contenente uno o più documenti, è poss
     \item Se si desidera inviare il messaggio fare clic sul bottone a destra della casella per l'inserimento testuale, raffigurante un aeroplanino.
 \end{itemize}
 
-
+\newpage
 \subsection{Altre funzionalità}
 \subsubsection{Cambio del tema di sfondo}
 L'interfaccia dell'applicazione è disponibile in tema chiaro o scuro.\\
